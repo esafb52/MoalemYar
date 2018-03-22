@@ -35,6 +35,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -65,6 +66,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Resources\Fonts\FontsDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -88,9 +93,34 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Resource Include="Resources\History.md" />
+    <Resource Include="Resources\Fonts\IranSans\IRANSans.ttf" />
+    <Resource Include="Resources\Fonts\IranSans\IRANSans_Bold.ttf" />
+    <Resource Include="Resources\Fonts\IranSans\IRANSans_Light.ttf" />
+    <Resource Include="Resources\Fonts\IranSans\IRANSans_Medium.ttf" />
+    <Resource Include="Resources\Fonts\IranSans\IRANSans_UltraLight.ttf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Arthas\Arthas.csproj">
+      <Project>{f5dbbc65-f7d3-4a0d-8a9f-3dafd3deb7ed}</Project>
+      <Name>Arthas</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\iconMove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tabIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\editIcon.png" />
+    <Resource Include="Resources\titleMuenIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,12 +1,123 @@
-﻿<Window x:Class="MoalemYar.MainWindow"
+﻿<Metro:MetroWindow x:Class="MoalemYar.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MoalemYar"
+        xmlns:Metro="clr-namespace:Arthas.Controls.Metro;assembly=Arthas"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        d:DesignWidth="1600" d:DesignHeight="1200"
+        Style="{StaticResource myWindow}"
+        Title="معلم یار نسخه آزمایشی">
+    <Metro:MetroWindow.Menu>
+        <Metro:MetroTitleMenu>
+            <Metro:MetroTitleMenuItem Header="تنظیمات" Icon="Resources/titleMuenIcon.png">
+                <Metro:MetroMenuItem Header="تنظیمات شماره یک" />
+               
+                <Metro:MetroMenuSeparator />
+                <Metro:MetroMenuItem Header="تنظیمات شماره پنج" Icon="Resources/titleMuenIcon.png" />
+                <Metro:MetroMenuItem Header="تنظیمات شماره شش" Icon="Resources/titleMuenIcon.png">
+                    <Metro:MetroMenuItem Header="تنظیمات شماره نه" Icon="Resources/titleMuenIcon.png" />
+                    <Metro:MetroMenuSeparator />
+                    <Metro:MetroMenuItem Header="تنظیمات شماره ده" Icon="Resources/titleMuenIcon.png" />
+                    <Metro:MetroMenuItem Header="تنظیمات شماره یازده" Icon="Resources/titleMuenIcon.png">
+                        <Metro:MetroMenuItem Header="تنظیمات شماره چهارده" Icon="Resources/titleMuenIcon.png" />
+                        <Metro:MetroMenuSeparator />
+                        <Metro:MetroMenuItem Header="تنظیمات شماره پانزده" Icon="Resources/titleMuenIcon.png" />
+                    </Metro:MetroMenuItem>
+                </Metro:MetroMenuItem>
+            </Metro:MetroTitleMenuItem>
+            <Metro:MetroTitleMenuItem Header="تنظیمات شماره یست یک" Icon="Resources/titleMuenIcon.png" />
+        </Metro:MetroTitleMenu>
+    </Metro:MetroWindow.Menu>
+    <Metro:MetroWindow.ContextMenu>
+        <Metro:MetroContextMenu>
+
+            <Metro:MetroMenuItem Header="زیرمنو سه" />
+            <Metro:MetroMenuSeparator />
+            <Metro:MetroMenuItem Header="زیرمنو پنج" Icon="Resources/titleMuenIcon.png" />
+            <Metro:MetroMenuItem Header="زیرمنو شش" Icon="Resources/titleMuenIcon.png">
+                <Metro:MetroMenuItem Header="زیرمنو نه" Icon="Resources/titleMuenIcon.png" />
+                <Metro:MetroMenuSeparator />
+                <Metro:MetroMenuItem Header="زیرمنو ده" Icon="Resources/titleMuenIcon.png" />
+                <Metro:MetroMenuItem Header="زیرمنو یازده" Icon="Resources/titleMuenIcon.png">
+                    <Metro:MetroMenuItem Header="زیرمنو چهارده" Icon="Resources/titleMuenIcon.png" />
+                    <Metro:MetroMenuSeparator />
+                    <Metro:MetroMenuItem Header="زیرمنو شانزده" Icon="Resources/titleMuenIcon.png" />
+                </Metro:MetroMenuItem>
+            </Metro:MetroMenuItem>
+            <Metro:MetroMenuSeparator />
+            <Metro:MetroMenuItem x:Name="exit" Header="زیرمنو هفده" />
+        </Metro:MetroContextMenu>
+    </Metro:MetroWindow.ContextMenu>
+
     <Grid>
-        
+        <Metro:MetroMenuTabControl FlowDirection="RightToLeft" x:Name="tab" IconMode="True">
+            <Metro:MetroMenuTabItem Header="داشبورد مدیریتی" Icon="Resources/icon.png" IconMove="Resources/iconMove.png">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition MinWidth="160" Width="Auto" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Metro:MetroScrollViewer>
+                        <Border BorderBrush="#19000000" BorderThickness="0,0,1,0">
+                            <StackPanel x:Name="lists">
+                                <Metro:MetroExpander Header="Button" Hint="لیست اول" Icon="Resources/tabIcon.png" />
+                                <Metro:MetroExpander Header="Button" Hint="1 / 100" />
+                                <Metro:MetroExpander Header="Header" Hint="لیست دوم" HintBackground="#FFF15151">
+                                    <StackPanel>
+                                        <Metro:MetroExpander Header="انتخاب آمار" Icon="Resources/tabIcon.png" />
+                                        <Metro:MetroExpander Header="لیست دانش" Icon="Resources/tabIcon.png" />
+                                        <Metro:MetroExpander Header="خطاها" Icon="Resources/tabIcon.png" />
+                                        <Metro:MetroExpander Header="آزمایش ها" />
+                                        <Metro:MetroExpander Header="هستی شناسی" />
+                                    </StackPanel>
+                                </Metro:MetroExpander>
+                                <Metro:MetroExpander Header="بخش دوم" IsExpanded="True">
+                                    <StackPanel>
+                                        <Metro:MetroExpander Header="اجتماعی" Icon="Resources/tabIcon.png" Hint="1 / 100" />
+                                        <Metro:MetroExpander Header="علوم" />
+                                        <Metro:MetroExpander Header="نیاز به تلاش" />
+                                        <Metro:MetroExpander Header="آرامش" />
+                                    </StackPanel>
+                                </Metro:MetroExpander>
+                                <Metro:MetroExpander Header="بخش آخر" />
+                                <Metro:MetroExpander Header="بخش نیمه" />
+                            </StackPanel>
+                        </Border>
+                    </Metro:MetroScrollViewer>
+                    <Metro:MetroTabControl x:Name="tabc" Grid.Column="1">
+                        <Metro:MetroTabItem Header="بخش اول" Icon="Resources/tabIcon.png">
+                            <Grid>
+                                <Metro:MetroScrollViewer>
+                                    <Metro:MetroWaterfallFlow x:Name="waterfallFlow" ListWidth="300">
+                                        <Grid>
+                                            <Metro:MetroGroupBox Header="تنظیمات پوسته (MetroColorPicker رابط کاربری)">
+                                                <Grid>
+                                                    <WrapPanel Orientation="Horizontal">
+                                                        <Metro:MetroColorPicker x:Name="color1" Width="50" Height="50" Background="#6D819A" DefaultColor="#6D819A" Padding="5" />
+                                                        <Metro:MetroColorPicker x:Name="color2" Width="50" Height="50" Background="#6D819A" DefaultColor="#6D819A" Padding="5" IsEnabled="False" />
+                                                    </WrapPanel>
+                                                </Grid>
+                                            </Metro:MetroGroupBox>
+                                        </Grid>
+                                    </Metro:MetroWaterfallFlow>
+                                </Metro:MetroScrollViewer>
+                            </Grid>
+                        </Metro:MetroTabItem>
+                        <Metro:MetroTabItem Header="بخش دوم" />
+                    </Metro:MetroTabControl>
+                </Grid>
+            </Metro:MetroMenuTabItem>
+            <Metro:MetroMenuTabItem Header="گزارش گیری" Icon="Resources/icon.png" IconMove="Resources/iconMove.png">
+                <!--<Grid>
+                Content must be here
+                </Grid>-->
+            </Metro:MetroMenuTabItem>
+            <Metro:MetroMenuTabItem Header="تنظیمات نرم افزار" Icon="Resources/icon.png" IconMove="Resources/iconMove.png">
+                <!--<Grid>
+                </Grid>-->
+            </Metro:MetroMenuTabItem>
+        </Metro:MetroMenuTabControl>
     </Grid>
-</Window>
+</Metro:MetroWindow>

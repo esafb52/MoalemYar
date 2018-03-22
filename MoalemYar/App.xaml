@@ -4,6 +4,32 @@
              xmlns:local="clr-namespace:MoalemYar"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+       
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MoalemYar;component/Resources/Fonts/FontsDictionary.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <Style x:Key="myWindow" TargetType="Window">
+                <Setter Property="TextOptions.TextFormattingMode" Value="Ideal" />
+                <Setter Property="TextOptions.TextRenderingMode" Value="Auto" />
+                <Setter Property="TextOptions.TextHintingMode" Value="Auto"/>
+                <Setter Property="FontFamily" Value="{StaticResource TeacherYar.Fonts.IRANSans}"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="MinWidth" Value="800"/>
+                <Setter Property="MinHeight" Value="600"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="WindowStyle" Value="None"/>
+            </Style>
+            <Style x:Key="myUserControl" TargetType="UserControl">
+                <Setter Property="TextOptions.TextFormattingMode" Value="Ideal" />
+                <Setter Property="TextOptions.TextRenderingMode" Value="Auto" />
+                <Setter Property="TextOptions.TextHintingMode" Value="Auto"/>
+                <Setter Property="FontFamily" Value="{StaticResource TeacherYar.Fonts.IRANSans}"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="FlowDirection" Value="RightToLeft"/>
+            </Style>
+        </ResourceDictionary>
+        
     </Application.Resources>
 </Application>
