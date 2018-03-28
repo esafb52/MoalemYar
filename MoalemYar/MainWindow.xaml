@@ -53,7 +53,7 @@
 
     <Grid>
         <Metro:MetroMenuTabControl FlowDirection="RightToLeft" x:Name="tab" IconMode="True">
-            <Metro:MetroMenuTabItem Header="داشبورد مدیریتی" Icon="Resources/icon.png" IconMove="Resources/iconMove.png">
+            <Metro:MetroMenuTabItem Header="داشبورد مدیریتی" Icon="Resources/Home.png" IconMove="Resources/Home_Move.png">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition MinWidth="160" Width="Auto" />
@@ -109,16 +109,27 @@
                     </Metro:MetroTabControl>
                 </Grid>
             </Metro:MetroMenuTabItem>
-            <Metro:MetroMenuTabItem Header="گزارش گیری" Icon="Resources/icon.png" IconMove="Resources/iconMove.png">
+            <Metro:MetroMenuTabItem Header="گزارش گیری" Icon="Resources/Report.png" IconMove="Resources/Report_Move.png">
                 <!--<Grid>
                 Content must be here
                 </Grid>-->
             </Metro:MetroMenuTabItem>
             <Metro:MetroMenuTabItem Header="تنظیمات نرم افزار" Icon="Resources/icon.png" IconMove="Resources/iconMove.png">
-                <!--<Grid>
-                </Grid>-->
+                <Grid>
+                    <Metro:MetroScrollViewer>
+                        <ContentControl>
+                            <ContentControl.ContentTemplate>
+                                <DataTemplate>
+                                    <local:Settings/>
+                                </DataTemplate>
+                            </ContentControl.ContentTemplate>
+                        </ContentControl>
+
+                    </Metro:MetroScrollViewer>
+
+                </Grid>
             </Metro:MetroMenuTabItem>
-            <Metro:MetroMenuTabItem Header="درباره نرم افزار" Icon="Resources/icon.png" IconMove="Resources/iconMove.png">
+            <Metro:MetroMenuTabItem Header="درباره نرم افزار" Icon="Resources/Info.png" IconMove="Resources/info_Move.png">
                 <Grid>
                     <Metro:MetroScrollViewer>
                         <ContentControl>
