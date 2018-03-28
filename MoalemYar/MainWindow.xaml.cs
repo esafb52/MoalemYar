@@ -25,6 +25,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using DevExpress.Logify.WPF;
 using Ookii.Dialogs.Wpf;
+using Enterwell.Clients.Wpf.Notifications;
 
 namespace MoalemYar
 {
@@ -34,13 +35,19 @@ namespace MoalemYar
     public partial class MainWindow : MetroWindow
     {
         public string appTitle { get; set; }
+        internal static MainWindow main;
+        public INotificationMessageManager Manager { get; } = new NotificationMessageManager();
 
         public MainWindow()
         {
             InitializeComponent();
+            
             DataContext = this;
+            main = this;
+
             appTitle = AppVariable.getAppTitle + AppVariable.getAppVersion; // App Title with Version
 
+            //Todo: Enable Credential
            // ShowCredentialDialog();
 
             #region "Automatic error reporting"
@@ -55,9 +62,49 @@ namespace MoalemYar
             client.SendOfflineReports();
             client.StartExceptionsHandling();
 
+
             #endregion
+            
         }
 
+        public void ShowNotification()
+        {
+            this.Manager
+               .CreateMessage()
+               .Accent("#1751C3")
+               .Background("#333")
+               .HasBadge("Info")
+               .HasMessage("Update will be installed on next application restart.")
+               .Dismiss().WithButton("Update now", button => { tab.SelectedIndex = 2; })
+               .Dismiss().WithButton("Release notes", button => { })
+               .Dismiss().WithButton("Later", button => { })
+               .WithOverlay(new ProgressBar
+               {
+                   VerticalAlignment = VerticalAlignment.Bottom,
+                   HorizontalAlignment = HorizontalAlignment.Stretch,
+                   Height = 3,
+                   BorderThickness = new Thickness(0),
+                   Foreground = new SolidColorBrush(Color.FromArgb(128, 255, 255, 255)),
+                   Background = Brushes.Transparent,
+                   IsIndeterminate = false,
+                   IsHitTestVisible = false,
+                   Value=18
+               })
+               .Queue();
+        }
+        public void ShowNotification3()
+        {
+            this.Manager
+                 .CreateMessage()
+                 .Accent("#E0A030")
+                 .Background("#333")
+                 .HasBadge("Warn")
+                 .HasMessage("Failed to retrieve data.")
+                 .WithButton("Try again", button => { })
+                 .Dismiss().WithButton("Ignore", button => { })
+                 .Queue();
+        }
+       
         //Todo: Add Login
         private void ShowCredentialDialog()
         {
@@ -122,5 +169,12 @@ namespace MoalemYar
         //    }
         //}
         #endregion
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            ShowNotification();
+            ShowNotification3();
+
+        }
     }
 }

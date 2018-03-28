@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MoalemYar.UserControls"
         xmlns:Metro="clr-namespace:Arthas.Controls.Metro;assembly=Arthas"
+                   xmlns:controls="clr-namespace:Enterwell.Clients.Wpf.Notifications.Controls;assembly=Enterwell.Clients.Wpf.Notifications"
                    mc:Ignorable="d"
         d:DesignWidth="1600" d:DesignHeight="1200"
         Style="{StaticResource myWindow}"
@@ -52,6 +53,7 @@
     </Metro:MetroWindow.ContextMenu>
 
     <Grid>
+
         <Metro:MetroMenuTabControl FlowDirection="RightToLeft" x:Name="tab" IconMode="True">
             <Metro:MetroMenuTabItem Header="داشبورد مدیریتی" Icon="Resources/Home.png" IconMove="Resources/Home_Move.png">
                 <Grid>
@@ -86,14 +88,19 @@
                             </StackPanel>
                         </Border>
                     </Metro:MetroScrollViewer>
+
                     <Metro:MetroTabControl x:Name="tabc" Grid.Column="1">
                         <Metro:MetroTabItem Header="بخش اول" Icon="Resources/tabIcon.png">
                             <Grid>
+
                                 <Metro:MetroScrollViewer>
                                     <Metro:MetroWaterfallFlow x:Name="waterfallFlow" ListWidth="300">
+
                                         <Grid>
                                             <Metro:MetroGroupBox Header="تنظیمات پوسته (MetroColorPicker رابط کاربری)">
                                                 <Grid>
+                                                    <Button Content="Button" HorizontalAlignment="Left" Margin="54,164,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+
                                                     <WrapPanel Orientation="Horizontal">
                                                         <Metro:MetroColorPicker x:Name="color1" Width="50" Height="50" Background="#6D819A" DefaultColor="#6D819A" Padding="5" />
                                                         <Metro:MetroColorPicker x:Name="color2" Width="50" Height="50" Background="#6D819A" DefaultColor="#6D819A" Padding="5" IsEnabled="False" />
@@ -145,5 +152,8 @@
                 </Grid>
             </Metro:MetroMenuTabItem>
         </Metro:MetroMenuTabControl>
+        <controls:NotificationMessageContainer Manager="{Binding Manager}" />
+
+
     </Grid>
 </Metro:MetroWindow>

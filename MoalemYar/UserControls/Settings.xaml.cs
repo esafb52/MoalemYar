@@ -34,5 +34,10 @@ namespace MoalemYar.UserControls
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.main.ShowNotification();
+        }
     }
 }
