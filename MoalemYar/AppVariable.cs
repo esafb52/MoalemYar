@@ -22,7 +22,7 @@ namespace MoalemYar
 {
     public class AppVariable
     {
-
+        public static string LogifyOfflinePath = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         public static string LogifyAPIKey = "SPECIFY_YOUR_API_KEY_HERE"; // http://logify.devexpress.com/
         public static string getAppName = Assembly.GetExecutingAssembly().GetName().Name;
         public static string getAppVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
@@ -35,13 +35,15 @@ namespace MoalemYar
         public const string BGBLACK = "#333";
         public const string ORANGE = "#E0A030";
         public const string RED = "#F44336";
+        public const string BLUE = "#1751C3";
 
-        public static bool TosifiSystem = false;
-        public static bool CredentialLogin = false;
-        public static bool Autorun = false;
-        public static bool HamburgerMenu = false;
-        public static bool AutoSendReport = false;
-        public static string SkinCode = "#6D819A";
+
+        public static string TosifiSystem = "TosifiSystem";
+        public static string CredentialLogin = "Credential";
+        public static string Autorun = "Autorun";
+        public static string HamburgerMenu = "HamburgerMenu";
+        public static string AutoSendReport = "AutoSendReport";
+        public static string SkinCode = "SkinCode";
 
         public static string ReadSetting(string key)
         {

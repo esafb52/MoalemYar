@@ -48,25 +48,40 @@ namespace MoalemYar
             appTitle = AppVariable.getAppTitle + AppVariable.getAppVersion; // App Title with Version
 
             //Todo: Enable Credential
-           // ShowCredentialDialog();
+            // ShowCredentialDialog();
 
-            #region "Automatic error reporting"
+            LogifyCrashReport();
 
+
+            LoadSettings();
+        }
+
+        public void LogifyCrashReport()
+        {
+            var isEnabledReport = AppVariable.ReadSetting(AppVariable.AutoSendReport);
             LogifyAlert client = LogifyAlert.Instance;
             client.ApiKey = AppVariable.LogifyAPIKey;
             client.AppName = AppVariable.getAppName;
             client.AppVersion = AppVariable.getAppVersion;
             client.OfflineReportsEnabled = true;
             client.OfflineReportsCount = 20;
-            client.OfflineReportsDirectory = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            client.OfflineReportsDirectory = AppVariable.LogifyOfflinePath;
             client.SendOfflineReports();
             client.StartExceptionsHandling();
-
-
-            #endregion
-            
+            if (isEnabledReport.Equals("True"))
+                client.StartExceptionsHandling();
+            else
+                client.StopExceptionsHandling();
         }
+        private void LoadSettings()
+        {
+            var color = (Color)ColorConverter.ConvertFromString(AppVariable.ReadSetting(AppVariable.SkinCode));
+            var brush = new SolidColorBrush(color);
+            BorderBrush = brush;
 
+            var hb_Menu = Convert.ToBoolean(AppVariable.ReadSetting(AppVariable.HamburgerMenu));
+            MainWindow.main.tab.IconMode = !hb_Menu;
+        }
         public void ShowNotification()
         {
             this.Manager
