@@ -3,17 +3,17 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:MoalemYar"
+        xmlns:local="clr-namespace:MoalemYar.UserControls"
         xmlns:Metro="clr-namespace:Arthas.Controls.Metro;assembly=Arthas"
-        mc:Ignorable="d"
+                   mc:Ignorable="d"
         d:DesignWidth="1600" d:DesignHeight="1200"
         Style="{StaticResource myWindow}"
-        Title="معلم یار نسخه آزمایشی">
+                   Title="{Binding Path=appTitle}">
     <Metro:MetroWindow.Menu>
         <Metro:MetroTitleMenu>
             <Metro:MetroTitleMenuItem Header="تنظیمات" Icon="Resources/titleMuenIcon.png">
                 <Metro:MetroMenuItem Header="تنظیمات شماره یک" />
-               
+
                 <Metro:MetroMenuSeparator />
                 <Metro:MetroMenuItem Header="تنظیمات شماره پنج" Icon="Resources/titleMuenIcon.png" />
                 <Metro:MetroMenuItem Header="تنظیمات شماره شش" Icon="Resources/titleMuenIcon.png">
@@ -117,6 +117,21 @@
             <Metro:MetroMenuTabItem Header="تنظیمات نرم افزار" Icon="Resources/icon.png" IconMove="Resources/iconMove.png">
                 <!--<Grid>
                 </Grid>-->
+            </Metro:MetroMenuTabItem>
+            <Metro:MetroMenuTabItem Header="درباره نرم افزار" Icon="Resources/icon.png" IconMove="Resources/iconMove.png">
+                <Grid>
+                    <Metro:MetroScrollViewer>
+                        <ContentControl>
+                            <ContentControl.ContentTemplate>
+                                <DataTemplate>
+                                    <local:About/>
+                                </DataTemplate>
+                            </ContentControl.ContentTemplate>
+                        </ContentControl>
+
+                    </Metro:MetroScrollViewer>
+
+                </Grid>
             </Metro:MetroMenuTabItem>
         </Metro:MetroMenuTabControl>
     </Grid>
