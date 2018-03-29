@@ -1,13 +1,13 @@
-﻿
-/****************************** ghost1372.github.io ******************************\
+﻿/****************************** ghost1372.github.io ******************************\
 *	Module Name:	MetroThumb.cs
 *	Project:		Arthas
 *	Copyright (C) 2017 Mahdi Hosseini, All rights reserved.
 *	This software may be modified and distributed under the terms of the MIT license.  See LICENSE file for details.
 *
 *	Written by Mahdi Hosseini <Mahdidvb72@gmail.com>,  2018, 3, 22, 05:54 ب.ظ
-*	
+*
 ***********************************************************************************/
+
 using Arthas.Utility.Element;
 using System;
 using System.Windows;
@@ -68,7 +68,7 @@ namespace Arthas.Controls.Metro
         public double XPercent { get { return X / ActualWidth; } set { X = ActualWidth * value; } }
         public double YPercent { get { return Y / ActualHeight; } set { Y = ActualHeight * value; } }
 
-        void Change()
+        private void Change()
         {
             if (ValueChange != null) { ValueChange(this, null); }
         }

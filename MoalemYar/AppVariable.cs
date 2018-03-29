@@ -1,22 +1,18 @@
-﻿
-/****************************** ghost1372.github.io ******************************\
+﻿/****************************** ghost1372.github.io ******************************\
 *	Module Name:	AppVariable.cs
 *	Project:		MoalemYar
 *	Copyright (C) 2017 Mahdi Hosseini, All rights reserved.
 *	This software may be modified and distributed under the terms of the MIT license.  See LICENSE file for details.
 *
 *	Written by Mahdi Hosseini <Mahdidvb72@gmail.com>,  2018, 3, 28, 11:40 ق.ظ
-*	
+*
 ***********************************************************************************/
+
 using Microsoft.Win32;
 using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Diagnostics;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MoalemYar
 {
@@ -24,6 +20,13 @@ namespace MoalemYar
     {
         public static string LogifyOfflinePath = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         public static string LogifyAPIKey = "SPECIFY_YOUR_API_KEY_HERE"; // http://logify.devexpress.com/
+        public static string UpdateServer = "https://raw.githubusercontent.com/ghost1372/MoalemYar/master/Updater.xml";
+        public const string UpdateXmlTag = "MoalemYar"; //Defined in Xml file
+        public const string UpdateXmlChildTag = "AppVersion"; //Defined in Xml file
+        public const string UpdateVersionTag = "version"; //Defined in Xml file
+        public const string UpdateUrlTag = "url"; //Defined in Xml file
+        public const string UpdateChangeLogTag = "changelog";
+
         public static string getAppName = Assembly.GetExecutingAssembly().GetName().Name;
         public static string getAppVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
         public static string getAppNameAndVersion = Assembly.GetExecutingAssembly().GetName().Name + " " + Assembly.GetExecutingAssembly().GetName().Version.ToString();
@@ -31,12 +34,12 @@ namespace MoalemYar
 
         // COLOR \\
         public const string CYAN = "#00BCD4";
+
         public const string GREEN = "#4CAF50";
         public const string BGBLACK = "#333";
         public const string ORANGE = "#E0A030";
         public const string RED = "#F44336";
         public const string BLUE = "#1751C3";
-
 
         public static string TosifiSystem = "TosifiSystem";
         public static string CredentialLogin = "Credential";
@@ -59,6 +62,7 @@ namespace MoalemYar
             }
             return result;
         }
+
         public static void AddUpdateAppSettings(string key, string value)
         {
             try
@@ -81,6 +85,7 @@ namespace MoalemYar
                 return;
             }
         }
+
         public static void AddUpdateAppSettings(string key, bool value)
         {
             try
@@ -103,6 +108,7 @@ namespace MoalemYar
                 return;
             }
         }
+
         public static void RegisterInStartup(bool isChecked)
         {
             var productName = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).ProductName;

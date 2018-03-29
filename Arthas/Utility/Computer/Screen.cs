@@ -1,20 +1,19 @@
-﻿
-/****************************** ghost1372.github.io ******************************\
+﻿/****************************** ghost1372.github.io ******************************\
 *	Module Name:	Screen.cs
 *	Project:		Arthas
 *	Copyright (C) 2017 Mahdi Hosseini, All rights reserved.
 *	This software may be modified and distributed under the terms of the MIT license.  See LICENSE file for details.
 *
 *	Written by Mahdi Hosseini <Mahdidvb72@gmail.com>,  2018, 3, 22, 05:54 ب.ظ
-*	
+*
 ***********************************************************************************/
+
 using System.Windows.Forms;
 
 namespace Arthas.Utility.Computer
 {
     public class Screen
     {
-
         static Screen()
         {
             var presentationSource = System.Windows.PresentationSource.FromVisual(System.Windows.Application.Current.MainWindow);
@@ -86,12 +85,16 @@ namespace Arthas.Utility.Computer
             {
                 case TaskBarPostion.Left:
                     return ScreenWidth - WorkWidth;
+
                 case TaskBarPostion.Top:
                     return ScreenHeight - WorkHeight;
+
                 case TaskBarPostion.Right:
                     return ScreenWidth - WorkWidth;
+
                 case TaskBarPostion.Bottom:
                     return ScreenHeight - WorkHeight;
+
                 default:
                     return 0;
             }
@@ -107,11 +110,14 @@ namespace Arthas.Utility.Computer
             {
                 case TaskBarPostion.Left:
                     return ScreenHeight;
+
                 case TaskBarPostion.Top:
                 case TaskBarPostion.Right:
                     return ScreenHeight;
+
                 case TaskBarPostion.Bottom:
                     return ScreenWidth;
+
                 default:
                     return 0;
             }

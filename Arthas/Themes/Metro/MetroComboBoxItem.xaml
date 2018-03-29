@@ -2,9 +2,6 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:Metro="clr-namespace:Arthas.Controls.Metro">
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="/Arthas;component/Themes/Metro/MetroBase.xaml"/>
+        <ResourceDictionary Source="/Arthas;component/Themes/Metro/MetroBase.xaml" />
     </ResourceDictionary.MergedDictionaries>
-    
-    
-
 </ResourceDictionary>

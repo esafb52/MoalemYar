@@ -1,13 +1,13 @@
-﻿
-/****************************** ghost1372.github.io ******************************\
+﻿/****************************** ghost1372.github.io ******************************\
 *	Module Name:	MetroRichTextBox.cs
 *	Project:		Arthas
 *	Copyright (C) 2017 Mahdi Hosseini, All rights reserved.
 *	This software may be modified and distributed under the terms of the MIT license.  See LICENSE file for details.
 *
 *	Written by Mahdi Hosseini <Mahdidvb72@gmail.com>,  2018, 3, 22, 05:54 ب.ظ
-*	
+*
 ***********************************************************************************/
+
 using Arthas.Utility.Element;
 using Arthas.Utility.Media;
 using System;
@@ -33,13 +33,13 @@ namespace Arthas.Controls.Metro
         public Brush MouseMoveThemeBorderBrush { get { return (Brush)GetValue(MouseMoveThemeBorderBrushProperty); } set { SetValue(MouseMoveThemeBorderBrushProperty, value); } }
         public bool AutoLimitMouse { get { return (bool)GetValue(AutoLimitMouseProperty); } set { SetValue(AutoLimitMouseProperty, value); } }
 
-        void SetColor()
+        private void SetColor()
         {
             CaretBrush = Foreground;
             SelectionBrush = Foreground;
         }
 
-        void SetSize()
+        private void SetSize()
         {
             var w = ActualWidth - BorderThickness.Left - BorderThickness.Right - Padding.Left - Padding.Right - 2;
             Document.MaxPageWidth = w > 0 ? w : Document.MaxPageWidth;
@@ -114,6 +114,7 @@ namespace Arthas.Controls.Metro
             }
             ScrollToEnd();
         }
+
         public void AddLine(ImageSource image, Action action)
         {
             if (action == null)
@@ -131,15 +132,40 @@ namespace Arthas.Controls.Metro
             ScrollToEnd();
         }
 
-        public void AddLine() { AddLine("", (Action)null); }
-        public void AddLine(string content) { AddLine(content, (Action)null); }
-        public void AddLine(string content, RgbaColor rgba) { AddLine(content, rgba, null); }
-        public void AddLine(ImageSource image) { AddLine(image, (Action)null); }
-        public void AddLine(string content, Action action) { AddLine(content, null, action); }
+        public void AddLine()
+        {
+            AddLine("", (Action)null);
+        }
 
-        public void AddLine(string title, string url) { AddLine(title, () => System.Diagnostics.Process.Start(url)); }
-        public void Add(string title, string url){ Add(title, () => System.Diagnostics.Process.Start(url)); }
+        public void AddLine(string content)
+        {
+            AddLine(content, (Action)null);
+        }
 
+        public void AddLine(string content, RgbaColor rgba)
+        {
+            AddLine(content, rgba, null);
+        }
+
+        public void AddLine(ImageSource image)
+        {
+            AddLine(image, (Action)null);
+        }
+
+        public void AddLine(string content, Action action)
+        {
+            AddLine(content, null, action);
+        }
+
+        public void AddLine(string title, string url)
+        {
+            AddLine(title, () => System.Diagnostics.Process.Start(url));
+        }
+
+        public void Add(string title, string url)
+        {
+            Add(title, () => System.Diagnostics.Process.Start(url));
+        }
 
         public void Add(string content, RgbaColor rgba, Action action)
         {
@@ -163,6 +189,7 @@ namespace Arthas.Controls.Metro
             }
             ScrollToEnd();
         }
+
         public void Add(ImageSource image, Action action)
         {
             if (Document.Blocks.Count <= 0)
@@ -184,11 +211,24 @@ namespace Arthas.Controls.Metro
             ScrollToEnd();
         }
 
-        public void Add(string content) { Add(content, null, (Action)null); }
-        public void Add(string content, RgbaColor rgba) { Add(content, rgba, null); }
-        public void Add(ImageSource image) { Add(image, (Action)null); }
-        public void Add(string content, Action action) { Add(content, null, action); }
+        public void Add(string content)
+        {
+            Add(content, null, (Action)null);
+        }
 
+        public void Add(string content, RgbaColor rgba)
+        {
+            Add(content, rgba, null);
+        }
 
+        public void Add(ImageSource image)
+        {
+            Add(image, (Action)null);
+        }
+
+        public void Add(string content, Action action)
+        {
+            Add(content, null, action);
+        }
     }
 }

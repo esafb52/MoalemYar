@@ -43,7 +43,7 @@ namespace MoalemYar
         public MainWindow()
         {
             InitializeComponent();
-            
+
             DataContext = this;
             main = this;
 
@@ -105,7 +105,7 @@ namespace MoalemYar
                    Background = Brushes.Transparent,
                    IsIndeterminate = false,
                    IsHitTestVisible = false,
-                   Value=18
+                   Value = 18
                })
                .Queue();
         }
@@ -117,7 +117,8 @@ namespace MoalemYar
                  .Background(AppVariable.BGBLACK)
                  .HasBadge("هشدار")
                  .HasHeader("برای اعمال رنگ بندی بصورت کامل برنامه را دوباره راه اندازی کنید")
-                 .WithButton("راه اندازی", button => {
+                 .WithButton("راه اندازی", button =>
+                 {
                      Application.Current.Shutdown();
                      System.Windows.Forms.Application.Restart();
 
@@ -125,7 +126,36 @@ namespace MoalemYar
                  .Dismiss().WithButton("بیخیال", button => { })
                  .Queue();
         }
-       
+        public void ShowUpdateNotification(bool isAvailable, string Version, string URL)
+        {
+            if (isAvailable)
+            {
+                this.Manager
+                    .CreateMessage()
+                    .Accent(AppVariable.GREEN)
+                    .Background(AppVariable.BGBLACK)
+                    .HasBadge("اطلاعیه")
+                    .HasHeader(string.Format("نسخه جدید {0} پیدا شد،همین حالا به آخرین نسخه بروزرسانی کنید", Version))
+                    .WithButton("ارتقا", button =>
+                    {
+                        System.Diagnostics.Process.Start(URL);
+                    })
+                    .Dismiss().WithButton("بیخیال", button => { })
+                    .Queue();
+            }
+            else
+            {
+                this.Manager
+                   .CreateMessage()
+                   .Accent(AppVariable.RED)
+                   .Background(AppVariable.BGBLACK)
+                   .HasBadge("هشدار")
+                   .HasHeader(string.Format("شما از آخرین نسخه {0} استفاده می کنید", AppVariable.getAppVersion))
+                   .Dismiss().WithButton("تایید", button => { })
+                   .Queue();
+            }
+
+        }
         //Todo: Add Login
         private void ShowCredentialDialog()
         {
@@ -137,13 +167,13 @@ namespace MoalemYar
                 dialog.ShowSaveCheckBox = true;
                 dialog.ShowUIForSavedCredentials = true;
                 // The target is the key under which the credentials will be stored.
-                 dialog.Target = "Mahdi72_MoalemYar_www.127.0.0.1.com";
+                dialog.Target = "Mahdi72_MoalemYar_www.127.0.0.1.com";
 
                 if (dialog.ShowDialog(this))
                 {
                     if (dialog.Credentials.UserName == "mahdi" && dialog.Credentials.Password == "123")
-                        dialog.MainInstruction="رمز عبور اشتباه است";
-                    
+                        dialog.MainInstruction = "رمز عبور اشتباه است";
+
                     //else
                     //{
                     //    dialog.ConfirmCredentials(true);
@@ -212,10 +242,10 @@ namespace MoalemYar
 
                     break;
                 case 3:
-                    
+
                     break;
-               
-               
+
+
             }
         }
     }

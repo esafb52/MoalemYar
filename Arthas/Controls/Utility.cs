@@ -1,13 +1,13 @@
-﻿
-/****************************** ghost1372.github.io ******************************\
+﻿/****************************** ghost1372.github.io ******************************\
 *	Module Name:	Utility.cs
 *	Project:		Arthas
 *	Copyright (C) 2017 Mahdi Hosseini, All rights reserved.
 *	This software may be modified and distributed under the terms of the MIT license.  See LICENSE file for details.
 *
 *	Written by Mahdi Hosseini <Mahdidvb72@gmail.com>,  2018, 3, 22, 05:54 ب.ظ
-*	
+*
 ***********************************************************************************/
+
 using Arthas.Controls.Metro;
 using Arthas.Utility.Media;
 using System.ComponentModel;
@@ -40,7 +40,7 @@ namespace Arthas.Controls
             }
         }
 
-        static void SetColor(FrameworkElement control)
+        private static void SetColor(FrameworkElement control)
         {
             var mw = Window.GetWindow(control) is MetroWindow ? Window.GetWindow(control) as MetroWindow : null;
             if (mw != null)

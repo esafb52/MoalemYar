@@ -1,13 +1,13 @@
-﻿
-/****************************** ghost1372.github.io ******************************\
+﻿/****************************** ghost1372.github.io ******************************\
 *	Module Name:	MetroTextBox.cs
 *	Project:		Arthas
 *	Copyright (C) 2017 Mahdi Hosseini, All rights reserved.
 *	This software may be modified and distributed under the terms of the MIT license.  See LICENSE file for details.
 *
 *	Written by Mahdi Hosseini <Mahdidvb72@gmail.com>,  2018, 3, 22, 05:54 ب.ظ
-*	
+*
 ***********************************************************************************/
+
 using Arthas.Utility.Element;
 using System;
 using System.Windows;
@@ -47,9 +47,8 @@ namespace Arthas.Controls.Metro
         public bool IsPassWordBox { get { return (bool)GetValue(IsPassWordBoxProperty); } set { SetValue(IsPassWordBoxProperty, value); } }
         public CornerRadius CornerRadius { get { return (CornerRadius)GetValue(CornerRadiusProperty); } set { SetValue(CornerRadiusProperty, value); } }
 
-
-
         public Func<string, bool> ErrorCheckAction { get; set; }
+
         public event EventHandler ButtonClick;
 
         public MetroTextBox()
@@ -61,7 +60,7 @@ namespace Arthas.Controls.Metro
             Utility.Refresh(this);
         }
 
-        void ErrorCheck()
+        private void ErrorCheck()
         {
             // if (PopupHint == null || PopupHint == "") { PopupHint = InputHint; }
             if (ErrorCheckAction != null) { State = ErrorCheckAction(Text) ? "true" : "false"; }

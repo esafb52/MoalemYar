@@ -1,13 +1,13 @@
-﻿
-/****************************** ghost1372.github.io ******************************\
+﻿/****************************** ghost1372.github.io ******************************\
 *	Module Name:	MetroWaterfallFlow.cs
 *	Project:		Arthas
 *	Copyright (C) 2017 Mahdi Hosseini, All rights reserved.
 *	This software may be modified and distributed under the terms of the MIT license.  See LICENSE file for details.
 *
 *	Written by Mahdi Hosseini <Mahdidvb72@gmail.com>,  2018, 3, 22, 05:54 ب.ظ
-*	
+*
 ***********************************************************************************/
+
 using Arthas.Utility.Element;
 using System.Collections.Generic;
 using System.Windows;
@@ -17,13 +17,15 @@ namespace Arthas.Controls.Metro
 {
     public class MetroWaterfallFlow : Canvas
     {
-        int column;
-        double listWidth = 180;
+        private int column;
+        private double listWidth = 180;
         public double ListWidth { get { return listWidth; } set { listWidth = value; SetColumn(); } }
+
         static MetroWaterfallFlow()
         {
             ElementBase.DefaultStyle<MetroWaterfallFlow>(DefaultStyleKeyProperty);
         }
+
         public MetroWaterfallFlow()
         {
             Loaded += delegate
@@ -37,7 +39,7 @@ namespace Arthas.Controls.Metro
             };
         }
 
-        void SetColumn()
+        private void SetColumn()
         {
             // MinWidth = listWidth + Margin.Left * 4;
             column = (int)(ActualWidth / listWidth);
@@ -64,7 +66,11 @@ namespace Arthas.Controls.Metro
             public int Index { get; set; }
             public double Buttom { get; set; }
             public double Height { get; set; }
-            public Point(int index, double height, double buttom) { Index = index;Height = height; Buttom = buttom; }
+
+            public Point(int index, double height, double buttom)
+            {
+                Index = index; Height = height; Buttom = buttom;
+            }
         }
 
         public void Refresh()
@@ -76,7 +82,7 @@ namespace Arthas.Controls.Metro
             for (int i = 0; i < Children.Count; i++)
             {
                 (Children[i] as FrameworkElement).UpdateLayout();
-                list.Add(i, new Point(i,(Children[i] as FrameworkElement).ActualHeight, 0.0));
+                list.Add(i, new Point(i, (Children[i] as FrameworkElement).ActualHeight, 0.0));
             }
             for (int i = 0; i < column; i++)
             {

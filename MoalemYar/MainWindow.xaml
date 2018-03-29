@@ -99,7 +99,7 @@
                                         <Grid>
                                             <Metro:MetroGroupBox Header="تنظیمات پوسته (MetroColorPicker رابط کاربری)">
                                                 <Grid>
-                                                    <Button Content="Button" HorizontalAlignment="Left" Margin="54,164,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+                                                    <Button Content="Button" HorizontalAlignment="Left" Margin="54,164,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" />
 
                                                     <WrapPanel Orientation="Horizontal">
                                                         <Metro:MetroColorPicker x:Name="color1" Width="50" Height="50" Background="#6D819A" DefaultColor="#6D819A" Padding="5" />
@@ -127,13 +127,11 @@
                         <ContentControl>
                             <ContentControl.ContentTemplate>
                                 <DataTemplate>
-                                    <local:Settings/>
+                                    <local:Settings />
                                 </DataTemplate>
                             </ContentControl.ContentTemplate>
                         </ContentControl>
-
                     </Metro:MetroScrollViewer>
-
                 </Grid>
             </Metro:MetroMenuTabItem>
             <Metro:MetroMenuTabItem Header="درباره نرم افزار" Icon="Resources/Info.png" IconMove="Resources/info_Move.png">
@@ -142,18 +140,14 @@
                         <ContentControl Name="abtContent">
                             <ContentControl.ContentTemplate>
                                 <DataTemplate>
-                                    <local:About/>
+                                    <local:About />
                                 </DataTemplate>
                             </ContentControl.ContentTemplate>
                         </ContentControl>
-
                     </Metro:MetroScrollViewer>
-
                 </Grid>
             </Metro:MetroMenuTabItem>
         </Metro:MetroMenuTabControl>
         <controls:NotificationMessageContainer FlowDirection="RightToLeft" Manager="{Binding Manager}" />
-
-
     </Grid>
 </Metro:MetroWindow>

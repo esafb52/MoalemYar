@@ -1,15 +1,14 @@
-﻿
-/****************************** ghost1372.github.io ******************************\
+﻿/****************************** ghost1372.github.io ******************************\
 *	Module Name:	MetroMenuTabControl.cs
 *	Project:		Arthas
 *	Copyright (C) 2017 Mahdi Hosseini, All rights reserved.
 *	This software may be modified and distributed under the terms of the MIT license.  See LICENSE file for details.
 *
 *	Written by Mahdi Hosseini <Mahdidvb72@gmail.com>,  2018, 3, 22, 05:54 ب.ظ
-*	
+*
 ***********************************************************************************/
+
 using Arthas.Utility.Element;
-using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -28,12 +27,12 @@ namespace Arthas.Controls.Metro
         public Thickness Offset { get { return (Thickness)GetValue(OffsetProperty); } set { SetValue(OffsetProperty, value); } }
         public bool IconMode { get { return (bool)GetValue(IconModeProperty); } set { SetValue(IconModeProperty, value); GoToState(); } }
 
-        void GoToState()
+        private void GoToState()
         {
             ElementBase.GoToState(this, IconMode ? "EnterIconMode" : "ExitIconMode");
         }
 
-        void SelectionState()
+        private void SelectionState()
         {
             if (IconMode)
             {
@@ -51,7 +50,7 @@ namespace Arthas.Controls.Metro
         {
             Loaded += delegate { GoToState(); ElementBase.GoToState(this, IconMode ? "SelectionLoadedIconMode" : "SelectionLoaded"); };
             SelectionChanged += delegate (object sender, SelectionChangedEventArgs e) { if (e.Source is MetroMenuTabControl) { SelectionState(); } };
-            CommandBindings.Add(new CommandBinding(IconModeClickCommand, delegate { IconMode = !IconMode; GoToState();}));
+            CommandBindings.Add(new CommandBinding(IconModeClickCommand, delegate { IconMode = !IconMode; GoToState(); }));
 
             Utility.Refresh(this);
         }

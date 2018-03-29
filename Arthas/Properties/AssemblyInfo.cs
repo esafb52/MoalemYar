@@ -1,16 +1,14 @@
-﻿
-/****************************** ghost1372.github.io ******************************\
+﻿/****************************** ghost1372.github.io ******************************\
 *	Module Name:	AssemblyInfo.cs
 *	Project:		Arthas
 *	Copyright (C) 2017 Mahdi Hosseini, All rights reserved.
 *	This software may be modified and distributed under the terms of the MIT license.  See LICENSE file for details.
 *
 *	Written by Mahdi Hosseini <Mahdidvb72@gmail.com>,  2018, 3, 22, 05:54 ب.ظ
-*	
+*
 ***********************************************************************************/
+
 using System.Reflection;
-using System.Resources;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Windows;
 
@@ -40,18 +38,16 @@ using System.Windows;
 
 //[assembly: NeutralResourcesLanguage("en-US", UltimateResourceFallbackLocation.Satellite)]
 
-
-[assembly:ThemeInfo(
+[assembly: ThemeInfo(
     ResourceDictionaryLocation.None, //主题特定资源词典所处位置
-                             //(当资源未在页面
-                             //或应用程序资源字典中找到时使用)
+                                     //(当资源未在页面
+                                     //或应用程序资源字典中找到时使用)
     ResourceDictionaryLocation.SourceAssembly //常规资源词典所处位置
-                                      //(当资源未在页面
-                                      //、应用程序或任何主题专用资源字典中找到时使用)
+                                              //(当资源未在页面
+                                              //、应用程序或任何主题专用资源字典中找到时使用)
 )]
 
-
-// 程序集的版本信息由下列四个值组成: 
+// 程序集的版本信息由下列四个值组成:
 //
 //      主版本
 //      次版本
@@ -61,5 +57,5 @@ using System.Windows;
 //可以指定所有这些值，也可以使用“生成号”和“修订号”的默认值，
 // 方法是按如下所示使用“*”: :
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.33.0")]
-[assembly: AssemblyFileVersion("1.0.33.0")]
+[assembly: AssemblyVersion("1.0.41.0")]
+[assembly: AssemblyFileVersion("1.0.41.0")]
