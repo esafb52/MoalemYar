@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>  
 <MoalemYar>  
-  <version>1.0.249.0</version>  
+  <version>1.0.249.1</version>  
   <url>http://some.domain/our_app_homepage/</url> 
-  <changelog>Some Change\nSome Change\nSome Change</changelog>
+  <changelog>
+    Some Change
+  Some other change
+  </changelog>
 </MoalemYar>
