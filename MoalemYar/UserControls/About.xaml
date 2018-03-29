@@ -4,21 +4,123 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MoalemYar.UserControls"
-             xmlns:Metro="clr-namespace:Arthas.Controls.Metro;assembly=Arthas" x:Class="MoalemYar.UserControls.About"
+             xmlns:Metro="clr-namespace:Arthas.Controls.Metro;assembly=Arthas"
+    xmlns:fa="http://schemas.fontawesome.io/icons/" x:Class="MoalemYar.UserControls.About"
              mc:Ignorable="d" 
              Style="{StaticResource myUserControl}"
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800" Loaded="UserControl_Loaded">
     <Grid>
-
-        <Metro:MetroTextBlock Name="txtAppName" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="MetroTextBlock" VerticalAlignment="Top"/>
-        <Metro:MetroTextBlock x:Name="txtVersion" HorizontalAlignment="Left" Margin="10,37,0,0" TextWrapping="Wrap" Text="MetroTextBlock" VerticalAlignment="Top"/>
-        <Metro:MetroTextBlock x:Name="txtAuthor" HorizontalAlignment="Left" Margin="10,64,0,0" TextWrapping="Wrap" Text="MetroTextBlock" VerticalAlignment="Top"/>
-        <Metro:MetroTextBlock x:Name="txtEmail" HorizontalAlignment="Left" Margin="10,91,0,0" TextWrapping="Wrap" Text="MetroTextBlock" VerticalAlignment="Top"/>
-        <Metro:MetroGroupBox Header="تاریخچه نسخه" Margin="5,118,5,4.6">
+        <Metro:MetroGroupBox>
             <StackPanel>
-                <Metro:MetroTextBox Name="txtHistory" IsReadOnly="True" TextWrapping="WrapWithOverflow"/>
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Width="30" Foreground="{Binding Path=TimeColor}" Icon="Code" />
+                    <Metro:MetroTextBlock Margin="10,0,0,0" VerticalAlignment="Center" FontSize="18" Text="برنامه نویس و توسعه دهنده"/>
+                </StackPanel>
+                <Grid Margin="10,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="10" />
+                        <RowDefinition />
+                        <RowDefinition Height="10" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="15" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Border Grid.RowSpan="6" Grid.Column="0" Margin="3,-0.5,0,0"
+                            BorderBrush="{Binding Path=TimeColor}" BorderThickness="0,0,2,0" FlowDirection="LeftToRight" />
+
+                    <Metro:MetroTextBlock Grid.Row="1" Grid.Column="1" Margin="5"
+                               VerticalAlignment="Center"
+                               Text="سید مهدی حسینی" />
+                    <Metro:MetroTextBlock Grid.Row="1" Grid.Column="2" Margin="5"
+                               FontSize="15"
+                               Foreground="Green"
+                               Text="mahdidvb72@gmail.com" />
+
+                </Grid>
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Width="30" Foreground="{Binding Path=TimeColor}" Icon="Connectdevelop" />
+                    <Metro:MetroTextBlock Margin="10,0,0,0" VerticalAlignment="Center" FontSize="18"
+                               Text="مشخصات نرم افزار" />
+                </StackPanel>
+                <Grid Margin="10,0" Width="auto">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="10" />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition/>
+                        <RowDefinition Height="10" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="15" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <Border Grid.RowSpan="6" Grid.Column="0" Margin="3,-0.5,0,0" FlowDirection="LeftToRight"
+                            BorderBrush="{Binding Path=TimeColor}" BorderThickness="0,0,2,0" />
+
+                    <Metro:MetroTextBlock Grid.Row="1" Grid.Column="1" Margin="5"
+                               VerticalAlignment="Center"
+                               Text="نسخه نرم افزار" />
+                    <Metro:MetroTextBlock Grid.Row="1" Grid.Column="2" Margin="5"
+                               Foreground="Green"
+                               Text="{Binding Path=AppVersion}" />
+                    <Metro:MetroTextBlock Grid.Row="2" Grid.Column="1" Margin="5"
+                               VerticalAlignment="Center"
+                               Text="نام برنامه" />
+                    <Metro:MetroTextBlock Grid.Row="2" Grid.Column="2" Margin="5"
+                               Foreground="Green"
+                               Text="{Binding Path=AppName}" />
+
+
+                    <Metro:MetroTextBlock Grid.Row="3" Grid.Column="1" Margin="5,5,-5,5"
+                               VerticalAlignment="Center"
+                           TextWrapping="WrapWithOverflow"
+                               Text="این نرم افزار بصورت کاملا رایگان بوده و برای کمک به معلمان در مدارس به جهت پیشرفت تحصیلی دانش آموزان طراحی شده است.هرگونه فروش ممنوع می باشد" Grid.ColumnSpan="2" />
+                </Grid>
+                <StackPanel Orientation="Horizontal">
+                    <fa:ImageAwesome Width="30" Foreground="{Binding Path=TimeColor}" Icon="History" />
+                    <Metro:MetroTextBlock Margin="10,0,0,0" VerticalAlignment="Center" FontSize="18"
+                               Text="تاریخچه نسخه" />
+                </StackPanel>
+                <Grid Margin="10,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="10" />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition Height="10" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="15" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Border Grid.RowSpan="6" Grid.Column="0" Margin="3,-0.5,0,0"
+                            BorderBrush="{Binding Path=TimeColor}" BorderThickness="0,0,2,0" FlowDirection="LeftToRight" />
+
+                    <Metro:MetroTextBlock Grid.Row="1" Grid.Column="1" Margin="5"
+                               VerticalAlignment="Center" 
+                               Text="نسخه فعلی نرم افزار" />
+
+                    <Metro:MetroTextBlock Grid.Row="1" Grid.Column="2" Margin="5"
+                               FontSize="15"
+                               Foreground="Green"
+                               Text="{Binding Path=AppVersion}" />
+                    <Metro:MetroButton Grid.Row="2" Grid.Column="1" Margin="5"
+                                   VerticalAlignment="Center" Content="بررسی برای نسخه جدید"/>
+                    <Metro:MetroTextBlock Grid.Row="2" Grid.Column="2" Margin="5"
+                               FontSize="15"
+                               Foreground="Green"
+                               Text="{Binding Path=AppVersion}" />
+
+                </Grid>
+                <Metro:MetroTextBox Text="{Binding Path=History}" Name="txtHistory" IsReadOnly="True" TextWrapping="WrapWithOverflow"/>
+
             </StackPanel>
         </Metro:MetroGroupBox>
+       
 
     </Grid>
 </UserControl>

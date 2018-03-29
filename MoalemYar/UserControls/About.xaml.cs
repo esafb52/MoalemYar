@@ -31,21 +31,32 @@ namespace MoalemYar.UserControls
     public partial class About : UserControl
     {
         public string History { get; set; }
+        public string AppName { get; set; }
+        public string AppVersion { get; set; }
+
+
+        public Brush TimeColor { get; set; }
 
         public About()
         {
             InitializeComponent();
-            ReadHistory();
-            txtAppName.Text = AppVariable.getAppTitle;
-            txtVersion.Text = AppVariable.getAppVersion;
-            txtAuthor.Text = "مهدی حسینی";
-            txtEmail.Text = "mahdidvb72@gmail.com";
-        }
+            this.DataContext = this;
 
+            History = Properties.Resources.History;
+            AppName = AppVariable.getAppTitle;
+            AppVersion = AppVariable.getAppVersion;
+            var color = (Color)ColorConverter.ConvertFromString(AppVariable.ReadSetting(AppVariable.SkinCode));
+            var brush = new SolidColorBrush(color);
+            TimeColor = brush;
+        }
+        
         public void ReadHistory()
         {
-            History = Properties.Resources.History;
-            txtHistory.Text = History;
+            //txtHistory.Text = History;
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
         }
     }
 }

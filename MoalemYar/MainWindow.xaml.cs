@@ -8,6 +8,7 @@
 *	Written by Mahdi Hosseini <Mahdidvb72@gmail.com>,  2018, 3, 22, 05:53 ب.ظ
 *	
 ***********************************************************************************/
+
 using Arthas.Controls.Metro;
 using System;
 using System.Collections.Generic;
@@ -26,6 +27,7 @@ using System.Windows.Shapes;
 using DevExpress.Logify.WPF;
 using Ookii.Dialogs.Wpf;
 using Enterwell.Clients.Wpf.Notifications;
+using MoalemYar.UserControls;
 
 namespace MoalemYar
 {
@@ -48,7 +50,7 @@ namespace MoalemYar
             appTitle = AppVariable.getAppTitle + AppVariable.getAppVersion; // App Title with Version
 
             //Todo: Enable Credential
-            // ShowCredentialDialog();
+            //ShowCredentialDialog();
 
             LogifyCrashReport();
 
@@ -107,16 +109,20 @@ namespace MoalemYar
                })
                .Queue();
         }
-        public void ShowNotification3()
+        public void RestartNotification()
         {
             this.Manager
                  .CreateMessage()
-                 .Accent("#E0A030")
-                 .Background("#333")
-                 .HasBadge("Warn")
-                 .HasMessage("Failed to retrieve data.")
-                 .WithButton("Try again", button => { })
-                 .Dismiss().WithButton("Ignore", button => { })
+                 .Accent(AppVariable.ORANGE)
+                 .Background(AppVariable.BGBLACK)
+                 .HasBadge("هشدار")
+                 .HasHeader("برای اعمال رنگ بندی بصورت کامل برنامه را دوباره راه اندازی کنید")
+                 .WithButton("راه اندازی", button => {
+                     Application.Current.Shutdown();
+                     System.Windows.Forms.Application.Restart();
+
+                 })
+                 .Dismiss().WithButton("بیخیال", button => { })
                  .Queue();
         }
        
@@ -136,18 +142,19 @@ namespace MoalemYar
                 if (dialog.ShowDialog(this))
                 {
                     if (dialog.Credentials.UserName == "mahdi" && dialog.Credentials.Password == "123")
-                        dialog.ConfirmCredentials(true);
-                    else
-                    {
-                        dialog.ConfirmCredentials(true);
-                        Environment.Exit(0);
+                        dialog.MainInstruction="رمز عبور اشتباه است";
+                    
+                    //else
+                    //{
+                    //    dialog.ConfirmCredentials(true);
+                    //    Environment.Exit(0);
 
-                    }
+                    //}
                 }
-                else
-                {
-                    Environment.Exit(0);
-                }
+                //else
+                //{
+                //    Environment.Exit(0);
+                //}
             }
         }
 
@@ -188,8 +195,28 @@ namespace MoalemYar
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             ShowNotification();
-            ShowNotification3();
 
+        }
+
+        private void tab_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            switch (tab.SelectedIndex)
+            {
+                case 0:
+
+                    break;
+                case 1:
+
+                    break;
+                case 2:
+
+                    break;
+                case 3:
+                    
+                    break;
+               
+               
+            }
         }
     }
 }

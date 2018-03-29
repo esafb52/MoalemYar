@@ -75,6 +75,7 @@ namespace MoalemYar.UserControls
         private void color1_close()
         {
             AppVariable.AddUpdateAppSettings(AppVariable.SkinCode, color1.CurrentColor.OpaqueSolidColorBrush.ToString());
+            MainWindow.main.RestartNotification();
         }
 
         private void swLogin_Checked(object sender, RoutedEventArgs e)
