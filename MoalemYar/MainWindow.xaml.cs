@@ -56,8 +56,10 @@ namespace MoalemYar
 
 
             LoadSettings();
+
         }
 
+       
         public void LogifyCrashReport()
         {
             var isEnabledReport = AppVariable.ReadSetting(AppVariable.AutoSendReport);

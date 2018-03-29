@@ -55,7 +55,7 @@
     <Grid>
 
         <Metro:MetroMenuTabControl FlowDirection="RightToLeft" x:Name="tab" IconMode="True" SelectionChanged="tab_SelectionChanged">
-            <Metro:MetroMenuTabItem Header="داشبورد مدیریتی" Icon="Resources/Home.png" IconMove="Resources/Home_Move.png">
+            <Metro:MetroMenuTabItem Header="داشبورد مدیریتی" Icon="Resources/Home.png" IconMove="Resources/HomeMove.png">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition MinWidth="160" Width="Auto" />
@@ -64,27 +64,28 @@
                     <Metro:MetroScrollViewer>
                         <Border BorderBrush="#19000000" BorderThickness="0,0,1,0">
                             <StackPanel x:Name="lists">
-                                <Metro:MetroExpander Header="Button" Hint="لیست اول" Icon="Resources/tabIcon.png" />
-                                <Metro:MetroExpander Header="Button" Hint="1 / 100" />
-                                <Metro:MetroExpander Header="Header" Hint="لیست دوم" HintBackground="#FFF15151">
+                                <Metro:MetroExpander Header="داشبورد" Hint="نگاه کلی به اطلاعات" Icon="Resources/Dashboard.png"/>
+                                <Metro:MetroExpander Icon="Resources/Verify.png" Header="عملیات پایه" Hint="ثبت اطلاعات" HintBackground="#FFF15151" IsExpanded="True">
                                     <StackPanel>
-                                        <Metro:MetroExpander Header="انتخاب آمار" Icon="Resources/tabIcon.png" />
-                                        <Metro:MetroExpander Header="لیست دانش" Icon="Resources/tabIcon.png" />
-                                        <Metro:MetroExpander Header="خطاها" Icon="Resources/tabIcon.png" />
-                                        <Metro:MetroExpander Header="آزمایش ها" />
-                                        <Metro:MetroExpander Header="هستی شناسی" />
+                                        <Metro:MetroSwitch Content="ثبت اطلاعات" IsChecked="True"/>
+                                        <Metro:MetroExpander Icon="Resources/School.png" Header="مدرسه" Hint="0" HintBackground="Green" />
+                                        <Metro:MetroExpander Icon="Resources/Class.png" Header="کلاس" Hint="0" HintBackground="Green" />
+                                        <Metro:MetroExpander Icon="Resources/Students.png" Header="دانش آموز" Hint="0" HintBackground="Green" />
+                                        <Metro:MetroExpander Icon="Resources/User.png" Header="حساب کاربری" Hint="0" HintBackground="Orange" />
                                     </StackPanel>
                                 </Metro:MetroExpander>
-                                <Metro:MetroExpander Header="بخش دوم" IsExpanded="True">
+
+                                <Metro:MetroExpander Header="فعالیت ها" Icon="Resources/Active.png" IsExpanded="True">
                                     <StackPanel>
-                                        <Metro:MetroExpander Header="اجتماعی" Icon="Resources/tabIcon.png" Hint="1 / 100" />
-                                        <Metro:MetroExpander Header="علوم" />
-                                        <Metro:MetroExpander Header="نیاز به تلاش" />
-                                        <Metro:MetroExpander Header="آرامش" />
+                                        <Metro:MetroSwitch Content="ثبت اطلاعات" IsChecked="True"/>
+                                        <Metro:MetroExpander Header="حضور و غیاب" Icon="Resources/Checkmark.png" Hint="1397/01/07" />
+                                        <Metro:MetroExpander Header="پرسش دروس" Icon="Resources/Ask.png" Hint="ارزشیابی" HintBackground="#FFF15151" />
+                                        <Metro:MetroExpander Header="فعالیت ها" Hint="گروهی" Icon="Resources/Groups.png" HintBackground="#FFF15151" />
                                     </StackPanel>
                                 </Metro:MetroExpander>
-                                <Metro:MetroExpander Header="بخش آخر" />
-                                <Metro:MetroExpander Header="بخش نیمه" />
+                                <Metro:MetroExpander Header="نفرات برتر" Icon="Resources/Trophy.png" Hint="انتخاب شاگرد" HintBackground="#FFF15151" />
+                                <Metro:MetroExpander Header="پیشرفت تحصیلی" Icon="Resources/Chart.png" Hint="نمودار" HintBackground="#FFF15151"/>
+                                <Metro:MetroExpander Header="استعداد یابی" Icon="Resources/Talent.png" Hint="طرح شهاب" HintBackground="#FFF15151"/>
                             </StackPanel>
                         </Border>
                     </Metro:MetroScrollViewer>
@@ -116,12 +117,17 @@
                     </Metro:MetroTabControl>
                 </Grid>
             </Metro:MetroMenuTabItem>
-            <Metro:MetroMenuTabItem Header="گزارش گیری" Icon="Resources/Report.png" IconMove="Resources/Report_Move.png">
+            <Metro:MetroMenuTabItem Header="آزمون آنلاین" Icon="Resources/Exam.png" IconMove="Resources/ExamMove.png">
                 <!--<Grid>
                 Content must be here
                 </Grid>-->
             </Metro:MetroMenuTabItem>
-            <Metro:MetroMenuTabItem Header="تنظیمات نرم افزار" Icon="Resources/icon.png" IconMove="Resources/iconMove.png">
+            <Metro:MetroMenuTabItem Header="گزارش گیری" Icon="Resources/Report.png" IconMove="Resources/ReportMove.png">
+                <!--<Grid>
+                Content must be here
+                </Grid>-->
+            </Metro:MetroMenuTabItem>
+            <Metro:MetroMenuTabItem Header="تنظیمات نرم افزار" Icon="Resources/Gears.png" IconMove="Resources/GearsMove.png">
                 <Grid>
                     <Metro:MetroScrollViewer>
                         <ContentControl>
@@ -134,7 +140,7 @@
                     </Metro:MetroScrollViewer>
                 </Grid>
             </Metro:MetroMenuTabItem>
-            <Metro:MetroMenuTabItem Header="درباره نرم افزار" Icon="Resources/Info.png" IconMove="Resources/info_Move.png">
+            <Metro:MetroMenuTabItem Header="درباره نرم افزار" Icon="Resources/Fingerprint.png" IconMove="Resources/FingerprintMove.png">
                 <Grid>
                     <Metro:MetroScrollViewer>
                         <ContentControl Name="abtContent">
