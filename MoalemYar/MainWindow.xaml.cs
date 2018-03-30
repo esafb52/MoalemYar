@@ -250,5 +250,16 @@ namespace MoalemYar
 
             }
         }
+
+        private void exAddOrUpdateSchool_Click(object sender, EventArgs e)
+        {
+            exContent.Content = new AddSchool();
+        }
+
+        private void exAddOrUpdateClass_Click(object sender, EventArgs e)
+        {
+            exContent.Content = new About();
+
+        }
     }
 }

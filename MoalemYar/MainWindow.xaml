@@ -68,8 +68,8 @@
                                 <Metro:MetroExpander Icon="Resources/Verify.png" Header="عملیات پایه" Hint="ثبت اطلاعات" HintBackground="#FFF15151" IsExpanded="True">
                                     <StackPanel>
                                         <Metro:MetroSwitch Content="ثبت اطلاعات" IsChecked="True"/>
-                                        <Metro:MetroExpander Icon="Resources/School.png" Header="مدرسه" Hint="0" HintBackground="Green" />
-                                        <Metro:MetroExpander Icon="Resources/Class.png" Header="کلاس" Hint="0" HintBackground="Green" />
+                                        <Metro:MetroExpander Name="exAddOrUpdateSchool" Click="exAddOrUpdateSchool_Click" Icon="Resources/School.png" Header="مدرسه" Hint="0" HintBackground="Green" />
+                                        <Metro:MetroExpander Name="exAddOrUpdateClass" Click="exAddOrUpdateClass_Click" Icon="Resources/Class.png" Header="کلاس" Hint="0" HintBackground="Green" />
                                         <Metro:MetroExpander Icon="Resources/Students.png" Header="دانش آموز" Hint="0" HintBackground="Green" />
                                         <Metro:MetroExpander Icon="Resources/User.png" Header="حساب کاربری" Hint="0" HintBackground="Orange" />
                                     </StackPanel>
@@ -89,32 +89,10 @@
                             </StackPanel>
                         </Border>
                     </Metro:MetroScrollViewer>
-
-                    <Metro:MetroTabControl x:Name="tabc" Grid.Column="1">
-                        <Metro:MetroTabItem Header="بخش اول" Icon="Resources/tabIcon.png">
-                            <Grid>
-
-                                <Metro:MetroScrollViewer>
-                                    <Metro:MetroWaterfallFlow x:Name="waterfallFlow" ListWidth="300">
-
-                                        <Grid>
-                                            <Metro:MetroGroupBox Header="تنظیمات پوسته (MetroColorPicker رابط کاربری)">
-                                                <Grid>
-                                                    <Button Content="Button" HorizontalAlignment="Left" Margin="54,164,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click" />
-
-                                                    <WrapPanel Orientation="Horizontal">
-                                                        <Metro:MetroColorPicker x:Name="color1" Width="50" Height="50" Background="#6D819A" DefaultColor="#6D819A" Padding="5" />
-                                                        <Metro:MetroColorPicker x:Name="color2" Width="50" Height="50" Background="#6D819A" DefaultColor="#6D819A" Padding="5" IsEnabled="False" />
-                                                    </WrapPanel>
-                                                </Grid>
-                                            </Metro:MetroGroupBox>
-                                        </Grid>
-                                    </Metro:MetroWaterfallFlow>
-                                </Metro:MetroScrollViewer>
-                            </Grid>
-                        </Metro:MetroTabItem>
-                        <Metro:MetroTabItem Header="بخش دوم" />
-                    </Metro:MetroTabControl>
+                    <Metro:MetroScrollViewer Grid.Column="1">
+                        <ContentControl Name="exContent"/>
+                    </Metro:MetroScrollViewer>
+                   
                 </Grid>
             </Metro:MetroMenuTabItem>
             <Metro:MetroMenuTabItem Header="آزمون آنلاین" Icon="Resources/Exam.png" IconMove="Resources/ExamMove.png">
