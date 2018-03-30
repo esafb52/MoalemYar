@@ -90,7 +90,7 @@
                         <Popup x:Name="popupHint" PlacementTarget="{Binding ElementName=PART_ContentHost}" AllowsTransparency="True" Focusable="False" Placement="RelativePoint" VerticalOffset="-42" HorizontalOffset="-14" PopupAnimation="Fade">
                             <Grid>
                                 <StackPanel Visibility="{TemplateBinding PopupHint, Converter={StaticResource StringToVisibility}}">
-                                    <Border x:Name="popupborder" CornerRadius="2" Background="{TemplateBinding BorderBrush}">
+                                    <Border x:Name="popupborder" CornerRadius="2" Background="{TemplateBinding Background}">
                                         <Metro:MetroTextBlock x:Name="popupText" Text="{TemplateBinding PopupHint}" Margin="8,6" Foreground="#FFFFFFFF" HorizontalAlignment="Center" VerticalAlignment="Center" />
                                     </Border>
                                     <Polygon x:Name="popuppolygon" Points="0,0 10,0 5,5 0,0" Fill="{TemplateBinding BorderBrush}" Margin="10,0,0,0" />
@@ -99,6 +99,21 @@
                         </Popup>
                     </Grid>
                     <ControlTemplate.Triggers>
+                        <Trigger Property="MetroPopupBackgroundState" Value="Red">
+                            <Setter TargetName="popupborder" Property="Background" Value="#e99595"/>
+                        </Trigger>
+                        <Trigger Property="MetroPopupBackgroundState" Value="Green">
+                            <Setter TargetName="popupborder" Property="Background" Value="#99cb8a"/>
+                        </Trigger>
+                        <Trigger Property="MetroPopupBackgroundState" Value="Red2">
+                            <Setter TargetName="popupborder" Property="Background" Value="#e15b4f"/>
+                        </Trigger>
+                        <Trigger Property="MetroPopupBackgroundState" Value="DarkGreen">
+                            <Setter TargetName="popupborder" Property="Background" Value="#13ba07"/>
+                        </Trigger>
+                        <Trigger Property="MetroPopupBackgroundState" Value="DarkRed">
+                            <Setter TargetName="popupborder" Property="Background" Value="#d11e1e"/>
+                        </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter Property="Opacity" TargetName="content" Value="0.5" />
                             <Setter Property="Opacity" TargetName="title" Value="0.35" />

@@ -8,6 +8,7 @@
 *	Written by Mahdi Hosseini <Mahdidvb72@gmail.com>,  2018, 3, 30, 10:38 ق.ظ
 *	
 ***********************************************************************************/
+using Enterwell.Clients.Wpf.Notifications;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,7 +32,6 @@ namespace MoalemYar.UserControls
     public partial class AddSchool : UserControl
     {
         public Brush BorderColor { get; set; }
-
         public AddSchool()
         {
             InitializeComponent();
@@ -40,6 +40,13 @@ namespace MoalemYar.UserControls
             var color = (Color)ColorConverter.ConvertFromString(AppVariable.ReadSetting(AppVariable.SkinCode));
             var brush = new SolidColorBrush(color);
             BorderColor = brush;
+        }
+
+        
+
+        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.main.RestartNotification();
         }
     }
 }
