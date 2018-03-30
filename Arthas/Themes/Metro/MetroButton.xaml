@@ -67,6 +67,18 @@
                             <Setter TargetName="border" Property="Background" Value="#e99595" />
                             <Setter TargetName="back" Property="Background" Value="#e99595" />
                         </Trigger>
+                        <Trigger Property="MetroButtonState" Value="Red2">
+                            <Setter TargetName="border" Property="Background" Value="#e15b4f" />
+                            <Setter TargetName="back" Property="Background" Value="#e15b4f" />
+                        </Trigger>
+                        <Trigger Property="MetroButtonState" Value="DarkGreen">
+                            <Setter TargetName="border" Property="Background" Value="#13ba07" />
+                            <Setter TargetName="back" Property="Background" Value="#13ba07" />
+                        </Trigger>
+                        <Trigger Property="MetroButtonState" Value="DarkRed">
+                            <Setter TargetName="border" Property="Background" Value="#d11e1e"/>
+                            <Setter TargetName="back" Property="Background" Value="#d11e1e"/>
+                        </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>

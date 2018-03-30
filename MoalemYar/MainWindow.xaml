@@ -64,28 +64,26 @@
                     <Metro:MetroScrollViewer>
                         <Border BorderBrush="#19000000" BorderThickness="0,0,1,0">
                             <StackPanel x:Name="lists">
-                                <Metro:MetroExpander Header="داشبورد" Hint="نگاه کلی به اطلاعات" Icon="Resources/Dashboard.png"/>
-                                <Metro:MetroExpander Icon="Resources/Verify.png" Header="عملیات پایه" Hint="ثبت اطلاعات" HintBackground="#FFF15151" IsExpanded="True">
+                                <Metro:MetroExpander FontWeight="Medium" Header="داشبورد" Hint="نگاه کلی به اطلاعات" Icon="Resources/Dashboard.png"/>
+                                <Metro:MetroExpander FontWeight="Medium" Name="exBase" Icon="Resources/Verify.png" Header="عملیات پایه" Hint="ثبت اطلاعات" HintBackground="#e15b4f" IsExpanded="True" Click="MetroExpander_Click">
                                     <StackPanel>
-                                        <Metro:MetroSwitch Content="ثبت اطلاعات" IsChecked="True"/>
-                                        <Metro:MetroExpander Name="exAddOrUpdateSchool" Click="exAddOrUpdateSchool_Click" Icon="Resources/School.png" Header="مدرسه" Hint="0" HintBackground="Green" />
-                                        <Metro:MetroExpander Name="exAddOrUpdateClass" Click="exAddOrUpdateClass_Click" Icon="Resources/Class.png" Header="کلاس" Hint="0" HintBackground="Green" />
-                                        <Metro:MetroExpander Icon="Resources/Students.png" Header="دانش آموز" Hint="0" HintBackground="Green" />
-                                        <Metro:MetroExpander Icon="Resources/User.png" Header="حساب کاربری" Hint="0" HintBackground="Orange" />
+                                        <Metro:MetroExpander FontWeight="Normal" Name="exAddOrUpdateSchool" Click="exAddOrUpdateSchool_Click" Icon="Resources/School.png" Header="مدرسه" Hint="0" HintBackground="Green" />
+                                        <Metro:MetroExpander FontWeight="Normal" Name="exAddOrUpdateClass" Click="exAddOrUpdateClass_Click" Icon="Resources/Class.png" Header="کلاس" Hint="0" HintBackground="Green" />
+                                        <Metro:MetroExpander FontWeight="Normal" Icon="Resources/Students.png" Header="دانش آموز" Hint="0" HintBackground="Green" />
+                                        <Metro:MetroExpander FontWeight="Normal" Icon="Resources/User.png" Header="حساب کاربری" Hint="0" HintBackground="Orange" />
                                     </StackPanel>
                                 </Metro:MetroExpander>
 
-                                <Metro:MetroExpander Header="فعالیت ها" Icon="Resources/Active.png" IsExpanded="True">
+                                <Metro:MetroExpander FontWeight="Medium" Name="exActivity" Header="فعالیت ها" Icon="Resources/Active.png" IsExpanded="True" Click="exActivity_Click">
                                     <StackPanel>
-                                        <Metro:MetroSwitch Content="ثبت اطلاعات" IsChecked="True"/>
-                                        <Metro:MetroExpander Header="حضور و غیاب" Icon="Resources/Checkmark.png" Hint="1397/01/07" />
-                                        <Metro:MetroExpander Header="پرسش دروس" Icon="Resources/Ask.png" Hint="ارزشیابی" HintBackground="#FFF15151" />
-                                        <Metro:MetroExpander Header="فعالیت ها" Hint="گروهی" Icon="Resources/Groups.png" HintBackground="#FFF15151" />
+                                        <Metro:MetroExpander FontWeight="Normal" Header="حضور و غیاب" Icon="Resources/Checkmark.png" Hint="1397/01/07" />
+                                        <Metro:MetroExpander FontWeight="Normal" Header="پرسش دروس" Icon="Resources/Ask.png" Hint="ارزشیابی" HintBackground="#e15b4f" />
+                                        <Metro:MetroExpander FontWeight="Normal" Header="فعالیت ها" Hint="گروهی" Icon="Resources/Groups.png" HintBackground="#e15b4f" />
                                     </StackPanel>
                                 </Metro:MetroExpander>
-                                <Metro:MetroExpander Header="نفرات برتر" Icon="Resources/Trophy.png" Hint="انتخاب شاگرد" HintBackground="#FFF15151" />
-                                <Metro:MetroExpander Header="پیشرفت تحصیلی" Icon="Resources/Chart.png" Hint="نمودار" HintBackground="#FFF15151"/>
-                                <Metro:MetroExpander Header="استعداد یابی" Icon="Resources/Talent.png" Hint="طرح شهاب" HintBackground="#FFF15151"/>
+                                <Metro:MetroExpander FontWeight="Medium" Header="نفرات برتر" Icon="Resources/Trophy.png" Hint="انتخاب شاگرد" HintBackground="#e15b4f" />
+                                <Metro:MetroExpander FontWeight="Medium" Header="پیشرفت تحصیلی" Icon="Resources/Chart.png" Hint="نمودار" HintBackground="#e15b4f"/>
+                                <Metro:MetroExpander FontWeight="Medium" Header="استعداد یابی" Icon="Resources/Talent.png" Hint="طرح شهاب" HintBackground="#e15b4f"/>
                             </StackPanel>
                         </Border>
                     </Metro:MetroScrollViewer>

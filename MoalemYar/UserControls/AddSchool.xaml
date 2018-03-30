@@ -29,14 +29,14 @@
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="auto"/>
                                 </Grid.ColumnDefinitions>
-                                <Metro:MetroButton Grid.Column="0" Grid.Row="0" Margin="10,5" Content="ذخیره" MetroButtonState="Green"/>
-                                <Metro:MetroButton Grid.Column="1" Grid.Row="0" Margin="10,5" Content="انصراف" MetroButtonState="Red"/>
+                                <Metro:MetroButton Grid.Column="0" Grid.Row="0" Margin="10,5" Content="ذخیره" MetroButtonState="DarkGreen"/>
+                                <Metro:MetroButton Grid.Column="1" Grid.Row="0" Margin="10,5" Content="انصراف" MetroButtonState="Red2"/>
                             </Grid>
 
 
                         </Metro:MetroWaterfallFlow>
                     </Metro:MetroScrollViewer>
-                    <Metro:MetroBorder HorizontalAlignment="Stretch" BorderThickness="1" BorderBrush="#FFF15151" Margin="193,63,212,0" VerticalAlignment="Top"/>
+                    <Metro:MetroBorder HorizontalAlignment="Stretch" BorderThickness="1" BorderBrush="{Binding BorderColor}" Margin="193,63,212,0" VerticalAlignment="Top"/>
                 </Grid>
             </Metro:MetroTabItem>
             <Metro:MetroTabItem Header="ویرایش اطلاعات" />

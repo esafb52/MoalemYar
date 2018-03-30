@@ -36,7 +36,7 @@
                                     <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
                                 <Image x:Name="icon" Grid.Column="0" Width="12" Height="12" Margin="10,0,-5,0" VerticalAlignment="Center" Source="{TemplateBinding Icon}" Opacity="0.7" />
-                                <Metro:MetroTextBlock x:Name="title" Grid.Column="1" Text="{TemplateBinding Header}" VerticalAlignment="Center" Margin="10,0" Opacity="0.5" />
+                                <Metro:MetroTextBlock x:Name="title" Grid.Column="1" Text="{TemplateBinding Header}" FontWeight="Medium" VerticalAlignment="Center" Margin="10,0" Opacity="0.5" />
                             </Grid>
                         </Border>
                     </Grid>

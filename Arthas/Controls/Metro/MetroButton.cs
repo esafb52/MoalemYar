@@ -18,7 +18,10 @@ namespace Arthas.Controls.Metro
     {
         None,
         Red,
-        Green
+        Green,
+        DarkGreen,
+        DarkRed,
+        Red2
     }
 
     public class MetroButton : Button

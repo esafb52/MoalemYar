@@ -261,5 +261,19 @@ namespace MoalemYar
             exContent.Content = new About();
 
         }
+
+        private void MetroExpander_Click(object sender, EventArgs e)
+        {
+            if (exActivity.IsExpanded)
+                exActivity.IsExpanded = false;
+
+
+        }
+
+        private void exActivity_Click(object sender, EventArgs e)
+        {
+            if (exBase.IsExpanded)
+                exBase.IsExpanded = false;
+        }
     }
 }

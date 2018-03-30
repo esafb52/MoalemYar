@@ -30,9 +30,16 @@ namespace MoalemYar.UserControls
     /// </summary>
     public partial class AddSchool : UserControl
     {
+        public Brush BorderColor { get; set; }
+
         public AddSchool()
         {
             InitializeComponent();
+            this.DataContext = this;
+
+            var color = (Color)ColorConverter.ConvertFromString(AppVariable.ReadSetting(AppVariable.SkinCode));
+            var brush = new SolidColorBrush(color);
+            BorderColor = brush;
         }
     }
 }
