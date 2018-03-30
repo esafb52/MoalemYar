@@ -210,9 +210,6 @@
     <Resource Include="Resources\School.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Class.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\Students.png" />
   </ItemGroup>
   <ItemGroup>

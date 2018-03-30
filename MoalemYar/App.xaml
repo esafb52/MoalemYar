@@ -9,7 +9,6 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/MoalemYar;component/Resources/Fonts/FontsDictionary.xaml" />
             </ResourceDictionary.MergedDictionaries>
-
             <Style x:Key="myWindow" TargetType="Window">
                 <Setter Property="TextOptions.TextFormattingMode" Value="Ideal" />
                 <Setter Property="TextOptions.TextRenderingMode" Value="Auto" />

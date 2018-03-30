@@ -31,9 +31,33 @@
 
                         </Metro:MetroWaterfallFlow>
                     </Metro:MetroScrollViewer>
-                    <Metro:MetroBorder HorizontalAlignment="Stretch" BorderThickness="1" BorderBrush="{Binding BorderColor}" Margin="193,63,212,0" VerticalAlignment="Top"/>
-                    <Metro:MetroTextBox InputHint="نام مدرسه" PopupHint="نام آموزشگاه را وارد کنید" MetroPopupBackgroundState="DarkRed" Margin="167,98,212,0"  Height="30" VerticalAlignment="Top"/>
-                    <Metro:MetroTextBox InputHint="سال تحصیلی" Height="30" Margin="167,133,212,0" PopupHint="سال تحصیلی باید بصورت 97-98 وارد شود" MetroPopupBackgroundState="DarkRed" VerticalAlignment="Top"/>
+                    <Metro:MetroBorder HorizontalAlignment="Stretch" BorderThickness="1" BorderBrush="{Binding BorderColor}" Margin="167,63,212,0" VerticalAlignment="Top"/>
+                    <Metro:MetroTextBox InputHint="سال تحصیلی" Height="30" Margin="167,92,212,0" PopupHint="سال تحصیلی باید بصورت 97-98 وارد شود" MetroPopupBackgroundState="DarkRed" VerticalAlignment="Top"/>
+                    <Metro:MetroTextBox InputHint="نام مدرسه" PopupHint="نام آموزشگاه را وارد کنید" MetroPopupBackgroundState="DarkRed" Margin="167,127,212,0"  Height="30" VerticalAlignment="Top"/>
+                    <Metro:MetroTextBox InputHint="نام مدیر" Height="30" PopupHint="نام مدیریت آموزشگاه" MetroPopupBackgroundState="DarkRed" VerticalAlignment="Top" Margin="167,162,212,0"/>
+                   
+                    <ContentControl Margin="167,197,212,0" Height="30" VerticalAlignment="Top" Content="{Binding YourChoices}">
+                        <ContentControl.ContentTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <ComboBox x:Name="cmbBase">
+                                        <ComboBoxItem Content="اول"/>
+                                        <ComboBoxItem Content="دوم"/>
+                                        <ComboBoxItem Content="سوم"/>
+                                        <ComboBoxItem Content="چهارم"/>
+                                        <ComboBoxItem Content="پنجم"/>
+                                        <ComboBoxItem Content="ششم"/>
+                                    </ComboBox>
+                                    <TextBlock x:Name="tb" Text=" انتخاب پایه " IsHitTestVisible="False" Visibility="Hidden"/>
+                                </Grid>
+                                <DataTemplate.Triggers>
+                                    <Trigger SourceName="cmbBase" Property="SelectedItem" Value="{x:Null}">
+                                        <Setter TargetName="tb" Property="Visibility" Value="Visible"/>
+                                    </Trigger>
+                                </DataTemplate.Triggers>
+                            </DataTemplate>
+                        </ContentControl.ContentTemplate>
+                    </ContentControl>
                 </Grid>
 
             </Metro:MetroTabItem>
