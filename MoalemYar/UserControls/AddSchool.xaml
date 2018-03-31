@@ -61,7 +61,57 @@
                 </Grid>
 
             </Metro:MetroTabItem>
-            <Metro:MetroTabItem Header="ویرایش اطلاعات" />
+            <Metro:MetroTabItem Header="ویرایش اطلاعات">
+                <!--<Grid Background="#f0f4f7" FlowDirection="LeftToRight">
+
+                </Grid>-->
+                <ListView Name="lvDataBinding" HorizontalContentAlignment="Stretch" BorderThickness="0" Margin="10" Grid.Row="3" Background="{x:Null}" SelectionChanged="lvDataBinding_SelectionChanged">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <EventSetter Event="MouseEnter" Handler="ListBoxItem_MouseEnter"/>
+                            <EventSetter Event="MouseLeave" Handler="ListBoxItem_MouseLeave"/>
+                            <Setter Property="Background" Value="Transparent" />
+                            <Setter Property="BorderBrush" Value="Transparent" />
+                            <Setter Property="BorderThickness" Value="0" />
+                            <Setter Property="Focusable" Value="False" />
+                        </Style>
+
+                    </ListView.ItemContainerStyle>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Border  Background="#f0f4f7">
+                                <StackPanel Background="#f5f6fa" Margin="1,1,1,1" VerticalAlignment="Top">
+                                    <Border Background="#edf0f5" BorderThickness="5">
+                                        <Grid  Background="#ffffff" Height="30">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition/>
+                                            </Grid.ColumnDefinitions>
+                                            <StackPanel Background="#ffffff" Margin="5" Orientation="Horizontal">
+                                                <Button Height="20" Width="20" BorderBrush="Transparent" BorderThickness="0" Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.cmddelete}">
+                                                    <Button.Background>
+                                                        <ImageBrush ImageSource="E:\Aks\ICON\colorful-stickers-icons-set\png\32x32\accept.png"/>
+                                                    </Button.Background>
+                                                </Button>
+                                                <Button Height="20" Width="20" BorderBrush="Transparent" BorderThickness="0" Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.cmdShow}">
+                                                    <Button.Background>
+                                                        <ImageBrush ImageSource="E:\Aks\ICON\colorful-stickers-icons-set\png\32x32\accept.png"/>
+                                                    </Button.Background>
+                                                </Button>
+                                            </StackPanel>
+                                            <TextBlock Name="txtPhon" Foreground="#7c7f84" HorizontalAlignment="Right" Grid.Column="1" Text="{Binding Path=HomePhoneNumber}"
+                   Margin="0,5,5,5"/>
+                                        </Grid>
+                                    </Border>
+                                </StackPanel>
+
+
+                            </Border>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+            </Metro:MetroTabItem>
         </Metro:MetroTabControl>
 
 
