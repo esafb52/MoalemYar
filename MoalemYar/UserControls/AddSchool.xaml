@@ -5,7 +5,6 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MoalemYar.UserControls"
              xmlns:Metro="clr-namespace:Arthas.Controls.Metro;assembly=Arthas"
-             xmlns:controls="clr-namespace:Enterwell.Clients.Wpf.Notifications.Controls;assembly=Enterwell.Clients.Wpf.Notifications"
              mc:Ignorable="d" 
              Style="{StaticResource myUserControl}"
              d:DesignHeight="450" d:DesignWidth="800" IsTabStop="True">
@@ -35,7 +34,7 @@
                     <Metro:MetroTextBox TabIndex="0" InputHint="سال تحصیلی" Height="30" Margin="167,92,212,0" PopupHint="سال تحصیلی باید بصورت 97-98 وارد شود" MetroPopupBackgroundState="DarkRed" VerticalAlignment="Top"/>
                     <Metro:MetroTextBox TabIndex="1" InputHint="نام مدرسه" PopupHint="نام آموزشگاه را وارد کنید" MetroPopupBackgroundState="DarkRed" Margin="167,127,212,0"  Height="30" VerticalAlignment="Top"/>
                     <Metro:MetroTextBox TabIndex="2" InputHint="نام مدیر" Height="30" PopupHint="نام مدیریت آموزشگاه" MetroPopupBackgroundState="DarkRed" VerticalAlignment="Top" Margin="167,162,212,0"/>
-                   
+
                     <ContentControl TabIndex="3" Focusable="False" Margin="167,197,212,0" Height="30" VerticalAlignment="Top" Content="{Binding YourChoices}">
                         <ContentControl.ContentTemplate>
                             <DataTemplate>
@@ -74,59 +73,25 @@
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
                             <Metro:MetroTextBox TabIndex="0" Grid.Row="0" FlowDirection="RightToLeft" InputHint="جستجو..." PopupHint="جستجو بصورت خودکار انجام می شود" MetroPopupBackgroundState="Red2" Margin="0,0,0,0" Icon="../Resources/editIcon.png" />
-                            <ListView  Name="lvDataBinding" Grid.Row="1" HorizontalContentAlignment="Stretch" BorderThickness="0" Margin="0,0,0,175" Background="{x:Null}">
-                                <ListView.ItemContainerStyle>
-                                    <Style TargetType="ListBoxItem">
-                                        <EventSetter Event="MouseEnter" Handler="ListBoxItem_MouseEnter"/>
-                                        <EventSetter Event="MouseLeave" Handler="ListBoxItem_MouseLeave"/>
-                                        <!--<Setter Property="Background" Value="Transparent" />
-                                        <Setter Property="BorderBrush" Value="Transparent" />
-                                        <Setter Property="BorderThickness" Value="0" />
-                                        <Setter Property="Focusable" Value="False" />
-                                        <Setter Property="TabIndex" Value="-1"/>
-                                        <Setter Property="IsTabStop" Value="True"/>-->
-                                    </Style>
-                                    
-                                </ListView.ItemContainerStyle>
-                                <ListView.ItemTemplate>
-                                    <DataTemplate>
-                                        <Metro:MetroCanvasGrid Background="#f5f6fa" TabIndex="-1" Focusable="False">
-                                            <StackPanel Margin="1,1,1,1" VerticalAlignment="Top">
-                                                <Grid VerticalAlignment="Top" Background="#ffffff" Height="50">
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition/>
-                                                        <ColumnDefinition/>
-                                                    </Grid.ColumnDefinitions>
-                                                    <StackPanel Margin="5" Orientation="Horizontal">
-                                                        <Image Height="20" Width="20" Source="..\Resources\Delete.png" Cursor="Hand">
-                                                            <Image.InputBindings>
-                                                                <MouseBinding Gesture="LeftClick" Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.DeleteCommand}" />
-                                                            </Image.InputBindings>
-                                                        </Image>
-
-                                                        <Image Height="20" Width="20" Source="..\Resources\Edit.png" Cursor="Hand">
-                                                            <Image.InputBindings>
-                                                                <MouseBinding Gesture="LeftClick" Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.EditCommand}"/>
-                                                            </Image.InputBindings>
-                                                        </Image>
-                                                    </StackPanel>
-                                                    <TextBlock Name="txtTitle" Foreground="#7c7f84" HorizontalAlignment="Right" Grid.Column="1" Text="{Binding Path=Name}"
-                   Margin="0,5,5,27"/>
-                                                    <TextBlock Name="txtContent" Foreground="#7c7f84" HorizontalAlignment="Right" Grid.Column="1" Text="{Binding Path=Year}"
-                   Margin="0,27,5,5"/>
-                                                    <TextBlock Name="txtAdmin" Foreground="#7c7f84" HorizontalAlignment="Right" Grid.Column="1" Visibility="Hidden" Text="{Binding Path=Admin}"
-                   Margin="0,5,5,27"/>
-                                                    <TextBlock Name="txtBase" Foreground="#7c7f84" HorizontalAlignment="Right" Grid.Column="1" Visibility="Hidden" Text="{Binding Path=Base}"
-                   Margin="0,5,5,27"/>
-                                                </Grid>
-
-                                            </StackPanel>
-
-
-                                        </Metro:MetroCanvasGrid>
-                                    </DataTemplate>
-                                </ListView.ItemTemplate>
+                            <ListView FlowDirection="RightToLeft" Grid.Row="1" SelectionMode="Single" Name="dgv" Margin="12,0,10,-81">
+                                <ListView.View>
+                                    <GridView>
+                                        <GridViewColumn Header="آموزشگاه"  DisplayMemberBinding="{Binding Name}" />
+                                        <GridViewColumn Header="مدیر"  DisplayMemberBinding="{Binding Admin}" />
+                                        <GridViewColumn Header="پایه"  DisplayMemberBinding="{Binding Base}" />
+                                        <GridViewColumn Header="سال تحصیلی"  DisplayMemberBinding="{Binding Year}" />
+                                        <GridViewColumn Header="Id" Width="0"  DisplayMemberBinding="{Binding Id}"/>
+                                    </GridView>
+                                </ListView.View>
+                              
+                            
                             </ListView>
+
+                            <!--<ListView Name="dgv"  Grid.Row="1" Margin="10">
+                                    <ListViewItem>A ListView</ListViewItem>
+                                    <ListViewItem IsSelected="True">with several</ListViewItem>
+                                    <ListViewItem>items</ListViewItem>
+                                </ListView>-->
                         </Grid>
                     </Metro:MetroWaterfallFlow>
                     <Grid Grid.Column="1">
@@ -138,7 +103,7 @@
                                 <RowDefinition Height="auto"/>
                                 <RowDefinition Height="auto"/>
                             </Grid.RowDefinitions>
-                            
+
                             <Metro:MetroTextBox Name="txtYear" TabIndex="1" Grid.Row="0" InputHint="سال تحصیلی" Height="30" PopupHint="سال تحصیلی باید بصورت 97-98 وارد شود" MetroPopupBackgroundState="DarkRed" VerticalAlignment="Top"/>
                             <Metro:MetroTextBox Name="txtSchool" TabIndex="2" Grid.Row="1" InputHint="نام مدرسه" PopupHint="نام آموزشگاه را وارد کنید" MetroPopupBackgroundState="DarkRed" Height="30" VerticalAlignment="Top"/>
                             <Metro:MetroTextBox Name="txtAdmin" TabIndex="3" Grid.Row="2" InputHint="نام مدیر" Height="30" PopupHint="نام مدیریت آموزشگاه" MetroPopupBackgroundState="DarkRed" VerticalAlignment="Top"/>
@@ -176,7 +141,7 @@
                         </Grid>
                     </Grid>
                 </Grid>
-                
+
 
             </Metro:MetroTabItem>
         </Metro:MetroTabControl>

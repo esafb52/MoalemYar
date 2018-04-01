@@ -27,57 +27,31 @@ namespace MoalemYar.UserControls
     public partial class AddSchool : UserControl
     {
 
-        public ICommand EditCommand { get; set; }
-        public ICommand DeleteCommand { get; set; }
-
-
-        private FrameworkElement Window { get; set; }
+      
         public Brush BorderColor { get; set; }
 
-        int selectedItemIndex = 0;
         public AddSchool()
         {
             InitializeComponent();
-            this.DataContext = this;
-           
+
             var color = (Color)ColorConverter.ConvertFromString(AppVariable.ReadSetting(AppVariable.SkinCode));
             var brush = new SolidColorBrush(color);
             BorderColor = brush;
 
 
-            Window = this;
-            EditCommand = new RoutedCommand();
-            DeleteCommand = new RoutedCommand();
-
-            CommandManager.RegisterClassCommandBinding(Window.GetType(), new CommandBinding(EditCommand, EditCommand_Click));
-            CommandManager.RegisterClassCommandBinding(Window.GetType(), new CommandBinding(DeleteCommand, DeleteCommand_Click));
-        }
-
-
-
-        protected void EditCommand_Click(object sender, ExecutedRoutedEventArgs e)
-        {            
-            var selectedItems = lvDataBinding.SelectedItems;
-            foreach (var selectedItem in selectedItems)
-            {
-                ListBoxItem myListBoxItem = (ListBoxItem)(lvDataBinding.ItemContainerGenerator.ContainerFromItem(selectedItem));
-                ContentPresenter myContentPresenter = FindVisualChild<ContentPresenter>(myListBoxItem);
-                DataTemplate myDataTemplate = myContentPresenter.ContentTemplate;
-                TextBlock myTitleText = (TextBlock)myDataTemplate.FindName("txtTitle", myContentPresenter);
-                TextBlock myContentText = (TextBlock)myDataTemplate.FindName("txtContent", myContentPresenter);
-                TextBlock myAdminText = (TextBlock)myDataTemplate.FindName("txtAdmin", myContentPresenter);
-                TextBlock myBaseText = (TextBlock)myDataTemplate.FindName("txtBase", myContentPresenter);
-
-                txtYear.Text = myContentText.Text;
-                txtSchool.Text = myTitleText.Text;
-                txtAdmin.Text = myAdminText.Text;
-                var element = FindElementByName<ComboBox>(cmbContent, "cmbBase");
-                element.SelectedIndex = Convert.ToInt32(myBaseText.Text);
-            }
-            
-
+         
 
         }
+
+
+
+        //protected void EditCommand_Click(object sender, ExecutedRoutedEventArgs e)
+        //{            
+           
+        //        var element = FindElementByName<ComboBox>(cmbContent, "cmbBase");
+        //        element.SelectedIndex = Convert.ToInt32(myBaseText.Text);
+         
+        //}
 
         public T FindElementByName<T>(FrameworkElement element, string sChildName) where T : FrameworkElement
         {
@@ -104,20 +78,7 @@ namespace MoalemYar.UserControls
             return childElement;
         }
 
-        protected void DeleteCommand_Click(object sender, ExecutedRoutedEventArgs e)
-        {
-            //Do Somethings
-
-        }
-        private void InitalizeData()
-        {
-            var query = GetAllSchoolsAsync();
-            query.Wait();
-
-            List<DataClass.Tables.School> data = query.Result;
-            lvDataBinding.ItemsSource = data;
-
-        }
+       
 
         public async static Task<List<DataClass.Tables.School>> GetAllSchoolsAsync()
         {
@@ -135,24 +96,11 @@ namespace MoalemYar.UserControls
                 //    db.Schools.Add(asd);
                 //   await db.SaveChangesAsync();
                 //}
-                var data = db.Schools.Select(x => x);
+                var data = db.Schools.Select(x => new DataClass.Tables.School { Name = x.Name,Admin=x.Admin });
                 return await data.ToListAsync();
             }
         }
 
-        private void ListBoxItem_MouseEnter(object sender, MouseEventArgs e)
-        {
-            ListBoxItem lbi = sender as ListBoxItem;
-            lbi.IsSelected = true;
-            selectedItemIndex = lvDataBinding.SelectedIndex;
-        }
-        private void ListBoxItem_MouseLeave(object sender, MouseEventArgs e)
-        {
-            lvDataBinding.SelectedItems.Clear();
-        }
-
-      
-        
         private childItem FindVisualChild<childItem>(DependencyObject obj)
             where childItem : DependencyObject
             {
@@ -177,11 +125,23 @@ namespace MoalemYar.UserControls
 
         private void tabc_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var query = GetAllSchoolsAsync();
-            query.Wait();
+            if (tabc.SelectedIndex==1)
+            {
+                //var query = GetAllSchoolsAsync();
+                //query.Wait();
 
-            List<DataClass.Tables.School> data = query.Result;
-            lvDataBinding.ItemsSource = data;
+                //List<DataClass.Tables.School> data = query.Result;
+                using (var db = new DataClass.myDbContext())
+                {
+                  
+                    var data = from x in db.Schools select new{ x.Name,x.Admin,x.Base, x.Year,x.Id };
+                    dgv.ItemsSource = data.ToList();
+                    //dgv.Items[0] = "4654";
+                }
+               
+            }
         }
+
+      
     }
 }
