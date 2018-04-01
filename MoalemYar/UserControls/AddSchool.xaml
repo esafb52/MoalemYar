@@ -62,54 +62,104 @@
 
             </Metro:MetroTabItem>
             <Metro:MetroTabItem Header="ویرایش اطلاعات">
-                <!--<Grid Background="#f0f4f7" FlowDirection="LeftToRight">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Metro:MetroWaterfallFlow Margin="10,10,10,10" ListWidth="400">
+                        <Grid FlowDirection="LeftToRight">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Metro:MetroTextBox Grid.Row="0" FlowDirection="RightToLeft" InputHint="جستجو..." PopupHint="چیزی بنویسید" MetroPopupBackgroundState="Red2" Margin="0,0,0,0" Icon="../Resources/editIcon.png" />
+                            <ListView Name="lvDataBinding" Grid.Row="1" HorizontalContentAlignment="Stretch" BorderThickness="0" Margin="0,0,0,175" Background="{x:Null}" SelectionChanged="lvDataBinding_SelectionChanged">
+                                <ListView.ItemContainerStyle>
+                                    <Style TargetType="ListBoxItem">
+                                        <EventSetter Event="MouseEnter" Handler="ListBoxItem_MouseEnter"/>
+                                        <EventSetter Event="MouseLeave" Handler="ListBoxItem_MouseLeave"/>
+                                        <Setter Property="Background" Value="Transparent" />
+                                        <Setter Property="BorderBrush" Value="Transparent" />
+                                        <Setter Property="BorderThickness" Value="0" />
+                                        <Setter Property="Focusable" Value="False" />
+                                    </Style>
+
+                                </ListView.ItemContainerStyle>
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border  Background="#f5f6fa">
+                                            <StackPanel Margin="1,1,1,1" VerticalAlignment="Top">
+                                                <Grid VerticalAlignment="Top" Background="#ffffff" Height="50">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition/>
+                                                        <ColumnDefinition/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <StackPanel Margin="5" Orientation="Horizontal">
+                                                        <Button Height="20" Width="20" BorderBrush="Transparent" BorderThickness="0" Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.DeleteCommand}">
+                                                            <Button.Background>
+                                                                <ImageBrush ImageSource="..\Resources\Delete.png"/>
+                                                            </Button.Background>
+                                                        </Button>
+                                                        <Button Height="20" Width="20" BorderBrush="Transparent" BorderThickness="0" Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.EditCommand}">
+                                                            <Button.Background>
+                                                                <ImageBrush ImageSource="..\Resources\Edit.png"/>
+                                                            </Button.Background>
+                                                        </Button>
+                                                    </StackPanel>
+                                                    <TextBlock Name="txtPhon" Foreground="#7c7f84" HorizontalAlignment="Right" Grid.Column="1" Text="{Binding Path=HomePhoneNumber}"
+                   Margin="0,5,5,27"/>
+                                                    <TextBlock Name="txtPhon2" Foreground="#7c7f84" HorizontalAlignment="Right" Grid.Column="1" Text="{Binding Path=HomePhoneNumber}"
+                   Margin="0,27,5,5"/>
+                                                </Grid>
+
+                                            </StackPanel>
+
+
+                                        </Border>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+
+                        </Grid>
+                    </Metro:MetroWaterfallFlow>
+                    <Grid Grid.Column="1">
+                        <Grid Margin="10,20,20,0" Grid.Column="0" Grid.Row="1" VerticalAlignment="Top">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+                            <Metro:MetroTextBox Grid.Row="0" InputHint="سال تحصیلی" Height="30" PopupHint="سال تحصیلی باید بصورت 97-98 وارد شود" MetroPopupBackgroundState="DarkRed" VerticalAlignment="Top"/>
+                            <Metro:MetroTextBox Grid.Row="1" InputHint="نام مدرسه" PopupHint="نام آموزشگاه را وارد کنید" MetroPopupBackgroundState="DarkRed" Height="30" VerticalAlignment="Top"/>
+                            <Metro:MetroTextBox Grid.Row="2" InputHint="نام مدیر" Height="30" PopupHint="نام مدیریت آموزشگاه" MetroPopupBackgroundState="DarkRed" VerticalAlignment="Top"/>
+
+                        </Grid>
+                    </Grid>
+                </Grid>
+                <!--<Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.75*"/>
+                        <RowDefinition Height="0.25*"/>
+                        <RowDefinition Height="36"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Column="0" Grid.Row="0" Margin="0,0,0,103" >
+
+                       
+                    </Grid>
+
+                </Grid>
+                <Grid Margin="150,0,150,0" Grid.Column="0" Grid.Row="1" VerticalAlignment="Top">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <Metro:MetroTextBox Grid.Row="0" InputHint="سال تحصیلی" Height="30" PopupHint="سال تحصیلی باید بصورت 97-98 وارد شود" MetroPopupBackgroundState="DarkRed" VerticalAlignment="Top"/>
+                    <Metro:MetroTextBox Grid.Row="1" InputHint="نام مدرسه" PopupHint="نام آموزشگاه را وارد کنید" MetroPopupBackgroundState="DarkRed" Height="30" VerticalAlignment="Top"/>
+                    <Metro:MetroTextBox Grid.Row="2" InputHint="نام مدیر" Height="30" PopupHint="نام مدیریت آموزشگاه" MetroPopupBackgroundState="DarkRed" VerticalAlignment="Top"/>
 
                 </Grid>-->
-                <ListView Name="lvDataBinding" HorizontalContentAlignment="Stretch" BorderThickness="0" Margin="10" Grid.Row="3" Background="{x:Null}" SelectionChanged="lvDataBinding_SelectionChanged">
-                    <ListView.ItemContainerStyle>
-                        <Style TargetType="ListBoxItem">
-                            <EventSetter Event="MouseEnter" Handler="ListBoxItem_MouseEnter"/>
-                            <EventSetter Event="MouseLeave" Handler="ListBoxItem_MouseLeave"/>
-                            <Setter Property="Background" Value="Transparent" />
-                            <Setter Property="BorderBrush" Value="Transparent" />
-                            <Setter Property="BorderThickness" Value="0" />
-                            <Setter Property="Focusable" Value="False" />
-                        </Style>
-
-                    </ListView.ItemContainerStyle>
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <Border  Background="#f0f4f7">
-                                <StackPanel Background="#f5f6fa" Margin="1,1,1,1" VerticalAlignment="Top">
-                                    <Border Background="#edf0f5" BorderThickness="5">
-                                        <Grid  Background="#ffffff" Height="30">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition/>
-                                                <ColumnDefinition/>
-                                            </Grid.ColumnDefinitions>
-                                            <StackPanel Background="#ffffff" Margin="5" Orientation="Horizontal">
-                                                <Button Height="20" Width="20" BorderBrush="Transparent" BorderThickness="0" Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.cmddelete}">
-                                                    <Button.Background>
-                                                        <ImageBrush ImageSource="E:\Aks\ICON\colorful-stickers-icons-set\png\32x32\accept.png"/>
-                                                    </Button.Background>
-                                                </Button>
-                                                <Button Height="20" Width="20" BorderBrush="Transparent" BorderThickness="0" Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.cmdShow}">
-                                                    <Button.Background>
-                                                        <ImageBrush ImageSource="E:\Aks\ICON\colorful-stickers-icons-set\png\32x32\accept.png"/>
-                                                    </Button.Background>
-                                                </Button>
-                                            </StackPanel>
-                                            <TextBlock Name="txtPhon" Foreground="#7c7f84" HorizontalAlignment="Right" Grid.Column="1" Text="{Binding Path=HomePhoneNumber}"
-                   Margin="0,5,5,5"/>
-                                        </Grid>
-                                    </Border>
-                                </StackPanel>
-
-
-                            </Border>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
 
             </Metro:MetroTabItem>
         </Metro:MetroTabControl>

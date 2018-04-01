@@ -23,8 +23,8 @@ namespace MoalemYar.UserControls
     public partial class AddSchool : UserControl
     {
 
-        public ICommand cmdShow { get; set; }
-        public ICommand cmddelete { get; set; }
+        public ICommand EditCommand { get; set; }
+        public ICommand DeleteCommand { get; set; }
 
 
         private FrameworkElement Window { get; set; }
@@ -45,38 +45,31 @@ namespace MoalemYar.UserControls
 
             Window = this;
 
-            cmdShow = new RoutedCommand();
-            cmddelete = new RoutedCommand();
+            EditCommand = new RoutedCommand();
+            DeleteCommand = new RoutedCommand();
 
-            CommandManager.RegisterClassCommandBinding(Window.GetType(), new CommandBinding(cmdShow, cmdShow_Click));
-            CommandManager.RegisterClassCommandBinding(Window.GetType(), new CommandBinding(cmddelete, cmddelete_Click));
+            CommandManager.RegisterClassCommandBinding(Window.GetType(), new CommandBinding(EditCommand, EditCommand_Click));
+            CommandManager.RegisterClassCommandBinding(Window.GetType(), new CommandBinding(DeleteCommand, DeleteCommand_Click));
         }
 
         public Brush BorderColor { get; set; }
 
 
-        protected void cmdShow_Click(object sender, ExecutedRoutedEventArgs e)
+        protected void EditCommand_Click(object sender, ExecutedRoutedEventArgs e)
         {
-            //MyData selectedData = e.Parameter as MyData;
-            //(this.Window as Window).Background = selectedData.MyColor;
-            foreach (var item in lvDataBinding.Items)
-            {
-                Console.WriteLine(item);
-            }
+           
             MessageBox.Show(lvDataBinding.SelectedIndex + "");
 
         }
-        protected void cmddelete_Click(object sender, ExecutedRoutedEventArgs e)
+        protected void DeleteCommand_Click(object sender, ExecutedRoutedEventArgs e)
         {
-            //MyData selectedData = e.Parameter as MyData;
-            //(this.Window as Window).Background = selectedData.MyColor;
-
+         
             MessageBox.Show("delete");
         }
         private void InitalizeData()
         {
             ObservableCollection<Patient> data = new ObservableCollection<Patient>();
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 23; i++)
             {
                 data.Add(new Patient
                 {
