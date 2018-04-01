@@ -92,6 +92,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DataClass\Tables\School.cs" />
     <Compile Include="UserControls\About.xaml.cs">
       <DependentUpon>About.xaml</DependentUpon>
     </Compile>

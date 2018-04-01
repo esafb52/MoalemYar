@@ -15,6 +15,9 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Data.Entity;
 
 namespace MoalemYar.UserControls
 {
@@ -36,12 +39,11 @@ namespace MoalemYar.UserControls
         {
             InitializeComponent();
             this.DataContext = this;
-
+           
             var color = (Color)ColorConverter.ConvertFromString(AppVariable.ReadSetting(AppVariable.SkinCode));
             var brush = new SolidColorBrush(color);
             BorderColor = brush;
 
-            InitalizeData();
 
             Window = this;
             EditCommand = new RoutedCommand();
@@ -54,10 +56,7 @@ namespace MoalemYar.UserControls
 
 
         protected void EditCommand_Click(object sender, ExecutedRoutedEventArgs e)
-        {
-            //Do Somethings
-            
-
+        {            
             var selectedItems = lvDataBinding.SelectedItems;
             foreach (var selectedItem in selectedItems)
             {
@@ -66,38 +65,80 @@ namespace MoalemYar.UserControls
                 DataTemplate myDataTemplate = myContentPresenter.ContentTemplate;
                 TextBlock myTitleText = (TextBlock)myDataTemplate.FindName("txtTitle", myContentPresenter);
                 TextBlock myContentText = (TextBlock)myDataTemplate.FindName("txtContent", myContentPresenter);
+                TextBlock myAdminText = (TextBlock)myDataTemplate.FindName("txtAdmin", myContentPresenter);
+                TextBlock myBaseText = (TextBlock)myDataTemplate.FindName("txtBase", myContentPresenter);
 
                 txtYear.Text = myContentText.Text;
                 txtSchool.Text = myTitleText.Text;
+                txtAdmin.Text = myAdminText.Text;
+                var element = FindElementByName<ComboBox>(cmbContent, "cmbBase");
+                element.SelectedIndex = Convert.ToInt32(myBaseText.Text);
             }
+            
 
 
         }
+
+        public T FindElementByName<T>(FrameworkElement element, string sChildName) where T : FrameworkElement
+        {
+            T childElement = null;
+            var nChildCount = VisualTreeHelper.GetChildrenCount(element);
+            for (int i = 0; i < nChildCount; i++)
+            {
+                FrameworkElement child = VisualTreeHelper.GetChild(element, i) as FrameworkElement;
+
+                if (child == null)
+                    continue;
+
+                if (child is T && child.Name.Equals(sChildName))
+                {
+                    childElement = (T)child;
+                    break;
+                }
+
+                childElement = FindElementByName<T>(child, sChildName);
+
+                if (childElement != null)
+                    break;
+            }
+            return childElement;
+        }
+
         protected void DeleteCommand_Click(object sender, ExecutedRoutedEventArgs e)
         {
             //Do Somethings
+
         }
         private void InitalizeData()
         {
-            ObservableCollection<Patient> data = new ObservableCollection<Patient>();
-            for (int i = 0; i < 10; i++)
-            {
-                data.Add(new Patient
-                {
-                    Title = "ItemNumber is : " + i,
-                    Content ="97-98"
-                });
-            }
+            var query = GetAllSchoolsAsync();
+            query.Wait();
 
-            this.lvDataBinding.ItemsSource = data;
+            List<DataClass.Tables.School> data = query.Result;
+            lvDataBinding.ItemsSource = data;
+
         }
-        public class Patient
+
+        public async static Task<List<DataClass.Tables.School>> GetAllSchoolsAsync()
         {
-            public string Title { get; set; }
-            public string Content { get; set; }
+            using (var db = new DataClass.myDbContext())
+            {
+                //for (int i = 0; i < 5; i++)
+                //{
+                //    var asd = new DataClass.Tables.School
+                //    {
+                //        Admin = "Mahdi" + i,
+                //        Base = i,
+                //        Name = "Name" + i,
+                //        Year = "98-97" + i
+                //    };
+                //    db.Schools.Add(asd);
+                //   await db.SaveChangesAsync();
+                //}
+                var data = db.Schools.Select(x => x);
+                return await data.ToListAsync();
+            }
         }
-
-
 
         private void ListBoxItem_MouseEnter(object sender, MouseEventArgs e)
         {
@@ -110,11 +151,7 @@ namespace MoalemYar.UserControls
             lvDataBinding.SelectedItems.Clear();
         }
 
-        private void lvDataBinding_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            
-         
-        }
+      
         
         private childItem FindVisualChild<childItem>(DependencyObject obj)
             where childItem : DependencyObject
@@ -136,6 +173,15 @@ namespace MoalemYar.UserControls
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
             MainWindow.main.exContent.Content = null;
+        }
+
+        private void tabc_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var query = GetAllSchoolsAsync();
+            query.Wait();
+
+            List<DataClass.Tables.School> data = query.Result;
+            lvDataBinding.ItemsSource = data;
         }
     }
 }

@@ -10,7 +10,7 @@
              Style="{StaticResource myUserControl}"
              d:DesignHeight="450" d:DesignWidth="800" IsTabStop="True">
     <Grid>
-        <Metro:MetroTabControl Focusable="False" x:Name="tabc" IsTabStop="True" TabIndex="-1">
+        <Metro:MetroTabControl Focusable="False" x:Name="tabc" IsTabStop="True" TabIndex="-1" SelectionChanged="tabc_SelectionChanged">
             <Metro:MetroTabItem Header="ثبت اطلاعات">
                 <Grid KeyboardNavigation.TabNavigation="Cycle">
                     <Metro:MetroScrollViewer>
@@ -74,7 +74,7 @@
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
                             <Metro:MetroTextBox TabIndex="0" Grid.Row="0" FlowDirection="RightToLeft" InputHint="جستجو..." PopupHint="جستجو بصورت خودکار انجام می شود" MetroPopupBackgroundState="Red2" Margin="0,0,0,0" Icon="../Resources/editIcon.png" />
-                            <ListView  Name="lvDataBinding" Grid.Row="1" HorizontalContentAlignment="Stretch" BorderThickness="0" Margin="0,0,0,175" Background="{x:Null}" SelectionChanged="lvDataBinding_SelectionChanged">
+                            <ListView  Name="lvDataBinding" Grid.Row="1" HorizontalContentAlignment="Stretch" BorderThickness="0" Margin="0,0,0,175" Background="{x:Null}">
                                 <ListView.ItemContainerStyle>
                                     <Style TargetType="ListBoxItem">
                                         <EventSetter Event="MouseEnter" Handler="ListBoxItem_MouseEnter"/>
@@ -110,10 +110,14 @@
                                                             </Image.InputBindings>
                                                         </Image>
                                                     </StackPanel>
-                                                    <TextBlock Name="txtTitle" Foreground="#7c7f84" HorizontalAlignment="Right" Grid.Column="1" Text="{Binding Path=Title}"
+                                                    <TextBlock Name="txtTitle" Foreground="#7c7f84" HorizontalAlignment="Right" Grid.Column="1" Text="{Binding Path=Name}"
                    Margin="0,5,5,27"/>
-                                                    <TextBlock Name="txtContent" Foreground="#7c7f84" HorizontalAlignment="Right" Grid.Column="1" Text="{Binding Path=Content}"
+                                                    <TextBlock Name="txtContent" Foreground="#7c7f84" HorizontalAlignment="Right" Grid.Column="1" Text="{Binding Path=Year}"
                    Margin="0,27,5,5"/>
+                                                    <TextBlock Name="txtAdmin" Foreground="#7c7f84" HorizontalAlignment="Right" Grid.Column="1" Visibility="Hidden" Text="{Binding Path=Admin}"
+                   Margin="0,5,5,27"/>
+                                                    <TextBlock Name="txtBase" Foreground="#7c7f84" HorizontalAlignment="Right" Grid.Column="1" Visibility="Hidden" Text="{Binding Path=Base}"
+                   Margin="0,5,5,27"/>
                                                 </Grid>
 
                                             </StackPanel>
@@ -138,11 +142,11 @@
                             <Metro:MetroTextBox Name="txtYear" TabIndex="1" Grid.Row="0" InputHint="سال تحصیلی" Height="30" PopupHint="سال تحصیلی باید بصورت 97-98 وارد شود" MetroPopupBackgroundState="DarkRed" VerticalAlignment="Top"/>
                             <Metro:MetroTextBox Name="txtSchool" TabIndex="2" Grid.Row="1" InputHint="نام مدرسه" PopupHint="نام آموزشگاه را وارد کنید" MetroPopupBackgroundState="DarkRed" Height="30" VerticalAlignment="Top"/>
                             <Metro:MetroTextBox Name="txtAdmin" TabIndex="3" Grid.Row="2" InputHint="نام مدیر" Height="30" PopupHint="نام مدیریت آموزشگاه" MetroPopupBackgroundState="DarkRed" VerticalAlignment="Top"/>
-                            <ContentControl TabIndex="4" Focusable="False" Grid.Row="3" Margin="5" Height="30" VerticalAlignment="Top" Content="{Binding YourChoices}">
+                            <ContentControl Name="cmbContent" TabIndex="4" Focusable="False" Grid.Row="3" Margin="5" Height="30" VerticalAlignment="Top">
                                 <ContentControl.ContentTemplate>
                                     <DataTemplate>
                                         <Grid>
-                                            <ComboBox TabIndex="4" x:Name="cmbBase">
+                                            <ComboBox Name="cmbBase" TabIndex="4">
                                                 <ComboBoxItem Content="اول"/>
                                                 <ComboBoxItem Content="دوم"/>
                                                 <ComboBoxItem Content="سوم"/>
