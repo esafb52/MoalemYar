@@ -79,12 +79,12 @@
                                     <Style TargetType="ListBoxItem">
                                         <EventSetter Event="MouseEnter" Handler="ListBoxItem_MouseEnter"/>
                                         <EventSetter Event="MouseLeave" Handler="ListBoxItem_MouseLeave"/>
-                                        <Setter Property="Background" Value="Transparent" />
+                                        <!--<Setter Property="Background" Value="Transparent" />
                                         <Setter Property="BorderBrush" Value="Transparent" />
                                         <Setter Property="BorderThickness" Value="0" />
                                         <Setter Property="Focusable" Value="False" />
                                         <Setter Property="TabIndex" Value="-1"/>
-                                        <Setter Property="IsTabStop" Value="True"/>
+                                        <Setter Property="IsTabStop" Value="True"/>-->
                                     </Style>
                                     
                                 </ListView.ItemContainerStyle>

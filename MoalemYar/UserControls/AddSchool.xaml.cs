@@ -9,6 +9,7 @@
 ***********************************************************************************/
 
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
@@ -55,14 +56,20 @@ namespace MoalemYar.UserControls
         protected void EditCommand_Click(object sender, ExecutedRoutedEventArgs e)
         {
             //Do Somethings
-            ListBoxItem myListBoxItem = (ListBoxItem)(lvDataBinding.ItemContainerGenerator.ContainerFromItem(lvDataBinding.Items.CurrentItem));
-            ContentPresenter myContentPresenter = FindVisualChild<ContentPresenter>(myListBoxItem);
-            DataTemplate myDataTemplate = myContentPresenter.ContentTemplate;
-            TextBlock myTitleText = (TextBlock)myDataTemplate.FindName("txtTitle", myContentPresenter);
-            TextBlock myContentText = (TextBlock)myDataTemplate.FindName("txtContent", myContentPresenter);
+            
 
-            txtYear.Text = myContentText.Text;
-            txtSchool.Text = myTitleText.Text;
+            var selectedItems = lvDataBinding.SelectedItems;
+            foreach (var selectedItem in selectedItems)
+            {
+                ListBoxItem myListBoxItem = (ListBoxItem)(lvDataBinding.ItemContainerGenerator.ContainerFromItem(selectedItem));
+                ContentPresenter myContentPresenter = FindVisualChild<ContentPresenter>(myListBoxItem);
+                DataTemplate myDataTemplate = myContentPresenter.ContentTemplate;
+                TextBlock myTitleText = (TextBlock)myDataTemplate.FindName("txtTitle", myContentPresenter);
+                TextBlock myContentText = (TextBlock)myDataTemplate.FindName("txtContent", myContentPresenter);
+
+                txtYear.Text = myContentText.Text;
+                txtSchool.Text = myTitleText.Text;
+            }
 
 
         }
@@ -81,6 +88,7 @@ namespace MoalemYar.UserControls
                     Content ="97-98"
                 });
             }
+
             this.lvDataBinding.ItemsSource = data;
         }
         public class Patient
@@ -104,13 +112,10 @@ namespace MoalemYar.UserControls
 
         private void lvDataBinding_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ListBoxItem myListBoxItem = (ListBoxItem)(lvDataBinding.ItemContainerGenerator.ContainerFromItem(lvDataBinding.Items.CurrentItem));
-            ContentPresenter myContentPresenter = FindVisualChild<ContentPresenter>(myListBoxItem);
-            DataTemplate myDataTemplate = myContentPresenter.ContentTemplate;
-            TextBlock myTextBlock = (TextBlock)myDataTemplate.FindName("txtTitle", myContentPresenter);
-            Console.WriteLine("The text of the TextBlock of the selected list item: "
-                + myTextBlock.Text);
+            
+         
         }
+        
         private childItem FindVisualChild<childItem>(DependencyObject obj)
             where childItem : DependencyObject
             {
