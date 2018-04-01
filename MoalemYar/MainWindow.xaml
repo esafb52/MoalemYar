@@ -54,7 +54,7 @@
 
     <Grid>
 
-        <Metro:MetroMenuTabControl FlowDirection="RightToLeft" x:Name="tab" IconMode="True" SelectionChanged="tab_SelectionChanged">
+        <Metro:MetroMenuTabControl TabIndex="-1" FlowDirection="RightToLeft" x:Name="tab" IconMode="True" SelectionChanged="tab_SelectionChanged">
             <Metro:MetroMenuTabItem Header="داشبورد مدیریتی" Icon="Resources/Home.png" IconMove="Resources/HomeMove.png">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -129,6 +129,6 @@
                 </Grid>
             </Metro:MetroMenuTabItem>
         </Metro:MetroMenuTabControl>
-        <controls:NotificationMessageContainer FlowDirection="RightToLeft" Manager="{Binding Manager}" />
+        <controls:NotificationMessageContainer Focusable="False" TabIndex="-1" FlowDirection="RightToLeft" Manager="{Binding Manager}" />
     </Grid>
 </Metro:MetroWindow>

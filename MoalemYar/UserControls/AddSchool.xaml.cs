@@ -28,23 +28,21 @@ namespace MoalemYar.UserControls
 
 
         private FrameworkElement Window { get; set; }
+        public Brush BorderColor { get; set; }
 
-        int index = 0;
+        int selectedItemIndex = 0;
         public AddSchool()
         {
             InitializeComponent();
-           
+            this.DataContext = this;
+
             var color = (Color)ColorConverter.ConvertFromString(AppVariable.ReadSetting(AppVariable.SkinCode));
             var brush = new SolidColorBrush(color);
             BorderColor = brush;
 
             InitalizeData();
 
-
-            this.DataContext = this;
-
             Window = this;
-
             EditCommand = new RoutedCommand();
             DeleteCommand = new RoutedCommand();
 
@@ -52,53 +50,43 @@ namespace MoalemYar.UserControls
             CommandManager.RegisterClassCommandBinding(Window.GetType(), new CommandBinding(DeleteCommand, DeleteCommand_Click));
         }
 
-        public Brush BorderColor { get; set; }
 
 
         protected void EditCommand_Click(object sender, ExecutedRoutedEventArgs e)
         {
-           
-            MessageBox.Show(lvDataBinding.SelectedIndex + "");
+            //Do Somethings
+            ListBoxItem myListBoxItem = (ListBoxItem)(lvDataBinding.ItemContainerGenerator.ContainerFromItem(lvDataBinding.Items.CurrentItem));
+            ContentPresenter myContentPresenter = FindVisualChild<ContentPresenter>(myListBoxItem);
+            DataTemplate myDataTemplate = myContentPresenter.ContentTemplate;
+            TextBlock myTitleText = (TextBlock)myDataTemplate.FindName("txtTitle", myContentPresenter);
+            TextBlock myContentText = (TextBlock)myDataTemplate.FindName("txtContent", myContentPresenter);
+
+            txtYear.Text = myContentText.Text;
+            txtSchool.Text = myTitleText.Text;
+
 
         }
         protected void DeleteCommand_Click(object sender, ExecutedRoutedEventArgs e)
         {
-         
-            MessageBox.Show("delete");
+            //Do Somethings
         }
         private void InitalizeData()
         {
             ObservableCollection<Patient> data = new ObservableCollection<Patient>();
-            for (int i = 0; i < 23; i++)
+            for (int i = 0; i < 10; i++)
             {
                 data.Add(new Patient
                 {
-                    Name = "97-98",
-                    Age = "42周岁",
-                    Sex = i % 2 == 0 ? "男" : "女",
-                    BedNo = i.ToString(),
-                    Address = "中国 苏州工业园区",
-                    BirthDay = "1955年2月6日",
-                    City = "苏州",
-                    HomePhoneNumber = "0512-62810609",
-                    PostCode = "2695600"
+                    Title = "ItemNumber is : " + i,
+                    Content ="97-98"
                 });
             }
             this.lvDataBinding.ItemsSource = data;
         }
         public class Patient
         {
-            public string BedNo { get; set; }
-            public string Name { get; set; }
-            public string Age { get; set; }
-            public string Sex { get; set; }
-
-            public string BirthDay { get; set; }
-            public string Address { get; set; }
-            public string City { get; set; }
-            public string PostCode { get; set; }
-            public string HomePhoneNumber { get; set; }
-
+            public string Title { get; set; }
+            public string Content { get; set; }
         }
 
 
@@ -107,8 +95,7 @@ namespace MoalemYar.UserControls
         {
             ListBoxItem lbi = sender as ListBoxItem;
             lbi.IsSelected = true;
-            index = lvDataBinding.SelectedIndex;
-
+            selectedItemIndex = lvDataBinding.SelectedIndex;
         }
         private void ListBoxItem_MouseLeave(object sender, MouseEventArgs e)
         {
@@ -117,49 +104,33 @@ namespace MoalemYar.UserControls
 
         private void lvDataBinding_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
-
-            ListBoxItem myListBoxItem =
-    (ListBoxItem)(lvDataBinding.ItemContainerGenerator.ContainerFromItem(lvDataBinding.Items.CurrentItem));
-
-            // Getting the ContentPresenter of myListBoxItem
+            ListBoxItem myListBoxItem = (ListBoxItem)(lvDataBinding.ItemContainerGenerator.ContainerFromItem(lvDataBinding.Items.CurrentItem));
             ContentPresenter myContentPresenter = FindVisualChild<ContentPresenter>(myListBoxItem);
-
-            // Finding textBlock from the DataTemplate that is set on that ContentPresenter
             DataTemplate myDataTemplate = myContentPresenter.ContentTemplate;
-            TextBlock myTextBlock = (TextBlock)myDataTemplate.FindName("txtPhon", myContentPresenter);
-
-            // Do something to the DataTemplate-generated TextBlock
+            TextBlock myTextBlock = (TextBlock)myDataTemplate.FindName("txtTitle", myContentPresenter);
             Console.WriteLine("The text of the TextBlock of the selected list item: "
                 + myTextBlock.Text);
-
         }
         private childItem FindVisualChild<childItem>(DependencyObject obj)
-   where childItem : DependencyObject
-        {
-            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(obj); i++)
+            where childItem : DependencyObject
             {
-                DependencyObject child = VisualTreeHelper.GetChild(obj, i);
-                if (child != null && child is childItem)
-                    return (childItem)child;
-                else
+                for (int i = 0; i < VisualTreeHelper.GetChildrenCount(obj); i++)
                 {
-                    childItem childOfChild = FindVisualChild<childItem>(child);
-                    if (childOfChild != null)
-                        return childOfChild;
+                    DependencyObject child = VisualTreeHelper.GetChild(obj, i);
+                    if (child != null && child is childItem)
+                        return (childItem)child;
+                    else
+                    {
+                        childItem childOfChild = FindVisualChild<childItem>(child);
+                        if (childOfChild != null)
+                            return childOfChild;
+                    }
                 }
+                return null;
             }
-            return null;
-        }
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.main.RestartNotification();
+            MainWindow.main.exContent.Content = null;
         }
-
-      
-
-       
-        
-        
     }
 }

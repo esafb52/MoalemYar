@@ -21,6 +21,7 @@
                             <ColumnDefinition x:Name="column1" Width="Auto" />
                             <ColumnDefinition x:Name="column2" />
                         </Grid.ColumnDefinitions>
+
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup>
                                 <VisualState x:Name="ExitIconMode">
@@ -158,6 +159,7 @@
                                         </Rectangle.RenderTransform>
                                     </Rectangle>
                                 </Grid>
+
                             </Grid>
                             <Metro:MetroScrollViewer Grid.Row="1" BorderBrush="White" VerticalAlignment="{TemplateBinding TabPanelVerticalAlignment}" Margin="{TemplateBinding Padding}">
                                 <Canvas x:Name="canvas" Height="{Binding ActualHeight,ElementName=tabWidth}">
@@ -165,11 +167,15 @@
                                         <TabPanel x:Name="headerPanel" IsItemsHost="true" />
                                     </Grid>
                                 </Canvas>
+
                             </Metro:MetroScrollViewer>
+
                         </Grid>
                         <Border x:Name="contentPanel" Background="#f3f3f3" Grid.Column="1" KeyboardNavigation.DirectionalNavigation="Contained" KeyboardNavigation.TabIndex="2" KeyboardNavigation.TabNavigation="Local">
                             <ContentPresenter x:Name="content" ContentSource="SelectedContent" />
+
                         </Border>
+
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="TabStripPlacement" Value="Right">
