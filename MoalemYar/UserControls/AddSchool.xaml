@@ -82,13 +82,13 @@
                                         <Setter Property="Background" Value="Transparent" />
                                         <Setter Property="BorderBrush" Value="Transparent" />
                                         <Setter Property="BorderThickness" Value="0" />
-                                        <Setter Property="Focusable" Value="False" />
+                                        <Setter Property="Focusable" Value="True" />
                                     </Style>
-
+                                    
                                 </ListView.ItemContainerStyle>
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
-                                        <Border  Background="#f5f6fa">
+                                        <Metro:MetroCanvasGrid  Background="#f5f6fa">
                                             <StackPanel Margin="1,1,1,1" VerticalAlignment="Top">
                                                 <Grid VerticalAlignment="Top" Background="#ffffff" Height="50">
                                                     <Grid.ColumnDefinitions>
@@ -96,16 +96,17 @@
                                                         <ColumnDefinition/>
                                                     </Grid.ColumnDefinitions>
                                                     <StackPanel Margin="5" Orientation="Horizontal">
-                                                        <Button Height="20" Width="20" BorderBrush="Transparent" BorderThickness="0" Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.DeleteCommand}">
-                                                            <Button.Background>
-                                                                <ImageBrush ImageSource="..\Resources\Delete.png"/>
-                                                            </Button.Background>
-                                                        </Button>
-                                                        <Button Height="20" Width="20" BorderBrush="Transparent" BorderThickness="0" Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.EditCommand}">
-                                                            <Button.Background>
-                                                                <ImageBrush ImageSource="..\Resources\Edit.png"/>
-                                                            </Button.Background>
-                                                        </Button>
+                                                        <Image Height="20" Width="20" Source="..\Resources\Delete.png" Cursor="Hand">
+                                                            <Image.InputBindings>
+                                                                <MouseBinding Gesture="LeftClick" Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.DeleteCommand}" />
+                                                            </Image.InputBindings>
+                                                        </Image>
+
+                                                        <Image Height="20" Width="20" Source="..\Resources\Edit.png" Cursor="Hand">
+                                                            <Image.InputBindings>
+                                                                <MouseBinding Gesture="LeftClick" Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.EditCommand}"/>
+                                                            </Image.InputBindings>
+                                                        </Image>
                                                     </StackPanel>
                                                     <TextBlock Name="txtPhon" Foreground="#7c7f84" HorizontalAlignment="Right" Grid.Column="1" Text="{Binding Path=HomePhoneNumber}"
                    Margin="0,5,5,27"/>
@@ -116,11 +117,11 @@
                                             </StackPanel>
 
 
-                                        </Border>
+                                        </Metro:MetroCanvasGrid>
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
                             </ListView>
-
+                            <Metro:MetroImage></Metro:MetroImage>
                         </Grid>
                     </Metro:MetroWaterfallFlow>
                     <Grid Grid.Column="1">
@@ -129,11 +130,44 @@
                                 <RowDefinition Height="auto"/>
                                 <RowDefinition Height="auto"/>
                                 <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
                             </Grid.RowDefinitions>
+                            
                             <Metro:MetroTextBox Grid.Row="0" InputHint="سال تحصیلی" Height="30" PopupHint="سال تحصیلی باید بصورت 97-98 وارد شود" MetroPopupBackgroundState="DarkRed" VerticalAlignment="Top"/>
                             <Metro:MetroTextBox Grid.Row="1" InputHint="نام مدرسه" PopupHint="نام آموزشگاه را وارد کنید" MetroPopupBackgroundState="DarkRed" Height="30" VerticalAlignment="Top"/>
                             <Metro:MetroTextBox Grid.Row="2" InputHint="نام مدیر" Height="30" PopupHint="نام مدیریت آموزشگاه" MetroPopupBackgroundState="DarkRed" VerticalAlignment="Top"/>
+                            <ContentControl Grid.Row="3" Margin="5" Height="30" VerticalAlignment="Top" Content="{Binding YourChoices}">
+                                <ContentControl.ContentTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <ComboBox x:Name="cmbBase">
+                                                <ComboBoxItem Content="اول"/>
+                                                <ComboBoxItem Content="دوم"/>
+                                                <ComboBoxItem Content="سوم"/>
+                                                <ComboBoxItem Content="چهارم"/>
+                                                <ComboBoxItem Content="پنجم"/>
+                                                <ComboBoxItem Content="ششم"/>
+                                            </ComboBox>
+                                            <TextBlock x:Name="tb" Text=" انتخاب پایه " IsHitTestVisible="False" Visibility="Hidden"/>
+                                        </Grid>
+                                        <DataTemplate.Triggers>
+                                            <Trigger SourceName="cmbBase" Property="SelectedItem" Value="{x:Null}">
+                                                <Setter TargetName="tb" Property="Visibility" Value="Visible"/>
+                                            </Trigger>
+                                        </DataTemplate.Triggers>
+                                    </DataTemplate>
+                                </ContentControl.ContentTemplate>
+                            </ContentControl>
+                            <Grid Grid.Row="4">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Metro:MetroButton Grid.Column="0" Margin="10,5" Content="ذخیره" MetroButtonState="DarkGreen"/>
+                                <Metro:MetroButton Grid.Column="1" Margin="10,5" Content="انصراف" MetroButtonState="Red2"/>
 
+                            </Grid>
                         </Grid>
                     </Grid>
                 </Grid>
