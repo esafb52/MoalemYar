@@ -26,12 +26,12 @@ namespace MoalemYar.DataClass.Tables
         public long Id { get; set; }
 
         [Required]
-        public string Name { get; set; }
+        public string SchoolName { get; set; }
 
         [Required]
         public string Year { get; set; }
         [Required]
-        public int Base { get; set; }
+        public string Base { get; set; }
         public string Admin { get; set; }
     }
 }

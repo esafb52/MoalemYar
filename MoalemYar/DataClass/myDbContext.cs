@@ -31,7 +31,7 @@ namespace MoalemYar.DataClass
             Database.SetInitializer(sqliteConnectionInitializer);
         }
 
-        public class MyDbContextInitializer : SqliteCreateDatabaseIfNotExists<myDbContext>
+        public class MyDbContextInitializer : SqliteDropCreateDatabaseWhenModelChanges<myDbContext>
         {
             public MyDbContextInitializer(DbModelBuilder modelBuilder)
                 : base(modelBuilder)
