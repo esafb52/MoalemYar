@@ -73,7 +73,7 @@
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
                             <Metro:MetroTextBox TabIndex="0" Grid.Row="0" FlowDirection="RightToLeft" InputHint="جستجو..." PopupHint="جستجو بصورت خودکار انجام می شود" MetroPopupBackgroundState="Red2" Margin="0,0,0,0" Icon="../Resources/editIcon.png" />
-                            <ListView FlowDirection="RightToLeft" Grid.Row="1" SelectionMode="Single" Name="dgv" Margin="12,0,10,-81">
+                            <ListView FlowDirection="RightToLeft" Grid.Row="1" SelectionMode="Single" Name="dgv" Margin="12,0,10,-81" SelectionChanged="dgv_SelectionChanged">
                                 <ListView.View>
                                     <GridView>
                                         <GridViewColumn Header="آموزشگاه"  DisplayMemberBinding="{Binding Name}" />
@@ -87,11 +87,6 @@
                             
                             </ListView>
 
-                            <!--<ListView Name="dgv"  Grid.Row="1" Margin="10">
-                                    <ListViewItem>A ListView</ListViewItem>
-                                    <ListViewItem IsSelected="True">with several</ListViewItem>
-                                    <ListViewItem>items</ListViewItem>
-                                </ListView>-->
                         </Grid>
                     </Metro:MetroWaterfallFlow>
                     <Grid Grid.Column="1">

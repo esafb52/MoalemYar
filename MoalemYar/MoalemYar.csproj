@@ -92,7 +92,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Address.cs" />
+    <Compile Include="AddressToFullAddressConverter.cs" />
+    <Compile Include="ByteArrayToImageConverter.cs" />
     <Compile Include="DataClass\Tables\School.cs" />
+    <Compile Include="ImageHelper.cs" />
     <Compile Include="UserControls\About.xaml.cs">
       <DependentUpon>About.xaml</DependentUpon>
     </Compile>
