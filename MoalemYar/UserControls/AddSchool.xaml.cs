@@ -113,7 +113,7 @@ namespace MoalemYar.UserControls
                     if (data.Any())
                         dgv.ItemsSource = data.ToList();
                     else
-                        MainWindow.main.ShowNoDataNotification();
+                        MainWindow.main.ShowNoDataNotification("School");
                 }
             }), DispatcherPriority.ContextIdle);
 
@@ -158,7 +158,7 @@ namespace MoalemYar.UserControls
                     data.Year = txtYear.Text;
                     data.Base = getComboValue();
                     db.SaveChanges();
-                    MainWindow.main.ShowUpdateNotification(true, txtSchool.Text);
+                    MainWindow.main.ShowUpdateDataNotification(true, txtSchool.Text, "مدرسه");
                     editGrid.IsEnabled = false;
                     if (!MyWorker.IsBusy)
                         MyWorker.RunWorkerAsync();
@@ -166,7 +166,7 @@ namespace MoalemYar.UserControls
             }
             catch (Exception)
             {
-                MainWindow.main.ShowUpdateNotification(false, txtSchool.Text);
+                MainWindow.main.ShowUpdateDataNotification(false, txtSchool.Text,"مدرسه");
             }
         }
 
@@ -265,7 +265,7 @@ namespace MoalemYar.UserControls
                         };
                         db.Schools.Add(data);
                         db.SaveChanges();
-                        MainWindow.main.ShowAddDataNotification(true, txtAddSchool.Text);
+                        MainWindow.main.ShowAddDataNotification(true, txtAddSchool.Text, "مدرسه");
                         txtAddAdmin.Text = string.Empty;
                         txtAddSchool.Text = string.Empty;
                         txtAddSchool.Focus();
@@ -273,7 +273,7 @@ namespace MoalemYar.UserControls
                 }
                 catch (Exception)
                 {
-                    MainWindow.main.ShowAddDataNotification(true, txtAddSchool.Text);
+                    MainWindow.main.ShowAddDataNotification(true, txtAddSchool.Text, "مدرسه");
                 }
 
             }
@@ -296,7 +296,7 @@ namespace MoalemYar.UserControls
                     var data = db.Schools.Where(s => s.Id == id).FirstOrDefault<DataClass.Tables.School>();
                     db.Schools.Remove(data);
                     db.SaveChanges();
-                    MainWindow.main.ShowDeletedNotification(true, txtSchool.Text);
+                    MainWindow.main.ShowDeletedNotification(true, txtSchool.Text,"مدرسه");
                     editGrid.IsEnabled = false;
                     if (!MyWorker.IsBusy)
                         MyWorker.RunWorkerAsync();
@@ -304,7 +304,7 @@ namespace MoalemYar.UserControls
             }
             catch (Exception)
             {
-                MainWindow.main.ShowDeletedNotification(false, txtSchool.Text);
+                MainWindow.main.ShowDeletedNotification(false, txtSchool.Text,"مدرسه");
             }
         }
     }

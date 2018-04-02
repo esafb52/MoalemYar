@@ -40,7 +40,7 @@ namespace MoalemYar
         public string appTitle { get; set; }
         internal static MainWindow main;
         public INotificationMessageManager Manager { get; } = new NotificationMessageManager();
-
+        private System.ComponentModel.BackgroundWorker MyWorker = new System.ComponentModel.BackgroundWorker();
         public MainWindow()
         {
             InitializeComponent();
@@ -57,7 +57,8 @@ namespace MoalemYar
 
 
             LoadSettings();
-
+            MyWorker.WorkerSupportsCancellation = true;
+            MyWorker.DoWork += MyWorker_DoWork;
         }
 
        
@@ -87,7 +88,7 @@ namespace MoalemYar
             var hb_Menu = Convert.ToBoolean(AppVariable.ReadSetting(AppVariable.HamburgerMenu));
             MainWindow.main.tab.IconMode = !hb_Menu;
         }
-        public async void ShowNoDataNotification()
+        public async void ShowNoDataNotification(string Type)
         {
             var builder = this.Manager
                .CreateMessage()
@@ -95,7 +96,19 @@ namespace MoalemYar
                .Background(AppVariable.BGBLACK)
                .HasBadge("هشدار")
                .HasMessage("اطلاعاتی در پایگاه داده یافت نشد")
-               .Dismiss().WithButton("ثبت اطلاعات جدید", button => { AddSchool.main.tabc.SelectedIndex = 0; })
+               .Dismiss().WithButton("ثبت اطلاعات جدید", button => {
+                   switch (Type)
+                   {
+                       case "School":
+                           AddSchool.main.tabc.SelectedIndex = 0;
+                           break;
+                       case "User":
+                           AddUser.main.tabc.SelectedIndex = 0;
+                           break;
+                      
+                   }
+
+               })
                .Dismiss().WithButton("بیخیال", button => { });
             builder.Queue();
             await Task.Delay(3000);
@@ -115,7 +128,20 @@ namespace MoalemYar
             await Task.Delay(3000);
             this.Manager.Dismiss(builder.Message);
         }
-        public async void ShowUpdateNotification(bool isUpdateSuccess, string SchoolName)
+        public async void ShowSamePasswordNotification()
+        {
+            var builder = this.Manager
+                .CreateMessage()
+               .Accent(AppVariable.RED)
+               .Background(AppVariable.BGBLACK)
+               .HasBadge("هشدار")
+               .HasMessage("رمز های عبور باید یکسان باشند")
+               .Dismiss().WithButton("باشه", button => { });
+            builder.Queue();
+            await Task.Delay(3000);
+            this.Manager.Dismiss(builder.Message);
+        }
+        public async void ShowUpdateDataNotification(bool isUpdateSuccess, string SchoolName, string Type)
         {
             if (isUpdateSuccess)
             {
@@ -124,7 +150,7 @@ namespace MoalemYar
                .Accent(AppVariable.ORANGE)
                .Background(AppVariable.BGBLACK)
                .HasBadge("اطلاعیه")
-               .HasMessage(string.Format("مدرسه {0} با موفقیت ویرایش شد", SchoolName))
+               .HasMessage(string.Format("{1} {0} با موفقیت ویرایش شد", SchoolName, Type))
                .Dismiss().WithButton("باشه", button => { });
                 builder.Queue();
                 await Task.Delay(3000);
@@ -137,7 +163,7 @@ namespace MoalemYar
                .Accent(AppVariable.RED)
                .Background(AppVariable.BGBLACK)
                .HasBadge("هشدار")
-               .HasMessage(string.Format("ویرایش مدرسه {0} با خطا مواجه شد", SchoolName))
+               .HasMessage(string.Format("ویرایش {1} {0} با خطا مواجه شد", SchoolName, Type))
                .Dismiss().WithButton("دوباره امتحان کنید", button => { });
                 builder.Queue();
                 await Task.Delay(3000);
@@ -145,7 +171,7 @@ namespace MoalemYar
             }
             
         }
-        public async void ShowDeletedNotification(bool isDeleteSuccess, string SchoolName)
+        public async void ShowDeletedNotification(bool isDeleteSuccess, string SchoolName, string Type)
         {
             if (isDeleteSuccess)
             {
@@ -154,7 +180,7 @@ namespace MoalemYar
                    .Accent(AppVariable.BLUE)
                    .Background(AppVariable.BGBLACK)
                    .HasBadge("اطلاعیه")
-                   .HasMessage(string.Format("مدرسه {0} با موفقیت حذف شد", SchoolName))
+                   .HasMessage(string.Format("{1} {0} با موفقیت حذف شد", SchoolName, Type))
                    .Dismiss().WithButton("باشه", button => { });
                 builder.Queue();
                 await Task.Delay(3000);
@@ -168,14 +194,14 @@ namespace MoalemYar
                    .Accent(AppVariable.RED)
                    .Background(AppVariable.BGBLACK)
                    .HasBadge("هشدار")
-                   .HasMessage(string.Format("حذف مدرسه {0} با خطا مواجه شد", SchoolName))
+                   .HasMessage(string.Format("حذف {1} {0} با خطا مواجه شد", SchoolName, Type))
                    .Dismiss().WithButton("دوباره امتحان کنید", button => { });
                 builder.Queue();
                 await Task.Delay(3000);
                 this.Manager.Dismiss(builder.Message);
             }
         }
-        public async void ShowAddDataNotification(bool isAddSuccess, string SchoolName)
+        public async void ShowAddDataNotification(bool isAddSuccess, string SchoolName, string Type)
         {
             if (isAddSuccess)
             {
@@ -184,7 +210,7 @@ namespace MoalemYar
                .Accent(AppVariable.GREEN)
                .Background(AppVariable.BGBLACK)
                .HasBadge("اطلاعیه")
-               .HasMessage(string.Format("مدرسه {0} با موفقیت ثبت شد", SchoolName))
+               .HasMessage(string.Format("{1} {0} با موفقیت ثبت شد", SchoolName, Type))
                .Dismiss().WithButton("باشه", button => { });
                 builder.Queue();
                 await Task.Delay(3000);
@@ -197,7 +223,7 @@ namespace MoalemYar
                .Accent(AppVariable.RED)
                .Background(AppVariable.BGBLACK)
                .HasBadge("هشدار")
-               .HasMessage(string.Format("ثبت مدرسه {0} با خطا مواجه شد", SchoolName))
+               .HasMessage(string.Format("ثبت {1} {0} با خطا مواجه شد", SchoolName, Type))
                .Dismiss().WithButton("دوباره امتحان کنید", button => { });
                 builder.Queue();
                 await Task.Delay(3000);
@@ -373,6 +399,38 @@ namespace MoalemYar
         {
             if (exBase.IsExpanded)
                 exBase.IsExpanded = false;
+        }
+
+        private void exAddOrUpdateUser_Click(object sender, EventArgs e)
+        {
+            exContent.Content = new AddUser();
+        }
+
+        private void MetroWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (!MyWorker.IsBusy)
+                MyWorker.RunWorkerAsync();
+        }
+        private void MyWorker_DoWork(object Sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+            Dispatcher.Invoke(new Action(() =>
+            {
+                using (var db = new DataClass.myDbContext())
+                {
+                    var school = (from x in db.Schools select x).Count();
+                    var user = (from x in db.Users select x).Count();
+
+                    exAddOrUpdateSchool.Hint = school.ToString();
+                    exAddOrUpdateUser.Hint = user.ToString();
+
+                }
+            }), DispatcherPriority.ContextIdle);
+
+            if (MyWorker.CancellationPending)
+            {
+                e.Cancel = true;
+                return;
+            }
         }
     }
 }

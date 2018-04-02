@@ -9,7 +9,7 @@
                    mc:Ignorable="d"
         d:DesignWidth="1600" d:DesignHeight="1200"
         Style="{StaticResource myWindow}"
-                   Title="{Binding Path=appTitle}">
+                   Title="{Binding Path=appTitle}" Loaded="MetroWindow_Loaded">
     <Metro:MetroWindow.Menu>
         <Metro:MetroTitleMenu>
             <Metro:MetroTitleMenuItem Header="تنظیمات" Icon="Resources/titleMuenIcon.png">
@@ -69,7 +69,7 @@
                                     <StackPanel>
                                         <Metro:MetroExpander FontWeight="Normal" Name="exAddOrUpdateSchool" Click="exAddOrUpdateSchool_Click" Icon="Resources/School.png" Header="مدرسه و کلاس" Hint="0" HintBackground="Green" />
                                         <Metro:MetroExpander FontWeight="Normal" Icon="Resources/Students.png" Header="دانش آموز" Hint="0" HintBackground="Green" />
-                                        <Metro:MetroExpander FontWeight="Normal" Icon="Resources/User.png" Header="حساب کاربری" Hint="0" HintBackground="Orange" />
+                                        <Metro:MetroExpander FontWeight="Normal" Name="exAddOrUpdateUser" Click="exAddOrUpdateUser_Click" Icon="Resources/User.png" Header="حساب کاربری" Hint="0" HintBackground="Orange" />
                                     </StackPanel>
                                 </Metro:MetroExpander>
 
