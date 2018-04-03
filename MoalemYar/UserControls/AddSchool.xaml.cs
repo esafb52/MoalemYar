@@ -15,6 +15,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Threading;
+
 namespace MoalemYar.UserControls
 {
     /// <summary>
@@ -28,6 +29,7 @@ namespace MoalemYar.UserControls
         private int runOnce = 0;
         private PersianCalendar pc = new PersianCalendar();
         private string strDate;
+
         public AddSchool()
         {
             InitializeComponent();
@@ -166,7 +168,7 @@ namespace MoalemYar.UserControls
             }
             catch (Exception)
             {
-                MainWindow.main.ShowUpdateDataNotification(false, txtSchool.Text,"مدرسه");
+                MainWindow.main.ShowUpdateDataNotification(false, txtSchool.Text, "مدرسه");
             }
         }
 
@@ -236,6 +238,7 @@ namespace MoalemYar.UserControls
                     MyWorker.RunWorkerAsync();
             }
         }
+
         private void GenerateEducateYear()
         {
             strDate = pc.GetYear(DateTime.Now).ToString("0000");
@@ -243,6 +246,7 @@ namespace MoalemYar.UserControls
             int NextYear = Convert.ToInt32(Year) + 1;
             txtAddYear.Text = Year + "-" + NextYear;
         }
+
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             var element = FindElementByName<ComboBox>(cmbAddContent, "cmbBase");
@@ -275,7 +279,6 @@ namespace MoalemYar.UserControls
                 {
                     MainWindow.main.ShowAddDataNotification(true, txtAddSchool.Text, "مدرسه");
                 }
-
             }
         }
 
@@ -296,7 +299,7 @@ namespace MoalemYar.UserControls
                     var data = db.Schools.Where(s => s.Id == id).FirstOrDefault<DataClass.Tables.School>();
                     db.Schools.Remove(data);
                     db.SaveChanges();
-                    MainWindow.main.ShowDeletedNotification(true, txtSchool.Text,"مدرسه");
+                    MainWindow.main.ShowDeletedNotification(true, txtSchool.Text, "مدرسه");
                     editGrid.IsEnabled = false;
                     if (!MyWorker.IsBusy)
                         MyWorker.RunWorkerAsync();
@@ -304,7 +307,7 @@ namespace MoalemYar.UserControls
             }
             catch (Exception)
             {
-                MainWindow.main.ShowDeletedNotification(false, txtSchool.Text,"مدرسه");
+                MainWindow.main.ShowDeletedNotification(false, txtSchool.Text, "مدرسه");
             }
         }
     }

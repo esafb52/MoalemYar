@@ -1,27 +1,18 @@
-﻿
-/****************************** ghost1372.github.io ******************************\
+﻿/****************************** ghost1372.github.io ******************************\
 *	Module Name:	AddUser.xaml.cs
 *	Project:		MoalemYar
 *	Copyright (C) 2017 Mahdi Hosseini, All rights reserved.
 *	This software may be modified and distributed under the terms of the MIT license.  See LICENSE file for details.
 *
 *	Written by Mahdi Hosseini <Mahdidvb72@gmail.com>,  2018, 4, 2, 10:56 ب.ظ
-*	
+*
 ***********************************************************************************/
+
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Threading;
 
 namespace MoalemYar.UserControls
@@ -35,7 +26,7 @@ namespace MoalemYar.UserControls
         public Brush BorderColor { get; set; }
         internal static AddUser main;
         private int runOnce = 0;
-       
+
         public AddUser()
         {
             InitializeComponent();
@@ -51,6 +42,7 @@ namespace MoalemYar.UserControls
         {
             MainWindow.main.exContent.Content = null;
         }
+
         private void tabc_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (tabc.SelectedIndex == 1)
@@ -63,6 +55,7 @@ namespace MoalemYar.UserControls
                 }
             }
         }
+
         private void MyWorker_DoWork(object Sender, System.ComponentModel.DoWorkEventArgs e)
         {
             Dispatcher.Invoke(new Action(() =>
@@ -99,6 +92,7 @@ namespace MoalemYar.UserControls
             {
             }
         }
+
         private void btnEditSave_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -124,13 +118,13 @@ namespace MoalemYar.UserControls
                             MyWorker.RunWorkerAsync();
                     }
                 }
-               
             }
             catch (Exception)
             {
                 MainWindow.main.ShowUpdateDataNotification(false, txtUsername.Text, "نام کاربری");
             }
         }
+
         private void btnEditCancel_Click(object sender, RoutedEventArgs e)
         {
             txtUsername.Text = string.Empty;
@@ -138,6 +132,7 @@ namespace MoalemYar.UserControls
             txtPasswordAg.Text = string.Empty;
             editGrid.IsEnabled = false;
         }
+
         private void txtEditSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (txtEditSearch.Text != string.Empty)
@@ -154,15 +149,18 @@ namespace MoalemYar.UserControls
                     MyWorker.RunWorkerAsync();
             }
         }
+
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             if (txtAddUsername.Text == string.Empty || txtAddPassword.Text == string.Empty || txtAddPasswordAg.Text == string.Empty)
             {
                 MainWindow.main.ShowFillAllDataNotification();
-            }else if(txtAddPassword.Text !=txtAddPasswordAg.Text)
+            }
+            else if (txtAddPassword.Text != txtAddPasswordAg.Text)
             {
                 MainWindow.main.ShowSamePasswordNotification();
-            }else
+            }
+            else
             {
                 try
                 {
@@ -172,11 +170,10 @@ namespace MoalemYar.UserControls
                         {
                             Username = txtAddUsername.Text,
                             Password = txtAddPassword.Text
-                           
                         };
                         db.Users.Add(data);
                         db.SaveChanges();
-                        MainWindow.main.ShowAddDataNotification(true, txtAddUsername.Text,"نام کاربری");
+                        MainWindow.main.ShowAddDataNotification(true, txtAddUsername.Text, "نام کاربری");
                         txtAddUsername.Text = string.Empty;
                         txtAddPassword.Text = string.Empty;
                         txtAddPasswordAg.Text = string.Empty;
@@ -187,9 +184,9 @@ namespace MoalemYar.UserControls
                 {
                     MainWindow.main.ShowAddDataNotification(false, txtAddUsername.Text, "نام کاربری");
                 }
-
             }
         }
+
         private void txtEditSearch_ButtonClick(object sender, EventArgs e)
         {
             if (!MyWorker.IsBusy)

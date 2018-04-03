@@ -28,6 +28,7 @@ namespace Arthas.Controls.Metro
             DarkGreen,
             DarkRed
         }
+
         public static readonly DependencyProperty MetroPopupBackgroundStateProperty = ElementBase.Property<MetroTextBox, PopupBackgroundState>(nameof(MetroPopupBackgroundStateProperty), PopupBackgroundState.None);
         public PopupBackgroundState MetroPopupBackgroundState { get { return (PopupBackgroundState)GetValue(MetroPopupBackgroundStateProperty); } set { SetValue(MetroPopupBackgroundStateProperty, value); } }
         public static readonly DependencyProperty TitleProperty = ElementBase.Property<MetroTextBox, string>(nameof(TitleProperty), "");
@@ -43,7 +44,6 @@ namespace Arthas.Controls.Metro
         public static readonly DependencyProperty IsPassWordBoxProperty = ElementBase.Property<MetroTextBox, bool>(nameof(IsPassWordBoxProperty), false);
         public static readonly DependencyProperty CornerRadiusProperty = ElementBase.Property<MetroTextBox, CornerRadius>(nameof(CornerRadiusProperty));
 
-       
         public static RoutedUICommand ButtonClickCommand = ElementBase.Command<MetroTextBox>(nameof(ButtonClickCommand));
 
         public string Title { get { return (string)GetValue(TitleProperty); } set { SetValue(TitleProperty, value); } }

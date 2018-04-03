@@ -76,8 +76,8 @@
                             <Setter TargetName="back" Property="Background" Value="#13ba07" />
                         </Trigger>
                         <Trigger Property="MetroButtonState" Value="DarkRed">
-                            <Setter TargetName="border" Property="Background" Value="#d11e1e"/>
-                            <Setter TargetName="back" Property="Background" Value="#d11e1e"/>
+                            <Setter TargetName="border" Property="Background" Value="#d11e1e" />
+                            <Setter TargetName="back" Property="Background" Value="#d11e1e" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

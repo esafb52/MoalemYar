@@ -100,19 +100,19 @@
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="MetroPopupBackgroundState" Value="Red">
-                            <Setter TargetName="popupborder" Property="Background" Value="#e99595"/>
+                            <Setter TargetName="popupborder" Property="Background" Value="#e99595" />
                         </Trigger>
                         <Trigger Property="MetroPopupBackgroundState" Value="Green">
-                            <Setter TargetName="popupborder" Property="Background" Value="#99cb8a"/>
+                            <Setter TargetName="popupborder" Property="Background" Value="#99cb8a" />
                         </Trigger>
                         <Trigger Property="MetroPopupBackgroundState" Value="Red2">
-                            <Setter TargetName="popupborder" Property="Background" Value="#e15b4f"/>
+                            <Setter TargetName="popupborder" Property="Background" Value="#e15b4f" />
                         </Trigger>
                         <Trigger Property="MetroPopupBackgroundState" Value="DarkGreen">
-                            <Setter TargetName="popupborder" Property="Background" Value="#13ba07"/>
+                            <Setter TargetName="popupborder" Property="Background" Value="#13ba07" />
                         </Trigger>
                         <Trigger Property="MetroPopupBackgroundState" Value="DarkRed">
-                            <Setter TargetName="popupborder" Property="Background" Value="#d11e1e"/>
+                            <Setter TargetName="popupborder" Property="Background" Value="#d11e1e" />
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
                             <Setter Property="Opacity" TargetName="content" Value="0.5" />
