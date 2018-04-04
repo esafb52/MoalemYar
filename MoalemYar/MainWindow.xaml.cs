@@ -99,12 +99,13 @@ namespace MoalemYar
                        case "User":
                            AddUser.main.tabc.SelectedIndex = 0;
                            break;
+                       case "Student":
+                           AddStudent.main.tabc.SelectedIndex = 0;
+                           break;
                    }
                })
-               .Dismiss().WithButton("بیخیال", button => { });
-            Task.Delay(3000).ContinueWith(ctx =>
-                this.Manager.Dismiss(builder.Message),
-                TaskScheduler.FromCurrentSynchronizationContext());
+               .Dismiss().WithButton("بیخیال", button => { })
+           .Dismiss().WithDelay(TimeSpan.FromSeconds(3));
             builder.Queue();
         }
 
@@ -116,10 +117,8 @@ namespace MoalemYar
                .Background(AppVariable.BGBLACK)
                .HasBadge("هشدار")
                .HasMessage("لطفا تمام فیلدها را پر کنید")
-               .Dismiss().WithButton("باشه", button => { });
-            Task.Delay(3000).ContinueWith(ctx =>
-                this.Manager.Dismiss(builder.Message),
-                TaskScheduler.FromCurrentSynchronizationContext());
+               .Dismiss().WithButton("باشه", button => { })
+            .Dismiss().WithDelay(TimeSpan.FromSeconds(3));
             builder.Queue();
         }
 
@@ -131,10 +130,8 @@ namespace MoalemYar
                .Background(AppVariable.BGBLACK)
                .HasBadge("هشدار")
                .HasMessage("رمز های عبور باید یکسان باشند")
-               .Dismiss().WithButton("باشه", button => { });
-            Task.Delay(3000).ContinueWith(ctx =>
-                this.Manager.Dismiss(builder.Message),
-                TaskScheduler.FromCurrentSynchronizationContext());
+               .Dismiss().WithButton("باشه", button => { })
+            .Dismiss().WithDelay(TimeSpan.FromSeconds(3));
             builder.Queue();
         }
 
@@ -148,10 +145,8 @@ namespace MoalemYar
                .Background(AppVariable.BGBLACK)
                .HasBadge("اطلاعیه")
                .HasMessage(string.Format("{1} {0} با موفقیت ویرایش شد", SchoolName, Type))
-               .Dismiss().WithButton("باشه", button => { });
-                Task.Delay(3000).ContinueWith(ctx =>
-                    this.Manager.Dismiss(builder.Message),
-                    TaskScheduler.FromCurrentSynchronizationContext());
+               .Dismiss().WithButton("باشه", button => { })
+               .Dismiss().WithDelay(TimeSpan.FromSeconds(3));
                 builder.Queue();
             }
             else
@@ -162,10 +157,8 @@ namespace MoalemYar
                .Background(AppVariable.BGBLACK)
                .HasBadge("هشدار")
                .HasMessage(string.Format("ویرایش {1} {0} با خطا مواجه شد", SchoolName, Type))
-               .Dismiss().WithButton("دوباره امتحان کنید", button => { });
-                Task.Delay(3000).ContinueWith(ctx =>
-                    this.Manager.Dismiss(builder.Message),
-                    TaskScheduler.FromCurrentSynchronizationContext());
+               .Dismiss().WithButton("دوباره امتحان کنید", button => { })
+                .Dismiss().WithDelay(TimeSpan.FromSeconds(3));
                 builder.Queue();
             }
         }
@@ -180,10 +173,8 @@ namespace MoalemYar
                    .Background(AppVariable.BGBLACK)
                    .HasBadge("اطلاعیه")
                    .HasMessage(string.Format("{1} {0} با موفقیت حذف شد", SchoolName, Type))
-                   .Dismiss().WithButton("باشه", button => { });
-                Task.Delay(3000).ContinueWith(ctx =>
-       this.Manager.Dismiss(builder.Message),
-       TaskScheduler.FromCurrentSynchronizationContext());
+                   .Dismiss().WithButton("باشه", button => { })
+                .Dismiss().WithDelay(TimeSpan.FromSeconds(3));
                 builder.Queue();
             }
             else
@@ -194,10 +185,8 @@ namespace MoalemYar
                    .Background(AppVariable.BGBLACK)
                    .HasBadge("هشدار")
                    .HasMessage(string.Format("حذف {1} {0} با خطا مواجه شد", SchoolName, Type))
-                   .Dismiss().WithButton("دوباره امتحان کنید", button => { });
-                Task.Delay(3000).ContinueWith(ctx =>
-       this.Manager.Dismiss(builder.Message),
-       TaskScheduler.FromCurrentSynchronizationContext());
+                   .Dismiss().WithButton("دوباره امتحان کنید", button => { })
+                .Dismiss().WithDelay(TimeSpan.FromSeconds(3));
                 builder.Queue();
             }
         }
@@ -212,10 +201,8 @@ namespace MoalemYar
                .Background(AppVariable.BGBLACK)
                .HasBadge("اطلاعیه")
                .HasMessage(string.Format("{1} {0} با موفقیت ثبت شد", SchoolName, Type))
-               .Dismiss().WithButton("باشه", button => { });
-                Task.Delay(3000).ContinueWith(ctx =>
-                    this.Manager.Dismiss(builder.Message),
-                    TaskScheduler.FromCurrentSynchronizationContext());
+               .Dismiss().WithButton("باشه", button => { })
+                .Dismiss().WithDelay(TimeSpan.FromSeconds(3));
                 builder.Queue();
             }
             else
@@ -226,10 +213,8 @@ namespace MoalemYar
                .Background(AppVariable.BGBLACK)
                .HasBadge("هشدار")
                .HasMessage(string.Format("ثبت {1} {0} با خطا مواجه شد", SchoolName, Type))
-               .Dismiss().WithButton("دوباره امتحان کنید", button => { });
-                Task.Delay(3000).ContinueWith(ctx =>
-                    this.Manager.Dismiss(builder.Message),
-                    TaskScheduler.FromCurrentSynchronizationContext());
+               .Dismiss().WithButton("دوباره امتحان کنید", button => { })
+               .Dismiss().WithDelay(TimeSpan.FromSeconds(3));
                 builder.Queue();
             }
         }
@@ -247,10 +232,8 @@ namespace MoalemYar
                      Application.Current.Shutdown();
                      System.Windows.Forms.Application.Restart();
                  })
-                 .Dismiss().WithButton("بیخیال", button => { });
-            Task.Delay(3000).ContinueWith(ctx =>
-                this.Manager.Dismiss(builder.Message),
-                TaskScheduler.FromCurrentSynchronizationContext());
+                 .Dismiss().WithButton("بیخیال", button => { })
+                 .Dismiss().WithDelay(TimeSpan.FromSeconds(3));
             builder.Queue();
         }
 
@@ -268,10 +251,8 @@ namespace MoalemYar
                     {
                         System.Diagnostics.Process.Start(URL);
                     })
-                    .Dismiss().WithButton("بیخیال", button => { });
-                Task.Delay(3000).ContinueWith(ctx =>
-                    this.Manager.Dismiss(builder.Message),
-                    TaskScheduler.FromCurrentSynchronizationContext());
+                    .Dismiss().WithButton("بیخیال", button => { })
+                .Dismiss().WithDelay(TimeSpan.FromSeconds(3));
                 builder.Queue();
             }
             else
@@ -282,10 +263,9 @@ namespace MoalemYar
                    .Background(AppVariable.BGBLACK)
                    .HasBadge("هشدار")
                    .HasHeader(string.Format("شما از آخرین نسخه {0} استفاده می کنید", AppVariable.getAppVersion))
+                   .Dismiss().WithDelay(TimeSpan.FromSeconds(3))
                    .Dismiss().WithButton("تایید", button => { });
-                Task.Delay(3000).ContinueWith(ctx =>
-                    this.Manager.Dismiss(builder.Message),
-                    TaskScheduler.FromCurrentSynchronizationContext());
+                    
                 builder.Queue();
             }
         }
@@ -425,9 +405,12 @@ namespace MoalemYar
                 {
                     var school = (from x in db.Schools select x).Count();
                     var user = (from x in db.Users select x).Count();
+                    var student = (from x in db.Students select x).Count();
+
 
                     exAddOrUpdateSchool.Hint = school.ToString();
                     exAddOrUpdateUser.Hint = user.ToString();
+                    exAddOrUpdateStudent.Hint = student.ToString();
                 }
             }), DispatcherPriority.ContextIdle);
 
@@ -436,6 +419,12 @@ namespace MoalemYar
                 e.Cancel = true;
                 return;
             }
+        }
+
+        private void exAddOrUpdateStudent_Click(object sender, EventArgs e)
+        {
+            exContent.Content = new AddStudent();
+
         }
     }
 }

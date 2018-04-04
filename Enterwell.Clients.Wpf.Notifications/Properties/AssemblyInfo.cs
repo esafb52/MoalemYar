@@ -1,31 +1,21 @@
-﻿/****************************** ghost1372.github.io ******************************\
-*	Module Name:	AssemblyInfo.cs
-*	Project:		MoalemYar
-*	Copyright (C) 2017 Mahdi Hosseini, All rights reserved.
-*	This software may be modified and distributed under the terms of the MIT license.  See LICENSE file for details.
-*
-*	Written by Mahdi Hosseini <Mahdidvb72@gmail.com>,  2018, 3, 22, 05:53 ب.ظ
-*
-***********************************************************************************/
-
-using System.Reflection;
+﻿using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows;
 
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("MoalemYar")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Enterwell.Clients.Wpf.Notifications")]
+[assembly: AssemblyDescription("Enterwell WPF Notifications library")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("MoalemYar")]
-[assembly: AssemblyCopyright("Copyright ©  2018")]
+[assembly: AssemblyCompany("Enterwell d.o.o.")]
+[assembly: AssemblyProduct("Enterwell.Clients.Wpf.Notifications")]
+[assembly: AssemblyCopyright("Copyright © Enterwell d.o.o. 2017-2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
-// Setting ComVisible to false makes the types in this assembly not visible
-// to COM components.  If you need to access a type in this assembly from
+// Setting ComVisible to false makes the types in this assembly not visible 
+// to COM components.  If you need to access a type in this assembly from 
 // COM, set the ComVisible attribute to true on that type.
 [assembly: ComVisible(false)]
 
@@ -38,14 +28,16 @@ using System.Windows;
 
 //[assembly: NeutralResourcesLanguage("en-US", UltimateResourceFallbackLocation.Satellite)]
 
-[assembly: ThemeInfo(
+
+[assembly:ThemeInfo(
     ResourceDictionaryLocation.None, //where theme specific resource dictionaries are located
-                                     //(used if a resource is not found in the page,
-                                     // or application resource dictionaries)
+                             //(used if a resource is not found in the page,
+                             // or application resource dictionaries)
     ResourceDictionaryLocation.SourceAssembly //where the generic resource dictionary is located
-                                              //(used if a resource is not found in the page,
-                                              // app, or any theme specific resource dictionaries)
+                                      //(used if a resource is not found in the page,
+                                      // app, or any theme specific resource dictionaries)
 )]
+
 
 // Version information for an assembly consists of the following four values:
 //
@@ -57,5 +49,5 @@ using System.Windows;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.1073.0")]
-[assembly: AssemblyFileVersion("1.0.1073.0")]
+[assembly: AssemblyVersion("1.1.3.0")]
+[assembly: AssemblyFileVersion("1.1.3.0")]

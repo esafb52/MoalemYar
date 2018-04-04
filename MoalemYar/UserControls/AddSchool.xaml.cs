@@ -33,13 +33,13 @@ namespace MoalemYar.UserControls
         public AddSchool()
         {
             InitializeComponent();
+            this.DataContext = this;
             main = this;
             var color = (Color)ColorConverter.ConvertFromString(AppVariable.ReadSetting(AppVariable.SkinCode));
             var brush = new SolidColorBrush(color);
             BorderColor = brush;
             MyWorker.WorkerSupportsCancellation = true;
             MyWorker.DoWork += MyWorker_DoWork;
-            MyWorker.RunWorkerCompleted += MyWorker_RunWorkerCompleted;
             GenerateEducateYear();
         }
 
@@ -126,9 +126,7 @@ namespace MoalemYar.UserControls
             }
         }
 
-        private void MyWorker_RunWorkerCompleted(object Sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
-        {
-        }
+     
 
         private void dgv_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

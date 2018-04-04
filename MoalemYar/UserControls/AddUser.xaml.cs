@@ -30,6 +30,7 @@ namespace MoalemYar.UserControls
         public AddUser()
         {
             InitializeComponent();
+            this.DataContext = this;
             main = this;
             var color = (Color)ColorConverter.ConvertFromString(AppVariable.ReadSetting(AppVariable.SkinCode));
             var brush = new SolidColorBrush(color);
