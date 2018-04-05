@@ -14,6 +14,8 @@ using Enterwell.Clients.Wpf.Notifications;
 using MoalemYar.UserControls;
 using Ookii.Dialogs.Wpf;
 using System;
+using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
@@ -31,7 +33,6 @@ namespace MoalemYar
         public string appTitle { get; set; }
         internal static MainWindow main;
         public INotificationMessageManager Manager { get; } = new NotificationMessageManager();
-        private System.ComponentModel.BackgroundWorker MyWorker = new System.ComponentModel.BackgroundWorker();
 
         public MainWindow()
         {
@@ -48,10 +49,60 @@ namespace MoalemYar
             LogifyCrashReport();
 
             LoadSettings();
-            MyWorker.WorkerSupportsCancellation = true;
-            MyWorker.DoWork += MyWorker_DoWork;
+            
         }
+        #region "Async Query"
 
+        public async static Task<List<DataClass.Tables.School>> GetAllSchoolAsync()
+        {
+            using (var db = new DataClass.myDbContext())
+            {
+                var query = db.Schools.Select(x => x);
+                return await query.ToListAsync();
+            }
+        }
+        public async static Task<List<DataClass.Tables.User>> GetAllUserAsync()
+        {
+            using (var db = new DataClass.myDbContext())
+            {
+                var query = db.Users.Select(x => x);
+                return await query.ToListAsync();
+            }
+        }
+        public async static Task<List<DataClass.Tables.Student>> GetAllStudentAsync()
+        {
+            using (var db = new DataClass.myDbContext())
+            {
+                var query = db.Students.Select(x => x);
+                return await query.ToListAsync();
+            }
+        }
+        #endregion
+
+        #region Func get Query Wait"
+
+        public void getexHint()
+        {
+            var querySchool = GetAllSchoolAsync();
+            querySchool.Wait();
+
+            var queryUser = GetAllUserAsync();
+            queryUser.Wait();
+
+            var queryStudent = GetAllStudentAsync();
+            queryStudent.Wait();
+
+            List<DataClass.Tables.School> dataSchool = querySchool.Result;
+            List<DataClass.Tables.User> dataUser = queryUser.Result;
+            List<DataClass.Tables.Student> dataStudent = queryStudent.Result;
+
+            exAddOrUpdateSchool.Hint = dataSchool.Count().ToString();
+            exAddOrUpdateUser.Hint = dataUser.Count().ToString();
+            exAddOrUpdateStudent.Hint = dataStudent.Count().ToString();
+        }
+      
+       
+        #endregion
         public void LogifyCrashReport()
         {
             var isEnabledReport = AppVariable.ReadSetting(AppVariable.AutoSendReport);
@@ -80,6 +131,7 @@ namespace MoalemYar
             MainWindow.main.tab.IconMode = !hb_Menu;
         }
 
+        #region "Notification"
         public void ShowNoDataNotification(string Type)
         {
             var builder = this.Manager
@@ -290,13 +342,14 @@ namespace MoalemYar
                          AddStudent.main.deleteStudent();
                          break;
                      case "کاربر":
-                         //AddStudent.main.tabc.SelectedIndex = 0;
+                         AddUser.main.deleteUser();
                          break;
                  }
                  })
                  .Dismiss().WithButton("خیر", button => { });
             builder.Queue();
         }
+        #endregion
         //Todo: Add Login
         private void ShowCredentialDialog()
         {
@@ -420,33 +473,10 @@ namespace MoalemYar
 
         private void MetroWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            if (!MyWorker.IsBusy)
-                MyWorker.RunWorkerAsync();
+            getexHint();
         }
 
-        private void MyWorker_DoWork(object Sender, System.ComponentModel.DoWorkEventArgs e)
-        {
-            Dispatcher.Invoke(new Action(() =>
-            {
-                using (var db = new DataClass.myDbContext())
-                {
-                    var school = (from x in db.Schools select x).Count();
-                    var user = (from x in db.Users select x).Count();
-                    var student = (from x in db.Students select x).Count();
-
-
-                    exAddOrUpdateSchool.Hint = school.ToString();
-                    exAddOrUpdateUser.Hint = user.ToString();
-                    exAddOrUpdateStudent.Hint = student.ToString();
-                }
-            }), DispatcherPriority.ContextIdle);
-
-            if (MyWorker.CancellationPending)
-            {
-                e.Cancel = true;
-                return;
-            }
-        }
+      
 
         private void exAddOrUpdateStudent_Click(object sender, EventArgs e)
         {

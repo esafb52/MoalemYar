@@ -53,15 +53,20 @@ namespace MoalemYar.UserControls
         }
 
         #region "Async Query"
-        public async static Task<List<DataClass.Tables.Student>> GetAllStudentsAsync()
-        {
-            using (var db = new DataClass.myDbContext())
-            {
-                var query = from item in db.Students
-                            select item;
-                return await query.ToListAsync();
-            }
-        }
+        //public async static Task<List<DataClass.Tables.Student>> GetAllStudentsAsync()
+        //{
+        //    //using (var db = new DataClass.myDbContext())
+        //    //{
+        //    //    var dada = from c in db.Schools
+        //    //               join v in db.Students on c.Id equals v.BaseId
+        //    //               select new { v.Name, v.LName, v.FName, v.Gender, v.BaseId, v.Image, c.Base };
+
+        //    //    var query = from item in db.Students
+        //    //                select item;
+        //    //    return await dada.ToListAsync();
+        //    //}
+        //}
+        
         public async static Task<List<DataClass.Tables.Student>> GetAllStudentsAsync(string SearchText)
         {
             using (var db = new DataClass.myDbContext())
@@ -145,14 +150,23 @@ namespace MoalemYar.UserControls
         }
         private void getStudent()
         {
-            var query = GetAllStudentsAsync();
-            query.Wait();
+            using (var db = new DataClass.myDbContext())
+            {
+                var data = from c in db.Schools
+                           join v in db.Students on c.Id equals v.BaseId
+                           select new { v.Name, v.LName, v.FName, v.Gender, v.BaseId, v.Image,v.Id, c.Base};
 
-            List<DataClass.Tables.Student> data = query.Result;
-            if (data.Any())
-                dgv.ItemsSource = data;
-            else
-                MainWindow.main.ShowNoDataNotification("Student");
+                if (data.Any())
+                    dgv.ItemsSource = data.ToList();
+                else
+                    MainWindow.main.ShowNoDataNotification("Student");
+            }
+
+            //var query = GetAllStudentsAsync();
+            //query.Wait();
+
+            //List<DataClass.Tables.Student> data = query.Result;
+           
         }
         private void getStudent(string SearchText)
         {
@@ -169,6 +183,7 @@ namespace MoalemYar.UserControls
         {
             var query = DeleteStudentAsync(id);
             query.Wait();
+            MainWindow.main.getexHint();
         }
         private void updateStudent(long id, long BaseId, string Name, string LName, string FName, string Gender, byte[] Image)
         {
@@ -179,6 +194,7 @@ namespace MoalemYar.UserControls
         {
             var query = InsertStudentAsync(BaseId, Name, LName, FName, Gender, Image);
             query.Wait();
+            MainWindow.main.getexHint();
         }
         #endregion
 

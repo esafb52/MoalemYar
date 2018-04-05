@@ -133,6 +133,8 @@ public async static Task<List<DataClass.Tables.School>> GetAllSchoolsAsync(strin
         {
             var query = DeleteSchoolAsync(id);
             query.Wait();
+            MainWindow.main.getexHint();
+
         }
         private void updateSchool(long id, string Name, string Base, string Admin, string Year)
         {
@@ -143,6 +145,8 @@ public async static Task<List<DataClass.Tables.School>> GetAllSchoolsAsync(strin
         {
             var query = InsertSchoolAsync(Name, Base, Admin, Year);
             query.Wait();
+            MainWindow.main.getexHint();
+
         }
         #endregion
         public T FindElementByName<T>(FrameworkElement element, string sChildName) where T : FrameworkElement
