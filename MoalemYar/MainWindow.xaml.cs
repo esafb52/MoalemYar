@@ -270,6 +270,33 @@ namespace MoalemYar
             }
         }
 
+        public void ShowDeleteConfirmNotification(string SchoolName, string Type)
+        {
+            var builder = this.Manager
+                  .CreateMessage()
+                 .Accent(AppVariable.RED)
+                 .Background(AppVariable.BGBLACK)
+                 .HasBadge("هشدار")
+                 .HasHeader(string.Format("آیا برای حذف {1} {0} اطمینان دارید؟", SchoolName, Type))
+                 .WithButton("بله", button =>
+                 {
+                 switch (Type)
+                 {
+                     case "مدرسه":
+                         //AddSchool.main.tabc.SelectedIndex = 0;
+                         break;
+
+                     case "دانش آموز":
+                         AddStudent.main.deleteStudent();
+                         break;
+                     case "کاربر":
+                         //AddStudent.main.tabc.SelectedIndex = 0;
+                         break;
+                 }
+                 })
+                 .Dismiss().WithButton("خیر", button => { });
+            builder.Queue();
+        }
         //Todo: Add Login
         private void ShowCredentialDialog()
         {

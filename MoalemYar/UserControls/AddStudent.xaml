@@ -61,7 +61,7 @@
                                 </DataTemplate>
                             </ContentControl.ContentTemplate>
                         </ContentControl>
-                       
+
                         <ComboBox x:Name="cmbBase" Height="30" ItemsSource="{Binding School}"
                             SelectedValue ="{Binding SchoolName}" DisplayMemberPath="SchoolName"
                             SelectedValuePath="Id" Margin="10,150,5,0" VerticalAlignment="Top">
@@ -73,7 +73,7 @@
                                             ItemsSource="{Binding ItemsSource, RelativeSource={RelativeSource TemplatedParent}}"
                                             SelectedValue ="{Binding SelectedValue, RelativeSource={RelativeSource TemplatedParent}}" 
                                             DisplayMemberPath="SchoolName"
-                                            SelectedValuePath="Id"> 
+                                            SelectedValuePath="Id">
                                             <ComboBox.ItemTemplate>
                                                 <DataTemplate>
                                                     <StackPanel Orientation="Horizontal">
@@ -90,7 +90,7 @@
                                             </ComboBox.ItemTemplate>
                                         </ComboBox>
                                         <TextBlock x:Name="tb" Text="انتخاب کلاس" Margin="3,3,0,0" IsHitTestVisible="False" Visibility="Hidden"/>
-                                        
+
                                     </Grid>
                                     <ControlTemplate.Triggers>
                                         <Trigger SourceName="cb" Property="SelectedItem" Value="{x:Null}">
@@ -141,17 +141,18 @@
                                 <RowDefinition Height="auto" />
                                 <RowDefinition Height="auto" />
                                 <RowDefinition Height="auto" />
-
+                                <RowDefinition Height="auto" />
                             </Grid.RowDefinitions>
 
                             <Metro:MetroTextBox Margin="5" x:Name="txtName" TabIndex="1" Grid.Row="0" InputHint="نام" Height="30" PopupHint="نام دانش آموز" MetroPopupBackgroundState="DarkRed" VerticalAlignment="Top" />
                             <Metro:MetroTextBox Margin="5" x:Name="txtLName" TabIndex="2" Grid.Row="1" InputHint="نام خانوادگی" PopupHint="نام خانوادگی دانش آموز" MetroPopupBackgroundState="DarkRed" Height="30" VerticalAlignment="Top" />
                             <Metro:MetroTextBox Margin="5" x:Name="txtFName" TabIndex="3" Grid.Row="2" InputHint="نام پدر" Height="30" PopupHint="نام پدر دانش آموز" MetroPopupBackgroundState="DarkRed" VerticalAlignment="Top" />
-                            <ContentControl Margin="5" x:Name="cmbContentGender" TabIndex="4" Focusable="False" Grid.Row="3" Height="30" VerticalAlignment="Top">
+
+                            <ContentControl x:Name="cmbContentGender" Margin="5" TabIndex="3" Focusable="False" Grid.Row="3" Height="30" VerticalAlignment="Top">
                                 <ContentControl.ContentTemplate>
                                     <DataTemplate>
                                         <Grid>
-                                            <ComboBox TabIndex="4" x:Name="cmbGender">
+                                            <ComboBox SelectionChanged="cmbGender_SelectionChanged" TabIndex="4" x:Name="cmbGender">
                                                 <ComboBoxItem Content="پسر" />
                                                 <ComboBoxItem Content="دختر" />
                                             </ComboBox>
@@ -165,29 +166,59 @@
                                     </DataTemplate>
                                 </ContentControl.ContentTemplate>
                             </ContentControl>
-                            <ContentControl Margin="5" x:Name="cmbContentBase" TabIndex="5" Focusable="False" Grid.Row="4" Height="30" VerticalAlignment="Top">
-                                <ContentControl.ContentTemplate>
-                                    <DataTemplate>
+                            <ComboBox x:Name="cmbEditBase" Height="30" Margin="5" Grid.Row="4" ItemsSource="{Binding School}"
+                            SelectedValue ="{Binding SchoolName}" DisplayMemberPath="SchoolName"
+                            SelectedValuePath="Id" VerticalAlignment="Top">
+                                <ComboBox.Template>
+                                    <ControlTemplate TargetType="ComboBox">
                                         <Grid>
-                                            <ComboBox TabIndex="4" x:Name="cmbBase">
-                                                <ComboBoxItem Content="اول" />
-                                                <ComboBoxItem Content="دوم" />
-                                                <ComboBoxItem Content="سوم" />
-                                                <ComboBoxItem Content="چهارم" />
-                                                <ComboBoxItem Content="پنجم" />
-                                                <ComboBoxItem Content="ششم" />
+                                            <ComboBox x:Name="cb" Height="30"
+                                            DataContext="{Binding RelativeSource={RelativeSource TemplatedParent}}" 
+                                            ItemsSource="{Binding ItemsSource, RelativeSource={RelativeSource TemplatedParent}}"
+                                            SelectedValue ="{Binding SelectedValue, RelativeSource={RelativeSource TemplatedParent}}" 
+                                            DisplayMemberPath="SchoolName"
+                                            SelectedValuePath="Id">
+                                                <ComboBox.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <TextBlock Text="{Binding SchoolName}"/>
+                                                            <TextBlock Text=" - "/>
+                                                            <TextBlock Text="{Binding Base}"/>
+                                                            <TextBlock Text=" - "/>
+                                                            <TextBlock Text="{Binding Year}"/>
+                                                        </StackPanel>
+
+
+                                                    </DataTemplate>
+
+                                                </ComboBox.ItemTemplate>
                                             </ComboBox>
-                                            <TextBlock x:Name="tb" Text=" انتخاب پایه " IsHitTestVisible="False" Visibility="Hidden" />
+                                            <TextBlock x:Name="tb" Text="کلاس" Margin="3,3,0,0" IsHitTestVisible="False" Visibility="Hidden"/>
+
                                         </Grid>
-                                        <DataTemplate.Triggers>
-                                            <Trigger SourceName="cmbBase" Property="SelectedItem" Value="{x:Null}">
-                                                <Setter TargetName="tb" Property="Visibility" Value="Visible" />
+                                        <ControlTemplate.Triggers>
+                                            <Trigger SourceName="cb" Property="SelectedItem" Value="{x:Null}">
+                                                <Setter TargetName="tb" Property="Visibility" Value="Visible"/>
                                             </Trigger>
-                                        </DataTemplate.Triggers>
-                                    </DataTemplate>
-                                </ContentControl.ContentTemplate>
-                            </ContentControl>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </ComboBox.Template>
+                            </ComboBox>
                             <Grid Grid.Row="5">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Metro:MetroImage ImageHeight="250" ImageWidth="250" Stretch="Fill" x:Name="imgEditStudent" Grid.Column="1" Source="..\Resources\Choose.png" Content="MetroImage" RenderTransformOrigin="0.5,0.5" Height="180" VerticalAlignment="Top" HorizontalAlignment="Left" Width="175"/>
+                                <Metro:MetroButton Margin="10,5" x:Name="btnEditChoose" Click="btnEditChoose_Click" Focusable="False" Grid.Column="0" Grid.Row="0"  Content="انتخاب عکس" MetroButtonState="DarkGreen" Height="46" VerticalAlignment="Top" HorizontalAlignment="Left" Width="172" />
+
+                            </Grid>
+
+
+                            <Grid Grid.Row="6">
                                 <Grid.RowDefinitions>
                                     <RowDefinition />
                                     <RowDefinition />
