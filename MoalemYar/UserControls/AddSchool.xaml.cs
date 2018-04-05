@@ -9,8 +9,11 @@
 ***********************************************************************************/
 
 using System;
+using System.Collections.Generic;
+using System.Data.Entity;
 using System.Globalization;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -23,7 +26,6 @@ namespace MoalemYar.UserControls
     /// </summary>
     public partial class AddSchool : UserControl
     {
-        private System.ComponentModel.BackgroundWorker MyWorker = new System.ComponentModel.BackgroundWorker();
         public Brush BorderColor { get; set; }
         internal static AddSchool main;
         private int runOnce = 0;
@@ -38,11 +40,111 @@ namespace MoalemYar.UserControls
             var color = (Color)ColorConverter.ConvertFromString(AppVariable.ReadSetting(AppVariable.SkinCode));
             var brush = new SolidColorBrush(color);
             BorderColor = brush;
-            MyWorker.WorkerSupportsCancellation = true;
-            MyWorker.DoWork += MyWorker_DoWork;
             GenerateEducateYear();
         }
+        #region "Async Query"
 
+public async static Task<List<DataClass.Tables.School>> GetAllSchoolsAsync(string SearchText)
+        {
+            using (var db = new DataClass.myDbContext())
+            {
+                var query = db.Schools.Where(x => x.SchoolName.Contains(SearchText) || x.Admin.Contains(SearchText) || x.Base.Contains(SearchText) || x.Year.Contains(SearchText)).Select(x => x);
+                return await query.ToListAsync();
+            }
+        }
+        public async static Task<List<DataClass.Tables.School>> GetAllSchoolsAsync()
+        {
+            using (var db = new DataClass.myDbContext())
+            {
+                var query = from item in db.Schools
+                            select item;
+                return await query.ToListAsync();
+            }
+        }
+
+        public static async Task<string> DeleteSchoolAsync(long id)
+        {
+            using (var db = new DataClass.myDbContext())
+            {
+                var DeleteSchool = await db.Schools.FindAsync(id);
+                db.Schools.Remove(DeleteSchool);
+                await db.SaveChangesAsync();
+                return "School Deleted Successfully";
+
+            }
+        }
+
+        public async static Task<string> UpdateSchoolAsync(long id,string Name, string Base, string Admin, string Year)
+        {
+            using (var db = new DataClass.myDbContext())
+            {
+                var EditSchool = await db.Schools.FindAsync(id);
+                EditSchool.SchoolName = Name;
+                EditSchool.Base = Base;
+                EditSchool.Admin = Admin;
+                EditSchool.Year = Year;
+                await db.SaveChangesAsync();
+                return "School Updated Successfully";
+            }
+        }
+        public async static Task<string> InsertSchoolAsync(string Name, string Base, string Admin, string Year)
+        {
+            using (var db = new DataClass.myDbContext())
+            {
+                var School = new DataClass.Tables.School();
+                School.SchoolName = Name;
+                School.Base = Base;
+                School.Admin = Admin;
+                School.Year = Year;
+                db.Schools.Add(School);
+
+                await db.SaveChangesAsync();
+
+                return "School Added Successfully";
+            }
+        }
+        #endregion
+
+        #region Func get Query Wait"
+       
+        private void getSchool()
+        {
+            var query = GetAllSchoolsAsync();
+            query.Wait();
+
+            List<DataClass.Tables.School> data = query.Result;
+            if (data.Any())
+                dgv.ItemsSource = data;
+            else
+                MainWindow.main.ShowNoDataNotification("School");
+        }
+        private void getSchool(string SearchText)
+        {
+            var query = GetAllSchoolsAsync(SearchText);
+            query.Wait();
+
+            List<DataClass.Tables.School> data = query.Result;
+            if (data.Any())
+                dgv.ItemsSource = data;
+            else
+                MainWindow.main.ShowNoDataNotification("School");
+        }
+        private void deleteSchool(long id)
+        {
+            var query = DeleteSchoolAsync(id);
+            query.Wait();
+        }
+        private void updateSchool(long id, string Name, string Base, string Admin, string Year)
+        {
+            var query = UpdateSchoolAsync(id, Name, Base, Admin, Year);
+            query.Wait();
+        }
+        private void addSchool(string Name, string Base, string Admin, string Year)
+        {
+            var query = InsertSchoolAsync(Name, Base, Admin, Year);
+            query.Wait();
+        }
+        #endregion
         public T FindElementByName<T>(FrameworkElement element, string sChildName) where T : FrameworkElement
         {
             T childElement = null;
@@ -97,36 +199,13 @@ namespace MoalemYar.UserControls
             {
                 if (runOnce == 0)
                 {
-                    if (!MyWorker.IsBusy)
-                        MyWorker.RunWorkerAsync();
+                    getSchool();
                     runOnce = 1;
                 }
             }
         }
 
-        private void MyWorker_DoWork(object Sender, System.ComponentModel.DoWorkEventArgs e)
-        {
-            Dispatcher.Invoke(new Action(() =>
-            {
-                using (var db = new DataClass.myDbContext())
-                {
-                    var data = from x in db.Schools select new { x.SchoolName, x.Admin, x.Base, x.Year, x.Id };
-
-                    if (data.Any())
-                        dgv.ItemsSource = data.ToList();
-                    else
-                        MainWindow.main.ShowNoDataNotification("School");
-                }
-            }), DispatcherPriority.ContextIdle);
-
-            if (MyWorker.CancellationPending)
-            {
-                e.Cancel = true;
-                return;
-            }
-        }
-
-     
+      
 
         private void dgv_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -150,19 +229,10 @@ namespace MoalemYar.UserControls
             {
                 dynamic selectedItem = dgv.SelectedItems[0];
                 long id = selectedItem.Id;
-                using (var db = new DataClass.myDbContext())
-                {
-                    var data = db.Schools.Where(s => s.Id == id).FirstOrDefault<DataClass.Tables.School>();
-                    data.Admin = txtAdmin.Text;
-                    data.SchoolName = txtSchool.Text;
-                    data.Year = txtYear.Text;
-                    data.Base = getComboValue();
-                    db.SaveChanges();
-                    MainWindow.main.ShowUpdateDataNotification(true, txtSchool.Text, "مدرسه");
-                    editGrid.IsEnabled = false;
-                    if (!MyWorker.IsBusy)
-                        MyWorker.RunWorkerAsync();
-                }
+                updateSchool(id, txtSchool.Text, getComboValue(), txtAdmin.Text, txtYear.Text);
+                MainWindow.main.ShowUpdateDataNotification(true, txtSchool.Text, "مدرسه");
+                editGrid.IsEnabled = false;
+                getSchool();
             }
             catch (Exception)
             {
@@ -223,18 +293,9 @@ namespace MoalemYar.UserControls
         private void txtEditSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (txtEditSearch.Text != string.Empty)
-            {
-                using (var db = new DataClass.myDbContext())
-                {
-                    var data = from x in db.Schools.Where(t => t.SchoolName.Contains(txtEditSearch.Text) || t.Admin.Contains(txtEditSearch.Text) || t.Base.Contains(txtEditSearch.Text) || t.Year.Contains(txtEditSearch.Text)) select new { x.SchoolName, x.Admin, x.Base, x.Year, x.Id };
-                    dgv.ItemsSource = data.ToList();
-                }
-            }
+                getSchool(txtEditSearch.Text);
             else
-            {
-                if (!MyWorker.IsBusy)
-                    MyWorker.RunWorkerAsync();
-            }
+                getSchool();
         }
 
         private void GenerateEducateYear()
@@ -256,22 +317,11 @@ namespace MoalemYar.UserControls
             {
                 try
                 {
-                    using (var db = new DataClass.myDbContext())
-                    {
-                        var data = new DataClass.Tables.School()
-                        {
-                            Admin = txtAddAdmin.Text,
-                            SchoolName = txtAddSchool.Text,
-                            Year = txtAddYear.Text,
-                            Base = element.Text
-                        };
-                        db.Schools.Add(data);
-                        db.SaveChanges();
-                        MainWindow.main.ShowAddDataNotification(true, txtAddSchool.Text, "مدرسه");
-                        txtAddAdmin.Text = string.Empty;
-                        txtAddSchool.Text = string.Empty;
-                        txtAddSchool.Focus();
-                    }
+                    addSchool(txtAddSchool.Text, element.Text, txtAddAdmin.Text, txtAddYear.Text);
+                    MainWindow.main.ShowAddDataNotification(true, txtAddSchool.Text, "مدرسه");
+                    txtAddAdmin.Text = string.Empty;
+                    txtAddSchool.Text = string.Empty;
+                    txtAddSchool.Focus();
                 }
                 catch (Exception)
                 {
@@ -282,26 +332,23 @@ namespace MoalemYar.UserControls
 
         private void txtEditSearch_ButtonClick(object sender, EventArgs e)
         {
-            if (!MyWorker.IsBusy)
-                MyWorker.RunWorkerAsync();
+            getSchool();
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.main.ShowDeleteConfirmNotification(txtSchool.Text, "مدرسه");
+        }
+        public void deleteSchool()
         {
             try
             {
                 dynamic selectedItem = dgv.SelectedItems[0];
                 long id = selectedItem.Id;
-                using (var db = new DataClass.myDbContext())
-                {
-                    var data = db.Schools.Where(s => s.Id == id).FirstOrDefault<DataClass.Tables.School>();
-                    db.Schools.Remove(data);
-                    db.SaveChanges();
-                    MainWindow.main.ShowDeletedNotification(true, txtSchool.Text, "مدرسه");
-                    editGrid.IsEnabled = false;
-                    if (!MyWorker.IsBusy)
-                        MyWorker.RunWorkerAsync();
-                }
+                deleteSchool(id);
+                MainWindow.main.ShowDeletedNotification(true, txtSchool.Text, "مدرسه");
+                editGrid.IsEnabled = false;
+                getSchool();
             }
             catch (Exception)
             {

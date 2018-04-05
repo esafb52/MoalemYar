@@ -278,12 +278,12 @@ namespace MoalemYar
                  .Background(AppVariable.BGBLACK)
                  .HasBadge("هشدار")
                  .HasHeader(string.Format("آیا برای حذف {1} {0} اطمینان دارید؟", SchoolName, Type))
-                 .WithButton("بله", button =>
+                 .Dismiss().WithButton("بله", button =>
                  {
                  switch (Type)
                  {
                      case "مدرسه":
-                         //AddSchool.main.tabc.SelectedIndex = 0;
+                             AddSchool.main.deleteSchool();
                          break;
 
                      case "دانش آموز":
