@@ -53,19 +53,17 @@ namespace MoalemYar.UserControls
         }
 
         #region "Async Query"
-        //public async static Task<List<DataClass.Tables.Student>> GetAllStudentsAsync()
-        //{
-        //    //using (var db = new DataClass.myDbContext())
-        //    //{
-        //    //    var dada = from c in db.Schools
-        //    //               join v in db.Students on c.Id equals v.BaseId
-        //    //               select new { v.Name, v.LName, v.FName, v.Gender, v.BaseId, v.Image, c.Base };
+        public async static Task<List<DataClass.DataTransferObjects.SchoolsStudentsJointDto>> GetAllStudentsAsync()
+        {
+            using (var db = new DataClass.myDbContext())
+            {
+                var query = from c in db.Schools
+                            join v in db.Students on c.Id equals v.BaseId
+                select new DataClass.DataTransferObjects.SchoolsStudentsJointDto { Name = v.Name, LName = v.LName, FName = v.FName, Gender = v.Gender, BaseId = v.BaseId, Image = v.Image, Id = v.Id, Base = c.Base };
 
-        //    //    var query = from item in db.Students
-        //    //                select item;
-        //    //    return await dada.ToListAsync();
-        //    //}
-        //}
+                return await query.ToListAsync();
+            }
+        }
         
         public async static Task<List<DataClass.Tables.Student>> GetAllStudentsAsync(string SearchText)
         {
@@ -150,23 +148,15 @@ namespace MoalemYar.UserControls
         }
         private void getStudent()
         {
-            using (var db = new DataClass.myDbContext())
-            {
-                var data = from c in db.Schools
-                           join v in db.Students on c.Id equals v.BaseId
-                           select new { v.Name, v.LName, v.FName, v.Gender, v.BaseId, v.Image,v.Id, c.Base};
+            var query = GetAllStudentsAsync();
+            query.Wait();
 
-                if (data.Any())
-                    dgv.ItemsSource = data.ToList();
-                else
-                    MainWindow.main.ShowNoDataNotification("Student");
-            }
+            List<DataClass.DataTransferObjects.SchoolsStudentsJointDto> data = query.Result;
+            if (data.Any())
+                dgv.ItemsSource = data.ToList();
+            else
+                MainWindow.main.ShowNoDataNotification("Student");
 
-            //var query = GetAllStudentsAsync();
-            //query.Wait();
-
-            //List<DataClass.Tables.Student> data = query.Result;
-           
         }
         private void getStudent(string SearchText)
         {

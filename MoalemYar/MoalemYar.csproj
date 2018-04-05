@@ -90,6 +90,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DataClass\DataTransferObjects.cs" />
     <Compile Include="DataClass\Tables\School.cs" />
     <Compile Include="DataClass\Tables\User.cs" />
     <Compile Include="UserControls\About.xaml.cs">
