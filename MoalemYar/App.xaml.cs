@@ -8,6 +8,8 @@
 *
 ***********************************************************************************/
 
+using System;
+using System.Reflection;
 using System.Windows;
 
 namespace MoalemYar
@@ -17,5 +19,49 @@ namespace MoalemYar
     /// </summary>
     public partial class App : Application
     {
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            AppDomain.CurrentDomain.AssemblyResolve += OnResolveAssembly;
+            var assembly = Assembly.GetExecutingAssembly();
+            foreach (var name in assembly.GetManifestResourceNames())
+            {
+                if (name.ToLower()
+                         .EndsWith(".resources") ||
+                     !name.ToLower()
+                          .EndsWith(".dll"))
+                    continue;
+                EmbeddedAssembly.Load(name,
+                                       name);
+            }
+        }
+
+        static Assembly OnResolveAssembly(object sender, ResolveEventArgs args)
+        {
+            var fields = args.Name.Split(',');
+            var name = fields[0];
+            var culture = fields[2];
+            if (name.EndsWith(".resources") &&
+                 !culture.EndsWith("neutral"))
+                return null;
+
+            return EmbeddedAssembly.Get(args.Name);
+        }
+
+        /*  List of Embeded Assembly
+            Arthas.dll
+            Enterwell.Clients.Wpf.Notifications.dll
+            FontAwesome.WPF.dll
+            Logify.Alert.Core.dll
+            Ookii.Dialogs.Wpf.dll
+            SQLite.CodeFirst.dll
+            ThumbnailSharp.dll */
+
+        /* List of NotEmbeded
+            * EntityFramework.dll
+            * EntityFrameworkSqlserver.dll
+            * Logify.Alert.Wpf.dll
+            * System.Data.SQLite.dll
+            * System.Data.SQLiteEF6.dll
+            * System.Data.SQLiteLinq.dll */
     }
 }

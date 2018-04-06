@@ -96,6 +96,7 @@
     <Compile Include="DataClass\DataTransferObjects.cs" />
     <Compile Include="DataClass\Tables\School.cs" />
     <Compile Include="DataClass\Tables\User.cs" />
+    <Compile Include="EmbeddedAssembly.cs" />
     <Compile Include="UserControls\About.xaml.cs">
       <DependentUpon>About.xaml</DependentUpon>
     </Compile>
@@ -275,5 +276,17 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\System.Data.SQLite.Core.1.0.108.0\build\net45\System.Data.SQLite.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\System.Data.SQLite.Core.1.0.108.0\build\net45\System.Data.SQLite.Core.targets'))" />
+  </Target>
+  <Target Name="EmbedReferencedAssemblies" AfterTargets="ResolveAssemblyReferences">
+    <ItemGroup>
+      <AssembliesToEmbed Include="@(ReferenceCopyLocalPaths)" />
+      <EmbeddedResource Include="@(AssembliesToEmbed)" Condition="$([System.Text.RegularExpressions.Regex]::IsMatch('%(AssembliesToEmbed.Filename)', '^((?!Logify.Alert.Wpf).)*$')) And $([System.Text.RegularExpressions.Regex]::IsMatch('%(AssembliesToEmbed.Filename)', '^((?!Entity).)*$')) And $([System.Text.RegularExpressions.Regex]::IsMatch('%(AssembliesToEmbed.Filename)', '^((?!System.Data.SQLite).)*$')) And '%(AssembliesToEmbed.Extension)' == '.dll'">
+        <LogicalName>%(AssembliesToEmbed.DestinationSubDirectory)%(AssembliesToEmbed.Filename)%(AssembliesToEmbed.Extension)</LogicalName>
+      </EmbeddedResource>
+    </ItemGroup>
+    <Message Importance="high" Text="Embedding: @(AssembliesToEmbed->'%(DestinationSubDirectory)%(Filename)%(Extension)', ', ')" />
+  </Target>
+  <Target Name="DeleteAllReferenceCopyLocalPaths" AfterTargets="Build">
+    <Delete Files="@(ReferenceCopyLocalPaths->'$(OutDir)%(DestinationSubDirectory)%(Filename)%(Extension)')" Condition="$([System.Text.RegularExpressions.Regex]::IsMatch('%(Filename)', '^((?!Logify.Alert.Wpf).)*$')) And $([System.Text.RegularExpressions.Regex]::IsMatch('%(Filename)', '^((?!Entity).)*$')) And $([System.Text.RegularExpressions.Regex]::IsMatch('%(Filename)', '^((?!System.Data.SQLite).)*$')) Or '%(Extension)' == '.xml'" />
   </Target>
 </Project>
