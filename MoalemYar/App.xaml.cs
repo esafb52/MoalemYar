@@ -35,7 +35,7 @@ namespace MoalemYar
             }
         }
 
-        static Assembly OnResolveAssembly(object sender, ResolveEventArgs args)
+        private static Assembly OnResolveAssembly(object sender, ResolveEventArgs args)
         {
             var fields = args.Name.Split(',');
             var name = fields[0];

@@ -8,7 +8,6 @@
 *
 ***********************************************************************************/
 
-using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -19,16 +18,22 @@ namespace MoalemYar.DataClass.Tables
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long Id { get; set; }
+
         [Required]
         public long BaseId { get; set; }
+
         [Required]
         public string Name { get; set; }
+
         [Required]
         public string LName { get; set; }
+
         [Required]
         public string FName { get; set; }
+
         [Required]
         public string Gender { get; set; }
+
         [Required]
         public byte[] Image { get; set; }
     }

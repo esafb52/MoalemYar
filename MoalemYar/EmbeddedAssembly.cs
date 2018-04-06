@@ -1,27 +1,24 @@
-﻿
-/****************************** ghost1372.github.io ******************************\
+﻿/****************************** ghost1372.github.io ******************************\
 *	Module Name:	EmbeddedAssembly.cs
 *	Project:		MoalemYar
 *	Copyright (C) 2017 Mahdi Hosseini, All rights reserved.
 *	This software may be modified and distributed under the terms of the MIT license.  See LICENSE file for details.
 *
 *	Written by Mahdi Hosseini <Mahdidvb72@gmail.com>,  2018, 4, 6, 08:15 ب.ظ
-*	
+*
 ***********************************************************************************/
+
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Reflection;
 using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MoalemYar
 {
     public static class EmbeddedAssembly
     {
-        static Dictionary<string, Assembly> _dic;
+        private static Dictionary<string, Assembly> _dic;
 
         public static void Load(string embeddedResource,
                                     string fileName)

@@ -16,7 +16,6 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using System.Windows.Threading;
 
 namespace MoalemYar.UserControls
 {
@@ -37,8 +36,8 @@ namespace MoalemYar.UserControls
             var color = (Color)ColorConverter.ConvertFromString(AppVariable.ReadSetting(AppVariable.SkinCode));
             var brush = new SolidColorBrush(color);
             BorderColor = brush;
-            
         }
+
         #region "Async Query"
 
         public async static Task<List<DataClass.Tables.User>> GetAllUsersAsync(string SearchText)
@@ -49,6 +48,7 @@ namespace MoalemYar.UserControls
                 return await query.ToListAsync();
             }
         }
+
         public async static Task<List<DataClass.Tables.User>> GetAllUsersAsync()
         {
             using (var db = new DataClass.myDbContext())
@@ -67,7 +67,6 @@ namespace MoalemYar.UserControls
                 db.Users.Remove(DeleteUser);
                 await db.SaveChangesAsync();
                 return "User Deleted Successfully";
-
             }
         }
 
@@ -78,11 +77,12 @@ namespace MoalemYar.UserControls
                 var EditUser = await db.Users.FindAsync(id);
                 EditUser.Username = Username;
                 EditUser.Password = Password;
-               
+
                 await db.SaveChangesAsync();
                 return "User Updated Successfully";
             }
         }
+
         public async static Task<string> InsertUserAsync(string Username, string Password)
         {
             using (var db = new DataClass.myDbContext())
@@ -90,7 +90,7 @@ namespace MoalemYar.UserControls
                 var User = new DataClass.Tables.User();
                 User.Username = Username;
                 User.Password = Password;
-                
+
                 db.Users.Add(User);
 
                 await db.SaveChangesAsync();
@@ -98,7 +98,8 @@ namespace MoalemYar.UserControls
                 return "User Added Successfully";
             }
         }
-        #endregion
+
+        #endregion "Async Query"
 
         #region Func get Query Wait"
 
@@ -113,6 +114,7 @@ namespace MoalemYar.UserControls
             else
                 MainWindow.main.ShowNoDataNotification("User");
         }
+
         private void getUser(string SearchText)
         {
             var query = GetAllUsersAsync(SearchText);
@@ -124,24 +126,29 @@ namespace MoalemYar.UserControls
             else
                 MainWindow.main.ShowNoDataNotification("User");
         }
+
         private void deleteUser(long id)
         {
             var query = DeleteUserAsync(id);
             query.Wait();
             MainWindow.main.getexHint();
         }
+
         private void updateUser(long id, string Username, string Password)
         {
             var query = UpdateUserAsync(id, Username, Password);
             query.Wait();
         }
+
         private void addUser(string Username, string Password)
         {
             var query = InsertUserAsync(Username, Password);
             query.Wait();
             MainWindow.main.getexHint();
         }
-        #endregion
+
+        #endregion Func get Query Wait"
+
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
             MainWindow.main.exContent.Content = null;
@@ -250,8 +257,8 @@ namespace MoalemYar.UserControls
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             MainWindow.main.ShowDeleteConfirmNotification(txtUsername.Text, "کاربر");
-            
         }
+
         public void deleteUser()
         {
             try

@@ -17,7 +17,6 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using System.Windows.Threading;
 
 namespace MoalemYar.UserControls
 {
@@ -42,9 +41,10 @@ namespace MoalemYar.UserControls
             BorderColor = brush;
             GenerateEducateYear();
         }
+
         #region "Async Query"
 
-public async static Task<List<DataClass.Tables.School>> GetAllSchoolsAsync(string SearchText)
+        public async static Task<List<DataClass.Tables.School>> GetAllSchoolsAsync(string SearchText)
         {
             using (var db = new DataClass.myDbContext())
             {
@@ -52,6 +52,7 @@ public async static Task<List<DataClass.Tables.School>> GetAllSchoolsAsync(strin
                 return await query.ToListAsync();
             }
         }
+
         public async static Task<List<DataClass.Tables.School>> GetAllSchoolsAsync()
         {
             using (var db = new DataClass.myDbContext())
@@ -70,11 +71,10 @@ public async static Task<List<DataClass.Tables.School>> GetAllSchoolsAsync(strin
                 db.Schools.Remove(DeleteSchool);
                 await db.SaveChangesAsync();
                 return "School Deleted Successfully";
-
             }
         }
 
-        public async static Task<string> UpdateSchoolAsync(long id,string Name, string Base, string Admin, string Year)
+        public async static Task<string> UpdateSchoolAsync(long id, string Name, string Base, string Admin, string Year)
         {
             using (var db = new DataClass.myDbContext())
             {
@@ -87,6 +87,7 @@ public async static Task<List<DataClass.Tables.School>> GetAllSchoolsAsync(strin
                 return "School Updated Successfully";
             }
         }
+
         public async static Task<string> InsertSchoolAsync(string Name, string Base, string Admin, string Year)
         {
             using (var db = new DataClass.myDbContext())
@@ -103,10 +104,11 @@ public async static Task<List<DataClass.Tables.School>> GetAllSchoolsAsync(strin
                 return "School Added Successfully";
             }
         }
-        #endregion
+
+        #endregion "Async Query"
 
         #region Func get Query Wait"
-       
+
         private void getSchool()
         {
             var query = GetAllSchoolsAsync();
@@ -118,6 +120,7 @@ public async static Task<List<DataClass.Tables.School>> GetAllSchoolsAsync(strin
             else
                 MainWindow.main.ShowNoDataNotification("School");
         }
+
         private void getSchool(string SearchText)
         {
             var query = GetAllSchoolsAsync(SearchText);
@@ -129,26 +132,29 @@ public async static Task<List<DataClass.Tables.School>> GetAllSchoolsAsync(strin
             else
                 MainWindow.main.ShowNoDataNotification("School");
         }
+
         private void deleteSchool(long id)
         {
             var query = DeleteSchoolAsync(id);
             query.Wait();
             MainWindow.main.getexHint();
-
         }
+
         private void updateSchool(long id, string Name, string Base, string Admin, string Year)
         {
             var query = UpdateSchoolAsync(id, Name, Base, Admin, Year);
             query.Wait();
         }
+
         private void addSchool(string Name, string Base, string Admin, string Year)
         {
             var query = InsertSchoolAsync(Name, Base, Admin, Year);
             query.Wait();
             MainWindow.main.getexHint();
-
         }
-        #endregion
+
+        #endregion Func get Query Wait"
+
         public T FindElementByName<T>(FrameworkElement element, string sChildName) where T : FrameworkElement
         {
             T childElement = null;
@@ -208,8 +214,6 @@ public async static Task<List<DataClass.Tables.School>> GetAllSchoolsAsync(strin
                 }
             }
         }
-
-      
 
         private void dgv_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -343,6 +347,7 @@ public async static Task<List<DataClass.Tables.School>> GetAllSchoolsAsync(strin
         {
             MainWindow.main.ShowDeleteConfirmNotification(txtSchool.Text, "مدرسه");
         }
+
         public void deleteSchool()
         {
             try

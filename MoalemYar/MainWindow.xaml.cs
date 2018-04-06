@@ -21,7 +21,6 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using System.Windows.Threading;
 
 namespace MoalemYar
 {
@@ -49,8 +48,8 @@ namespace MoalemYar
             LogifyCrashReport();
 
             LoadSettings();
-            
         }
+
         #region "Async Query"
 
         public async static Task<List<DataClass.Tables.School>> GetAllSchoolAsync()
@@ -61,6 +60,7 @@ namespace MoalemYar
                 return await query.ToListAsync();
             }
         }
+
         public async static Task<List<DataClass.Tables.User>> GetAllUserAsync()
         {
             using (var db = new DataClass.myDbContext())
@@ -69,6 +69,7 @@ namespace MoalemYar
                 return await query.ToListAsync();
             }
         }
+
         public async static Task<List<DataClass.Tables.Student>> GetAllStudentAsync()
         {
             using (var db = new DataClass.myDbContext())
@@ -77,7 +78,8 @@ namespace MoalemYar
                 return await query.ToListAsync();
             }
         }
-        #endregion
+
+        #endregion "Async Query"
 
         #region Func get Query Wait"
 
@@ -100,9 +102,9 @@ namespace MoalemYar
             exAddOrUpdateUser.Hint = dataUser.Count().ToString();
             exAddOrUpdateStudent.Hint = dataStudent.Count().ToString();
         }
-      
-       
-        #endregion
+
+        #endregion Func get Query Wait"
+
         public void LogifyCrashReport()
         {
             var isEnabledReport = AppVariable.ReadSetting(AppVariable.AutoSendReport);
@@ -132,6 +134,7 @@ namespace MoalemYar
         }
 
         #region "Notification"
+
         public void ShowNoDataNotification(string Type)
         {
             var builder = this.Manager
@@ -151,6 +154,7 @@ namespace MoalemYar
                        case "User":
                            AddUser.main.tabc.SelectedIndex = 0;
                            break;
+
                        case "Student":
                            AddStudent.main.tabc.SelectedIndex = 0;
                            break;
@@ -317,7 +321,7 @@ namespace MoalemYar
                    .HasHeader(string.Format("شما از آخرین نسخه {0} استفاده می کنید", AppVariable.getAppVersion))
                    .Dismiss().WithDelay(TimeSpan.FromSeconds(3))
                    .Dismiss().WithButton("تایید", button => { });
-                    
+
                 builder.Queue();
             }
         }
@@ -332,24 +336,27 @@ namespace MoalemYar
                  .HasHeader(string.Format("آیا برای حذف {1} {0} اطمینان دارید؟", SchoolName, Type))
                  .Dismiss().WithButton("بله", button =>
                  {
-                 switch (Type)
-                 {
-                     case "مدرسه":
+                     switch (Type)
+                     {
+                         case "مدرسه":
                              AddSchool.main.deleteSchool();
-                         break;
+                             break;
 
-                     case "دانش آموز":
-                         AddStudent.main.deleteStudent();
-                         break;
-                     case "کاربر":
-                         AddUser.main.deleteUser();
-                         break;
-                 }
+                         case "دانش آموز":
+                             AddStudent.main.deleteStudent();
+                             break;
+
+                         case "کاربر":
+                             AddUser.main.deleteUser();
+                             break;
+                     }
                  })
                  .Dismiss().WithButton("خیر", button => { });
             builder.Queue();
         }
-        #endregion
+
+        #endregion "Notification"
+
         //Todo: Add Login
         private void ShowCredentialDialog()
         {
@@ -476,12 +483,9 @@ namespace MoalemYar
             getexHint();
         }
 
-      
-
         private void exAddOrUpdateStudent_Click(object sender, EventArgs e)
         {
             exContent.Content = new AddStudent();
-
         }
     }
 }

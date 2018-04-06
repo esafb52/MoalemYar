@@ -1,13 +1,13 @@
-﻿
-/****************************** ghost1372.github.io ******************************\
+﻿/****************************** ghost1372.github.io ******************************\
 *	Module Name:	AddStudent.xaml.cs
 *	Project:		MoalemYar
 *	Copyright (C) 2017 Mahdi Hosseini, All rights reserved.
 *	This software may be modified and distributed under the terms of the MIT license.  See LICENSE file for details.
 *
 *	Written by Mahdi Hosseini <Mahdidvb72@gmail.com>,  2018, 4, 3, 06:49 ب.ظ
-*	
+*
 ***********************************************************************************/
+
 using Ookii.Dialogs.Wpf;
 using System;
 using System.Collections.Generic;
@@ -16,19 +16,11 @@ using System.Data.Entity;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Windows.Threading;
 using ThumbnailSharp;
 
 namespace MoalemYar.UserControls
@@ -43,6 +35,7 @@ namespace MoalemYar.UserControls
         private bool runOnceStudent = true;
 
         internal static AddStudent main;
+
         public AddStudent()
         {
             InitializeComponent();
@@ -54,18 +47,19 @@ namespace MoalemYar.UserControls
         }
 
         #region "Async Query"
+
         public async static Task<List<DataClass.DataTransferObjects.SchoolsStudentsJointDto>> GetAllStudentsAsync()
         {
             using (var db = new DataClass.myDbContext())
             {
                 var query = from c in db.Schools
                             join v in db.Students on c.Id equals v.BaseId
-                select new DataClass.DataTransferObjects.SchoolsStudentsJointDto { Name = v.Name, LName = v.LName, FName = v.FName, Gender = v.Gender, BaseId = v.BaseId, Image = v.Image, Id = v.Id, Base = c.Base };
+                            select new DataClass.DataTransferObjects.SchoolsStudentsJointDto { Name = v.Name, LName = v.LName, FName = v.FName, Gender = v.Gender, BaseId = v.BaseId, Image = v.Image, Id = v.Id, Base = c.Base };
 
                 return await query.ToListAsync();
             }
         }
-        
+
         public async static Task<List<DataClass.Tables.Student>> GetAllStudentsAsync(string SearchText)
         {
             using (var db = new DataClass.myDbContext())
@@ -74,6 +68,7 @@ namespace MoalemYar.UserControls
                 return await query.ToListAsync();
             }
         }
+
         public async static Task<List<DataClass.Tables.School>> GetAllSchoolsAsync()
         {
             using (var db = new DataClass.myDbContext())
@@ -92,7 +87,6 @@ namespace MoalemYar.UserControls
                 db.Students.Remove(DeleteStudent);
                 await db.SaveChangesAsync();
                 return "Student Deleted Successfully";
-
             }
         }
 
@@ -113,6 +107,7 @@ namespace MoalemYar.UserControls
                 return "Student Updated Successfully";
             }
         }
+
         public async static Task<string> InsertStudentAsync(long BaseId, string Name, string LName, string FName, string Gender, byte[] Image)
         {
             using (var db = new DataClass.myDbContext())
@@ -130,12 +125,12 @@ namespace MoalemYar.UserControls
 
                 return "Student Added Successfully";
             }
-            
-
         }
-        #endregion
+
+        #endregion "Async Query"
 
         #region Func get Query Wait"
+
         private void getSchool()
         {
             var query = GetAllSchoolsAsync();
@@ -147,6 +142,7 @@ namespace MoalemYar.UserControls
                 cmbEditBase.ItemsSource = data;
             }
         }
+
         private void getStudent()
         {
             var query = GetAllStudentsAsync();
@@ -157,8 +153,8 @@ namespace MoalemYar.UserControls
                 dgv.ItemsSource = data.ToList();
             else
                 MainWindow.main.ShowNoDataNotification("Student");
-
         }
+
         private void getStudent(string SearchText)
         {
             var query = GetAllStudentsAsync(SearchText);
@@ -170,25 +166,28 @@ namespace MoalemYar.UserControls
             else
                 MainWindow.main.ShowNoDataNotification("Student");
         }
+
         private void deleteStudent(long id)
         {
             var query = DeleteStudentAsync(id);
             query.Wait();
             MainWindow.main.getexHint();
         }
+
         private void updateStudent(long id, long BaseId, string Name, string LName, string FName, string Gender, byte[] Image)
         {
             var query = UpdateStudentAsync(id, BaseId, Name, LName, FName, Gender, Image);
             query.Wait();
         }
+
         private void addStudent(long BaseId, string Name, string LName, string FName, string Gender, byte[] Image)
         {
             var query = InsertStudentAsync(BaseId, Name, LName, FName, Gender, Image);
             query.Wait();
             MainWindow.main.getexHint();
         }
-        #endregion
 
+        #endregion Func get Query Wait"
 
         public T FindElementByName<T>(FrameworkElement element, string sChildName) where T : FrameworkElement
         {
@@ -232,6 +231,7 @@ namespace MoalemYar.UserControls
             }
             return null;
         }
+
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
             MainWindow.main.exContent.Content = null;
@@ -279,10 +279,9 @@ namespace MoalemYar.UserControls
             }
             catch (Exception)
             {
-
             }
-            
         }
+
         private void btnEditSave_Click(object sender, RoutedEventArgs e)
         {
             dynamic selectedItem = dgv.SelectedItems[0];
@@ -293,7 +292,6 @@ namespace MoalemYar.UserControls
             editGrid.IsEnabled = false;
             getStudent();
         }
-    
 
         private void btnEditCancel_Click(object sender, RoutedEventArgs e)
         {
@@ -304,13 +302,14 @@ namespace MoalemYar.UserControls
             cmbEditBase.SelectedIndex = -1;
             editGrid.IsEnabled = false;
         }
-    private string getComboValue()
-    {
-        var element = FindElementByName<ComboBox>(cmbContentGender, "cmbGender");
-        return element.Text;
-    }
 
-    private void setComboValue(string index)
+        private string getComboValue()
+        {
+            var element = FindElementByName<ComboBox>(cmbContentGender, "cmbGender");
+            return element.Text;
+        }
+
+        private void setComboValue(string index)
         {
             var element = FindElementByName<ComboBox>(cmbContentGender, "cmbGender");
             switch (index)
@@ -322,11 +321,13 @@ namespace MoalemYar.UserControls
                 case "دختر":
                     element.SelectedIndex = 1;
                     break;
+
                 case null:
                     element.SelectedIndex = -1;
                     break;
             }
         }
+
         private void txtEditSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (txtEditSearch.Text != string.Empty)
@@ -334,9 +335,9 @@ namespace MoalemYar.UserControls
             else
                 getStudent();
         }
+
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-
             var elementG = FindElementByName<ComboBox>(cmbAddContentGender, "cmbGender");
 
             if (txtAddName.Text == string.Empty || txtAddLName.Text == string.Empty || txtAddFName.Text == string.Empty || elementG.SelectedIndex == -1 || cmbBase.SelectedIndex == -1)
@@ -347,8 +348,6 @@ namespace MoalemYar.UserControls
             {
                 try
                 {
-                    
-
                     addStudent(Convert.ToInt64(cmbBase.SelectedValue), txtAddName.Text, txtAddLName.Text, txtAddFName.Text, elementG.Text, CreateThumbnail(imgStudent.Source as BitmapImage));
                     MainWindow.main.ShowAddDataNotification(true, txtAddName.Text, "دانش آموز");
                     txtAddName.Text = string.Empty;
@@ -362,6 +361,7 @@ namespace MoalemYar.UserControls
                 }
             }
         }
+
         public byte[] CreateThumbnail(BitmapImage imageC)
         {
             //Read Image byte
@@ -380,6 +380,7 @@ namespace MoalemYar.UserControls
             );
             return resultBytes;
         }
+
         private void txtEditSearch_ButtonClick(object sender, EventArgs e)
         {
             getStudent();
@@ -387,7 +388,6 @@ namespace MoalemYar.UserControls
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-
             MainWindow.main.ShowDeleteConfirmNotification(txtName.Text, "دانش آموز");
         }
 
