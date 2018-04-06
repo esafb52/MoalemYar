@@ -29,6 +29,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using ThumbnailSharp;
 
 namespace MoalemYar.UserControls
 {
@@ -287,7 +288,7 @@ namespace MoalemYar.UserControls
             dynamic selectedItem = dgv.SelectedItems[0];
             long id = selectedItem.Id;
 
-            updateStudent(id, Convert.ToInt64(cmbEditBase.SelectedValue), txtName.Text, txtLName.Text, txtFName.Text, getComboValue(), getJPGFromImageControl(imgEditStudent.Source as BitmapImage));
+            updateStudent(id, Convert.ToInt64(cmbEditBase.SelectedValue), txtName.Text, txtLName.Text, txtFName.Text, getComboValue(), CreateThumbnail(imgEditStudent.Source as BitmapImage));
             MainWindow.main.ShowUpdateDataNotification(true, txtName.Text, "دانش آموز");
             editGrid.IsEnabled = false;
             getStudent();
@@ -346,7 +347,9 @@ namespace MoalemYar.UserControls
             {
                 try
                 {
-                    addStudent(Convert.ToInt64(cmbBase.SelectedValue), txtAddName.Text, txtAddLName.Text, txtAddFName.Text, elementG.Text, getJPGFromImageControl(imgStudent.Source as BitmapImage));
+                    
+
+                    addStudent(Convert.ToInt64(cmbBase.SelectedValue), txtAddName.Text, txtAddLName.Text, txtAddFName.Text, elementG.Text, CreateThumbnail(imgStudent.Source as BitmapImage));
                     MainWindow.main.ShowAddDataNotification(true, txtAddName.Text, "دانش آموز");
                     txtAddName.Text = string.Empty;
                     txtAddLName.Text = string.Empty;
@@ -359,13 +362,23 @@ namespace MoalemYar.UserControls
                 }
             }
         }
-        public byte[] getJPGFromImageControl(BitmapImage imageC)
+        public byte[] CreateThumbnail(BitmapImage imageC)
         {
+            //Read Image byte
+
             MemoryStream memStream = new MemoryStream();
             JpegBitmapEncoder encoder = new JpegBitmapEncoder();
             encoder.Frames.Add(BitmapFrame.Create(imageC));
             encoder.Save(memStream);
-            return memStream.ToArray();
+
+            //Create Thumbnail from image
+
+            byte[] resultBytes = new ThumbnailCreator().CreateThumbnailBytes(
+                thumbnailSize: 450,
+                    imageBytes: memStream.ToArray(),
+                    imageFormat: Format.Jpeg
+            );
+            return resultBytes;
         }
         private void txtEditSearch_ButtonClick(object sender, EventArgs e)
         {
