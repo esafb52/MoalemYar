@@ -102,32 +102,32 @@
             <Metro:MetroTabItem Header="ویرایش اطلاعات">
                 <Grid KeyboardNavigation.TabNavigation="Cycle">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
-                        <ColumnDefinition />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Metro:MetroWaterfallFlow Margin="10,10,10,10" ListWidth="400">
+                    <Grid Grid.Column="0" Margin="10">
                         <Grid FlowDirection="LeftToRight">
                             <Grid.RowDefinitions>
                                 <RowDefinition />
                                 <RowDefinition />
                             </Grid.RowDefinitions>
-                            <Metro:MetroTextBox x:Name="txtEditSearch" ButtonTitle="بروزرسانی لیست" ButtonClick="txtEditSearch_ButtonClick"  TabIndex="0" Grid.Row="0" FlowDirection="RightToLeft" InputHint="جستجو..." PopupHint="جستجو بصورت خودکار انجام می شود" MetroPopupBackgroundState="Red2" Margin="0,0,0,0" Icon="../Resources/editIcon.png" TextChanged="txtEditSearch_TextChanged" />
-                            <Metro:MetroScrollViewer Grid.Row="1">
-                                <ListView ScrollViewer.VerticalScrollBarVisibility="Auto" FlowDirection="RightToLeft" SelectionMode="Single" x:Name="dgv" SelectionChanged="dgv_SelectionChanged">
-                                    <ListView.View>
-                                        <GridView>
-                                            <GridViewColumn Header="نام" Width="100" DisplayMemberBinding="{Binding Name}" />
-                                            <GridViewColumn Header="نام خانوادگی" Width="100"  DisplayMemberBinding="{Binding LName}" />
-                                            <GridViewColumn Header="نام پدر" Width="100" DisplayMemberBinding="{Binding FName}" />
-                                            <GridViewColumn Header="جنسیت" Width="100" DisplayMemberBinding="{Binding Gender}" />
-                                            <GridViewColumn Header="پایه" Width="100" DisplayMemberBinding="{Binding Base}" />
-                                            <GridViewColumn Header="Id" Width="0"  DisplayMemberBinding="{Binding Id}" />
-                                        </GridView>
-                                    </ListView.View>
-                                </ListView>
-                            </Metro:MetroScrollViewer>
+                            <Metro:MetroTextBox x:Name="txtEditSearch" ButtonTitle="بروزرسانی لیست" ButtonClick="txtEditSearch_ButtonClick"  TabIndex="0" Grid.Row="0" FlowDirection="RightToLeft" InputHint="جستجو..." PopupHint="جستجو بصورت خودکار انجام می شود" MetroPopupBackgroundState="Red2" Margin="10" Icon="../Resources/editIcon.png" TextChanged="txtEditSearch_TextChanged" />
+                            <ListView Grid.Row="1" ScrollViewer.VerticalScrollBarVisibility="Auto" FlowDirection="RightToLeft" SelectionMode="Single" x:Name="dgv" SelectionChanged="dgv_SelectionChanged">
+                                <ListView.View>
+                                    <GridView>
+                                        <GridViewColumn Header="نام" Width="100" DisplayMemberBinding="{Binding Name}" />
+                                        <GridViewColumn Header="نام خانوادگی" Width="100"  DisplayMemberBinding="{Binding LName}" />
+                                        <GridViewColumn Header="نام پدر" Width="100" DisplayMemberBinding="{Binding FName}" />
+                                        <GridViewColumn Header="جنسیت" Width="100" DisplayMemberBinding="{Binding Gender}" />
+                                        <GridViewColumn Header="پایه" Width="100" DisplayMemberBinding="{Binding Base}" />
+                                        <GridViewColumn Header="Id" Width="0"  DisplayMemberBinding="{Binding Id}" />
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+
                         </Grid>
-                    </Metro:MetroWaterfallFlow>
+
+                    </Grid>
                     <Grid x:Name="editGrid" IsEnabled="False" Grid.Column="1">
                         <Grid Margin="10,20,20,0" Grid.Column="0" Grid.Row="1" VerticalAlignment="Top">
                             <Grid.RowDefinitions>

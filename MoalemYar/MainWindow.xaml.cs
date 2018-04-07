@@ -161,10 +161,9 @@ namespace MoalemYar
                    }
                })
                .Dismiss().WithButton("بیخیال", button => { })
-           .Dismiss().WithDelay(TimeSpan.FromSeconds(3));
-            builder.Queue();
+               .Dismiss().WithDelay(TimeSpan.FromSeconds(3));
+                builder.Queue();
         }
-
         public void ShowFillAllDataNotification()
         {
             var builder = this.Manager
