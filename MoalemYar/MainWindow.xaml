@@ -54,8 +54,8 @@
 
     <Grid>
 
-        <Metro:MetroMenuTabControl TabIndex="-1" FlowDirection="RightToLeft" x:Name="tab" IconMode="True" SelectionChanged="tab_SelectionChanged">
-            <Metro:MetroMenuTabItem FlowDirection="LeftToRight" Header="داشبورد مدیریتی" Icon="Resources/Home.png" IconMove="Resources/HomeMove.png">
+        <Metro:MetroMenuTabControl TabIndex="-1" FlowDirection="RightToLeft" x:Name="tab" IconMode="False" SelectionChanged="tab_SelectionChanged">
+            <Metro:MetroMenuTabItem Name="ex1" Header="داشبورد مدیریتی" Icon="Resources/Home.png" IconMove="Resources/HomeMove.png">
                 <Grid FlowDirection="RightToLeft">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition MinWidth="160" Width="Auto" />
@@ -91,17 +91,17 @@
                     </Metro:MetroScrollViewer>
                 </Grid>
             </Metro:MetroMenuTabItem>
-            <Metro:MetroMenuTabItem FlowDirection="LeftToRight" Header="آزمون آنلاین" Icon="Resources/Exam.png" IconMove="Resources/ExamMove.png">
+            <Metro:MetroMenuTabItem Name="ex2" Header="آزمون آنلاین" Icon="Resources/Exam.png" IconMove="Resources/ExamMove.png">
                 <!--<Grid>
                 Content must be here
                 </Grid>-->
             </Metro:MetroMenuTabItem>
-            <Metro:MetroMenuTabItem FlowDirection="LeftToRight" Header="گزارش گیری" Icon="Resources/Report.png" IconMove="Resources/ReportMove.png">
+            <Metro:MetroMenuTabItem Name="ex3" Header="گزارش گیری" Icon="Resources/Report.png" IconMove="Resources/ReportMove.png">
                 <!--<Grid>
                 Content must be here
                 </Grid>-->
             </Metro:MetroMenuTabItem>
-            <Metro:MetroMenuTabItem FlowDirection="LeftToRight" Header="تنظیمات نرم افزار" Icon="Resources/Gears.png" IconMove="Resources/GearsMove.png">
+            <Metro:MetroMenuTabItem Name="ex4" Header="تنظیمات نرم افزار" Icon="Resources/Gears.png" IconMove="Resources/GearsMove.png">
                 <Grid>
                     <Metro:MetroScrollViewer>
                         <ContentControl>
@@ -114,7 +114,7 @@
                     </Metro:MetroScrollViewer>
                 </Grid>
             </Metro:MetroMenuTabItem>
-            <Metro:MetroMenuTabItem FlowDirection="LeftToRight" Header="درباره نرم افزار" Icon="Resources/Fingerprint.png" IconMove="Resources/FingerprintMove.png">
+            <Metro:MetroMenuTabItem Name="ex5" Header="درباره نرم افزار" Icon="Resources/Fingerprint.png" IconMove="Resources/FingerprintMove.png">
                 <Grid>
                     <Metro:MetroScrollViewer>
                         <ContentControl Name="abtContent">
