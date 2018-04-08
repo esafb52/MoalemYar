@@ -22,7 +22,10 @@ namespace MoalemYar.DataClass
 
         public myDbContext()
        : base("default")
-        { }
+        {
+            base.Database.Connection.ConnectionString = @"data source=" + AppVariable.myPath + @"database\data.db;";
+            
+        }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

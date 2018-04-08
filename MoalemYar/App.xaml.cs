@@ -36,7 +36,7 @@ namespace MoalemYar
             }
 
             string folder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-            string specificFolder = Path.Combine(folder, "MoalemYar");
+            string specificFolder = Path.Combine(folder, Assembly.GetExecutingAssembly().GetName().Name);
             if (!Directory.Exists(specificFolder))
                 Directory.CreateDirectory(specificFolder);
 

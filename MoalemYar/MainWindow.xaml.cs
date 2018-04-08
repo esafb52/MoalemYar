@@ -36,7 +36,6 @@ namespace MoalemYar
         public MainWindow()
         {
             InitializeComponent();
-
             DataContext = this;
             main = this;
 
@@ -48,6 +47,7 @@ namespace MoalemYar
             LogifyCrashReport();
 
             LoadSettings();
+
         }
 
         #region "Async Query"
@@ -85,6 +85,7 @@ namespace MoalemYar
 
         public void getexHint()
         {
+            //Todo: Fix null
             var querySchool = GetAllSchoolAsync();
             querySchool.Wait();
 
