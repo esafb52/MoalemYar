@@ -205,7 +205,7 @@ namespace MoalemYar.UserControls
                 {
                     dynamic selectedItem = dgv.SelectedItems[0];
                     long id = selectedItem.Id;
-                    updateUser(id, txtUsername.Text, txtPassword.Text);
+                    updateUser(id, txtUsername.Text.ToLower(), txtPassword.Text.ToLower());
                     MainWindow.main.ShowUpdateDataNotification(true, txtUsername.Text, "نام کاربری");
                     editGrid.IsEnabled = false;
                     getUser();
@@ -247,7 +247,7 @@ namespace MoalemYar.UserControls
             {
                 try
                 {
-                    addUser(txtAddUsername.Text, txtAddPassword.Text);
+                    addUser(txtAddUsername.Text.ToLower(), txtAddPassword.Text.ToLower());
                     MainWindow.main.ShowAddDataNotification(true, txtAddUsername.Text, "نام کاربری");
                     txtAddUsername.Text = string.Empty;
                     txtAddPassword.Text = string.Empty;
