@@ -107,7 +107,7 @@ namespace MoalemYar
 
         public void LogifyCrashReport()
         {
-            var isEnabledReport = AppVariable.ReadSetting(AppVariable.AutoSendReport);
+            var isEnabledReport = AppVariable.ReadBoolSetting(AppVariable.AutoSendReport);
             LogifyAlert client = LogifyAlert.Instance;
             client.ApiKey = AppVariable.LogifyAPIKey;
             client.AppName = AppVariable.getAppName;
@@ -129,7 +129,7 @@ namespace MoalemYar
             var brush = new SolidColorBrush(color);
             BorderBrush = brush;
 
-            var hb_Menu = Convert.ToBoolean(AppVariable.ReadSetting(AppVariable.HamburgerMenu));
+            var hb_Menu = AppVariable.ReadBoolSetting(AppVariable.HamburgerMenu);
             MainWindow.main.tab.IconMode = !hb_Menu;
         }
 

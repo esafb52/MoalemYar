@@ -9,6 +9,7 @@
 ***********************************************************************************/
 
 using System;
+using System.IO;
 using System.Reflection;
 using System.Windows;
 
@@ -33,6 +34,14 @@ namespace MoalemYar
                 EmbeddedAssembly.Load(name,
                                        name);
             }
+
+            string folder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            string specificFolder = Path.Combine(folder, "MoalemYar");
+            if (!Directory.Exists(specificFolder))
+                Directory.CreateDirectory(specificFolder);
+
+            if (!System.IO.File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\MoalemYar\config.json"))
+               AppVariable.InitializeSettings();
         }
 
         private static Assembly OnResolveAssembly(object sender, ResolveEventArgs args)

@@ -34,27 +34,27 @@ namespace MoalemYar.UserControls
 
         private void LoadSettings()
         {
-            if (AppVariable.ReadSetting(AppVariable.CredentialLogin).Equals("True"))
+            if (AppVariable.ReadBoolSetting(AppVariable.CredentialLogin))
                 swLogin.IsChecked = true;
             else
                 swLogin.IsChecked = false;
 
-            if (AppVariable.ReadSetting(AppVariable.TosifiSystem).Equals("True"))
+            if (AppVariable.ReadBoolSetting(AppVariable.TosifiSystem))
                 swSystem.IsChecked = true;
             else
                 swSystem.IsChecked = false;
 
-            if (AppVariable.ReadSetting(AppVariable.Autorun).Equals("True"))
+            if (AppVariable.ReadBoolSetting(AppVariable.Autorun))
                 swAutoStart.IsChecked = true;
             else
                 swAutoStart.IsChecked = false;
 
-            if (AppVariable.ReadSetting(AppVariable.AutoSendReport).Equals("True"))
+            if (AppVariable.ReadBoolSetting(AppVariable.AutoSendReport))
                 swAutoReport.IsChecked = true;
             else
                 swAutoReport.IsChecked = false;
 
-            var hb_Menu = Convert.ToBoolean(AppVariable.ReadSetting(AppVariable.HamburgerMenu));
+            var hb_Menu = AppVariable.ReadBoolSetting(AppVariable.HamburgerMenu);
             Hamborger_Menu.IsChecked = hb_Menu;
 
             var color = (Color)ColorConverter.ConvertFromString(AppVariable.ReadSetting(AppVariable.SkinCode));

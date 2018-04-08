@@ -9,16 +9,20 @@
 ***********************************************************************************/
 
 using Microsoft.Win32;
+using nucs.JsonSettings;
+using nucs.JsonSettings.Fluent;
 using System;
 using System.Configuration;
 using System.Diagnostics;
+using System.IO;
 using System.Reflection;
 
 namespace MoalemYar
 {
     public class AppVariable
     {
-        public static string LogifyOfflinePath = System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+        private static SettingsBag Settings { get; } = JsonSettings.Construct<SettingsBag>(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\MoalemYar\config.json").LoadNow().EnableAutosave();
+        public static string LogifyOfflinePath = System.Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\MoalemYar\";
         public static string LogifyAPIKey = "SPECIFY_YOUR_API_KEY_HERE"; // http://logify.devexpress.com/
         public static string UpdateServer = "https://raw.githubusercontent.com/ghost1372/MoalemYar/master/Updater.xml";
         public const string UpdateXmlTag = "MoalemYar"; //Defined in Xml file
@@ -48,67 +52,94 @@ namespace MoalemYar
         public static string AutoSendReport = "AutoSendReport";
         public static string SkinCode = "SkinCode";
 
-        public static string ReadSetting(string key)
+        public static int ReadIntSetting(string key)
         {
-            string result = string.Empty;
             try
             {
-                var appSettings = ConfigurationManager.AppSettings;
-                result = appSettings[key] ?? "0";
+             return Convert.ToInt32(Settings[key]);
             }
-            catch (ConfigurationErrorsException)
+            catch (Exception)
             {
-                result = "error reading";
+                return 0;
             }
-            return result;
+        }
+
+        public static bool ReadBoolSetting(string key)
+        {
+            try
+            {
+                return Convert.ToBoolean(Settings[key]);
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public static string ReadSetting(string key)
+        {
+            try
+            {
+                return Settings[key].ToString();
+            }
+            catch (Exception)
+            {
+                return "Error Reading";
+            }
+        }
+        public static void InitializeSettings()
+        {
+            try
+            {
+                Settings[TosifiSystem] = true;
+                Settings[CredentialLogin] = false;
+                Settings[Autorun] = false;
+                Settings[HamburgerMenu] = true;
+                Settings[AutoSendReport] = true;
+                Settings[SkinCode] = "#6D819A";
+
+
+            }
+            catch (Exception)
+            {
+                return;
+            }
         }
 
         public static void AddUpdateAppSettings(string key, string value)
         {
             try
             {
-                var configFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-                var settings = configFile.AppSettings.Settings;
-                if (settings[key] == null)
-                {
-                    settings.Add(key, value);
-                }
-                else
-                {
-                    settings[key].Value = value;
-                }
-                configFile.Save(ConfigurationSaveMode.Modified);
-                ConfigurationManager.RefreshSection(configFile.AppSettings.SectionInformation.Name);
+                Settings[key] = value;
             }
-            catch (ConfigurationErrorsException)
+            catch (Exception)
             {
                 return;
             }
         }
-
+        public static void AddUpdateAppSettings(string key, int value)
+        {
+            try
+            {
+                Settings[key] = value;
+            }
+            catch (Exception)
+            {
+                return;
+            }
+        }
         public static void AddUpdateAppSettings(string key, bool value)
         {
             try
             {
-                var configFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-                var settings = configFile.AppSettings.Settings;
-                if (settings[key] == null)
-                {
-                    settings.Add(key, value.ToString());
-                }
-                else
-                {
-                    settings[key].Value = value.ToString();
-                }
-                configFile.Save(ConfigurationSaveMode.Modified);
-                ConfigurationManager.RefreshSection(configFile.AppSettings.SectionInformation.Name);
+                Settings[key] = value;
             }
-            catch (ConfigurationErrorsException)
+            catch (Exception)
             {
                 return;
             }
         }
-
+        
         public static void RegisterInStartup(bool isChecked)
         {
             var productName = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).ProductName;

@@ -51,6 +51,12 @@
     <Reference Include="Logify.Alert.Wpf, Version=1.0.42.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <HintPath>..\packages\Logify.Alert.Wpf.1.0.42\lib\net45\Logify.Alert.Wpf.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="nucs.JsonSettings, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\nucs.JsonSettings.1.0.0.1\lib\net45\nucs.JsonSettings.dll</HintPath>
+    </Reference>
     <Reference Include="Ookii.Dialogs.Wpf">
       <HintPath>E:\Programming\Sorce cod\C#\Ookii.Dialogs\Ookii.Dialogs.Wpf.dll</HintPath>
     </Reference>
@@ -60,7 +66,6 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.SQLite, Version=1.0.108.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Data.SQLite.Core.1.0.108.0\lib\net45\System.Data.SQLite.dll</HintPath>
@@ -281,13 +286,13 @@
   <Target Name="EmbedReferencedAssemblies" AfterTargets="ResolveAssemblyReferences">
     <ItemGroup>
       <AssembliesToEmbed Include="@(ReferenceCopyLocalPaths)" />
-      <EmbeddedResource Include="@(AssembliesToEmbed)" Condition="$([System.Text.RegularExpressions.Regex]::IsMatch('%(AssembliesToEmbed.Filename)', '^((?!Logify.Alert.Wpf).)*$')) And $([System.Text.RegularExpressions.Regex]::IsMatch('%(AssembliesToEmbed.Filename)', '^((?!Entity).)*$')) And $([System.Text.RegularExpressions.Regex]::IsMatch('%(AssembliesToEmbed.Filename)', '^((?!System.Data.SQLite).)*$')) And '%(AssembliesToEmbed.Extension)' == '.dll'">
+      <EmbeddedResource Include="@(AssembliesToEmbed)" Condition="$([System.Text.RegularExpressions.Regex]::IsMatch('%(AssembliesToEmbed.Filename)', ^((?!Logify.Alert.Wpf|Entity|System.Data.SQLite).)*$)) And '%(AssembliesToEmbed.Extension)' == '.dll'">
         <LogicalName>%(AssembliesToEmbed.DestinationSubDirectory)%(AssembliesToEmbed.Filename)%(AssembliesToEmbed.Extension)</LogicalName>
       </EmbeddedResource>
     </ItemGroup>
     <Message Importance="high" Text="Embedding: @(AssembliesToEmbed->'%(DestinationSubDirectory)%(Filename)%(Extension)', ', ')" />
   </Target>
   <Target Name="DeleteAllReferenceCopyLocalPaths" AfterTargets="Build">
-    <Delete Files="@(ReferenceCopyLocalPaths->'$(OutDir)%(DestinationSubDirectory)%(Filename)%(Extension)')" Condition="$([System.Text.RegularExpressions.Regex]::IsMatch('%(Filename)', '^((?!Logify.Alert.Wpf).)*$')) And $([System.Text.RegularExpressions.Regex]::IsMatch('%(Filename)', '^((?!Entity).)*$')) And $([System.Text.RegularExpressions.Regex]::IsMatch('%(Filename)', '^((?!System.Data.SQLite).)*$')) Or '%(Extension)' == '.xml'" />
+    <Delete Files="@(ReferenceCopyLocalPaths->'$(OutDir)%(DestinationSubDirectory)%(Filename)%(Extension)')" Condition="$([System.Text.RegularExpressions.Regex]::IsMatch('%(Filename)', ^((?!Logify.Alert.Wpf|Entity|System.Data.SQLite).)*$)) Or '%(Extension)' == '.xml'" />
   </Target>
 </Project>
