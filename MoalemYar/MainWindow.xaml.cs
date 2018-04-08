@@ -21,7 +21,6 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-
 namespace MoalemYar
 {
     /// <summary>
@@ -388,20 +387,38 @@ namespace MoalemYar
                     // The target is the key under which the credentials will be stored.
                     dialog.Target = "Mahdi72_MoalemYar_www.127.0.0.1.com";
 
-                    while (isLogin)
+                    try
                     {
-                        dialog.ShowDialog(this);
-                        using (var db = new DataClass.myDbContext())
+                        while (isLogin)
                         {
-                            var usr = db.Users.Where(x => x.Username == dialog.Credentials.UserName && x.Password == dialog.Credentials.Password);
-                            if (usr.Any())
+                            if (dialog.ShowDialog(this))
                             {
-                                dialog.ConfirmCredentials(true);
-                                isLogin = false;
+                                using (var db = new DataClass.myDbContext())
+                                {
+                                    var usr = db.Users.Where(x => x.Username == dialog.Credentials.UserName && x.Password == dialog.Credentials.Password);
+                                    if (usr.Any())
+                                    {
+                                        dialog.ConfirmCredentials(true);
+                                        isLogin = false;
+                                    }
+                                    else
+                                    {
+                                        dialog.Content = "مشخصات اشتباه است دوباره امتحان کنید";
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                Environment.Exit(0);
                             }
                             
                         }
                     }
+                    catch (InvalidOperationException)
+                    {
+
+                    }
+                    
                     
                 }
             }
