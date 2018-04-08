@@ -40,7 +40,6 @@ namespace MoalemYar
 
             appTitle = AppVariable.getAppTitle + AppVariable.getAppVersion; // App Title with Version
 
-            //Todo: Enable Credential
             ShowCredentialDialog();
 
             LogifyCrashReport();
@@ -85,8 +84,6 @@ namespace MoalemYar
 
         public void getexHint()
         {
-            //Todo: Fix null
-
             try
             {
                 var querySchool = GetAllSchoolAsync();
@@ -371,7 +368,6 @@ namespace MoalemYar
 
         #endregion "Notification"
 
-        //Todo: Add Login
         private void ShowCredentialDialog()
         {
             var isLogin = AppVariable.ReadBoolSetting(AppVariable.CredentialLogin);
