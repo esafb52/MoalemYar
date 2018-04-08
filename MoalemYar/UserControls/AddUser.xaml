@@ -52,7 +52,7 @@
                                     <ListView.View>
                                         <GridView>
                                             <GridViewColumn Width="100" Header="نام کاربری"  DisplayMemberBinding="{Binding Username}" />
-                                            <GridViewColumn Width="255" Header="رمز عبور (هش شده)"  DisplayMemberBinding="{Binding Password}" />
+                                            <GridViewColumn Width="255" Header="رمز عبور"  DisplayMemberBinding="{Binding Password}" />
                                             <GridViewColumn Header="Id" Width="0"  DisplayMemberBinding="{Binding Id}" />
                                         </GridView>
                                     </ListView.View>

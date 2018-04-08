@@ -9,7 +9,7 @@
              Style="{StaticResource myUserControl}"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <Metro:MetroWaterfallFlow x:Name="waterfallFlow" ListWidth="300">
+        <Metro:MetroWaterfallFlow x:Name="waterfallFlow" ListWidth="350">
             <Grid>
                 <Metro:MetroGroupBox Margin="5" Header="عمومی">
                     <StackPanel>
