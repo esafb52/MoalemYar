@@ -355,7 +355,7 @@ namespace MoalemYar.UserControls
                 }
                 catch (Exception)
                 {
-                    MainWindow.main.ShowAddDataNotification(true, txtAddName.Text, "دانش آموز");
+                    MainWindow.main.ShowAddDataNotification(false, txtAddName.Text, "دانش آموز");
                 }
             }
         }

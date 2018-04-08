@@ -333,7 +333,7 @@ namespace MoalemYar.UserControls
                 }
                 catch (Exception)
                 {
-                    MainWindow.main.ShowAddDataNotification(true, txtAddSchool.Text, "مدرسه");
+                    MainWindow.main.ShowAddDataNotification(false, txtAddSchool.Text, "مدرسه");
                 }
             }
         }
