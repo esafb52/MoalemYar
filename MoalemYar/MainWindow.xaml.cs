@@ -42,7 +42,7 @@ namespace MoalemYar
             appTitle = AppVariable.getAppTitle + AppVariable.getAppVersion; // App Title with Version
 
             //Todo: Enable Credential
-            //ShowCredentialDialog();
+            ShowCredentialDialog();
 
             LogifyCrashReport();
 
@@ -145,6 +145,8 @@ namespace MoalemYar
 
             var hb_Menu = AppVariable.ReadBoolSetting(AppVariable.HamburgerMenu);
             MainWindow.main.tab.IconMode = !hb_Menu;
+
+
         }
 
         #region "Notification"
@@ -373,33 +375,37 @@ namespace MoalemYar
         //Todo: Add Login
         private void ShowCredentialDialog()
         {
-            using (CredentialDialog dialog = new CredentialDialog())
+            var isLogin = AppVariable.ReadBoolSetting(AppVariable.CredentialLogin);
+            if (isLogin)
             {
-                dialog.WindowTitle = "ورود به نرم افزار";
-                dialog.MainInstruction = "لطفا نام کاربری و رمز عبور خود را وارد کنید";
-                //dialog.Content = "";
-                dialog.ShowSaveCheckBox = true;
-                dialog.ShowUIForSavedCredentials = true;
-                // The target is the key under which the credentials will be stored.
-                dialog.Target = "Mahdi72_MoalemYar_www.127.0.0.1.com";
-
-                if (dialog.ShowDialog(this))
+                using (CredentialDialog dialog = new CredentialDialog())
                 {
-                    if (dialog.Credentials.UserName == "mahdi" && dialog.Credentials.Password == "123")
-                        dialog.MainInstruction = "رمز عبور اشتباه است";
+                    dialog.WindowTitle = "ورود به نرم افزار";
+                    dialog.MainInstruction = "لطفا نام کاربری و رمز عبور خود را وارد کنید";
+                    //dialog.Content = "";
+                    dialog.ShowSaveCheckBox = true;
+                    dialog.ShowUIForSavedCredentials = true;
+                    // The target is the key under which the credentials will be stored.
+                    dialog.Target = "Mahdi72_MoalemYar_www.127.0.0.1.com";
 
-                    //else
-                    //{
-                    //    dialog.ConfirmCredentials(true);
-                    //    Environment.Exit(0);
-
-                    //}
+                    while (isLogin)
+                    {
+                        dialog.ShowDialog(this);
+                        using (var db = new DataClass.myDbContext())
+                        {
+                            var usr = db.Users.Where(x => x.Username == dialog.Credentials.UserName && x.Password == dialog.Credentials.Password);
+                            if (usr.Any())
+                            {
+                                dialog.ConfirmCredentials(true);
+                                isLogin = false;
+                            }
+                            
+                        }
+                    }
+                    
                 }
-                //else
-                //{
-                //    Environment.Exit(0);
-                //}
             }
+           
         }
 
         #region "Progressbar"
