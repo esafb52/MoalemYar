@@ -131,38 +131,62 @@ namespace MoalemYar.UserControls
 
         private void getSchool()
         {
-            var query = GetAllSchoolsAsync();
-            query.Wait();
-            List<DataClass.Tables.School> data = query.Result;
-            if (data.Any())
+            try
             {
-                cmbBase.ItemsSource = data;
-                cmbEditBase.ItemsSource = data;
+                var query = GetAllSchoolsAsync();
+                query.Wait();
+                List<DataClass.Tables.School> data = query.Result;
+                if (data.Any())
+                {
+                    cmbBase.ItemsSource = data;
+                    cmbEditBase.ItemsSource = data;
+                }
             }
+            catch (Exception)
+            {
+
+            }
+            
         }
 
         private void getStudent()
         {
-            var query = GetAllStudentsAsync();
-            query.Wait();
+            try
+            {
+                var query = GetAllStudentsAsync();
+                query.Wait();
 
-            List<DataClass.DataTransferObjects.SchoolsStudentsJointDto> data = query.Result;
-            if (data.Any())
-                dgv.ItemsSource = data.ToList();
-            else
-                MainWindow.main.ShowNoDataNotification("Student");
+                List<DataClass.DataTransferObjects.SchoolsStudentsJointDto> data = query.Result;
+                if (data.Any())
+                    dgv.ItemsSource = data.ToList();
+                else
+                    MainWindow.main.ShowNoDataNotification("Student");
+            }
+            catch (Exception)
+            {
+
+            }
+           
         }
 
         private void getStudent(string SearchText)
         {
-            var query = GetAllStudentsAsync(SearchText);
-            query.Wait();
+            try
+            {
+                var query = GetAllStudentsAsync(SearchText);
+                query.Wait();
 
-            List<DataClass.Tables.Student> data = query.Result;
-            if (data.Any())
-                dgv.ItemsSource = data;
-            else
-                MainWindow.main.ShowNoDataNotification("Student");
+                List<DataClass.Tables.Student> data = query.Result;
+                if (data.Any())
+                    dgv.ItemsSource = data;
+                else
+                    MainWindow.main.ShowNoDataNotification("Student");
+            }
+            catch (Exception)
+            {
+
+            }
+            
         }
 
         private void deleteStudent(long id)

@@ -105,26 +105,42 @@ namespace MoalemYar.UserControls
 
         private void getUser()
         {
-            var query = GetAllUsersAsync();
-            query.Wait();
+            try
+            {
+                var query = GetAllUsersAsync();
+                query.Wait();
 
-            List<DataClass.Tables.User> data = query.Result;
-            if (data.Any())
-                dgv.ItemsSource = data;
-            else
-                MainWindow.main.ShowNoDataNotification("User");
+                List<DataClass.Tables.User> data = query.Result;
+                if (data.Any())
+                    dgv.ItemsSource = data;
+                else
+                    MainWindow.main.ShowNoDataNotification("User");
+            }
+            catch (Exception)
+            {
+
+            }
+          
         }
 
         private void getUser(string SearchText)
         {
-            var query = GetAllUsersAsync(SearchText);
-            query.Wait();
+            try
+            {
+                var query = GetAllUsersAsync(SearchText);
+                query.Wait();
 
-            List<DataClass.Tables.User> data = query.Result;
-            if (data.Any())
-                dgv.ItemsSource = data;
-            else
-                MainWindow.main.ShowNoDataNotification("User");
+                List<DataClass.Tables.User> data = query.Result;
+                if (data.Any())
+                    dgv.ItemsSource = data;
+                else
+                    MainWindow.main.ShowNoDataNotification("User");
+            }
+            catch (Exception)
+            {
+
+            }
+           
         }
 
         private void deleteUser(long id)

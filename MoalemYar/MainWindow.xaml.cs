@@ -48,6 +48,7 @@ namespace MoalemYar
 
             LoadSettings();
 
+
         }
 
         #region "Async Query"
@@ -86,22 +87,34 @@ namespace MoalemYar
         public void getexHint()
         {
             //Todo: Fix null
-            var querySchool = GetAllSchoolAsync();
-            querySchool.Wait();
 
-            var queryUser = GetAllUserAsync();
-            queryUser.Wait();
+            try
+            {
+                var querySchool = GetAllSchoolAsync();
+                querySchool.Wait();
 
-            var queryStudent = GetAllStudentAsync();
-            queryStudent.Wait();
+                var queryUser = GetAllUserAsync();
+                queryUser.Wait();
 
-            List<DataClass.Tables.School> dataSchool = querySchool.Result;
-            List<DataClass.Tables.User> dataUser = queryUser.Result;
-            List<DataClass.Tables.Student> dataStudent = queryStudent.Result;
+                var queryStudent = GetAllStudentAsync();
+                queryStudent.Wait();
 
-            exAddOrUpdateSchool.Hint = dataSchool.Count().ToString();
-            exAddOrUpdateUser.Hint = dataUser.Count().ToString();
-            exAddOrUpdateStudent.Hint = dataStudent.Count().ToString();
+                List<DataClass.Tables.School> dataSchool = querySchool.Result;
+                List<DataClass.Tables.User> dataUser = queryUser.Result;
+                List<DataClass.Tables.Student> dataStudent = queryStudent.Result;
+
+                exAddOrUpdateSchool.Hint = dataSchool.Count().ToString();
+                exAddOrUpdateUser.Hint = dataUser.Count().ToString();
+                exAddOrUpdateStudent.Hint = dataStudent.Count().ToString();
+            }
+            catch (Exception)
+            {
+
+               
+            }
+            
+
+          
         }
 
         #endregion Func get Query Wait"

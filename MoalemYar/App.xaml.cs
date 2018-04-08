@@ -9,6 +9,7 @@
 ***********************************************************************************/
 
 using System;
+using System.Configuration;
 using System.IO;
 using System.Reflection;
 using System.Windows;
@@ -22,6 +23,9 @@ namespace MoalemYar
     {
         protected override void OnStartup(StartupEventArgs e)
         {
+            string fileName = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            AppDomain.CurrentDomain.SetData("DataDirectory", System.Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\" + Assembly.GetExecutingAssembly().GetName().Name + @"\");
+
             AppDomain.CurrentDomain.AssemblyResolve += OnResolveAssembly;
             var assembly = Assembly.GetExecutingAssembly();
             foreach (var name in assembly.GetManifestResourceNames())

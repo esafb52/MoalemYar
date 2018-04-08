@@ -10,6 +10,7 @@
 
 using MoalemYar.DataClass.Tables;
 using SQLite.CodeFirst;
+using System;
 using System.Data.Entity;
 
 namespace MoalemYar.DataClass
@@ -23,8 +24,8 @@ namespace MoalemYar.DataClass
         public myDbContext()
        : base("default")
         {
-            base.Database.Connection.ConnectionString = @"data source=" + AppVariable.myPath + @"database\data.db;";
-            
+           
+            //base.Database.Connection.ConnectionString = @"data source=" + AppVariable.myPath + @"database\data.db;";
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -32,6 +33,8 @@ namespace MoalemYar.DataClass
             var sqliteConnectionInitializer = new MyDbContextInitializer(modelBuilder);
 
             Database.SetInitializer(sqliteConnectionInitializer);
+           // Database.CreateIfNotExists();
+           
         }
 
         public class MyDbContextInitializer : SqliteDropCreateDatabaseWhenModelChanges<myDbContext>
@@ -43,6 +46,13 @@ namespace MoalemYar.DataClass
 
             protected override void Seed(myDbContext context)
             {
+                //context.Users.Add(new User
+                //{
+                //    Username = "admin",
+                //    Password = "1"
+                //});
+
+                //base.Seed(context);
             }
         }
     }

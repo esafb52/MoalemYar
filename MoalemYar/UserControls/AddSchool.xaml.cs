@@ -49,7 +49,7 @@ namespace MoalemYar.UserControls
             using (var db = new DataClass.myDbContext())
             {
                 var query = db.Schools.Where(x => x.SchoolName.Contains(SearchText) || x.Admin.Contains(SearchText) || x.Base.Contains(SearchText) || x.Year.Contains(SearchText)).Select(x => x);
-                return await query.ToListAsync();
+                return await (query.Any() ? query.ToListAsync() : null);
             }
         }
 
@@ -111,14 +111,22 @@ namespace MoalemYar.UserControls
 
         private void getSchool()
         {
-            var query = GetAllSchoolsAsync();
-            query.Wait();
+            try
+            {
+                var query = GetAllSchoolsAsync();
+                query.Wait();
 
-            List<DataClass.Tables.School> data = query.Result;
-            if (data.Any())
-                dgv.ItemsSource = data;
-            else
-                MainWindow.main.ShowNoDataNotification("School");
+                List<DataClass.Tables.School> data = query.Result;
+                if (data.Any())
+                    dgv.ItemsSource = data;
+                else
+                    MainWindow.main.ShowNoDataNotification("School");
+            }
+            catch (Exception)
+            {
+
+            }
+           
         }
 
         private void getSchool(string SearchText)

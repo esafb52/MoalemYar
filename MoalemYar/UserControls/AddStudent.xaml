@@ -105,14 +105,14 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Grid Grid.Column="0" Margin="10">
+                        <Metro:MetroWaterfallFlow Grid.Column="0" Margin="10,10,10,10" ListWidth="400">
                         <Grid FlowDirection="LeftToRight">
                             <Grid.RowDefinitions>
                                 <RowDefinition />
                                 <RowDefinition />
                             </Grid.RowDefinitions>
-                            <Metro:MetroTextBox x:Name="txtEditSearch" ButtonTitle="بروزرسانی لیست" ButtonClick="txtEditSearch_ButtonClick"  TabIndex="0" Grid.Row="0" FlowDirection="RightToLeft" InputHint="جستجو..." PopupHint="جستجو بصورت خودکار انجام می شود" MetroPopupBackgroundState="Red2" Margin="10" Icon="../Resources/editIcon.png" TextChanged="txtEditSearch_TextChanged" />
-                            <ListView Grid.Row="1" ScrollViewer.VerticalScrollBarVisibility="Auto" FlowDirection="RightToLeft" SelectionMode="Single" x:Name="dgv" SelectionChanged="dgv_SelectionChanged">
+                            <Metro:MetroTextBox x:Name="txtEditSearch" HorizontalAlignment="Stretch" VerticalAlignment="Top" ButtonTitle="بروزرسانی لیست" ButtonClick="txtEditSearch_ButtonClick"  TabIndex="0" Grid.Row="0" FlowDirection="RightToLeft" InputHint="جستجو..." PopupHint="جستجو بصورت خودکار انجام می شود" MetroPopupBackgroundState="Red2" Margin="10" Icon="../Resources/editIcon.png" TextChanged="txtEditSearch_TextChanged" />
+                            <ListView Grid.Row="1" ScrollViewer.VerticalScrollBarVisibility="Auto" VerticalAlignment="Top" FlowDirection="RightToLeft" SelectionMode="Single" x:Name="dgv" SelectionChanged="dgv_SelectionChanged">
                                 <ListView.View>
                                     <GridView>
                                         <GridViewColumn Header="نام" Width="100" DisplayMemberBinding="{Binding Name}" />
@@ -127,7 +127,7 @@
 
                         </Grid>
 
-                    </Grid>
+                    </Metro:MetroWaterfallFlow>
                     <Grid x:Name="editGrid" IsEnabled="False" Grid.Column="1">
                         <Grid Margin="10,20,20,0" Grid.Column="0" Grid.Row="1" VerticalAlignment="Top">
                             <Grid.RowDefinitions>
