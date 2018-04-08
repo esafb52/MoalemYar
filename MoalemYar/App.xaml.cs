@@ -9,7 +9,6 @@
 ***********************************************************************************/
 
 using System;
-using System.Configuration;
 using System.IO;
 using System.Reflection;
 using System.Windows;
@@ -28,7 +27,7 @@ namespace MoalemYar
             string fileName = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
             AppDomain.CurrentDomain.SetData("DataDirectory", System.Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\" + Assembly.GetExecutingAssembly().GetName().Name + @"\");
 
-            #endregion
+            #endregion This is for Change Database Location we change DataDirectory to Other Location
 
             #region Load Embedded Assembly
 
@@ -45,7 +44,7 @@ namespace MoalemYar
                                        name);
             }
 
-            #endregion
+            #endregion Load Embedded Assembly
 
             #region Check AppData Folder Existen and Create Config.json
 
@@ -55,9 +54,9 @@ namespace MoalemYar
                 Directory.CreateDirectory(specificFolder);
 
             if (!System.IO.File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\MoalemYar\config.json"))
-               AppVariable.InitializeSettings();
+                AppVariable.InitializeSettings();
 
-            #endregion
+            #endregion Check AppData Folder Existen and Create Config.json
         }
 
         private static Assembly OnResolveAssembly(object sender, ResolveEventArgs args)

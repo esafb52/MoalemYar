@@ -105,7 +105,7 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                        <Metro:MetroWaterfallFlow Grid.Column="0" Margin="10,10,10,10" ListWidth="400">
+                    <Metro:MetroWaterfallFlow Grid.Column="0" Margin="10,10,10,10" ListWidth="400">
                         <Grid FlowDirection="LeftToRight">
                             <Grid.RowDefinitions>
                                 <RowDefinition />
@@ -124,9 +124,7 @@
                                     </GridView>
                                 </ListView.View>
                             </ListView>
-
                         </Grid>
-
                     </Metro:MetroWaterfallFlow>
                     <Grid x:Name="editGrid" IsEnabled="False" Grid.Column="1">
                         <Grid Margin="10,20,20,0" Grid.Column="0" Grid.Row="1" VerticalAlignment="Top">

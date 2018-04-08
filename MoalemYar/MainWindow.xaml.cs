@@ -21,6 +21,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+
 namespace MoalemYar
 {
     /// <summary>
@@ -45,8 +46,6 @@ namespace MoalemYar
             LogifyCrashReport();
 
             LoadSettings();
-
-
         }
 
         #region "Async Query"
@@ -105,12 +104,7 @@ namespace MoalemYar
             }
             catch (Exception)
             {
-
-               
             }
-            
-
-          
         }
 
         #endregion Func get Query Wait"
@@ -141,8 +135,6 @@ namespace MoalemYar
 
             var hb_Menu = AppVariable.ReadBoolSetting(AppVariable.HamburgerMenu);
             MainWindow.main.tab.IconMode = !hb_Menu;
-
-
         }
 
         #region "Notification"
@@ -174,8 +166,9 @@ namespace MoalemYar
                })
                .Dismiss().WithButton("بیخیال", button => { })
                .Dismiss().WithDelay(TimeSpan.FromSeconds(3));
-                builder.Queue();
+            builder.Queue();
         }
+
         public void ShowFillAllDataNotification()
         {
             var builder = this.Manager
@@ -407,18 +400,13 @@ namespace MoalemYar
                             {
                                 Environment.Exit(0);
                             }
-                            
                         }
                     }
                     catch (InvalidOperationException)
                     {
-
                     }
-                    
-                    
                 }
             }
-           
         }
 
         #region "Progressbar"

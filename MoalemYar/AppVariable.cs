@@ -12,9 +12,7 @@ using Microsoft.Win32;
 using nucs.JsonSettings;
 using nucs.JsonSettings.Fluent;
 using System;
-using System.Configuration;
 using System.Diagnostics;
-using System.IO;
 using System.Reflection;
 
 namespace MoalemYar
@@ -28,7 +26,7 @@ namespace MoalemYar
         public static string LogifyOfflinePath = System.Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\" + Assembly.GetExecutingAssembly().GetName().Name + @"\";
         public static string LogifyAPIKey = "SPECIFY_YOUR_API_KEY_HERE"; // http://logify.devexpress.com/   //Todo: Add API
 
-        #endregion
+        #endregion Crash Report
 
         #region Update Configuration
 
@@ -39,7 +37,7 @@ namespace MoalemYar
         public const string UpdateUrlTag = "url"; //Defined in Xml file
         public const string UpdateChangeLogTag = "changelog";
 
-        #endregion
+        #endregion Update Configuration
 
         #region App Details
 
@@ -48,7 +46,7 @@ namespace MoalemYar
         public static string getAppNameAndVersion = Assembly.GetExecutingAssembly().GetName().Name + " " + Assembly.GetExecutingAssembly().GetName().Version.ToString();
         public static string getAppTitle = "معلم یار نسخه آزمایشی ";
 
-        #endregion
+        #endregion App Details
 
         #region Colors
 
@@ -60,7 +58,7 @@ namespace MoalemYar
         public const string BLUE = "#1751C3";
         public const string DEFAULT_BORDER_BRUSH = "#6D819A";
 
-        #endregion
+        #endregion Colors
 
         #region Config Key
 
@@ -71,14 +69,15 @@ namespace MoalemYar
         public static string AutoSendReport = "AutoSendReport";
         public static string SkinCode = "SkinCode";
 
-        #endregion
+        #endregion Config Key
 
         #region "ReadWrite Settings"
+
         public static int ReadIntSetting(string key)
         {
             try
             {
-             return Convert.ToInt32(Settings[key]);
+                return Convert.ToInt32(Settings[key]);
             }
             catch (Exception)
             {
@@ -109,6 +108,7 @@ namespace MoalemYar
                 return "Error Reading";
             }
         }
+
         public static void InitializeSettings()
         {
             try
@@ -137,6 +137,7 @@ namespace MoalemYar
                 return;
             }
         }
+
         public static void AddUpdateAppSettings(string key, int value)
         {
             try
@@ -148,6 +149,7 @@ namespace MoalemYar
                 return;
             }
         }
+
         public static void AddUpdateAppSettings(string key, bool value)
         {
             try
@@ -160,7 +162,7 @@ namespace MoalemYar
             }
         }
 
-        #endregion
+        #endregion "ReadWrite Settings"
 
         public static void RegisterInStartup(bool isChecked)
         {

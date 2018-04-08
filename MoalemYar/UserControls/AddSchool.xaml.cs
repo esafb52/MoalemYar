@@ -124,9 +124,7 @@ namespace MoalemYar.UserControls
             }
             catch (Exception)
             {
-
             }
-           
         }
 
         private void getSchool(string SearchText)

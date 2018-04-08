@@ -118,9 +118,7 @@ namespace MoalemYar.UserControls
             }
             catch (Exception)
             {
-
             }
-          
         }
 
         private void getUser(string SearchText)
@@ -138,9 +136,7 @@ namespace MoalemYar.UserControls
             }
             catch (Exception)
             {
-
             }
-           
         }
 
         private void deleteUser(long id)

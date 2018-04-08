@@ -22,6 +22,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using ThumbnailSharp;
+
 namespace MoalemYar.UserControls
 {
     /// <summary>
@@ -58,7 +59,8 @@ namespace MoalemYar.UserControls
                 return await query.ToListAsync();
             }
         }
-            public async static Task<List<DataClass.Tables.Student>> GetAllStudentsAsync(string SearchText)
+
+        public async static Task<List<DataClass.Tables.Student>> GetAllStudentsAsync(string SearchText)
         {
             using (var db = new DataClass.myDbContext())
             {
@@ -144,9 +146,7 @@ namespace MoalemYar.UserControls
             }
             catch (Exception)
             {
-
             }
-            
         }
 
         private void getStudent()
@@ -164,9 +164,7 @@ namespace MoalemYar.UserControls
             }
             catch (Exception)
             {
-
             }
-           
         }
 
         private void getStudent(string SearchText)
@@ -184,9 +182,7 @@ namespace MoalemYar.UserControls
             }
             catch (Exception)
             {
-
             }
-            
         }
 
         private void deleteStudent(long id)
