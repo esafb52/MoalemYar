@@ -23,8 +23,14 @@ namespace MoalemYar
     {
         protected override void OnStartup(StartupEventArgs e)
         {
+            #region This is for Change Database Location we change DataDirectory to Other Location
+
             string fileName = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
             AppDomain.CurrentDomain.SetData("DataDirectory", System.Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\" + Assembly.GetExecutingAssembly().GetName().Name + @"\");
+
+            #endregion
+
+            #region Load Embedded Assembly
 
             AppDomain.CurrentDomain.AssemblyResolve += OnResolveAssembly;
             var assembly = Assembly.GetExecutingAssembly();
@@ -39,6 +45,10 @@ namespace MoalemYar
                                        name);
             }
 
+            #endregion
+
+            #region Check AppData Folder Existen and Create Config.json
+
             string folder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
             string specificFolder = Path.Combine(folder, Assembly.GetExecutingAssembly().GetName().Name);
             if (!Directory.Exists(specificFolder))
@@ -46,6 +56,8 @@ namespace MoalemYar
 
             if (!System.IO.File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\MoalemYar\config.json"))
                AppVariable.InitializeSettings();
+
+            #endregion
         }
 
         private static Assembly OnResolveAssembly(object sender, ResolveEventArgs args)
@@ -59,22 +71,5 @@ namespace MoalemYar
 
             return EmbeddedAssembly.Get(args.Name);
         }
-
-        /*  List of Embeded Assembly
-            Arthas.dll
-            Enterwell.Clients.Wpf.Notifications.dll
-            FontAwesome.WPF.dll
-            Logify.Alert.Core.dll
-            Ookii.Dialogs.Wpf.dll
-            SQLite.CodeFirst.dll
-            ThumbnailSharp.dll */
-
-        /* List of NotEmbeded
-            * EntityFramework.dll
-            * EntityFrameworkSqlserver.dll
-            * Logify.Alert.Wpf.dll
-            * System.Data.SQLite.dll
-            * System.Data.SQLiteEF6.dll
-            * System.Data.SQLiteLinq.dll */
     }
 }
