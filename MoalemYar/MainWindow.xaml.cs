@@ -457,10 +457,6 @@ namespace MoalemYar
 
         #endregion "Progressbar"
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-        }
-
         private void tab_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             switch (tab.SelectedIndex)

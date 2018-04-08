@@ -22,8 +22,16 @@ namespace MoalemYar
     public class AppVariable
     {
         private static SettingsBag Settings { get; } = JsonSettings.Construct<SettingsBag>(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\MoalemYar\config.json").LoadNow().EnableAutosave();
+
+        #region Crash Report
+
         public static string LogifyOfflinePath = System.Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\" + Assembly.GetExecutingAssembly().GetName().Name + @"\";
-        public static string LogifyAPIKey = "SPECIFY_YOUR_API_KEY_HERE"; // http://logify.devexpress.com/
+        public static string LogifyAPIKey = "SPECIFY_YOUR_API_KEY_HERE"; // http://logify.devexpress.com/   //Todo: Add API
+
+        #endregion
+
+        #region Update Configuration
+
         public static string UpdateServer = "https://raw.githubusercontent.com/ghost1372/MoalemYar/master/Updater.xml";
         public const string UpdateXmlTag = "MoalemYar"; //Defined in Xml file
         public const string UpdateXmlChildTag = "AppVersion"; //Defined in Xml file
@@ -31,19 +39,30 @@ namespace MoalemYar
         public const string UpdateUrlTag = "url"; //Defined in Xml file
         public const string UpdateChangeLogTag = "changelog";
 
+        #endregion
+
+        #region App Details
+
         public static string getAppName = Assembly.GetExecutingAssembly().GetName().Name;
         public static string getAppVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
         public static string getAppNameAndVersion = Assembly.GetExecutingAssembly().GetName().Name + " " + Assembly.GetExecutingAssembly().GetName().Version.ToString();
         public static string getAppTitle = "معلم یار نسخه آزمایشی ";
 
-        // COLOR \\
-        public const string CYAN = "#00BCD4";
+        #endregion
 
+        #region Colors
+
+        public const string CYAN = "#00BCD4";
         public const string GREEN = "#4CAF50";
         public const string BGBLACK = "#333";
         public const string ORANGE = "#E0A030";
         public const string RED = "#F44336";
         public const string BLUE = "#1751C3";
+        public const string DEFAULT_BORDER_BRUSH = "#6D819A";
+
+        #endregion
+
+        #region Config Key
 
         public static string TosifiSystem = "TosifiSystem";
         public static string CredentialLogin = "Credential";
@@ -52,6 +71,9 @@ namespace MoalemYar
         public static string AutoSendReport = "AutoSendReport";
         public static string SkinCode = "SkinCode";
 
+        #endregion
+
+        #region "ReadWrite Settings"
         public static int ReadIntSetting(string key)
         {
             try
@@ -96,9 +118,7 @@ namespace MoalemYar
                 Settings[Autorun] = false;
                 Settings[HamburgerMenu] = true;
                 Settings[AutoSendReport] = true;
-                Settings[SkinCode] = "#6D819A";
-
-
+                Settings[SkinCode] = DEFAULT_BORDER_BRUSH;
             }
             catch (Exception)
             {
@@ -139,7 +159,9 @@ namespace MoalemYar
                 return;
             }
         }
-        
+
+        #endregion
+
         public static void RegisterInStartup(bool isChecked)
         {
             var productName = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).ProductName;
