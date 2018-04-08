@@ -41,8 +41,12 @@
                         <Metro:MetroTextBox x:Name="txtAddName" TabIndex="0" Margin="10,10,5,0" InputHint="نام" Height="30" Grid.Column="0" PopupHint="نام دانش آموز" MetroPopupBackgroundState="DarkRed" VerticalAlignment="Top" />
                         <Metro:MetroTextBox x:Name="txtAddLName" TabIndex="1" InputHint="نام خانوادگی" Grid.Column="0"  PopupHint="نام خانوادگی دانش آموز" MetroPopupBackgroundState="DarkRed"  Height="30" VerticalAlignment="Top" Margin="10,45,5,0" />
                         <Metro:MetroTextBox x:Name="txtAddFName" TabIndex="2" InputHint="نام پدر" Height="30" Grid.Column="0" PopupHint="نام پدر دانش آموز" MetroPopupBackgroundState="DarkRed" VerticalAlignment="Top" Margin="10,80,5,0" />
-                        <Metro:MetroImage ImageHeight="250" ImageWidth="250" Stretch="Fill" x:Name="imgStudent" Grid.Column="1" Source="..\Resources\Choose.png" Content="MetroImage" RenderTransformOrigin="0.5,0.5" Height="180" VerticalAlignment="Top" HorizontalAlignment="Right" Width="203" Margin="0,0,10,0" />
-                        <Metro:MetroButton x:Name="btnChoose" Click="btnChoose_Click" Focusable="False" Grid.Column="1"  Content="انتخاب عکس" MetroButtonState="DarkGreen" Height="46" VerticalAlignment="Top" HorizontalAlignment="Left" Width="172" Margin="10,15,0,0" />
+                        <Grid Grid.Column="1">
+                            <StackPanel Orientation="Horizontal">
+                                <Metro:MetroButton x:Name="btnChoose"  VerticalAlignment="Top" Click="btnChoose_Click" Focusable="False" Content="انتخاب عکس" MetroButtonState="DarkGreen" Height="46" Margin="10,40,10,0" HorizontalAlignment="Center"  />
+                                <Metro:MetroImage  VerticalAlignment="Top" Margin="10" ImageHeight="250" ImageWidth="250" Stretch="Fill" x:Name="imgStudent" Source="..\Resources\Choose.png" Content="MetroImage" RenderTransformOrigin="0.5,0.5" Height="180" Width="203" />
+                            </StackPanel>
+                        </Grid>
                         <ContentControl x:Name="cmbAddContentGender" TabIndex="3" Focusable="False" Grid.Column="0" Height="30" VerticalAlignment="Top" Margin="10,115,5,0">
                             <ContentControl.ContentTemplate>
                                 <DataTemplate>
@@ -194,17 +198,11 @@
                                     </ControlTemplate>
                                 </ComboBox.Template>
                             </ComboBox>
-                            <Grid Grid.Row="5">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition />
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition />
-                                    <ColumnDefinition />
-                                </Grid.ColumnDefinitions>
-                                <Metro:MetroImage ImageHeight="250" ImageWidth="250" Stretch="Fill" x:Name="imgEditStudent" Grid.Column="1" Source="..\Resources\Choose.png" Content="MetroImage" RenderTransformOrigin="0.5,0.5" Height="180" VerticalAlignment="Top" HorizontalAlignment="Left" Width="175" />
-                                <Metro:MetroButton Margin="10,5" x:Name="btnEditChoose" Click="btnEditChoose_Click" Focusable="False" Grid.Column="0" Grid.Row="0"  Content="انتخاب عکس" MetroButtonState="DarkGreen" Height="46" VerticalAlignment="Top" HorizontalAlignment="Left" Width="172" />
-                            </Grid>
+                            <StackPanel Orientation="Horizontal" Grid.Row="5">
+                                <Metro:MetroButton Margin="10,30" x:Name="btnEditChoose" Click="btnEditChoose_Click" Focusable="False" Content="انتخاب عکس" MetroButtonState="DarkGreen" Height="46" VerticalAlignment="Top" HorizontalAlignment="Left" Width="172" />
+                                <Metro:MetroImage ImageHeight="250" ImageWidth="250" Stretch="Fill" x:Name="imgEditStudent" Source="..\Resources\Choose.png" Content="MetroImage" RenderTransformOrigin="0.5,0.5" Height="180" VerticalAlignment="Top" HorizontalAlignment="Left" Width="175" />
+                            </StackPanel>
+                           
 
                             <Grid Grid.Row="6">
                                 <Grid.RowDefinitions>
