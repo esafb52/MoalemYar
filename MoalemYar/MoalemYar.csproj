@@ -51,11 +51,11 @@
     <Reference Include="Logify.Alert.Wpf, Version=1.0.42.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <HintPath>..\packages\Logify.Alert.Wpf.1.0.42\lib\net45\Logify.Alert.Wpf.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="nucs.JsonSettings, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\nucs.JsonSettings.1.0.0.1\lib\net45\nucs.JsonSettings.dll</HintPath>
+    <Reference Include="nucs.JsonSettings, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\nucs.JsonSettings.1.0.2\lib\net45\nucs.JsonSettings.dll</HintPath>
     </Reference>
     <Reference Include="Ookii.Dialogs.Wpf">
       <HintPath>E:\Programming\Sorce cod\C#\Ookii.Dialogs\Ookii.Dialogs.Wpf.dll</HintPath>
