@@ -164,6 +164,24 @@ namespace MoalemYar
 
         #endregion "ReadWrite Settings"
 
+        public static string RunActionMeasurePerformance(Action action)
+        {
+            GC.Collect();
+            long initMemUsage = Process.GetCurrentProcess().WorkingSet64;
+
+            var stopwatch = new Stopwatch();
+            stopwatch.Start();
+
+            action();
+
+            stopwatch.Stop();
+
+            var currentMemUsage = Process.GetCurrentProcess().WorkingSet64;
+            var memUsage = currentMemUsage - initMemUsage;
+            if (memUsage < 0) memUsage = 0;
+
+            return string.Format(" Elapsed time: {0}, Memory Usage: {1:N2} KB", stopwatch.Elapsed, memUsage / 1024);
+        }
         public static void RegisterInStartup(bool isChecked)
         {
             var productName = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).ProductName;

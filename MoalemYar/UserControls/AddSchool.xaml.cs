@@ -129,14 +129,22 @@ namespace MoalemYar.UserControls
 
         private void getSchool(string SearchText)
         {
-            var query = GetAllSchoolsAsync(SearchText);
-            query.Wait();
+            try
+            {
+                var query = GetAllSchoolsAsync(SearchText);
+                query.Wait();
 
-            List<DataClass.Tables.School> data = query.Result;
-            if (data.Any())
-                dgv.ItemsSource = data;
-            else
-                MainWindow.main.ShowNoDataNotification("School");
+                List<DataClass.Tables.School> data = query.Result;
+                if (data.Any())
+                    dgv.ItemsSource = data;
+                else
+                    MainWindow.main.ShowNoDataNotification("School");
+            }
+            catch (Exception)
+            {
+
+            }
+           
         }
 
         private void deleteSchool(long id)

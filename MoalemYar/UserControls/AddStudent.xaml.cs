@@ -261,6 +261,7 @@ namespace MoalemYar.UserControls
             {
                 if (runOnceSchool)
                 {
+
                     getSchool();
                     runOnceSchool = false;
                 }

@@ -39,7 +39,8 @@ namespace MoalemYar
             DataContext = this;
             main = this;
 
-            appTitle = AppVariable.getAppTitle + AppVariable.getAppVersion; // App Title with Version
+            //Todo: Remove RunAction
+            appTitle = AppVariable.getAppTitle + AppVariable.getAppVersion + AppVariable.RunActionMeasurePerformance(()=>getexHint()); // App Title with Version
 
             ShowCredentialDialog();
 
@@ -47,7 +48,11 @@ namespace MoalemYar
 
             LoadSettings();
         }
-
+        private void MetroWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            //Todo: Enable this
+            //getexHint();
+        }
         #region "Async Query"
 
         public async static Task<List<DataClass.Tables.School>> GetAllSchoolAsync()
@@ -467,6 +472,7 @@ namespace MoalemYar
             }
         }
 
+        string userControl;
         private void exAddOrUpdateSchool_Click(object sender, EventArgs e)
         {
             exContent.Content = new AddSchool();
@@ -494,10 +500,7 @@ namespace MoalemYar
             exContent.Content = new AddUser();
         }
 
-        private void MetroWindow_Loaded(object sender, RoutedEventArgs e)
-        {
-            getexHint();
-        }
+        
 
         private void exAddOrUpdateStudent_Click(object sender, EventArgs e)
         {
