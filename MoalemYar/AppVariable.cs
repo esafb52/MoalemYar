@@ -14,6 +14,7 @@ using nucs.JsonSettings.Fluent;
 using System;
 using System.Diagnostics;
 using System.Reflection;
+using System.Windows.Data;
 
 namespace MoalemYar
 {

@@ -152,11 +152,10 @@ namespace MoalemYar.UserControls
                 query.Wait();
 
                 List<DataClass.DataTransferObjects.SchoolsStudentsJointDto> data = query.Result;
+                _initialCollection = query.Result;
+
                 if (data.Any())
-                {
                     dgv.ItemsSource = data.ToList();
-                    _initialCollection = data;
-                }
                 else
                     MainWindow.main.ShowNoDataNotification("Student");
             }

@@ -35,7 +35,7 @@ namespace MoalemYar.UserControls
         private bool runOnceStudent = true;
 
         internal static Attendancelist main;
-        //private List<DataClass.Tables.School> _initialCollection;
+        private List<DataClass.DataTransferObjects.SchoolsStudentsJointDto> _initialCollection;
         public Attendancelist()
         {
             InitializeComponent();
@@ -145,17 +145,21 @@ namespace MoalemYar.UserControls
 
         private void getStudent()
         {
+
+          
             try
             {
                 var query = GetAllStudentsAsync();
                 query.Wait();
 
                 List<DataClass.DataTransferObjects.SchoolsStudentsJointDto> data = query.Result;
-                //if (data.Any())
-                //    //this.listBox_Results.ItemsSource = data.ToList();
-                //  _initialCollection = data;
-                //else
-                //    MainWindow.main.ShowNoDataNotification("Student");
+
+                _initialCollection = query.Result;
+
+                if (data.Any())
+                    this.listView1.ItemsSource = data.ToList();
+                else
+                    MainWindow.main.ShowNoDataNotification("Student");
             }
             catch (Exception)
             {
@@ -192,8 +196,9 @@ namespace MoalemYar.UserControls
                 {
 
                     getSchool();
+                    getStudent();
                     runOnceSchool = false;
-                   
+
                 }
             }
             else
@@ -204,7 +209,7 @@ namespace MoalemYar.UserControls
                     runOnceStudent = false;
                 }
             }
-           
+
         }
 
         private void dgv_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -354,5 +359,6 @@ namespace MoalemYar.UserControls
             return null;
         }
 
+        
     }
 }
