@@ -14,11 +14,13 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Drawing.Imaging;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using ThumbnailSharp;
@@ -32,7 +34,6 @@ namespace MoalemYar.UserControls
     {
         public Brush BorderColor { get; set; }
         private bool runOnceSchool = true;
-        private bool runOnceStudent = true;
 
         internal static AddStudent main;
         private List<DataClass.DataTransferObjects.SchoolsStudentsJointDto> _initialCollection;
@@ -48,7 +49,7 @@ namespace MoalemYar.UserControls
 
         #region "Async Query"
 
-        public async static Task<List<DataClass.DataTransferObjects.SchoolsStudentsJointDto>> GetAllStudentsAsync()
+        public async static Task<List<DataClass.DataTransferObjects.SchoolsStudentsJointDto>> GetAllStudentsAsync(long BaseId)
         {
             using (var db = new DataClass.myDbContext())
             {
@@ -57,11 +58,8 @@ namespace MoalemYar.UserControls
                   c => c.Id,
                   v => v.BaseId,
                   (c, v) => new DataClass.DataTransferObjects.SchoolsStudentsJointDto { Name = v.Name, LName = v.LName, FName = v.FName, Gender = v.Gender, BaseId = v.BaseId, Image = v.Image, Id = v.Id, Base = c.Base }
-              ).OrderBy(x=>x.LName);
-                //var query = from c in db.Schools
-                //            join v in db.Students on c.Id equals v.BaseId 
-                //            select new DataClass.DataTransferObjects.SchoolsStudentsJointDto { Name = v.Name, LName = v.LName, FName = v.FName, Gender = v.Gender, BaseId = v.BaseId, Image = v.Image, Id = v.Id, Base = c.Base };
-
+              ).OrderBy(x=>x.LName).Where(x=>x.BaseId == BaseId);
+              
                 return await query.ToListAsync();
             }
         }
@@ -137,6 +135,7 @@ namespace MoalemYar.UserControls
                 {
                     cmbBase.ItemsSource = data;
                     cmbEditBase.ItemsSource = data;
+                    cmbBaseEdit.ItemsSource = data;
                 }
             }
             catch (Exception)
@@ -144,11 +143,11 @@ namespace MoalemYar.UserControls
             }
         }
 
-        private void getStudent()
+        private void getStudent(long BaseId)
         {
             try
             {
-                var query = GetAllStudentsAsync();
+                var query = GetAllStudentsAsync(BaseId);
                 query.Wait();
 
                 List<DataClass.DataTransferObjects.SchoolsStudentsJointDto> data = query.Result;
@@ -235,22 +234,10 @@ namespace MoalemYar.UserControls
 
         private void tabc_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (tabc.SelectedIndex == 0)
+            if (runOnceSchool)
             {
-                if (runOnceSchool)
-                {
-
-                    getSchool();
-                    runOnceSchool = false;
-                }
-            }
-            else
-            {
-                if (runOnceStudent)
-                {
-                    getStudent();
-                    runOnceStudent = false;
-                }
+                getSchool();
+                runOnceSchool = false;
             }
         }
 
@@ -287,7 +274,7 @@ namespace MoalemYar.UserControls
             updateStudent(id, Convert.ToInt64(cmbEditBase.SelectedValue), txtName.Text, txtLName.Text, txtFName.Text, getComboValue(), CreateThumbnail(imgEditStudent.Source as BitmapImage));
             MainWindow.main.ShowUpdateDataNotification(true, txtName.Text, "دانش آموز");
             editGrid.IsEnabled = false;
-            getStudent();
+            getStudent(Convert.ToInt64(cmbBaseEdit.SelectedValue));
         }
 
         private void btnEditCancel_Click(object sender, RoutedEventArgs e)
@@ -380,7 +367,7 @@ namespace MoalemYar.UserControls
 
         private void txtEditSearch_ButtonClick(object sender, EventArgs e)
         {
-            getStudent();
+            getStudent(Convert.ToInt64(cmbBaseEdit.SelectedValue));
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
@@ -397,7 +384,7 @@ namespace MoalemYar.UserControls
                 deleteStudent(id);
                 MainWindow.main.ShowDeletedNotification(true, txtName.Text, "دانش آموز");
                 editGrid.IsEnabled = false;
-                getStudent();
+                getStudent(Convert.ToInt64(cmbBaseEdit.SelectedValue));
             }
             catch (Exception)
             {
@@ -431,5 +418,12 @@ namespace MoalemYar.UserControls
             if ((bool)dialog.ShowDialog())
                 imgEditStudent.Source = new BitmapImage(new Uri(dialog.FileName));
         }
+
+        private void cmbBaseEdit_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            getStudent(Convert.ToInt64(cmbBaseEdit.SelectedValue));
+        }
+
+       
     }
 }

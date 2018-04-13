@@ -23,5 +23,14 @@ namespace MoalemYar.DataClass
             public byte[] Image { get; set; }
             public string Base { get; set; }
         }
+
+        public class StudentsDto
+        {
+            public long Id { get; set; }
+            public string Name { get; set; }
+            public string LName { get; set; }
+            public string FName { get; set; }
+            public long BaseId { get; set; }
+        }
     }
 }

@@ -5,9 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:MoalemYar.UserControls"
              xmlns:Metro="clr-namespace:Arthas.Controls.Metro;assembly=Arthas"
-             xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2"
-    x:Class="MoalemYar.UserControls.AddStudent"
              mc:Ignorable="d"
+    x:Class="MoalemYar.UserControls.AddStudent"
              Style="{StaticResource myUserControl}"
              d:DesignHeight="550" d:DesignWidth="800">
     <Grid>
@@ -65,41 +64,36 @@
                                 </DataTemplate>
                             </ContentControl.ContentTemplate>
                         </ContentControl>
-
-                        <ComboBox x:Name="cmbBase" Height="30" ItemsSource="{Binding School}"
-                            SelectedValue ="{Binding SchoolName}" DisplayMemberPath="SchoolName"
-                            SelectedValuePath="Id" Margin="10,150,5,0" VerticalAlignment="Top">
-                            <ComboBox.Template>
-                                <ControlTemplate TargetType="ComboBox">
-                                    <Grid>
-                                        <ComboBox x:Name="cb" Height="30"
-                                            DataContext="{Binding RelativeSource={RelativeSource TemplatedParent}}"
-                                            ItemsSource="{Binding ItemsSource, RelativeSource={RelativeSource TemplatedParent}}"
-                                            SelectedValue ="{Binding SelectedValue, RelativeSource={RelativeSource TemplatedParent}}"
-                                            DisplayMemberPath="SchoolName"
-                                            SelectedValuePath="Id">
-                                            <ComboBox.ItemTemplate>
-                                                <DataTemplate>
-                                                    <StackPanel Orientation="Horizontal">
-                                                        <TextBlock Text="{Binding SchoolName}" />
-                                                        <TextBlock Text=" - " />
-                                                        <TextBlock Text="{Binding Base}" />
-                                                        <TextBlock Text=" - " />
-                                                        <TextBlock Text="{Binding Year}" />
-                                                    </StackPanel>
-                                                </DataTemplate>
-                                            </ComboBox.ItemTemplate>
-                                        </ComboBox>
-                                        <TextBlock x:Name="tb" Text="انتخاب کلاس" Margin="3,3,0,0" IsHitTestVisible="False" Visibility="Hidden" />
-                                    </Grid>
-                                    <ControlTemplate.Triggers>
-                                        <Trigger SourceName="cb" Property="SelectedItem" Value="{x:Null}">
-                                            <Setter TargetName="tb" Property="Visibility" Value="Visible" />
-                                        </Trigger>
-                                    </ControlTemplate.Triggers>
-                                </ControlTemplate>
-                            </ComboBox.Template>
+                        <ComboBox x:Name="cmbBase" ItemsSource="{Binding}"  
+                  SelectedItem="{Binding Name}"  
+                      SelectedValue="{Binding SchoolName}"  
+                                  SelectedValuePath="Id"   
+                  Margin="10,150,5,0"
+                  VerticalAlignment="Top"  >
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding SchoolName}" />
+                                        <TextBlock Text=" - " />
+                                        <TextBlock Text="{Binding Base}" />
+                                        <TextBlock Text=" - " />
+                                        <TextBlock Text="{Binding Year}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
                         </ComboBox>
+                        <TextBlock Text=" انتخاب کلاس " IsHitTestVisible="False" Margin="10,150,20,246">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Visibility" Value="Hidden"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ElementName=cmbBase,Path=SelectedItem}" Value="{x:Null}">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
                     </Grid>
                 </Grid>
             </Metro:MetroTabItem>
@@ -114,9 +108,43 @@
                             <Grid.RowDefinitions>
                                 <RowDefinition />
                                 <RowDefinition />
+                                <RowDefinition />
+
                             </Grid.RowDefinitions>
-                            <Metro:MetroTextBox x:Name="txtEditSearch" HorizontalAlignment="Stretch" VerticalAlignment="Top" ButtonTitle="بروزرسانی لیست" ButtonClick="txtEditSearch_ButtonClick"  TabIndex="0" Grid.Row="0" FlowDirection="RightToLeft" InputHint="جستجو..." PopupHint="جستجو بصورت خودکار انجام می شود" MetroPopupBackgroundState="Red2" Margin="10" Icon="../Resources/editIcon.png" TextChanged="txtEditSearch_TextChanged" />
-                            <ListView Grid.Row="1" ScrollViewer.VerticalScrollBarVisibility="Auto" VerticalAlignment="Top" FlowDirection="RightToLeft" SelectionMode="Single" x:Name="dgv" SelectionChanged="dgv_SelectionChanged">
+                            <ComboBox FlowDirection="RightToLeft" x:Name="cmbBaseEdit" SelectionChanged="cmbBaseEdit_SelectionChanged" ItemsSource="{Binding}"  
+                  SelectedItem="{Binding Name}"  
+                      SelectedValue="{Binding SchoolName}"  
+                                  SelectedValuePath="Id"   
+                 Margin="10,10,5,0"
+                                       Height="30" Grid.Row="0"
+                  VerticalAlignment="Top"  >
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding SchoolName}" />
+                                            <TextBlock Text=" - " />
+                                            <TextBlock Text="{Binding Base}" />
+                                            <TextBlock Text=" - " />
+                                            <TextBlock Text="{Binding Year}" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                            <TextBlock Text=" انتخاب کلاس " FlowDirection="RightToLeft" IsHitTestVisible="False"  Height="25" VerticalAlignment="Top" Margin="26,15,9,0">
+                                <TextBlock.Style>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="Visibility" Value="Hidden"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding ElementName=cmbBaseEdit,Path=SelectedItem}" Value="{x:Null}">
+                                                <Setter Property="Visibility" Value="Visible"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+
+                            <Metro:MetroTextBox x:Name="txtEditSearch" HorizontalAlignment="Stretch" VerticalAlignment="Top" ButtonTitle="بروزرسانی لیست" ButtonClick="txtEditSearch_ButtonClick"  TabIndex="0" Grid.Row="1" FlowDirection="RightToLeft" InputHint="جستجو..." PopupHint="جستجو بصورت خودکار انجام می شود" MetroPopupBackgroundState="Red2" Margin="10" Icon="../Resources/editIcon.png" TextChanged="txtEditSearch_TextChanged" />
+                            <ListView Grid.Row="2" ScrollViewer.VerticalScrollBarVisibility="Auto" VerticalAlignment="Top" FlowDirection="RightToLeft" SelectionMode="Single" x:Name="dgv" SelectionChanged="dgv_SelectionChanged">
                                 <ListView.View>
                                     <GridView>
                                         <GridViewColumn Header="نام" Width="100" DisplayMemberBinding="{Binding Name}" />
@@ -202,7 +230,7 @@
                                 <Metro:MetroButton Margin="10,30" x:Name="btnEditChoose" Click="btnEditChoose_Click" Focusable="False" Content="انتخاب عکس" MetroButtonState="DarkGreen" Height="46" VerticalAlignment="Top" HorizontalAlignment="Left" Width="172" />
                                 <Metro:MetroImage ImageHeight="250" ImageWidth="250" Stretch="Fill" x:Name="imgEditStudent" Source="..\Resources\Choose.png" Content="MetroImage" RenderTransformOrigin="0.5,0.5" Height="180" VerticalAlignment="Top" HorizontalAlignment="Left" Width="175" />
                             </StackPanel>
-                           
+
 
                             <Grid Grid.Row="6">
                                 <Grid.RowDefinitions>

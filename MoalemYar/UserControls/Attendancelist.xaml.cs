@@ -35,7 +35,7 @@ namespace MoalemYar.UserControls
         private bool runOnceStudent = true;
 
         internal static Attendancelist main;
-        private List<DataClass.DataTransferObjects.SchoolsStudentsJointDto> _initialCollection;
+        private List<DataClass.DataTransferObjects.StudentsDto> _initialCollection;
         public Attendancelist()
         {
             InitializeComponent();
@@ -47,20 +47,13 @@ namespace MoalemYar.UserControls
 
         #region "Async Query"
 
-        public async static Task<List<DataClass.DataTransferObjects.SchoolsStudentsJointDto>> GetAllStudentsAsync()
+        public async static Task<List<DataClass.DataTransferObjects.StudentsDto>> GetAllStudentsAsync( long BaseId)
         {
             using (var db = new DataClass.myDbContext())
             {
-                var query = db.Schools.Join(
-                  db.Students,
-                  c => c.Id,
-                  v => v.BaseId,
-                  (c, v) => new DataClass.DataTransferObjects.SchoolsStudentsJointDto { Name = v.Name, LName = v.LName, FName = v.FName, Gender = v.Gender, BaseId = v.BaseId, Image = v.Image, Id = v.Id, Base = c.Base }
-              ).OrderBy(x => x.LName);
-                //var query = from c in db.Schools
-                //            join v in db.Students on c.Id equals v.BaseId 
-                //            select new DataClass.DataTransferObjects.SchoolsStudentsJointDto { Name = v.Name, LName = v.LName, FName = v.FName, Gender = v.Gender, BaseId = v.BaseId, Image = v.Image, Id = v.Id, Base = c.Base };
-
+                var query = db.Students.Select(x => new DataClass.DataTransferObjects.StudentsDto { Name = x.Name, LName = x.LName, FName = x.FName, BaseId = x.BaseId, Id = x.Id}
+              ).OrderBy(x => x.LName).Where(x=>x.BaseId == BaseId);
+               
                 return await query.ToListAsync();
             }
         }
@@ -143,16 +136,14 @@ namespace MoalemYar.UserControls
             }
         }
 
-        private void getStudent()
+        private void getStudent(long BaseId)
         {
-
-          
             try
             {
-                var query = GetAllStudentsAsync();
+                var query = GetAllStudentsAsync(BaseId);
                 query.Wait();
 
-                List<DataClass.DataTransferObjects.SchoolsStudentsJointDto> data = query.Result;
+                List<DataClass.DataTransferObjects.StudentsDto> data = query.Result;
 
                 _initialCollection = query.Result;
 
@@ -196,7 +187,6 @@ namespace MoalemYar.UserControls
                 {
 
                     getSchool();
-                    getStudent();
                     runOnceSchool = false;
 
                 }
@@ -205,7 +195,6 @@ namespace MoalemYar.UserControls
             {
                 if (runOnceStudent)
                 {
-                    getStudent();
                     runOnceStudent = false;
                 }
             }
@@ -359,6 +348,20 @@ namespace MoalemYar.UserControls
             return null;
         }
 
-        
+        private void chkIsPresent_Checked(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void chkIsAbsent_Checked(object sender, RoutedEventArgs e)
+        {
+            listView1.Items.Remove(0);
+
+        }
+
+        private void cmbBase_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            getStudent(Convert.ToInt64(cmbBase.SelectedValue));
+        }
     }
 }

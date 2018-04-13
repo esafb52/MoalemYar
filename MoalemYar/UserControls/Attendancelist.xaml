@@ -21,41 +21,37 @@
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
 
-
-                        <ComboBox x:Name="cmbBase" Height="30" ItemsSource="{Binding School}"
-                            SelectedValue ="{Binding SchoolName}" DisplayMemberPath="SchoolName"
-                            SelectedValuePath="Id" Margin="10,10,5,0" VerticalAlignment="Top">
-                            <ComboBox.Template>
-                                <ControlTemplate TargetType="ComboBox">
-                                    <Grid>
-                                        <ComboBox x:Name="cb" Height="30"
-                                            DataContext="{Binding RelativeSource={RelativeSource TemplatedParent}}"
-                                            ItemsSource="{Binding ItemsSource, RelativeSource={RelativeSource TemplatedParent}}"
-                                            SelectedValue ="{Binding SelectedValue, RelativeSource={RelativeSource TemplatedParent}}"
-                                            DisplayMemberPath="SchoolName"
-                                            SelectedValuePath="Id">
-                                            <ComboBox.ItemTemplate>
-                                                <DataTemplate>
-                                                    <StackPanel Orientation="Horizontal">
-                                                        <TextBlock Text="{Binding SchoolName}" />
-                                                        <TextBlock Text=" - " />
-                                                        <TextBlock Text="{Binding Base}" />
-                                                        <TextBlock Text=" - " />
-                                                        <TextBlock Text="{Binding Year}" />
-                                                    </StackPanel>
-                                                </DataTemplate>
-                                            </ComboBox.ItemTemplate>
-                                        </ComboBox>
-                                        <TextBlock x:Name="tb" Text="انتخاب کلاس" Margin="3,3,0,0" IsHitTestVisible="False" Visibility="Hidden" />
-                                    </Grid>
-                                    <ControlTemplate.Triggers>
-                                        <Trigger SourceName="cb" Property="SelectedItem" Value="{x:Null}">
-                                            <Setter TargetName="tb" Property="Visibility" Value="Visible" />
-                                        </Trigger>
-                                    </ControlTemplate.Triggers>
-                                </ControlTemplate>
-                            </ComboBox.Template>
+                        <ComboBox SelectionChanged="cmbBase_SelectionChanged" x:Name="cmbBase" ItemsSource="{Binding}"  
+                  Height="30"
+                                  SelectedItem="{Binding Name}"  
+                      SelectedValue="{Binding SchoolName}"  
+                                  SelectedValuePath="Id"   
+                  Margin="10,10,5,0"
+                  VerticalAlignment="Top"  >
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding SchoolName}" />
+                                        <TextBlock Text=" - " />
+                                        <TextBlock Text="{Binding Base}" />
+                                        <TextBlock Text=" - " />
+                                        <TextBlock Text="{Binding Year}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
                         </ComboBox>
+                        <TextBlock Text=" انتخاب کلاس " IsHitTestVisible="False" Margin="10,10,10,0" Height="30" VerticalAlignment="Top">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Visibility" Value="Hidden"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ElementName=cmbBase,Path=SelectedItem}" Value="{x:Null}">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
                         <ListView Name="listView1" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" Margin="10,45,0,10">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
@@ -75,8 +71,9 @@
                                             </Grid.ColumnDefinitions>
                                             <TextBlock Grid.Column="0" FontWeight="Bold" Text="{Binding Path=Name}"></TextBlock>
                                             <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding Path=LName}"></TextBlock>
-                                            <Metro:MetroSwitch Margin="5" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" IsChecked="False" Name="chkIsPresent">حاظر</Metro:MetroSwitch>
-                                            <Metro:MetroSwitch Margin="5" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right" IsChecked="False" Name="chkIsAbsent">غایب</Metro:MetroSwitch>
+                                            <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding Path=Id}" Visibility="Hidden"></TextBlock>
+                                            <Metro:MetroSwitch Margin="5" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" IsChecked="False" Name="chkIsPresent" CornerRadius="2" BorderCornerRadius="3" Checked="chkIsPresent_Checked">حاظر</Metro:MetroSwitch>
+                                            <Metro:MetroSwitch Margin="5" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right" IsChecked="False" Name="chkIsAbsent" CornerRadius="2" BorderCornerRadius="3" Checked="chkIsAbsent_Checked">غایب</Metro:MetroSwitch>
 
                                         </Grid>
                                     </Border>
