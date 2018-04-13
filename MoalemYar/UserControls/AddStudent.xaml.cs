@@ -245,7 +245,7 @@ namespace MoalemYar.UserControls
         {
             try
             {
-                editGrid.IsEnabled = true;
+                editStack.IsEnabled = true;
                 dynamic selectedItem = dgv.SelectedItems[0];
                 txtName.Text = selectedItem.Name;
                 txtLName.Text = selectedItem.LName;
@@ -273,7 +273,7 @@ namespace MoalemYar.UserControls
 
             updateStudent(id, Convert.ToInt64(cmbEditBase.SelectedValue), txtName.Text, txtLName.Text, txtFName.Text, getComboValue(), CreateThumbnail(imgEditStudent.Source as BitmapImage));
             MainWindow.main.ShowUpdateDataNotification(true, txtName.Text, "دانش آموز");
-            editGrid.IsEnabled = false;
+            editStack.IsEnabled = false;
             getStudent(Convert.ToInt64(cmbBaseEdit.SelectedValue));
         }
 
@@ -284,7 +284,7 @@ namespace MoalemYar.UserControls
             txtFName.Text = string.Empty;
             setComboValue(null);
             cmbEditBase.SelectedIndex = -1;
-            editGrid.IsEnabled = false;
+            editStack.IsEnabled = false;
         }
 
         private string getComboValue()
@@ -383,7 +383,7 @@ namespace MoalemYar.UserControls
                 long id = selectedItem.Id;
                 deleteStudent(id);
                 MainWindow.main.ShowDeletedNotification(true, txtName.Text, "دانش آموز");
-                editGrid.IsEnabled = false;
+                editStack.IsEnabled = false;
                 getStudent(Convert.ToInt64(cmbBaseEdit.SelectedValue));
             }
             catch (Exception)

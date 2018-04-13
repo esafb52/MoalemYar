@@ -65,78 +65,53 @@
                         <ColumnDefinition />
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
-                    <Metro:MetroWaterfallFlow Margin="10,10,10,10" ListWidth="400">
-                        <Grid FlowDirection="LeftToRight">
-                            <Grid.RowDefinitions>
-                                <RowDefinition />
-                                <RowDefinition />
-                            </Grid.RowDefinitions>
-                            <Metro:MetroTextBox Name="txtEditSearch" ButtonTitle="بروزرسانی لیست" ButtonClick="txtEditSearch_ButtonClick"  TabIndex="0" Grid.Row="0" FlowDirection="RightToLeft" InputHint="جستجو..." PopupHint="جستجو بصورت خودکار انجام می شود" MetroPopupBackgroundState="Red2" Margin="0,0,0,0" Icon="../Resources/editIcon.png" TextChanged="txtEditSearch_TextChanged" />
-                            <Metro:MetroScrollViewer Grid.Row="1">
-                                <ListView ScrollViewer.VerticalScrollBarVisibility="Auto" FlowDirection="RightToLeft" SelectionMode="Single" Name="dgv" SelectionChanged="dgv_SelectionChanged">
-                                    <ListView.View>
-                                        <GridView>
-                                            <GridViewColumn Header="آموزشگاه"  DisplayMemberBinding="{Binding SchoolName}" />
-                                            <GridViewColumn Header="مدیر"  DisplayMemberBinding="{Binding Admin}" />
-                                            <GridViewColumn Header="پایه"  DisplayMemberBinding="{Binding Base}" />
-                                            <GridViewColumn Header="سال تحصیلی"  DisplayMemberBinding="{Binding Year}" />
-                                            <GridViewColumn Header="Id" Width="0"  DisplayMemberBinding="{Binding Id}" />
-                                        </GridView>
-                                    </ListView.View>
-                                </ListView>
-                            </Metro:MetroScrollViewer>
-                        </Grid>
-                    </Metro:MetroWaterfallFlow>
-                    <Grid Name="editGrid" IsEnabled="False" Grid.Column="1">
-                        <Grid Margin="10,20,20,0" Grid.Column="0" Grid.Row="1" VerticalAlignment="Top">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="auto" />
-                                <RowDefinition Height="auto" />
-                                <RowDefinition Height="auto" />
-                                <RowDefinition Height="auto" />
-                                <RowDefinition Height="auto" />
-                            </Grid.RowDefinitions>
+                    <StackPanel Grid.Column="0" Margin="10" Orientation="Vertical">
+                        <Metro:MetroTextBox Name="txtEditSearch" Margin="2" ButtonTitle="بروزرسانی لیست" ButtonClick="txtEditSearch_ButtonClick" FlowDirection="RightToLeft" InputHint="جستجو..." PopupHint="جستجو بصورت خودکار انجام می شود" MetroPopupBackgroundState="Red2" Icon="../Resources/editIcon.png" TextChanged="txtEditSearch_TextChanged" />
+                        <ListView ScrollViewer.VerticalScrollBarVisibility="Auto" Margin="2" FlowDirection="RightToLeft" SelectionMode="Single" Name="dgv" SelectionChanged="dgv_SelectionChanged">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Header="آموزشگاه"  DisplayMemberBinding="{Binding SchoolName}" />
+                                    <GridViewColumn Header="مدیر"  DisplayMemberBinding="{Binding Admin}" />
+                                    <GridViewColumn Header="پایه"  DisplayMemberBinding="{Binding Base}" />
+                                    <GridViewColumn Header="سال تحصیلی"  DisplayMemberBinding="{Binding Year}" />
+                                    <GridViewColumn Header="Id" Width="0"  DisplayMemberBinding="{Binding Id}" />
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
 
-                            <Metro:MetroTextBox Name="txtYear" TabIndex="1" Grid.Row="0" InputHint="سال تحصیلی" Height="30" PopupHint="سال تحصیلی باید بصورت 97-98 وارد شود" MetroPopupBackgroundState="DarkRed" VerticalAlignment="Top" />
-                            <Metro:MetroTextBox Name="txtSchool" TabIndex="2" Grid.Row="1" InputHint="نام مدرسه" PopupHint="نام آموزشگاه را وارد کنید" MetroPopupBackgroundState="DarkRed" Height="30" VerticalAlignment="Top" />
-                            <Metro:MetroTextBox Name="txtAdmin" TabIndex="3" Grid.Row="2" InputHint="نام مدیر" Height="30" PopupHint="نام مدیریت آموزشگاه" MetroPopupBackgroundState="DarkRed" VerticalAlignment="Top" />
-                            <ContentControl Name="cmbContent" TabIndex="4" Focusable="False" Grid.Row="3" Margin="5" Height="30" VerticalAlignment="Top">
-                                <ContentControl.ContentTemplate>
-                                    <DataTemplate>
-                                        <Grid>
-                                            <ComboBox Name="cmbBase" TabIndex="4">
-                                                <ComboBoxItem Content="اول" />
-                                                <ComboBoxItem Content="دوم" />
-                                                <ComboBoxItem Content="سوم" />
-                                                <ComboBoxItem Content="چهارم" />
-                                                <ComboBoxItem Content="پنجم" />
-                                                <ComboBoxItem Content="ششم" />
-                                            </ComboBox>
-                                            <TextBlock x:Name="tb" Text=" انتخاب پایه " IsHitTestVisible="False" Visibility="Hidden" />
-                                        </Grid>
-                                        <DataTemplate.Triggers>
-                                            <Trigger SourceName="cmbBase" Property="SelectedItem" Value="{x:Null}">
-                                                <Setter TargetName="tb" Property="Visibility" Value="Visible" />
-                                            </Trigger>
-                                        </DataTemplate.Triggers>
-                                    </DataTemplate>
-                                </ContentControl.ContentTemplate>
-                            </ContentControl>
-                            <Grid Grid.Row="4">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition />
-                                    <RowDefinition />
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition />
-                                    <ColumnDefinition />
-                                </Grid.ColumnDefinitions>
-                                <Metro:MetroButton Name="btnEditSave" Click="btnEditSave_Click" Focusable="False" Grid.Row="0" Grid.Column="0" Margin="10,5" Content="ذخیره" MetroButtonState="DarkGreen" />
-                                <Metro:MetroButton Name="btnEditCancel" Click="btnEditCancel_Click" Focusable="False" Grid.Row="0" Grid.Column="1" Margin="10,5" Content="انصراف" MetroButtonState="Red2" />
-                                <Metro:MetroButton Name="btnDelete" Click="btnDelete_Click" Focusable="False" Grid.Row="1" Margin="10,5" Content="حذف" MetroButtonState="DarkRed" Grid.ColumnSpan="2" />
-                            </Grid>
-                        </Grid>
-                    </Grid>
+                    </StackPanel>
+                    <StackPanel Name="editGrid" Orientation="Vertical" Grid.Column="1" Margin="5">
+                        <Metro:MetroTextBox Margin="2" Name="txtYear"  InputHint="سال تحصیلی" Height="30" PopupHint="سال تحصیلی باید بصورت 97-98 وارد شود" MetroPopupBackgroundState="DarkRed" VerticalAlignment="Top" />
+                        <Metro:MetroTextBox Margin="2" Name="txtSchool"  InputHint="نام مدرسه" PopupHint="نام آموزشگاه را وارد کنید" MetroPopupBackgroundState="DarkRed" Height="30" VerticalAlignment="Top" />
+                        <Metro:MetroTextBox Margin="2" Name="txtAdmin" InputHint="نام مدیر" Height="30" PopupHint="نام مدیریت آموزشگاه" MetroPopupBackgroundState="DarkRed" VerticalAlignment="Top" />
+                        <ContentControl Name="cmbContent" Focusable="False" Margin="2" Height="30" VerticalAlignment="Top">
+                            <ContentControl.ContentTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <ComboBox Name="cmbBase" TabIndex="4">
+                                            <ComboBoxItem Content="اول" />
+                                            <ComboBoxItem Content="دوم" />
+                                            <ComboBoxItem Content="سوم" />
+                                            <ComboBoxItem Content="چهارم" />
+                                            <ComboBoxItem Content="پنجم" />
+                                            <ComboBoxItem Content="ششم" />
+                                        </ComboBox>
+                                        <TextBlock x:Name="tb" Text=" انتخاب پایه " IsHitTestVisible="False" Visibility="Hidden" />
+                                    </Grid>
+                                    <DataTemplate.Triggers>
+                                        <Trigger SourceName="cmbBase" Property="SelectedItem" Value="{x:Null}">
+                                            <Setter TargetName="tb" Property="Visibility" Value="Visible" />
+                                        </Trigger>
+                                    </DataTemplate.Triggers>
+                                </DataTemplate>
+                            </ContentControl.ContentTemplate>
+                        </ContentControl>
+                        <StackPanel HorizontalAlignment="Center" Margin="5" Orientation="Horizontal">
+                            <Metro:MetroButton Name="btnEditSave" Click="btnEditSave_Click" Focusable="False" Grid.Row="0" Grid.Column="0" Margin="10,5" Content="ذخیره" MetroButtonState="DarkGreen" />
+                            <Metro:MetroButton Name="btnEditCancel" Click="btnEditCancel_Click" Focusable="False" Grid.Row="0" Grid.Column="1" Margin="10,5" Content="انصراف" MetroButtonState="Red2" />
+                            <Metro:MetroButton Name="btnDelete" Click="btnDelete_Click" Focusable="False" Grid.Row="1" Margin="10,5" Content="حذف" MetroButtonState="DarkRed" Grid.ColumnSpan="2" />
+                        </StackPanel>
+                    </StackPanel>
                 </Grid>
             </Metro:MetroTabItem>
         </Metro:MetroTabControl>

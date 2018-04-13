@@ -40,54 +40,28 @@
                         <ColumnDefinition />
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
-                    <Metro:MetroWaterfallFlow Margin="10,10,10,10" ListWidth="400">
-                        <Grid FlowDirection="LeftToRight">
-                            <Grid.RowDefinitions>
-                                <RowDefinition />
-                                <RowDefinition />
-                            </Grid.RowDefinitions>
-                            <Metro:MetroTextBox Name="txtEditSearch" ButtonTitle="بروزرسانی لیست" ButtonClick="txtEditSearch_ButtonClick"  TabIndex="0" Grid.Row="0" FlowDirection="RightToLeft" InputHint="جستجو..." PopupHint="جستجو بصورت خودکار انجام می شود" MetroPopupBackgroundState="Red2" Margin="0,0,0,0" Icon="../Resources/editIcon.png" TextChanged="txtEditSearch_TextChanged" />
-                            <Metro:MetroScrollViewer Grid.Row="1">
-                                <ListView ScrollViewer.VerticalScrollBarVisibility="Auto" FlowDirection="RightToLeft" SelectionMode="Single" Name="dgv" SelectionChanged="dgv_SelectionChanged">
-                                    <ListView.View>
-                                        <GridView>
-                                            <GridViewColumn Width="100" Header="نام کاربری"  DisplayMemberBinding="{Binding Username}" />
-                                            <GridViewColumn Width="255" Header="رمز عبور"  DisplayMemberBinding="{Binding Password}" />
-                                            <GridViewColumn Header="Id" Width="0"  DisplayMemberBinding="{Binding Id}" />
-                                        </GridView>
-                                    </ListView.View>
-                                </ListView>
-                            </Metro:MetroScrollViewer>
-                        </Grid>
-                    </Metro:MetroWaterfallFlow>
-                    <Grid Name="editGrid" IsEnabled="False" Grid.Column="1">
-                        <Grid Margin="10,20,20,0" Grid.Column="0" Grid.Row="1" VerticalAlignment="Top">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="auto" />
-                                <RowDefinition Height="auto" />
-                                <RowDefinition Height="auto" />
-                                <RowDefinition Height="auto" />
-                                <RowDefinition Height="auto" />
-                            </Grid.RowDefinitions>
-
-                            <Metro:MetroTextBox Name="txtUsername" TabIndex="1" Grid.Row="0" InputHint="نام کاربری" Height="30" PopupHint="نام کاربری باید بصورت لاتین باشد" MetroPopupBackgroundState="DarkRed" VerticalAlignment="Top" />
-                            <Metro:MetroTextBox Name="txtPassword" TabIndex="2" Grid.Row="1" InputHint="رمز عبور" PopupHint="رمز عبور می تواند ترکیبی از حروف و اعداد باشد" MetroPopupBackgroundState="DarkRed" Height="30" VerticalAlignment="Top" />
-                            <Metro:MetroTextBox Name="txtPasswordAg" TabIndex="3" Grid.Row="2" InputHint="تکرار رمز عبور" Height="30" PopupHint="رمز عبور خود را تکرار کنید" MetroPopupBackgroundState="DarkRed" VerticalAlignment="Top" />
-                            <Grid Grid.Row="4">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition />
-                                    <RowDefinition />
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition />
-                                    <ColumnDefinition />
-                                </Grid.ColumnDefinitions>
-                                <Metro:MetroButton Name="btnEditSave" Click="btnEditSave_Click" Focusable="False" Grid.Row="0" Grid.Column="0" Margin="10,5" Content="ذخیره" MetroButtonState="DarkGreen" />
-                                <Metro:MetroButton Name="btnEditCancel" Click="btnEditCancel_Click" Focusable="False" Grid.Row="0" Grid.Column="1" Margin="10,5" Content="انصراف" MetroButtonState="Red2" />
-                                <Metro:MetroButton Name="btnDelete" Click="btnDelete_Click" Focusable="False" Grid.Row="1" Margin="10,5" Content="حذف" MetroButtonState="DarkRed" Grid.ColumnSpan="2" />
-                            </Grid>
-                        </Grid>
-                    </Grid>
+                    <StackPanel Grid.Column="0" Orientation="Vertical" Margin="10">
+                        <Metro:MetroTextBox Name="txtEditSearch" ButtonTitle="بروزرسانی لیست" Margin="2" ButtonClick="txtEditSearch_ButtonClick"  FlowDirection="RightToLeft" InputHint="جستجو..." PopupHint="جستجو بصورت خودکار انجام می شود" MetroPopupBackgroundState="Red2" Icon="../Resources/editIcon.png" TextChanged="txtEditSearch_TextChanged" />
+                        <ListView ScrollViewer.VerticalScrollBarVisibility="Auto" Margin="2" FlowDirection="RightToLeft" SelectionMode="Single" Name="dgv" SelectionChanged="dgv_SelectionChanged">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn Width="100" Header="نام کاربری"  DisplayMemberBinding="{Binding Username}" />
+                                    <GridViewColumn Width="255" Header="رمز عبور"  DisplayMemberBinding="{Binding Password}" />
+                                    <GridViewColumn Header="Id" Width="0"  DisplayMemberBinding="{Binding Id}" />
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Grid.Column="1" Name="editGrid" Margin="10">
+                        <Metro:MetroTextBox Name="txtUsername" Margin="2" InputHint="نام کاربری" Height="30" PopupHint="نام کاربری باید بصورت لاتین باشد" MetroPopupBackgroundState="DarkRed" VerticalAlignment="Top" />
+                        <Metro:MetroTextBox Name="txtPassword" Margin="2" InputHint="رمز عبور" PopupHint="رمز عبور می تواند ترکیبی از حروف و اعداد باشد" MetroPopupBackgroundState="DarkRed" Height="30" VerticalAlignment="Top" />
+                        <Metro:MetroTextBox Name="txtPasswordAg" Margin="2" InputHint="تکرار رمز عبور" Height="30" PopupHint="رمز عبور خود را تکرار کنید" MetroPopupBackgroundState="DarkRed" VerticalAlignment="Top" />
+                        <StackPanel Orientation="Horizontal" Margin="5" HorizontalAlignment="Center">
+                            <Metro:MetroButton Name="btnEditSave" Click="btnEditSave_Click" Focusable="False" Grid.Row="0" Grid.Column="0" Margin="10,5" Content="ذخیره" MetroButtonState="DarkGreen" />
+                            <Metro:MetroButton Name="btnEditCancel" Click="btnEditCancel_Click" Focusable="False" Grid.Row="0" Grid.Column="1" Margin="10,5" Content="انصراف" MetroButtonState="Red2" />
+                            <Metro:MetroButton Name="btnDelete" Click="btnDelete_Click" Focusable="False" Grid.Row="1" Margin="10,5" Content="حذف" MetroButtonState="DarkRed" Grid.ColumnSpan="2" />
+                        </StackPanel>
+                    </StackPanel>
                 </Grid>
             </Metro:MetroTabItem>
         </Metro:MetroTabControl>
