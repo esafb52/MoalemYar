@@ -52,19 +52,30 @@ namespace MoalemYar.UserControls
         {
             using (var db = new DataClass.myDbContext())
             {
-                var query = from c in db.Schools
-                            join v in db.Students on c.Id equals v.BaseId
-                            select new DataClass.DataTransferObjects.SchoolsStudentsJointDto { Name = v.Name, LName = v.LName, FName = v.FName, Gender = v.Gender, BaseId = v.BaseId, Image = v.Image, Id = v.Id, Base = c.Base };
+                var query = db.Schools.Join(
+                  db.Students,
+                  c => c.Id,
+                  v => v.BaseId,
+                  (c, v) => new DataClass.DataTransferObjects.SchoolsStudentsJointDto { Name = v.Name, LName = v.LName, FName = v.FName, Gender = v.Gender, BaseId = v.BaseId, Image = v.Image, Id = v.Id, Base = c.Base }
+              ).OrderBy(x=>x.LName);
+                //var query = from c in db.Schools
+                //            join v in db.Students on c.Id equals v.BaseId 
+                //            select new DataClass.DataTransferObjects.SchoolsStudentsJointDto { Name = v.Name, LName = v.LName, FName = v.FName, Gender = v.Gender, BaseId = v.BaseId, Image = v.Image, Id = v.Id, Base = c.Base };
 
                 return await query.ToListAsync();
             }
         }
 
-        public async static Task<List<DataClass.Tables.Student>> GetAllStudentsAsync(string SearchText)
+        public async static Task<List<DataClass.DataTransferObjects.SchoolsStudentsJointDto>> GetAllStudentsAsync(string SearchText)
         {
             using (var db = new DataClass.myDbContext())
             {
-                var query = db.Students.Where(x => x.Name.Contains(SearchText) || x.LName.Contains(SearchText) || x.FName.Contains(SearchText) || x.Gender.Contains(SearchText)).Select(x => x);
+                var query = db.Schools.Join(
+                  db.Students,
+                  c => c.Id,
+                  v => v.BaseId,
+                  (c, v) => new DataClass.DataTransferObjects.SchoolsStudentsJointDto { Name = v.Name, LName = v.LName, FName = v.FName, Gender = v.Gender, BaseId = v.BaseId, Image = v.Image, Id = v.Id, Base = c.Base }
+              ).OrderBy(x => x.LName).Where(x => x.Name.Contains(SearchText) || x.LName.Contains(SearchText) || x.FName.Contains(SearchText) || x.Gender.Contains(SearchText)).Select(x => x);
                 return await query.ToListAsync();
             }
         }
@@ -73,8 +84,7 @@ namespace MoalemYar.UserControls
         {
             using (var db = new DataClass.myDbContext())
             {
-                var query = from item in db.Schools
-                            select item;
+                var query = db.Schools.Select(x=>x);
                 return await query.ToListAsync();
             }
         }
@@ -174,7 +184,7 @@ namespace MoalemYar.UserControls
                 var query = GetAllStudentsAsync(SearchText);
                 query.Wait();
 
-                List<DataClass.Tables.Student> data = query.Result;
+                List<DataClass.DataTransferObjects.SchoolsStudentsJointDto> data = query.Result;
                 if (data.Any())
                     dgv.ItemsSource = data;
                 else

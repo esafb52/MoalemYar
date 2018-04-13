@@ -57,8 +57,7 @@ namespace MoalemYar.UserControls
         {
             using (var db = new DataClass.myDbContext())
             {
-                var query = from item in db.Schools
-                            select item;
+                var query = db.Schools.Select(x=>x);
                 return await query.ToListAsync();
             }
         }

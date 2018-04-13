@@ -107,7 +107,7 @@
                         <ContentControl>
                             <ContentControl.ContentTemplate>
                                 <DataTemplate>
-                                    <local:Settings />
+                                    <local:Settings/>
                                 </DataTemplate>
                             </ContentControl.ContentTemplate>
                         </ContentControl>
