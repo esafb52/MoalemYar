@@ -4,10 +4,118 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MoalemYar.UserControls"
+             xmlns:Metro="clr-namespace:Arthas.Controls.Metro;assembly=Arthas"
              mc:Ignorable="d" 
              Style="{StaticResource myUserControl}"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-            
+
+        <Metro:MetroTabControl Focusable="False" x:Name="tabc" IsTabStop="True" TabIndex="-1" SelectionChanged="tabc_SelectionChanged">
+            <Metro:MetroTabItem Header="ثبت اطلاعات">
+                <Grid KeyboardNavigation.TabNavigation="Cycle">
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+
+                        <ComboBox x:Name="cmbBase" Height="30" ItemsSource="{Binding School}"
+                            SelectedValue ="{Binding SchoolName}" DisplayMemberPath="SchoolName"
+                            SelectedValuePath="Id" Margin="10,10,5,0" VerticalAlignment="Top">
+                            <ComboBox.Template>
+                                <ControlTemplate TargetType="ComboBox">
+                                    <Grid>
+                                        <ComboBox x:Name="cb" Height="30"
+                                            DataContext="{Binding RelativeSource={RelativeSource TemplatedParent}}"
+                                            ItemsSource="{Binding ItemsSource, RelativeSource={RelativeSource TemplatedParent}}"
+                                            SelectedValue ="{Binding SelectedValue, RelativeSource={RelativeSource TemplatedParent}}"
+                                            DisplayMemberPath="SchoolName"
+                                            SelectedValuePath="Id">
+                                            <ComboBox.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBlock Text="{Binding SchoolName}" />
+                                                        <TextBlock Text=" - " />
+                                                        <TextBlock Text="{Binding Base}" />
+                                                        <TextBlock Text=" - " />
+                                                        <TextBlock Text="{Binding Year}" />
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </ComboBox.ItemTemplate>
+                                        </ComboBox>
+                                        <TextBlock x:Name="tb" Text="انتخاب کلاس" Margin="3,3,0,0" IsHitTestVisible="False" Visibility="Hidden" />
+                                    </Grid>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger SourceName="cb" Property="SelectedItem" Value="{x:Null}">
+                                            <Setter TargetName="tb" Property="Visibility" Value="Visible" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </ComboBox.Template>
+                        </ComboBox>
+
+                    </Grid>
+                </Grid>
+            </Metro:MetroTabItem>
+            <Metro:MetroTabItem Header="ویرایش اطلاعات">
+                <Grid KeyboardNavigation.TabNavigation="Cycle">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Metro:MetroWaterfallFlow Grid.Column="0" Margin="10,10,10,10" ListWidth="400">
+                        <Grid FlowDirection="LeftToRight">
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Metro:MetroTextBox x:Name="txtEditSearch" HorizontalAlignment="Stretch" VerticalAlignment="Top" ButtonTitle="بروزرسانی لیست" ButtonClick="txtEditSearch_ButtonClick"  TabIndex="0" Grid.Row="0" FlowDirection="RightToLeft" InputHint="جستجو..." PopupHint="جستجو بصورت خودکار انجام می شود" MetroPopupBackgroundState="Red2" Margin="10" Icon="../Resources/editIcon.png" TextChanged="txtEditSearch_TextChanged" />
+                            <ListView Grid.Row="1" ScrollViewer.VerticalScrollBarVisibility="Auto" VerticalAlignment="Top" FlowDirection="RightToLeft" SelectionMode="Single" x:Name="dgv" SelectionChanged="dgv_SelectionChanged">
+                                <ListView.View>
+                                    <GridView>
+                                        <GridViewColumn Header="نام" Width="100" DisplayMemberBinding="{Binding Name}" />
+                                        <GridViewColumn Header="نام خانوادگی" Width="100"  DisplayMemberBinding="{Binding LName}" />
+                                        <GridViewColumn Header="نام پدر" Width="100" DisplayMemberBinding="{Binding FName}" />
+                                        <GridViewColumn Header="جنسیت" Width="100" DisplayMemberBinding="{Binding Gender}" />
+                                        <GridViewColumn Header="پایه" Width="100" DisplayMemberBinding="{Binding Base}" />
+                                        <GridViewColumn Header="Id" Width="0"  DisplayMemberBinding="{Binding Id}" />
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                        </Grid>
+                    </Metro:MetroWaterfallFlow>
+                    <Grid x:Name="editGrid" IsEnabled="False" Grid.Column="1">
+                        <Grid Margin="10,20,20,0" Grid.Column="0" Grid.Row="1" VerticalAlignment="Top">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                            </Grid.RowDefinitions>
+
+                            <Grid Grid.Row="6">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Metro:MetroButton x:Name="btnEditSave" Click="btnEditSave_Click" Focusable="False" Grid.Row="0" Grid.Column="0" Margin="10,5" Content="ذخیره" MetroButtonState="DarkGreen" />
+                                <Metro:MetroButton x:Name="btnEditCancel" Click="btnEditCancel_Click" Focusable="False" Grid.Row="0" Grid.Column="1" Margin="10,5" Content="انصراف" MetroButtonState="Red2" />
+                                <Metro:MetroButton x:Name="btnDelete" Click="btnDelete_Click" Focusable="False" Grid.Row="1" Margin="10,5" Content="حذف" MetroButtonState="DarkRed" Grid.ColumnSpan="2" />
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </Metro:MetroTabItem>
+        </Metro:MetroTabControl>
     </Grid>
+
 </UserControl>
