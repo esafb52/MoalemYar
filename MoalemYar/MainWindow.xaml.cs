@@ -21,7 +21,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-
+using System.Globalization;
 namespace MoalemYar
 {
     /// <summary>
@@ -31,6 +31,7 @@ namespace MoalemYar
     {
         public string appTitle { get; set; }
         internal static MainWindow main;
+        PersianCalendar pc = new PersianCalendar();
         public INotificationMessageManager Manager { get; } = new NotificationMessageManager();
 
         public MainWindow()
@@ -106,6 +107,7 @@ namespace MoalemYar
                 exAddOrUpdateSchool.Hint = dataSchool.Count().ToString();
                 exAddOrUpdateUser.Hint = dataUser.Count().ToString();
                 exAddOrUpdateStudent.Hint = dataStudent.Count().ToString();
+                exAttendancelist.Hint = pc.GetYear(DateTime.Now).ToString("0000") + "/" + pc.GetMonth(DateTime.Now).ToString("00") + "/" + pc.GetDayOfMonth(DateTime.Now).ToString("00");
             }
             catch (Exception)
             {
@@ -472,7 +474,6 @@ namespace MoalemYar
             }
         }
 
-        string userControl;
         private void exAddOrUpdateSchool_Click(object sender, EventArgs e)
         {
             exContent.Content = new AddSchool();
@@ -505,6 +506,12 @@ namespace MoalemYar
         private void exAddOrUpdateStudent_Click(object sender, EventArgs e)
         {
             exContent.Content = new AddStudent();
+        }
+
+        private void exAttendancelist_Click(object sender, EventArgs e)
+        {
+            exContent.Content = new Attendancelist();
+
         }
     }
 }
