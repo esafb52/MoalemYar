@@ -30,6 +30,7 @@ namespace MoalemYar.UserControls
         private int runOnce = 0;
         private PersianCalendar pc = new PersianCalendar();
         private string strDate;
+        private List<DataClass.Tables.School> _initialCollection;
 
         public AddSchool()
         {
@@ -43,15 +44,6 @@ namespace MoalemYar.UserControls
         }
 
         #region "Async Query"
-
-        public async static Task<List<DataClass.Tables.School>> GetAllSchoolsAsync(string SearchText)
-        {
-            using (var db = new DataClass.myDbContext())
-            {
-                var query = db.Schools.Where(x => x.SchoolName.Contains(SearchText) || x.Admin.Contains(SearchText) || x.Base.Contains(SearchText) || x.Year.Contains(SearchText)).Select(x => x);
-                return await (query.Any() ? query.ToListAsync() : null);
-            }
-        }
 
         public async static Task<List<DataClass.Tables.School>> GetAllSchoolsAsync()
         {
@@ -117,7 +109,10 @@ namespace MoalemYar.UserControls
 
                 List<DataClass.Tables.School> data = query.Result;
                 if (data.Any())
+                {
                     dgv.ItemsSource = data;
+                    _initialCollection = data;
+                }
                 else
                     MainWindow.main.ShowNoDataNotification("School");
             }
@@ -125,27 +120,6 @@ namespace MoalemYar.UserControls
             {
             }
         }
-
-        private void getSchool(string SearchText)
-        {
-            try
-            {
-                var query = GetAllSchoolsAsync(SearchText);
-                query.Wait();
-
-                List<DataClass.Tables.School> data = query.Result;
-                if (data.Any())
-                    dgv.ItemsSource = data;
-                else
-                    MainWindow.main.ShowNoDataNotification("School");
-            }
-            catch (Exception)
-            {
-
-            }
-           
-        }
-
         private void deleteSchool(long id)
         {
             var query = DeleteSchoolAsync(id);
@@ -314,9 +288,10 @@ namespace MoalemYar.UserControls
         private void txtEditSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (txtEditSearch.Text != string.Empty)
-                getSchool(txtEditSearch.Text);
+                dgv.ItemsSource = _initialCollection.Where(x => x.SchoolName.Contains(txtEditSearch.Text) || x.Admin.Contains(txtEditSearch.Text) || x.Base.Contains(txtEditSearch.Text) || x.Year.Contains(txtEditSearch.Text)).Select(x => x);
             else
-                getSchool();
+                dgv.ItemsSource = _initialCollection.Select(x => x);
+
         }
 
         private void GenerateEducateYear()

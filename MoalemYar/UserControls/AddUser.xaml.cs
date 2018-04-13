@@ -27,6 +27,7 @@ namespace MoalemYar.UserControls
         public Brush BorderColor { get; set; }
         internal static AddUser main;
         private int runOnce = 0;
+        private List<DataClass.Tables.User> _initialCollection;
 
         public AddUser()
         {
@@ -39,15 +40,6 @@ namespace MoalemYar.UserControls
         }
 
         #region "Async Query"
-
-        public async static Task<List<DataClass.Tables.User>> GetAllUsersAsync(string SearchText)
-        {
-            using (var db = new DataClass.myDbContext())
-            {
-                var query = db.Users.Where(x => x.Username.Contains(SearchText)).Select(x => x);
-                return await query.ToListAsync();
-            }
-        }
 
         public async static Task<List<DataClass.Tables.User>> GetAllUsersAsync()
         {
@@ -111,7 +103,10 @@ namespace MoalemYar.UserControls
 
                 List<DataClass.Tables.User> data = query.Result;
                 if (data.Any())
+                {
                     dgv.ItemsSource = data;
+                    _initialCollection = data;
+                }
                 else
                     MainWindow.main.ShowNoDataNotification("User");
             }
@@ -119,25 +114,6 @@ namespace MoalemYar.UserControls
             {
             }
         }
-
-        private void getUser(string SearchText)
-        {
-            try
-            {
-                var query = GetAllUsersAsync(SearchText);
-                query.Wait();
-
-                List<DataClass.Tables.User> data = query.Result;
-                if (data.Any())
-                    dgv.ItemsSource = data;
-                else
-                    MainWindow.main.ShowNoDataNotification("User");
-            }
-            catch (Exception)
-            {
-            }
-        }
-
         private void deleteUser(long id)
         {
             var query = DeleteUserAsync(id);
@@ -227,9 +203,9 @@ namespace MoalemYar.UserControls
         private void txtEditSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (txtEditSearch.Text != string.Empty)
-                getUser(txtEditSearch.Text);
+                dgv.ItemsSource = _initialCollection.Where(x => x.Username.Contains(txtEditSearch.Text)).Select(x => x);
             else
-                getUser();
+                dgv.ItemsSource = _initialCollection.Select(x => x);
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)

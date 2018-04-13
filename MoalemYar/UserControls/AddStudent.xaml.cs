@@ -35,7 +35,7 @@ namespace MoalemYar.UserControls
         private bool runOnceStudent = true;
 
         internal static AddStudent main;
-
+        private List<DataClass.DataTransferObjects.SchoolsStudentsJointDto> _initialCollection;
         public AddStudent()
         {
             InitializeComponent();
@@ -65,21 +65,6 @@ namespace MoalemYar.UserControls
                 return await query.ToListAsync();
             }
         }
-
-        public async static Task<List<DataClass.DataTransferObjects.SchoolsStudentsJointDto>> GetAllStudentsAsync(string SearchText)
-        {
-            using (var db = new DataClass.myDbContext())
-            {
-                var query = db.Schools.Join(
-                  db.Students,
-                  c => c.Id,
-                  v => v.BaseId,
-                  (c, v) => new DataClass.DataTransferObjects.SchoolsStudentsJointDto { Name = v.Name, LName = v.LName, FName = v.FName, Gender = v.Gender, BaseId = v.BaseId, Image = v.Image, Id = v.Id, Base = c.Base }
-              ).OrderBy(x => x.LName).Where(x => x.Name.Contains(SearchText) || x.LName.Contains(SearchText) || x.FName.Contains(SearchText) || x.Gender.Contains(SearchText)).Select(x => x);
-                return await query.ToListAsync();
-            }
-        }
-
         public async static Task<List<DataClass.Tables.School>> GetAllSchoolsAsync()
         {
             using (var db = new DataClass.myDbContext())
@@ -168,7 +153,10 @@ namespace MoalemYar.UserControls
 
                 List<DataClass.DataTransferObjects.SchoolsStudentsJointDto> data = query.Result;
                 if (data.Any())
+                {
                     dgv.ItemsSource = data.ToList();
+                    _initialCollection = data;
+                }
                 else
                     MainWindow.main.ShowNoDataNotification("Student");
             }
@@ -176,25 +164,6 @@ namespace MoalemYar.UserControls
             {
             }
         }
-
-        private void getStudent(string SearchText)
-        {
-            try
-            {
-                var query = GetAllStudentsAsync(SearchText);
-                query.Wait();
-
-                List<DataClass.DataTransferObjects.SchoolsStudentsJointDto> data = query.Result;
-                if (data.Any())
-                    dgv.ItemsSource = data;
-                else
-                    MainWindow.main.ShowNoDataNotification("Student");
-            }
-            catch (Exception)
-            {
-            }
-        }
-
         private void deleteStudent(long id)
         {
             var query = DeleteStudentAsync(id);
@@ -360,9 +329,9 @@ namespace MoalemYar.UserControls
         private void txtEditSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (txtEditSearch.Text != string.Empty)
-                getStudent(txtEditSearch.Text);
+                dgv.ItemsSource = _initialCollection.Where(x => x.Name.Contains(txtEditSearch.Text) || x.LName.Contains(txtEditSearch.Text) || x.FName.Contains(txtEditSearch.Text) || x.Gender.Contains(txtEditSearch.Text)).Select(x => x);
             else
-                getStudent();
+                dgv.ItemsSource = _initialCollection.Select(x => x);
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)

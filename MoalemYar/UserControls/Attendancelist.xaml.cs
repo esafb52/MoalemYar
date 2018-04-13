@@ -35,6 +35,7 @@ namespace MoalemYar.UserControls
         private bool runOnceStudent = true;
 
         internal static Attendancelist main;
+        //private List<DataClass.Tables.School> _initialCollection;
         public Attendancelist()
         {
             InitializeComponent();
@@ -60,20 +61,6 @@ namespace MoalemYar.UserControls
                 //            join v in db.Students on c.Id equals v.BaseId 
                 //            select new DataClass.DataTransferObjects.SchoolsStudentsJointDto { Name = v.Name, LName = v.LName, FName = v.FName, Gender = v.Gender, BaseId = v.BaseId, Image = v.Image, Id = v.Id, Base = c.Base };
 
-                return await query.ToListAsync();
-            }
-        }
-
-        public async static Task<List<DataClass.DataTransferObjects.SchoolsStudentsJointDto>> GetAllStudentsAsync(string SearchText)
-        {
-            using (var db = new DataClass.myDbContext())
-            {
-                var query = db.Schools.Join(
-                  db.Students,
-                  c => c.Id,
-                  v => v.BaseId,
-                  (c, v) => new DataClass.DataTransferObjects.SchoolsStudentsJointDto { Name = v.Name, LName = v.LName, FName = v.FName, Gender = v.Gender, BaseId = v.BaseId, Image = v.Image, Id = v.Id, Base = c.Base }
-              ).OrderBy(x => x.LName).Where(x => x.Name.Contains(SearchText) || x.LName.Contains(SearchText) || x.FName.Contains(SearchText) || x.Gender.Contains(SearchText)).Select(x => x);
                 return await query.ToListAsync();
             }
         }
@@ -164,28 +151,11 @@ namespace MoalemYar.UserControls
                 query.Wait();
 
                 List<DataClass.DataTransferObjects.SchoolsStudentsJointDto> data = query.Result;
-                if (data.Any())
-                    this.listBox_Results.ItemsSource = data.ToList();
-                else
-                    MainWindow.main.ShowNoDataNotification("Student");
-            }
-            catch (Exception)
-            {
-            }
-        }
-
-        private void getStudent(string SearchText)
-        {
-            try
-            {
-                var query = GetAllStudentsAsync(SearchText);
-                query.Wait();
-
-                List<DataClass.DataTransferObjects.SchoolsStudentsJointDto> data = query.Result;
-                if (data.Any())
-                    dgv.ItemsSource = data;
-                else
-                    MainWindow.main.ShowNoDataNotification("Student");
+                //if (data.Any())
+                //    //this.listBox_Results.ItemsSource = data.ToList();
+                //  _initialCollection = data;
+                //else
+                //    MainWindow.main.ShowNoDataNotification("Student");
             }
             catch (Exception)
             {
@@ -285,9 +255,9 @@ namespace MoalemYar.UserControls
         private void txtEditSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
             //if (txtEditSearch.Text != string.Empty)
-            //    getStudent(txtEditSearch.Text);
+            //    dgv.ItemsSource = _initialCollection.Where(x => x.Username.Contains(txtEditSearch.Text)).Select(x => x);
             //else
-            //    getStudent();
+            //    dgv.ItemsSource = _initialCollection.Select(x => x);
         }
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
