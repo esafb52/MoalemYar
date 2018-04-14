@@ -320,7 +320,7 @@ namespace MoalemYar.UserControls
             dynamic selectedItem = listView1.SelectedItems[0];
 
             addAttendance((long)selectedItem.Id, true, strDate);
-            UpdateList(Convert.ToInt64(selectedItem.Id));
+            UpdateList(Convert.ToInt64(selectedItem.Id), 400);
         }
 
         private void chkIsAbsent_Checked(object sender, RoutedEventArgs e)
@@ -328,7 +328,7 @@ namespace MoalemYar.UserControls
             dynamic selectedItem = listView1.SelectedItems[0];
 
             addAttendance((long)selectedItem.Id, false, strDate);
-            UpdateList(Convert.ToInt64(selectedItem.Id));
+            UpdateList(Convert.ToInt64(selectedItem.Id), 400);
         }
 
         private void cmbBase_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -336,9 +336,9 @@ namespace MoalemYar.UserControls
             getStudent(Convert.ToInt64(cmbBase.SelectedValue));
         }
         
-        private void UpdateList(long SelectedItem)
+        private void UpdateList(long SelectedItem, double time)
         {
-            Task.Delay(500).ContinueWith(ctx =>
+            Task.Delay(TimeSpan.FromMilliseconds(time)).ContinueWith(ctx =>
                 {
                     _initialCollection.RemoveAll(x => x.Id == SelectedItem);
                     listView1.ItemsSource = _initialCollection.Select(x => x);
@@ -358,7 +358,7 @@ namespace MoalemYar.UserControls
                 listView1.SelectedIndex = i;
                 dynamic selectedItem = listView1.SelectedItems[0];
                 addAttendance((long)selectedItem.Id, true, strDate);
-                UpdateList(Convert.ToInt64(selectedItem.Id));
+                UpdateList(Convert.ToInt64(selectedItem.Id), 10);
             }
         }
     }
