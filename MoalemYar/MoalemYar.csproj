@@ -101,6 +101,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="DataClass\DataTransferObjects.cs" />
+    <Compile Include="DataClass\Tables\Attendance.cs" />
     <Compile Include="DataClass\Tables\School.cs" />
     <Compile Include="DataClass\Tables\User.cs" />
     <Compile Include="EmbeddedAssembly.cs" />

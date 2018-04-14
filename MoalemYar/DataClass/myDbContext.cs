@@ -19,6 +19,8 @@ namespace MoalemYar.DataClass
         public virtual DbSet<Student> Students { get; set; }
         public virtual DbSet<School> Schools { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Attendance> Attendances { get; set; }
+
 
         public myDbContext()
        : base("default")

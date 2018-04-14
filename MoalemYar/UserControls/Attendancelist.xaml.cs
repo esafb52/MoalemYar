@@ -11,6 +11,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,17 +33,18 @@ namespace MoalemYar.UserControls
     public partial class Attendancelist : UserControl
     {
         private bool runOnceSchool = true;
-        private bool runOnceStudent = true;
-
         internal static Attendancelist main;
         private List<DataClass.DataTransferObjects.StudentsDto> _initialCollection;
+        private PersianCalendar pc = new PersianCalendar();
+        private static string strDate;
         public Attendancelist()
         {
             InitializeComponent();
 
             this.DataContext = this;
             main = this;
-           
+            strDate = pc.GetYear(DateTime.Now).ToString("0000") + "/" + pc.GetMonth(DateTime.Now).ToString("00") + "/" + pc.GetDayOfMonth(DateTime.Now).ToString("00");
+            txtDate.Text = string.Format("تاریخ امروز : {0} ", strDate);
         }
 
         #region "Async Query"
@@ -51,9 +53,7 @@ namespace MoalemYar.UserControls
         {
             using (var db = new DataClass.myDbContext())
             {
-                var query = db.Students.Select(x => new DataClass.DataTransferObjects.StudentsDto { Name = x.Name, LName = x.LName, FName = x.FName, BaseId = x.BaseId, Id = x.Id}
-              ).OrderBy(x => x.LName).Where(x=>x.BaseId == BaseId);
-               
+                var query = db.Students.OrderBy(x => x.LName).Where(x => !db.Attendances.Any(f => f.StudentId == x.Id && (f.Date == strDate)) && x.BaseId == BaseId).Select(x => new DataClass.DataTransferObjects.StudentsDto { Name = x.Name, LName = x.LName, FName = x.FName, BaseId = x.BaseId, Id = x.Id });
                 return await query.ToListAsync();
             }
         }
@@ -96,22 +96,20 @@ namespace MoalemYar.UserControls
             }
         }
 
-        public async static Task<string> InsertStudentAsync(long BaseId, string Name, string LName, string FName, string Gender, byte[] Image)
+        public async static Task<string> InsertAttendanceAsync(long StudentId, bool Exist, string Date)
         {
             using (var db = new DataClass.myDbContext())
             {
-                var Student = new DataClass.Tables.Student();
-                Student.BaseId = BaseId;
-                Student.Name = Name;
-                Student.LName = LName;
-                Student.FName = FName;
-                Student.Gender = Gender;
-                Student.Image = Image;
-                db.Students.Add(Student);
+                var Attendance = new DataClass.Tables.Attendance();
+                Attendance.StudentId = StudentId;
+                Attendance.Exist = Exist;
+                Attendance.Date = Date;
+                
+                db.Attendances.Add(Attendance);
 
                 await db.SaveChangesAsync();
 
-                return "Student Added Successfully";
+                return "Attendances Added Successfully";
             }
         }
 
@@ -148,9 +146,15 @@ namespace MoalemYar.UserControls
                 _initialCollection = query.Result;
 
                 if (data.Any())
+                {
                     this.listView1.ItemsSource = data.ToList();
+                    swAllPresent.IsEnabled = true;
+                }
                 else
+                {
+                    swAllPresent.IsEnabled = false;
                     MainWindow.main.ShowNoDataNotification("Student");
+                }
             }
             catch (Exception)
             {
@@ -170,35 +174,21 @@ namespace MoalemYar.UserControls
             query.Wait();
         }
 
-        private void addStudent(long BaseId, string Name, string LName, string FName, string Gender, byte[] Image)
+        private void addAttendance(long StudentId, bool Exist, string Date)
         {
-            var query = InsertStudentAsync(BaseId, Name, LName, FName, Gender, Image);
+            var query = InsertAttendanceAsync(StudentId, Exist, Date);
             query.Wait();
-            MainWindow.main.getexHint();
         }
 
         #endregion Func get Query Wait"
 
         private void tabc_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (tabc.SelectedIndex == 0)
+            if (runOnceSchool)
             {
-                if (runOnceSchool)
-                {
-
-                    getSchool();
-                    runOnceSchool = false;
-
-                }
+                getSchool();
+                runOnceSchool = false;
             }
-            else
-            {
-                if (runOnceStudent)
-                {
-                    runOnceStudent = false;
-                }
-            }
-
         }
 
         private void dgv_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -253,31 +243,7 @@ namespace MoalemYar.UserControls
             //else
             //    dgv.ItemsSource = _initialCollection.Select(x => x);
         }
-        private void btnSave_Click(object sender, RoutedEventArgs e)
-        {
-            //var elementG = FindElementByName<ComboBox>(cmbAddContentGender, "cmbGender");
-
-            //if (txtAddName.Text == string.Empty || txtAddLName.Text == string.Empty || txtAddFName.Text == string.Empty || elementG.SelectedIndex == -1 || cmbBase.SelectedIndex == -1)
-            //{
-            //    MainWindow.main.ShowFillAllDataNotification();
-            //}
-            //else
-            //{
-            //    try
-            //    {
-            //        addStudent(Convert.ToInt64(cmbBase.SelectedValue), txtAddName.Text, txtAddLName.Text, txtAddFName.Text, elementG.Text, CreateThumbnail(imgStudent.Source as BitmapImage));
-            //        MainWindow.main.ShowAddDataNotification(true, txtAddName.Text, "دانش آموز");
-            //        txtAddName.Text = string.Empty;
-            //        txtAddLName.Text = string.Empty;
-            //        txtAddFName.Text = string.Empty;
-            //        txtAddName.Focus();
-            //    }
-            //    catch (Exception)
-            //    {
-            //        MainWindow.main.ShowAddDataNotification(false, txtAddName.Text, "دانش آموز");
-            //    }
-            //}
-        }
+        
         private void txtEditSearch_ButtonClick(object sender, EventArgs e)
         {
             //getStudent();
@@ -348,20 +314,42 @@ namespace MoalemYar.UserControls
             return null;
         }
 
+
         private void chkIsPresent_Checked(object sender, RoutedEventArgs e)
         {
-            
+            dynamic selectedItem = listView1.SelectedItems[0];
+
+            addAttendance((long)selectedItem.Id, true, strDate);
+            UpdateList(Convert.ToInt64(selectedItem.Id));
         }
 
         private void chkIsAbsent_Checked(object sender, RoutedEventArgs e)
         {
-            listView1.Items.Remove(0);
+            dynamic selectedItem = listView1.SelectedItems[0];
 
+            addAttendance((long)selectedItem.Id, false, strDate);
+            UpdateList(Convert.ToInt64(selectedItem.Id));
         }
 
         private void cmbBase_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             getStudent(Convert.ToInt64(cmbBase.SelectedValue));
+        }
+        
+        private void UpdateList(long SelectedItem)
+        {
+            Task.Delay(500).ContinueWith(ctx =>
+                {
+                    _initialCollection.RemoveAll(x => x.Id == SelectedItem);
+                    listView1.ItemsSource = _initialCollection.Select(x => x);
+                },
+                TaskScheduler.FromCurrentSynchronizationContext());
+            
+        }
+
+        private void swAllPresent_Checked(object sender, RoutedEventArgs e)
+        {
+            //Todo: Fix All
         }
     }
 }

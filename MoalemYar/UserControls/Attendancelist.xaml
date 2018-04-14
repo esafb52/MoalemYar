@@ -20,7 +20,6 @@
                             <ColumnDefinition />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
-
                         <ComboBox SelectionChanged="cmbBase_SelectionChanged" x:Name="cmbBase" ItemsSource="{Binding}"  
                   Height="30"
                                   SelectedItem="{Binding Name}"  
@@ -52,34 +51,56 @@
                                 </Style>
                             </TextBlock.Style>
                         </TextBlock>
-                        <ListView Name="listView1" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" Margin="10,45,0,10">
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <Border Margin="5" BorderThickness="1" BorderBrush="SlateGray" CornerRadius="4">
-                                        <Grid Margin="3">
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition></RowDefinition>
-                                                <RowDefinition></RowDefinition>
-                                                <RowDefinition></RowDefinition>
-                                                <RowDefinition></RowDefinition>
+                        <StackPanel Orientation="Vertical" Margin="0,40,0,0">
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <Metro:MetroSwitch Name="swAllPresent" Checked="swAllPresent_Checked" IsEnabled="False" Margin="5,0,50,0" HorizontalAlignment="Center" IsChecked="False">همه حاظر</Metro:MetroSwitch>
+                                <Metro:MetroTextBlock Name="txtDate" HorizontalAlignment="Center" Margin="5" Text="تاریخ امروز"/>
+                            </StackPanel>
+                            <ListView Name="listView1" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" Margin="10">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border Margin="5" BorderThickness="1" BorderBrush="SlateGray" CornerRadius="4">
+                                            <Grid Margin="3">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition></RowDefinition>
+                                                    <RowDefinition></RowDefinition>
+                                                    <RowDefinition></RowDefinition>
+                                                    <RowDefinition></RowDefinition>
 
-                                            </Grid.RowDefinitions>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition></ColumnDefinition>
-                                                <ColumnDefinition></ColumnDefinition>
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition></ColumnDefinition>
+                                                    <ColumnDefinition></ColumnDefinition>
 
-                                            </Grid.ColumnDefinitions>
-                                            <TextBlock Grid.Column="0" FontWeight="Bold" Text="{Binding Path=Name}"></TextBlock>
-                                            <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding Path=LName}"></TextBlock>
-                                            <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding Path=Id}" Visibility="Hidden"></TextBlock>
-                                            <Metro:MetroSwitch Margin="5" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" IsChecked="False" Name="chkIsPresent" CornerRadius="2" BorderCornerRadius="3" Checked="chkIsPresent_Checked">حاظر</Metro:MetroSwitch>
-                                            <Metro:MetroSwitch Margin="5" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right" IsChecked="False" Name="chkIsAbsent" CornerRadius="2" BorderCornerRadius="3" Checked="chkIsAbsent_Checked">غایب</Metro:MetroSwitch>
+                                                </Grid.ColumnDefinitions>
+                                                <StackPanel Grid.Column="0" Orientation="Horizontal">
+                                                    <TextBlock FontWeight="Bold" Text="{Binding Path=Name}"></TextBlock>
+                                                    <TextBlock FontWeight="Bold" Text=" "></TextBlock>
+                                                    <TextBlock FontWeight="Bold" Text="{Binding Path=LName}"></TextBlock>
+                                                </StackPanel>
+                                                <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding Path=FName}"></TextBlock>
+                                                <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding Path=Id}" Visibility="Hidden"></TextBlock>
+                                                <Metro:MetroSwitch Margin="5" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" IsChecked="False" Name="chkIsPresent" CornerRadius="2" BorderCornerRadius="3" Checked="chkIsPresent_Checked">حاظر</Metro:MetroSwitch>
+                                                <Metro:MetroSwitch Margin="5" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right" IsChecked="False" Name="chkIsAbsent" CornerRadius="2" BorderCornerRadius="3" Checked="chkIsAbsent_Checked">غایب</Metro:MetroSwitch>
 
-                                        </Grid>
-                                    </Border>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
+                                            </Grid>
+                                        </Border>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                                <ListView.ItemContainerStyle>
+                                    <Style TargetType="ListViewItem">
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="IsSelected" Value="True"/>
+                                            </Trigger>
+
+                                        </Style.Triggers>
+                                    </Style>
+                                </ListView.ItemContainerStyle>
+                            </ListView>
+
+                        </StackPanel>
+                      
                     </Grid>
                 </Grid>
             </Metro:MetroTabItem>
