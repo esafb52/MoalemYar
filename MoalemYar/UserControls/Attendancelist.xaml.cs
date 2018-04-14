@@ -342,6 +342,10 @@ namespace MoalemYar.UserControls
                 {
                     _initialCollection.RemoveAll(x => x.Id == SelectedItem);
                     listView1.ItemsSource = _initialCollection.Select(x => x);
+                    if (!_initialCollection.Any())
+                        swAllPresent.IsEnabled = false;
+                    else
+                        swAllPresent.IsEnabled = true;
                 },
                 TaskScheduler.FromCurrentSynchronizationContext());
             
@@ -349,7 +353,13 @@ namespace MoalemYar.UserControls
 
         private void swAllPresent_Checked(object sender, RoutedEventArgs e)
         {
-            //Todo: Fix All
+            for (int i = 0; i < _initialCollection.Count; i++)
+            {
+                listView1.SelectedIndex = i;
+                dynamic selectedItem = listView1.SelectedItems[0];
+                addAttendance((long)selectedItem.Id, true, strDate);
+                UpdateList(Convert.ToInt64(selectedItem.Id));
+            }
         }
     }
 }
