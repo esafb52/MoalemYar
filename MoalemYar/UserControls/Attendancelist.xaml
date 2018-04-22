@@ -187,9 +187,16 @@
                             <ListView.View>
                                 <GridView>
                                     <GridViewColumn Header="تاریخ" Width="100" DisplayMemberBinding="{Binding Date}" />
-                                    <GridViewColumn Header="وضعیت حضور" Width="100"  DisplayMemberBinding="{Binding Exist}" />
+                                    <GridViewColumn Header="وضعیت حضور" Width="0"  DisplayMemberBinding="{Binding Exist}" />
                                     <GridViewColumn Header="StudentId" Width="0" DisplayMemberBinding="{Binding StudentId}" />
                                     <GridViewColumn Header="Id" Width="0"  DisplayMemberBinding="{Binding Id}" />
+                                    <GridViewColumn Header="وضعیت حضور">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Metro:MetroSwitch IsChecked="{Binding Exist}" />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
                                 </GridView>
                             </ListView.View>
                         </ListView>
@@ -201,7 +208,7 @@
                             <Metro:MetroSwitch Margin="10" HorizontalAlignment="Right" IsChecked="False" Name="chkEditIsPresent" Checked="chkEditIsPresent_Checked" CornerRadius="2" BorderCornerRadius="3">حاظر</Metro:MetroSwitch>
                             <Metro:MetroSwitch Margin="10" HorizontalAlignment="Right" IsChecked="False" Name="chkEditIsAbsent" Checked="chkEditIsAbsent_Checked" CornerRadius="2" BorderCornerRadius="3">غایب</Metro:MetroSwitch>
                         </StackPanel>
-                        <PersianCalendarWPF:PersianDatePicker Name="txtDateEdit"/>
+                        <PersianCalendarWPF:PersianDatePicker HorizontalAlignment="Left" Margin="10,0,0,0" Name="txtDateEdit"/>
                         <Grid VerticalAlignment="Top">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="auto" />
