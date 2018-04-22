@@ -169,6 +169,10 @@ namespace MoalemYar
                        case "Student":
                            AddStudent.main.tabc.SelectedIndex = 0;
                            break;
+
+                       case "Attendance":
+                           Attendancelist.main.tabc.SelectedIndex = 0;
+                           break;
                    }
                })
                .Dismiss().WithButton("بیخیال", button => { })
@@ -359,6 +363,10 @@ namespace MoalemYar
 
                          case "کاربر":
                              AddUser.main.deleteUser();
+                             break;
+
+                         case "حضورغیاب":
+                             Attendancelist.main.deleteAttendance();
                              break;
                      }
                  })

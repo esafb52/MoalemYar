@@ -209,6 +209,10 @@
       <Project>{cfa27b27-9231-4f6d-804a-c0ae33fa5237}</Project>
       <Name>Enterwell.Clients.Wpf.Notifications</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PersianCalendarWPF\PersianCalendarWPF.csproj">
+      <Project>{89795b99-58a3-4ce9-bf55-fe8d4d1219c8}</Project>
+      <Name>PersianCalendarWPF</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\tabIcon.png" />

@@ -1,29 +1,22 @@
-﻿
-/****************************** ghost1372.github.io ******************************\
+﻿/****************************** ghost1372.github.io ******************************\
 *	Module Name:	Attendancelist.xaml.cs
 *	Project:		MoalemYar
 *	Copyright (C) 2017 Mahdi Hosseini, All rights reserved.
 *	This software may be modified and distributed under the terms of the MIT license.  See LICENSE file for details.
 *
 *	Written by Mahdi Hosseini <Mahdidvb72@gmail.com>,  2018, 4, 13, 01:23 ب.ظ
-*	
+*
 ***********************************************************************************/
+
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Globalization;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace MoalemYar.UserControls
 {
@@ -35,8 +28,11 @@ namespace MoalemYar.UserControls
         private bool runOnceSchool = true;
         internal static Attendancelist main;
         private List<DataClass.DataTransferObjects.StudentsDto> _initialCollection;
+        private List<DataClass.Tables.Attendance> _initialCollectionAtendance;
         private PersianCalendar pc = new PersianCalendar();
         private static string strDate;
+        private bool isPresentEdit = true;
+
         public Attendancelist()
         {
             InitializeComponent();
@@ -49,11 +45,26 @@ namespace MoalemYar.UserControls
 
         #region "Async Query"
 
-        public async static Task<List<DataClass.DataTransferObjects.StudentsDto>> GetAllStudentsAsync( long BaseId)
+        public async static Task<List<DataClass.DataTransferObjects.StudentsDto>> GetAllStudentsAsync(long BaseId)
         {
             using (var db = new DataClass.myDbContext())
             {
                 var query = db.Students.OrderBy(x => x.LName).Where(x => !db.Attendances.Any(f => f.StudentId == x.Id && (f.Date == strDate)) && x.BaseId == BaseId).Select(x => new DataClass.DataTransferObjects.StudentsDto { Name = x.Name, LName = x.LName, FName = x.FName, BaseId = x.BaseId, Id = x.Id });
+                return await query.ToListAsync();
+            }
+        }
+
+        public async static Task<List<DataClass.DataTransferObjects.StudentsDto>> GetAllStudentsPersonAsync(long BaseId)
+        {
+            using (var db = new DataClass.myDbContext())
+            {
+                var query = db.Schools.Join(
+                  db.Students,
+                  c => c.Id,
+                  v => v.BaseId,
+                  (c, v) => new DataClass.DataTransferObjects.StudentsDto { Name = v.Name, LName = v.LName, FName = v.FName, Id = v.Id, BaseId = v.BaseId }
+              ).OrderBy(x => x.LName).Where(x => x.BaseId == BaseId);
+
                 return await query.ToListAsync();
             }
         }
@@ -67,32 +78,37 @@ namespace MoalemYar.UserControls
             }
         }
 
-        public static async Task<string> DeleteStudentAsync(long id)
+        public async static Task<List<DataClass.Tables.Attendance>> GetAllAttendanceAsync(long StudentId)
         {
             using (var db = new DataClass.myDbContext())
             {
-                var DeleteStudent = await db.Students.FindAsync(id);
-                db.Students.Remove(DeleteStudent);
-                await db.SaveChangesAsync();
-                return "Student Deleted Successfully";
+                var query = db.Attendances.Where(x => x.StudentId == StudentId).Select(x => x);
+                return await query.ToListAsync();
             }
         }
 
-        public async static Task<string> UpdateStudentAsync(long id, long BaseId, string Name, string LName, string FName, string Gender, byte[] Image)
+        public static async Task<string> DeleteAttendanceAsync(long StudentId, long AttendanceId)
         {
             using (var db = new DataClass.myDbContext())
             {
-                var EditStudent = await db.Students.FindAsync(id);
-                EditStudent.Name = Name;
+                var DeleteAttendance = await db.Attendances.FirstOrDefaultAsync(x => x.StudentId == StudentId && x.Id == AttendanceId);
 
-                EditStudent.LName = LName;
-
-                EditStudent.FName = FName;
-                EditStudent.Gender = Gender;
-                EditStudent.BaseId = BaseId;
-                EditStudent.Image = Image;
+                db.Attendances.Remove(DeleteAttendance);
                 await db.SaveChangesAsync();
-                return "Student Updated Successfully";
+                return "Attendance Deleted Successfully";
+            }
+        }
+
+        public async static Task<string> UpdateAttendanceAsync(long AttendanceId, long StudentId, bool Exist, string Date)
+        {
+            using (var db = new DataClass.myDbContext())
+            {
+                var EditAttendance = await db.Attendances.FirstOrDefaultAsync(x => x.StudentId == StudentId && x.Id == AttendanceId);
+                EditAttendance.Exist = Exist;
+
+                EditAttendance.Date = Date;
+                await db.SaveChangesAsync();
+                return "Attendance Updated Successfully";
             }
         }
 
@@ -104,7 +120,7 @@ namespace MoalemYar.UserControls
                 Attendance.StudentId = StudentId;
                 Attendance.Exist = Exist;
                 Attendance.Date = Date;
-                
+
                 db.Attendances.Add(Attendance);
 
                 await db.SaveChangesAsync();
@@ -127,6 +143,30 @@ namespace MoalemYar.UserControls
                 if (data.Any())
                 {
                     cmbBase.ItemsSource = data;
+                    cmbEditBase.ItemsSource = data;
+                }
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+        private void getAttendance(long StudentId)
+        {
+            try
+            {
+                var query = GetAllAttendanceAsync(StudentId);
+                query.Wait();
+                List<DataClass.Tables.Attendance> data = query.Result;
+                _initialCollectionAtendance = data;
+                if (data.Any())
+                {
+                    dgv.ItemsSource = data;
+                }
+                else
+                {
+                    dgv.ItemsSource = null;
+                    MainWindow.main.ShowNoDataNotification("Attendance");
                 }
             }
             catch (Exception)
@@ -161,16 +201,38 @@ namespace MoalemYar.UserControls
             }
         }
 
-        private void deleteStudent(long id)
+        private void getStudentPerson(long BaseId)
         {
-            var query = DeleteStudentAsync(id);
+            try
+            {
+                var query = GetAllStudentsPersonAsync(BaseId);
+                query.Wait();
+
+                List<DataClass.DataTransferObjects.StudentsDto> data = query.Result;
+                if (data.Any())
+                {
+                    this.cmbEditStudent.ItemsSource = data.ToList();
+                }
+                else
+                {
+                    MainWindow.main.ShowNoDataNotification("Student");
+                }
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+        private void deleteAttendance(long StudentId, long AttendanceId)
+        {
+            var query = DeleteAttendanceAsync(StudentId, AttendanceId);
             query.Wait();
             MainWindow.main.getexHint();
         }
 
-        private void updateStudent(long id, long BaseId, string Name, string LName, string FName, string Gender, byte[] Image)
+        private void updateAttendance(long AttendanceId, long StudentId, bool Exist, string Date)
         {
-            var query = UpdateStudentAsync(id, BaseId, Name, LName, FName, Gender, Image);
+            var query = UpdateAttendanceAsync(AttendanceId, StudentId, Exist, Date);
             query.Wait();
         }
 
@@ -195,82 +257,99 @@ namespace MoalemYar.UserControls
         {
             try
             {
-                //editGrid.IsEnabled = true;
-                //dynamic selectedItem = dgv.SelectedItems[0];
-                //txtName.Text = selectedItem.Name;
-                //txtLName.Text = selectedItem.LName;
-                //txtFName.Text = selectedItem.FName;
-                //setComboValue(selectedItem.Gender);
-                //cmbEditBase.SelectedValue = selectedItem.BaseId;
+                editGrid.IsEnabled = true;
+                dynamic selectedItem = dgv.SelectedItems[0];
+                bool isPresent = selectedItem.Exist;
+                txtDateEdit.Text = selectedItem.Date;
 
-                //byte[] bytes = selectedItem.Image as byte[];
-                //MemoryStream stream = new MemoryStream(bytes);
-                //BitmapImage image = new BitmapImage();
-                //image.BeginInit();
-                //image.StreamSource = stream;
-                //image.EndInit();
-                //imgEditStudent.Source = image;
+                if (isPresent)
+                {
+                    chkEditIsPresent.IsChecked = true;
+                    chkEditIsAbsent.IsChecked = false;
+                }
+                else
+                {
+                    chkEditIsAbsent.IsChecked = true;
+                    chkEditIsPresent.IsChecked = false;
+                }
             }
             catch (Exception)
             {
             }
         }
+
         private void btnEditSave_Click(object sender, RoutedEventArgs e)
         {
-            //dynamic selectedItem = dgv.SelectedItems[0];
-            //long id = selectedItem.Id;
+            dynamic selectedItemCmb = cmbEditStudent.SelectedItem;
+            try
+            {
+                dynamic selectedItem = dgv.SelectedItems[0];
+                long id = selectedItem.Id;
+                long studentId = selectedItem.StudentId;
+                updateAttendance(id, studentId, isPresentEdit, txtDateEdit.Text.ToString());
+                MainWindow.main.ShowUpdateDataNotification(true, selectedItemCmb.Name + " " + selectedItemCmb.LName, "حضورغیاب");
+                editGrid.IsEnabled = false;
+                getAttendance(Convert.ToInt64(cmbEditStudent.SelectedValue));
+            }
+            catch (Exception)
+            {
 
-            //updateStudent(id, Convert.ToInt64(cmbEditBase.SelectedValue), txtName.Text, txtLName.Text, txtFName.Text, getComboValue(), CreateThumbnail(imgEditStudent.Source as BitmapImage));
-            //MainWindow.main.ShowUpdateDataNotification(true, txtName.Text, "دانش آموز");
-            //editGrid.IsEnabled = false;
-            //getStudent();
+                MainWindow.main.ShowUpdateDataNotification(false, selectedItemCmb.Name + " " + selectedItemCmb.LName, "حضورغیاب");
+            }
+            
         }
 
         private void btnEditCancel_Click(object sender, RoutedEventArgs e)
         {
-            //txtName.Text = string.Empty;
-            //txtLName.Text = string.Empty;
-            //txtFName.Text = string.Empty;
-            //setComboValue(null);
-            //cmbEditBase.SelectedIndex = -1;
-            //editGrid.IsEnabled = false;
+            editGrid.IsEnabled = false;
         }
 
         private void txtEditSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
-            //if (txtEditSearch.Text != string.Empty)
-            //    dgv.ItemsSource = _initialCollection.Where(x => x.Username.Contains(txtEditSearch.Text)).Select(x => x);
-            //else
-            //    dgv.ItemsSource = _initialCollection.Select(x => x);
+            if (txtEditSearch.Text != string.Empty)
+                dgv.ItemsSource = _initialCollectionAtendance.Where(x => x.Date.Contains(txtEditSearch.Text)).Select(x => x);
+            else
+                dgv.ItemsSource = _initialCollectionAtendance.Select(x => x);
         }
-        
+
         private void txtEditSearch_ButtonClick(object sender, EventArgs e)
         {
-            //getStudent();
+            getAttendance(Convert.ToInt64(cmbEditStudent.SelectedValue));
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-            //MainWindow.main.ShowDeleteConfirmNotification(txtName.Text, "دانش آموز");
+            try
+            {
+                dynamic selectedItem = cmbEditStudent.SelectedItem;
+
+                MainWindow.main.ShowDeleteConfirmNotification(selectedItem.Name + " " + selectedItem.LName, "حضورغیاب");
+            }
+            catch (Exception)
+            {
+            }
         }
 
-        public void deleteStudent()
+        public void deleteAttendance()
         {
-            //try
-            //{
-            //    dynamic selectedItem = dgv.SelectedItems[0];
-            //    long id = selectedItem.Id;
-            //    deleteStudent(id);
-            //    MainWindow.main.ShowDeletedNotification(true, txtName.Text, "دانش آموز");
-            //    editGrid.IsEnabled = false;
-            //    getStudent();
-            //}
-            //catch (Exception)
-            //{
-            //    MainWindow.main.ShowDeletedNotification(false, txtName.Text, "دانش آموز");
-            //}
+            dynamic selectedItemCmb = cmbEditStudent.SelectedItem;
+            try
+            {
+                dynamic selectedItem = dgv.SelectedItems[0];
+                long id = selectedItem.Id;
+                long studentId = selectedItem.StudentId;
+
+                deleteAttendance(studentId, id);
+                MainWindow.main.ShowDeletedNotification(true, selectedItemCmb.Name + " " + selectedItemCmb.LName, "حضورغیاب");
+                editGrid.IsEnabled = false;
+                getAttendance(Convert.ToInt64(cmbEditStudent.SelectedValue));
+            }
+            catch (Exception)
+            {
+                MainWindow.main.ShowDeletedNotification(false, selectedItemCmb.Name + " " + selectedItemCmb.LName, "حضورغیاب");
+            }
         }
- 
+
         public T FindElementByName<T>(FrameworkElement element, string sChildName) where T : FrameworkElement
         {
             T childElement = null;
@@ -314,7 +393,6 @@ namespace MoalemYar.UserControls
             return null;
         }
 
-
         private void chkIsPresent_Checked(object sender, RoutedEventArgs e)
         {
             dynamic selectedItem = listView1.SelectedItems[0];
@@ -335,7 +413,7 @@ namespace MoalemYar.UserControls
         {
             getStudent(Convert.ToInt64(cmbBase.SelectedValue));
         }
-        
+
         private void UpdateList(long SelectedItem, double time)
         {
             Task.Delay(TimeSpan.FromMilliseconds(time)).ContinueWith(ctx =>
@@ -348,7 +426,6 @@ namespace MoalemYar.UserControls
                         swAllPresent.IsEnabled = true;
                 },
                 TaskScheduler.FromCurrentSynchronizationContext());
-            
         }
 
         private void swAllPresent_Checked(object sender, RoutedEventArgs e)
@@ -359,6 +436,34 @@ namespace MoalemYar.UserControls
                 dynamic selectedItem = listView1.SelectedItems[0];
                 addAttendance((long)selectedItem.Id, true, strDate);
                 UpdateList(Convert.ToInt64(selectedItem.Id), 10);
+            }
+        }
+
+        private void cmbEditBase_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            getStudentPerson(Convert.ToInt64(cmbEditBase.SelectedValue));
+        }
+
+        private void cmbEditStudent_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            getAttendance(Convert.ToInt64(cmbEditStudent.SelectedValue));
+        }
+
+        private void chkEditIsPresent_Checked(object sender, RoutedEventArgs e)
+        {
+            chkEditIsAbsent.IsChecked = false;
+            if (chkEditIsPresent.IsChecked == true)
+            {
+                isPresentEdit = true;
+            }
+        }
+
+        private void chkEditIsAbsent_Checked(object sender, RoutedEventArgs e)
+        {
+            chkEditIsPresent.IsChecked = false;
+            if (chkEditIsAbsent.IsChecked == true)
+            {
+                isPresentEdit = false;
             }
         }
     }

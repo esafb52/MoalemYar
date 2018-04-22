@@ -154,9 +154,14 @@ namespace MoalemYar.UserControls
                 _initialCollection = query.Result;
 
                 if (data.Any())
+                {
                     dgv.ItemsSource = data.ToList();
+                }
                 else
+                {
+                    dgv.ItemsSource = null;
                     MainWindow.main.ShowNoDataNotification("Student");
+                }
             }
             catch (Exception)
             {

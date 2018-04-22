@@ -32,5 +32,6 @@ namespace MoalemYar.DataClass
             public string FName { get; set; }
             public long BaseId { get; set; }
         }
+
     }
 }

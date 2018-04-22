@@ -104,9 +104,14 @@ namespace MoalemYar.UserControls
                 List<DataClass.Tables.User> data = query.Result;
                 _initialCollection = query.Result;
                 if (data.Any())
+                {
                     dgv.ItemsSource = data;
+                }
                 else
+                {
+                    dgv.ItemsSource = null;
                     MainWindow.main.ShowNoDataNotification("User");
+                }
             }
             catch (Exception)
             {

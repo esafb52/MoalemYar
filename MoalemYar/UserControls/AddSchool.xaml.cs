@@ -110,9 +110,14 @@ namespace MoalemYar.UserControls
                 List<DataClass.Tables.School> data = query.Result;
                 _initialCollection = query.Result;
                 if (data.Any())
+                {
                     dgv.ItemsSource = data;
+                }
                 else
+                {
+                    dgv.ItemsSource = null;
                     MainWindow.main.ShowNoDataNotification("School");
+                }
             }
             catch (Exception)
             {
