@@ -89,7 +89,7 @@
                                     </ListView.View>
                                 </ListView>
                             </StackPanel>
-                            <StackPanel Orientation="Vertical" Grid.Column="1" Name="editGrid" Margin="10">
+                            <StackPanel IsEnabled="False" Orientation="Vertical" Grid.Column="1" Name="editGrid" Margin="10">
                                 <Metro:MetroTextBox Name="txtUsername" Margin="2" InputHint="نام کاربری" Height="30" PopupHint="نام کاربری باید بصورت لاتین باشد" MetroPopupBackgroundState="DarkRed" VerticalAlignment="Top" />
                                 <Metro:MetroTextBox Name="txtPassword" Margin="2" InputHint="رمز عبور" PopupHint="رمز عبور می تواند ترکیبی از حروف و اعداد باشد" MetroPopupBackgroundState="DarkRed" Height="30" VerticalAlignment="Top" />
                                 <Metro:MetroTextBox Name="txtPasswordAg" Margin="2" InputHint="تکرار رمز عبور" Height="30" PopupHint="رمز عبور خود را تکرار کنید" MetroPopupBackgroundState="DarkRed" VerticalAlignment="Top" />

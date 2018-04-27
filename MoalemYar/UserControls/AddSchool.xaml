@@ -117,7 +117,7 @@
                                 </ListView>
                             </StackPanel>
 
-                            <StackPanel Name="editGrid" Orientation="Vertical" Grid.Column="1" Margin="5">
+                            <StackPanel Name="editGrid" IsEnabled="False" Orientation="Vertical" Grid.Column="1" Margin="5">
                                 <Metro:MetroTextBox Margin="2" Name="txtYear"  InputHint="سال تحصیلی" Height="30" PopupHint="سال تحصیلی باید بصورت 97-98 وارد شود" MetroPopupBackgroundState="DarkRed" VerticalAlignment="Top" />
                                 <Metro:MetroTextBox Margin="2" Name="txtSchool"  InputHint="نام مدرسه" PopupHint="نام آموزشگاه را وارد کنید" MetroPopupBackgroundState="DarkRed" Height="30" VerticalAlignment="Top" />
                                 <Metro:MetroTextBox Margin="2" Name="txtAdmin" InputHint="نام مدیر" Height="30" PopupHint="نام مدیریت آموزشگاه" MetroPopupBackgroundState="DarkRed" VerticalAlignment="Top" />

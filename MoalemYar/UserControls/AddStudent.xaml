@@ -187,7 +187,7 @@
                                     </ListView.View>
                                 </ListView>
                             </StackPanel>
-                            <StackPanel Name="editStack" Margin="10" Grid.Column="1" Orientation="Vertical">
+                            <StackPanel Name="editStack" IsEnabled="False" Margin="10" Grid.Column="1" Orientation="Vertical">
                                 <Metro:MetroTextBox x:Name="txtName" Margin="2" InputHint="نام" Height="30" PopupHint="نام دانش آموز" MetroPopupBackgroundState="DarkRed" VerticalAlignment="Top" />
                                 <Metro:MetroTextBox x:Name="txtLName" Margin="2"  InputHint="نام خانوادگی" PopupHint="نام خانوادگی دانش آموز" MetroPopupBackgroundState="DarkRed" Height="30" VerticalAlignment="Top" />
                                 <Metro:MetroTextBox x:Name="txtFName" Margin="2"  InputHint="نام پدر" Height="30" PopupHint="نام پدر دانش آموز" MetroPopupBackgroundState="DarkRed" VerticalAlignment="Top" />
