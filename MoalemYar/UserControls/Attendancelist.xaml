@@ -55,7 +55,7 @@
                         <StackPanel Orientation="Vertical" Margin="0,40,10,0" Grid.ColumnSpan="2">
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                 <Metro:MetroTextBlock Name="txtDate" HorizontalAlignment="Center" Margin="5" Text="تاریخ امروز"/>
-                                <Metro:MetroSwitch Name="swAllPresent" Checked="swAllPresent_Checked" IsEnabled="False" Margin="5,0,50,0" HorizontalAlignment="Center" IsChecked="False">همه حاظر</Metro:MetroSwitch>
+                                <Metro:MetroSwitch Name="swAllPresent" Checked="swAllPresent_Checked" IsEnabled="False" Margin="5,0,50,0" HorizontalAlignment="Center" IsChecked="False">همه حاضر</Metro:MetroSwitch>
                             </StackPanel>
                             <ListView Name="listView1" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" Margin="10">
                                 <ListView.ItemTemplate>
@@ -207,29 +207,27 @@
                                 <ListView Margin="5,5,0,0" ScrollViewer.VerticalScrollBarVisibility="Auto" VerticalAlignment="Top" FlowDirection="RightToLeft" SelectionMode="Single" x:Name="dgv" SelectionChanged="dgv_SelectionChanged">
                                     <ListView.View>
                                         <GridView>
-                                            <GridViewColumn Header="تاریخ" Width="100" DisplayMemberBinding="{Binding Date}" />
+                                            <GridViewColumn Header="تاریخ">
+                                                <GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <PersianCalendarWPF:PersianDatePicker HorizontalAlignment="Left" Text="{Binding Date}" SelectedDate="{Binding Date}" SelectedDateChanged="txtDateEdit_SelectedDateChanged" Name="txtDateEdit"/>
+                                                    </DataTemplate>
+                                                </GridViewColumn.CellTemplate>
+                                            </GridViewColumn>
                                             <GridViewColumn Header="وضعیت حضور" Width="0"  DisplayMemberBinding="{Binding Exist}" />
                                             <GridViewColumn Header="StudentId" Width="0" DisplayMemberBinding="{Binding StudentId}" />
                                             <GridViewColumn Header="Id" Width="0"  DisplayMemberBinding="{Binding Id}" />
                                             <GridViewColumn Header="وضعیت حضور">
                                                 <GridViewColumn.CellTemplate>
                                                     <DataTemplate>
-                                                        <Metro:MetroSwitch IsChecked="{Binding Exist}" />
+                                                        <Metro:MetroSwitch Checked="MetroSwitch_Checked" Unchecked="MetroSwitch_Unchecked" IsChecked="{Binding Exist}" />
+
                                                     </DataTemplate>
                                                 </GridViewColumn.CellTemplate>
                                             </GridViewColumn>
                                         </GridView>
                                     </ListView.View>
                                 </ListView>
-
-
-                            </StackPanel>
-                            <StackPanel Name="editGrid" IsEnabled="False" Orientation="Vertical" Grid.Column="1">
-                                <StackPanel Orientation="Horizontal">
-                                    <Metro:MetroSwitch Margin="10" HorizontalAlignment="Right" IsChecked="False" Name="chkEditIsPresent" Checked="chkEditIsPresent_Checked" CornerRadius="2" BorderCornerRadius="3">حاظر</Metro:MetroSwitch>
-                                    <Metro:MetroSwitch Margin="10" HorizontalAlignment="Right" IsChecked="False" Name="chkEditIsAbsent" Checked="chkEditIsAbsent_Checked" CornerRadius="2" BorderCornerRadius="3">غایب</Metro:MetroSwitch>
-                                    <PersianCalendarWPF:PersianDatePicker HorizontalAlignment="Left" Name="txtDateEdit"/>
-                                </StackPanel>
                             </StackPanel>
                         </Grid>
                     </StackPanel>

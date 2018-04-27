@@ -32,6 +32,7 @@ namespace MoalemYar.UserControls
         private PersianCalendar pc = new PersianCalendar();
         private static string strDate;
         private bool isPresentEdit = true;
+        private string changedDate = string.Empty;
 
         public Attendancelist()
         {
@@ -253,31 +254,6 @@ namespace MoalemYar.UserControls
             }
         }
 
-        private void dgv_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            try
-            {
-                editGrid.IsEnabled = true;
-                dynamic selectedItem = dgv.SelectedItems[0];
-                bool isPresent = selectedItem.Exist;
-                txtDateEdit.Text = selectedItem.Date;
-
-                if (isPresent)
-                {
-                    chkEditIsPresent.IsChecked = true;
-                    chkEditIsAbsent.IsChecked = false;
-                }
-                else
-                {
-                    chkEditIsAbsent.IsChecked = true;
-                    chkEditIsPresent.IsChecked = false;
-                }
-            }
-            catch (Exception)
-            {
-            }
-        }
-
         private void btnEditSave_Click(object sender, RoutedEventArgs e)
         {
             dynamic selectedItemCmb = cmbEditStudent.SelectedItem;
@@ -286,7 +262,7 @@ namespace MoalemYar.UserControls
                 dynamic selectedItem = dgv.SelectedItems[0];
                 long id = selectedItem.Id;
                 long studentId = selectedItem.StudentId;
-                updateAttendance(id, studentId, isPresentEdit, txtDateEdit.Text.ToString());
+                updateAttendance(id, studentId, isPresentEdit, changedDate);
                 MainWindow.main.ShowUpdateDataNotification(true, selectedItemCmb.Name + " " + selectedItemCmb.LName, "حضورغیاب");
                 editGrid.IsEnabled = false;
                 getAttendance(Convert.ToInt64(cmbEditStudent.SelectedValue));
@@ -449,22 +425,20 @@ namespace MoalemYar.UserControls
             getAttendance(Convert.ToInt64(cmbEditStudent.SelectedValue));
         }
 
-        private void chkEditIsPresent_Checked(object sender, RoutedEventArgs e)
+        private void MetroSwitch_Checked(object sender, RoutedEventArgs e)
         {
-            chkEditIsAbsent.IsChecked = false;
-            if (chkEditIsPresent.IsChecked == true)
-            {
-                isPresentEdit = true;
-            }
+            isPresentEdit = true;
         }
 
-        private void chkEditIsAbsent_Checked(object sender, RoutedEventArgs e)
+        private void MetroSwitch_Unchecked(object sender, RoutedEventArgs e)
         {
-            chkEditIsPresent.IsChecked = false;
-            if (chkEditIsAbsent.IsChecked == true)
-            {
-                isPresentEdit = false;
-            }
+            isPresentEdit = false;
+        }
+
+        private void txtDateEdit_SelectedDateChanged(object sender, RoutedEventArgs e)
+        {
+            var mytxtDate = sender as PersianCalendarWPF.PersianDatePicker;
+            changedDate = mytxtDate.Text.ToString();
         }
     }
 }
