@@ -198,16 +198,9 @@
                             <StackPanel Orientation="Vertical" Grid.Column="0" Margin="0,35">
 
                                 <Metro:MetroTextBox x:Name="txtEditSearch" HorizontalAlignment="Stretch" VerticalAlignment="Top" ButtonTitle="بروزرسانی لیست" ButtonClick="txtEditSearch_ButtonClick" FlowDirection="RightToLeft" InputHint="جستجو..." PopupHint="جستجو بصورت خودکار انجام می شود" MetroPopupBackgroundState="Red2" Margin="5,5,0,0" Icon="../Resources/editIcon.png" TextChanged="txtEditSearch_TextChanged" />
-                                <ListView Margin="5,5,0,0" ScrollViewer.VerticalScrollBarVisibility="Auto" VerticalAlignment="Top" FlowDirection="RightToLeft" SelectionMode="Single" x:Name="dgv">
+                                <ListView Margin="5,5,0,0" ScrollViewer.VerticalScrollBarVisibility="Auto" VerticalAlignment="Top" FlowDirection="RightToLeft" SelectionMode="Single" x:Name="dgv" SelectionChanged="dgv_SelectionChanged">
                                     <ListView.View>
                                         <GridView>
-                                            <GridViewColumn Header="تاریخ">
-                                                <GridViewColumn.CellTemplate>
-                                                    <DataTemplate>
-                                                        <PersianCalendarWPF:PersianDatePicker HorizontalAlignment="Left" Text="{Binding Date}" SelectedDate="{Binding Date}" SelectedDateChanged="txtDateEdit_SelectedDateChanged" Name="txtDateEdit"/>
-                                                    </DataTemplate>
-                                                </GridViewColumn.CellTemplate>
-                                            </GridViewColumn>
                                             <GridViewColumn Header="وضعیت حضور" Width="0"  DisplayMemberBinding="{Binding Exist}" />
                                             <GridViewColumn Header="StudentId" Width="0" DisplayMemberBinding="{Binding StudentId}" />
                                             <GridViewColumn Header="Id" Width="0"  DisplayMemberBinding="{Binding Id}" />
@@ -215,7 +208,13 @@
                                                 <GridViewColumn.CellTemplate>
                                                     <DataTemplate>
                                                         <Metro:MetroSwitch Checked="MetroSwitch_Checked" Unchecked="MetroSwitch_Unchecked" IsChecked="{Binding Exist}" />
-
+                                                    </DataTemplate>
+                                                </GridViewColumn.CellTemplate>
+                                            </GridViewColumn>
+                                            <GridViewColumn Header="تاریخ">
+                                                <GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <PersianCalendarWPF:PersianDatePicker HorizontalAlignment="Left" Text="{Binding Date}" SelectedDate="{Binding Date}" SelectedDateChanged="txtDateEdit_SelectedDateChanged" Name="txtDateEdit"/>
                                                     </DataTemplate>
                                                 </GridViewColumn.CellTemplate>
                                             </GridViewColumn>

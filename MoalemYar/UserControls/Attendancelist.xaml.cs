@@ -434,5 +434,16 @@ namespace MoalemYar.UserControls
             var mytxtDate = sender as PersianCalendarWPF.PersianDatePicker;
             changedDate = mytxtDate.Text.ToString();
         }
+        private void dgv_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                dynamic selectedItem = dgv.SelectedItems[0];
+                changedDate = selectedItem.Date;
+            }
+            catch (Exception)
+            {
+            }
+        }
     }
 }
