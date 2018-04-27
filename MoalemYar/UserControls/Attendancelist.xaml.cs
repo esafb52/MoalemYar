@@ -408,6 +408,7 @@ namespace MoalemYar.UserControls
             }
         }
 
+        //Todo: there is a bug when change cmb and can find any data
         private void cmbEditBase_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             getStudentPerson(Convert.ToInt64(cmbEditBase.SelectedValue));
