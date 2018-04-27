@@ -264,7 +264,6 @@ namespace MoalemYar.UserControls
                 long studentId = selectedItem.StudentId;
                 updateAttendance(id, studentId, isPresentEdit, changedDate);
                 MainWindow.main.ShowUpdateDataNotification(true, selectedItemCmb.Name + " " + selectedItemCmb.LName, "حضورغیاب");
-                editGrid.IsEnabled = false;
                 getAttendance(Convert.ToInt64(cmbEditStudent.SelectedValue));
             }
             catch (Exception)
@@ -273,11 +272,6 @@ namespace MoalemYar.UserControls
                 MainWindow.main.ShowUpdateDataNotification(false, selectedItemCmb.Name + " " + selectedItemCmb.LName, "حضورغیاب");
             }
             
-        }
-
-        private void btnEditCancel_Click(object sender, RoutedEventArgs e)
-        {
-            editGrid.IsEnabled = false;
         }
 
         private void txtEditSearch_TextChanged(object sender, TextChangedEventArgs e)
@@ -317,7 +311,6 @@ namespace MoalemYar.UserControls
 
                 deleteAttendance(studentId, id);
                 MainWindow.main.ShowDeletedNotification(true, selectedItemCmb.Name + " " + selectedItemCmb.LName, "حضورغیاب");
-                editGrid.IsEnabled = false;
                 getAttendance(Convert.ToInt64(cmbEditStudent.SelectedValue));
             }
             catch (Exception)
