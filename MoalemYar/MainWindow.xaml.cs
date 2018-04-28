@@ -510,8 +510,6 @@ namespace MoalemYar
             exContent.Content = new AddUser();
         }
 
-        
-
         private void exAddOrUpdateStudent_Click(object sender, EventArgs e)
         {
             exContent.Content = new AddStudent();
@@ -520,7 +518,11 @@ namespace MoalemYar
         private void exAttendancelist_Click(object sender, EventArgs e)
         {
             exContent.Content = new Attendancelist();
+        }
 
+        private void exQuestionsList_Click(object sender, EventArgs e)
+        {
+            exContent.Content = new QuestionsList();
         }
     }
 }
