@@ -23,7 +23,6 @@
                         </Grid.ColumnDefinitions>
                         <ComboBox SelectionChanged="cmbBase_SelectionChanged" x:Name="cmbBase" ItemsSource="{Binding}"  
                   Height="30"
-                                  SelectedItem="{Binding Name}"  
                       SelectedValue="{Binding SchoolName}"  
                                   SelectedValuePath="Id"   
                   Margin="10,10,0,0"
@@ -131,9 +130,8 @@
                                 <ColumnDefinition />
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <ComboBox  x:Name="cmbEditBase" ItemsSource="{Binding}"   SelectionChanged="cmbEditBase_SelectionChanged"
+                            <ComboBox  x:Name="cmbEditBase" ItemsSource="{Binding}" SelectionChanged="cmbEditBase_SelectionChanged"
                                 Height="30"
-                                  SelectedItem="{Binding Name}"  
                                   SelectedValue="{Binding SchoolName}"  
                                   SelectedValuePath="Id"   
                                   Margin="5,5,0,0"
@@ -162,9 +160,8 @@
                                     </Style>
                                 </TextBlock.Style>
                             </TextBlock>
-                            <ComboBox  x:Name="cmbEditStudent" ItemsSource="{Binding}"  SelectionChanged="cmbEditStudent_SelectionChanged"
+                            <ComboBox  x:Name="cmbEditStudent" SelectionChanged="cmbEditStudent_SelectionChanged"
                                   Height="30"
-                                  SelectedItem="{Binding Name}"  
                                   SelectedValue="{Binding LName}"  
                                   SelectedValuePath="Id"   
                                   Margin="210,5,0,0"
