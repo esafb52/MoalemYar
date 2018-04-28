@@ -351,6 +351,7 @@ namespace MoalemYar.UserControls
             }
         }
 
+        //Todo: fix Thumbnail size must be less than image's size
         public byte[] CreateThumbnail(BitmapImage imageC)
         {
             //Read Image byte
@@ -369,8 +370,9 @@ namespace MoalemYar.UserControls
             );
             return resultBytes;
         }
+        
 
-        private void txtEditSearch_ButtonClick(object sender, EventArgs e)
+private void txtEditSearch_ButtonClick(object sender, EventArgs e)
         {
             getStudent(Convert.ToInt64(cmbBaseEdit.SelectedValue));
         }
