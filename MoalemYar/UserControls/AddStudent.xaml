@@ -81,7 +81,6 @@
                             </ContentControl.ContentTemplate>
                         </ContentControl>
                         <ComboBox x:Name="cmbBase" ItemsSource="{Binding}"  
-                  SelectedItem="{Binding Name}"  
                       SelectedValue="{Binding SchoolName}"  
                                   SelectedValuePath="Id"   
                   Margin="10,150,0,0"
@@ -145,8 +144,8 @@
                                 <ColumnDefinition />
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <ComboBox Grid.Column="0" Margin="10,0,0,0" FlowDirection="RightToLeft" x:Name="cmbBaseEdit" SelectionChanged="cmbBaseEdit_SelectionChanged" ItemsSource="{Binding}"  
-                            SelectedItem="{Binding Name}" SelectedValue="{Binding SchoolName}" SelectedValuePath="Id"   
+                            <ComboBox Grid.Column="0" Margin="10,0,0,0" FlowDirection="RightToLeft" x:Name="cmbBaseEdit" SelectionChanged="cmbBaseEdit_SelectionChanged" 
+                            SelectedValue="{Binding SchoolName}" SelectedValuePath="Id"   
                             Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="190"  >
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>
@@ -210,7 +209,7 @@
                                             </DataTemplate>
                                         </ContentControl.ContentTemplate>
                                     </ContentControl>
-                                    <ComboBox x:Name="cmbEditBase" Margin="10,0,0,0" Height="30" ItemsSource="{Binding School}"
+                                    <ComboBox x:Name="cmbEditBase" Margin="10,0,0,0" Height="30" 
                             SelectedValue ="{Binding SchoolName}" DisplayMemberPath="SchoolName"
                             SelectedValuePath="Id" VerticalAlignment="Top" HorizontalAlignment="Left" Width="180">
                                         <ComboBox.Template>
