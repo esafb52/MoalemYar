@@ -34,7 +34,7 @@ namespace MoalemYar.UserControls
     {
         public Brush BorderColor { get; set; }
         private bool runOnceSchool = true;
-
+        private bool isCreateThumbnail = false;
         internal static AddStudent main;
         private List<DataClass.DataTransferObjects.SchoolsStudentsJointDto> _initialCollection;
         public AddStudent()
@@ -276,12 +276,14 @@ namespace MoalemYar.UserControls
             dynamic selectedItem = dgv.SelectedItems[0];
             long id = selectedItem.Id;
 
-            updateStudent(id, Convert.ToInt64(cmbEditBase.SelectedValue), txtName.Text, txtLName.Text, txtFName.Text, getComboValue(), CreateThumbnail(imgEditStudent.Source as BitmapImage));
+            updateStudent(id, Convert.ToInt64(cmbEditBase.SelectedValue), txtName.Text, txtLName.Text, txtFName.Text, getComboValue(), (isCreateThumbnail ? CreateThumbnail(imgEditStudent.Source as BitmapImage) : getImageByte(imgEditStudent.Source as BitmapImage)));
+            isCreateThumbnail = false;
+
             MainWindow.main.ShowUpdateDataNotification(true, txtName.Text, "دانش آموز");
             editStack.IsEnabled = false;
             getStudent(Convert.ToInt64(cmbBaseEdit.SelectedValue));
         }
-
+        
         private void btnEditCancel_Click(object sender, RoutedEventArgs e)
         {
             txtName.Text = string.Empty;
@@ -351,7 +353,7 @@ namespace MoalemYar.UserControls
             }
         }
 
-        //Todo: fix Thumbnail size must be less than image's size
+        //Todo: fixed Thumbnail size must be less than image's size ==> mybe i can find better way to do this (i`m waiting for Thumbnail Creator Author to respons)
         public byte[] CreateThumbnail(BitmapImage imageC)
         {
             //Read Image byte
@@ -370,9 +372,17 @@ namespace MoalemYar.UserControls
             );
             return resultBytes;
         }
-        
 
-private void txtEditSearch_ButtonClick(object sender, EventArgs e)
+        public byte[] getImageByte(BitmapImage imageC)
+        {
+            MemoryStream memStream = new MemoryStream();
+            JpegBitmapEncoder encoder = new JpegBitmapEncoder();
+            encoder.Frames.Add(BitmapFrame.Create(imageC));
+            encoder.Save(memStream);
+            return memStream.ToArray();
+        }
+
+        private void txtEditSearch_ButtonClick(object sender, EventArgs e)
         {
             getStudent(Convert.ToInt64(cmbBaseEdit.SelectedValue));
         }
@@ -423,7 +433,10 @@ private void txtEditSearch_ButtonClick(object sender, EventArgs e)
             var imageExtensions = string.Join(";", ImageCodecInfo.GetImageDecoders().Select(ici => ici.FilenameExtension));
             dialog.Filter = string.Format("تصاویر|{0}|تمام فایل ها|*.*", imageExtensions);
             if ((bool)dialog.ShowDialog())
+            {
                 imgEditStudent.Source = new BitmapImage(new Uri(dialog.FileName));
+                isCreateThumbnail = true;
+            }
         }
 
         private void cmbBaseEdit_SelectionChanged(object sender, SelectionChangedEventArgs e)
