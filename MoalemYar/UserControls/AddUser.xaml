@@ -12,89 +12,89 @@
         <Metro:MetroTabControl Focusable="False" x:Name="tabc" IsTabStop="True" TabIndex="-1" SelectionChanged="tabc_SelectionChanged">
             <Metro:MetroTabItem Header="ثبت اطلاعات">
                 <Grid KeyboardNavigation.TabNavigation="Cycle">
-                    <Metro:MetroScrollViewer>
-                        <Metro:MetroWaterfallFlow x:Name="waterfallFlow" ListWidth="300">
-                            <Grid HorizontalAlignment="Stretch">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="auto" />
-                                    <RowDefinition Height="auto" />
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="auto" />
-                                    <ColumnDefinition Width="auto" />
-                                </Grid.ColumnDefinitions>
-                                <Button x:Name="btnSave" Click="btnSave_Click" Grid.Column="0" Grid.Row="0" Margin="10,5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Style="{StaticResource WorkButtonGreen}" Height="35">
-                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                                        <Image Height="16" Width="16" Margin="10,0,30,0" Source="/Resources/add.png"/>
-                                        <TextBlock TextWrapping="NoWrap" Text="ذخیره" FontSize="13" Foreground="#ffffff"/>
-                                    </StackPanel>
-                                </Button>
-                                <Button x:Name="btnCancel" Click="btnCancel_Click" Grid.Column="1" Grid.Row="0" Margin="10,5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Style="{StaticResource CancelButton}" Height="35">
-                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                                        <Image Height="16" Width="16" Margin="-30,0,30,0" Source="/Resources/cancel.png"/>
-                                        <TextBlock TextWrapping="NoWrap" Text="انصراف" FontSize="13" Foreground="#ffffff"/>
-                                    </StackPanel>
-                                </Button>
-                            </Grid>
+                    <StackPanel Orientation="Vertical" Margin="5,5,5,0">
+                        <Grid HorizontalAlignment="Stretch" Margin="5,5,5,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition Width="auto" />
+                            </Grid.ColumnDefinitions>
+                            <Button x:Name="btnSave" Click="btnSave_Click" Grid.Column="0" Grid.Row="0" Margin="10,5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Style="{StaticResource WorkButtonGreen}" Height="35">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                    <Image Height="16" Width="16" Margin="10,0,30,0" Source="/Resources/add.png"/>
+                                    <TextBlock TextWrapping="NoWrap" Text="ذخیره" FontSize="13" Foreground="#ffffff"/>
+                                </StackPanel>
+                            </Button>
+                            <Button x:Name="btnCancel" Click="btnCancel_Click" Grid.Column="1" Grid.Row="0" Margin="10,5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Style="{StaticResource CancelButton}" Height="35">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                    <Image Height="16" Width="16" Margin="-30,0,30,0" Source="/Resources/cancel.png"/>
+                                    <TextBlock TextWrapping="NoWrap" Text="انصراف" FontSize="13" Foreground="#ffffff"/>
+                                </StackPanel>
+                            </Button>
+                        </Grid>
+                        <Metro:MetroBorder Margin="0,5,0,0" HorizontalAlignment="Stretch" BorderThickness="1" BorderBrush="{Binding BorderColor}" />
+                        <Metro:MetroWaterfallFlow ListWidth="350" VerticalAlignment="Top" Height="55" Grid.Row="1">
+                            <StackPanel Margin="0,5,0,0" Orientation="Vertical">
+                                <Metro:MetroTextBox Margin="2" Name="txtAddUsername" TabIndex="0" InputHint="نام کاربری" Height="30" PopupHint="نام کاربری باید بصورت لاتین باشد" MetroPopupBackgroundState="DarkRed" />
+                                <Metro:MetroTextBox Margin="2" Name="txtAddPassword" IsPassWordBox="True" TabIndex="1" InputHint="رمز عبور" PopupHint="رمز عبور می تواند ترکیبی از حروف و اعداد باشد" MetroPopupBackgroundState="DarkRed" Height="30" />
+                                <Metro:MetroTextBox Margin="2" Name="txtAddPasswordAg" IsPassWordBox="True" TabIndex="2" InputHint="تکرار رمز عبور" Height="30" PopupHint="رمز عبور خود را تکرار کنید" MetroPopupBackgroundState="DarkRed" />
+                            </StackPanel>
                         </Metro:MetroWaterfallFlow>
-                    </Metro:MetroScrollViewer>
-                    <Metro:MetroBorder HorizontalAlignment="Stretch" BorderThickness="1" BorderBrush="{Binding BorderColor}" Margin="167,63,212,0" VerticalAlignment="Top" />
-                    <Metro:MetroTextBox Name="txtAddUsername" TabIndex="0" InputHint="نام کاربری" Height="30" Margin="167,92,212,0" PopupHint="نام کاربری باید بصورت لاتین باشد" MetroPopupBackgroundState="DarkRed" VerticalAlignment="Top" />
-                    <Metro:MetroTextBox Name="txtAddPassword" IsPassWordBox="True" TabIndex="1" InputHint="رمز عبور" PopupHint="رمز عبور می تواند ترکیبی از حروف و اعداد باشد" MetroPopupBackgroundState="DarkRed" Margin="167,127,212,0"  Height="30" VerticalAlignment="Top" />
-                    <Metro:MetroTextBox Name="txtAddPasswordAg" IsPassWordBox="True" TabIndex="2" InputHint="تکرار رمز عبور" Height="30" PopupHint="رمز عبور خود را تکرار کنید" MetroPopupBackgroundState="DarkRed" VerticalAlignment="Top" Margin="167,162,212,0" />
+                    </StackPanel>
                 </Grid>
             </Metro:MetroTabItem>
             <Metro:MetroTabItem Header="ویرایش اطلاعات">
                 <Grid KeyboardNavigation.TabNavigation="Cycle">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="43*" />
-                        <RowDefinition Height="369*" />
-                    </Grid.RowDefinitions>
-                    <StackPanel Margin="2,5,0,0" Grid.Row="0" Orientation="Horizontal" Grid.RowSpan="2" Height="50" VerticalAlignment="Top">
-                        <Button x:Name="btnEditSave" Click="btnEditSave_Click" Grid.Column="0" Grid.Row="0" Margin="10,5,5,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Style="{StaticResource WorkButtonGreen}" Height="35">
-                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                                <Image Height="16" Width="16" Margin="10,0,30,0" Source="/Resources/update.png"/>
-                                <TextBlock TextWrapping="NoWrap" Text="ذخیره" FontSize="13" Foreground="#ffffff"/>
-                            </StackPanel>
-                        </Button>
-                        <Button x:Name="btnDelete" Click="btnDelete_Click" Grid.Column="1"  Grid.ColumnSpan="2" Grid.Row="1" Margin="5,5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Style="{StaticResource WorkButtonRed}" Height="35">
-                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                                <Image Height="16" Width="16" Margin="10,0,30,0" Source="/Resources/Delete.png"/>
-                                <TextBlock TextWrapping="NoWrap" Text="حذف" FontSize="13" Foreground="#ffffff"/>
-                            </StackPanel>
-                        </Button>
-                        <Button x:Name="btnEditCancel" Click="btnEditCancel_Click" Grid.Column="1" Grid.Row="0" Margin="5,5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Style="{StaticResource CancelButton}" Height="35">
-                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                                <Image Height="16" Width="16" Margin="-30,0,30,0" Source="/Resources/cancel.png" RenderTransformOrigin="-1.688,0.625"/>
-                                <TextBlock TextWrapping="NoWrap" Text="انصراف" FontSize="13" Foreground="#ffffff"/>
-                            </StackPanel>
-                        </Button>
-                    </StackPanel>
-                    <StackPanel Grid.Row="1" Orientation="Vertical">
-                        <Grid Height="auto">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition />
-                                <ColumnDefinition/>
-                            </Grid.ColumnDefinitions>
-
-                            <StackPanel Grid.Column="0" Orientation="Vertical" Margin="10">
-                                <Metro:MetroTextBox Name="txtEditSearch" ButtonTitle="بروزرسانی لیست" Margin="2" ButtonClick="txtEditSearch_ButtonClick"  FlowDirection="RightToLeft" InputHint="جستجو..." PopupHint="جستجو بصورت خودکار انجام می شود" MetroPopupBackgroundState="Red2" Icon="../Resources/editIcon.png" TextChanged="txtEditSearch_TextChanged" />
-                                <ListView ScrollViewer.VerticalScrollBarVisibility="Auto" Margin="2" FlowDirection="RightToLeft" SelectionMode="Single" Name="dgv" SelectionChanged="dgv_SelectionChanged">
-                                    <ListView.View>
-                                        <GridView>
-                                            <GridViewColumn Width="100" Header="نام کاربری"  DisplayMemberBinding="{Binding Username}" />
-                                            <GridViewColumn Width="255" Header="رمز عبور"  DisplayMemberBinding="{Binding Password}" />
-                                            <GridViewColumn Header="Id" Width="0"  DisplayMemberBinding="{Binding Id}" />
-                                        </GridView>
-                                    </ListView.View>
-                                </ListView>
-                            </StackPanel>
-                            <StackPanel IsEnabled="False" Orientation="Vertical" Grid.Column="1" Name="editGrid" Margin="10">
-                                <Metro:MetroTextBox Name="txtUsername" Margin="2" InputHint="نام کاربری" Height="30" PopupHint="نام کاربری باید بصورت لاتین باشد" MetroPopupBackgroundState="DarkRed" VerticalAlignment="Top" />
-                                <Metro:MetroTextBox Name="txtPassword" Margin="2" InputHint="رمز عبور" PopupHint="رمز عبور می تواند ترکیبی از حروف و اعداد باشد" MetroPopupBackgroundState="DarkRed" Height="30" VerticalAlignment="Top" />
-                                <Metro:MetroTextBox Name="txtPasswordAg" Margin="2" InputHint="تکرار رمز عبور" Height="30" PopupHint="رمز عبور خود را تکرار کنید" MetroPopupBackgroundState="DarkRed" VerticalAlignment="Top" />
-                            </StackPanel>
-                        </Grid>
+                    <StackPanel Orientation="Vertical" Margin="5,5,5,0">
+                        <StackPanel Orientation="Horizontal" Height="50" VerticalAlignment="Top">
+                            <Button x:Name="btnEditSave" Click="btnEditSave_Click" Grid.Column="0" Grid.Row="0" Margin="10,5,5,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Style="{StaticResource WorkButtonGreen}" Height="35">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                    <Image Height="16" Width="16" Margin="10,0,30,0" Source="/Resources/update.png"/>
+                                    <TextBlock TextWrapping="NoWrap" Text="ذخیره" FontSize="13" Foreground="#ffffff"/>
+                                </StackPanel>
+                            </Button>
+                            <Button x:Name="btnDelete" Click="btnDelete_Click" Grid.Column="1"  Grid.ColumnSpan="2" Grid.Row="1" Margin="5,5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Style="{StaticResource WorkButtonRed}" Height="35">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                    <Image Height="16" Width="16" Margin="10,0,30,0" Source="/Resources/Delete.png"/>
+                                    <TextBlock TextWrapping="NoWrap" Text="حذف" FontSize="13" Foreground="#ffffff"/>
+                                </StackPanel>
+                            </Button>
+                            <Button x:Name="btnEditCancel" Click="btnEditCancel_Click" Grid.Column="1" Grid.Row="0" Margin="5,5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Style="{StaticResource CancelButton}" Height="35">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                    <Image Height="16" Width="16" Margin="-30,0,30,0" Source="/Resources/cancel.png" RenderTransformOrigin="-1.688,0.625"/>
+                                    <TextBlock TextWrapping="NoWrap" Text="انصراف" FontSize="13" Foreground="#ffffff"/>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+                        <Metro:MetroBorder Margin="0,5,0,0" HorizontalAlignment="Stretch" BorderThickness="1" BorderBrush="{Binding BorderColor}" />
+                        <StackPanel Orientation="Vertical" Margin="0,10,0,0">
+                            <Grid Height="auto">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Grid.Column="0" Orientation="Vertical">
+                                    <Metro:MetroTextBox Name="txtEditSearch" ButtonTitle="بروزرسانی لیست" Margin="2" ButtonClick="txtEditSearch_ButtonClick"  FlowDirection="RightToLeft" InputHint="جستجو..." PopupHint="جستجو بصورت خودکار انجام می شود" MetroPopupBackgroundState="Red2" Icon="../Resources/editIcon.png" TextChanged="txtEditSearch_TextChanged" />
+                                    <ListView ScrollViewer.VerticalScrollBarVisibility="Auto" Margin="2" FlowDirection="RightToLeft" SelectionMode="Single" Name="dgv" SelectionChanged="dgv_SelectionChanged">
+                                        <ListView.View>
+                                            <GridView>
+                                                <GridViewColumn Width="100" Header="نام کاربری"  DisplayMemberBinding="{Binding Username}" />
+                                                <GridViewColumn Width="255" Header="رمز عبور"  DisplayMemberBinding="{Binding Password}" />
+                                                <GridViewColumn Header="Id" Width="0"  DisplayMemberBinding="{Binding Id}" />
+                                            </GridView>
+                                        </ListView.View>
+                                    </ListView>
+                                </StackPanel>
+                                <StackPanel IsEnabled="False" Orientation="Vertical" Grid.Column="1" Name="editGrid" Margin="5,0,0,0">
+                                    <Metro:MetroTextBox Name="txtUsername" Margin="2" InputHint="نام کاربری" Height="30" PopupHint="نام کاربری باید بصورت لاتین باشد" MetroPopupBackgroundState="DarkRed" VerticalAlignment="Top" />
+                                    <Metro:MetroTextBox Name="txtPassword" Margin="2" InputHint="رمز عبور" PopupHint="رمز عبور می تواند ترکیبی از حروف و اعداد باشد" MetroPopupBackgroundState="DarkRed" Height="30" VerticalAlignment="Top" />
+                                    <Metro:MetroTextBox Name="txtPasswordAg" Margin="2" InputHint="تکرار رمز عبور" Height="30" PopupHint="رمز عبور خود را تکرار کنید" MetroPopupBackgroundState="DarkRed" VerticalAlignment="Top" />
+                                </StackPanel>
+                            </Grid>
+                        </StackPanel>
                     </StackPanel>
                 </Grid>
             </Metro:MetroTabItem>

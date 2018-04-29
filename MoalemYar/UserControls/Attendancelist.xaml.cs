@@ -11,11 +11,13 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace MoalemYar.UserControls
 {
@@ -32,7 +34,7 @@ namespace MoalemYar.UserControls
         private static string strDate;
         private bool isPresentEdit = true;
         private string changedDate = string.Empty;
-
+        public System.Windows.Media.Brush BorderColor { get; set; }
         public Attendancelist()
         {
             InitializeComponent();
@@ -41,6 +43,10 @@ namespace MoalemYar.UserControls
             main = this;
             strDate = pc.GetYear(DateTime.Now).ToString("0000") + "/" + pc.GetMonth(DateTime.Now).ToString("00") + "/" + pc.GetDayOfMonth(DateTime.Now).ToString("00");
             txtDate.Text = string.Format("تاریخ امروز : {0} ", strDate);
+
+            var color = (System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString(AppVariable.ReadSetting(AppVariable.SkinCode));
+            var brush = new SolidColorBrush(color);
+            BorderColor = brush;
         }
 
         #region "Async Query"

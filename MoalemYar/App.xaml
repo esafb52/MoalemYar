@@ -15,7 +15,7 @@
                 <Setter Property="TextOptions.TextHintingMode" Value="Auto" />
                 <Setter Property="FontFamily" Value="{StaticResource TeacherYar.Fonts.IRANSans}" />
                 <Setter Property="FontSize" Value="14" />
-                <Setter Property="MinWidth" Value="800" />
+                <Setter Property="MinWidth" Value="1300" />
                 <Setter Property="MinHeight" Value="600" />
                 <Setter Property="BorderThickness" Value="1" />
                 <Setter Property="WindowStyle" Value="None" />

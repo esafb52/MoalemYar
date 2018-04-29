@@ -10,255 +10,250 @@
              Style="{StaticResource myUserControl}"
              d:DesignHeight="550" d:DesignWidth="800">
     <Grid>
-
         <Metro:MetroTabControl Focusable="False" x:Name="tabc" IsTabStop="True" TabIndex="-1" SelectionChanged="tabc_SelectionChanged">
             <Metro:MetroTabItem Header="ثبت اطلاعات">
                 <Grid KeyboardNavigation.TabNavigation="Cycle">
-                    <Metro:MetroScrollViewer>
-                        <Metro:MetroWaterfallFlow x:Name="waterfallFlow" ListWidth="300">
-                            <Grid HorizontalAlignment="Stretch">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="auto" />
-                                    <RowDefinition Height="auto" />
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="auto" />
-                                    <ColumnDefinition Width="auto" />
-                                </Grid.ColumnDefinitions>
-                                <Button x:Name="btnSave" Click="btnSave_Click" Grid.Column="0" Grid.Row="0" Margin="10,5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Style="{StaticResource WorkButtonGreen}" Height="35">
-                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                                        <Image Height="16" Width="16" Margin="10,0,30,0" Source="/Resources/add.png"/>
-                                        <TextBlock TextWrapping="NoWrap" Text="ذخیره" FontSize="13" Foreground="#ffffff"/>
-                                    </StackPanel>
-                                </Button>
-                                <Button x:Name="btnCancel" Click="btnCancel_Click" Grid.Column="1" Grid.Row="0" Margin="10,5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Style="{StaticResource CancelButton}" Height="35">
-                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                                        <Image Height="16" Width="16" Margin="-30,0,30,0" Source="/Resources/cancel.png"/>
-                                        <TextBlock TextWrapping="NoWrap" Text="انصراف" FontSize="13" Foreground="#ffffff"/>
-                                    </StackPanel>
-                                </Button>
-                            </Grid>
-                        </Metro:MetroWaterfallFlow>
-                    </Metro:MetroScrollViewer>
-                    <Metro:MetroBorder HorizontalAlignment="Stretch" BorderThickness="1" BorderBrush="{Binding BorderColor}" Margin="167,63,212,0" VerticalAlignment="Top" />
-                    <Grid Margin="0,88,0,0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
-
-                        <Metro:MetroTextBox x:Name="txtAddName" TabIndex="0" Margin="10,10,5,0" InputHint="نام" Height="30" Grid.Column="0" PopupHint="نام دانش آموز" MetroPopupBackgroundState="DarkRed" VerticalAlignment="Top" />
-                        <Metro:MetroTextBox x:Name="txtAddLName" TabIndex="1" InputHint="نام خانوادگی" Grid.Column="0"  PopupHint="نام خانوادگی دانش آموز" MetroPopupBackgroundState="DarkRed"  Height="30" VerticalAlignment="Top" Margin="10,45,5,0" />
-                        <Metro:MetroTextBox x:Name="txtAddFName" TabIndex="2" InputHint="نام پدر" Height="30" Grid.Column="0" PopupHint="نام پدر دانش آموز" MetroPopupBackgroundState="DarkRed" VerticalAlignment="Top" Margin="10,80,5,0" />
-                        <Grid Grid.Column="1">
-                            <StackPanel Orientation="Vertical" HorizontalAlignment="Left">
-                                <Metro:MetroImage  VerticalAlignment="Top" ImageHeight="250" ImageWidth="250" Stretch="Fill" x:Name="imgStudent" Source="..\Resources\Choose.png" Content="MetroImage" RenderTransformOrigin="0.5,0.5" Height="200" Width="200" />
-                                <Button x:Name="btnChoose" Click="btnChoose_Click" Margin="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Style="{StaticResource WorkButton}" Height="35">
-                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                                        <Image Height="16" Width="16" Margin="10,0,30,0" Source="/Resources/open.png"/>
-                                        <TextBlock TextWrapping="NoWrap" Text="انتخاب عکس" FontSize="13" Foreground="#ffffff"/>
-                                    </StackPanel>
-                                </Button>
-
-                            </StackPanel>
+                    <StackPanel Orientation="Vertical" Margin="5,5,5,0">
+                        <Grid HorizontalAlignment="Stretch" Margin="5,5,5,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition Width="auto" />
+                            </Grid.ColumnDefinitions>
+                            <Button x:Name="btnSave" Click="btnSave_Click" Grid.Column="0" Grid.Row="0" Margin="10,5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Style="{StaticResource WorkButtonGreen}" Height="35">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                    <Image Height="16" Width="16" Margin="10,0,30,0" Source="/Resources/add.png"/>
+                                    <TextBlock TextWrapping="NoWrap" Text="ذخیره" FontSize="13" Foreground="#ffffff"/>
+                                </StackPanel>
+                            </Button>
+                            <Button x:Name="btnCancel" Click="btnCancel_Click" Grid.Column="1" Grid.Row="0" Margin="10,5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Style="{StaticResource CancelButton}" Height="35">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                    <Image Height="16" Width="16" Margin="-30,0,30,0" Source="/Resources/cancel.png"/>
+                                    <TextBlock TextWrapping="NoWrap" Text="انصراف" FontSize="13" Foreground="#ffffff"/>
+                                </StackPanel>
+                            </Button>
                         </Grid>
-                        <ContentControl x:Name="cmbAddContentGender" TabIndex="3" Focusable="False" Grid.Column="0" Height="30" VerticalAlignment="Top" Margin="10,115,0,0" HorizontalAlignment="Left" Width="200">
-                            <ContentControl.ContentTemplate>
-                                <DataTemplate>
-                                    <Grid>
-                                        <ComboBox SelectionChanged="cmbGender_SelectionChanged" TabIndex="4" x:Name="cmbGender">
-                                            <ComboBoxItem Content="پسر" />
-                                            <ComboBoxItem Content="دختر" />
-                                        </ComboBox>
-                                        <TextBlock x:Name="tb" Text=" جنسیت " IsHitTestVisible="False" Visibility="Hidden" />
-                                    </Grid>
-                                    <DataTemplate.Triggers>
-                                        <Trigger SourceName="cmbGender" Property="SelectedItem" Value="{x:Null}">
-                                            <Setter TargetName="tb" Property="Visibility" Value="Visible" />
-                                        </Trigger>
-                                    </DataTemplate.Triggers>
-                                </DataTemplate>
-                            </ContentControl.ContentTemplate>
-                        </ContentControl>
-                        <ComboBox x:Name="cmbBase" ItemsSource="{Binding}"  
-                      SelectedValue="{Binding SchoolName}"  
-                                  SelectedValuePath="Id"   
-                  Margin="10,150,0,0"
-                  VerticalAlignment="Top" HorizontalAlignment="Left" Width="200"  >
-                            <ComboBox.ItemTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="{Binding SchoolName}" />
-                                        <TextBlock Text=" - " />
-                                        <TextBlock Text="{Binding Base}" />
-                                        <TextBlock Text=" - " />
-                                        <TextBlock Text="{Binding Year}" />
-                                    </StackPanel>
-                                </DataTemplate>
-                            </ComboBox.ItemTemplate>
-                        </ComboBox>
-                        <TextBlock Text=" انتخاب کلاس " IsHitTestVisible="False" Margin="10,150,0,246" HorizontalAlignment="Left" Width="200">
-                            <TextBlock.Style>
-                                <Style TargetType="TextBlock">
-                                    <Setter Property="Visibility" Value="Hidden"/>
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Binding ElementName=cmbBase,Path=SelectedItem}" Value="{x:Null}">
-                                            <Setter Property="Visibility" Value="Visible"/>
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </TextBlock.Style>
-                        </TextBlock>
-                    </Grid>
-                </Grid>
-            </Metro:MetroTabItem>
-            <Metro:MetroTabItem Header="ویرایش اطلاعات">
-                <Grid KeyboardNavigation.TabNavigation="Cycle">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="43*" />
-                        <RowDefinition Height="369*" />
-                    </Grid.RowDefinitions>
-                    <StackPanel Margin="2,5,0,0" Grid.Row="0" Orientation="Horizontal" Grid.RowSpan="2" Height="50" VerticalAlignment="Top">
-                        <Button x:Name="btnEditSave" Click="btnEditSave_Click" Grid.Column="0" Grid.Row="0" Margin="10,5,5,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Style="{StaticResource WorkButtonGreen}" Height="35">
-                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                                <Image Height="16" Width="16" Margin="10,0,30,0" Source="/Resources/update.png"/>
-                                <TextBlock TextWrapping="NoWrap" Text="ذخیره" FontSize="13" Foreground="#ffffff"/>
-                            </StackPanel>
-                        </Button>
-                        <Button x:Name="btnDelete" Click="btnDelete_Click" Grid.Column="1"  Grid.ColumnSpan="2" Grid.Row="1" Margin="5,5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Style="{StaticResource WorkButtonRed}" Height="35">
-                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                                <Image Height="16" Width="16" Margin="10,0,30,0" Source="/Resources/Delete.png"/>
-                                <TextBlock TextWrapping="NoWrap" Text="حذف" FontSize="13" Foreground="#ffffff"/>
-                            </StackPanel>
-                        </Button>
-                        <Button x:Name="btnEditCancel" Click="btnEditCancel_Click" Grid.Column="1" Grid.Row="0" Margin="5,5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Style="{StaticResource CancelButton}" Height="35">
-                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                                <Image Height="16" Width="16" Margin="-30,0,30,0" Source="/Resources/cancel.png" RenderTransformOrigin="-1.688,0.625"/>
-                                <TextBlock TextWrapping="NoWrap" Text="انصراف" FontSize="13" Foreground="#ffffff"/>
-                            </StackPanel>
-                        </Button>
-                    </StackPanel>
-                    <StackPanel Grid.Row="1" Orientation="Vertical">
-                        <Grid Height="auto">
+                        <Metro:MetroBorder Margin="0,5,0,0" HorizontalAlignment="Stretch" BorderThickness="1" BorderBrush="{Binding BorderColor}" />
+                        <Grid Margin="0,5,0,0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition />
-                                <ColumnDefinition/>
+                                <ColumnDefinition />
                             </Grid.ColumnDefinitions>
-                            <ComboBox Grid.Column="0" Margin="10,0,0,0" FlowDirection="RightToLeft" x:Name="cmbBaseEdit" SelectionChanged="cmbBaseEdit_SelectionChanged" 
-                            SelectedValue="{Binding SchoolName}" SelectedValuePath="Id"   
-                            Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="190"  >
-                                <ComboBox.ItemTemplate>
-                                    <DataTemplate>
-                                        <StackPanel Orientation="Horizontal">
-                                            <TextBlock Text="{Binding SchoolName}" />
-                                            <TextBlock Text=" - " />
-                                            <TextBlock Text="{Binding Base}" />
-                                            <TextBlock Text=" - " />
-                                            <TextBlock Text="{Binding Year}" />
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </ComboBox.ItemTemplate>
-                            </ComboBox>
-                            <TextBlock Margin="10,0,0,0" Text=" انتخاب کلاس " FlowDirection="RightToLeft" IsHitTestVisible="False"  Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="190">
-                                <TextBlock.Style>
-                                    <Style TargetType="{x:Type TextBlock}">
-                                        <Setter Property="Visibility" Value="Hidden"/>
-                                        <Style.Triggers>
-                                            <DataTrigger Binding="{Binding SelectedItem, ElementName=cmbBaseEdit}" Value="{x:Null}">
-                                                <Setter Property="Visibility" Value="Visible"/>
-                                            </DataTrigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </TextBlock.Style>
-                            </TextBlock>
-                            <StackPanel Grid.Column="0" Margin="10,30,10,10" Orientation="Vertical">
-                                <Metro:MetroTextBox Margin="0,2,-10,0" x:Name="txtEditSearch" HorizontalAlignment="Stretch" VerticalAlignment="Top" ButtonTitle="بروزرسانی لیست" ButtonClick="txtEditSearch_ButtonClick"  FlowDirection="RightToLeft" InputHint="جستجو..." PopupHint="جستجو بصورت خودکار انجام می شود" MetroPopupBackgroundState="Red2" Icon="../Resources/editIcon.png" TextChanged="txtEditSearch_TextChanged" />
-                                <ListView Margin="0,2,-10,0" ScrollViewer.VerticalScrollBarVisibility="Auto" FlowDirection="RightToLeft" SelectionMode="Single" x:Name="dgv" SelectionChanged="dgv_SelectionChanged">
-                                    <ListView.View>
-                                        <GridView>
-                                            <GridViewColumn Header="نام" Width="100" DisplayMemberBinding="{Binding Name}" />
-                                            <GridViewColumn Header="نام خانوادگی" Width="100"  DisplayMemberBinding="{Binding LName}" />
-                                            <GridViewColumn Header="نام پدر" Width="100" DisplayMemberBinding="{Binding FName}" />
-                                            <GridViewColumn Header="جنسیت" Width="100" DisplayMemberBinding="{Binding Gender}" />
-                                            <GridViewColumn Header="پایه" Width="100" DisplayMemberBinding="{Binding Base}" />
-                                            <GridViewColumn Header="Id" Width="0"  DisplayMemberBinding="{Binding Id}" />
-                                        </GridView>
-                                    </ListView.View>
-                                </ListView>
-                            </StackPanel>
-                            <StackPanel Name="editStack" IsEnabled="False" Margin="10" Grid.Column="1" Orientation="Vertical">
-                                <Metro:MetroTextBox x:Name="txtName" Margin="2" InputHint="نام" Height="30" PopupHint="نام دانش آموز" MetroPopupBackgroundState="DarkRed" VerticalAlignment="Top" />
-                                <Metro:MetroTextBox x:Name="txtLName" Margin="2"  InputHint="نام خانوادگی" PopupHint="نام خانوادگی دانش آموز" MetroPopupBackgroundState="DarkRed" Height="30" VerticalAlignment="Top" />
-                                <Metro:MetroTextBox x:Name="txtFName" Margin="2"  InputHint="نام پدر" Height="30" PopupHint="نام پدر دانش آموز" MetroPopupBackgroundState="DarkRed" VerticalAlignment="Top" />
-                                <StackPanel Orientation="Horizontal" Margin="2">
-                                    <ContentControl x:Name="cmbContentGender" Focusable="False" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="180">
-                                        <ContentControl.ContentTemplate>
+                            <StackPanel Orientation="Vertical" Grid.Column="0" Margin="0,5,0,0">
+                                <Metro:MetroTextBox x:Name="txtAddName" Margin="2" TabIndex="0" InputHint="نام" Height="30" PopupHint="نام دانش آموز" MetroPopupBackgroundState="DarkRed" VerticalAlignment="Top" />
+                                <Metro:MetroTextBox x:Name="txtAddLName" Margin="2" TabIndex="1" InputHint="نام خانوادگی" PopupHint="نام خانوادگی دانش آموز" MetroPopupBackgroundState="DarkRed"  Height="30" VerticalAlignment="Top" />
+                                <Metro:MetroTextBox x:Name="txtAddFName" Margin="2" TabIndex="2" InputHint="نام پدر" Height="30" PopupHint="نام پدر دانش آموز" MetroPopupBackgroundState="DarkRed" VerticalAlignment="Top"/>
+                                <ContentControl x:Name="cmbAddContentGender" TabIndex="3" Focusable="False" Height="30" VerticalAlignment="Top" Margin="2" HorizontalAlignment="Left" Width="200">
+                                    <ContentControl.ContentTemplate>
+                                        <DataTemplate>
+                                            <Grid>
+                                                <ComboBox SelectionChanged="cmbGender_SelectionChanged" TabIndex="4" x:Name="cmbGender">
+                                                    <ComboBoxItem Content="پسر" />
+                                                    <ComboBoxItem Content="دختر" />
+                                                </ComboBox>
+                                                <TextBlock x:Name="tb" Text=" جنسیت " IsHitTestVisible="False" Visibility="Hidden" />
+                                            </Grid>
+                                            <DataTemplate.Triggers>
+                                                <Trigger SourceName="cmbGender" Property="SelectedItem" Value="{x:Null}">
+                                                    <Setter TargetName="tb" Property="Visibility" Value="Visible" />
+                                                </Trigger>
+                                            </DataTemplate.Triggers>
+                                        </DataTemplate>
+                                    </ContentControl.ContentTemplate>
+                                </ContentControl>
+                                <Grid Margin="2">
+                                    <ComboBox x:Name="cmbBase" ItemsSource="{Binding}"  
+                                       SelectedValue="{Binding SchoolName}"  
+                                       SelectedValuePath="Id"   
+                                       VerticalAlignment="Top" HorizontalAlignment="Left" Width="200"  >
+                                        <ComboBox.ItemTemplate>
                                             <DataTemplate>
-                                                <Grid>
-                                                    <ComboBox SelectionChanged="cmbGender_SelectionChanged" TabIndex="4" x:Name="cmbGender">
-                                                        <ComboBoxItem Content="پسر" />
-                                                        <ComboBoxItem Content="دختر" />
-                                                    </ComboBox>
-                                                    <TextBlock x:Name="tb" Text=" جنسیت " IsHitTestVisible="False" Visibility="Hidden" />
-                                                </Grid>
-                                                <DataTemplate.Triggers>
-                                                    <Trigger SourceName="cmbGender" Property="SelectedItem" Value="{x:Null}">
-                                                        <Setter TargetName="tb" Property="Visibility" Value="Visible" />
-                                                    </Trigger>
-                                                </DataTemplate.Triggers>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="{Binding SchoolName}" />
+                                                    <TextBlock Text=" - " />
+                                                    <TextBlock Text="{Binding Base}" />
+                                                    <TextBlock Text=" - " />
+                                                    <TextBlock Text="{Binding Year}" />
+                                                </StackPanel>
                                             </DataTemplate>
-                                        </ContentControl.ContentTemplate>
-                                    </ContentControl>
-                                    <ComboBox x:Name="cmbEditBase" Margin="10,0,0,0" Height="30" 
-                            SelectedValue ="{Binding SchoolName}" DisplayMemberPath="SchoolName"
-                            SelectedValuePath="Id" VerticalAlignment="Top" HorizontalAlignment="Left" Width="180">
-                                        <ComboBox.Template>
-                                            <ControlTemplate TargetType="ComboBox">
-                                                <Grid>
-                                                    <ComboBox x:Name="cb" Height="30"
-                                            DataContext="{Binding RelativeSource={RelativeSource TemplatedParent}}"
-                                            ItemsSource="{Binding ItemsSource, RelativeSource={RelativeSource TemplatedParent}}"
-                                            SelectedValue ="{Binding SelectedValue, RelativeSource={RelativeSource TemplatedParent}}"
-                                            DisplayMemberPath="SchoolName"
-                                            SelectedValuePath="Id">
-                                                        <ComboBox.ItemTemplate>
-                                                            <DataTemplate>
-                                                                <StackPanel Orientation="Horizontal">
-                                                                    <TextBlock Text="{Binding SchoolName}" />
-                                                                    <TextBlock Text=" - " />
-                                                                    <TextBlock Text="{Binding Base}" />
-                                                                    <TextBlock Text=" - " />
-                                                                    <TextBlock Text="{Binding Year}" />
-                                                                </StackPanel>
-                                                            </DataTemplate>
-                                                        </ComboBox.ItemTemplate>
-                                                    </ComboBox>
-                                                    <TextBlock x:Name="tb" Text="کلاس" Margin="3,3,0,0" IsHitTestVisible="False" Visibility="Hidden" />
-                                                </Grid>
-                                                <ControlTemplate.Triggers>
-                                                    <Trigger SourceName="cb" Property="SelectedItem" Value="{x:Null}">
-                                                        <Setter TargetName="tb" Property="Visibility" Value="Visible" />
-                                                    </Trigger>
-                                                </ControlTemplate.Triggers>
-                                            </ControlTemplate>
-                                        </ComboBox.Template>
+                                        </ComboBox.ItemTemplate>
                                     </ComboBox>
-
-                                </StackPanel>
+                                    <TextBlock Text=" انتخاب کلاس " IsHitTestVisible="False" HorizontalAlignment="Left" Width="200">
+                                        <TextBlock.Style>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="Visibility" Value="Hidden"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding ElementName=cmbBase,Path=SelectedItem}" Value="{x:Null}">
+                                                        <Setter Property="Visibility" Value="Visible"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+                                </Grid>
+                            </StackPanel>
+                            <Grid Grid.Column="1">
                                 <StackPanel Orientation="Vertical" HorizontalAlignment="Left">
-                                    <Metro:MetroImage ImageHeight="250" ImageWidth="250" Stretch="Fill" x:Name="imgEditStudent" Source="..\Resources\Choose.png" Content="MetroImage" RenderTransformOrigin="0.5,0.5" Height="200" VerticalAlignment="Top" HorizontalAlignment="Left" Width="200" />
-                                    <Button x:Name="btnEditChoose" Click="btnEditChoose_Click" Margin="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Style="{StaticResource WorkButton}" Height="35">
+                                    <Metro:MetroImage  VerticalAlignment="Top" ImageHeight="250" ImageWidth="250" Stretch="Fill" x:Name="imgStudent" Source="..\Resources\Choose.png" Content="MetroImage" Height="200" Width="200" />
+                                    <Button x:Name="btnChoose" Click="btnChoose_Click" Margin="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Style="{StaticResource WorkButton}" Height="35">
                                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                                             <Image Height="16" Width="16" Margin="10,0,30,0" Source="/Resources/open.png"/>
                                             <TextBlock TextWrapping="NoWrap" Text="انتخاب عکس" FontSize="13" Foreground="#ffffff"/>
                                         </StackPanel>
                                     </Button>
                                 </StackPanel>
-
-                            </StackPanel>
+                            </Grid>
                         </Grid>
                     </StackPanel>
+                </Grid>
+            </Metro:MetroTabItem>
+            <Metro:MetroTabItem Header="ویرایش اطلاعات">
+                <Grid KeyboardNavigation.TabNavigation="Cycle">
+                    <StackPanel Orientation="Vertical" Margin="5,5,5,0">
+                        <StackPanel Orientation="Horizontal" Height="50" VerticalAlignment="Top">
+                            <Button x:Name="btnEditSave" Click="btnEditSave_Click" Grid.Column="0" Grid.Row="0" Margin="10,5,5,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Style="{StaticResource WorkButtonGreen}" Height="35">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                    <Image Height="16" Width="16" Margin="10,0,30,0" Source="/Resources/update.png"/>
+                                    <TextBlock TextWrapping="NoWrap" Text="ذخیره" FontSize="13" Foreground="#ffffff"/>
+                                </StackPanel>
+                            </Button>
+                            <Button x:Name="btnDelete" Click="btnDelete_Click" Grid.Column="1"  Grid.ColumnSpan="2" Grid.Row="1" Margin="5,5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Style="{StaticResource WorkButtonRed}" Height="35">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                    <Image Height="16" Width="16" Margin="10,0,30,0" Source="/Resources/Delete.png"/>
+                                    <TextBlock TextWrapping="NoWrap" Text="حذف" FontSize="13" Foreground="#ffffff"/>
+                                </StackPanel>
+                            </Button>
+                            <Button x:Name="btnEditCancel" Click="btnEditCancel_Click" Grid.Column="1" Grid.Row="0" Margin="5,5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Style="{StaticResource CancelButton}" Height="35">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                    <Image Height="16" Width="16" Margin="-30,0,30,0" Source="/Resources/cancel.png" RenderTransformOrigin="-1.688,0.625"/>
+                                    <TextBlock TextWrapping="NoWrap" Text="انصراف" FontSize="13" Foreground="#ffffff"/>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+                        <Metro:MetroBorder Margin="0,5,0,0" HorizontalAlignment="Stretch" BorderThickness="1" BorderBrush="{Binding BorderColor}" />
+                        <StackPanel Margin="0,10,0,0" Orientation="Vertical">
+                            <Grid Height="auto">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <ComboBox Grid.Column="0" FlowDirection="RightToLeft" x:Name="cmbBaseEdit" SelectionChanged="cmbBaseEdit_SelectionChanged" 
+                            SelectedValue="{Binding SchoolName}" SelectedValuePath="Id"   
+                            Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="190"  >
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="{Binding SchoolName}" />
+                                                <TextBlock Text=" - " />
+                                                <TextBlock Text="{Binding Base}" />
+                                                <TextBlock Text=" - " />
+                                                <TextBlock Text="{Binding Year}" />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
+                                <TextBlock Text=" انتخاب کلاس " FlowDirection="RightToLeft" IsHitTestVisible="False"  Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="190">
+                                    <TextBlock.Style>
+                                        <Style TargetType="{x:Type TextBlock}">
+                                            <Setter Property="Visibility" Value="Hidden"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding SelectedItem, ElementName=cmbBaseEdit}" Value="{x:Null}">
+                                                    <Setter Property="Visibility" Value="Visible"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                                <StackPanel Grid.Column="0" Margin="0,35,10,5" Orientation="Vertical">
+                                    <Metro:MetroTextBox Margin="0,2,-10,0" x:Name="txtEditSearch" HorizontalAlignment="Stretch" VerticalAlignment="Top" ButtonTitle="بروزرسانی لیست" ButtonClick="txtEditSearch_ButtonClick"  FlowDirection="RightToLeft" InputHint="جستجو..." PopupHint="جستجو بصورت خودکار انجام می شود" MetroPopupBackgroundState="Red2" Icon="../Resources/editIcon.png" TextChanged="txtEditSearch_TextChanged" />
+                                    <ListView Margin="0,2,-10,0" ScrollViewer.VerticalScrollBarVisibility="Auto" FlowDirection="RightToLeft" SelectionMode="Single" x:Name="dgv" SelectionChanged="dgv_SelectionChanged">
+                                        <ListView.View>
+                                            <GridView>
+                                                <GridViewColumn Header="نام" Width="100" DisplayMemberBinding="{Binding Name}" />
+                                                <GridViewColumn Header="نام خانوادگی" Width="100"  DisplayMemberBinding="{Binding LName}" />
+                                                <GridViewColumn Header="نام پدر" Width="100" DisplayMemberBinding="{Binding FName}" />
+                                                <GridViewColumn Header="جنسیت" Width="100" DisplayMemberBinding="{Binding Gender}" />
+                                                <GridViewColumn Header="پایه" Width="100" DisplayMemberBinding="{Binding Base}" />
+                                                <GridViewColumn Header="Id" Width="0"  DisplayMemberBinding="{Binding Id}" />
+                                            </GridView>
+                                        </ListView.View>
+                                    </ListView>
+                                </StackPanel>
+                                <StackPanel Name="editStack" IsEnabled="False" Grid.Column="1" Margin="5,0,0,0" Orientation="Vertical">
+                                    <Metro:MetroTextBox x:Name="txtName" Margin="2" InputHint="نام" Height="30" PopupHint="نام دانش آموز" MetroPopupBackgroundState="DarkRed" VerticalAlignment="Top" />
+                                    <Metro:MetroTextBox x:Name="txtLName" Margin="2"  InputHint="نام خانوادگی" PopupHint="نام خانوادگی دانش آموز" MetroPopupBackgroundState="DarkRed" Height="30" VerticalAlignment="Top" />
+                                    <Metro:MetroTextBox x:Name="txtFName" Margin="2"  InputHint="نام پدر" Height="30" PopupHint="نام پدر دانش آموز" MetroPopupBackgroundState="DarkRed" VerticalAlignment="Top" />
+                                    <StackPanel Orientation="Horizontal" Margin="2">
+                                        <ContentControl x:Name="cmbContentGender" Focusable="False" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="180">
+                                            <ContentControl.ContentTemplate>
+                                                <DataTemplate>
+                                                    <Grid>
+                                                        <ComboBox SelectionChanged="cmbGender_SelectionChanged" TabIndex="4" x:Name="cmbGender">
+                                                            <ComboBoxItem Content="پسر" />
+                                                            <ComboBoxItem Content="دختر" />
+                                                        </ComboBox>
+                                                        <TextBlock x:Name="tb" Text=" جنسیت " IsHitTestVisible="False" Visibility="Hidden" />
+                                                    </Grid>
+                                                    <DataTemplate.Triggers>
+                                                        <Trigger SourceName="cmbGender" Property="SelectedItem" Value="{x:Null}">
+                                                            <Setter TargetName="tb" Property="Visibility" Value="Visible" />
+                                                        </Trigger>
+                                                    </DataTemplate.Triggers>
+                                                </DataTemplate>
+                                            </ContentControl.ContentTemplate>
+                                        </ContentControl>
+                                        <ComboBox x:Name="cmbEditBase" Margin="10,0,0,0" Height="30" 
+                                            SelectedValue ="{Binding SchoolName}" DisplayMemberPath="SchoolName"
+                                            SelectedValuePath="Id" VerticalAlignment="Top" HorizontalAlignment="Left" Width="180">
+                                            <ComboBox.Template>
+                                                <ControlTemplate TargetType="ComboBox">
+                                                    <Grid>
+                                                        <ComboBox x:Name="cb" Height="30"
+                                            DataContext="{Binding RelativeSource={RelativeSource TemplatedParent}}"
+                                            ItemsSource="{Binding ItemsSource, RelativeSource={RelativeSource TemplatedParent}}"
+                                            SelectedValue ="{Binding SelectedValue, RelativeSource={RelativeSource TemplatedParent}}"
+                                            DisplayMemberPath="SchoolName"
+                                            SelectedValuePath="Id">
+                                                            <ComboBox.ItemTemplate>
+                                                                <DataTemplate>
+                                                                    <StackPanel Orientation="Horizontal">
+                                                                        <TextBlock Text="{Binding SchoolName}" />
+                                                                        <TextBlock Text=" - " />
+                                                                        <TextBlock Text="{Binding Base}" />
+                                                                        <TextBlock Text=" - " />
+                                                                        <TextBlock Text="{Binding Year}" />
+                                                                    </StackPanel>
+                                                                </DataTemplate>
+                                                            </ComboBox.ItemTemplate>
+                                                        </ComboBox>
+                                                        <TextBlock x:Name="tb" Text="کلاس" Margin="3,3,0,0" IsHitTestVisible="False" Visibility="Hidden" />
+                                                    </Grid>
+                                                    <ControlTemplate.Triggers>
+                                                        <Trigger SourceName="cb" Property="SelectedItem" Value="{x:Null}">
+                                                            <Setter TargetName="tb" Property="Visibility" Value="Visible" />
+                                                        </Trigger>
+                                                    </ControlTemplate.Triggers>
+                                                </ControlTemplate>
+                                            </ComboBox.Template>
+                                        </ComboBox>
 
+                                    </StackPanel>
+                                    <StackPanel Orientation="Vertical" HorizontalAlignment="Left">
+                                        <Metro:MetroImage ImageHeight="250" ImageWidth="250" Stretch="Fill" x:Name="imgEditStudent" Source="..\Resources\Choose.png" Content="MetroImage" RenderTransformOrigin="0.5,0.5" Height="200" VerticalAlignment="Top" HorizontalAlignment="Left" Width="200" />
+                                        <Button x:Name="btnEditChoose" Click="btnEditChoose_Click" Margin="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Style="{StaticResource WorkButton}" Height="35">
+                                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                                <Image Height="16" Width="16" Margin="10,0,30,0" Source="/Resources/open.png"/>
+                                                <TextBlock TextWrapping="NoWrap" Text="انتخاب عکس" FontSize="13" Foreground="#ffffff"/>
+                                            </StackPanel>
+                                        </Button>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Grid>
+                        </StackPanel>
+                    </StackPanel>
                 </Grid>
             </Metro:MetroTabItem>
         </Metro:MetroTabControl>
