@@ -308,7 +308,23 @@ namespace MoalemYar
                  .Dismiss().WithDelay(TimeSpan.FromSeconds(3));
             builder.Queue();
         }
-
+        public void ResetFactoryNotification()
+        {
+            var builder = this.Manager
+                  .CreateMessage()
+                 .Accent(AppVariable.GREEN)
+                 .Background(AppVariable.BGBLACK)
+                 .HasBadge("اطلاعیه")
+                 .HasHeader("تنظیمات برنامه به حالت پیشفرض تغییر یافت، در صورت امکان برنامه را دوباره راه اندازی کنید")
+                 .WithButton("راه اندازی", button =>
+                 {
+                     Application.Current.Shutdown();
+                     System.Windows.Forms.Application.Restart();
+                 })
+                 .Dismiss().WithButton("بیخیال", button => { })
+                 .Dismiss().WithDelay(TimeSpan.FromSeconds(5));
+            builder.Queue();
+        }
         public void ShowUpdateNotification(bool isAvailable, string Version, string URL)
         {
             if (isAvailable)

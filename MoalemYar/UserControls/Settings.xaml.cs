@@ -8,6 +8,8 @@
 *
 ***********************************************************************************/
 
+using System;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -121,6 +123,17 @@ namespace MoalemYar.UserControls
         {
             AppVariable.AddUpdateAppSettings(AppVariable.AutoSendReport, false);
             MainWindow.main.LogifyCrashReport();
+        }
+
+        private void btnFactoryReset_Click(object sender, RoutedEventArgs e)
+        {
+            string folder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\MoalemYar\config.json";
+            if (System.IO.File.Exists(folder))
+            {
+                File.Delete(folder);
+                AppVariable.InitializeSettings();
+                MainWindow.main.ResetFactoryNotification();
+            }
         }
     }
 }
