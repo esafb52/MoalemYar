@@ -308,21 +308,41 @@ namespace MoalemYar
                  .Dismiss().WithDelay(TimeSpan.FromSeconds(3));
             builder.Queue();
         }
-        public void ResetFactoryNotification()
+
+        public void DataResetDeletedNotification(string Type)
+        {
+            var builder = this.Manager
+                   .CreateMessage()
+                   .Accent(AppVariable.GREEN)
+                   .Background(AppVariable.BGBLACK)
+                   .HasBadge("اطلاعیه")
+                   .HasMessage(string.Format("{0} به حالت پیشفرض تغییر یافت، برنامه را دوباره راه اندازی کنید", Type))
+                    .WithButton("راه اندازی", button =>
+                    {
+                        Application.Current.Shutdown();
+                        System.Windows.Forms.Application.Restart();
+                    })
+                 .Dismiss().WithButton("بیخیال", button => { })
+                 .Dismiss().WithDelay(TimeSpan.FromSeconds(5));
+            builder.Queue();
+        }
+
+        public void ResetDataConfirmNotification(string Type)
         {
             var builder = this.Manager
                   .CreateMessage()
-                 .Accent(AppVariable.GREEN)
+                 .Accent(AppVariable.RED)
                  .Background(AppVariable.BGBLACK)
-                 .HasBadge("اطلاعیه")
-                 .HasHeader("تنظیمات برنامه به حالت پیشفرض تغییر یافت، در صورت امکان برنامه را دوباره راه اندازی کنید")
-                 .WithButton("راه اندازی", button =>
+                 .HasBadge("هشدار")
+                 .HasHeader(string.Format("آیا برای بازیابی {0} اطمینان دارید؟", Type))
+                 .Dismiss().WithButton("بله", button =>
                  {
-                     Application.Current.Shutdown();
-                     System.Windows.Forms.Application.Restart();
+                     if(Type == "تنظیمات برنامه")
+                         Settings.main.resetConfig();
+                     else
+                         Settings.main.resetDatabase();
                  })
-                 .Dismiss().WithButton("بیخیال", button => { })
-                 .Dismiss().WithDelay(TimeSpan.FromSeconds(5));
+                 .Dismiss().WithButton("خیر", button => { });
             builder.Queue();
         }
         public void ShowUpdateNotification(bool isAvailable, string Version, string URL)

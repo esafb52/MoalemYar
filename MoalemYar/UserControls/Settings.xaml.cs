@@ -21,6 +21,7 @@ namespace MoalemYar.UserControls
     /// </summary>
     public partial class Settings : UserControl
     {
+        internal static Settings main;
         public Settings()
         {
             InitializeComponent();
@@ -29,7 +30,7 @@ namespace MoalemYar.UserControls
             {
                 MainWindow.main.BorderBrush = color1.CurrentColor.OpaqueSolidColorBrush;
             };
-
+            main = this;
             LoadSettings();
         }
 
@@ -127,13 +128,32 @@ namespace MoalemYar.UserControls
 
         private void btnFactoryReset_Click(object sender, RoutedEventArgs e)
         {
+           MainWindow.main.ResetDataConfirmNotification("تنظیمات برنامه");
+        }
+        public void resetConfig()
+        {
             string folder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\MoalemYar\config.json";
             if (System.IO.File.Exists(folder))
             {
                 File.Delete(folder);
                 AppVariable.InitializeSettings();
-                MainWindow.main.ResetFactoryNotification();
+                MainWindow.main.DataResetDeletedNotification("تنظیمات برنامه");
             }
+        }
+
+        public void resetDatabase()
+        {
+            string folder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\MoalemYar\Database\data.db";
+            if (System.IO.File.Exists(folder))
+            {
+                File.Delete(folder);
+                MainWindow.main.DataResetDeletedNotification("دیتابیس برنامه");
+            }
+        }
+
+        private void btnDatabaseReset_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.main.ResetDataConfirmNotification("دیتابیس برنامه");
         }
     }
 }

@@ -40,11 +40,17 @@
                 </Grid>
                 <Grid>
                     <Metro:MetroGroupBox Margin="5" Header="تنظیمات کارخانه">
-                        <StackPanel>
+                        <StackPanel Orientation="Horizontal">
                             <Button x:Name="btnFactoryReset" Click="btnFactoryReset_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Style="{StaticResource WorkButtonRed}" Height="35">
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                                     <Image Height="16" Width="16" Margin="10,0,10,0" Source="/Resources/Reset.png"/>
                                     <TextBlock TextWrapping="NoWrap" Text="بازیابی تنظیمات" FontSize="13" Foreground="#ffffff"/>
+                                </StackPanel>
+                            </Button>
+                            <Button x:Name="btnDatabaseReset" Margin="10,0" Click="btnDatabaseReset_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Style="{StaticResource WorkButtonRed}" Height="35">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                    <Image Height="16" Width="16" Margin="10,0,10,0" Source="/Resources/Reset.png"/>
+                                    <TextBlock TextWrapping="NoWrap" Text="بازیابی دیتابیس" FontSize="13" Foreground="#ffffff"/>
                                 </StackPanel>
                             </Button>
                         </StackPanel>
