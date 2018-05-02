@@ -58,7 +58,7 @@
       <HintPath>..\packages\nucs.JsonSettings.1.0.2\lib\net45\nucs.JsonSettings.dll</HintPath>
     </Reference>
     <Reference Include="Ookii.Dialogs.Wpf">
-      <HintPath>E:\Programming\Sorce cod\C#\Ookii.Dialogs\Ookii.Dialogs.Wpf.dll</HintPath>
+      <HintPath>..\..\..\Sorce cod\C#\Ookii.Dialogs\Ookii.Dialogs.Wpf.dll</HintPath>
     </Reference>
     <Reference Include="PresentationFramework.Aero2" />
     <Reference Include="SQLite.CodeFirst, Version=1.5.1.25, Culture=neutral, PublicKeyToken=eb96ba0a78d831a7, processorArchitecture=MSIL">
