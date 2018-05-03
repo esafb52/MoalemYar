@@ -15,7 +15,6 @@
                     <Metro:MetroGroupBox Margin="5" Header="عمومی">
                         <StackPanel>
                             <Metro:MetroSwitch x:Name="swLogin" Content="ورود با استفاده از رمز عبور" Margin="10" Checked="swLogin_Checked" Unchecked="swLogin_Unchecked" />
-                            <Metro:MetroSwitch x:Name="swSystem" Content="سیستم توصیفی/عددی"  Margin="10" Checked="swSystem_Checked" Unchecked="swSystem_Unchecked" />
                             <Metro:MetroSwitch x:Name="swAutoStart" Content="اجرای خودکار همراه با ویندوز"  Margin="10" Checked="swAutoStart_Checked" Unchecked="swAutoStart_Unchecked" />
                         </StackPanel>
                     </Metro:MetroGroupBox>

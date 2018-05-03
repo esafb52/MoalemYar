@@ -20,7 +20,7 @@ namespace MoalemYar
 {
     public class AppVariable
     {
-        private static SettingsBag Settings { get; } = JsonSettings.Construct<SettingsBag>(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\MoalemYar\config.json").LoadNow().EnableAutosave();
+        private static SettingsBag Settings { get; } = JsonSettings.Construct<SettingsBag>(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\MoalemYar\config.json").EnableAutosave().WithEncryption("mysupersecretpassword").LoadNow();
 
         #region Crash Report
 
@@ -63,7 +63,6 @@ namespace MoalemYar
 
         #region Config Key
 
-        public static string TosifiSystem = "TosifiSystem";
         public static string CredentialLogin = "Credential";
         public static string Autorun = "Autorun";
         public static string HamburgerMenu = "HamburgerMenu";
@@ -114,7 +113,6 @@ namespace MoalemYar
         {
             try
             {
-                Settings[TosifiSystem] = true;
                 Settings[CredentialLogin] = false;
                 Settings[Autorun] = false;
                 Settings[HamburgerMenu] = true;

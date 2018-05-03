@@ -41,11 +41,6 @@ namespace MoalemYar.UserControls
             else
                 swLogin.IsChecked = false;
 
-            if (AppVariable.ReadBoolSetting(AppVariable.TosifiSystem))
-                swSystem.IsChecked = true;
-            else
-                swSystem.IsChecked = false;
-
             if (AppVariable.ReadBoolSetting(AppVariable.Autorun))
                 swAutoStart.IsChecked = true;
             else
@@ -78,16 +73,6 @@ namespace MoalemYar.UserControls
         private void swLogin_Unchecked(object sender, RoutedEventArgs e)
         {
             AppVariable.AddUpdateAppSettings(AppVariable.CredentialLogin, false);
-        }
-
-        private void swSystem_Checked(object sender, RoutedEventArgs e)
-        {
-            AppVariable.AddUpdateAppSettings(AppVariable.TosifiSystem, true);
-        }
-
-        private void swSystem_Unchecked(object sender, RoutedEventArgs e)
-        {
-            AppVariable.AddUpdateAppSettings(AppVariable.TosifiSystem, false);
         }
 
         private void swAutoStart_Checked(object sender, RoutedEventArgs e)
