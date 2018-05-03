@@ -64,6 +64,16 @@ namespace MoalemYar.UserControls
             }
         }
 
+        public async static Task<List<DataClass.DataTransferObjects.StudentsDto>> GetAllStudentsAsync(long SchoolId, string Book)
+        {
+            using (var db = new DataClass.myDbContext())
+            {
+                var query = db.Students.Where(x => !db.Questions.Any(f => f.StudentId == x.Id && f.Book == Book) && x.BaseId == SchoolId).Select(x => new DataClass.DataTransferObjects.StudentsDto { Id = x.Id, BaseId = x.BaseId, Name = x.Name, LName = x.LName, FName = x.FName });
+                
+                return await query.ToListAsync();
+            }
+        }
+
         #endregion "Async Query"
 
         #region Func get Query Wait"
@@ -82,6 +92,21 @@ namespace MoalemYar.UserControls
             }
             catch (Exception)
             {
+            }
+        }
+
+        private void getStudents(long SchoolId, string Book)
+        {
+            var query = GetAllStudentsAsync(SchoolId, Book);
+            query.Wait();
+            List<DataClass.DataTransferObjects.StudentsDto> data = query.Result;
+            if (data.Any())
+            {
+                dataGrid.ItemsSource = data;
+            }
+            else
+            {
+                MainWindow.main.ShowNoDataNotification("Question");
             }
         }
 
@@ -137,10 +162,16 @@ namespace MoalemYar.UserControls
             }
 
             element.ItemsSource = list;
+
+
         }
+
+
 
         private void cmbBook_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            var element = FindElementByName<ComboBox>(cmbAddContentBook, "cmbBook");
+            getStudents(Convert.ToInt64(cmbBase.SelectedValue), element.SelectedItem.ToString());
 
         }
 
@@ -186,5 +217,6 @@ namespace MoalemYar.UserControls
             }
             return null;
         }
+
     }
 }

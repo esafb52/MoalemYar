@@ -174,6 +174,10 @@ namespace MoalemYar
                        case "Attendance":
                            Attendancelist.main.tabc.SelectedIndex = 0;
                            break;
+
+                       case "Question":
+                           exAddOrUpdateStudent_Click(null, null);
+                           break;
                    }
                })
                .Dismiss().WithButton("بیخیال", button => { })

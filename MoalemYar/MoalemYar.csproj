@@ -14,7 +14,7 @@
     <WarningLevel>4</WarningLevel>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <AssemblyVersion>1.0.1866.0</AssemblyVersion>
+    <AssemblyVersion>1.0.1936.0</AssemblyVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -103,6 +103,7 @@
     </ApplicationDefinition>
     <Compile Include="DataClass\DataTransferObjects.cs" />
     <Compile Include="DataClass\Tables\Attendance.cs" />
+    <Compile Include="DataClass\Tables\Question.cs" />
     <Compile Include="DataClass\Tables\School.cs" />
     <Compile Include="DataClass\Tables\User.cs" />
     <Compile Include="EmbeddedAssembly.cs" />

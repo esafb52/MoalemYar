@@ -67,7 +67,8 @@
                             <StackPanel Margin="10,0,0,0" Orientation="Horizontal" HorizontalAlignment="Left">
                                 <Metro:MetroTextBlock Name="txtDate" HorizontalAlignment="Center" Margin="5" Text="تاریخ امروز"/>
                             </StackPanel>
-                            <ListView Name="listView1" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" Margin="10">
+
+                            <!--<ListView Name="listView1" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" Margin="10">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <Border Margin="5" BorderThickness="1" BorderBrush="SlateGray" CornerRadius="4">
@@ -89,7 +90,13 @@
                                                 </StackPanel>
                                                 <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding Path=FName}"></TextBlock>
                                                 <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding Path=Id}" Visibility="Hidden"></TextBlock>
-                                                <Metro:MetroSwitch Margin="5" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" IsChecked="False" Name="chkIsAsked" CornerRadius="2" BorderCornerRadius="3">ثبت</Metro:MetroSwitch>
+                                                <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding Path=BaseId}" Visibility="Hidden"></TextBlock>
+                                                <StackPanel Orientation="Vertical" Margin="5" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right">
+                                                    <Metro:MetroSwitch Margin="0,2" IsChecked="False" Name="chkExcelent">خیلی خوب</Metro:MetroSwitch>
+                                                    <Metro:MetroSwitch Margin="0,2" IsChecked="False" Name="chkGood">خوب</Metro:MetroSwitch>
+                                                    <Metro:MetroSwitch Margin="0,2" IsChecked="False" Name="chkNotBad">قابل قبول</Metro:MetroSwitch>
+                                                    <Metro:MetroSwitch IsChecked="False" Name="chkBad">نیاز به تلاش بیشتر</Metro:MetroSwitch>
+                                                </StackPanel>
                                             </Grid>
                                         </Border>
                                     </DataTemplate>
@@ -104,8 +111,44 @@
                                         </Style.Triggers>
                                     </Style>
                                 </ListView.ItemContainerStyle>
-                            </ListView>
+                            </ListView>-->
                         </StackPanel>
+                        <DataGrid x:Name="dataGrid" AutoGenerateColumns="False" HorizontalAlignment="Left"
+                                      Background="#eceff5" RowHeaderWidth="0" AlternatingRowBackground="#fbfcfe"
+                                      GridLinesVisibility="Horizontal" CanUserReorderColumns="False"
+                                      CanUserResizeColumns="False" CanUserSortColumns="True" SelectionMode="Single" SelectionUnit="FullRow" 
+                                      CanUserResizeRows="False" IsReadOnly="True" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}" 
+                                      HorizontalGridLinesBrush="#dde8ef" CellStyle="{DynamicResource DataGridCellStyle}"
+                                      Grid.ColumnSpan="2" Margin="10,75,10,10">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding Path=Id}" Visibility="Hidden" />
+                                <DataGridTextColumn Binding="{Binding Path=BaseId}" Visibility="Hidden" />
+                                <DataGridTextColumn Binding="{Binding Path=Name}" Header="نام" MinWidth="120" Width="auto" />
+                                <DataGridTextColumn Binding="{Binding Path=LName}" Header="نام خانوادگی" MinWidth="130" Width="auto" />
+                                <DataGridTextColumn Binding="{Binding Path=FName}" Header="نام پدر" MinWidth="130" Width="auto"/>
+                                <DataGridTemplateColumn Header="نمره" MinWidth="150" Width="auto">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Vertical" Margin="5" HorizontalAlignment="Right">
+                                                <Metro:MetroSwitch Margin="0,2" IsChecked="False" Name="chkExcelent">خیلی خوب</Metro:MetroSwitch>
+                                                <Metro:MetroSwitch Margin="0,2" IsChecked="False" Name="chkGood">خوب</Metro:MetroSwitch>
+                                                <Metro:MetroSwitch Margin="0,2" IsChecked="False" Name="chkNotBad">قابل قبول</Metro:MetroSwitch>
+                                                <Metro:MetroSwitch IsChecked="False" Name="chkBad">نیاز به تلاش بیشتر</Metro:MetroSwitch>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTemplateColumn Header="وضعیت" MinWidth="100" Width="auto">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Vertical" Margin="5" HorizontalAlignment="Center">
+                                                <Metro:MetroTextBlock Text="ثبت نشده" Foreground="Red"/>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
                     </Grid>
                 </Grid>
             </Metro:MetroTabItem>
