@@ -155,11 +155,11 @@ namespace MoalemYar.UserControls
 
                 if (data.Any())
                 {
-                    dgv.ItemsSource = data.ToList();
+                    dataGrid.ItemsSource = data.ToList();
                 }
                 else
                 {
-                    dgv.ItemsSource = null;
+                    dataGrid.ItemsSource = null;
                     MainWindow.main.ShowNoDataNotification("Student");
                 }
             }
@@ -246,12 +246,12 @@ namespace MoalemYar.UserControls
             }
         }
 
-        private void dgv_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
             {
                 editStack.IsEnabled = true;
-                dynamic selectedItem = dgv.SelectedItems[0];
+                dynamic selectedItem = dataGrid.SelectedItems[0];
                 txtName.Text = selectedItem.Name;
                 txtLName.Text = selectedItem.LName;
                 txtFName.Text = selectedItem.FName;
@@ -273,7 +273,7 @@ namespace MoalemYar.UserControls
 
         private void btnEditSave_Click(object sender, RoutedEventArgs e)
         {
-            dynamic selectedItem = dgv.SelectedItems[0];
+            dynamic selectedItem = dataGrid.SelectedItems[0];
             long id = selectedItem.Id;
 
             updateStudent(id, Convert.ToInt64(cmbEditBase.SelectedValue), txtName.Text, txtLName.Text, txtFName.Text, getComboValue(), (isCreateThumbnail ? CreateThumbnail(imgEditStudent.Source as BitmapImage) : getImageByte(imgEditStudent.Source as BitmapImage)));
@@ -322,9 +322,9 @@ namespace MoalemYar.UserControls
         private void txtEditSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (txtEditSearch.Text != string.Empty)
-                dgv.ItemsSource = _initialCollection.Where(x => x.Name.Contains(txtEditSearch.Text) || x.LName.Contains(txtEditSearch.Text) || x.FName.Contains(txtEditSearch.Text) || x.Gender.Contains(txtEditSearch.Text)).Select(x => x);
+                dataGrid.ItemsSource = _initialCollection.Where(x => x.Name.Contains(txtEditSearch.Text) || x.LName.Contains(txtEditSearch.Text) || x.FName.Contains(txtEditSearch.Text) || x.Gender.Contains(txtEditSearch.Text)).Select(x => x);
             else
-                dgv.ItemsSource = _initialCollection.Select(x => x);
+                dataGrid.ItemsSource = _initialCollection.Select(x => x);
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
@@ -396,7 +396,7 @@ namespace MoalemYar.UserControls
         {
             try
             {
-                dynamic selectedItem = dgv.SelectedItems[0];
+                dynamic selectedItem = dataGrid.SelectedItems[0];
                 long id = selectedItem.Id;
                 deleteStudent(id);
                 MainWindow.main.ShowDeletedNotification(true, txtName.Text, "دانش آموز");

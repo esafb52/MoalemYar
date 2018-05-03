@@ -100,17 +100,21 @@
                                 </Grid.ColumnDefinitions>
                                 <StackPanel Orientation="Vertical">
                                     <Metro:MetroTextBox Name="txtEditSearch" Margin="2" ButtonTitle="بروزرسانی لیست" ButtonClick="txtEditSearch_ButtonClick" FlowDirection="RightToLeft" InputHint="جستجو..." PopupHint="جستجو بصورت خودکار انجام می شود" MetroPopupBackgroundState="Red2" Icon="../Resources/editIcon.png" TextChanged="txtEditSearch_TextChanged" />
-                                    <ListView ScrollViewer.VerticalScrollBarVisibility="Auto" Margin="2" FlowDirection="RightToLeft" SelectionMode="Single" Name="dgv" SelectionChanged="dgv_SelectionChanged">
-                                        <ListView.View>
-                                            <GridView>
-                                                <GridViewColumn Header="آموزشگاه" Width="100" DisplayMemberBinding="{Binding SchoolName}" />
-                                                <GridViewColumn Header="مدیر" Width="100" DisplayMemberBinding="{Binding Admin}" />
-                                                <GridViewColumn Header="پایه" Width="70" DisplayMemberBinding="{Binding Base}" />
-                                                <GridViewColumn Header="سال تحصیلی" Width="100" DisplayMemberBinding="{Binding Year}" />
-                                                <GridViewColumn Header="Id" Width="0"  DisplayMemberBinding="{Binding Id}" />
-                                            </GridView>
-                                        </ListView.View>
-                                    </ListView>
+                                    <DataGrid x:Name="dataGrid" AutoGenerateColumns="False" HorizontalAlignment="Left"
+                                      Background="#eceff5" RowHeaderWidth="0" AlternatingRowBackground="#fbfcfe"
+                                      GridLinesVisibility="Horizontal" CanUserReorderColumns="False"
+                                      CanUserResizeColumns="False" CanUserSortColumns="True" SelectionMode="Single" SelectionUnit="FullRow" 
+                                      CanUserResizeRows="False" IsReadOnly="True" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}" 
+                                      HorizontalGridLinesBrush="#dde8ef" CellStyle="{DynamicResource DataGridCellStyle}"
+                                      Margin="10,5" SelectionChanged="dataGrid_SelectionChanged">
+                                        <DataGrid.Columns>
+                                            <DataGridTextColumn Binding="{Binding Id}" Visibility="Hidden" />
+                                            <DataGridTextColumn Binding="{Binding SchoolName}" Header="آموزشگاه" MinWidth="100" Width="auto" />
+                                            <DataGridTextColumn Binding="{Binding Admin}" Header="مدیر" MinWidth="100" Width="auto" />
+                                            <DataGridTextColumn Binding="{Binding Base}" Header="پایه" MinWidth="70" Width="auto"/>
+                                            <DataGridTextColumn Binding="{Binding Year}" Header="سال تحصیلی" MinWidth="100" Width="auto" />
+                                        </DataGrid.Columns>
+                                    </DataGrid>
                                 </StackPanel>
                                 <StackPanel Name="editGrid" IsEnabled="False" Orientation="Vertical" Grid.Column="1" Margin="5,0,0,0">
                                     <Metro:MetroTextBox Margin="2" Name="txtYear"  InputHint="سال تحصیلی" Height="30" PopupHint="سال تحصیلی باید بصورت 97-98 وارد شود" MetroPopupBackgroundState="DarkRed" VerticalAlignment="Top" />

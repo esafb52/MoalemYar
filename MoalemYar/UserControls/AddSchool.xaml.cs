@@ -111,11 +111,11 @@ namespace MoalemYar.UserControls
                 _initialCollection = query.Result;
                 if (data.Any())
                 {
-                    dgv.ItemsSource = data;
+                    dataGrid.ItemsSource = data;
                 }
                 else
                 {
-                    dgv.ItemsSource = null;
+                    dataGrid.ItemsSource = null;
                     MainWindow.main.ShowNoDataNotification("School");
                 }
             }
@@ -205,27 +205,11 @@ namespace MoalemYar.UserControls
             }
         }
 
-        private void dgv_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            try
-            {
-                dynamic selectedItem = dgv.SelectedItems[0];
-                txtAdmin.Text = selectedItem.Admin;
-                txtSchool.Text = selectedItem.SchoolName;
-                txtYear.Text = selectedItem.Year;
-                setComboValue(selectedItem.Base);
-                editGrid.IsEnabled = true;
-            }
-            catch (Exception)
-            {
-            }
-        }
-
         private void btnEditSave_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                dynamic selectedItem = dgv.SelectedItems[0];
+                dynamic selectedItem = dataGrid.SelectedItems[0];
                 long id = selectedItem.Id;
                 updateSchool(id, txtSchool.Text, getComboValue(), txtAdmin.Text, txtYear.Text);
                 MainWindow.main.ShowUpdateDataNotification(true, txtSchool.Text, "مدرسه");
@@ -291,9 +275,9 @@ namespace MoalemYar.UserControls
         private void txtEditSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (txtEditSearch.Text != string.Empty)
-                dgv.ItemsSource = _initialCollection.Where(x => x.SchoolName.Contains(txtEditSearch.Text) || x.Admin.Contains(txtEditSearch.Text) || x.Base.Contains(txtEditSearch.Text) || x.Year.Contains(txtEditSearch.Text)).Select(x => x);
+                dataGrid.ItemsSource = _initialCollection.Where(x => x.SchoolName.Contains(txtEditSearch.Text) || x.Admin.Contains(txtEditSearch.Text) || x.Base.Contains(txtEditSearch.Text) || x.Year.Contains(txtEditSearch.Text)).Select(x => x);
             else
-                dgv.ItemsSource = _initialCollection.Select(x => x);
+                dataGrid.ItemsSource = _initialCollection.Select(x => x);
 
         }
 
@@ -343,7 +327,7 @@ namespace MoalemYar.UserControls
         {
             try
             {
-                dynamic selectedItem = dgv.SelectedItems[0];
+                dynamic selectedItem = dataGrid.SelectedItems[0];
                 long id = selectedItem.Id;
                 deleteSchool(id);
                 MainWindow.main.ShowDeletedNotification(true, txtSchool.Text, "مدرسه");
@@ -353,6 +337,22 @@ namespace MoalemYar.UserControls
             catch (Exception)
             {
                 MainWindow.main.ShowDeletedNotification(false, txtSchool.Text, "مدرسه");
+            }
+        }
+
+        private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                dynamic selectedItem = dataGrid.SelectedItems[0];
+                txtAdmin.Text = selectedItem.Admin;
+                txtSchool.Text = selectedItem.SchoolName;
+                txtYear.Text = selectedItem.Year;
+                setComboValue(selectedItem.Base);
+                editGrid.IsEnabled = true;
+            }
+            catch (Exception)
+            {
             }
         }
     }

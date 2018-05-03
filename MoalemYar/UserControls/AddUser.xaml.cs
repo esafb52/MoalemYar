@@ -105,11 +105,11 @@ namespace MoalemYar.UserControls
                 _initialCollection = query.Result;
                 if (data.Any())
                 {
-                    dgv.ItemsSource = data;
+                    dataGrid.ItemsSource = data;
                 }
                 else
                 {
-                    dgv.ItemsSource = null;
+                    dataGrid.ItemsSource = null;
                     MainWindow.main.ShowNoDataNotification("User");
                 }
             }
@@ -156,11 +156,11 @@ namespace MoalemYar.UserControls
             }
         }
 
-        private void dgv_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
             {
-                dynamic selectedItem = dgv.SelectedItems[0];
+                dynamic selectedItem = dataGrid.SelectedItems[0];
                 txtUsername.Text = selectedItem.Username;
                 txtPassword.Text = selectedItem.Password;
                 txtPasswordAg.Text = selectedItem.Password;
@@ -181,7 +181,7 @@ namespace MoalemYar.UserControls
                 }
                 else
                 {
-                    dynamic selectedItem = dgv.SelectedItems[0];
+                    dynamic selectedItem = dataGrid.SelectedItems[0];
                     long id = selectedItem.Id;
                     updateUser(id, txtUsername.Text.ToLower(), txtPassword.Text.ToLower());
                     MainWindow.main.ShowUpdateDataNotification(true, txtUsername.Text, "نام کاربری");
@@ -206,9 +206,9 @@ namespace MoalemYar.UserControls
         private void txtEditSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (txtEditSearch.Text != string.Empty)
-                dgv.ItemsSource = _initialCollection.Where(x => x.Username.Contains(txtEditSearch.Text)).Select(x => x);
+                dataGrid.ItemsSource = _initialCollection.Where(x => x.Username.Contains(txtEditSearch.Text)).Select(x => x);
             else
-                dgv.ItemsSource = _initialCollection.Select(x => x);
+                dataGrid.ItemsSource = _initialCollection.Select(x => x);
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
@@ -253,7 +253,7 @@ namespace MoalemYar.UserControls
         {
             try
             {
-                dynamic selectedItem = dgv.SelectedItems[0];
+                dynamic selectedItem = dataGrid.SelectedItems[0];
                 long id = selectedItem.Id;
                 deleteUser(id);
                 MainWindow.main.ShowDeletedNotification(true, txtUsername.Text, "نام کاربری");

@@ -173,18 +173,22 @@
                                 </TextBlock>
                                 <StackPanel Grid.Column="0" Margin="0,35,10,5" Orientation="Vertical">
                                     <Metro:MetroTextBox Margin="0,2,-10,0" x:Name="txtEditSearch" HorizontalAlignment="Stretch" VerticalAlignment="Top" ButtonTitle="بروزرسانی لیست" ButtonClick="txtEditSearch_ButtonClick"  FlowDirection="RightToLeft" InputHint="جستجو..." PopupHint="جستجو بصورت خودکار انجام می شود" MetroPopupBackgroundState="Red2" Icon="../Resources/editIcon.png" TextChanged="txtEditSearch_TextChanged" />
-                                    <ListView Margin="0,2,-10,0" ScrollViewer.VerticalScrollBarVisibility="Auto" FlowDirection="RightToLeft" SelectionMode="Single" x:Name="dgv" SelectionChanged="dgv_SelectionChanged">
-                                        <ListView.View>
-                                            <GridView>
-                                                <GridViewColumn Header="نام" Width="100" DisplayMemberBinding="{Binding Name}" />
-                                                <GridViewColumn Header="نام خانوادگی" Width="100"  DisplayMemberBinding="{Binding LName}" />
-                                                <GridViewColumn Header="نام پدر" Width="100" DisplayMemberBinding="{Binding FName}" />
-                                                <GridViewColumn Header="جنسیت" Width="100" DisplayMemberBinding="{Binding Gender}" />
-                                                <GridViewColumn Header="پایه" Width="100" DisplayMemberBinding="{Binding Base}" />
-                                                <GridViewColumn Header="Id" Width="0"  DisplayMemberBinding="{Binding Id}" />
-                                            </GridView>
-                                        </ListView.View>
-                                    </ListView>
+                                    <DataGrid x:Name="dataGrid" AutoGenerateColumns="False" HorizontalAlignment="Left"
+                                      Background="#eceff5" RowHeaderWidth="0" AlternatingRowBackground="#fbfcfe"
+                                      GridLinesVisibility="Horizontal" CanUserReorderColumns="False"
+                                      CanUserResizeColumns="False" CanUserSortColumns="True" SelectionMode="Single" SelectionUnit="FullRow" 
+                                      CanUserResizeRows="False" IsReadOnly="True" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}" 
+                                      HorizontalGridLinesBrush="#dde8ef" CellStyle="{DynamicResource DataGridCellStyle}"
+                                      Margin="10,5" SelectionChanged="dataGrid_SelectionChanged">
+                                        <DataGrid.Columns>
+                                            <DataGridTextColumn Binding="{Binding Id}" Visibility="Hidden" />
+                                            <DataGridTextColumn Binding="{Binding Name}" Header="نام" MinWidth="100" Width="auto" />
+                                            <DataGridTextColumn Binding="{Binding LName}" Header="نام خانوادگی" MinWidth="100" Width="auto" />
+                                            <DataGridTextColumn Binding="{Binding FName}" Header="نام پدر" MinWidth="100" Width="auto"/>
+                                            <DataGridTextColumn Binding="{Binding Gender}" Header="جنسیت" MinWidth="100" Width="auto" />
+                                            <DataGridTextColumn Binding="{Binding Base}" Header="پایه" MinWidth="100" Width="auto" />
+                                        </DataGrid.Columns>
+                                    </DataGrid>
                                 </StackPanel>
                                 <StackPanel Name="editStack" IsEnabled="False" Grid.Column="1" Margin="5,0,0,0" Orientation="Vertical">
                                     <Metro:MetroTextBox x:Name="txtName" Margin="2" InputHint="نام" Height="30" PopupHint="نام دانش آموز" MetroPopupBackgroundState="DarkRed" VerticalAlignment="Top" />

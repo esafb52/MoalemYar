@@ -82,15 +82,19 @@
                                 </Grid.ColumnDefinitions>
                                 <StackPanel Grid.Column="0" Orientation="Vertical">
                                     <Metro:MetroTextBox Name="txtEditSearch" ButtonTitle="بروزرسانی لیست" Margin="2" ButtonClick="txtEditSearch_ButtonClick"  FlowDirection="RightToLeft" InputHint="جستجو..." PopupHint="جستجو بصورت خودکار انجام می شود" MetroPopupBackgroundState="Red2" Icon="../Resources/editIcon.png" TextChanged="txtEditSearch_TextChanged" />
-                                    <ListView ScrollViewer.VerticalScrollBarVisibility="Auto" Margin="2" FlowDirection="RightToLeft" SelectionMode="Single" Name="dgv" SelectionChanged="dgv_SelectionChanged">
-                                        <ListView.View>
-                                            <GridView>
-                                                <GridViewColumn Width="100" Header="نام کاربری"  DisplayMemberBinding="{Binding Username}" />
-                                                <GridViewColumn Width="255" Header="رمز عبور"  DisplayMemberBinding="{Binding Password}" />
-                                                <GridViewColumn Header="Id" Width="0"  DisplayMemberBinding="{Binding Id}" />
-                                            </GridView>
-                                        </ListView.View>
-                                    </ListView>
+                                    <DataGrid x:Name="dataGrid" AutoGenerateColumns="False" HorizontalAlignment="Left"
+                                      Background="#eceff5" RowHeaderWidth="0" AlternatingRowBackground="#fbfcfe"
+                                      GridLinesVisibility="Horizontal" CanUserReorderColumns="False"
+                                      CanUserResizeColumns="False" CanUserSortColumns="True" SelectionMode="Single" SelectionUnit="FullRow" 
+                                      CanUserResizeRows="False" IsReadOnly="True" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}" 
+                                      HorizontalGridLinesBrush="#dde8ef" CellStyle="{DynamicResource DataGridCellStyle}"
+                                      Margin="10,5" SelectionChanged="dataGrid_SelectionChanged">
+                                        <DataGrid.Columns>
+                                            <DataGridTextColumn Binding="{Binding Id}" Visibility="Hidden" />
+                                            <DataGridTextColumn Binding="{Binding Username}" Header="نام کاربری" MinWidth="100" Width="auto" />
+                                            <DataGridTextColumn Binding="{Binding Password}" Header="رمز عبور" MinWidth="255" Width="auto" />
+                                        </DataGrid.Columns>
+                                    </DataGrid>
                                 </StackPanel>
                                 <StackPanel IsEnabled="False" Orientation="Vertical" Grid.Column="1" Name="editGrid" Margin="5,0,0,0">
                                     <Metro:MetroTextBox Name="txtUsername" Margin="2" InputHint="نام کاربری" Height="30" PopupHint="نام کاربری باید بصورت لاتین باشد" MetroPopupBackgroundState="DarkRed" VerticalAlignment="Top" />
