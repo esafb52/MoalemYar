@@ -178,6 +178,9 @@ namespace MoalemYar
                        case "Question":
                            exAddOrUpdateStudent_Click(null, null);
                            break;
+                       case "Score":
+                           QuestionsList.main.tabc.SelectedIndex = 0;
+                           break;
                    }
                })
                .Dismiss().WithButton("بیخیال", button => { })
@@ -254,7 +257,7 @@ namespace MoalemYar
             }
         }
 
-        public void ShowDeletedNotification(bool isDeleteSuccess, string SchoolName, string Type)
+        public void ShowDeletedNotification(bool isDeleteSuccess, string Name, string Type)
         {
             if (isDeleteSuccess)
             {
@@ -263,7 +266,7 @@ namespace MoalemYar
                    .Accent(AppVariable.BLUE)
                    .Background(AppVariable.BGBLACK)
                    .HasBadge("اطلاعیه")
-                   .HasMessage(string.Format("{1} {0} با موفقیت حذف شد", SchoolName, Type))
+                   .HasMessage(string.Format("{1} {0} با موفقیت حذف شد", Name, Type))
                    .Dismiss().WithButton("باشه", button => { })
                    .Animates(true)
                .AnimationInDuration(0.75)
@@ -278,7 +281,7 @@ namespace MoalemYar
                    .Accent(AppVariable.RED)
                    .Background(AppVariable.BGBLACK)
                    .HasBadge("هشدار")
-                   .HasMessage(string.Format("حذف {1} {0} با خطا مواجه شد", SchoolName, Type))
+                   .HasMessage(string.Format("حذف {1} {0} با خطا مواجه شد", Name, Type))
                    .Dismiss().WithButton("دوباره امتحان کنید", button => { })
                    .Animates(true)
                .AnimationInDuration(0.75)
@@ -424,14 +427,14 @@ namespace MoalemYar
             }
         }
 
-        public void ShowDeleteConfirmNotification(string SchoolName, string Type)
+        public void ShowDeleteConfirmNotification(string Name, string Type)
         {
             var builder = this.Manager
                   .CreateMessage()
                  .Accent(AppVariable.RED)
                  .Background(AppVariable.BGBLACK)
                  .HasBadge("هشدار")
-                 .HasHeader(string.Format("آیا برای حذف {1} {0} اطمینان دارید؟", SchoolName, Type))
+                 .HasHeader(string.Format("آیا برای حذف {1} {0} اطمینان دارید؟", Name, Type))
                  .Dismiss().WithButton("بله", button =>
                  {
                      switch (Type)
@@ -450,6 +453,9 @@ namespace MoalemYar
 
                          case "حضورغیاب":
                              Attendancelist.main.deleteAttendance();
+                             break;
+                         case "نمره":
+                             QuestionsList.main.deleteScore();
                              break;
                      }
                  })
