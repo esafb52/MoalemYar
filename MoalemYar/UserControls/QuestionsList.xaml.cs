@@ -319,7 +319,7 @@ namespace MoalemYar.UserControls
                         MyTextBlock.Foreground = new SolidColorBrush(Colors.Green);
                         MyTextBlock.Text = "ثبت شده";
                         addQuestion((long)selectedItem.BaseId, (long)selectedItem.Id, element.SelectedItem.ToString());
-                        addScore((long)cmbBase.SelectedValue, element.SelectedItem.ToString(), strDate, "خیلی خوب", "no");
+                        addScore((long)cmbBase.SelectedValue, element.SelectedItem.ToString(), strDate, "خیلی خوب", (txtDesc.Text==string.Empty ? "بدون توضیحات" : txtDesc.Text));
                     }
                     break;
                 case "good":
@@ -328,7 +328,7 @@ namespace MoalemYar.UserControls
                         MyTextBlock.Foreground = new SolidColorBrush(Colors.Green);
                         MyTextBlock.Text = "ثبت شده";
                         addQuestion((long)selectedItem.BaseId, (long)selectedItem.Id, element.SelectedItem.ToString());
-                        addScore((long)cmbBase.SelectedValue, element.SelectedItem.ToString(), strDate, "خوب", "no");
+                        addScore((long)cmbBase.SelectedValue, element.SelectedItem.ToString(), strDate, "خوب", (txtDesc.Text == string.Empty ? "بدون توضیحات" : txtDesc.Text));
                     }
                     break;
                 case "nbad":
@@ -337,7 +337,7 @@ namespace MoalemYar.UserControls
                         MyTextBlock.Foreground = new SolidColorBrush(Colors.Green);
                         MyTextBlock.Text = "ثبت شده";
                         addQuestion((long)selectedItem.BaseId, (long)selectedItem.Id, element.SelectedItem.ToString());
-                        addScore((long)cmbBase.SelectedValue, element.SelectedItem.ToString(), strDate, "قابل قبول", "no");
+                        addScore((long)cmbBase.SelectedValue, element.SelectedItem.ToString(), strDate, "قابل قبول", (txtDesc.Text == string.Empty ? "بدون توضیحات" : txtDesc.Text));
                     }
                     break;
                 case "bad":
@@ -346,7 +346,7 @@ namespace MoalemYar.UserControls
                         MyTextBlock.Foreground = new SolidColorBrush(Colors.Green);
                         MyTextBlock.Text = "ثبت شده";
                         addQuestion((long)selectedItem.BaseId, (long)selectedItem.Id, element.SelectedItem.ToString());
-                        addScore((long)cmbBase.SelectedValue, element.SelectedItem.ToString(), strDate, "نیاز به تلاش بیشتر", "no");
+                        addScore((long)cmbBase.SelectedValue, element.SelectedItem.ToString(), strDate, "نیاز به تلاش بیشتر", (txtDesc.Text == string.Empty ? "بدون توضیحات" : txtDesc.Text));
                     }
                     break;
             }
