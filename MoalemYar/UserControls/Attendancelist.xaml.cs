@@ -164,12 +164,12 @@ namespace MoalemYar.UserControls
 
                 if (data.Any())
                 {
-                    this.listView1.ItemsSource = data;
+                    this.dataGrid.ItemsSource = data;
                     swAllPresent.IsEnabled = true;
                 }
                 else
                 {
-                    this.listView1.ItemsSource = null;
+                    this.dataGrid.ItemsSource = null;
                     swAllPresent.IsEnabled = false;
                     MainWindow.main.ShowNoDataNotification("Student");
                 }
@@ -275,8 +275,8 @@ namespace MoalemYar.UserControls
         {
             for (int i = 0; i < _initialCollection.Count; i++)
             {
-                listView1.SelectedIndex = i;
-                dynamic selectedItem = listView1.SelectedItems[0];
+                dataGrid.SelectedIndex = i;
+                dynamic selectedItem = dataGrid.SelectedItems[0];
                 addAttendance((long)selectedItem.Id, true, strDate);
                 UpdateList(Convert.ToInt64(selectedItem.Id), 10);
             }
@@ -287,7 +287,7 @@ namespace MoalemYar.UserControls
             Task.Delay(TimeSpan.FromMilliseconds(time)).ContinueWith(ctx =>
             {
                 _initialCollection.RemoveAll(x => x.Id == SelectedItem);
-                listView1.ItemsSource = _initialCollection.Select(x => x);
+                dataGrid.ItemsSource = _initialCollection.Select(x => x);
                 if (!_initialCollection.Any())
                     swAllPresent.IsEnabled = false;
                 else
@@ -298,7 +298,7 @@ namespace MoalemYar.UserControls
 
         private void chkIsPresent_Checked(object sender, RoutedEventArgs e)
         {
-            dynamic selectedItem = listView1.SelectedItems[0];
+            dynamic selectedItem = dataGrid.SelectedItems[0];
 
             addAttendance((long)selectedItem.Id, true, strDate);
             UpdateList(Convert.ToInt64(selectedItem.Id), 400);
@@ -306,7 +306,7 @@ namespace MoalemYar.UserControls
 
         private void chkIsAbsent_Checked(object sender, RoutedEventArgs e)
         {
-            dynamic selectedItem = listView1.SelectedItems[0];
+            dynamic selectedItem = dataGrid.SelectedItems[0];
 
             addAttendance((long)selectedItem.Id, false, strDate);
             UpdateList(Convert.ToInt64(selectedItem.Id), 400);
