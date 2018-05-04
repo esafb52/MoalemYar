@@ -67,51 +67,6 @@
                             <StackPanel Margin="10,0,0,0" Orientation="Horizontal" HorizontalAlignment="Left">
                                 <Metro:MetroTextBlock Name="txtDate" HorizontalAlignment="Center" Margin="5" Text="تاریخ امروز"/>
                             </StackPanel>
-
-                            <!--<ListView Name="listView1" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" Margin="10">
-                                <ListView.ItemTemplate>
-                                    <DataTemplate>
-                                        <Border Margin="5" BorderThickness="1" BorderBrush="SlateGray" CornerRadius="4">
-                                            <Grid Margin="3">
-                                                <Grid.RowDefinitions>
-                                                    <RowDefinition></RowDefinition>
-                                                    <RowDefinition></RowDefinition>
-                                                    <RowDefinition></RowDefinition>
-                                                    <RowDefinition></RowDefinition>
-                                                </Grid.RowDefinitions>
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition></ColumnDefinition>
-                                                    <ColumnDefinition></ColumnDefinition>
-                                                </Grid.ColumnDefinitions>
-                                                <StackPanel Grid.Column="0" Orientation="Horizontal">
-                                                    <TextBlock FontWeight="Bold" Text="{Binding Path=Name}"></TextBlock>
-                                                    <TextBlock FontWeight="Bold" Text=" "></TextBlock>
-                                                    <TextBlock FontWeight="Bold" Text="{Binding Path=LName}"></TextBlock>
-                                                </StackPanel>
-                                                <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding Path=FName}"></TextBlock>
-                                                <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding Path=Id}" Visibility="Hidden"></TextBlock>
-                                                <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding Path=BaseId}" Visibility="Hidden"></TextBlock>
-                                                <StackPanel Orientation="Vertical" Margin="5" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right">
-                                                    <Metro:MetroSwitch Margin="0,2" IsChecked="False" Name="chkExcelent">خیلی خوب</Metro:MetroSwitch>
-                                                    <Metro:MetroSwitch Margin="0,2" IsChecked="False" Name="chkGood">خوب</Metro:MetroSwitch>
-                                                    <Metro:MetroSwitch Margin="0,2" IsChecked="False" Name="chkNotBad">قابل قبول</Metro:MetroSwitch>
-                                                    <Metro:MetroSwitch IsChecked="False" Name="chkBad">نیاز به تلاش بیشتر</Metro:MetroSwitch>
-                                                </StackPanel>
-                                            </Grid>
-                                        </Border>
-                                    </DataTemplate>
-                                </ListView.ItemTemplate>
-                                <ListView.ItemContainerStyle>
-                                    <Style TargetType="ListViewItem">
-                                        <Style.Triggers>
-                                            <Trigger Property="IsMouseOver" Value="True">
-                                                <Setter Property="IsSelected" Value="True"/>
-                                            </Trigger>
-
-                                        </Style.Triggers>
-                                    </Style>
-                                </ListView.ItemContainerStyle>
-                            </ListView>-->
                         </StackPanel>
                         <DataGrid x:Name="dataGrid" AutoGenerateColumns="False" HorizontalAlignment="Left"
                                       Background="#eceff5" RowHeaderWidth="0" AlternatingRowBackground="#fbfcfe"
@@ -119,7 +74,7 @@
                                       CanUserResizeColumns="False" CanUserSortColumns="True" SelectionMode="Single" SelectionUnit="FullRow" 
                                       CanUserResizeRows="False" IsReadOnly="True" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}" 
                                       HorizontalGridLinesBrush="#dde8ef" CellStyle="{DynamicResource DataGridCellStyle}"
-                                      Grid.ColumnSpan="2" Margin="10,75,10,10">
+                                      Grid.ColumnSpan="2" Margin="10,75,10,10" SelectionChanged="dataGrid_SelectionChanged">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding Path=Id}" Visibility="Hidden" />
                                 <DataGridTextColumn Binding="{Binding Path=BaseId}" Visibility="Hidden" />
@@ -129,20 +84,20 @@
                                 <DataGridTemplateColumn Header="نمره" MinWidth="150" Width="auto">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
-                                            <StackPanel Orientation="Vertical" Margin="5" HorizontalAlignment="Right">
-                                                <Metro:MetroSwitch Margin="0,2" IsChecked="False" Name="chkExcelent">خیلی خوب</Metro:MetroSwitch>
-                                                <Metro:MetroSwitch Margin="0,2" IsChecked="False" Name="chkGood">خوب</Metro:MetroSwitch>
-                                                <Metro:MetroSwitch Margin="0,2" IsChecked="False" Name="chkNotBad">قابل قبول</Metro:MetroSwitch>
-                                                <Metro:MetroSwitch IsChecked="False" Name="chkBad">نیاز به تلاش بیشتر</Metro:MetroSwitch>
+                                            <StackPanel Orientation="Vertical" Margin="5" HorizontalAlignment="Right" ToggleButton.Checked="StackPanel_Checked">
+                                                    <Metro:MetroSwitch Checked="chkChecked_Checked" Tag="exc" Margin="0,2">خیلی خوب</Metro:MetroSwitch>
+                                                    <Metro:MetroSwitch Checked="chkChecked_Checked" Tag="good" Margin="0,2">خوب</Metro:MetroSwitch>
+                                                    <Metro:MetroSwitch Checked="chkChecked_Checked" Tag="nbad" Margin="0,2">قابل قبول</Metro:MetroSwitch>
+                                                    <Metro:MetroSwitch Checked="chkChecked_Checked" Tag="bad" Margin="0,2">نیاز به تلاش بیشتر</Metro:MetroSwitch>
                                             </StackPanel>
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
                                 <DataGridTemplateColumn Header="وضعیت" MinWidth="100" Width="auto">
                                     <DataGridTemplateColumn.CellTemplate>
-                                        <DataTemplate>
+                                        <DataTemplate x:Name="myDataTemplate">
                                             <StackPanel Orientation="Vertical" Margin="5" HorizontalAlignment="Center">
-                                                <Metro:MetroTextBlock Text="ثبت نشده" Foreground="Red"/>
+                                                <Metro:MetroTextBlock Text="ثبت نشده" Foreground="Red" Name="txtStatus"/>
                                             </StackPanel>
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>

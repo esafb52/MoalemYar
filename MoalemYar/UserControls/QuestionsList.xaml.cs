@@ -9,8 +9,10 @@
 *	
 ***********************************************************************************/
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data;
 using System.Data.Entity;
 using System.Globalization;
 using System.Linq;
@@ -39,6 +41,7 @@ namespace MoalemYar.UserControls
         private PersianCalendar pc = new PersianCalendar();
         private static string strDate;
         public System.Windows.Media.Brush BorderColor { get; set; }
+
         public QuestionsList()
         {
             InitializeComponent();
@@ -162,11 +165,7 @@ namespace MoalemYar.UserControls
             }
 
             element.ItemsSource = list;
-
-
         }
-
-
 
         private void cmbBook_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -200,22 +199,101 @@ namespace MoalemYar.UserControls
             return childElement;
         }
 
-        private childItem FindVisualChild<childItem>(DependencyObject obj)
-            where childItem : DependencyObject
+        private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(obj); i++)
+            
+        }
+        private void chkChecked_Checked(object sender, RoutedEventArgs e)
+        {
+            var row = dataGrid.ContainerFromElement(sender as DependencyObject);
+            Arthas.Controls.Metro.MetroTextBlock MyTextBlock = FindVisualChildByName<Arthas.Controls.Metro.MetroTextBlock>(row, "txtStatus");
+
+            switch ((sender as Arthas.Controls.Metro.MetroSwitch).Tag.ToString())
             {
-                DependencyObject child = VisualTreeHelper.GetChild(obj, i);
-                if (child != null && child is childItem)
-                    return (childItem)child;
+                case "exc":
+                    if (MyTextBlock.Text == "ثبت نشده")
+                    {
+                        MyTextBlock.Foreground = new SolidColorBrush(Colors.Green);
+                        MyTextBlock.Text = "ثبت شده";
+                    }else
+                    {
+                        MyTextBlock.Foreground = new SolidColorBrush(Colors.Purple);
+                        MyTextBlock.Text = "ویرایش شده";
+                    }
+                    break;
+                case "good":
+                    if (MyTextBlock.Text == "ثبت نشده")
+                    {
+                        MyTextBlock.Foreground = new SolidColorBrush(Colors.Green);
+                        MyTextBlock.Text = "ثبت شده";
+                    }
+                    else
+                    {
+                        MyTextBlock.Foreground = new SolidColorBrush(Colors.Purple);
+                        MyTextBlock.Text = "ویرایش شده";
+                    }
+                    break;
+                case "nbad":
+                    if (MyTextBlock.Text == "ثبت نشده")
+                    {
+                        MyTextBlock.Foreground = new SolidColorBrush(Colors.Green);
+                        MyTextBlock.Text = "ثبت شده";
+                    }
+                    else
+                    {
+                        MyTextBlock.Foreground = new SolidColorBrush(Colors.Purple);
+                        MyTextBlock.Text = "ویرایش شده";
+                    }
+                    break;
+                case "bad":
+                    if (MyTextBlock.Text == "ثبت نشده")
+                    {
+                        MyTextBlock.Foreground = new SolidColorBrush(Colors.Green);
+                        MyTextBlock.Text = "ثبت شده";
+                    }
+                    else
+                    {
+                        MyTextBlock.Foreground = new SolidColorBrush(Colors.Purple);
+                        MyTextBlock.Text = "ویرایش شده";
+                    }
+                    break;
+            }
+        }
+        public T FindVisualChildByName<T>(DependencyObject parent, string name) where T : DependencyObject
+        {
+            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(parent); i++)
+            {
+                var child = VisualTreeHelper.GetChild(parent, i);
+                string controlName = child.GetValue(Control.NameProperty) as string;
+                if (controlName == name)
+                {
+                    return child as T;
+                }
                 else
                 {
-                    childItem childOfChild = FindVisualChild<childItem>(child);
-                    if (childOfChild != null)
-                        return childOfChild;
+                    T result = FindVisualChildByName<T>(child, name);
+
+                    if (result != null)
+
+                        return result;
                 }
             }
             return null;
+        }
+        private void StackPanel_Checked(object sender, RoutedEventArgs e)
+        {
+            Arthas.Controls.Metro.MetroSwitch cb = e.OriginalSource as Arthas.Controls.Metro.MetroSwitch;
+            if (cb.IsChecked == false)
+            {
+                return;
+            }
+            foreach (var item in ((StackPanel)sender).Children)
+            {
+                if (item != cb)
+                {
+                    ((Arthas.Controls.Metro.MetroSwitch)item).IsChecked = false;
+                }
+            }
         }
 
     }
