@@ -220,7 +220,7 @@ namespace MoalemYar
             builder.Queue();
         }
 
-        public void ShowUpdateDataNotification(bool isUpdateSuccess, string SchoolName, string Type)
+        public void ShowUpdateDataNotification(bool isUpdateSuccess, string Name, string Type)
         {
             if (isUpdateSuccess)
             {
@@ -229,7 +229,7 @@ namespace MoalemYar
                .Accent(AppVariable.ORANGE)
                .Background(AppVariable.BGBLACK)
                .HasBadge("اطلاعیه")
-               .HasMessage(string.Format("{1} {0} با موفقیت ویرایش شد", SchoolName, Type))
+               .HasMessage(string.Format("{1} {0} با موفقیت ویرایش شد", Name, Type))
                .Dismiss().WithButton("باشه", button => { })
                .Animates(true)
                .AnimationInDuration(0.75)
@@ -244,7 +244,7 @@ namespace MoalemYar
                .Accent(AppVariable.RED)
                .Background(AppVariable.BGBLACK)
                .HasBadge("هشدار")
-               .HasMessage(string.Format("ویرایش {1} {0} با خطا مواجه شد", SchoolName, Type))
+               .HasMessage(string.Format("ویرایش {1} {0} با خطا مواجه شد", Name, Type))
                .Dismiss().WithButton("دوباره امتحان کنید", button => { })
                .Animates(true)
                .AnimationInDuration(0.75)

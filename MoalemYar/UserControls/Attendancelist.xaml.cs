@@ -232,7 +232,6 @@ namespace MoalemYar.UserControls
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex);
             }
         }
 
@@ -242,7 +241,6 @@ namespace MoalemYar.UserControls
             {
                 var query = DeleteAttendanceAsync(StudentId, AttendanceId);
                 query.Wait();
-                MainWindow.main.getexHint();
             }
             catch (Exception)
             {

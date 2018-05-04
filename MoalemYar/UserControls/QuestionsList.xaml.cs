@@ -77,6 +77,66 @@ namespace MoalemYar.UserControls
             }
         }
 
+        public async static Task<string> InsertQuestionAsync(long SchoolId, long StudentId, string Book)
+        {
+            using (var db = new DataClass.myDbContext())
+            {
+                var Question = new DataClass.Tables.Question();
+                Question.SchoolId = SchoolId;
+                Question.StudentId = StudentId;
+                Question.Book = Book;
+                db.Questions.Add(Question);
+
+                await db.SaveChangesAsync();
+
+                return "Question Added Successfully";
+            }
+        }
+
+        public async static Task<string> InsertScoreAsync(long StudentId, string Book, string Date, string Scorez, string Desc)
+        {
+            using (var db = new DataClass.myDbContext())
+            {
+                var Score = new DataClass.Tables.Score();
+                Score.StudentId = StudentId;
+                Score.Book = Book;
+                Score.Date = Date;
+                Score.Scores = Scorez;
+                Score.Desc = Desc;
+
+                db.Scores.Add(Score);
+
+                await db.SaveChangesAsync();
+
+                return "Score Added Successfully";
+            }
+        }
+
+        public async static Task<string> UpdateQuestionAsync(long QuestionId ,long SchoolId, long StudentId, string Book)
+        {
+            using (var db = new DataClass.myDbContext())
+            {
+                var EditQuestion = await db.Questions.FirstOrDefaultAsync(x => x.StudentId == StudentId && x.Id == QuestionId);
+                EditQuestion.SchoolId = SchoolId;
+                EditQuestion.StudentId = StudentId;
+                EditQuestion.Book = Book;
+
+                await db.SaveChangesAsync();
+                return "Question Updated Successfully";
+            }
+        }
+
+        public static async Task<string> DeleteQuestionAsync(long SchoolId, string Book)
+        {
+            using (var db = new DataClass.myDbContext())
+            {
+                var DeleteQuestion = await db.Questions.Where(x => x.SchoolId == SchoolId && x.Book == Book).ToListAsync();
+
+                db.Questions.RemoveRange(DeleteQuestion);
+                await db.SaveChangesAsync();
+                return "Question Deleted Successfully";
+            }
+        }
         #endregion "Async Query"
 
         #region Func get Query Wait"
@@ -97,22 +157,64 @@ namespace MoalemYar.UserControls
             {
             }
         }
-
+        private List<DataClass.DataTransferObjects.StudentsDto> _initialCollection;
         private void getStudents(long SchoolId, string Book)
         {
             var query = GetAllStudentsAsync(SchoolId, Book);
             query.Wait();
             List<DataClass.DataTransferObjects.StudentsDto> data = query.Result;
+            _initialCollection = data;
             if (data.Any())
             {
                 dataGrid.ItemsSource = data;
             }
             else
             {
+                dataGrid.ItemsSource = null;
                 MainWindow.main.ShowNoDataNotification("Question");
+            }
+           
+        }
+
+        private void addQuestion(long SchoolId, long StudentId, string Book)
+        {
+            try
+            {
+                var query = InsertQuestionAsync(SchoolId, StudentId, Book);
+                query.Wait();
+            }
+            catch (Exception)
+            {
             }
         }
 
+        private void addScore(long StudentId, string Book, string Date, string Scorez, string Desc)
+        {
+            try
+            {
+                var query = InsertScoreAsync(StudentId, Book, Date, Scorez, Desc);
+                query.Wait();
+            }
+            catch (Exception)
+            {
+            }
+        }
+        private void updateQuestion(long QuestionId, long SchoolId, long StudentId, string Book)
+        {
+            var query = UpdateQuestionAsync(QuestionId, SchoolId, StudentId, Book);
+            query.Wait();
+        }
+        private void deleteQuestion(long SchoolId, string Book)
+        {
+            try
+            {
+                var query = DeleteQuestionAsync(SchoolId, Book);
+                query.Wait();
+            }
+            catch (Exception)
+            {
+            }
+        }
         #endregion Func get Query Wait"
         private void tabc_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -207,7 +309,8 @@ namespace MoalemYar.UserControls
         {
             var row = dataGrid.ContainerFromElement(sender as DependencyObject);
             Arthas.Controls.Metro.MetroTextBlock MyTextBlock = FindVisualChildByName<Arthas.Controls.Metro.MetroTextBlock>(row, "txtStatus");
-
+            dynamic selectedItem = dataGrid.SelectedItems[0];
+            var element = FindElementByName<ComboBox>(cmbAddContentBook, "cmbBook");
             switch ((sender as Arthas.Controls.Metro.MetroSwitch).Tag.ToString())
             {
                 case "exc":
@@ -215,10 +318,8 @@ namespace MoalemYar.UserControls
                     {
                         MyTextBlock.Foreground = new SolidColorBrush(Colors.Green);
                         MyTextBlock.Text = "ثبت شده";
-                    }else
-                    {
-                        MyTextBlock.Foreground = new SolidColorBrush(Colors.Purple);
-                        MyTextBlock.Text = "ویرایش شده";
+                        addQuestion((long)selectedItem.BaseId, (long)selectedItem.Id, element.SelectedItem.ToString());
+                        addScore((long)cmbBase.SelectedValue, element.SelectedItem.ToString(), strDate, "خیلی خوب", "no");
                     }
                     break;
                 case "good":
@@ -226,11 +327,8 @@ namespace MoalemYar.UserControls
                     {
                         MyTextBlock.Foreground = new SolidColorBrush(Colors.Green);
                         MyTextBlock.Text = "ثبت شده";
-                    }
-                    else
-                    {
-                        MyTextBlock.Foreground = new SolidColorBrush(Colors.Purple);
-                        MyTextBlock.Text = "ویرایش شده";
+                        addQuestion((long)selectedItem.BaseId, (long)selectedItem.Id, element.SelectedItem.ToString());
+                        addScore((long)cmbBase.SelectedValue, element.SelectedItem.ToString(), strDate, "خوب", "no");
                     }
                     break;
                 case "nbad":
@@ -238,11 +336,8 @@ namespace MoalemYar.UserControls
                     {
                         MyTextBlock.Foreground = new SolidColorBrush(Colors.Green);
                         MyTextBlock.Text = "ثبت شده";
-                    }
-                    else
-                    {
-                        MyTextBlock.Foreground = new SolidColorBrush(Colors.Purple);
-                        MyTextBlock.Text = "ویرایش شده";
+                        addQuestion((long)selectedItem.BaseId, (long)selectedItem.Id, element.SelectedItem.ToString());
+                        addScore((long)cmbBase.SelectedValue, element.SelectedItem.ToString(), strDate, "قابل قبول", "no");
                     }
                     break;
                 case "bad":
@@ -250,13 +345,17 @@ namespace MoalemYar.UserControls
                     {
                         MyTextBlock.Foreground = new SolidColorBrush(Colors.Green);
                         MyTextBlock.Text = "ثبت شده";
-                    }
-                    else
-                    {
-                        MyTextBlock.Foreground = new SolidColorBrush(Colors.Purple);
-                        MyTextBlock.Text = "ویرایش شده";
+                        addQuestion((long)selectedItem.BaseId, (long)selectedItem.Id, element.SelectedItem.ToString());
+                        addScore((long)cmbBase.SelectedValue, element.SelectedItem.ToString(), strDate, "نیاز به تلاش بیشتر", "no");
                     }
                     break;
+            }
+            var DeleteQuestion = _initialCollection.Where(x => x.Id == (long)selectedItem.Id).FirstOrDefault();
+            _initialCollection.Remove(DeleteQuestion);
+
+            if (!_initialCollection.Any())
+            {
+                deleteQuestion((long)cmbBase.SelectedValue, element.SelectedItem.ToString());
             }
         }
         public T FindVisualChildByName<T>(DependencyObject parent, string name) where T : DependencyObject
