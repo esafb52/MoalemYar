@@ -383,18 +383,6 @@ namespace MoalemYar.UserControls
             changedDate = mytxtDate.Text.ToString();
         }
 
-        private void dgv_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            try
-            {
-                dynamic selectedItem = dgv.SelectedItems[0];
-                changedDate = selectedItem.Date;
-            }
-            catch (Exception)
-            {
-            }
-        }
-
         private void btnEditSave_Click(object sender, RoutedEventArgs e)
         {
             dynamic selectedItemCmb = cmbEditStudent.SelectedItem;
@@ -410,6 +398,18 @@ namespace MoalemYar.UserControls
             catch (Exception)
             {
                 MainWindow.main.ShowUpdateDataNotification(false, selectedItemCmb.Name + " " + selectedItemCmb.LName, "حضورغیاب");
+            }
+        }
+
+        private void dgv_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                dynamic selectedItem = dgv.SelectedItems[0];
+                changedDate = selectedItem.Date;
+            }
+            catch (Exception)
+            {
             }
         }
     }

@@ -76,44 +76,6 @@
                                     </DataGridTemplateColumn>
                                 </DataGrid.Columns>
                             </DataGrid>
-                            <!--<ListView Name="listView1" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" Margin="10">
-                                <ListView.ItemTemplate>
-                                    <DataTemplate>
-                                        <Border Margin="5" BorderThickness="1" BorderBrush="SlateGray" CornerRadius="4">
-                                            <Grid Margin="3">
-                                                <Grid.RowDefinitions>
-                                                    <RowDefinition></RowDefinition>
-                                                    <RowDefinition></RowDefinition>
-                                                    <RowDefinition></RowDefinition>
-                                                    <RowDefinition></RowDefinition>
-                                                </Grid.RowDefinitions>
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition></ColumnDefinition>
-                                                    <ColumnDefinition></ColumnDefinition>
-                                                </Grid.ColumnDefinitions>
-                                                <StackPanel Grid.Column="0" Orientation="Horizontal">
-                                                    <TextBlock FontWeight="Bold" Text="{Binding Path=Name}"></TextBlock>
-                                                    <TextBlock FontWeight="Bold" Text=" "></TextBlock>
-                                                    <TextBlock FontWeight="Bold" Text="{Binding Path=LName}"></TextBlock>
-                                                </StackPanel>
-                                                <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding Path=FName}"></TextBlock>
-                                                <TextBlock Grid.Column="0" Grid.Row="1" Text="{Binding Path=Id}" Visibility="Hidden"></TextBlock>
-                                               
-                                            </Grid>
-                                        </Border>
-                                    </DataTemplate>
-                                </ListView.ItemTemplate>
-                                <ListView.ItemContainerStyle>
-                                    <Style TargetType="ListViewItem">
-                                        <Style.Triggers>
-                                            <Trigger Property="IsMouseOver" Value="True">
-                                                <Setter Property="IsSelected" Value="True"/>
-                                            </Trigger>
-
-                                        </Style.Triggers>
-                                    </Style>
-                                </ListView.ItemContainerStyle>
-                            </ListView>-->
                         </StackPanel>
                     </Grid>
                 </Grid>
