@@ -30,6 +30,7 @@ namespace MoalemYar.UserControls
         internal static Attendancelist main;
         private List<DataClass.DataTransferObjects.StudentsDto> _initialCollection;
         private List<DataClass.Tables.Attendance> _initialCollectionAtendance;
+        private List<DataClass.DataTransferObjects.AttendanceStudentsDto> _initialCollectionAllAtendance;
         private PersianCalendar pc = new PersianCalendar();
         private static string strDate;
         private bool isPresentEdit = true;
@@ -95,11 +96,25 @@ namespace MoalemYar.UserControls
             }
         }
 
-        public async static Task<List<DataClass.Tables.Attendance>> GetAllAttendanceAsync(long StudentId)
+        public async static Task<List<DataClass.DataTransferObjects.AttendanceStudentsDto>> GetAllAttendanceAsync(string Date, long BaseId)
         {
             using (var db = new DataClass.myDbContext())
             {
-                var query = db.Attendances.Where(x => x.StudentId == StudentId).OrderByDescending(x=>x.Date).Select(x => x);
+                var query = db.Attendances.Join(
+                 db.Students,
+                 c => c.Id,
+                 v => v.BaseId,
+                 (c, v) => new DataClass.DataTransferObjects.AttendanceStudentsDto { Name = v.Name, LName = v.LName, FName = v.FName, Exist = c.Exist, Date = c.Date, Id = v.Id, BaseId = v.BaseId, StudentId = c.StudentId }
+             ).OrderBy(x => x.LName).Where(x => x.BaseId == BaseId && x.Date == Date);
+                return await query.ToListAsync();
+            }
+        }
+
+        public async static Task<List<DataClass.Tables.Attendance>> GetAttendanceAsync(long StudentId)
+        {
+            using (var db = new DataClass.myDbContext())
+            {
+                var query = db.Attendances.Where(x => x.StudentId == StudentId).OrderByDescending(x => x.Date).Select(x => x);
                 return await query.ToListAsync();
             }
         }
@@ -216,7 +231,9 @@ namespace MoalemYar.UserControls
         {
             try
             {
-                var query = GetAllAttendanceAsync(StudentId);
+                dgvAll.Visibility = Visibility.Hidden;
+                dgv.Visibility = Visibility.Visible;
+                var query = GetAttendanceAsync(StudentId);
                 query.Wait();
                 List<DataClass.Tables.Attendance> data = query.Result;
                 _initialCollectionAtendance = data;
@@ -227,6 +244,31 @@ namespace MoalemYar.UserControls
                 else
                 {
                     dgv.ItemsSource = null;
+                    MainWindow.main.ShowNoDataNotification("Attendance");
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+
+        private void getAllAttendance(string Date, long BaseId)
+        {
+            try
+            {
+                dgvAll.Visibility = Visibility.Visible;
+                dgv.Visibility = Visibility.Hidden;
+                var query = GetAllAttendanceAsync(Date, BaseId);
+                query.Wait();
+                List<DataClass.DataTransferObjects.AttendanceStudentsDto> data = query.Result;
+                _initialCollectionAllAtendance = data;
+                if (data.Any())
+                {
+                    dgvAll.ItemsSource = data;
+                }
+                else
+                {
+                    dgvAll.ItemsSource = null;
                     MainWindow.main.ShowNoDataNotification("Attendance");
                 }
             }
@@ -409,6 +451,11 @@ namespace MoalemYar.UserControls
             catch (Exception)
             {
             }
+        }
+
+        private void txtSearchDate_SelectedDateChanged(object sender, RoutedEventArgs e)
+        {
+            getAllAttendance(txtSearchDate.SelectedDate.ToString(), (long)cmbEditBase.SelectedValue);
         }
     }
 }

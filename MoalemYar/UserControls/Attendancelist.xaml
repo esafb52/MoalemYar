@@ -166,31 +166,55 @@
                                         </TextBlock.Style>
                                     </TextBlock>
                                 </Grid>
+                                <PersianCalendarWPF:PersianDatePicker HorizontalAlignment="Left" Margin="10,0" SelectedDateChanged="txtSearchDate_SelectedDateChanged" Name="txtSearchDate"/>
+
                             </StackPanel>
                             <Metro:MetroTextBox x:Name="txtEditSearch" HorizontalAlignment="Stretch" VerticalAlignment="Top" ButtonTitle="بروزرسانی لیست" ButtonClick="txtEditSearch_ButtonClick" FlowDirection="RightToLeft" InputHint="جستجو..." PopupHint="جستجو بصورت خودکار انجام می شود" MetroPopupBackgroundState="Red2" Margin="0,5,0,0" Icon="../Resources/editIcon.png" TextChanged="txtEditSearch_TextChanged" />
-                            <ListView Margin="0,5,0,0" ScrollViewer.VerticalScrollBarVisibility="Auto" VerticalAlignment="Top" FlowDirection="RightToLeft" SelectionMode="Single" x:Name="dgv" SelectionChanged="dgv_SelectionChanged">
-                                <ListView.View>
-                                    <GridView>
-                                        <GridViewColumn Header="وضعیت حضور" Width="0"  DisplayMemberBinding="{Binding Exist}" />
-                                        <GridViewColumn Header="StudentId" Width="0" DisplayMemberBinding="{Binding StudentId}" />
-                                        <GridViewColumn Header="Id" Width="0"  DisplayMemberBinding="{Binding Id}" />
-                                        <GridViewColumn Header="وضعیت حضور" Width="100">
-                                            <GridViewColumn.CellTemplate>
-                                                <DataTemplate>
-                                                    <Metro:MetroSwitch Checked="MetroSwitch_Checked" Unchecked="MetroSwitch_Unchecked" IsChecked="{Binding Exist}" />
-                                                </DataTemplate>
-                                            </GridViewColumn.CellTemplate>
-                                        </GridViewColumn>
-                                        <GridViewColumn Header="تاریخ" Width="200">
-                                            <GridViewColumn.CellTemplate>
-                                                <DataTemplate>
-                                                    <PersianCalendarWPF:PersianDatePicker HorizontalAlignment="Left" Text="{Binding Date}" SelectedDate="{Binding Date}" SelectedDateChanged="txtDateEdit_SelectedDateChanged" Name="txtDateEdit"/>
-                                                </DataTemplate>
-                                            </GridViewColumn.CellTemplate>
-                                        </GridViewColumn>
-                                    </GridView>
-                                </ListView.View>
-                            </ListView>
+                            <Grid>
+                                <ListView Margin="0,5,0,0" ScrollViewer.VerticalScrollBarVisibility="Auto" VerticalAlignment="Top" FlowDirection="RightToLeft" SelectionMode="Single" x:Name="dgv" SelectionChanged="dgv_SelectionChanged">
+                                    <ListView.View>
+                                        <GridView>
+                                            <GridViewColumn Header="وضعیت حضور" Width="0"  DisplayMemberBinding="{Binding Exist}" />
+                                            <GridViewColumn Header="StudentId" Width="0" DisplayMemberBinding="{Binding StudentId}" />
+                                            <GridViewColumn Header="Id" Width="0"  DisplayMemberBinding="{Binding Id}" />
+                                            <GridViewColumn Header="وضعیت حضور" Width="100">
+                                                <GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <Metro:MetroSwitch Checked="MetroSwitch_Checked" Unchecked="MetroSwitch_Unchecked" IsChecked="{Binding Exist}" />
+                                                    </DataTemplate>
+                                                </GridViewColumn.CellTemplate>
+                                            </GridViewColumn>
+                                            <GridViewColumn Header="تاریخ" Width="200">
+                                                <GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <PersianCalendarWPF:PersianDatePicker HorizontalAlignment="Left" Text="{Binding Date}" SelectedDate="{Binding Date}" SelectedDateChanged="txtDateEdit_SelectedDateChanged" Name="txtDateEdit"/>
+                                                    </DataTemplate>
+                                                </GridViewColumn.CellTemplate>
+                                            </GridViewColumn>
+                                        </GridView>
+                                    </ListView.View>
+                                </ListView>
+                                <ListView Visibility="Hidden"  Margin="0,5,0,0" ScrollViewer.VerticalScrollBarVisibility="Auto" VerticalAlignment="Top" FlowDirection="RightToLeft" SelectionMode="Single" x:Name="dgvAll" SelectionChanged="dgv_SelectionChanged">
+                                    <ListView.View>
+                                        <GridView>
+                                            <GridViewColumn Header="وضعیت حضور" Width="0"  DisplayMemberBinding="{Binding Exist}" />
+                                            <GridViewColumn Header="StudentId" Width="0" DisplayMemberBinding="{Binding StudentId}" />
+                                            <GridViewColumn Header="Id" Width="0"  DisplayMemberBinding="{Binding Id}" />
+                                            <GridViewColumn Header="نام" Width="100"  DisplayMemberBinding="{Binding Name}" />
+                                            <GridViewColumn Header="نام خانوادگی" Width="100"  DisplayMemberBinding="{Binding LName}" />
+                                            <GridViewColumn Header="نام پدر" Width="100"  DisplayMemberBinding="{Binding FName}" />
+                                            <GridViewColumn Header="وضعیت حضور" Width="100">
+                                                <GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <Metro:MetroSwitch Checked="MetroSwitch_Checked" Unchecked="MetroSwitch_Unchecked" IsChecked="{Binding Exist}" />
+                                                    </DataTemplate>
+                                                </GridViewColumn.CellTemplate>
+                                            </GridViewColumn>
+                                        </GridView>
+                                    </ListView.View>
+                                </ListView>
+                            </Grid>
+                            
                         </StackPanel>
                     </StackPanel>
                 </Grid>
