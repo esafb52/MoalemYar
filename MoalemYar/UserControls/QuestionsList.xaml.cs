@@ -604,8 +604,6 @@ namespace MoalemYar.UserControls
             changedDate = mytxtDate.Text.ToString();
         }
 
-        #endregion
-
         private void dataGridEdit_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
@@ -623,5 +621,6 @@ namespace MoalemYar.UserControls
             {
             }
         }
+        #endregion
     }
 }
