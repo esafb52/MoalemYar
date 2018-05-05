@@ -69,7 +69,7 @@
                                 <Grid Margin="2">
                                     <ComboBox x:Name="cmbBase" ItemsSource="{Binding}"  
                                        SelectedValue="{Binding SchoolName}"  
-                                       SelectedValuePath="Id"   
+                                       SelectedValuePath="Id"   TabIndex="4"
                                        VerticalAlignment="Top" HorizontalAlignment="Left" Width="200"  >
                                         <ComboBox.ItemTemplate>
                                             <DataTemplate>
@@ -100,7 +100,7 @@
                             <Grid Grid.Column="1">
                                 <StackPanel Orientation="Vertical" HorizontalAlignment="Left">
                                     <Metro:MetroImage  VerticalAlignment="Top" ImageHeight="250" ImageWidth="250" Stretch="Fill" x:Name="imgStudent" Source="..\Resources\Choose.png" Content="MetroImage" Height="200" Width="200" />
-                                    <Button x:Name="btnChoose" Click="btnChoose_Click" Margin="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Style="{StaticResource WorkButton}" Height="35">
+                                    <Button x:Name="btnChoose" Click="btnChoose_Click" TabIndex="5" Margin="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Style="{StaticResource WorkButton}" Height="35">
                                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                                             <Image Height="16" Width="16" Margin="10,0,30,0" Source="/Resources/open.png"/>
                                             <TextBlock TextWrapping="NoWrap" Text="انتخاب عکس" FontSize="13" Foreground="#ffffff"/>
@@ -145,7 +145,7 @@
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
                                 <ComboBox Grid.Column="0" FlowDirection="RightToLeft" x:Name="cmbBaseEdit" SelectionChanged="cmbBaseEdit_SelectionChanged" 
-                            SelectedValue="{Binding SchoolName}" SelectedValuePath="Id"   
+                            SelectedValue="{Binding SchoolName}" SelectedValuePath="Id" TabIndex="0"  
                             Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="190"  >
                                     <ComboBox.ItemTemplate>
                                         <DataTemplate>
@@ -172,10 +172,10 @@
                                     </TextBlock.Style>
                                 </TextBlock>
                                 <StackPanel Grid.Column="0" Margin="0,35,10,5" Orientation="Vertical">
-                                    <Metro:MetroTextBox Margin="0,2,-10,0" x:Name="txtEditSearch" HorizontalAlignment="Stretch" VerticalAlignment="Top" ButtonTitle="بروزرسانی لیست" ButtonClick="txtEditSearch_ButtonClick"  FlowDirection="RightToLeft" InputHint="جستجو..." PopupHint="جستجو بصورت خودکار انجام می شود" MetroPopupBackgroundState="Red2" Icon="../Resources/editIcon.png" TextChanged="txtEditSearch_TextChanged" />
+                                    <Metro:MetroTextBox TabIndex="1" Margin="0,2,-10,0" x:Name="txtEditSearch" HorizontalAlignment="Stretch" VerticalAlignment="Top" ButtonTitle="بروزرسانی لیست" ButtonClick="txtEditSearch_ButtonClick"  FlowDirection="RightToLeft" InputHint="جستجو..." PopupHint="جستجو بصورت خودکار انجام می شود" MetroPopupBackgroundState="Red2" Icon="../Resources/editIcon.png" TextChanged="txtEditSearch_TextChanged" />
                                     <DataGrid x:Name="dataGrid" AutoGenerateColumns="False" HorizontalAlignment="Left"
                                       Background="#eceff5" RowHeaderWidth="0" AlternatingRowBackground="#fbfcfe"
-                                      GridLinesVisibility="Horizontal" CanUserReorderColumns="False"
+                                      GridLinesVisibility="Horizontal" CanUserReorderColumns="False" TabIndex="2"
                                       CanUserResizeColumns="False" CanUserSortColumns="True" SelectionMode="Single" SelectionUnit="FullRow" 
                                       CanUserResizeRows="False" IsReadOnly="True" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}" 
                                       HorizontalGridLinesBrush="#dde8ef" CellStyle="{DynamicResource DataGridCellStyle}"
@@ -191,11 +191,11 @@
                                     </DataGrid>
                                 </StackPanel>
                                 <StackPanel Name="editStack" IsEnabled="False" Grid.Column="1" Margin="5,0,0,0" Orientation="Vertical">
-                                    <Metro:MetroTextBox x:Name="txtName" Margin="2" InputHint="نام" Height="30" PopupHint="نام دانش آموز" MetroPopupBackgroundState="DarkRed" VerticalAlignment="Top" />
-                                    <Metro:MetroTextBox x:Name="txtLName" Margin="2"  InputHint="نام خانوادگی" PopupHint="نام خانوادگی دانش آموز" MetroPopupBackgroundState="DarkRed" Height="30" VerticalAlignment="Top" />
-                                    <Metro:MetroTextBox x:Name="txtFName" Margin="2"  InputHint="نام پدر" Height="30" PopupHint="نام پدر دانش آموز" MetroPopupBackgroundState="DarkRed" VerticalAlignment="Top" />
+                                    <Metro:MetroTextBox x:Name="txtName" Margin="2" TabIndex="0" InputHint="نام" Height="30" PopupHint="نام دانش آموز" MetroPopupBackgroundState="DarkRed" VerticalAlignment="Top" />
+                                    <Metro:MetroTextBox x:Name="txtLName" Margin="2" TabIndex="1" InputHint="نام خانوادگی" PopupHint="نام خانوادگی دانش آموز" MetroPopupBackgroundState="DarkRed" Height="30" VerticalAlignment="Top" />
+                                    <Metro:MetroTextBox x:Name="txtFName" Margin="2" TabIndex="2" InputHint="نام پدر" Height="30" PopupHint="نام پدر دانش آموز" MetroPopupBackgroundState="DarkRed" VerticalAlignment="Top" />
                                     <StackPanel Orientation="Horizontal" Margin="2">
-                                        <ContentControl x:Name="cmbContentGender" Focusable="False" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="180">
+                                        <ContentControl x:Name="cmbContentGender" TabIndex="3" Focusable="False" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="180">
                                             <ContentControl.ContentTemplate>
                                                 <DataTemplate>
                                                     <Grid>
@@ -213,7 +213,7 @@
                                                 </DataTemplate>
                                             </ContentControl.ContentTemplate>
                                         </ContentControl>
-                                        <ComboBox x:Name="cmbEditBase" Margin="10,0,0,0" Height="30" 
+                                        <ComboBox x:Name="cmbEditBase" Margin="10,0,0,0" Height="30" TabIndex="4"
                                             SelectedValue ="{Binding SchoolName}" DisplayMemberPath="SchoolName"
                                             SelectedValuePath="Id" VerticalAlignment="Top" HorizontalAlignment="Left" Width="180">
                                             <ComboBox.Template>
@@ -247,11 +247,10 @@
                                                 </ControlTemplate>
                                             </ComboBox.Template>
                                         </ComboBox>
-
                                     </StackPanel>
                                     <StackPanel Orientation="Vertical" HorizontalAlignment="Left">
-                                        <Metro:MetroImage ImageHeight="250" ImageWidth="250" Stretch="Fill" x:Name="imgEditStudent" Source="..\Resources\Choose.png" Content="MetroImage" RenderTransformOrigin="0.5,0.5" Height="200" VerticalAlignment="Top" HorizontalAlignment="Left" Width="200" />
-                                        <Button x:Name="btnEditChoose" Click="btnEditChoose_Click" Margin="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Style="{StaticResource WorkButton}" Height="35">
+                                        <Metro:MetroImage TabIndex="6" ImageHeight="250" ImageWidth="250" Stretch="Fill" x:Name="imgEditStudent" Source="..\Resources\Choose.png" Content="MetroImage" RenderTransformOrigin="0.5,0.5" Height="200" VerticalAlignment="Top" HorizontalAlignment="Left" Width="200" />
+                                        <Button x:Name="btnEditChoose" Click="btnEditChoose_Click" TabIndex="5" Margin="0,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Style="{StaticResource WorkButton}" Height="35">
                                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                                                 <Image Height="16" Width="16" Margin="10,0,30,0" Source="/Resources/open.png"/>
                                                 <TextBlock TextWrapping="NoWrap" Text="انتخاب عکس" FontSize="13" Foreground="#ffffff"/>
