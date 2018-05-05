@@ -328,12 +328,12 @@ namespace MoalemYar.UserControls
 
         private void cmbBase_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            fillComboBook(cmbAddContentBook, cmbBase);
+            fillComboBook(cmbAddContentBook, cmbBase, "cmbBook");
         }
 
-        private void fillComboBook(FrameworkElement frameworkElement, ComboBox combo)
+        private void fillComboBook(FrameworkElement frameworkElement, ComboBox combo, string cmb)
         {
-            var element = FindElementByName<ComboBox>(frameworkElement, "cmbBook");
+            var element = FindElementByName<ComboBox>(frameworkElement, cmb);
             dynamic selectedItem = combo.SelectedItem;
 
             if (selectedItem.Base.Contains("اول"))
@@ -375,15 +375,22 @@ namespace MoalemYar.UserControls
                 list.Add("کار و فناوری");
                 list.Add("تفکر");
             }
-
             element.ItemsSource = list;
         }
 
         //Todo: bug
         private void cmbBook_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //var element = FindElementByName<ComboBox>(cmbAddContentBook, "cmbBook");
-            //getStudents(Convert.ToInt64(cmbBase.SelectedValue), element.SelectedItem.ToString());
+            try
+            {
+                var element = FindElementByName<ComboBox>(cmbAddContentBook, "cmbBook");
+                getStudents(Convert.ToInt64(cmbBase.SelectedValue), element.SelectedItem.ToString());
+            }
+            catch (Exception)
+            {
+
+            }
+           
         }
 
         public T FindElementByName<T>(FrameworkElement element, string sChildName) where T : FrameworkElement
@@ -510,9 +517,8 @@ namespace MoalemYar.UserControls
 
         private void cmbEditBase_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            fillComboBook(cmbAddContentBookEdit, cmbEditBase);
-
             getStudent(Convert.ToInt64(cmbEditBase.SelectedValue));
+            fillComboBook(cmbAddContentBookEdit, cmbEditBase, "cmbBookEdit");
         }
 
         private void btnEditSave_Click(object sender, RoutedEventArgs e)
@@ -575,6 +581,7 @@ namespace MoalemYar.UserControls
         private void cmbEditStudent_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             getScores(Convert.ToInt64(cmbEditStudent.SelectedValue));
+
         }
 
         private void dataGridEdit_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -586,7 +593,7 @@ namespace MoalemYar.UserControls
                 txtDateEdit.SelectedDate = new PersianCalendarWPF.PersianDate(Convert.ToInt32(selectedItem.Date.Substring(0, 4)), Convert.ToInt32(selectedItem.Date.Substring(5, 2)), Convert.ToInt32(selectedItem.Date.Substring(8, 2)));
                 txtDescEdit.Text = selectedItem.Desc;
                 var element = FindElementByName<ComboBox>(cmbContentScore, "cmbScore");
-                var element2 = FindElementByName<ComboBox>(cmbAddContentBookEdit, "cmbBook");
+                var element2 = FindElementByName<ComboBox>(cmbAddContentBookEdit, "cmbBookEdit");
                 element.Text = selectedItem.Scores;
                 element2.Text = selectedItem.Book;
             }
@@ -595,11 +602,7 @@ namespace MoalemYar.UserControls
             }
         }
 
-        #endregion "Edit"
 
-        private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            Console.WriteLine(dataGrid.ActualWidth);
-        }
+        #endregion "Edit"
     }
 }

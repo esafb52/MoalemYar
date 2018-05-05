@@ -9,11 +9,14 @@
              xmlns:PersianCalendarWPF="clr-namespace:PersianCalendarWPF;assembly=PersianCalendarWPF"
              mc:Ignorable="d"
              Style="{StaticResource myUserControl}"
-             SizeChanged="UserControl_SizeChanged"
              d:DesignHeight="450" d:DesignWidth="800">
-   
+
     <Grid>
-        <Metro:MetroTabControl Focusable="False" x:Name="tabc" IsTabStop="True" TabIndex="-1" SelectionChanged="tabc_SelectionChanged">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="259*"/>
+            <ColumnDefinition Width="141*"/>
+        </Grid.ColumnDefinitions>
+        <Metro:MetroTabControl Focusable="False" x:Name="tabc" IsTabStop="True" TabIndex="-1" SelectionChanged="tabc_SelectionChanged" Grid.ColumnSpan="2">
             <Metro:MetroTabItem Header="ثبت اطلاعات">
                 <Grid KeyboardNavigation.TabNavigation="Cycle"  Name="grd">
                     <ContentControl x:Name="cmbAddContentBook" Focusable="False" Height="30" VerticalAlignment="Top" Margin="216,10,0,0" HorizontalAlignment="Left" Width="200" Grid.ColumnSpan="2">
@@ -128,14 +131,14 @@
                     </StackPanel>
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="16*" />
-                            <ColumnDefinition Width="9*" />
+                            <ColumnDefinition Width="2*" />
+                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <Grid Grid.Column="0" Margin="10,70,0,0">
+                        <Grid Name="grdedit" Grid.Column="0" Margin="10,70,0,0">
                             <StackPanel Margin="0,10,0,0" Orientation="Vertical">
-                                <StackPanel Orientation="Horizontal">
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
                                     <Grid>
-                                        <ComboBox x:Name="cmbEditBase" ItemsSource="{Binding}" SelectionChanged="cmbEditBase_SelectionChanged"
+                                        <ComboBox x:Name="cmbEditBase" SelectionChanged="cmbEditBase_SelectionChanged"
                                   Height="30" TabIndex="0"
                                   SelectedValue="{Binding SchoolName}"
                                   SelectedValuePath="Id"
@@ -199,9 +202,9 @@
                                         </TextBlock>
                                     </Grid>
                                 </StackPanel>
-                                <Metro:MetroTextBox x:Name="txtEditSearch" TabIndex="2" HorizontalAlignment="Stretch" VerticalAlignment="Top" ButtonTitle="بروزرسانی لیست" ButtonClick="txtEditSearch_ButtonClick" FlowDirection="RightToLeft" InputHint="جستجو..." PopupHint="جستجو بصورت خودکار انجام می شود" MetroPopupBackgroundState="Red2" Margin="0,5,0,0" Icon="../Resources/editIcon.png" TextChanged="txtEditSearch_TextChanged" />
-                                <DataGrid x:Name="dataGridEdit" AutoGenerateColumns="False" HorizontalAlignment="Left"
-                                      Background="#eceff5" RowHeaderWidth="0" AlternatingRowBackground="#fbfcfe"
+                                <Metro:MetroTextBox x:Name="txtEditSearch" TabIndex="2" HorizontalAlignment="Stretch" VerticalAlignment="Top" ButtonTitle="بروزرسانی لیست" ButtonClick="txtEditSearch_ButtonClick" FlowDirection="RightToLeft" InputHint="جستجو..." PopupHint="جستجو بصورت خودکار انجام می شود" MetroPopupBackgroundState="Red2" Margin="0,5,0,0" Icon="../Resources/editIcon.png" TextChanged="txtEditSearch_TextChanged"  MaxWidth="{Binding Path=ActualWidth, ElementName=grdedit, Converter={local1:MultiplyConverter Multiplier=.9}}" />
+                                <DataGrid x:Name="dataGridEdit" AutoGenerateColumns="False" HorizontalAlignment="Stretch"
+                                      Background="#eceff5" RowHeaderWidth="0" AlternatingRowBackground="#fbfcfe" MaxWidth="{Binding Path=ActualWidth, ElementName=grdedit, Converter={local1:MultiplyConverter Multiplier=.9}}"
                                       GridLinesVisibility="Horizontal" CanUserReorderColumns="False" TabIndex="3"
                                       CanUserResizeColumns="False" CanUserSortColumns="True" SelectionMode="Single" SelectionUnit="FullRow"
                                       CanUserResizeRows="False" IsReadOnly="True" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}"
@@ -210,19 +213,19 @@
                                     <DataGrid.Columns>
                                         <DataGridTextColumn Binding="{Binding Path=Id}" Visibility="Hidden" />
                                         <DataGridTextColumn Binding="{Binding Path=StudentId}" Visibility="Hidden" />
-                                        <DataGridTextColumn Binding="{Binding Path=Book}" Header="درس" MinWidth="120" Width="auto" />
-                                        <DataGridTextColumn Binding="{Binding Path=Date}" Header="تاریخ" MinWidth="130" Width="auto" />
-                                        <DataGridTextColumn Binding="{Binding Path=Scores}" Header="نمره" MinWidth="130" Width="auto" />
-                                        <DataGridTextColumn Binding="{Binding Path=Desc}" Header="توضیحات" MinWidth="130" MaxWidth="200" Width="auto" />
+                                        <DataGridTextColumn Binding="{Binding Path=Book}" Header="درس" MinWidth="120" Width="*" />
+                                        <DataGridTextColumn Binding="{Binding Path=Date}" Header="تاریخ" MinWidth="130" Width="*" />
+                                        <DataGridTextColumn Binding="{Binding Path=Scores}" Header="نمره" MinWidth="130" Width="*" />
+                                        <DataGridTextColumn Binding="{Binding Path=Desc}" Header="توضیحات" MinWidth="130"  Width="*" />
                                     </DataGrid.Columns>
                                 </DataGrid>
                             </StackPanel>
                         </Grid>
                         <Grid Grid.Column="1" Margin="10,120,0,0">
                             <StackPanel Orientation="Vertical" IsEnabled="False" Name="stEdit">
-                                <PersianCalendarWPF:PersianDatePicker TabIndex="4" HorizontalAlignment="Left" Name="txtDateEdit" />
-                                <Metro:MetroTextBox TabIndex="5" Margin="2,5,0,5" Name="txtDescEdit" InputHint="توضیحات" MetroPopupBackgroundState="DarkRed" PopupHint="توضیحات مربوط به این پرسش" Height="115" TextWrapping="Wrap" MaxWidth="276" MaxHeight="200" HorizontalAlignment="Left" Width="276" />
-                                <ContentControl x:Name="cmbContentScore" Focusable="False" Height="30" VerticalAlignment="Top" Margin="2" HorizontalAlignment="Left" Width="200">
+                                <PersianCalendarWPF:PersianDatePicker TabIndex="4" HorizontalAlignment="Left" x:Name="txtDateEdit" />
+                                <Metro:MetroTextBox TabIndex="5" Margin="2,5,0,5" x:Name="txtDescEdit" InputHint="توضیحات" MetroPopupBackgroundState="DarkRed" PopupHint="توضیحات مربوط به این پرسش" Height="115" TextWrapping="Wrap" MaxWidth="270" MaxHeight="200" HorizontalAlignment="Left" Width="245" />
+                                <ContentControl x:Name="cmbContentScore" Focusable="False" Height="30" VerticalAlignment="Top" Margin="2" HorizontalAlignment="Left" Width="200" MaxWidth="200">
                                     <ContentControl.ContentTemplate>
                                         <DataTemplate>
                                             <Grid>
@@ -242,15 +245,15 @@
                                         </DataTemplate>
                                     </ContentControl.ContentTemplate>
                                 </ContentControl>
-                                <ContentControl x:Name="cmbAddContentBookEdit" Focusable="False" Height="30" VerticalAlignment="Top" Margin="2" HorizontalAlignment="Left" Width="200" Grid.ColumnSpan="2">
+                                <ContentControl x:Name="cmbAddContentBookEdit" Focusable="False" Height="30" VerticalAlignment="Top" Margin="2" HorizontalAlignment="Left" Width="200" MaxWidth="200" Grid.ColumnSpan="2">
                                     <ContentControl.ContentTemplate>
                                         <DataTemplate>
                                             <Grid>
-                                                <ComboBox TabIndex="7" x:Name="cmbBook" />
+                                                <ComboBox TabIndex="7" x:Name="cmbBookEdit"/>
                                                 <TextBlock x:Name="tb" Text=" انتخاب درس " IsHitTestVisible="False" Visibility="Hidden" />
                                             </Grid>
                                             <DataTemplate.Triggers>
-                                                <Trigger SourceName="cmbBook" Property="SelectedItem" Value="{x:Null}">
+                                                <Trigger SourceName="cmbBookEdit" Property="SelectedItem" Value="{x:Null}">
                                                     <Setter TargetName="tb" Property="Visibility" Value="Visible" />
                                                 </Trigger>
                                             </DataTemplate.Triggers>
