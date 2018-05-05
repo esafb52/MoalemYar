@@ -186,7 +186,7 @@ namespace MoalemYar
                .Dismiss().WithButton("بیخیال", button => { })
                 .Animates(true)
                .AnimationInDuration(0.75)
-               .AnimationOutDuration(1)
+               .AnimationOutDuration(0.5)
                .Dismiss().WithDelay(TimeSpan.FromSeconds(3));
             builder.Queue();
         }
@@ -202,7 +202,7 @@ namespace MoalemYar
                .Dismiss().WithButton("باشه", button => { })
                .Animates(true)
                .AnimationInDuration(0.75)
-               .AnimationOutDuration(1)
+               .AnimationOutDuration(0.5)
             .Dismiss().WithDelay(TimeSpan.FromSeconds(3));
             builder.Queue();
         }
@@ -218,7 +218,7 @@ namespace MoalemYar
                .Dismiss().WithButton("باشه", button => { })
                .Animates(true)
                .AnimationInDuration(0.75)
-               .AnimationOutDuration(1)
+               .AnimationOutDuration(0.5)
             .Dismiss().WithDelay(TimeSpan.FromSeconds(3));
             builder.Queue();
         }
@@ -236,7 +236,7 @@ namespace MoalemYar
                .Dismiss().WithButton("باشه", button => { })
                .Animates(true)
                .AnimationInDuration(0.75)
-               .AnimationOutDuration(1)
+               .AnimationOutDuration(0.5)
                .Dismiss().WithDelay(TimeSpan.FromSeconds(3));
                 builder.Queue();
             }
@@ -251,7 +251,7 @@ namespace MoalemYar
                .Dismiss().WithButton("دوباره امتحان کنید", button => { })
                .Animates(true)
                .AnimationInDuration(0.75)
-               .AnimationOutDuration(1)
+               .AnimationOutDuration(0.5)
                 .Dismiss().WithDelay(TimeSpan.FromSeconds(3));
                 builder.Queue();
             }
@@ -270,7 +270,7 @@ namespace MoalemYar
                    .Dismiss().WithButton("باشه", button => { })
                    .Animates(true)
                .AnimationInDuration(0.75)
-               .AnimationOutDuration(1)
+               .AnimationOutDuration(0.5)
                 .Dismiss().WithDelay(TimeSpan.FromSeconds(3));
                 builder.Queue();
             }
@@ -285,13 +285,13 @@ namespace MoalemYar
                    .Dismiss().WithButton("دوباره امتحان کنید", button => { })
                    .Animates(true)
                .AnimationInDuration(0.75)
-               .AnimationOutDuration(1)
+               .AnimationOutDuration(0.5)
                 .Dismiss().WithDelay(TimeSpan.FromSeconds(3));
                 builder.Queue();
             }
         }
 
-        public void ShowAddDataNotification(bool isAddSuccess, string SchoolName, string Type)
+        public void ShowAddDataNotification(bool isAddSuccess, string Name, string Type)
         {
             if (isAddSuccess)
             {
@@ -300,11 +300,11 @@ namespace MoalemYar
                .Accent(AppVariable.GREEN)
                .Background(AppVariable.BGBLACK)
                .HasBadge("اطلاعیه")
-               .HasMessage(string.Format("{1} {0} با موفقیت ثبت شد", SchoolName, Type))
+               .HasMessage(string.Format("{1} {0} با موفقیت ثبت شد", Name, Type))
                .Dismiss().WithButton("باشه", button => { })
                .Animates(true)
                .AnimationInDuration(0.75)
-               .AnimationOutDuration(1)
+               .AnimationOutDuration(0.5)
                 .Dismiss().WithDelay(TimeSpan.FromSeconds(3));
                 builder.Queue();
             }
@@ -315,11 +315,11 @@ namespace MoalemYar
                .Accent(AppVariable.RED)
                .Background(AppVariable.BGBLACK)
                .HasBadge("هشدار")
-               .HasMessage(string.Format("ثبت {1} {0} با خطا مواجه شد", SchoolName, Type))
+               .HasMessage(string.Format("ثبت {1} {0} با خطا مواجه شد", Name, Type))
                .Dismiss().WithButton("دوباره امتحان کنید", button => { })
                .Animates(true)
                .AnimationInDuration(0.75)
-               .AnimationOutDuration(1)
+               .AnimationOutDuration(0.5)
                .Dismiss().WithDelay(TimeSpan.FromSeconds(3));
                 builder.Queue();
             }
@@ -341,7 +341,7 @@ namespace MoalemYar
                  .Dismiss().WithButton("بیخیال", button => { })
                  .Animates(true)
                .AnimationInDuration(0.75)
-               .AnimationOutDuration(1)
+               .AnimationOutDuration(0.5)
                  .Dismiss().WithDelay(TimeSpan.FromSeconds(3));
             builder.Queue();
         }
@@ -362,7 +362,7 @@ namespace MoalemYar
                  .Dismiss().WithButton("بیخیال", button => { })
                  .Animates(true)
                .AnimationInDuration(0.75)
-               .AnimationOutDuration(1)
+               .AnimationOutDuration(0.5)
                  .Dismiss().WithDelay(TimeSpan.FromSeconds(5));
             builder.Queue();
         }
@@ -384,7 +384,7 @@ namespace MoalemYar
                  })
                  .Animates(true)
                .AnimationInDuration(0.75)
-               .AnimationOutDuration(1)
+               .AnimationOutDuration(0.5)
                  .Dismiss().WithButton("خیر", button => { });
             builder.Queue();
         }
@@ -405,7 +405,7 @@ namespace MoalemYar
                     .Dismiss().WithButton("بیخیال", button => { })
                     .Animates(true)
                .AnimationInDuration(0.75)
-               .AnimationOutDuration(1)
+               .AnimationOutDuration(0.5)
                 .Dismiss().WithDelay(TimeSpan.FromSeconds(3));
                 builder.Queue();
             }
@@ -420,7 +420,7 @@ namespace MoalemYar
                    .Dismiss().WithDelay(TimeSpan.FromSeconds(3))
                    .Animates(true)
                .AnimationInDuration(0.75)
-               .AnimationOutDuration(1)
+               .AnimationOutDuration(0.5)
                    .Dismiss().WithButton("تایید", button => { });
 
                 builder.Queue();
@@ -461,7 +461,7 @@ namespace MoalemYar
                  })
                  .Animates(true)
                .AnimationInDuration(0.75)
-               .AnimationOutDuration(1)
+               .AnimationOutDuration(0.5)
                  .Dismiss().WithButton("خیر", button => { });
             builder.Queue();
         }
@@ -513,64 +513,6 @@ namespace MoalemYar
                     {
                     }
                 }
-            }
-        }
-
-        #region "Progressbar"
-
-        //private ProgressDialog _sampleProgressDialog = new ProgressDialog()
-        //{
-        //    WindowTitle = "درحال پردازش",
-        //    Text = "درحال پردازش اطلاعات...",
-        //    Description = "Processing...",
-        //    ShowTimeRemaining = true,
-        //    CancellationText = "عملیات لغو شد",
-        //};
-        //_sampleProgressDialog.DoWork += new System.ComponentModel.DoWorkEventHandler(_sampleProgressDialog_DoWork);
-        //private void ShowProgressDialog()
-        //{
-        //    if (_sampleProgressDialog.IsBusy)
-        //        MessageBox.Show(this, "The progress dialog is already displayed.", "Progress dialog sample");
-        //    else
-        //        _sampleProgressDialog.Show(); // Show a modeless dialog; this is the recommended mode of operation for a progress dialog.
-        //}
-        //private void _sampleProgressDialog_DoWork(object sender, DoWorkEventArgs e)
-        //{
-        //    // Implement the operation that the progress bar is showing progress of here, same as you would do with a background worker.
-        //    for (int x = 0; x <= 100; ++x)
-        //    {
-        //        Thread.Sleep(50);
-        //        // Periodically check CancellationPending and abort the operation if required.
-        //        if (_sampleProgressDialog.CancellationPending)
-        //            return;
-        //        // ReportProgress can also modify the main text and description; pass null to leave them unchanged.
-        //        // If _sampleProgressDialog.ShowTimeRemaining is set to true, the time will automatically be calculated based on
-        //        // the frequency of the calls to ReportProgress.
-        //        _sampleProgressDialog.ReportProgress(x, null, string.Format(System.Globalization.CultureInfo.CurrentCulture, "Processing: {0}%", x));
-        //    }
-        //}
-
-        #endregion "Progressbar"
-
-        private void tab_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            switch (tab.SelectedIndex)
-            {
-                case 0:
-
-                    break;
-
-                case 1:
-
-                    break;
-
-                case 2:
-
-                    break;
-
-                case 3:
-
-                    break;
             }
         }
 

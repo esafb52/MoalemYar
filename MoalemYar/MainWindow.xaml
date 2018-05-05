@@ -54,7 +54,7 @@
 
     <Grid>
 
-        <Metro:MetroMenuTabControl TabIndex="-1" FlowDirection="RightToLeft" x:Name="tab" IconMode="False" SelectionChanged="tab_SelectionChanged">
+        <Metro:MetroMenuTabControl TabIndex="-1" FlowDirection="RightToLeft" x:Name="tab" IconMode="False">
             <Metro:MetroMenuTabItem Name="ex1" Header="داشبورد مدیریتی" Icon="Resources/Home.png" IconMove="Resources/HomeMove.png">
                 <Grid FlowDirection="RightToLeft">
                     <Grid.ColumnDefinitions>
