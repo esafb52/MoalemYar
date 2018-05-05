@@ -43,7 +43,6 @@ namespace MoalemYar.UserControls
         private List<DataClass.DataTransferObjects.SchoolsStudentsJointDto> _initialCollectionStudent;
         private List<DataClass.DataTransferObjects.StudentsDto> _initialCollection;
         private List<DataClass.Tables.Score> _initialCollectionScore;
-        private string changedDate = string.Empty;
 
         public System.Windows.Media.Brush BorderColor { get; set; }
 
@@ -138,20 +137,6 @@ namespace MoalemYar.UserControls
             }
         }
 
-        public async static Task<string> UpdateQuestionAsync(long QuestionId ,long SchoolId, long StudentId, string Book)
-        {
-            using (var db = new DataClass.myDbContext())
-            {
-                var EditQuestion = await db.Questions.FirstOrDefaultAsync(x => x.StudentId == StudentId && x.Id == QuestionId);
-                EditQuestion.SchoolId = SchoolId;
-                EditQuestion.StudentId = StudentId;
-                EditQuestion.Book = Book;
-
-                await db.SaveChangesAsync();
-                return "Question Updated Successfully";
-            }
-        }
-
         public async static Task<string> UpdateScoreAsync(long ScoreId, long StudentId, string Score, string Date, string Book, string Desc)
         {
             using (var db = new DataClass.myDbContext())
@@ -211,7 +196,6 @@ namespace MoalemYar.UserControls
             {
             }
         }
-
         private void getStudent(long BaseId)
         {
             try
@@ -236,7 +220,6 @@ namespace MoalemYar.UserControls
             {
             }
         }
-
         private void getScores(long StudentId)
         {
             try
@@ -262,7 +245,6 @@ namespace MoalemYar.UserControls
             {
             }
         }
-
         private void getStudents(long SchoolId, string Book)
         {
             var query = GetAllStudentsAsync(SchoolId, Book);
@@ -278,9 +260,7 @@ namespace MoalemYar.UserControls
                 dataGrid.ItemsSource = null;
                 MainWindow.main.ShowNoDataNotification("Question");
             }
-           
         }
-
         private void addQuestion(long SchoolId, long StudentId, string Book)
         {
             try
@@ -292,7 +272,6 @@ namespace MoalemYar.UserControls
             {
             }
         }
-
         private void addScore(long StudentId, string Book, string Date, string Scorez, string Desc)
         {
             try
@@ -304,12 +283,6 @@ namespace MoalemYar.UserControls
             {
             }
         }
-        private void updateQuestion(long QuestionId, long SchoolId, long StudentId, string Book)
-        {
-            var query = UpdateQuestionAsync(QuestionId, SchoolId, StudentId, Book);
-            query.Wait();
-        }
-
         private void updateScore(long ScoreId, long StudentId, string Score, string Date, string Book, string Desc)
         {
             var query = UpdateScoreAsync(ScoreId, StudentId, Score, Date, Book, Desc);
@@ -404,17 +377,8 @@ namespace MoalemYar.UserControls
         }
         private void cmbBook_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            try
-            {
-                var element = FindElementByName<ComboBox>(cmbAddContentBook, "cmbBook");
-                getStudents(Convert.ToInt64(cmbBase.SelectedValue), element.SelectedItem.ToString());
-            }
-            catch (Exception)
-            {
-
-            }
-            
-
+            var element = FindElementByName<ComboBox>(cmbAddContentBook, "cmbBook");
+            getStudents(Convert.ToInt64(cmbBase.SelectedValue), element.SelectedItem.ToString());
         }
 
         public T FindElementByName<T>(FrameworkElement element, string sChildName) where T : FrameworkElement
@@ -442,10 +406,6 @@ namespace MoalemYar.UserControls
             return childElement;
         }
 
-        private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            
-        }
         private void chkChecked_Checked(object sender, RoutedEventArgs e)
         {
             var row = dataGrid.ContainerFromElement(sender as DependencyObject);
@@ -547,16 +507,24 @@ namespace MoalemYar.UserControls
         private void btnEditSave_Click(object sender, RoutedEventArgs e)
         {
             dynamic selectedItemName = cmbEditStudent.SelectedItem;
-            dynamic selectedItem = dataGridEdit.SelectedItems[0];
-            long id = selectedItem.Id;
+            try
+            {
+                dynamic selectedItem = dataGridEdit.SelectedItems[0];
+                long id = selectedItem.Id;
 
+                var element = FindElementByName<ComboBox>(cmbContentScore, "cmbScore");
+                var element2 = FindElementByName<ComboBox>(cmbAddContentBookEdit, "cmbBook");
 
-            var element = FindElementByName<ComboBox>(cmbContentScore, "cmbScore");
-            var element2 = FindElementByName<ComboBox>(cmbAddContentBookEdit, "cmbBook");
+                updateScore(id, Convert.ToInt64(cmbEditStudent.SelectedValue), element.Text, txtDateEdit.SelectedDate.ToString(), element2.Text, txtDescEdit.Text);
+                MainWindow.main.ShowUpdateDataNotification(true, selectedItemName.Name + " " + selectedItemName.LName, "نمره");
+                getScores(Convert.ToInt64(cmbEditStudent.SelectedValue));
+            }
+            catch (Exception)
+            {
+
+                MainWindow.main.ShowUpdateDataNotification(false, selectedItemName.Name + " " + selectedItemName.LName, "نمره");
+            }
             
-            updateScore(id, Convert.ToInt64(cmbEditStudent.SelectedValue), element.Text,txtDateEdit.SelectedDate.ToString(), element2.Text, txtDescEdit.Text);
-            MainWindow.main.ShowUpdateDataNotification(true, selectedItemName.Name + " " + selectedItemName.LName, "نمره");
-            getScores(Convert.ToInt64(cmbEditStudent.SelectedValue));
         }
 
         private void txtEditSearch_TextChanged(object sender, TextChangedEventArgs e)
@@ -597,12 +565,6 @@ namespace MoalemYar.UserControls
         private void cmbEditStudent_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             getScores(Convert.ToInt64(cmbEditStudent.SelectedValue));
-        }
-
-        private void txtDateEdit_SelectedDateChanged(object sender, RoutedEventArgs e)
-        {
-            var mytxtDate = sender as PersianCalendarWPF.PersianDatePicker;
-            changedDate = mytxtDate.Text.ToString();
         }
 
         private void dataGridEdit_SelectionChanged(object sender, SelectionChangedEventArgs e)

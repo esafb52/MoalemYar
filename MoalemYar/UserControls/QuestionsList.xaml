@@ -69,7 +69,7 @@
                                       CanUserResizeColumns="False" CanUserSortColumns="True" SelectionMode="Single" SelectionUnit="FullRow" 
                                       CanUserResizeRows="False" IsReadOnly="True" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}" 
                                       HorizontalGridLinesBrush="#dde8ef" CellStyle="{DynamicResource DataGridCellStyle}"
-                                      Grid.ColumnSpan="2" Margin="10,75,10,10" SelectionChanged="dataGrid_SelectionChanged">
+                                      Grid.ColumnSpan="2" Margin="10,75,10,10">
                         <DataGrid.Columns>
                             <DataGridTextColumn Binding="{Binding Path=Id}" Visibility="Hidden" />
                             <DataGridTextColumn Binding="{Binding Path=BaseId}" Visibility="Hidden" />
@@ -217,7 +217,7 @@
                         </Grid>
                         <Grid Grid.Column="1" Margin="10,120,0,0">
                             <StackPanel Orientation="Vertical" IsEnabled="False" Name="stEdit">
-                                <PersianCalendarWPF:PersianDatePicker TabIndex="4" HorizontalAlignment="Left" SelectedDateChanged="txtDateEdit_SelectedDateChanged" Name="txtDateEdit"/>
+                                <PersianCalendarWPF:PersianDatePicker TabIndex="4" HorizontalAlignment="Left" Name="txtDateEdit"/>
                                 <Metro:MetroTextBox TabIndex="5" Margin="2,5,0,5" Name="txtDescEdit" InputHint="توضیحات" MetroPopupBackgroundState="DarkRed" PopupHint="توضیحات مربوط به این پرسش" Height="115" TextWrapping="Wrap" MaxWidth="276" MaxHeight="200" HorizontalAlignment="Left" Width="276"/>
                                 <ContentControl x:Name="cmbContentScore" Focusable="False" Height="30" VerticalAlignment="Top" Margin="2" HorizontalAlignment="Left" Width="200">
                                     <ContentControl.ContentTemplate>

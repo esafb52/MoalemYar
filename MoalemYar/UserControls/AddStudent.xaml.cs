@@ -353,7 +353,6 @@ namespace MoalemYar.UserControls
             }
         }
 
-        //Todo: fixed Thumbnail size must be less than image's size ==> mybe i can find better way to do this (i`m waiting for Thumbnail Creator Author to respons)
         public byte[] CreateThumbnail(BitmapImage imageC)
         {
             //Read Image byte
