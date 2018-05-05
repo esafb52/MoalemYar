@@ -47,10 +47,6 @@ namespace MoalemYar.UserControls
             TimeColor = brush;
         }
 
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
-        {
-        }
-
         private void CheckUpdate()
         {
             newVersion = string.Empty;
@@ -86,7 +82,6 @@ namespace MoalemYar.UserControls
                 MainWindow.main.ShowUpdateNotification(false, null, null);
                 txtNewVersion.Foreground = new SolidColorBrush(Colors.Red);
                 txtNewVersion.Text = newVersion;
-                //txtNewVersion.Text = "asdasd";
             }
         }
 

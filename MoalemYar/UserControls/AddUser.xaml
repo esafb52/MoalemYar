@@ -22,13 +22,13 @@
                                 <ColumnDefinition Width="auto" />
                                 <ColumnDefinition Width="auto" />
                             </Grid.ColumnDefinitions>
-                            <Button x:Name="btnSave" Click="btnSave_Click" Grid.Column="0" Grid.Row="0" Margin="10,5,5,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Style="{StaticResource WorkButtonGreen}" Height="35">
+                            <Button x:Name="btnSave" IsDefault="True" Click="btnSave_Click" Grid.Column="0" Grid.Row="0" Margin="10,5,5,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Style="{StaticResource WorkButtonGreen}" Height="35">
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                                     <Image Height="16" Width="16" Margin="10,0,30,0" Source="/Resources/add.png"/>
                                     <TextBlock TextWrapping="NoWrap" Text="ذخیره" FontSize="13" Foreground="#ffffff"/>
                                 </StackPanel>
                             </Button>
-                            <Button x:Name="btnCancel" Click="btnCancel_Click" Grid.Column="1" Grid.Row="0" Margin="10,5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Style="{StaticResource CancelButton}" Height="35">
+                            <Button x:Name="btnCancel" IsCancel="True" Click="btnCancel_Click" Grid.Column="1" Grid.Row="0" Margin="10,5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Style="{StaticResource CancelButton}" Height="35">
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                                     <Image Height="16" Width="16" Margin="-30,0,30,0" Source="/Resources/cancel.png"/>
                                     <TextBlock TextWrapping="NoWrap" Text="انصراف" FontSize="13" Foreground="#ffffff"/>
@@ -52,7 +52,7 @@
                 <Grid KeyboardNavigation.TabNavigation="Cycle">
                     <StackPanel Orientation="Vertical" Margin="5,5,5,0">
                         <StackPanel Orientation="Horizontal" Height="50" VerticalAlignment="Top">
-                            <Button x:Name="btnEditSave" Click="btnEditSave_Click" Grid.Column="0" Grid.Row="0" Margin="10,5,5,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Style="{StaticResource WorkButtonGreen}" Height="35">
+                            <Button x:Name="btnEditSave" IsDefault="True" Click="btnEditSave_Click" Grid.Column="0" Grid.Row="0" Margin="10,5,5,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Style="{StaticResource WorkButtonGreen}" Height="35">
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                                     <Image Height="16" Width="16" Margin="10,0,30,0" Source="/Resources/update.png"/>
                                     <TextBlock TextWrapping="NoWrap" Text="ذخیره" FontSize="13" Foreground="#ffffff"/>
@@ -64,7 +64,7 @@
                                     <TextBlock TextWrapping="NoWrap" Text="حذف" FontSize="13" Foreground="#ffffff"/>
                                 </StackPanel>
                             </Button>
-                            <Button x:Name="btnEditCancel" Click="btnEditCancel_Click" Grid.Column="1" Grid.Row="0" Margin="5,5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Style="{StaticResource CancelButton}" Height="35">
+                            <Button x:Name="btnEditCancel" IsCancel="True" Click="btnEditCancel_Click" Grid.Column="1" Grid.Row="0" Margin="5,5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Style="{StaticResource CancelButton}" Height="35">
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                                     <Image Height="16" Width="16" Margin="-30,0,30,0" Source="/Resources/cancel.png" RenderTransformOrigin="-1.688,0.625"/>
                                     <TextBlock TextWrapping="NoWrap" Text="انصراف" FontSize="13" Foreground="#ffffff"/>
