@@ -530,7 +530,7 @@ namespace MoalemYar.UserControls
                 long id = selectedItem.Id;
 
                 var element = FindElementByName<ComboBox>(cmbContentScore, "cmbScore");
-                var element2 = FindElementByName<ComboBox>(cmbAddContentBookEdit, "cmbBook");
+                var element2 = FindElementByName<ComboBox>(cmbAddContentBookEdit, "cmbBookEdit");
 
                 updateScore(id, Convert.ToInt64(cmbEditStudent.SelectedValue), element.Text, txtDateEdit.SelectedDate.ToString(), element2.Text, txtDescEdit.Text);
                 MainWindow.main.ShowUpdateDataNotification(true, selectedItemName.Name + " " + selectedItemName.LName, "نمره");
