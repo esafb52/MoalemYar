@@ -3,16 +3,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:MoalemYar.UserControls"
+             xmlns:local="clr-namespace:MoalemYar.UserControls" 
+             xmlns:local1="clr-namespace:MoalemYar" 
              xmlns:Metro="clr-namespace:Arthas.Controls.Metro;assembly=Arthas"
              xmlns:PersianCalendarWPF="clr-namespace:PersianCalendarWPF;assembly=PersianCalendarWPF"
              mc:Ignorable="d"
              Style="{StaticResource myUserControl}"
+             SizeChanged="UserControl_SizeChanged"
              d:DesignHeight="450" d:DesignWidth="800">
+   
     <Grid>
         <Metro:MetroTabControl Focusable="False" x:Name="tabc" IsTabStop="True" TabIndex="-1" SelectionChanged="tabc_SelectionChanged">
             <Metro:MetroTabItem Header="ثبت اطلاعات">
-                <Grid KeyboardNavigation.TabNavigation="Cycle">
+                <Grid KeyboardNavigation.TabNavigation="Cycle"  Name="grd">
                     <ContentControl x:Name="cmbAddContentBook" Focusable="False" Height="30" VerticalAlignment="Top" Margin="216,10,0,0" HorizontalAlignment="Left" Width="200" Grid.ColumnSpan="2">
                         <ContentControl.ContentTemplate>
                             <DataTemplate>
@@ -63,20 +66,20 @@
                             <Metro:MetroTextBlock Name="txtDate" HorizontalAlignment="Center" Margin="5" Text="تاریخ امروز" />
                         </StackPanel>
                     </StackPanel>
-                    <DataGrid x:Name="dataGrid" AutoGenerateColumns="False" HorizontalAlignment="Left"
-                                      Background="#eceff5" RowHeaderWidth="0" AlternatingRowBackground="#fbfcfe"
+                    <DataGrid x:Name="dataGrid" AutoGenerateColumns="False" MaxWidth="{Binding Path=ActualWidth, ElementName=grd, Converter={local1:MultiplyConverter Multiplier=.9}}"
+                                      Background="#eceff5" RowHeaderWidth="0" AlternatingRowBackground="#fbfcfe" HorizontalAlignment="Stretch"
                                       GridLinesVisibility="Horizontal" CanUserReorderColumns="False" TabIndex="3"
                                       CanUserResizeColumns="False" CanUserSortColumns="True" SelectionMode="Single" SelectionUnit="FullRow"
                                       CanUserResizeRows="False" IsReadOnly="True" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}"
                                       HorizontalGridLinesBrush="#dde8ef" CellStyle="{DynamicResource DataGridCellStyle}"
-                                      Grid.ColumnSpan="2" Margin="10,75,10,10">
+                                      Grid.ColumnSpan="2" Margin="10,75,20,10">
                         <DataGrid.Columns>
                             <DataGridTextColumn Binding="{Binding Path=Id}" Visibility="Hidden" />
                             <DataGridTextColumn Binding="{Binding Path=BaseId}" Visibility="Hidden" />
-                            <DataGridTextColumn Binding="{Binding Path=Name}" Header="نام" MinWidth="120" Width="auto" />
-                            <DataGridTextColumn Binding="{Binding Path=LName}" Header="نام خانوادگی" MinWidth="130" Width="auto" />
-                            <DataGridTextColumn Binding="{Binding Path=FName}" Header="نام پدر" MinWidth="130" Width="auto" />
-                            <DataGridTemplateColumn Header="نمره" MinWidth="150" Width="auto">
+                            <DataGridTextColumn Binding="{Binding Path=Name}" Header="نام" MinWidth="120" Width="*" />
+                            <DataGridTextColumn Binding="{Binding Path=LName}" Header="نام خانوادگی" MinWidth="130" Width="*" />
+                            <DataGridTextColumn Binding="{Binding Path=FName}" Header="نام پدر" MinWidth="130" Width="*" />
+                            <DataGridTemplateColumn Header="نمره" MinWidth="150" Width="*">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Vertical" Margin="5" HorizontalAlignment="Right" ToggleButton.Checked="StackPanel_Checked">
@@ -88,7 +91,7 @@
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
-                            <DataGridTemplateColumn Header="وضعیت" MinWidth="100" Width="auto">
+                            <DataGridTemplateColumn Header="وضعیت" MinWidth="100" Width="*">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate x:Name="myDataTemplate">
                                         <StackPanel Orientation="Vertical" Margin="5" HorizontalAlignment="Center">
@@ -99,7 +102,7 @@
                             </DataGridTemplateColumn>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Metro:MetroTextBox Name="txtDesc" TabIndex="2" TextWrapping="Wrap" MaxWidth="342" MaxHeight="158" InputHint="توضیحات" MetroPopupBackgroundState="DarkRed" PopupHint="توضیحات مربوط به این پرسش" Margin="421,10,0,0" Height="60" VerticalAlignment="Top" HorizontalAlignment="Left" Width="221" />
+                    <Metro:MetroTextBox Name="txtDesc" TabIndex="2" TextWrapping="Wrap" MaxHeight="158" InputHint="توضیحات" MetroPopupBackgroundState="DarkRed" PopupHint="توضیحات مربوط به این پرسش" Margin="421,10,0,0" Height="60" VerticalAlignment="Top" HorizontalAlignment="Left" Width="{Binding Path=ActualWidth, ElementName=dataGrid, Converter={local1:MultiplyConverter Multiplier=.5}}" />
                 </Grid>
             </Metro:MetroTabItem>
             <Metro:MetroTabItem Header="ویرایش اطلاعات">

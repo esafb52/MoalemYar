@@ -3,278 +3,281 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:MoalemYar"
              xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
+            <ResourceDictionary>
 
-        <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/MoalemYar;component/Resources/Fonts/FontsDictionary.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-            <Style x:Key="myWindow" TargetType="Window">
-                <Setter Property="TextOptions.TextFormattingMode" Value="Ideal" />
-                <Setter Property="TextOptions.TextRenderingMode" Value="Auto" />
-                <Setter Property="TextOptions.TextHintingMode" Value="Auto" />
-                <Setter Property="FontFamily" Value="{StaticResource TeacherYar.Fonts.IRANSans}" />
-                <Setter Property="FontSize" Value="14" />
-                <Setter Property="MinWidth" Value="1300" />
-                <Setter Property="MinHeight" Value="600" />
-                <Setter Property="BorderThickness" Value="1" />
-                <Setter Property="WindowStyle" Value="None" />
-            </Style>
-            <Style x:Key="myUserControl" TargetType="UserControl">
-                <Setter Property="TextOptions.TextFormattingMode" Value="Ideal" />
-                <Setter Property="TextOptions.TextRenderingMode" Value="Auto" />
-                <Setter Property="TextOptions.TextHintingMode" Value="Auto" />
-                <Setter Property="FontFamily" Value="{StaticResource TeacherYar.Fonts.IRANSans}" />
-                <Setter Property="FontSize" Value="14" />
-                <Setter Property="FlowDirection" Value="RightToLeft" />
-            </Style>
+                    <ResourceDictionary Source="pack://application:,,,/MoalemYar;component/Resources/Fonts/FontsDictionary.xaml" />
+                </ResourceDictionary.MergedDictionaries>
+                <Style x:Key="myWindow" TargetType="Window">
+                    <Setter Property="TextOptions.TextFormattingMode" Value="Ideal" />
+                    <Setter Property="TextOptions.TextRenderingMode" Value="Auto" />
+                    <Setter Property="TextOptions.TextHintingMode" Value="Auto" />
+                    <Setter Property="FontFamily" Value="{StaticResource TeacherYar.Fonts.IRANSans}" />
+                    <Setter Property="FontSize" Value="14" />
+                    <Setter Property="MinWidth" Value="1300" />
+                    <Setter Property="MinHeight" Value="600" />
+                    <Setter Property="BorderThickness" Value="1" />
+                    <Setter Property="WindowStyle" Value="None" />
+                </Style>
+                <Style x:Key="myUserControl" TargetType="UserControl">
+                    <Setter Property="TextOptions.TextFormattingMode" Value="Ideal" />
+                    <Setter Property="TextOptions.TextRenderingMode" Value="Auto" />
+                    <Setter Property="TextOptions.TextHintingMode" Value="Auto" />
+                    <Setter Property="FontFamily" Value="{StaticResource TeacherYar.Fonts.IRANSans}" />
+                    <Setter Property="FontSize" Value="14" />
+                    <Setter Property="FlowDirection" Value="RightToLeft" />
+                </Style>
 
-            <Style x:Key="WorkButton" TargetType="{x:Type Button}">
-                <Setter Property="Focusable" Value="True" />
-                <Setter Property="Background" Value="#15a4fa" />
-                <Setter Property="HorizontalContentAlignment" Value="Left" />
-                <Setter Property="UseLayoutRounding" Value="True" />
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="{x:Type Button}">
-                            <Border x:Name="border" CornerRadius="2" Background="{TemplateBinding Background}" UseLayoutRounding="{TemplateBinding UseLayoutRounding}">
-                                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" />
-                            </Border>
-                            <ControlTemplate.Triggers>
-                                <Trigger Property="IsMouseOver" Value="true">
-                                    <Setter TargetName="border" Property="Background" Value="#1289d0" />
-                                </Trigger>
-                            </ControlTemplate.Triggers>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
+                <Style x:Key="WorkButton" TargetType="{x:Type Button}">
+                    <Setter Property="Focusable" Value="True" />
+                    <Setter Property="Background" Value="#15a4fa" />
+                    <Setter Property="HorizontalContentAlignment" Value="Left" />
+                    <Setter Property="UseLayoutRounding" Value="True" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border x:Name="border" CornerRadius="2" Background="{TemplateBinding Background}" UseLayoutRounding="{TemplateBinding UseLayoutRounding}">
+                                    <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" />
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="true">
+                                        <Setter TargetName="border" Property="Background" Value="#1289d0" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
 
-            <Style x:Key="WorkButtonGreen" TargetType="{x:Type Button}">
-                <Setter Property="Focusable" Value="True" />
-                <Setter Property="Background" Value="#88d969" />
-                <Setter Property="HorizontalContentAlignment" Value="Left" />
-                <Setter Property="UseLayoutRounding" Value="True" />
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="{x:Type Button}">
-                            <Border x:Name="border" CornerRadius="2" Background="{TemplateBinding Background}" UseLayoutRounding="{TemplateBinding UseLayoutRounding}">
-                                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" />
-                            </Border>
-                            <ControlTemplate.Triggers>
-                                <Trigger Property="IsMouseOver" Value="true">
-                                    <Setter TargetName="border" Property="Background" Value="#72b658" />
-                                </Trigger>
-                            </ControlTemplate.Triggers>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
-            <Style x:Key="WorkButtonRed" TargetType="{x:Type Button}">
-                <Setter Property="Focusable" Value="True" />
-                <Setter Property="Background" Value="#FFFF5656" />
-                <Setter Property="HorizontalContentAlignment" Value="Left" />
-                <Setter Property="UseLayoutRounding" Value="True" />
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="{x:Type Button}">
-                            <Border x:Name="border" CornerRadius="2" Background="{TemplateBinding Background}" UseLayoutRounding="{TemplateBinding UseLayoutRounding}">
-                                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" />
-                            </Border>
-                            <ControlTemplate.Triggers>
-                                <Trigger Property="IsMouseOver" Value="true">
-                                    <Setter TargetName="border" Property="Background" Value="#FFD63E3E" />
-                                </Trigger>
-                            </ControlTemplate.Triggers>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
-            <Style x:Key="LoginButton" TargetType="{x:Type Button}">
-                <Setter Property="Focusable" Value="True" />
-                <Setter Property="Background" Value="#15a4fa" />
-                <Setter Property="Foreground" Value="#ffffff" />
-                <Setter Property="UseLayoutRounding" Value="True" />
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="{x:Type Button}">
-                            <Border x:Name="border" CornerRadius="2" Background="{TemplateBinding Background}" UseLayoutRounding="{TemplateBinding UseLayoutRounding}">
-                                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" />
-                            </Border>
-                            <ControlTemplate.Triggers>
-                                <Trigger Property="IsMouseOver" Value="true">
-                                    <Setter TargetName="border" Property="Background" Value="#1289d0" />
-                                </Trigger>
-                            </ControlTemplate.Triggers>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
-            <Style x:Key="CancelButton" TargetType="{x:Type Button}">
-                <Setter Property="Focusable" Value="True" />
-                <Setter Property="Background" Value="#bdbdbd" />
-                <Setter Property="Foreground" Value="#ffffff" />
-                <Setter Property="FontSize" Value="13" />
-                <Setter Property="UseLayoutRounding" Value="True" />
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="{x:Type Button}">
-                            <Border x:Name="border" CornerRadius="2" Background="{TemplateBinding Background}" UseLayoutRounding="{TemplateBinding UseLayoutRounding}">
-                                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" />
-                            </Border>
-                            <ControlTemplate.Triggers>
-                                <Trigger Property="IsMouseOver" Value="true">
-                                    <Setter TargetName="border" Property="Background" Value="#aaa9a9" />
-                                </Trigger>
-                            </ControlTemplate.Triggers>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
-            <Style x:Key="UpdateButton" TargetType="{x:Type Button}">
-                <Setter Property="Focusable" Value="True" />
-                <Setter Property="Background" Value="#88d969" />
-                <Setter Property="Foreground" Value="#ffffff" />
-                <Setter Property="FontSize" Value="13" />
-                <Setter Property="UseLayoutRounding" Value="True" />
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="{x:Type Button}">
-                            <Border x:Name="border" CornerRadius="2" Background="{TemplateBinding Background}" UseLayoutRounding="{TemplateBinding UseLayoutRounding}">
-                                <StackPanel x:Name="stackPanel" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                                    <Image Source="Icons/Update.png" Width="16" Height="16" Margin="10,0,30,0" />
-                                    <ContentPresenter VerticalAlignment="Center" />
-                                </StackPanel>
-                            </Border>
-                            <ControlTemplate.Triggers>
-                                <Trigger Property="IsMouseOver" Value="true">
-                                    <Setter TargetName="border" Property="Background" Value="#72b658" />
-                                </Trigger>
-                            </ControlTemplate.Triggers>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
-            <Style x:Key="NewClientButton" TargetType="{x:Type Button}">
-                <Setter Property="Focusable" Value="True" />
-                <Setter Property="Background" Value="#f3f2f2" />
-                <Setter Property="Foreground" Value="#6f7a8b" />
-                <Setter Property="FontSize" Value="12" />
-                <Setter Property="UseLayoutRounding" Value="True" />
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="{x:Type Button}">
-                            <Border x:Name="border" CornerRadius="2" Background="{TemplateBinding Background}" UseLayoutRounding="{TemplateBinding UseLayoutRounding}">
-                                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,-3,0,0" />
-                            </Border>
-                            <ControlTemplate.Triggers>
-                                <Trigger Property="IsMouseOver" Value="true">
-                                    <Setter TargetName="border" Property="Background" Value="#15a4fa" />
-                                    <Setter Property="Foreground" Value="#ffffff" />
-                                </Trigger>
-                            </ControlTemplate.Triggers>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
-            <Style x:Key="PasswordBox" TargetType="{x:Type PasswordBox}">
-                <Setter Property="FontSize" Value="14" />
-                <Setter Property="Background" Value="#f0f1f5" />
-                <Setter Property="BorderBrush" Value="#ebecf0" />
-                <Setter Property="Foreground" Value="#3b3f48" />
-                <Setter Property="BorderThickness" Value="0" />
-                <Setter Property="HorizontalContentAlignment" Value="Left" />
-                <Setter Property="VerticalContentAlignment" Value="Center" />
-                <Setter Property="Padding" Value="20,0,3,0" />
-                <Setter Property="UseLayoutRounding" Value="True" />
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="{x:Type PasswordBox}">
-                            <Border x:Name="border" CornerRadius="0,0,2,2" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" UseLayoutRounding="{TemplateBinding UseLayoutRounding}">
-                                <ScrollViewer x:Name="PART_ContentHost" />
-                            </Border>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
+                <Style x:Key="WorkButtonGreen" TargetType="{x:Type Button}">
+                    <Setter Property="Focusable" Value="True" />
+                    <Setter Property="Background" Value="#88d969" />
+                    <Setter Property="HorizontalContentAlignment" Value="Left" />
+                    <Setter Property="UseLayoutRounding" Value="True" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border x:Name="border" CornerRadius="2" Background="{TemplateBinding Background}" UseLayoutRounding="{TemplateBinding UseLayoutRounding}">
+                                    <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" />
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="true">
+                                        <Setter TargetName="border" Property="Background" Value="#72b658" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+                <Style x:Key="WorkButtonRed" TargetType="{x:Type Button}">
+                    <Setter Property="Focusable" Value="True" />
+                    <Setter Property="Background" Value="#FFFF5656" />
+                    <Setter Property="HorizontalContentAlignment" Value="Left" />
+                    <Setter Property="UseLayoutRounding" Value="True" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border x:Name="border" CornerRadius="2" Background="{TemplateBinding Background}" UseLayoutRounding="{TemplateBinding UseLayoutRounding}">
+                                    <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" />
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="true">
+                                        <Setter TargetName="border" Property="Background" Value="#FFD63E3E" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+                <Style x:Key="LoginButton" TargetType="{x:Type Button}">
+                    <Setter Property="Focusable" Value="True" />
+                    <Setter Property="Background" Value="#15a4fa" />
+                    <Setter Property="Foreground" Value="#ffffff" />
+                    <Setter Property="UseLayoutRounding" Value="True" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border x:Name="border" CornerRadius="2" Background="{TemplateBinding Background}" UseLayoutRounding="{TemplateBinding UseLayoutRounding}">
+                                    <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="true">
+                                        <Setter TargetName="border" Property="Background" Value="#1289d0" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+                <Style x:Key="CancelButton" TargetType="{x:Type Button}">
+                    <Setter Property="Focusable" Value="True" />
+                    <Setter Property="Background" Value="#bdbdbd" />
+                    <Setter Property="Foreground" Value="#ffffff" />
+                    <Setter Property="FontSize" Value="13" />
+                    <Setter Property="UseLayoutRounding" Value="True" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border x:Name="border" CornerRadius="2" Background="{TemplateBinding Background}" UseLayoutRounding="{TemplateBinding UseLayoutRounding}">
+                                    <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="true">
+                                        <Setter TargetName="border" Property="Background" Value="#aaa9a9" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+                <Style x:Key="UpdateButton" TargetType="{x:Type Button}">
+                    <Setter Property="Focusable" Value="True" />
+                    <Setter Property="Background" Value="#88d969" />
+                    <Setter Property="Foreground" Value="#ffffff" />
+                    <Setter Property="FontSize" Value="13" />
+                    <Setter Property="UseLayoutRounding" Value="True" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border x:Name="border" CornerRadius="2" Background="{TemplateBinding Background}" UseLayoutRounding="{TemplateBinding UseLayoutRounding}">
+                                    <StackPanel x:Name="stackPanel" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                        <Image Source="Icons/Update.png" Width="16" Height="16" Margin="10,0,30,0" />
+                                        <ContentPresenter VerticalAlignment="Center" />
+                                    </StackPanel>
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="true">
+                                        <Setter TargetName="border" Property="Background" Value="#72b658" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+                <Style x:Key="NewClientButton" TargetType="{x:Type Button}">
+                    <Setter Property="Focusable" Value="True" />
+                    <Setter Property="Background" Value="#f3f2f2" />
+                    <Setter Property="Foreground" Value="#6f7a8b" />
+                    <Setter Property="FontSize" Value="12" />
+                    <Setter Property="UseLayoutRounding" Value="True" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border x:Name="border" CornerRadius="2" Background="{TemplateBinding Background}" UseLayoutRounding="{TemplateBinding UseLayoutRounding}">
+                                    <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,-3,0,0" />
+                                </Border>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="true">
+                                        <Setter TargetName="border" Property="Background" Value="#15a4fa" />
+                                        <Setter Property="Foreground" Value="#ffffff" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+                <Style x:Key="PasswordBox" TargetType="{x:Type PasswordBox}">
+                    <Setter Property="FontSize" Value="14" />
+                    <Setter Property="Background" Value="#f0f1f5" />
+                    <Setter Property="BorderBrush" Value="#ebecf0" />
+                    <Setter Property="Foreground" Value="#3b3f48" />
+                    <Setter Property="BorderThickness" Value="0" />
+                    <Setter Property="HorizontalContentAlignment" Value="Left" />
+                    <Setter Property="VerticalContentAlignment" Value="Center" />
+                    <Setter Property="Padding" Value="20,0,3,0" />
+                    <Setter Property="UseLayoutRounding" Value="True" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type PasswordBox}">
+                                <Border x:Name="border" CornerRadius="0,0,2,2" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" UseLayoutRounding="{TemplateBinding UseLayoutRounding}">
+                                    <ScrollViewer x:Name="PART_ContentHost" />
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
 
-            <Style x:Key="DataGridCellStyle" TargetType="{x:Type DataGridCell}">
-                <Setter Property="Background" Value="Transparent" />
-                <Setter Property="BorderBrush" Value="Transparent" />
-                <Setter Property="BorderThickness" Value="0" />
-                <Setter Property="Padding" Value="5" />
-                <Setter Property="FontSize" Value="13" />
-                <Setter Property="Foreground" Value="#354052" />
-                <Setter Property="FocusVisualStyle" Value="{x:Null}" />
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="{x:Type DataGridCell}">
-                            <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="True">
-                                <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
-                            </Border>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-                <Style.Triggers>
-                    <Trigger Property="IsSelected" Value="True">
-                        <Setter Property="Background" Value="#70b8f3" />
-                        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-                        <Setter Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
-                    </Trigger>
-                    <Trigger Property="IsKeyboardFocusWithin" Value="True">
-                        <Setter Property="BorderBrush" Value="{DynamicResource {x:Static DataGrid.FocusBorderBrushKey}}" />
-                    </Trigger>
-                    <MultiTrigger>
-                        <MultiTrigger.Conditions>
-                            <Condition Property="IsSelected" Value="true" />
-                            <Condition Property="Selector.IsSelectionActive" Value="false" />
-                        </MultiTrigger.Conditions>
-                        <Setter Property="Background" Value="#70b8f3" />
-                        <Setter Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}" />
-                        <Setter Property="Foreground" Value="#ffffff" />
-                    </MultiTrigger>
-                    <Trigger Property="IsEnabled" Value="false">
-                        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
-                    </Trigger>
-                </Style.Triggers>
-            </Style>
+                <Style x:Key="DataGridCellStyle" TargetType="{x:Type DataGridCell}">
+                    <Setter Property="Background" Value="Transparent" />
+                    <Setter Property="BorderBrush" Value="Transparent" />
+                    <Setter Property="BorderThickness" Value="0" />
+                    <Setter Property="Padding" Value="5" />
+                    <Setter Property="FontSize" Value="13" />
+                    <Setter Property="Foreground" Value="#354052" />
+                    <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type DataGridCell}">
+                                <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="True">
+                                    <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" Value="#70b8f3" />
+                            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
+                            <Setter Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
+                        </Trigger>
+                        <Trigger Property="IsKeyboardFocusWithin" Value="True">
+                            <Setter Property="BorderBrush" Value="{DynamicResource {x:Static DataGrid.FocusBorderBrushKey}}" />
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsSelected" Value="true" />
+                                <Condition Property="Selector.IsSelectionActive" Value="false" />
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Background" Value="#70b8f3" />
+                            <Setter Property="BorderBrush" Value="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}" />
+                            <Setter Property="Foreground" Value="#ffffff" />
+                        </MultiTrigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
 
-            <Style x:Key="ColumnHeaderGripperStyle" TargetType="{x:Type Thumb}">
-                <Setter Property="Width" Value="8" />
-                <Setter Property="Cursor" Value="SizeWE" />
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="{x:Type Thumb}">
-                            <Border Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" />
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
+                <Style x:Key="ColumnHeaderGripperStyle" TargetType="{x:Type Thumb}">
+                    <Setter Property="Width" Value="8" />
+                    <Setter Property="Cursor" Value="SizeWE" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Thumb}">
+                                <Border Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" />
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
 
-            <Style x:Key="DataGridColumnHeaderStyle" TargetType="{x:Type DataGridColumnHeader}">
-                <Setter Property="VerticalContentAlignment" Value="Center" />
-                <Setter Property="Background" Value="#6f7e95" />
-                <Setter Property="Padding" Value="7,5,7,5" />
-                <Setter Property="Foreground" Value="#ffffff" />
-                <Setter Property="FontSize" Value="14" />
-                <Setter Property="FontWeight" Value="Bold" />
-                <Setter Property="BorderThickness" Value="0,0,1,0" />
-                <Setter Property="BorderBrush" Value="#7c8ca6" />
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="{x:Type DataGridColumnHeader}">
-                            <Grid>
-                                <Themes:DataGridHeaderBorder BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" IsClickable="{TemplateBinding CanUserSort}" IsPressed="{TemplateBinding IsPressed}" IsHovered="{TemplateBinding IsMouseOver}" Padding="{TemplateBinding Padding}" SortDirection="{TemplateBinding SortDirection}" SeparatorBrush="{TemplateBinding SeparatorBrush}" SeparatorVisibility="{TemplateBinding SeparatorVisibility}">
-                                    <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
-                                </Themes:DataGridHeaderBorder>
-                                <Thumb x:Name="PART_LeftHeaderGripper" HorizontalAlignment="Left" Style="{StaticResource ColumnHeaderGripperStyle}" />
-                                <Thumb x:Name="PART_RightHeaderGripper" HorizontalAlignment="Right" Style="{StaticResource ColumnHeaderGripperStyle}" />
-                            </Grid>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-            </Style>
+                <Style x:Key="DataGridColumnHeaderStyle" TargetType="{x:Type DataGridColumnHeader}">
+                    <Setter Property="VerticalContentAlignment" Value="Center" />
+                    <Setter Property="Background" Value="#6f7e95" />
+                    <Setter Property="Padding" Value="7,5,7,5" />
+                    <Setter Property="Foreground" Value="#ffffff" />
+                    <Setter Property="FontSize" Value="14" />
+                    <Setter Property="FontWeight" Value="Bold" />
+                    <Setter Property="BorderThickness" Value="0,0,1,0" />
+                    <Setter Property="BorderBrush" Value="#7c8ca6" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type DataGridColumnHeader}">
+                                <Grid>
+                                    <Themes:DataGridHeaderBorder BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" IsClickable="{TemplateBinding CanUserSort}" IsPressed="{TemplateBinding IsPressed}" IsHovered="{TemplateBinding IsMouseOver}" Padding="{TemplateBinding Padding}" SortDirection="{TemplateBinding SortDirection}" SeparatorBrush="{TemplateBinding SeparatorBrush}" SeparatorVisibility="{TemplateBinding SeparatorVisibility}">
+                                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                                    </Themes:DataGridHeaderBorder>
+                                    <Thumb x:Name="PART_LeftHeaderGripper" HorizontalAlignment="Left" Style="{StaticResource ColumnHeaderGripperStyle}" />
+                                    <Thumb x:Name="PART_RightHeaderGripper" HorizontalAlignment="Right" Style="{StaticResource ColumnHeaderGripperStyle}" />
+                                </Grid>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+
         </ResourceDictionary>
+
     </Application.Resources>
 </Application>

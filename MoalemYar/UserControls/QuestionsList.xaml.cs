@@ -379,10 +379,11 @@ namespace MoalemYar.UserControls
             element.ItemsSource = list;
         }
 
+        //Todo: bug
         private void cmbBook_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var element = FindElementByName<ComboBox>(cmbAddContentBook, "cmbBook");
-            getStudents(Convert.ToInt64(cmbBase.SelectedValue), element.SelectedItem.ToString());
+            //var element = FindElementByName<ComboBox>(cmbAddContentBook, "cmbBook");
+            //getStudents(Convert.ToInt64(cmbBase.SelectedValue), element.SelectedItem.ToString());
         }
 
         public T FindElementByName<T>(FrameworkElement element, string sChildName) where T : FrameworkElement
@@ -595,5 +596,10 @@ namespace MoalemYar.UserControls
         }
 
         #endregion "Edit"
+
+        private void UserControl_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            Console.WriteLine(dataGrid.ActualWidth);
+        }
     }
 }
