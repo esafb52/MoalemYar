@@ -107,10 +107,7 @@
             </Metro:MetroTabItem>
             <Metro:MetroTabItem Header="ویرایش اطلاعات">
                 <Grid KeyboardNavigation.TabNavigation="Cycle">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="16*" />
-                        <ColumnDefinition Width="9*"/>
-                    </Grid.ColumnDefinitions>
+                   
                     <StackPanel Orientation="Vertical" Margin="5,5,5,0">
                         <StackPanel Orientation="Horizontal" Height="50" VerticalAlignment="Top">
                             <Button x:Name="btnEditSave" Click="btnEditSave_Click" Grid.Column="0" Grid.Row="0" Margin="10,5,5,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Style="{StaticResource WorkButtonGreen}" Height="35">
@@ -130,135 +127,142 @@
                             <Metro:MetroBorder HorizontalAlignment="Stretch" BorderThickness="1" BorderBrush="{Binding BorderColor}" />
                         </Grid>
                     </StackPanel>
-                    <Grid Grid.Column="0" Margin="10,70,0,0">
-                        <StackPanel Margin="0,10,0,0" Orientation="Vertical">
-                            <StackPanel Orientation="Horizontal">
-                                <Grid>
-                                    <ComboBox x:Name="cmbEditBase" ItemsSource="{Binding}" SelectionChanged="cmbEditBase_SelectionChanged"
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="16*" />
+                            <ColumnDefinition Width="9*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0" Margin="10,70,0,0">
+                            <StackPanel Margin="0,10,0,0" Orientation="Vertical">
+                                <StackPanel Orientation="Horizontal">
+                                    <Grid>
+                                        <ComboBox x:Name="cmbEditBase" ItemsSource="{Binding}" SelectionChanged="cmbEditBase_SelectionChanged"
                                   Height="30"
                                   SelectedValue="{Binding SchoolName}"  
                                   SelectedValuePath="Id"   
                                   VerticalAlignment="Top" HorizontalAlignment="Left" Width="195"  >
-                                        <ComboBox.ItemTemplate>
-                                            <DataTemplate>
-                                                <StackPanel Orientation="Horizontal">
-                                                    <TextBlock Text="{Binding SchoolName}" />
-                                                    <TextBlock Text=" - " />
-                                                    <TextBlock Text="{Binding Base}" />
-                                                    <TextBlock Text=" - " />
-                                                    <TextBlock Text="{Binding Year}" />
-                                                </StackPanel>
-                                            </DataTemplate>
-                                        </ComboBox.ItemTemplate>
-                                    </ComboBox>
-                                    <TextBlock Text=" انتخاب کلاس " IsHitTestVisible="False" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="195">
-                                        <TextBlock.Style>
-                                            <Style TargetType="{x:Type TextBlock}">
-                                                <Setter Property="Visibility" Value="Hidden"/>
-                                                <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding SelectedItem, ElementName=cmbEditBase}" Value="{x:Null}">
-                                                        <Setter Property="Visibility" Value="Visible"/>
-                                                    </DataTrigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </TextBlock.Style>
-                                    </TextBlock>
-                                </Grid>
-                                <Grid Margin="10,0,0,0">
-                                    <ComboBox x:Name="cmbEditStudent" SelectionChanged="cmbEditStudent_SelectionChanged"
+                                            <ComboBox.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBlock Text="{Binding SchoolName}" />
+                                                        <TextBlock Text=" - " />
+                                                        <TextBlock Text="{Binding Base}" />
+                                                        <TextBlock Text=" - " />
+                                                        <TextBlock Text="{Binding Year}" />
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </ComboBox.ItemTemplate>
+                                        </ComboBox>
+                                        <TextBlock Text=" انتخاب کلاس " IsHitTestVisible="False" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="195">
+                                            <TextBlock.Style>
+                                                <Style TargetType="{x:Type TextBlock}">
+                                                    <Setter Property="Visibility" Value="Hidden"/>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding SelectedItem, ElementName=cmbEditBase}" Value="{x:Null}">
+                                                            <Setter Property="Visibility" Value="Visible"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </TextBlock.Style>
+                                        </TextBlock>
+                                    </Grid>
+                                    <Grid Margin="10,0,0,0">
+                                        <ComboBox x:Name="cmbEditStudent" SelectionChanged="cmbEditStudent_SelectionChanged"
                                   Height="30"
                                   SelectedValue="{Binding LName}"  
                                   SelectedValuePath="Id"   
                                   VerticalAlignment="Top" HorizontalAlignment="Left" Width="190">
-                                        <ComboBox.ItemTemplate>
-                                            <DataTemplate>
-                                                <StackPanel Orientation="Horizontal">
-                                                    <TextBlock Text="{Binding Name}" />
-                                                    <TextBlock Text=" " />
-                                                    <TextBlock Text="{Binding LName}" />
-                                                    <TextBlock Text=" - " />
-                                                    <TextBlock Text="نام پدر(" />
-                                                    <TextBlock Text="{Binding FName}" />
-                                                    <TextBlock Text=")" />
-                                                </StackPanel>
-                                            </DataTemplate>
-                                        </ComboBox.ItemTemplate>
-                                    </ComboBox>
-                                    <TextBlock Text=" انتخاب دانش آموز " IsHitTestVisible="False" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="190">
-                                        <TextBlock.Style>
-                                            <Style TargetType="{x:Type TextBlock}">
-                                                <Setter Property="Visibility" Value="Hidden"/>
-                                                <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding SelectedItem, ElementName=cmbEditStudent}" Value="{x:Null}">
-                                                        <Setter Property="Visibility" Value="Visible"/>
-                                                    </DataTrigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </TextBlock.Style>
-                                    </TextBlock>
-                                </Grid>
-                            </StackPanel>
-                            <Metro:MetroTextBox x:Name="txtEditSearch" HorizontalAlignment="Stretch" VerticalAlignment="Top" ButtonTitle="بروزرسانی لیست" ButtonClick="txtEditSearch_ButtonClick" FlowDirection="RightToLeft" InputHint="جستجو..." PopupHint="جستجو بصورت خودکار انجام می شود" MetroPopupBackgroundState="Red2" Margin="0,5,0,0" Icon="../Resources/editIcon.png" TextChanged="txtEditSearch_TextChanged" />
-                            <DataGrid x:Name="dataGridEdit" AutoGenerateColumns="False" HorizontalAlignment="Left"
+                                            <ComboBox.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBlock Text="{Binding Name}" />
+                                                        <TextBlock Text=" " />
+                                                        <TextBlock Text="{Binding LName}" />
+                                                        <TextBlock Text=" - " />
+                                                        <TextBlock Text="نام پدر(" />
+                                                        <TextBlock Text="{Binding FName}" />
+                                                        <TextBlock Text=")" />
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </ComboBox.ItemTemplate>
+                                        </ComboBox>
+                                        <TextBlock Text=" انتخاب دانش آموز " IsHitTestVisible="False" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="190">
+                                            <TextBlock.Style>
+                                                <Style TargetType="{x:Type TextBlock}">
+                                                    <Setter Property="Visibility" Value="Hidden"/>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding SelectedItem, ElementName=cmbEditStudent}" Value="{x:Null}">
+                                                            <Setter Property="Visibility" Value="Visible"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </TextBlock.Style>
+                                        </TextBlock>
+                                    </Grid>
+                                </StackPanel>
+                                <Metro:MetroTextBox x:Name="txtEditSearch" HorizontalAlignment="Stretch" VerticalAlignment="Top" ButtonTitle="بروزرسانی لیست" ButtonClick="txtEditSearch_ButtonClick" FlowDirection="RightToLeft" InputHint="جستجو..." PopupHint="جستجو بصورت خودکار انجام می شود" MetroPopupBackgroundState="Red2" Margin="0,5,0,0" Icon="../Resources/editIcon.png" TextChanged="txtEditSearch_TextChanged" />
+                                <DataGrid x:Name="dataGridEdit" AutoGenerateColumns="False" HorizontalAlignment="Left"
                                       Background="#eceff5" RowHeaderWidth="0" AlternatingRowBackground="#fbfcfe"
                                       GridLinesVisibility="Horizontal" CanUserReorderColumns="False"
                                       CanUserResizeColumns="False" CanUserSortColumns="True" SelectionMode="Single" SelectionUnit="FullRow" 
                                       CanUserResizeRows="False" IsReadOnly="True" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}" 
                                       HorizontalGridLinesBrush="#dde8ef" CellStyle="{DynamicResource DataGridCellStyle}"
                                       Grid.ColumnSpan="2" Margin="0,5,0,10" SelectionChanged="dataGridEdit_SelectionChanged">
-                                <DataGrid.Columns>
-                                    <DataGridTextColumn Binding="{Binding Path=Id}" Visibility="Hidden" />
-                                    <DataGridTextColumn Binding="{Binding Path=StudentId}" Visibility="Hidden" />
-                                    <DataGridTextColumn Binding="{Binding Path=Book}" Header="درس" MinWidth="120" Width="auto" />
-                                    <DataGridTextColumn Binding="{Binding Path=Date}" Header="تاریخ" MinWidth="130" Width="auto" />
-                                    <DataGridTextColumn Binding="{Binding Path=Scores}" Header="نمره" MinWidth="130" Width="auto"/>
-                                    <DataGridTextColumn Binding="{Binding Path=Desc}" Header="توضیحات" MinWidth="130" MaxWidth="200" Width="auto"/>
-                                </DataGrid.Columns>
-                            </DataGrid>
-                        </StackPanel>
-                    </Grid>
-                    <Grid Grid.Column="1" Margin="10,120,0,0">
-                        <StackPanel Orientation="Vertical">
-                            <PersianCalendarWPF:PersianDatePicker HorizontalAlignment="Left" SelectedDateChanged="txtDateEdit_SelectedDateChanged" Name="txtDateEdit"/>
-                            <Metro:MetroTextBox  Margin="2,5,0,5" Name="txtDescEdit" InputHint="توضیحات" MetroPopupBackgroundState="DarkRed" PopupHint="توضیحات مربوط به این پرسش" Height="115" TextWrapping="Wrap" MaxWidth="276" MaxHeight="200" HorizontalAlignment="Left" Width="276"/>
-                            <ContentControl x:Name="cmbContentScore" TabIndex="3" Focusable="False" Height="30" VerticalAlignment="Top" Margin="2" HorizontalAlignment="Left" Width="200">
-                                <ContentControl.ContentTemplate>
-                                    <DataTemplate>
-                                        <Grid>
-                                            <ComboBox TabIndex="4" x:Name="cmbScore">
-                                                <ComboBoxItem Content="خیلی خوب" />
-                                                <ComboBoxItem Content="خوب" />
-                                                <ComboBoxItem Content="قابل قبول" />
-                                                <ComboBoxItem Content="نیاز به تلاش بیشتر" />
-                                            </ComboBox>
-                                            <TextBlock x:Name="tb" Text=" نمره " IsHitTestVisible="False" Visibility="Hidden" />
-                                        </Grid>
-                                        <DataTemplate.Triggers>
-                                            <Trigger SourceName="cmbScore" Property="SelectedItem" Value="{x:Null}">
-                                                <Setter TargetName="tb" Property="Visibility" Value="Visible" />
-                                            </Trigger>
-                                        </DataTemplate.Triggers>
-                                    </DataTemplate>
-                                </ContentControl.ContentTemplate>
-                            </ContentControl>
-                            <ContentControl x:Name="cmbAddContentBookEdit" TabIndex="3" Focusable="False" Height="30" VerticalAlignment="Top" Margin="0,5" HorizontalAlignment="Left" Width="200" Grid.ColumnSpan="2">
-                                <ContentControl.ContentTemplate>
-                                    <DataTemplate>
-                                        <Grid>
-                                            <ComboBox TabIndex="4" x:Name="cmbBook"/>
-                                            <TextBlock x:Name="tb" Text=" انتخاب درس " IsHitTestVisible="False" Visibility="Hidden" />
-                                        </Grid>
-                                        <DataTemplate.Triggers>
-                                            <Trigger SourceName="cmbBook" Property="SelectedItem" Value="{x:Null}">
-                                                <Setter TargetName="tb" Property="Visibility" Value="Visible" />
-                                            </Trigger>
-                                        </DataTemplate.Triggers>
-                                    </DataTemplate>
-                                </ContentControl.ContentTemplate>
-                            </ContentControl>
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Binding="{Binding Path=Id}" Visibility="Hidden" />
+                                        <DataGridTextColumn Binding="{Binding Path=StudentId}" Visibility="Hidden" />
+                                        <DataGridTextColumn Binding="{Binding Path=Book}" Header="درس" MinWidth="120" Width="auto" />
+                                        <DataGridTextColumn Binding="{Binding Path=Date}" Header="تاریخ" MinWidth="130" Width="auto" />
+                                        <DataGridTextColumn Binding="{Binding Path=Scores}" Header="نمره" MinWidth="130" Width="auto"/>
+                                        <DataGridTextColumn Binding="{Binding Path=Desc}" Header="توضیحات" MinWidth="130" MaxWidth="200" Width="auto"/>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </StackPanel>
+                        </Grid>
+                        <Grid Grid.Column="1" Margin="10,120,0,0">
+                            <StackPanel Orientation="Vertical">
+                                <PersianCalendarWPF:PersianDatePicker HorizontalAlignment="Left" SelectedDateChanged="txtDateEdit_SelectedDateChanged" Name="txtDateEdit"/>
+                                <Metro:MetroTextBox  Margin="2,5,0,5" Name="txtDescEdit" InputHint="توضیحات" MetroPopupBackgroundState="DarkRed" PopupHint="توضیحات مربوط به این پرسش" Height="115" TextWrapping="Wrap" MaxWidth="276" MaxHeight="200" HorizontalAlignment="Left" Width="276"/>
+                                <ContentControl x:Name="cmbContentScore" TabIndex="3" Focusable="False" Height="30" VerticalAlignment="Top" Margin="2" HorizontalAlignment="Left" Width="200">
+                                    <ContentControl.ContentTemplate>
+                                        <DataTemplate>
+                                            <Grid>
+                                                <ComboBox TabIndex="4" x:Name="cmbScore">
+                                                    <ComboBoxItem Content="خیلی خوب" />
+                                                    <ComboBoxItem Content="خوب" />
+                                                    <ComboBoxItem Content="قابل قبول" />
+                                                    <ComboBoxItem Content="نیاز به تلاش بیشتر" />
+                                                </ComboBox>
+                                                <TextBlock x:Name="tb" Text=" نمره " IsHitTestVisible="False" Visibility="Hidden" />
+                                            </Grid>
+                                            <DataTemplate.Triggers>
+                                                <Trigger SourceName="cmbScore" Property="SelectedItem" Value="{x:Null}">
+                                                    <Setter TargetName="tb" Property="Visibility" Value="Visible" />
+                                                </Trigger>
+                                            </DataTemplate.Triggers>
+                                        </DataTemplate>
+                                    </ContentControl.ContentTemplate>
+                                </ContentControl>
+                                <ContentControl x:Name="cmbAddContentBookEdit" TabIndex="3" Focusable="False" Height="30" VerticalAlignment="Top" Margin="0,5" HorizontalAlignment="Left" Width="200" Grid.ColumnSpan="2">
+                                    <ContentControl.ContentTemplate>
+                                        <DataTemplate>
+                                            <Grid>
+                                                <ComboBox TabIndex="4" x:Name="cmbBook"/>
+                                                <TextBlock x:Name="tb" Text=" انتخاب درس " IsHitTestVisible="False" Visibility="Hidden" />
+                                            </Grid>
+                                            <DataTemplate.Triggers>
+                                                <Trigger SourceName="cmbBook" Property="SelectedItem" Value="{x:Null}">
+                                                    <Setter TargetName="tb" Property="Visibility" Value="Visible" />
+                                                </Trigger>
+                                            </DataTemplate.Triggers>
+                                        </DataTemplate>
+                                    </ContentControl.ContentTemplate>
+                                </ContentControl>
 
-                        </StackPanel>
+                            </StackPanel>
+                        </Grid>
                     </Grid>
+                   
                 </Grid>
             </Metro:MetroTabItem>
         </Metro:MetroTabControl>
