@@ -14,7 +14,6 @@ using nucs.JsonSettings.Fluent;
 using System;
 using System.Diagnostics;
 using System.Reflection;
-using System.Windows.Data;
 
 namespace MoalemYar
 {
@@ -181,6 +180,7 @@ namespace MoalemYar
 
             return string.Format(" Elapsed time: {0}, Memory Usage: {1:N2} KB", stopwatch.Elapsed, memUsage / 1024);
         }
+
         public static void RegisterInStartup(bool isChecked)
         {
             var productName = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).ProductName;

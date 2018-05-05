@@ -16,12 +16,12 @@ using Ookii.Dialogs.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Media;
-using System.Globalization;
+
 namespace MoalemYar
 {
     /// <summary>
@@ -31,7 +31,7 @@ namespace MoalemYar
     {
         public string appTitle { get; set; }
         internal static MainWindow main;
-        PersianCalendar pc = new PersianCalendar();
+        private PersianCalendar pc = new PersianCalendar();
         public INotificationMessageManager Manager { get; } = new NotificationMessageManager();
 
         public MainWindow()
@@ -42,7 +42,7 @@ namespace MoalemYar
 
             //Todo: Add Defualt School and Set Default Combo School
             //Todo: Remove RunAction
-            appTitle = AppVariable.getAppTitle + AppVariable.getAppVersion + AppVariable.RunActionMeasurePerformance(()=>getexHint()); // App Title with Version
+            appTitle = AppVariable.getAppTitle + AppVariable.getAppVersion + AppVariable.RunActionMeasurePerformance(() => getexHint()); // App Title with Version
 
             ShowCredentialDialog();
 
@@ -50,11 +50,13 @@ namespace MoalemYar
 
             LoadSettings();
         }
+
         private void MetroWindow_Loaded(object sender, RoutedEventArgs e)
         {
             //Todo: Enable this
             //getexHint();
         }
+
         #region "Async Query"
 
         public async static Task<List<DataClass.Tables.School>> GetAllSchoolAsync()
@@ -178,6 +180,7 @@ namespace MoalemYar
                        case "Question":
                            exAddOrUpdateStudent_Click(null, null);
                            break;
+
                        case "Score":
                            QuestionsList.main.tabc.SelectedIndex = 0;
                            break;
@@ -377,7 +380,7 @@ namespace MoalemYar
                  .HasHeader(string.Format("آیا برای بازیابی {0} اطمینان دارید؟", Type))
                  .Dismiss().WithButton("بله", button =>
                  {
-                     if(Type == "تنظیمات برنامه")
+                     if (Type == "تنظیمات برنامه")
                          Settings.main.resetConfig();
                      else
                          Settings.main.resetDatabase();
@@ -388,6 +391,7 @@ namespace MoalemYar
                  .Dismiss().WithButton("خیر", button => { });
             builder.Queue();
         }
+
         public void ShowUpdateNotification(bool isAvailable, string Version, string URL)
         {
             if (isAvailable)
@@ -454,6 +458,7 @@ namespace MoalemYar
                          case "حضورغیاب":
                              Attendancelist.main.deleteAttendance();
                              break;
+
                          case "نمره":
                              QuestionsList.main.deleteScore();
                              break;

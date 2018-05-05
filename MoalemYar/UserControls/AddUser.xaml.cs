@@ -45,7 +45,7 @@ namespace MoalemYar.UserControls
         {
             using (var db = new DataClass.myDbContext())
             {
-                var query = db.Users.Select(x=>x);
+                var query = db.Users.Select(x => x);
                 return await query.ToListAsync();
             }
         }
@@ -117,6 +117,7 @@ namespace MoalemYar.UserControls
             {
             }
         }
+
         private void deleteUser(long id)
         {
             var query = DeleteUserAsync(id);

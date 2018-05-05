@@ -23,7 +23,6 @@ namespace MoalemYar.DataClass
         public virtual DbSet<Question> Questions { get; set; }
         public virtual DbSet<Score> Scores { get; set; }
 
-
         public myDbContext()
        : base("default")
         {

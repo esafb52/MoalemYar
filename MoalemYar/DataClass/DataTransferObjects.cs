@@ -44,6 +44,5 @@ namespace MoalemYar.DataClass
             public bool Exist { get; set; }
             public string Date { get; set; }
         }
-
     }
 }

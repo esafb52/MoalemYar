@@ -22,6 +22,7 @@ namespace MoalemYar.UserControls
     public partial class Settings : UserControl
     {
         internal static Settings main;
+
         public Settings()
         {
             InitializeComponent();
@@ -113,8 +114,9 @@ namespace MoalemYar.UserControls
 
         private void btnFactoryReset_Click(object sender, RoutedEventArgs e)
         {
-           MainWindow.main.ResetDataConfirmNotification("تنظیمات برنامه");
+            MainWindow.main.ResetDataConfirmNotification("تنظیمات برنامه");
         }
+
         public void resetConfig()
         {
             string folder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\MoalemYar\config.json";

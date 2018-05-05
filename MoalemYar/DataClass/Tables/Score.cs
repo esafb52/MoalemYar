@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MoalemYar.DataClass.Tables
 {
     [Table("Scores")]
     public class Score
-{
+    {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long Id { get; set; }
 
@@ -28,5 +23,5 @@ namespace MoalemYar.DataClass.Tables
 
         [Required]
         public string Desc { get; set; }
-}
+    }
 }

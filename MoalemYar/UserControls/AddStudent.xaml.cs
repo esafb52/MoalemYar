@@ -14,13 +14,11 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Drawing.Imaging;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using ThumbnailSharp;
@@ -37,6 +35,7 @@ namespace MoalemYar.UserControls
         private bool isCreateThumbnail = false;
         internal static AddStudent main;
         private List<DataClass.DataTransferObjects.SchoolsStudentsJointDto> _initialCollection;
+
         public AddStudent()
         {
             InitializeComponent();
@@ -58,16 +57,17 @@ namespace MoalemYar.UserControls
                   c => c.Id,
                   v => v.BaseId,
                   (c, v) => new DataClass.DataTransferObjects.SchoolsStudentsJointDto { Name = v.Name, LName = v.LName, FName = v.FName, Gender = v.Gender, BaseId = v.BaseId, Image = v.Image, Id = v.Id, Base = c.Base }
-              ).OrderBy(x=>x.LName).Where(x=>x.BaseId == BaseId);
-              
+              ).OrderBy(x => x.LName).Where(x => x.BaseId == BaseId);
+
                 return await query.ToListAsync();
             }
         }
+
         public async static Task<List<DataClass.Tables.School>> GetAllSchoolsAsync()
         {
             using (var db = new DataClass.myDbContext())
             {
-                var query = db.Schools.Select(x=>x);
+                var query = db.Schools.Select(x => x);
                 return await query.ToListAsync();
             }
         }
@@ -167,6 +167,7 @@ namespace MoalemYar.UserControls
             {
             }
         }
+
         private void deleteStudent(long id)
         {
             var query = DeleteStudentAsync(id);
@@ -283,7 +284,7 @@ namespace MoalemYar.UserControls
             editStack.IsEnabled = false;
             getStudent(Convert.ToInt64(cmbBaseEdit.SelectedValue));
         }
-        
+
         private void btnEditCancel_Click(object sender, RoutedEventArgs e)
         {
             txtName.Text = string.Empty;
@@ -442,7 +443,5 @@ namespace MoalemYar.UserControls
         {
             getStudent(Convert.ToInt64(cmbBaseEdit.SelectedValue));
         }
-
-       
     }
 }

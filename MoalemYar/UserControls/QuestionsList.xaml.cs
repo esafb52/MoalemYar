@@ -1,32 +1,24 @@
-﻿
-/****************************** ghost1372.github.io ******************************\
+﻿/****************************** ghost1372.github.io ******************************\
 *	Module Name:	QuestionsList.xaml.cs
 *	Project:		MoalemYar
 *	Copyright (C) 2017 Mahdi Hosseini, All rights reserved.
 *	This software may be modified and distributed under the terms of the MIT license.  See LICENSE file for details.
 *
 *	Written by Mahdi Hosseini <Mahdidvb72@gmail.com>,  2018, 4, 28, 08:38 ب.ظ
-*	
+*
 ***********************************************************************************/
+
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.Entity;
 using System.Globalization;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace MoalemYar.UserControls
 {
@@ -35,7 +27,7 @@ namespace MoalemYar.UserControls
     /// </summary>
     public partial class QuestionsList : UserControl
     {
-        ObservableCollection<string> list = new ObservableCollection<string>();
+        private ObservableCollection<string> list = new ObservableCollection<string>();
         private bool runOnceSchool = true;
         internal static QuestionsList main;
         private PersianCalendar pc = new PersianCalendar();
@@ -76,7 +68,7 @@ namespace MoalemYar.UserControls
             using (var db = new DataClass.myDbContext())
             {
                 var query = db.Students.Where(x => !db.Questions.Any(f => f.StudentId == x.Id && f.Book == Book) && x.BaseId == SchoolId).Select(x => new DataClass.DataTransferObjects.StudentsDto { Id = x.Id, BaseId = x.BaseId, Name = x.Name, LName = x.LName, FName = x.FName });
-                
+
                 return await query.ToListAsync();
             }
         }
@@ -96,6 +88,7 @@ namespace MoalemYar.UserControls
                 return "Question Added Successfully";
             }
         }
+
         public async static Task<List<DataClass.DataTransferObjects.SchoolsStudentsJointDto>> GetAllStudentsAsync(long BaseId)
         {
             using (var db = new DataClass.myDbContext())
@@ -110,14 +103,16 @@ namespace MoalemYar.UserControls
                 return await query.ToListAsync();
             }
         }
+
         public async static Task<List<DataClass.Tables.Score>> GetAllScoresAsync(long StudentId)
         {
             using (var db = new DataClass.myDbContext())
             {
-                var query = db.Scores.Where(x => x.StudentId == StudentId).Select(x =>x).OrderByDescending(x=> new { x.Date, x.Book }).ThenBy(x=>x.Scores);
+                var query = db.Scores.Where(x => x.StudentId == StudentId).Select(x => x).OrderByDescending(x => new { x.Date, x.Book }).ThenBy(x => x.Scores);
                 return await query.ToListAsync();
             }
         }
+
         public async static Task<string> InsertScoreAsync(long StudentId, string Book, string Date, string Scorez, string Desc)
         {
             using (var db = new DataClass.myDbContext())
@@ -175,6 +170,7 @@ namespace MoalemYar.UserControls
                 return "Scores Deleted Successfully";
             }
         }
+
         #endregion "Async Query"
 
         #region Func get Query Wait"
@@ -196,6 +192,7 @@ namespace MoalemYar.UserControls
             {
             }
         }
+
         private void getStudent(long BaseId)
         {
             try
@@ -220,6 +217,7 @@ namespace MoalemYar.UserControls
             {
             }
         }
+
         private void getScores(long StudentId)
         {
             try
@@ -245,6 +243,7 @@ namespace MoalemYar.UserControls
             {
             }
         }
+
         private void getStudents(long SchoolId, string Book)
         {
             var query = GetAllStudentsAsync(SchoolId, Book);
@@ -261,6 +260,7 @@ namespace MoalemYar.UserControls
                 MainWindow.main.ShowNoDataNotification("Question");
             }
         }
+
         private void addQuestion(long SchoolId, long StudentId, string Book)
         {
             try
@@ -272,6 +272,7 @@ namespace MoalemYar.UserControls
             {
             }
         }
+
         private void addScore(long StudentId, string Book, string Date, string Scorez, string Desc)
         {
             try
@@ -283,11 +284,13 @@ namespace MoalemYar.UserControls
             {
             }
         }
+
         private void updateScore(long ScoreId, long StudentId, string Score, string Date, string Book, string Desc)
         {
             var query = UpdateScoreAsync(ScoreId, StudentId, Score, Date, Book, Desc);
             query.Wait();
         }
+
         private void deleteQuestion(long SchoolId, string Book)
         {
             try
@@ -299,6 +302,7 @@ namespace MoalemYar.UserControls
             {
             }
         }
+
         private void deleteScore(long ScoreId)
         {
             try
@@ -310,7 +314,9 @@ namespace MoalemYar.UserControls
             {
             }
         }
+
         #endregion Func get Query Wait"
+
         private void tabc_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (runOnceSchool)
@@ -337,7 +343,6 @@ namespace MoalemYar.UserControls
                 list.Add("فارسی");
                 list.Add("علوم");
                 list.Add("ریاضی");
-
             }
             else if (selectedItem.Base.Contains("دوم"))
             {
@@ -347,7 +352,6 @@ namespace MoalemYar.UserControls
                 list.Add("علوم");
                 list.Add("ریاضی");
                 list.Add("هدیه های آسمانی");
-
             }
             else if (selectedItem.Base.Contains("سوم") || selectedItem.Base.Contains("چهارم") || selectedItem.Base.Contains("پنجم"))
             {
@@ -358,7 +362,6 @@ namespace MoalemYar.UserControls
                 list.Add("ریاضی");
                 list.Add("هدیه های آسمانی");
                 list.Add("مطالعات اجتماعی");
-
             }
             else if (selectedItem.Base.Contains("ششم"))
             {
@@ -375,6 +378,7 @@ namespace MoalemYar.UserControls
 
             element.ItemsSource = list;
         }
+
         private void cmbBook_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var element = FindElementByName<ComboBox>(cmbAddContentBook, "cmbBook");
@@ -420,9 +424,10 @@ namespace MoalemYar.UserControls
                         MyTextBlock.Foreground = new SolidColorBrush(Colors.Green);
                         MyTextBlock.Text = "ثبت شده";
                         addQuestion((long)selectedItem.BaseId, (long)selectedItem.Id, element.SelectedItem.ToString());
-                        addScore((long)cmbBase.SelectedValue, element.SelectedItem.ToString(), strDate, "خیلی خوب", (txtDesc.Text==string.Empty ? "بدون توضیحات" : txtDesc.Text));
+                        addScore((long)cmbBase.SelectedValue, element.SelectedItem.ToString(), strDate, "خیلی خوب", (txtDesc.Text == string.Empty ? "بدون توضیحات" : txtDesc.Text));
                     }
                     break;
+
                 case "good":
                     if (MyTextBlock.Text == "ثبت نشده")
                     {
@@ -432,6 +437,7 @@ namespace MoalemYar.UserControls
                         addScore((long)cmbBase.SelectedValue, element.SelectedItem.ToString(), strDate, "خوب", (txtDesc.Text == string.Empty ? "بدون توضیحات" : txtDesc.Text));
                     }
                     break;
+
                 case "nbad":
                     if (MyTextBlock.Text == "ثبت نشده")
                     {
@@ -441,6 +447,7 @@ namespace MoalemYar.UserControls
                         addScore((long)cmbBase.SelectedValue, element.SelectedItem.ToString(), strDate, "قابل قبول", (txtDesc.Text == string.Empty ? "بدون توضیحات" : txtDesc.Text));
                     }
                     break;
+
                 case "bad":
                     if (MyTextBlock.Text == "ثبت نشده")
                     {
@@ -459,6 +466,7 @@ namespace MoalemYar.UserControls
                 deleteQuestion((long)cmbBase.SelectedValue, element.SelectedItem.ToString());
             }
         }
+
         public T FindVisualChildByName<T>(DependencyObject parent, string name) where T : DependencyObject
         {
             for (int i = 0; i < VisualTreeHelper.GetChildrenCount(parent); i++)
@@ -480,6 +488,7 @@ namespace MoalemYar.UserControls
             }
             return null;
         }
+
         private void StackPanel_Checked(object sender, RoutedEventArgs e)
         {
             Arthas.Controls.Metro.MetroSwitch cb = e.OriginalSource as Arthas.Controls.Metro.MetroSwitch;
@@ -497,6 +506,7 @@ namespace MoalemYar.UserControls
         }
 
         #region "Edit"
+
         private void cmbEditBase_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             fillComboBook(cmbAddContentBookEdit, cmbEditBase);
@@ -521,10 +531,8 @@ namespace MoalemYar.UserControls
             }
             catch (Exception)
             {
-
                 MainWindow.main.ShowUpdateDataNotification(false, selectedItemName.Name + " " + selectedItemName.LName, "نمره");
             }
-            
         }
 
         private void txtEditSearch_TextChanged(object sender, TextChangedEventArgs e)
@@ -562,6 +570,7 @@ namespace MoalemYar.UserControls
                 MainWindow.main.ShowDeletedNotification(false, selectedItemName.Name + " " + selectedItemName.LName, "نمره");
             }
         }
+
         private void cmbEditStudent_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             getScores(Convert.ToInt64(cmbEditStudent.SelectedValue));
@@ -579,12 +588,12 @@ namespace MoalemYar.UserControls
                 var element2 = FindElementByName<ComboBox>(cmbAddContentBookEdit, "cmbBook");
                 element.Text = selectedItem.Scores;
                 element2.Text = selectedItem.Book;
-
             }
             catch (Exception)
             {
             }
         }
-        #endregion
+
+        #endregion "Edit"
     }
 }

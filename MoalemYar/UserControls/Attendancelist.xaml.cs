@@ -11,7 +11,6 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
@@ -35,6 +34,7 @@ namespace MoalemYar.UserControls
         private bool isPresentEdit = true;
         private string changedDate = string.Empty;
         public System.Windows.Media.Brush BorderColor { get; set; }
+
         public Attendancelist()
         {
             InitializeComponent();
