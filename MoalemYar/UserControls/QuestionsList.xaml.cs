@@ -253,6 +253,7 @@ namespace MoalemYar.UserControls
                 }
                 else
                 {
+                    stEdit.IsEnabled = false;
                     dataGridEdit.ItemsSource = null;
                     MainWindow.main.ShowNoDataNotification("Score");
                 }
@@ -608,6 +609,7 @@ namespace MoalemYar.UserControls
         {
             try
             {
+                stEdit.IsEnabled = true;
                 dynamic selectedItem = dataGridEdit.SelectedItems[0];
                 txtDateEdit.SelectedDate = new PersianCalendarWPF.PersianDate(Convert.ToInt32(selectedItem.Date.Substring(0, 4)), Convert.ToInt32(selectedItem.Date.Substring(5, 2)), Convert.ToInt32(selectedItem.Date.Substring(8, 2)));
                 txtDescEdit.Text = selectedItem.Desc;

@@ -216,7 +216,7 @@
                             </StackPanel>
                         </Grid>
                         <Grid Grid.Column="1" Margin="10,120,0,0">
-                            <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Vertical" IsEnabled="False" Name="stEdit">
                                 <PersianCalendarWPF:PersianDatePicker TabIndex="4" HorizontalAlignment="Left" SelectedDateChanged="txtDateEdit_SelectedDateChanged" Name="txtDateEdit"/>
                                 <Metro:MetroTextBox TabIndex="5" Margin="2,5,0,5" Name="txtDescEdit" InputHint="توضیحات" MetroPopupBackgroundState="DarkRed" PopupHint="توضیحات مربوط به این پرسش" Height="115" TextWrapping="Wrap" MaxWidth="276" MaxHeight="200" HorizontalAlignment="Left" Width="276"/>
                                 <ContentControl x:Name="cmbContentScore" Focusable="False" Height="30" VerticalAlignment="Top" Margin="2" HorizontalAlignment="Left" Width="200">
