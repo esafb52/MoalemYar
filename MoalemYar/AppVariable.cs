@@ -67,6 +67,7 @@ namespace MoalemYar
         public static string HamburgerMenu = "HamburgerMenu";
         public static string AutoSendReport = "AutoSendReport";
         public static string SkinCode = "SkinCode";
+        public static string VersionCode = "Version";
 
         #endregion Config Key
 
@@ -117,6 +118,7 @@ namespace MoalemYar
                 Settings[HamburgerMenu] = true;
                 Settings[AutoSendReport] = true;
                 Settings[SkinCode] = DEFAULT_BORDER_BRUSH;
+                Settings[VersionCode] = getAppVersion;
             }
             catch (Exception)
             {

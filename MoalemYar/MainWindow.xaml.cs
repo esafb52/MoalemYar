@@ -44,11 +44,12 @@ namespace MoalemYar
             //Todo: Remove RunAction
             appTitle = AppVariable.getAppTitle + AppVariable.getAppVersion + AppVariable.RunActionMeasurePerformance(() => getexHint()); // App Title with Version
 
+            LoadSettings();
+
             ShowCredentialDialog();
 
             LogifyCrashReport();
 
-            LoadSettings();
         }
 
         private void MetroWindow_Loaded(object sender, RoutedEventArgs e)
@@ -121,30 +122,51 @@ namespace MoalemYar
 
         public void LogifyCrashReport()
         {
-            var isEnabledReport = AppVariable.ReadBoolSetting(AppVariable.AutoSendReport);
-            LogifyAlert client = LogifyAlert.Instance;
-            client.ApiKey = AppVariable.LogifyAPIKey;
-            client.AppName = AppVariable.getAppName;
-            client.AppVersion = AppVariable.getAppVersion;
-            client.OfflineReportsEnabled = true;
-            client.OfflineReportsCount = 20;
-            client.OfflineReportsDirectory = AppVariable.LogifyOfflinePath;
-            client.SendOfflineReports();
-            client.StartExceptionsHandling();
-            if (isEnabledReport.Equals("True"))
+            try
+            {
+                var isEnabledReport = AppVariable.ReadBoolSetting(AppVariable.AutoSendReport);
+                LogifyAlert client = LogifyAlert.Instance;
+                client.ApiKey = AppVariable.LogifyAPIKey;
+                client.AppName = AppVariable.getAppName;
+                client.AppVersion = AppVariable.getAppVersion;
+                client.OfflineReportsEnabled = true;
+                client.OfflineReportsCount = 20;
+                client.OfflineReportsDirectory = AppVariable.LogifyOfflinePath;
+                client.SendOfflineReports();
                 client.StartExceptionsHandling();
-            else
-                client.StopExceptionsHandling();
+                if (isEnabledReport.Equals("True"))
+                    client.StartExceptionsHandling();
+                else
+                    client.StopExceptionsHandling();
+            }
+            catch (Exception)
+            {
+
+            }
         }
 
         private void LoadSettings()
         {
-            var color = (Color)ColorConverter.ConvertFromString(AppVariable.ReadSetting(AppVariable.SkinCode));
-            var brush = new SolidColorBrush(color);
-            BorderBrush = brush;
+            try
+            {
+                var color = (Color)ColorConverter.ConvertFromString(AppVariable.ReadSetting(AppVariable.SkinCode));
+                var brush = new SolidColorBrush(color);
+                BorderBrush = brush;
 
-            var hb_Menu = AppVariable.ReadBoolSetting(AppVariable.HamburgerMenu);
-            MainWindow.main.tab.IconMode = !hb_Menu;
+                var hb_Menu = AppVariable.ReadBoolSetting(AppVariable.HamburgerMenu);
+                MainWindow.main.tab.IconMode = !hb_Menu;
+
+                var vCode = AppVariable.ReadSetting(AppVariable.VersionCode);
+                if (!vCode.Equals(AppVariable.getAppVersion))
+                    AppVariable.InitializeSettings();
+                //Todo: Import Database to new Version
+            }
+            catch (Exception)
+            {
+                 
+            }
+            
+
         }
 
         #region "Notification"
@@ -491,50 +513,58 @@ namespace MoalemYar
 
         private void ShowCredentialDialog()
         {
-            var isLogin = AppVariable.ReadBoolSetting(AppVariable.CredentialLogin);
-            if (isLogin)
+            try
             {
-                using (CredentialDialog dialog = new CredentialDialog())
+                var isLogin = AppVariable.ReadBoolSetting(AppVariable.CredentialLogin);
+                if (isLogin)
                 {
-                    dialog.WindowTitle = "ورود به نرم افزار";
-                    dialog.MainInstruction = "لطفا نام کاربری و رمز عبور خود را وارد کنید";
-                    //dialog.Content = "";
-                    dialog.ShowSaveCheckBox = true;
-                    dialog.ShowUIForSavedCredentials = true;
-                    // The target is the key under which the credentials will be stored.
-                    dialog.Target = "Mahdi72_MoalemYar_www.127.0.0.1.com";
-
-                    try
+                    using (CredentialDialog dialog = new CredentialDialog())
                     {
-                        while (isLogin)
+                        dialog.WindowTitle = "ورود به نرم افزار";
+                        dialog.MainInstruction = "لطفا نام کاربری و رمز عبور خود را وارد کنید";
+                        //dialog.Content = "";
+                        dialog.ShowSaveCheckBox = true;
+                        dialog.ShowUIForSavedCredentials = true;
+                        // The target is the key under which the credentials will be stored.
+                        dialog.Target = "Mahdi72_MoalemYar_www.127.0.0.1.com";
+
+                        try
                         {
-                            if (dialog.ShowDialog(this))
+                            while (isLogin)
                             {
-                                using (var db = new DataClass.myDbContext())
+                                if (dialog.ShowDialog(this))
                                 {
-                                    var usr = db.Users.Where(x => x.Username == dialog.Credentials.UserName && x.Password == dialog.Credentials.Password);
-                                    if (usr.Any())
+                                    using (var db = new DataClass.myDbContext())
                                     {
-                                        dialog.ConfirmCredentials(true);
-                                        isLogin = false;
-                                    }
-                                    else
-                                    {
-                                        dialog.Content = "مشخصات اشتباه است دوباره امتحان کنید";
+                                        var usr = db.Users.Where(x => x.Username == dialog.Credentials.UserName && x.Password == dialog.Credentials.Password);
+                                        if (usr.Any())
+                                        {
+                                            dialog.ConfirmCredentials(true);
+                                            isLogin = false;
+                                        }
+                                        else
+                                        {
+                                            dialog.Content = "مشخصات اشتباه است دوباره امتحان کنید";
+                                        }
                                     }
                                 }
-                            }
-                            else
-                            {
-                                Environment.Exit(0);
+                                else
+                                {
+                                    Environment.Exit(0);
+                                }
                             }
                         }
-                    }
-                    catch (InvalidOperationException)
-                    {
+                        catch (InvalidOperationException)
+                        {
+                        }
                     }
                 }
             }
+            catch (Exception)
+            {
+
+            }
+            
         }
 
         private void exAddOrUpdateSchool_Click(object sender, EventArgs e)
