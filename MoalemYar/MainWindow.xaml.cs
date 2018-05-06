@@ -44,9 +44,9 @@ namespace MoalemYar
             //Todo: Remove RunAction
             appTitle = AppVariable.getAppTitle + AppVariable.getAppVersion + AppVariable.RunActionMeasurePerformance(() => getexHint()); // App Title with Version
 
-            LoadSettings();
-
             ShowCredentialDialog();
+
+            LoadSettings();
 
             LogifyCrashReport();
 

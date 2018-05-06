@@ -31,26 +31,6 @@
             <Metro:MetroTitleMenuItem Header="تنظیمات شماره یست یک" Icon="Resources/titleMuenIcon.png" />
         </Metro:MetroTitleMenu>
     </Metro:MetroWindow.Menu>
-    <Metro:MetroWindow.ContextMenu>
-        <Metro:MetroContextMenu>
-
-            <Metro:MetroMenuItem Header="زیرمنو سه" />
-            <Metro:MetroMenuSeparator />
-            <Metro:MetroMenuItem Header="زیرمنو پنج" Icon="Resources/titleMuenIcon.png" />
-            <Metro:MetroMenuItem Header="زیرمنو شش" Icon="Resources/titleMuenIcon.png">
-                <Metro:MetroMenuItem Header="زیرمنو نه" Icon="Resources/titleMuenIcon.png" />
-                <Metro:MetroMenuSeparator />
-                <Metro:MetroMenuItem Header="زیرمنو ده" Icon="Resources/titleMuenIcon.png" />
-                <Metro:MetroMenuItem Header="زیرمنو یازده" Icon="Resources/titleMuenIcon.png">
-                    <Metro:MetroMenuItem Header="زیرمنو چهارده" Icon="Resources/titleMuenIcon.png" />
-                    <Metro:MetroMenuSeparator />
-                    <Metro:MetroMenuItem Header="زیرمنو شانزده" Icon="Resources/titleMuenIcon.png" />
-                </Metro:MetroMenuItem>
-            </Metro:MetroMenuItem>
-            <Metro:MetroMenuSeparator />
-            <Metro:MetroMenuItem x:Name="exit" Header="زیرمنو هفده" />
-        </Metro:MetroContextMenu>
-    </Metro:MetroWindow.ContextMenu>
 
     <Grid>
 

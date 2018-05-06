@@ -190,6 +190,12 @@
                                                 <DataGridTextColumn Binding="{Binding Gender}" Header="جنسیت" MinWidth="100" Width="*" />
                                                 <DataGridTextColumn Binding="{Binding Base}" Header="پایه" Width="*" />
                                             </DataGrid.Columns>
+                                            <DataGrid.ContextMenu>
+                                                <Metro:MetroContextMenu>
+                                                    <Metro:MetroMenuItem Icon="/Resources/delete.png" Header="حذف" Click="btnDelete_Click" />
+                                                    <Metro:MetroMenuItem Icon="/Resources/edit.png" Header="تغییر عکس" Click="btnEditChoose_Click" />
+                                                </Metro:MetroContextMenu>
+                                            </DataGrid.ContextMenu>
                                         </DataGrid>
                                     </StackPanel>
                                 </Grid>

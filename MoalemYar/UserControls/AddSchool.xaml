@@ -116,6 +116,11 @@
                                                 <DataGridTextColumn Binding="{Binding Base}" Header="پایه" MinWidth="70" Width="*" />
                                                 <DataGridTextColumn Binding="{Binding Year}" Header="سال تحصیلی" Width="*" />
                                             </DataGrid.Columns>
+                                            <DataGrid.ContextMenu>
+                                                <Metro:MetroContextMenu>
+                                                    <Metro:MetroMenuItem Icon="/Resources/delete.png" Header="حذف" Click="btnDelete_Click" />
+                                                </Metro:MetroContextMenu>
+                                            </DataGrid.ContextMenu>
                                         </DataGrid>
                                     </StackPanel>
                                 </Grid>

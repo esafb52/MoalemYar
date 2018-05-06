@@ -96,6 +96,11 @@
                                                 <DataGridTextColumn Binding="{Binding Username}" Header="نام کاربری" MinWidth="100" Width="*" />
                                                 <DataGridTextColumn Binding="{Binding Password}" Header="رمز عبور" Width="*" />
                                             </DataGrid.Columns>
+                                            <DataGrid.ContextMenu>
+                                                <Metro:MetroContextMenu>
+                                                    <Metro:MetroMenuItem Icon="/Resources/delete.png" Header="حذف" Click="btnDelete_Click" />
+                                                </Metro:MetroContextMenu>
+                                            </DataGrid.ContextMenu>
                                         </DataGrid>
                                     </StackPanel>
                                 </Grid>
