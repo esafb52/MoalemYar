@@ -164,7 +164,7 @@
                                     </TextBlock>
                                 </Grid>
                             </StackPanel>
-                            <Metro:MetroTextBox x:Name="txtEditSearch" TabIndex="2" HorizontalAlignment="Stretch" VerticalAlignment="Top" ButtonTitle="بروزرسانی لیست" ButtonClick="txtEditSearch_ButtonClick" FlowDirection="RightToLeft" InputHint="جستجو..." PopupHint="جستجو بصورت خودکار انجام می شود" MetroPopupBackgroundState="Red2" Margin="0,5,0,0" Icon="../Resources/editIcon.png" TextChanged="txtEditSearch_TextChanged" />
+                            <Metro:MetroTextBox MaxLength="40" x:Name="txtEditSearch" TabIndex="2" HorizontalAlignment="Stretch" VerticalAlignment="Top" ButtonTitle="بروزرسانی لیست" ButtonClick="txtEditSearch_ButtonClick" FlowDirection="RightToLeft" InputHint="جستجو..." PopupHint="جستجو بصورت خودکار انجام می شود" MetroPopupBackgroundState="Red2" Margin="0,5,0,0" Icon="../Resources/editIcon.png" TextChanged="txtEditSearch_TextChanged" />
                             <Grid>
                                 <ListView Margin="0,5,0,0" TabIndex="3" ScrollViewer.VerticalScrollBarVisibility="Auto" VerticalAlignment="Top" FlowDirection="RightToLeft" SelectionMode="Single" x:Name="dgv" SelectionChanged="dgv_SelectionChanged">
                                     <ListView.View>

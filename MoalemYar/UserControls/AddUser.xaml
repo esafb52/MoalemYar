@@ -83,7 +83,7 @@
                                 </Grid.ColumnDefinitions>
                                 <Grid Name="grdedit" Grid.Column="0">
                                     <StackPanel Orientation="Vertical">
-                                        <Metro:MetroTextBox Name="txtEditSearch" ButtonTitle="بروزرسانی لیست" HorizontalAlignment="Stretch" MaxWidth="{Binding Path=ActualWidth, ElementName=grdedit, Converter={local1:MultiplyConverter Multiplier=.9}}" ButtonClick="txtEditSearch_ButtonClick"  FlowDirection="RightToLeft" InputHint="جستجو..." PopupHint="جستجو بصورت خودکار انجام می شود" MetroPopupBackgroundState="Red2" Icon="../Resources/editIcon.png" TextChanged="txtEditSearch_TextChanged" />
+                                        <Metro:MetroTextBox MaxLength="40" Name="txtEditSearch" ButtonTitle="بروزرسانی لیست" HorizontalAlignment="Stretch" MaxWidth="{Binding Path=ActualWidth, ElementName=grdedit, Converter={local1:MultiplyConverter Multiplier=.9}}" ButtonClick="txtEditSearch_ButtonClick"  FlowDirection="RightToLeft" InputHint="جستجو..." PopupHint="جستجو بصورت خودکار انجام می شود" MetroPopupBackgroundState="Red2" Icon="../Resources/editIcon.png" TextChanged="txtEditSearch_TextChanged" />
                                         <DataGrid x:Name="dataGrid" AutoGenerateColumns="False" HorizontalAlignment="Stretch"
                                       Background="#eceff5" RowHeaderWidth="0" AlternatingRowBackground="#fbfcfe"
                                       GridLinesVisibility="Horizontal" CanUserReorderColumns="False" MaxWidth="{Binding Path=ActualWidth, ElementName=grdedit, Converter={local1:MultiplyConverter Multiplier=.9}}"

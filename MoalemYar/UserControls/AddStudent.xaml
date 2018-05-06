@@ -174,7 +174,7 @@
                                 </TextBlock>
                                 <Grid Name="grdedit" Grid.Column="0" Margin="0,35,10,5">
                                     <StackPanel Orientation="Vertical">
-                                        <Metro:MetroTextBox TabIndex="1" x:Name="txtEditSearch" HorizontalAlignment="Stretch" MaxWidth="{Binding Path=ActualWidth, ElementName=grdedit, Converter={local1:MultiplyConverter Multiplier=.9}}" VerticalAlignment="Top" ButtonTitle="بروزرسانی لیست" ButtonClick="txtEditSearch_ButtonClick"  FlowDirection="RightToLeft" InputHint="جستجو..." PopupHint="جستجو بصورت خودکار انجام می شود" MetroPopupBackgroundState="Red2" Icon="../Resources/editIcon.png" TextChanged="txtEditSearch_TextChanged" />
+                                        <Metro:MetroTextBox TabIndex="1" MaxLength="40" x:Name="txtEditSearch" HorizontalAlignment="Stretch" MaxWidth="{Binding Path=ActualWidth, ElementName=grdedit, Converter={local1:MultiplyConverter Multiplier=.9}}" VerticalAlignment="Top" ButtonTitle="بروزرسانی لیست" ButtonClick="txtEditSearch_ButtonClick"  FlowDirection="RightToLeft" InputHint="جستجو..." PopupHint="جستجو بصورت خودکار انجام می شود" MetroPopupBackgroundState="Red2" Icon="../Resources/editIcon.png" TextChanged="txtEditSearch_TextChanged" />
                                         <DataGrid x:Name="dataGrid" AutoGenerateColumns="False" HorizontalAlignment="Stretch"
                                       Background="#eceff5" RowHeaderWidth="0" AlternatingRowBackground="#fbfcfe" MaxWidth="{Binding Path=ActualWidth, ElementName=grdedit, Converter={local1:MultiplyConverter Multiplier=.9}}"
                                       GridLinesVisibility="Horizontal" CanUserReorderColumns="False" TabIndex="2"
