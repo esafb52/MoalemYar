@@ -210,6 +210,22 @@ namespace MoalemYar
             builder.Queue();
         }
 
+        public void ShowDeleteExistNotification(string Type, string Type2)
+        {
+            var builder = this.Manager
+                .CreateMessage()
+               .Accent(AppVariable.RED)
+               .Background(AppVariable.BGBLACK)
+               .HasBadge("هشدار")
+               .HasMessage(string.Format("نمی توان این {0} را حذف کرد، ابتدا {1} این {0} را حذف کنید", Type, Type2))
+               .Dismiss().WithButton("باشه", button => { })
+               .Animates(true)
+               .AnimationInDuration(0.75)
+               .AnimationOutDuration(0.5)
+            .Dismiss().WithDelay(TimeSpan.FromSeconds(5));
+            builder.Queue();
+        }
+
         public void ShowSamePasswordNotification()
         {
             var builder = this.Manager

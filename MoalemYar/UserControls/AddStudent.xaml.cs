@@ -168,11 +168,27 @@ namespace MoalemYar.UserControls
             }
         }
 
+        //Todo:if new table created this func must be update
         private void deleteStudent(long id)
         {
-            var query = DeleteStudentAsync(id);
-            query.Wait();
-            MainWindow.main.getexHint();
+            using (var db = new DataClass.myDbContext())
+            {
+                var checkQuery = db.Scores.Where(x => x.StudentId == id).Any();
+                var checkQuery2 = db.Attendances.Where(x => x.StudentId == id).Any();
+
+                if (checkQuery || checkQuery2)
+                {
+                    MainWindow.main.ShowDeleteExistNotification("دانش آموز", "فعالیت ها، نمره ها و لیست حضور غیاب");
+                }
+                else
+                {
+                    var query = DeleteStudentAsync(id);
+                    query.Wait();
+                    MainWindow.main.getexHint();
+                    MainWindow.main.ShowDeletedNotification(true, txtName.Text, "دانش آموز");
+                }
+            }
+            
         }
 
         private void updateStudent(long id, long BaseId, string Name, string LName, string FName, string Gender, byte[] Image)
@@ -402,7 +418,6 @@ namespace MoalemYar.UserControls
                 dynamic selectedItem = dataGrid.SelectedItems[0];
                 long id = selectedItem.Id;
                 deleteStudent(id);
-                MainWindow.main.ShowDeletedNotification(true, txtName.Text, "دانش آموز");
                 editStack.IsEnabled = false;
                 getStudent(Convert.ToInt64(cmbBaseEdit.SelectedValue));
             }

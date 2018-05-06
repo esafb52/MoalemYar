@@ -123,12 +123,23 @@ namespace MoalemYar.UserControls
             {
             }
         }
-
         private void deleteSchool(long id)
         {
-            var query = DeleteSchoolAsync(id);
-            query.Wait();
-            MainWindow.main.getexHint();
+            using (var db = new DataClass.myDbContext())
+            {
+                var checkQuery = db.Students.Where(x=>x.BaseId == id).Any();
+                if (checkQuery)
+                {
+                    MainWindow.main.ShowDeleteExistNotification("مدرسه", "دانش آموزان");
+                }
+                else
+                {
+                    var query = DeleteSchoolAsync(id);
+                    query.Wait();
+                    MainWindow.main.getexHint();
+                    MainWindow.main.ShowDeletedNotification(true, txtSchool.Text, "مدرسه");
+                }
+            }
         }
 
         private void updateSchool(long id, string Name, string Base, string Admin, string Year)
@@ -333,7 +344,6 @@ namespace MoalemYar.UserControls
                 dynamic selectedItem = dataGrid.SelectedItems[0];
                 long id = selectedItem.Id;
                 deleteSchool(id);
-                MainWindow.main.ShowDeletedNotification(true, txtSchool.Text, "مدرسه");
                 editGrid.IsEnabled = false;
                 getSchool();
             }
