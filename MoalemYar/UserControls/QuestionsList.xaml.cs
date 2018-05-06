@@ -544,10 +544,13 @@ namespace MoalemYar.UserControls
 
         private void txtEditSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (txtEditSearch.Text != string.Empty)
-                dataGridEdit.ItemsSource = _initialCollectionScore.Where(x => x.Book.Contains(txtEditSearch.Text) || x.Date.Contains(txtEditSearch.Text) || x.Scores.Contains(txtEditSearch.Text) || x.Desc.Contains(txtEditSearch.Text)).Select(x => x);
-            else
-                dataGridEdit.ItemsSource = _initialCollectionScore.Select(x => x);
+            if (dataGridEdit.ItemsSource != null)
+            {
+                if (txtEditSearch.Text != string.Empty)
+                    dataGridEdit.ItemsSource = _initialCollectionScore.Where(x => x.Book.Contains(txtEditSearch.Text) || x.Date.Contains(txtEditSearch.Text) || x.Scores.Contains(txtEditSearch.Text) || x.Desc.Contains(txtEditSearch.Text)).Select(x => x);
+                else
+                    dataGridEdit.ItemsSource = _initialCollectionScore.Select(x => x);
+            }
         }
 
         private void txtEditSearch_ButtonClick(object sender, EventArgs e)

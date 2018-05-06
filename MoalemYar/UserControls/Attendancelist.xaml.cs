@@ -322,10 +322,13 @@ namespace MoalemYar.UserControls
 
         private void txtEditSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (txtEditSearch.Text != string.Empty)
-                dgv.ItemsSource = _initialCollectionAtendance.Where(x => x.Date.Contains(txtEditSearch.Text)).Select(x => x);
-            else
-                dgv.ItemsSource = _initialCollectionAtendance.Select(x => x);
+            if (dgv.ItemsSource != null)
+            {
+                if (txtEditSearch.Text != string.Empty)
+                    dgv.ItemsSource = _initialCollectionAtendance.Where(x => x.Date.Contains(txtEditSearch.Text)).Select(x => x);
+                else
+                    dgv.ItemsSource = _initialCollectionAtendance.Select(x => x);
+            }
         }
 
         private void txtEditSearch_ButtonClick(object sender, EventArgs e)
