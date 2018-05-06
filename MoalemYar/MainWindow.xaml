@@ -12,23 +12,24 @@
                    Title="{Binding Path=appTitle}" Loaded="MetroWindow_Loaded">
     <Metro:MetroWindow.Menu>
         <Metro:MetroTitleMenu>
-            <Metro:MetroTitleMenuItem Header="تنظیمات" Icon="Resources/titleMuenIcon.png">
-                <Metro:MetroMenuItem Header="تنظیمات شماره یک" />
-
-                <Metro:MetroMenuSeparator />
-                <Metro:MetroMenuItem Header="تنظیمات شماره پنج" Icon="Resources/titleMuenIcon.png" />
-                <Metro:MetroMenuItem Header="تنظیمات شماره شش" Icon="Resources/titleMuenIcon.png">
-                    <Metro:MetroMenuItem Header="تنظیمات شماره نه" Icon="Resources/titleMuenIcon.png" />
-                    <Metro:MetroMenuSeparator />
-                    <Metro:MetroMenuItem Header="تنظیمات شماره ده" Icon="Resources/titleMuenIcon.png" />
-                    <Metro:MetroMenuItem Header="تنظیمات شماره یازده" Icon="Resources/titleMuenIcon.png">
-                        <Metro:MetroMenuItem Header="تنظیمات شماره چهارده" Icon="Resources/titleMuenIcon.png" />
-                        <Metro:MetroMenuSeparator />
-                        <Metro:MetroMenuItem Header="تنظیمات شماره پانزده" Icon="Resources/titleMuenIcon.png" />
-                    </Metro:MetroMenuItem>
+            <Metro:MetroTitleMenuItem FlowDirection="RightToLeft" Header="منو" Icon="Resources/titleMuenIcon.png" >
+                <Metro:MetroMenuItem Header="عملیات پایه">
+                <Metro:MetroMenuItem Header="داشبورد" Tag="0" Click="MetroMenuItem_Click"/>
+                <Metro:MetroMenuItem Header="مدرسه و کلاس" Tag="1" Click="MetroMenuItem_Click"/>
+                <Metro:MetroMenuItem Header="دانش آموز" Tag="2" Click="MetroMenuItem_Click"/>
+                <Metro:MetroMenuItem Header="حساب کاربری" Tag="3" Click="MetroMenuItem_Click"/>
                 </Metro:MetroMenuItem>
+                <Metro:MetroMenuSeparator />
+                <Metro:MetroMenuItem Header="فعالیت ها">
+                    <Metro:MetroMenuItem Header="حضور و غیاب" Tag="4" Click="MetroMenuItem_Click"/>
+                    <Metro:MetroMenuItem Header="پرسش دروس" Tag="5" Click="MetroMenuItem_Click"/>
+                    <Metro:MetroMenuItem Header="فعالیت ها" Tag="6" Click="MetroMenuItem_Click"/>
+                    <Metro:MetroMenuItem Header="نفرات برتر" Tag="7" Click="MetroMenuItem_Click"/>
+                    <Metro:MetroMenuItem Header="پیشرفت تحصیلی" Tag="8" Click="MetroMenuItem_Click"/>
+                    <Metro:MetroMenuItem Header="استعداد یابی" Tag="9" Click="MetroMenuItem_Click"/>
+                </Metro:MetroMenuItem>
+                <Metro:MetroMenuSeparator/>
             </Metro:MetroTitleMenuItem>
-            <Metro:MetroTitleMenuItem Header="تنظیمات شماره یست یک" Icon="Resources/titleMuenIcon.png" />
         </Metro:MetroTitleMenu>
     </Metro:MetroWindow.Menu>
 

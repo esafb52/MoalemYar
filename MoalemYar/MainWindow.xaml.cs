@@ -608,5 +608,51 @@ namespace MoalemYar
         {
             exContent.Content = new QuestionsList();
         }
+
+        private void MetroMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            var menuItem = sender as Arthas.Controls.Metro.MetroMenuItem;
+            switch (Convert.ToInt32(menuItem.Tag))
+            {
+                case 0:
+                    //Todo
+                    break;
+                case 1:
+                    exAddOrUpdateSchool_Click(null, null);
+                    break;
+                case 2:
+                    exAddOrUpdateStudent_Click(null, null);
+
+                    break;
+                case 3:
+                    exAddOrUpdateUser_Click(null, null);
+
+                    break;
+                case 4:
+                    exAttendancelist_Click(null, null);
+
+                    break;
+                case 5:
+                    exQuestionsList_Click(null, null);
+
+                    break;
+                case 6:
+                    //Todo
+
+                    break;
+                case 7:
+                    //Todo
+
+                    break;
+                case 8:
+                    //Todo
+
+                    break;
+                case 9:
+                    //Todo
+
+                    break;
+            }
+        }
     }
 }

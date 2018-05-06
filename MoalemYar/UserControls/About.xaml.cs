@@ -37,7 +37,7 @@ namespace MoalemYar.UserControls
         public About()
         {
             InitializeComponent();
-            this.DataContext = this;
+            DataContext = this;
 
             History = Properties.Resources.History;
             AppName = AppVariable.getAppTitle;
@@ -49,22 +49,30 @@ namespace MoalemYar.UserControls
 
         private void CheckUpdate()
         {
-            newVersion = string.Empty;
-            ChangeLog = string.Empty;
-            url = "";
+            try
+            {
+                newVersion = string.Empty;
+                ChangeLog = string.Empty;
+                url = "";
 
-            XDocument doc = XDocument.Load(AppVariable.UpdateServer);
-            var items = doc
-                .Element(XName.Get(AppVariable.UpdateXmlTag))
-                .Elements(XName.Get(AppVariable.UpdateXmlChildTag));
-            var versionItem = items.Select(ele => ele.Element(XName.Get(AppVariable.UpdateVersionTag)).Value);
-            var urlItem = items.Select(ele => ele.Element(XName.Get(AppVariable.UpdateUrlTag)).Value);
-            var changelogItem = items.Select(ele => ele.Element(XName.Get(AppVariable.UpdateChangeLogTag)).Value);
+                XDocument doc = XDocument.Load(AppVariable.UpdateServer);
+                var items = doc
+                    .Element(XName.Get(AppVariable.UpdateXmlTag))
+                    .Elements(XName.Get(AppVariable.UpdateXmlChildTag));
+                var versionItem = items.Select(ele => ele.Element(XName.Get(AppVariable.UpdateVersionTag)).Value);
+                var urlItem = items.Select(ele => ele.Element(XName.Get(AppVariable.UpdateUrlTag)).Value);
+                var changelogItem = items.Select(ele => ele.Element(XName.Get(AppVariable.UpdateChangeLogTag)).Value);
 
-            newVersion = versionItem.FirstOrDefault();
-            url = urlItem.FirstOrDefault();
-            ChangeLog = changelogItem.FirstOrDefault();
-            CompareVersions();
+                newVersion = versionItem.FirstOrDefault();
+                url = urlItem.FirstOrDefault();
+                ChangeLog = changelogItem.FirstOrDefault();
+                CompareVersions();
+            }
+            catch (Exception)
+            {
+
+            }
+           
         }
 
         private void CompareVersions()
