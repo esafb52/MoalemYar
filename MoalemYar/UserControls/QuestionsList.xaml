@@ -17,7 +17,7 @@
             <ColumnDefinition Width="141*"/>
         </Grid.ColumnDefinitions>
         <Metro:MetroTabControl Focusable="False" x:Name="tabc" IsTabStop="True" TabIndex="-1" SelectionChanged="tabc_SelectionChanged" Grid.ColumnSpan="2">
-            <Metro:MetroTabItem Header="ثبت اطلاعات" Height="38" VerticalAlignment="Top">
+            <Metro:MetroTabItem Header="ثبت اطلاعات">
                 <Grid KeyboardNavigation.TabNavigation="Cycle"  Name="grd">
                     <ContentControl x:Name="cmbAddContentBook" Focusable="False" Height="30" VerticalAlignment="Top" Margin="216,10,0,0" HorizontalAlignment="Left" Width="200" Grid.ColumnSpan="2">
                         <ContentControl.ContentTemplate>
