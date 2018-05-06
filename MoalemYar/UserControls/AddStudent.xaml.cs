@@ -320,6 +320,7 @@ namespace MoalemYar.UserControls
             }
         }
 
+        //Todo: search bug null
         private void txtEditSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (txtEditSearch.Text != string.Empty)

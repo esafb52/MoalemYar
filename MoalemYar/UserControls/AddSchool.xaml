@@ -37,9 +37,9 @@
                         </Grid>
                         <Metro:MetroWaterfallFlow ListWidth="350" Height="55">
                             <StackPanel Margin="0,5,0,0" Orientation="Vertical">
-                                <Metro:MetroTextBox Margin="2" Name="txtAddYear" TabIndex="0" InputHint="سال تحصیلی" Height="30" PopupHint="سال تحصیلی باید بصورت 97-98 وارد شود" MetroPopupBackgroundState="DarkRed" />
-                                <Metro:MetroTextBox Margin="2" Name="txtAddSchool" TabIndex="1" InputHint="نام مدرسه" PopupHint="نام آموزشگاه را وارد کنید" MetroPopupBackgroundState="DarkRed"  Height="30" />
-                                <Metro:MetroTextBox Margin="2" Name="txtAddAdmin" TabIndex="2" InputHint="نام مدیر" Height="30" PopupHint="نام مدیریت آموزشگاه" MetroPopupBackgroundState="DarkRed" />
+                                <Metro:MetroTextBox MaxLength="5" Margin="2" Name="txtAddYear" TabIndex="0" InputHint="سال تحصیلی" Height="30" PopupHint="سال تحصیلی باید بصورت 97-98 وارد شود" MetroPopupBackgroundState="DarkRed" />
+                                <Metro:MetroTextBox MaxLength="20" Margin="2" Name="txtAddSchool" TabIndex="1" InputHint="نام مدرسه" PopupHint="نام آموزشگاه را وارد کنید" MetroPopupBackgroundState="DarkRed"  Height="30" />
+                                <Metro:MetroTextBox MaxLength="20" Margin="2" Name="txtAddAdmin" TabIndex="2" InputHint="نام مدیر" Height="30" PopupHint="نام مدیریت آموزشگاه" MetroPopupBackgroundState="DarkRed" />
                                 <ContentControl Margin="2" Name="cmbAddContent" TabIndex="3" Focusable="False" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="233">
                                     <ContentControl.ContentTemplate>
                                         <DataTemplate>
@@ -120,9 +120,9 @@
                                     </StackPanel>
                                 </Grid>
                                 <StackPanel Name="editGrid" IsEnabled="False" Orientation="Vertical" Grid.Column="1" Margin="5,0,0,0">
-                                    <Metro:MetroTextBox Margin="2" Name="txtYear"  InputHint="سال تحصیلی" Height="30" PopupHint="سال تحصیلی باید بصورت 97-98 وارد شود" MetroPopupBackgroundState="DarkRed" VerticalAlignment="Top" />
-                                    <Metro:MetroTextBox Margin="2" Name="txtSchool"  InputHint="نام مدرسه" PopupHint="نام آموزشگاه را وارد کنید" MetroPopupBackgroundState="DarkRed" Height="30" VerticalAlignment="Top" />
-                                    <Metro:MetroTextBox Margin="2" Name="txtAdmin" InputHint="نام مدیر" Height="30" PopupHint="نام مدیریت آموزشگاه" MetroPopupBackgroundState="DarkRed" VerticalAlignment="Top" />
+                                    <Metro:MetroTextBox Margin="2" MaxLength="5" Name="txtYear"  InputHint="سال تحصیلی" Height="30" PopupHint="سال تحصیلی باید بصورت 97-98 وارد شود" MetroPopupBackgroundState="DarkRed" VerticalAlignment="Top" />
+                                    <Metro:MetroTextBox Margin="2" MaxLength="20" Name="txtSchool"  InputHint="نام مدرسه" PopupHint="نام آموزشگاه را وارد کنید" MetroPopupBackgroundState="DarkRed" Height="30" VerticalAlignment="Top" />
+                                    <Metro:MetroTextBox Margin="2" MaxLength="20" Name="txtAdmin" InputHint="نام مدیر" Height="30" PopupHint="نام مدیریت آموزشگاه" MetroPopupBackgroundState="DarkRed" VerticalAlignment="Top" />
                                     <ContentControl Name="cmbContent" Focusable="False" Margin="2,2,1,2" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="188">
                                         <ContentControl.ContentTemplate>
                                             <DataTemplate>

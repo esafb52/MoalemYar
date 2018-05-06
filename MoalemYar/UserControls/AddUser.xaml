@@ -41,9 +41,9 @@
                         </Grid>
                         <Metro:MetroWaterfallFlow ListWidth="350" VerticalAlignment="Top" Height="55" Grid.Row="1">
                             <StackPanel Margin="0,5,0,0" Orientation="Vertical">
-                                <Metro:MetroTextBox Margin="2" Name="txtAddUsername" TabIndex="0" InputHint="نام کاربری" Height="30" PopupHint="نام کاربری باید بصورت لاتین باشد" MetroPopupBackgroundState="DarkRed" />
-                                <Metro:MetroTextBox Margin="2" Name="txtAddPassword" IsPassWordBox="True" TabIndex="1" InputHint="رمز عبور" PopupHint="رمز عبور می تواند ترکیبی از حروف و اعداد باشد" MetroPopupBackgroundState="DarkRed" Height="30" />
-                                <Metro:MetroTextBox Margin="2" Name="txtAddPasswordAg" IsPassWordBox="True" TabIndex="2" InputHint="تکرار رمز عبور" Height="30" PopupHint="رمز عبور خود را تکرار کنید" MetroPopupBackgroundState="DarkRed" />
+                                <Metro:MetroTextBox MaxLength="20" Margin="2" Name="txtAddUsername" TabIndex="0" InputHint="نام کاربری" Height="30" PopupHint="نام کاربری باید بصورت لاتین باشد" MetroPopupBackgroundState="DarkRed" />
+                                <Metro:MetroTextBox MaxLength="20" Margin="2" Name="txtAddPassword" IsPassWordBox="True" TabIndex="1" InputHint="رمز عبور" PopupHint="رمز عبور می تواند ترکیبی از حروف و اعداد باشد" MetroPopupBackgroundState="DarkRed" Height="30" />
+                                <Metro:MetroTextBox MaxLength="20" Margin="2" Name="txtAddPasswordAg" IsPassWordBox="True" TabIndex="2" InputHint="تکرار رمز عبور" Height="30" PopupHint="رمز عبور خود را تکرار کنید" MetroPopupBackgroundState="DarkRed" />
                             </StackPanel>
                         </Metro:MetroWaterfallFlow>
                     </StackPanel>
@@ -100,9 +100,9 @@
                                     </StackPanel>
                                 </Grid>
                                 <StackPanel IsEnabled="False" Orientation="Vertical" Grid.Column="1" Name="editGrid" Margin="5,0,0,0">
-                                    <Metro:MetroTextBox Name="txtUsername" Margin="2" InputHint="نام کاربری" Height="30" PopupHint="نام کاربری باید بصورت لاتین باشد" MetroPopupBackgroundState="DarkRed" VerticalAlignment="Top" />
-                                    <Metro:MetroTextBox Name="txtPassword" Margin="2" InputHint="رمز عبور" PopupHint="رمز عبور می تواند ترکیبی از حروف و اعداد باشد" MetroPopupBackgroundState="DarkRed" Height="30" VerticalAlignment="Top" />
-                                    <Metro:MetroTextBox Name="txtPasswordAg" Margin="2" InputHint="تکرار رمز عبور" Height="30" PopupHint="رمز عبور خود را تکرار کنید" MetroPopupBackgroundState="DarkRed" VerticalAlignment="Top" />
+                                    <Metro:MetroTextBox MaxLength="20" Name="txtUsername" Margin="2" InputHint="نام کاربری" Height="30" PopupHint="نام کاربری باید بصورت لاتین باشد" MetroPopupBackgroundState="DarkRed" VerticalAlignment="Top" />
+                                    <Metro:MetroTextBox MaxLength="20" Name="txtPassword" Margin="2" InputHint="رمز عبور" PopupHint="رمز عبور می تواند ترکیبی از حروف و اعداد باشد" MetroPopupBackgroundState="DarkRed" Height="30" VerticalAlignment="Top" />
+                                    <Metro:MetroTextBox MaxLength="20" Name="txtPasswordAg" Margin="2" InputHint="تکرار رمز عبور" Height="30" PopupHint="رمز عبور خود را تکرار کنید" MetroPopupBackgroundState="DarkRed" VerticalAlignment="Top" />
                                 </StackPanel>
                             </Grid>
                         </StackPanel>
