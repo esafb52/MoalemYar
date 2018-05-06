@@ -230,7 +230,7 @@ namespace MoalemYar.UserControls
                     MainWindow.main.ShowNoDataNotification("Attendance");
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
             }
         }
