@@ -11,6 +11,7 @@
 using MoalemYar.DataClass.Tables;
 using SQLite.CodeFirst;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 
 namespace MoalemYar.DataClass
 {
@@ -24,35 +25,26 @@ namespace MoalemYar.DataClass
         public virtual DbSet<Score> Scores { get; set; }
 
         public myDbContext()
-       : base("default")
-        {
-            //base.Database.Connection.ConnectionString = @"data source=" + AppVariable.myPath + @"database\data.db;";
-        }
+       : base("default") {}
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            var sqliteConnectionInitializer = new MyDbContextInitializer(modelBuilder);
-
-            Database.SetInitializer(sqliteConnectionInitializer);
-            // Database.CreateIfNotExists();
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<myDbContext, MyDbContextInitializer>(true));
         }
 
-        public class MyDbContextInitializer : SqliteDropCreateDatabaseWhenModelChanges<myDbContext>
+        internal sealed class MyDbContextInitializer : DbMigrationsConfiguration<myDbContext>
         {
-            public MyDbContextInitializer(DbModelBuilder modelBuilder)
-                : base(modelBuilder)
+            public MyDbContextInitializer()
             {
+                AutomaticMigrationsEnabled = true;
+
+                // This command alter the class to support Migration to SQLite. 
+                SetSqlGenerator("System.Data.SQLite", new SqliteMigrationSqlGenerator());
             }
 
             protected override void Seed(myDbContext context)
             {
-                //context.Users.Add(new User
-                //{
-                //    Username = "admin",
-                //    Password = "1"
-                //});
-
-                //base.Seed(context);
+                //  This method will be called after migrating to the latest version.
             }
         }
     }
