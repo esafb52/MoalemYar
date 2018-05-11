@@ -8,6 +8,8 @@
 *
 ***********************************************************************************/
 
+using nucs.JsonSettings;
+using nucs.JsonSettings.Fluent;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -34,7 +36,7 @@ namespace MoalemYar.UserControls
             InitializeComponent();
             this.DataContext = this;
             main = this;
-            var color = (Color)ColorConverter.ConvertFromString(AppVariable.ReadSetting(AppVariable.SkinCode));
+            var color = (Color)ColorConverter.ConvertFromString(MainWindow.main.BorderBrush.ToString());
             var brush = new SolidColorBrush(color);
             BorderColor = brush;
         }

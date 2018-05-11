@@ -19,7 +19,6 @@ namespace MoalemYar
 {
     public class AppVariable
     {
-        private static SettingsBag Settings { get; } = JsonSettings.Construct<SettingsBag>(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\MoalemYar\config.json").EnableAutosave().LoadNow();
 
         #region Crash Report
 
@@ -70,99 +69,6 @@ namespace MoalemYar
         public static string VersionCode = "Version";
 
         #endregion Config Key
-
-        #region "ReadWrite Settings"
-
-        public static int ReadIntSetting(string key)
-        {
-            try
-            {
-                return Convert.ToInt32(Settings[key]);
-            }
-            catch (Exception)
-            {
-                return 0;
-            }
-        }
-
-        public static bool ReadBoolSetting(string key)
-        {
-            try
-            {
-                return Convert.ToBoolean(Settings[key]);
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-        }
-
-        public static string ReadSetting(string key)
-        {
-            try
-            {
-                return Settings[key].ToString();
-            }
-            catch (Exception)
-            {
-                return "Error Reading";
-            }
-        }
-
-        public static void InitializeSettings()
-        {
-            try
-            {
-                Settings[CredentialLogin] = false;
-                Settings[Autorun] = false;
-                Settings[HamburgerMenu] = true;
-                Settings[AutoSendReport] = true;
-                Settings[SkinCode] = DEFAULT_BORDER_BRUSH;
-                Settings[VersionCode] = getAppVersion;
-            }
-            catch (Exception)
-            {
-                return;
-            }
-        }
-
-        public static void AddUpdateAppSettings(string key, string value)
-        {
-            try
-            {
-                Settings[key] = value;
-            }
-            catch (Exception)
-            {
-                return;
-            }
-        }
-
-        public static void AddUpdateAppSettings(string key, int value)
-        {
-            try
-            {
-                Settings[key] = value;
-            }
-            catch (Exception)
-            {
-                return;
-            }
-        }
-
-        public static void AddUpdateAppSettings(string key, bool value)
-        {
-            try
-            {
-                Settings[key] = value;
-            }
-            catch (Exception)
-            {
-                return;
-            }
-        }
-
-        #endregion "ReadWrite Settings"
 
         public static string RunActionMeasurePerformance(Action action)
         {

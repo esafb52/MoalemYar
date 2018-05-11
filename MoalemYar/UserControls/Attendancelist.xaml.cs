@@ -8,6 +8,8 @@
 *
 ***********************************************************************************/
 
+using nucs.JsonSettings;
+using nucs.JsonSettings.Fluent;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -44,7 +46,7 @@ namespace MoalemYar.UserControls
             strDate = pc.GetYear(DateTime.Now).ToString("0000") + "/" + pc.GetMonth(DateTime.Now).ToString("00") + "/" + pc.GetDayOfMonth(DateTime.Now).ToString("00");
             txtDate.Text = string.Format("تاریخ امروز : {0} ", strDate);
 
-            var color = (System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString(AppVariable.ReadSetting(AppVariable.SkinCode));
+            var color = (System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString(MainWindow.main.BorderBrush.ToString());
             var brush = new SolidColorBrush(color);
             BorderColor = brush;
         }

@@ -14,8 +14,8 @@
                 <Grid>
                     <Metro:MetroGroupBox Margin="5" Header="عمومی">
                         <StackPanel>
-                            <Metro:MetroSwitch x:Name="swLogin" Content="ورود با استفاده از رمز عبور" Margin="10" Checked="swLogin_Checked" Unchecked="swLogin_Unchecked" />
-                            <Metro:MetroSwitch x:Name="swAutoStart" Content="اجرای خودکار همراه با ویندوز"  Margin="10" Checked="swAutoStart_Checked" Unchecked="swAutoStart_Unchecked" />
+                            <Metro:MetroSwitch x:Name="swLogin" Content="ورود با استفاده از رمز عبور" Margin="10" Checked="swLogin_Checked" Unchecked="swLogin_Checked" />
+                            <Metro:MetroSwitch x:Name="swAutoStart" Content="اجرای خودکار همراه با ویندوز"  Margin="10" Checked="swAutoStart_Checked" Unchecked="swAutoStart_Checked" />
                         </StackPanel>
                     </Metro:MetroGroupBox>
                 </Grid>
@@ -25,14 +25,14 @@
                             <WrapPanel Orientation="Horizontal">
                                 <Metro:MetroColorPicker Margin="10" x:Name="color1" Width="50" Height="50" Background="#6D819A" DefaultColor="#6D819A" Padding="5" ColorPickerClosed="color1_close" />
                             </WrapPanel>
-                            <Metro:MetroSwitch Margin="19" Name="Hamborger_Menu" Content="منوی همبرگری همواره باز باشد" Checked="Hamborger_Menu_Checked" Unchecked="Hamborger_Menu_Unchecked"></Metro:MetroSwitch>
+                            <Metro:MetroSwitch Margin="19" Name="Hamborger_Menu" Content="منوی همبرگری همواره باز باشد" Checked="Hamborger_Menu_Checked" Unchecked="Hamborger_Menu_Checked"></Metro:MetroSwitch>
                         </StackPanel>
                     </Metro:MetroGroupBox>
                 </Grid>
                 <Grid>
                     <Metro:MetroGroupBox Margin="5" Header="کمک به بهبود برنامه">
                         <StackPanel>
-                            <Metro:MetroSwitch Name="swAutoReport" Margin="19" IsChecked="True" Content="ارسال خودکار خطاهای برنامه به سازنده" Checked="swAutoReport_Checked" Unchecked="swAutoReport_Unchecked"></Metro:MetroSwitch>
+                            <Metro:MetroSwitch Name="swAutoReport" Margin="19" IsChecked="True" Content="ارسال خودکار خطاهای برنامه به سازنده" Checked="swAutoReport_Checked" Unchecked="swAutoReport_Checked"></Metro:MetroSwitch>
                         </StackPanel>
                     </Metro:MetroGroupBox>
                 </Grid>

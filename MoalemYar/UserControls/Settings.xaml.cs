@@ -8,6 +8,8 @@
 *
 ***********************************************************************************/
 
+using nucs.JsonSettings;
+using nucs.JsonSettings.Fluent;
 using System;
 using System.IO;
 using System.Windows;
@@ -22,6 +24,7 @@ namespace MoalemYar.UserControls
     public partial class Settings : UserControl
     {
         internal static Settings main;
+        SettingsBag Setting { get; } = JsonSettings.Construct<SettingsBag>(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\MoalemYar\config.json").EnableAutosave().LoadNow();
 
         public Settings()
         {
@@ -37,78 +40,56 @@ namespace MoalemYar.UserControls
 
         private void LoadSettings()
         {
-            if (AppVariable.ReadBoolSetting(AppVariable.CredentialLogin))
+            if (Convert.ToBoolean(Setting[AppVariable.CredentialLogin] ?? false))
                 swLogin.IsChecked = true;
             else
                 swLogin.IsChecked = false;
 
-            if (AppVariable.ReadBoolSetting(AppVariable.Autorun))
+            if (Convert.ToBoolean(Setting[AppVariable.Autorun] ?? false))
                 swAutoStart.IsChecked = true;
             else
                 swAutoStart.IsChecked = false;
 
-            if (AppVariable.ReadBoolSetting(AppVariable.AutoSendReport))
+            if (Convert.ToBoolean(Setting[AppVariable.AutoSendReport] ?? false))
                 swAutoReport.IsChecked = true;
             else
                 swAutoReport.IsChecked = false;
 
-            var hb_Menu = AppVariable.ReadBoolSetting(AppVariable.HamburgerMenu);
+            var hb_Menu = Convert.ToBoolean(Setting[AppVariable.HamburgerMenu] ?? false);
             Hamborger_Menu.IsChecked = hb_Menu;
 
-            var color = (Color)ColorConverter.ConvertFromString(AppVariable.ReadSetting(AppVariable.SkinCode));
+            var color = (Color)ColorConverter.ConvertFromString(Convert.ToString(Setting[AppVariable.SkinCode] ?? AppVariable.DEFAULT_BORDER_BRUSH));
             var brush = new SolidColorBrush(color);
             color1.Background = brush;
         }
 
         private void color1_close()
         {
-            AppVariable.AddUpdateAppSettings(AppVariable.SkinCode, color1.CurrentColor.OpaqueSolidColorBrush.ToString());
+            Setting[AppVariable.SkinCode] = color1.CurrentColor.OpaqueSolidColorBrush.ToString();
             MainWindow.main.RestartNotification();
         }
 
         private void swLogin_Checked(object sender, RoutedEventArgs e)
         {
-            AppVariable.AddUpdateAppSettings(AppVariable.CredentialLogin, true);
+            Setting[AppVariable.CredentialLogin] = swLogin.IsChecked;
         }
 
-        private void swLogin_Unchecked(object sender, RoutedEventArgs e)
-        {
-            AppVariable.AddUpdateAppSettings(AppVariable.CredentialLogin, false);
-        }
-
+        
         private void swAutoStart_Checked(object sender, RoutedEventArgs e)
         {
-            AppVariable.AddUpdateAppSettings(AppVariable.Autorun, true);
-            AppVariable.RegisterInStartup(true);
-        }
-
-        private void swAutoStart_Unchecked(object sender, RoutedEventArgs e)
-        {
-            AppVariable.AddUpdateAppSettings(AppVariable.Autorun, false);
-            AppVariable.RegisterInStartup(false);
+            Setting[AppVariable.Autorun] = swAutoStart.IsChecked;
+            AppVariable.RegisterInStartup(Convert.ToBoolean(swAutoStart.IsChecked));
         }
 
         private void Hamborger_Menu_Checked(object sender, RoutedEventArgs e)
         {
-            AppVariable.AddUpdateAppSettings(AppVariable.HamburgerMenu, true);
-            MainWindow.main.tab.IconMode = false;
-        }
-
-        private void Hamborger_Menu_Unchecked(object sender, RoutedEventArgs e)
-        {
-            AppVariable.AddUpdateAppSettings(AppVariable.HamburgerMenu, false);
-            MainWindow.main.tab.IconMode = true;
+            Setting[AppVariable.HamburgerMenu] = Hamborger_Menu.IsChecked;
+            MainWindow.main.tab.IconMode = Convert.ToBoolean(!Hamborger_Menu.IsChecked);
         }
 
         private void swAutoReport_Checked(object sender, RoutedEventArgs e)
         {
-            AppVariable.AddUpdateAppSettings(AppVariable.AutoSendReport, true);
-            MainWindow.main.LogifyCrashReport();
-        }
-
-        private void swAutoReport_Unchecked(object sender, RoutedEventArgs e)
-        {
-            AppVariable.AddUpdateAppSettings(AppVariable.AutoSendReport, false);
+            Setting[AppVariable.AutoSendReport] = swAutoReport.IsChecked;
             MainWindow.main.LogifyCrashReport();
         }
 
@@ -123,7 +104,6 @@ namespace MoalemYar.UserControls
             if (System.IO.File.Exists(folder))
             {
                 File.Delete(folder);
-                AppVariable.InitializeSettings();
                 MainWindow.main.DataResetDeletedNotification("تنظیمات برنامه");
             }
         }

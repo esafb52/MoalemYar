@@ -53,9 +53,6 @@ namespace MoalemYar
             if (!Directory.Exists(specificFolder))
                 Directory.CreateDirectory(specificFolder);
 
-            if (!System.IO.File.Exists(folder + @"\MoalemYar\config.json"))
-                AppVariable.InitializeSettings();
-
             #endregion Check AppData Folder Existen and Create Config.json
         }
 

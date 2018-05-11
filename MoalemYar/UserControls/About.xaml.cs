@@ -8,6 +8,8 @@
 *
 ***********************************************************************************/
 
+using nucs.JsonSettings;
+using nucs.JsonSettings.Fluent;
 using System;
 using System.Linq;
 using System.Windows;
@@ -42,7 +44,7 @@ namespace MoalemYar.UserControls
             History = Properties.Resources.History;
             AppName = AppVariable.getAppTitle;
             AppVersion = AppVariable.getAppVersion;
-            var color = (Color)ColorConverter.ConvertFromString(AppVariable.ReadSetting(AppVariable.SkinCode));
+            var color = (Color)ColorConverter.ConvertFromString(MainWindow.main.BorderBrush.ToString());
             var brush = new SolidColorBrush(color);
             TimeColor = brush;
         }

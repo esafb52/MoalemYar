@@ -12,6 +12,8 @@ using Arthas.Controls.Metro;
 using DevExpress.Logify.WPF;
 using Enterwell.Clients.Wpf.Notifications;
 using MoalemYar.UserControls;
+using nucs.JsonSettings;
+using nucs.JsonSettings.Fluent;
 using Ookii.Dialogs.Wpf;
 using System;
 using System.Collections.Generic;
@@ -33,6 +35,7 @@ namespace MoalemYar
         internal static MainWindow main;
         private PersianCalendar pc = new PersianCalendar();
         public INotificationMessageManager Manager { get; } = new NotificationMessageManager();
+        SettingsBag Setting { get; } = JsonSettings.Construct<SettingsBag>(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\MoalemYar\config.json").EnableAutosave().LoadNow();
 
         public MainWindow()
         {
@@ -124,7 +127,7 @@ namespace MoalemYar
         {
             try
             {
-                var isEnabledReport = AppVariable.ReadBoolSetting(AppVariable.AutoSendReport);
+                var isEnabledReport = Convert.ToBoolean(Setting[AppVariable.AutoSendReport] ?? false);
                 LogifyAlert client = LogifyAlert.Instance;
                 client.ApiKey = AppVariable.LogifyAPIKey;
                 client.AppName = AppVariable.getAppName;
@@ -149,23 +152,18 @@ namespace MoalemYar
         {
             try
             {
-                var color = (Color)ColorConverter.ConvertFromString(AppVariable.ReadSetting(AppVariable.SkinCode));
+                var color = (Color)ColorConverter.ConvertFromString(Convert.ToString(Setting[AppVariable.SkinCode] ?? AppVariable.DEFAULT_BORDER_BRUSH));
                 var brush = new SolidColorBrush(color);
                 BorderBrush = brush;
 
-                var hb_Menu = AppVariable.ReadBoolSetting(AppVariable.HamburgerMenu);
-                MainWindow.main.tab.IconMode = !hb_Menu;
-
-                var vCode = AppVariable.ReadSetting(AppVariable.VersionCode);
-                if (!vCode.Equals(AppVariable.getAppVersion))
-                    AppVariable.InitializeSettings();
+                var hb_Menu = Convert.ToBoolean(Setting[AppVariable.HamburgerMenu] ?? true);
+                tab.IconMode = !hb_Menu;
+               
             }
             catch (Exception)
             {
                  
             }
-            
-
         }
 
         #region "Notification"
@@ -514,7 +512,7 @@ namespace MoalemYar
         {
             try
             {
-                var isLogin = AppVariable.ReadBoolSetting(AppVariable.CredentialLogin);
+                var isLogin = Convert.ToBoolean(Setting[AppVariable.CredentialLogin] ?? false);
                 if (isLogin)
                 {
                     using (CredentialDialog dialog = new CredentialDialog())
