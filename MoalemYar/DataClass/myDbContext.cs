@@ -29,23 +29,7 @@ namespace MoalemYar.DataClass
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<myDbContext, MyDbContextInitializer>(true));
-        }
-
-        internal sealed class MyDbContextInitializer : DbMigrationsConfiguration<myDbContext>
-        {
-            public MyDbContextInitializer()
-            {
-                AutomaticMigrationsEnabled = true;
-
-                // This command alter the class to support Migration to SQLite. 
-                SetSqlGenerator("System.Data.SQLite", new SqliteMigrationSqlGenerator());
-            }
-
-            protected override void Seed(myDbContext context)
-            {
-                //  This method will be called after migrating to the latest version.
-            }
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<myDbContext, Migrations.Configuration>(true));
         }
     }
 }
