@@ -24,8 +24,7 @@ namespace MoalemYar
         {
             #region This is for Change Database Location we change DataDirectory to Other Location
 
-            string fileName = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-            AppDomain.CurrentDomain.SetData("DataDirectory", System.Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\" + Assembly.GetExecutingAssembly().GetName().Name + @"\");
+            AppDomain.CurrentDomain.SetData("DataDirectory", AppVariable.fileName + @"\");
 
             #endregion This is for Change Database Location we change DataDirectory to Other Location
 
@@ -48,10 +47,8 @@ namespace MoalemYar
 
             #region Check AppData Folder Existen and Create Config.json
 
-            string folder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-            string specificFolder = Path.Combine(folder, Assembly.GetExecutingAssembly().GetName().Name);
-            if (!Directory.Exists(specificFolder))
-                Directory.CreateDirectory(specificFolder);
+            if (!Directory.Exists(AppVariable.fileName))
+                Directory.CreateDirectory(AppVariable.fileName);
 
             #endregion Check AppData Folder Existen and Create Config.json
         }

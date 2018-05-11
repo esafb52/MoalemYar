@@ -24,7 +24,7 @@ namespace MoalemYar.UserControls
     public partial class Settings : UserControl
     {
         internal static Settings main;
-        private SettingsBag Setting { get; } = JsonSettings.Construct<SettingsBag>(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\MoalemYar\config.json").EnableAutosave().LoadNow();
+        private SettingsBag Setting { get; } = JsonSettings.Construct<SettingsBag>(AppVariable.fileName + @"\config.json").EnableAutosave().LoadNow();
 
         public Settings()
         {
@@ -55,7 +55,7 @@ namespace MoalemYar.UserControls
             else
                 swAutoReport.IsChecked = false;
 
-            var hb_Menu = Convert.ToBoolean(Setting[AppVariable.HamburgerMenu] ?? false);
+            var hb_Menu = Convert.ToBoolean(Setting[AppVariable.HamburgerMenu] ?? true);
             Hamborger_Menu.IsChecked = hb_Menu;
 
             var color = (Color)ColorConverter.ConvertFromString(Convert.ToString(Setting[AppVariable.SkinCode] ?? AppVariable.DEFAULT_BORDER_BRUSH));
@@ -66,7 +66,6 @@ namespace MoalemYar.UserControls
         private void color1_close()
         {
             Setting[AppVariable.SkinCode] = color1.CurrentColor.OpaqueSolidColorBrush.ToString();
-            MainWindow.main.RestartNotification();
         }
 
         private void swLogin_Checked(object sender, RoutedEventArgs e)
@@ -99,7 +98,7 @@ namespace MoalemYar.UserControls
 
         public void resetConfig()
         {
-            string folder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\MoalemYar\config.json";
+            string folder = AppVariable.fileName + @"\config.json";
             if (System.IO.File.Exists(folder))
             {
                 File.Delete(folder);
@@ -109,7 +108,7 @@ namespace MoalemYar.UserControls
 
         public void resetDatabase()
         {
-            string folder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\MoalemYar\Database\data.db";
+            string folder = AppVariable.fileName + @"\data.db";
             if (System.IO.File.Exists(folder))
             {
                 File.Delete(folder);

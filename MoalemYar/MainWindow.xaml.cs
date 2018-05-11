@@ -35,7 +35,7 @@ namespace MoalemYar
         internal static MainWindow main;
         private PersianCalendar pc = new PersianCalendar();
         public INotificationMessageManager Manager { get; } = new NotificationMessageManager();
-        private SettingsBag Setting { get; } = JsonSettings.Construct<SettingsBag>(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\MoalemYar\config.json").EnableAutosave().LoadNow();
+        private SettingsBag Setting { get; } = JsonSettings.Construct<SettingsBag>(AppVariable.fileName + @"\config.json").EnableAutosave().LoadNow();
 
         public MainWindow()
         {
@@ -357,27 +357,6 @@ namespace MoalemYar
                .Dismiss().WithDelay(TimeSpan.FromSeconds(3));
                 builder.Queue();
             }
-        }
-
-        public void RestartNotification()
-        {
-            var builder = this.Manager
-                  .CreateMessage()
-                 .Accent(AppVariable.ORANGE)
-                 .Background(AppVariable.BGBLACK)
-                 .HasBadge("هشدار")
-                 .HasHeader("برای اعمال رنگ بندی بصورت کامل برنامه را دوباره راه اندازی کنید")
-                 .WithButton("راه اندازی", button =>
-                 {
-                     Application.Current.Shutdown();
-                     System.Windows.Forms.Application.Restart();
-                 })
-                 .Dismiss().WithButton("بیخیال", button => { })
-                 .Animates(true)
-               .AnimationInDuration(0.75)
-               .AnimationOutDuration(0.5)
-                 .Dismiss().WithDelay(TimeSpan.FromSeconds(3));
-            builder.Queue();
         }
 
         public void DataResetDeletedNotification(string Type)

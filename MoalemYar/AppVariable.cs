@@ -42,6 +42,7 @@ namespace MoalemYar
         public static string getAppNameAndVersion = Assembly.GetExecutingAssembly().GetName().Name + " " + Assembly.GetExecutingAssembly().GetName().Version.ToString();
         public static string getAppTitle = "معلم یار نسخه آزمایشی ";
 
+        public static string fileName = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\" + Assembly.GetExecutingAssembly().GetName().Name;
         #endregion App Details
 
         #region Colors
