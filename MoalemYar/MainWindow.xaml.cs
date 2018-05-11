@@ -159,7 +159,6 @@ namespace MoalemYar
                 var vCode = AppVariable.ReadSetting(AppVariable.VersionCode);
                 if (!vCode.Equals(AppVariable.getAppVersion))
                     AppVariable.InitializeSettings();
-                //Todo: Import Database to new Version
             }
             catch (Exception)
             {
