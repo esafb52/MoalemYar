@@ -8,8 +8,6 @@
 *
 ***********************************************************************************/
 
-using nucs.JsonSettings;
-using nucs.JsonSettings.Fluent;
 using System;
 using System.Linq;
 using System.Windows;
@@ -72,9 +70,7 @@ namespace MoalemYar.UserControls
             }
             catch (Exception)
             {
-
             }
-           
         }
 
         private void CompareVersions()

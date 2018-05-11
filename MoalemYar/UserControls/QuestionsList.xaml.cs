@@ -8,8 +8,6 @@
 *
 ***********************************************************************************/
 
-using nucs.JsonSettings;
-using nucs.JsonSettings.Fluent;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -390,9 +388,7 @@ namespace MoalemYar.UserControls
             }
             catch (Exception)
             {
-
             }
-           
         }
 
         public T FindElementByName<T>(FrameworkElement element, string sChildName) where T : FrameworkElement
@@ -586,7 +582,6 @@ namespace MoalemYar.UserControls
         private void cmbEditStudent_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             getScores(Convert.ToInt64(cmbEditStudent.SelectedValue));
-
         }
 
         private void dataGridEdit_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -606,7 +601,6 @@ namespace MoalemYar.UserControls
             {
             }
         }
-
 
         #endregion "Edit"
     }

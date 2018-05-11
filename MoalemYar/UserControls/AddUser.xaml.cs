@@ -8,8 +8,6 @@
 *
 ***********************************************************************************/
 
-using nucs.JsonSettings;
-using nucs.JsonSettings.Fluent;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;

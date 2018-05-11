@@ -76,7 +76,7 @@
                                     <Metro:MetroContextMenu>
                                         <Metro:MetroMenuItem Icon="/Resources/add.png" Header="حاضر" Click="chkIsPresent_Checked" />
                                         <Metro:MetroMenuItem Icon="/Resources/add.png" Header="غایب" Click="chkIsAbsent_Checked" />
-                                        <Metro:MetroMenuSeparator/>
+                                        <Metro:MetroMenuSeparator />
                                         <Metro:MetroMenuItem Icon="/Resources/add.png" Header="همه حاضر" Click="swAllPresent_Checked" />
                                     </Metro:MetroContextMenu>
                                 </DataGrid.ContextMenu>

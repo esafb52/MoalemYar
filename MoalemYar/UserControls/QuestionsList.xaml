@@ -3,8 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:MoalemYar.UserControls" 
-             xmlns:local1="clr-namespace:MoalemYar" 
+             xmlns:local="clr-namespace:MoalemYar.UserControls"
+             xmlns:local1="clr-namespace:MoalemYar"
              xmlns:Metro="clr-namespace:Arthas.Controls.Metro;assembly=Arthas"
              xmlns:PersianCalendarWPF="clr-namespace:PersianCalendarWPF;assembly=PersianCalendarWPF"
              mc:Ignorable="d"
@@ -13,8 +13,8 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="259*"/>
-            <ColumnDefinition Width="141*"/>
+            <ColumnDefinition Width="259*" />
+            <ColumnDefinition Width="141*" />
         </Grid.ColumnDefinitions>
         <Metro:MetroTabControl Focusable="False" x:Name="tabc" IsTabStop="True" TabIndex="-1" SelectionChanged="tabc_SelectionChanged" Grid.ColumnSpan="2">
             <Metro:MetroTabItem Header="ثبت اطلاعات">
@@ -254,7 +254,7 @@
                                     <ContentControl.ContentTemplate>
                                         <DataTemplate>
                                             <Grid>
-                                                <ComboBox TabIndex="7" x:Name="cmbBookEdit"/>
+                                                <ComboBox TabIndex="7" x:Name="cmbBookEdit" />
                                                 <TextBlock x:Name="tb" Text=" انتخاب درس " IsHitTestVisible="False" Visibility="Hidden" />
                                             </Grid>
                                             <DataTemplate.Triggers>

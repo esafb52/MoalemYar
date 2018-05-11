@@ -8,8 +8,6 @@
 *
 ***********************************************************************************/
 
-using nucs.JsonSettings;
-using nucs.JsonSettings.Fluent;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -125,11 +123,12 @@ namespace MoalemYar.UserControls
             {
             }
         }
+
         private void deleteSchool(long id)
         {
             using (var db = new DataClass.myDbContext())
             {
-                var checkQuery = db.Students.Where(x=>x.BaseId == id).Any();
+                var checkQuery = db.Students.Where(x => x.BaseId == id).Any();
                 if (checkQuery)
                 {
                     MainWindow.main.ShowDeleteExistNotification("مدرسه", "دانش آموزان");
@@ -288,7 +287,7 @@ namespace MoalemYar.UserControls
 
         private void txtEditSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if(dataGrid.ItemsSource != null)
+            if (dataGrid.ItemsSource != null)
             {
                 if (txtEditSearch.Text != string.Empty)
                     dataGrid.ItemsSource = _initialCollection.Where(x => x.SchoolName.Contains(txtEditSearch.Text) || x.Admin.Contains(txtEditSearch.Text) || x.Base.Contains(txtEditSearch.Text) || x.Year.Contains(txtEditSearch.Text)).Select(x => x);

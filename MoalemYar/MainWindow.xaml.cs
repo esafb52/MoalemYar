@@ -35,7 +35,7 @@ namespace MoalemYar
         internal static MainWindow main;
         private PersianCalendar pc = new PersianCalendar();
         public INotificationMessageManager Manager { get; } = new NotificationMessageManager();
-        SettingsBag Setting { get; } = JsonSettings.Construct<SettingsBag>(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\MoalemYar\config.json").EnableAutosave().LoadNow();
+        private SettingsBag Setting { get; } = JsonSettings.Construct<SettingsBag>(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\MoalemYar\config.json").EnableAutosave().LoadNow();
 
         public MainWindow()
         {
@@ -52,7 +52,6 @@ namespace MoalemYar
             LoadSettings();
 
             LogifyCrashReport();
-
         }
 
         private void MetroWindow_Loaded(object sender, RoutedEventArgs e)
@@ -144,7 +143,6 @@ namespace MoalemYar
             }
             catch (Exception)
             {
-
             }
         }
 
@@ -158,11 +156,9 @@ namespace MoalemYar
 
                 var hb_Menu = Convert.ToBoolean(Setting[AppVariable.HamburgerMenu] ?? true);
                 tab.IconMode = !hb_Menu;
-               
             }
             catch (Exception)
             {
-                 
             }
         }
 
@@ -559,9 +555,7 @@ namespace MoalemYar
             }
             catch (Exception)
             {
-
             }
-            
         }
 
         private void exAddOrUpdateSchool_Click(object sender, EventArgs e)
@@ -614,37 +608,46 @@ namespace MoalemYar
                 case 0:
                     //Todo
                     break;
+
                 case 1:
                     exAddOrUpdateSchool_Click(null, null);
                     break;
+
                 case 2:
                     exAddOrUpdateStudent_Click(null, null);
 
                     break;
+
                 case 3:
                     exAddOrUpdateUser_Click(null, null);
 
                     break;
+
                 case 4:
                     exAttendancelist_Click(null, null);
 
                     break;
+
                 case 5:
                     exQuestionsList_Click(null, null);
 
                     break;
+
                 case 6:
                     //Todo
 
                     break;
+
                 case 7:
                     //Todo
 
                     break;
+
                 case 8:
                     //Todo
 
                     break;
+
                 case 9:
                     //Todo
 

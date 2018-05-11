@@ -9,9 +9,7 @@
 ***********************************************************************************/
 
 using MoalemYar.DataClass.Tables;
-using SQLite.CodeFirst;
 using System.Data.Entity;
-using System.Data.Entity.Migrations;
 
 namespace MoalemYar.DataClass
 {
@@ -25,7 +23,7 @@ namespace MoalemYar.DataClass
         public virtual DbSet<Score> Scores { get; set; }
 
         public myDbContext()
-       : base("default") {}
+       : base("default") { }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

@@ -8,8 +8,6 @@
 *
 ***********************************************************************************/
 
-using nucs.JsonSettings;
-using nucs.JsonSettings.Fluent;
 using Ookii.Dialogs.Wpf;
 using System;
 using System.Collections.Generic;
@@ -190,7 +188,6 @@ namespace MoalemYar.UserControls
                     MainWindow.main.ShowDeletedNotification(true, txtName.Text, "دانش آموز");
                 }
             }
-            
         }
 
         private void updateStudent(long id, long BaseId, string Name, string LName, string FName, string Gender, byte[] Image)

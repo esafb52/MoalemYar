@@ -24,7 +24,7 @@ namespace MoalemYar.UserControls
     public partial class Settings : UserControl
     {
         internal static Settings main;
-        SettingsBag Setting { get; } = JsonSettings.Construct<SettingsBag>(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\MoalemYar\config.json").EnableAutosave().LoadNow();
+        private SettingsBag Setting { get; } = JsonSettings.Construct<SettingsBag>(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\MoalemYar\config.json").EnableAutosave().LoadNow();
 
         public Settings()
         {
@@ -74,7 +74,6 @@ namespace MoalemYar.UserControls
             Setting[AppVariable.CredentialLogin] = swLogin.IsChecked;
         }
 
-        
         private void swAutoStart_Checked(object sender, RoutedEventArgs e)
         {
             Setting[AppVariable.Autorun] = swAutoStart.IsChecked;

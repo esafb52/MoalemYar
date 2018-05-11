@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:MoalemYar.UserControls"
-             xmlns:local1="clr-namespace:MoalemYar" 
+             xmlns:local1="clr-namespace:MoalemYar"
              xmlns:Metro="clr-namespace:Arthas.Controls.Metro;assembly=Arthas"
              mc:Ignorable="d"
     x:Class="MoalemYar.UserControls.AddStudent"
@@ -200,7 +200,6 @@
                                     </StackPanel>
                                 </Grid>
 
-
                                 <Grid  Grid.Column="1" Margin="5,0,0,0">
                                     <StackPanel Name="editStack" IsEnabled="False" Orientation="Vertical">
                                         <Metro:MetroTextBox MaxLength="20" x:Name="txtName" Margin="2" TabIndex="0" InputHint="نام" Height="30" PopupHint="نام دانش آموز" MetroPopupBackgroundState="DarkRed" VerticalAlignment="Top" />
@@ -270,7 +269,6 @@
                                             </Button>
                                         </StackPanel>
                                     </StackPanel>
-
                                 </Grid>
                             </Grid>
                         </StackPanel>

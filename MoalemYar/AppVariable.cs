@@ -9,8 +9,6 @@
 ***********************************************************************************/
 
 using Microsoft.Win32;
-using nucs.JsonSettings;
-using nucs.JsonSettings.Fluent;
 using System;
 using System.Diagnostics;
 using System.Reflection;
@@ -19,7 +17,6 @@ namespace MoalemYar
 {
     public class AppVariable
     {
-
         #region Crash Report
 
         public static string LogifyOfflinePath = System.Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\" + Assembly.GetExecutingAssembly().GetName().Name + @"\";
