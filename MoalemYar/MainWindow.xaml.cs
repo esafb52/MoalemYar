@@ -615,7 +615,7 @@ namespace MoalemYar
                     break;
 
                 case 6:
-                    //Todo
+                    exTopStudents_Click(null, null);
 
                     break;
 
@@ -629,10 +629,6 @@ namespace MoalemYar
 
                     break;
 
-                case 9:
-                    //Todo
-
-                    break;
             }
         }
 
