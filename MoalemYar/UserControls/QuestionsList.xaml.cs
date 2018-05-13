@@ -45,8 +45,6 @@ namespace MoalemYar.UserControls
             this.DataContext = this;
             main = this;
             strDate = pc.GetYear(DateTime.Now).ToString("0000") + "/" + pc.GetMonth(DateTime.Now).ToString("00") + "/" + pc.GetDayOfMonth(DateTime.Now).ToString("00");
-            txtDate.Text = string.Format("تاریخ امروز : {0} ", strDate);
-
             var color = (System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString(MainWindow.main.BorderBrush.ToString());
             var brush = new SolidColorBrush(color);
             BorderColor = brush;
@@ -63,11 +61,14 @@ namespace MoalemYar.UserControls
             }
         }
 
-        public async static Task<List<DataClass.DataTransferObjects.StudentsDto>> GetAllStudentsAsync(long SchoolId, string Book)
+        public async static Task<List<DataClass.DataTransferObjects.StudentsDto>> GetAllStudentsAsync(long SchoolId, string Book, bool isExam)
         {
             using (var db = new DataClass.myDbContext())
             {
-                var query = db.Students.Where(x => !db.Questions.Any(f => f.StudentId == x.Id && f.Book == Book) && x.BaseId == SchoolId).Select(x => new DataClass.DataTransferObjects.StudentsDto { Id = x.Id, BaseId = x.BaseId, Name = x.Name, LName = x.LName, FName = x.FName });
+                var query = (isExam == true) ? db.Students.Where(x => x.BaseId == SchoolId)
+                    .Select(x => new DataClass.DataTransferObjects.StudentsDto { Id = x.Id, BaseId = x.BaseId, Name = x.Name, LName = x.LName, FName = x.FName }):
+                    db.Students.Where(x => !db.Questions.Any(f => f.StudentId == x.Id && f.Book == Book) && x.BaseId == SchoolId)
+                    .Select(x => new DataClass.DataTransferObjects.StudentsDto { Id = x.Id, BaseId = x.BaseId, Name = x.Name, LName = x.LName, FName = x.FName });
 
                 return await query.ToListAsync();
             }
@@ -244,9 +245,9 @@ namespace MoalemYar.UserControls
             }
         }
 
-        private void getStudents(long SchoolId, string Book)
+        private void getStudents(long SchoolId, string Book, bool isExam)
         {
-            var query = GetAllStudentsAsync(SchoolId, Book);
+            var query = GetAllStudentsAsync(SchoolId, Book, isExam);
             query.Wait();
             List<DataClass.DataTransferObjects.StudentsDto> data = query.Result;
             _initialCollection = data;
@@ -378,19 +379,6 @@ namespace MoalemYar.UserControls
             element.ItemsSource = list;
         }
 
-        //Todo: bug
-        private void cmbBook_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            try
-            {
-                var element = FindElementByName<ComboBox>(cmbAddContentBook, "cmbBook");
-                getStudents(Convert.ToInt64(cmbBase.SelectedValue), element.SelectedItem.ToString());
-            }
-            catch (Exception)
-            {
-            }
-        }
-
         public T FindElementByName<T>(FrameworkElement element, string sChildName) where T : FrameworkElement
         {
             T childElement = null;
@@ -430,7 +418,7 @@ namespace MoalemYar.UserControls
                         MyTextBlock.Foreground = new SolidColorBrush(Colors.Green);
                         MyTextBlock.Text = "ثبت شده";
                         addQuestion((long)selectedItem.BaseId, (long)selectedItem.Id, element.SelectedItem.ToString());
-                        addScore((long)cmbBase.SelectedValue, element.SelectedItem.ToString(), strDate, "خیلی خوب", (txtDesc.Text == string.Empty ? "بدون توضیحات" : txtDesc.Text));
+                        addScore((long)selectedItem.Id, element.SelectedItem.ToString(), strDate, "خیلی خوب", (txtDesc.Text == string.Empty ? "بدون توضیحات" : txtDesc.Text));
                     }
                     break;
 
@@ -440,7 +428,7 @@ namespace MoalemYar.UserControls
                         MyTextBlock.Foreground = new SolidColorBrush(Colors.Green);
                         MyTextBlock.Text = "ثبت شده";
                         addQuestion((long)selectedItem.BaseId, (long)selectedItem.Id, element.SelectedItem.ToString());
-                        addScore((long)cmbBase.SelectedValue, element.SelectedItem.ToString(), strDate, "خوب", (txtDesc.Text == string.Empty ? "بدون توضیحات" : txtDesc.Text));
+                        addScore((long)selectedItem.Id, element.SelectedItem.ToString(), strDate, "خوب", (txtDesc.Text == string.Empty ? "بدون توضیحات" : txtDesc.Text));
                     }
                     break;
 
@@ -450,7 +438,7 @@ namespace MoalemYar.UserControls
                         MyTextBlock.Foreground = new SolidColorBrush(Colors.Green);
                         MyTextBlock.Text = "ثبت شده";
                         addQuestion((long)selectedItem.BaseId, (long)selectedItem.Id, element.SelectedItem.ToString());
-                        addScore((long)cmbBase.SelectedValue, element.SelectedItem.ToString(), strDate, "قابل قبول", (txtDesc.Text == string.Empty ? "بدون توضیحات" : txtDesc.Text));
+                        addScore((long)selectedItem.Id, element.SelectedItem.ToString(), strDate, "قابل قبول", (txtDesc.Text == string.Empty ? "بدون توضیحات" : txtDesc.Text));
                     }
                     break;
 
@@ -460,7 +448,7 @@ namespace MoalemYar.UserControls
                         MyTextBlock.Foreground = new SolidColorBrush(Colors.Green);
                         MyTextBlock.Text = "ثبت شده";
                         addQuestion((long)selectedItem.BaseId, (long)selectedItem.Id, element.SelectedItem.ToString());
-                        addScore((long)cmbBase.SelectedValue, element.SelectedItem.ToString(), strDate, "نیاز به تلاش بیشتر", (txtDesc.Text == string.Empty ? "بدون توضیحات" : txtDesc.Text));
+                        addScore((long)selectedItem.Id, element.SelectedItem.ToString(), strDate, "نیاز به تلاش بیشتر", (txtDesc.Text == string.Empty ? "بدون توضیحات" : txtDesc.Text));
                     }
                     break;
             }
@@ -603,5 +591,42 @@ namespace MoalemYar.UserControls
         }
 
         #endregion "Edit"
+
+        private void isExam_Checked(object sender, RoutedEventArgs e)
+        {
+            if (isExam.IsChecked == true)
+                isQuestion.IsChecked = false;
+            cmbBase.IsEnabled = true;
+        }
+
+        private void isQuestion_Checked(object sender, RoutedEventArgs e)
+        {
+            if (isQuestion.IsChecked == true)
+                isExam.IsChecked = false;
+            cmbBase.IsEnabled = true;
+
+        }
+
+        private void cmbBook_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                if (isQuestion.IsChecked == true)
+                {
+                    var element = FindElementByName<ComboBox>(cmbAddContentBook, "cmbBook");
+                    getStudents(Convert.ToInt64(cmbBase.SelectedValue), element.SelectedItem.ToString(), false);
+                }
+                else
+                {
+                    var element = FindElementByName<ComboBox>(cmbAddContentBook, "cmbBook");
+                    txtDesc.Text = "امتحان " + element.SelectedItem;
+                    getStudents(Convert.ToInt64(cmbBase.SelectedValue), element.SelectedItem.ToString(), true);
+                }
+            }
+            catch (Exception)
+            {
+            }
+           
+        }
     }
 }

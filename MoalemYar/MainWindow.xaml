@@ -57,8 +57,7 @@
                                 <Metro:MetroExpander FontWeight="Medium" Name="exActivity" Header="فعالیت ها" Icon="Resources/Active.png" IsExpanded="True" Click="exActivity_Click">
                                     <StackPanel>
                                         <Metro:MetroExpander Name="exAttendancelist" Click="exAttendancelist_Click" FontWeight="Normal" Header="حضور و غیاب" Icon="Resources/Checkmark.png" Hint="1397/01/07" />
-                                        <Metro:MetroExpander Name="exQuestionsList" Click="exQuestionsList_Click" FontWeight="Normal" Header="پرسش دروس" Icon="Resources/Ask.png" Hint="ارزشیابی" HintBackground="#e15b4f" />
-                                        <Metro:MetroExpander FontWeight="Normal" Header="فعالیت ها" Hint="گروهی" Icon="Resources/Groups.png" HintBackground="#e15b4f" />
+                                        <Metro:MetroExpander Name="exQuestionsList" Click="exQuestionsList_Click" FontWeight="Normal" Header="ارزشیابی" Icon="Resources/Ask.png" Hint="پرسش / امتحان" HintBackground="#e15b4f" />
                                     </StackPanel>
                                 </Metro:MetroExpander>
                                 <Metro:MetroExpander FontWeight="Medium" Header="نفرات برتر" Icon="Resources/Trophy.png" Hint="انتخاب شاگرد" HintBackground="#e15b4f" />
