@@ -44,5 +44,16 @@ namespace MoalemYar.DataClass
             public bool Exist { get; set; }
             public string Date { get; set; }
         }
+
+        public class StudentsScoresDto
+        {
+            public long Id { get; set; }
+            public long BaseId { get; set; }
+            public long StudentId { get; set; }
+            public string Name { get; set; }
+            public string LName { get; set; }
+            public string FName { get; set; }
+            public string Scores { get; set; }
+        }
     }
 }

@@ -60,7 +60,7 @@
                                         <Metro:MetroExpander Name="exQuestionsList" Click="exQuestionsList_Click" FontWeight="Normal" Header="ارزشیابی" Icon="Resources/Ask.png" Hint="پرسش / امتحان" HintBackground="#e15b4f" />
                                     </StackPanel>
                                 </Metro:MetroExpander>
-                                <Metro:MetroExpander FontWeight="Medium" Header="نفرات برتر" Icon="Resources/Trophy.png" Hint="انتخاب شاگرد" HintBackground="#e15b4f" />
+                                <Metro:MetroExpander Name="exTopStudents" Click="exTopStudents_Click" FontWeight="Medium" Header="نفرات برتر" Icon="Resources/Trophy.png" Hint="انتخاب شاگرد" HintBackground="#e15b4f" />
                                 <Metro:MetroExpander FontWeight="Medium" Header="پیشرفت تحصیلی" Icon="Resources/Chart.png" Hint="نمودار" HintBackground="#e15b4f" />
                                 <Metro:MetroExpander FontWeight="Medium" Header="استعداد یابی" Icon="Resources/Talent.png" Hint="طرح شهاب" HintBackground="#e15b4f" />
                             </StackPanel>

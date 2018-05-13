@@ -78,6 +78,17 @@ namespace MoalemYar.UserControls
             {
                 var DeleteStudent = await db.Students.FindAsync(id);
                 db.Students.Remove(DeleteStudent);
+
+                var DeleteScore = await db.Scores.Where(x => x.StudentId == id).ToListAsync();
+                db.Scores.RemoveRange(DeleteScore);
+
+                var DeleteQuestion = await db.Questions.Where(x => x.StudentId == id).ToListAsync();
+                db.Questions.RemoveRange(DeleteQuestion);
+
+                var DeleteAttendance = await db.Attendances.Where(x => x.StudentId == id).ToListAsync();
+                db.Attendances.RemoveRange(DeleteAttendance);
+
+
                 await db.SaveChangesAsync();
                 return "Student Deleted Successfully";
             }
@@ -168,25 +179,14 @@ namespace MoalemYar.UserControls
             }
         }
 
-        //Todo:if new table created this func must be update
         private void deleteStudent(long id)
         {
             using (var db = new DataClass.myDbContext())
             {
-                var checkQuery = db.Scores.Where(x => x.StudentId == id).Any();
-                var checkQuery2 = db.Attendances.Where(x => x.StudentId == id).Any();
-
-                if (checkQuery || checkQuery2)
-                {
-                    MainWindow.main.ShowDeleteExistNotification("دانش آموز", "فعالیت ها، نمره ها و لیست حضور غیاب");
-                }
-                else
-                {
-                    var query = DeleteStudentAsync(id);
-                    query.Wait();
-                    MainWindow.main.getexHint();
-                    MainWindow.main.ShowDeletedNotification(true, txtName.Text, "دانش آموز");
-                }
+                var query = DeleteStudentAsync(id);
+                query.Wait();
+                MainWindow.main.getexHint();
+                MainWindow.main.ShowDeletedNotification(true, txtName.Text, "دانش آموز");
             }
         }
 

@@ -198,6 +198,9 @@ namespace MoalemYar
                        case "Score":
                            QuestionsList.main.tabc.SelectedIndex = 0;
                            break;
+                       case "TopStudent":
+                           exQuestionsList_Click(null, null);
+                           break;
                    }
                })
                .Dismiss().WithButton("بیخیال", button => { })
@@ -631,6 +634,11 @@ namespace MoalemYar
 
                     break;
             }
+        }
+
+        private void exTopStudents_Click(object sender, EventArgs e)
+        {
+            exContent.Content = new TopStudents();
         }
     }
 }

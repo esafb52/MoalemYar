@@ -417,7 +417,9 @@ namespace MoalemYar.UserControls
                     {
                         MyTextBlock.Foreground = new SolidColorBrush(Colors.Green);
                         MyTextBlock.Text = "ثبت شده";
-                        addQuestion((long)selectedItem.BaseId, (long)selectedItem.Id, element.SelectedItem.ToString());
+                        if (isQuestion.IsChecked == true)
+                            addQuestion((long)selectedItem.BaseId, (long)selectedItem.Id, element.SelectedItem.ToString());
+
                         addScore((long)selectedItem.Id, element.SelectedItem.ToString(), strDate, "خیلی خوب", (txtDesc.Text == string.Empty ? "بدون توضیحات" : txtDesc.Text));
                     }
                     break;
@@ -427,7 +429,9 @@ namespace MoalemYar.UserControls
                     {
                         MyTextBlock.Foreground = new SolidColorBrush(Colors.Green);
                         MyTextBlock.Text = "ثبت شده";
-                        addQuestion((long)selectedItem.BaseId, (long)selectedItem.Id, element.SelectedItem.ToString());
+                        if (isQuestion.IsChecked == true)
+                            addQuestion((long)selectedItem.BaseId, (long)selectedItem.Id, element.SelectedItem.ToString());
+
                         addScore((long)selectedItem.Id, element.SelectedItem.ToString(), strDate, "خوب", (txtDesc.Text == string.Empty ? "بدون توضیحات" : txtDesc.Text));
                     }
                     break;
@@ -437,7 +441,9 @@ namespace MoalemYar.UserControls
                     {
                         MyTextBlock.Foreground = new SolidColorBrush(Colors.Green);
                         MyTextBlock.Text = "ثبت شده";
-                        addQuestion((long)selectedItem.BaseId, (long)selectedItem.Id, element.SelectedItem.ToString());
+                        if (isQuestion.IsChecked == true)
+                            addQuestion((long)selectedItem.BaseId, (long)selectedItem.Id, element.SelectedItem.ToString());
+
                         addScore((long)selectedItem.Id, element.SelectedItem.ToString(), strDate, "قابل قبول", (txtDesc.Text == string.Empty ? "بدون توضیحات" : txtDesc.Text));
                     }
                     break;
@@ -447,7 +453,9 @@ namespace MoalemYar.UserControls
                     {
                         MyTextBlock.Foreground = new SolidColorBrush(Colors.Green);
                         MyTextBlock.Text = "ثبت شده";
-                        addQuestion((long)selectedItem.BaseId, (long)selectedItem.Id, element.SelectedItem.ToString());
+                        if (isQuestion.IsChecked == true)
+                            addQuestion((long)selectedItem.BaseId, (long)selectedItem.Id, element.SelectedItem.ToString());
+
                         addScore((long)selectedItem.Id, element.SelectedItem.ToString(), strDate, "نیاز به تلاش بیشتر", (txtDesc.Text == string.Empty ? "بدون توضیحات" : txtDesc.Text));
                     }
                     break;
@@ -619,7 +627,7 @@ namespace MoalemYar.UserControls
                 else
                 {
                     var element = FindElementByName<ComboBox>(cmbAddContentBook, "cmbBook");
-                    txtDesc.Text = "امتحان " + element.SelectedItem;
+                    txtDesc.Text = "امتحان / فعالیت " + element.SelectedItem;
                     getStudents(Convert.ToInt64(cmbBase.SelectedValue), element.SelectedItem.ToString(), true);
                 }
             }

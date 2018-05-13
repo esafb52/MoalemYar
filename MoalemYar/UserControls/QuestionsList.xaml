@@ -20,7 +20,7 @@
             <Metro:MetroTabItem Header="ثبت اطلاعات">
                 <Grid KeyboardNavigation.TabNavigation="Cycle"  Name="grd">
                     <StackPanel Orientation="Horizontal" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="800">
-                        <Metro:MetroSwitch Checked="isExam_Checked" Unchecked="isExam_Checked" Margin="15,5" Name="isExam" Content="امتحان"/>
+                        <Metro:MetroSwitch Checked="isExam_Checked" Unchecked="isExam_Checked" Margin="15,5" Name="isExam" Content="امتحان / فعالیت"/>
                         <Metro:MetroSwitch Checked="isQuestion_Checked" Unchecked="isQuestion_Checked" Margin="0,5" Name="isQuestion" Content="پرسش"/>
                     </StackPanel>
                     <Grid Margin="0,40,0,0">
@@ -86,7 +86,7 @@
                             <DataGridTextColumn Binding="{Binding Path=Name}" Header="نام" MinWidth="120" Width="*" />
                             <DataGridTextColumn Binding="{Binding Path=LName}" Header="نام خانوادگی" MinWidth="130" Width="*" />
                             <DataGridTextColumn Binding="{Binding Path=FName}" Header="نام پدر" MinWidth="130" Width="*" />
-                            <DataGridTemplateColumn Header="نمره" MinWidth="150" Width="*">
+                            <DataGridTemplateColumn Header="نمره" MinWidth="180" Width="*">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Vertical" Margin="5" HorizontalAlignment="Right" ToggleButton.Checked="StackPanel_Checked">
