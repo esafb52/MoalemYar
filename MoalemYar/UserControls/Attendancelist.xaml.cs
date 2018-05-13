@@ -271,12 +271,15 @@ namespace MoalemYar.UserControls
 
         private void swAllPresent_Checked(object sender, RoutedEventArgs e)
         {
-            for (int i = 0; i < _initialCollection.Count; i++)
+            if (dataGrid.Items.Count != 0)
             {
-                dataGrid.SelectedIndex = i;
-                dynamic selectedItem = dataGrid.SelectedItems[0];
-                addAttendance((long)selectedItem.Id, true, strDate);
-                UpdateList(Convert.ToInt64(selectedItem.Id), 10);
+                for (int i = 0; i < _initialCollection.Count; i++)
+                {
+                    dataGrid.SelectedIndex = i;
+                    dynamic selectedItem = dataGrid.SelectedItems[0];
+                    addAttendance((long)selectedItem.Id, true, strDate);
+                    UpdateList(Convert.ToInt64(selectedItem.Id), 10);
+                }
             }
         }
 
@@ -296,18 +299,24 @@ namespace MoalemYar.UserControls
 
         private void chkIsPresent_Checked(object sender, RoutedEventArgs e)
         {
-            dynamic selectedItem = dataGrid.SelectedItems[0];
+            if (dataGrid.Items.Count != 0)
+            {
+                dynamic selectedItem = dataGrid.SelectedItems[0];
 
-            addAttendance((long)selectedItem.Id, true, strDate);
-            UpdateList(Convert.ToInt64(selectedItem.Id), 400);
+                addAttendance((long)selectedItem.Id, true, strDate);
+                UpdateList(Convert.ToInt64(selectedItem.Id), 400);
+            }
         }
 
         private void chkIsAbsent_Checked(object sender, RoutedEventArgs e)
         {
-            dynamic selectedItem = dataGrid.SelectedItems[0];
+            if (dataGrid.Items.Count != 0)
+            {
+                dynamic selectedItem = dataGrid.SelectedItems[0];
 
-            addAttendance((long)selectedItem.Id, false, strDate);
-            UpdateList(Convert.ToInt64(selectedItem.Id), 400);
+                addAttendance((long)selectedItem.Id, false, strDate);
+                UpdateList(Convert.ToInt64(selectedItem.Id), 400);
+            }
         }
 
         private void cmbEditBase_SelectionChanged(object sender, SelectionChangedEventArgs e)
