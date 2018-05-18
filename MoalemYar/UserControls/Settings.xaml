@@ -54,6 +54,61 @@
                         </StackPanel>
                     </Metro:MetroGroupBox>
                 </Grid>
+                <Grid>
+                    
+                    <Metro:MetroGroupBox Margin="5" Header="تنظیمات نمودار">
+                            <Grid>
+                            <StackPanel Orientation="Vertical">
+                                <ContentControl Margin="2" Name="cmbAddContent" TabIndex="3" Focusable="False" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="233">
+                                    <ContentControl.ContentTemplate>
+                                        <DataTemplate>
+                                            <Grid>
+                                                <ComboBox TabIndex="4" x:Name="cmbChart" SelectionChanged="cmbChart_SelectionChanged">
+                                                    <ComboBoxItem Content="ستونی" />
+                                                    <ComboBoxItem Content="ستونی نوع 2" />
+                                                    <ComboBoxItem Content="خطی" />
+                                                    <ComboBoxItem Content="خطی نوع 2" />
+                                                    <ComboBoxItem Content="ناحیه" />
+                                                </ComboBox>
+                                                <TextBlock x:Name="tb" Text=" نوع نمودار " IsHitTestVisible="False" Visibility="Hidden" />
+                                            </Grid>
+                                            <DataTemplate.Triggers>
+                                                <Trigger SourceName="cmbChart" Property="SelectedItem" Value="{x:Null}">
+                                                    <Setter TargetName="tb" Property="Visibility" Value="Visible" />
+                                                </Trigger>
+                                            </DataTemplate.Triggers>
+                                        </DataTemplate>
+                                    </ContentControl.ContentTemplate>
+                                </ContentControl>
+
+                                <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+                                <StackPanel Orientation="Horizontal">
+                                    <ContentControl Margin="2" Name="cmbAddContent2" TabIndex="3" Focusable="False" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="233">
+                                        <ContentControl.ContentTemplate>
+                                            <DataTemplate>
+                                                <Grid>
+                                                    <ComboBox TabIndex="4" x:Name="cmbChartColor" SelectionChanged="cmbChartColor_SelectionChanged">
+                                                        <ComboBoxItem Content="سبز" />
+                                                        <ComboBoxItem Content="بنفش" />
+                                                        <ComboBoxItem Content="نارنجی" />
+                                                    </ComboBox>
+                                                    <TextBlock x:Name="tb" Text=" رنگ نمودار " IsHitTestVisible="False" Visibility="Hidden" />
+                                                </Grid>
+                                                <DataTemplate.Triggers>
+                                                    <Trigger SourceName="cmbChartColor" Property="SelectedItem" Value="{x:Null}">
+                                                        <Setter TargetName="tb" Property="Visibility" Value="Visible" />
+                                                    </Trigger>
+                                                </DataTemplate.Triggers>
+                                            </DataTemplate>
+                                        </ContentControl.ContentTemplate>
+                                    </ContentControl>
+                                    <Metro:MetroColorPicker Margin="10" x:Name="colorChart" Width="50" Height="50" Background="#CE2156" DefaultColor="#CE2156" ColorPickerClosed="colorChart_close" />
+
+                                </StackPanel>
+                            </StackPanel>
+                        </Grid>
+                   </Metro:MetroGroupBox>
+                </Grid>
             </Metro:MetroWaterfallFlow>
         </Metro:MetroScrollViewer>
     </Grid>

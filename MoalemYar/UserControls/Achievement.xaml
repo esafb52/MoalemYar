@@ -8,17 +8,56 @@
              mc:Ignorable="d" Style="{StaticResource myUserControl}"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <Metro:MetroScrollViewer>
-            <Metro:MetroWaterfallFlow x:Name="waterfallFlow" ListWidth="325">
-                <!--<Grid>
-                    <Metro:MetroGroupBox Margin="5" Header="عمومی">
-                        <StackPanel>
-                            <Metro:MetroSwitch x:Name="swLogin" Content="ورود با استفاده از رمز عبور" Margin="10" Checked="swLogin_Checked" Unchecked="swLogin_Checked" />
-                            <Metro:MetroSwitch x:Name="swAutoStart" Content="اجرای خودکار همراه با ویندوز"  Margin="10" Checked="swAutoStart_Checked" Unchecked="swAutoStart_Checked" />
-                        </StackPanel>
-                    </Metro:MetroGroupBox>
-                </Grid>-->
-            </Metro:MetroWaterfallFlow>
+        <StackPanel Margin="10,10,10,0" Orientation="Horizontal" Height="33" VerticalAlignment="Top">
+            <Grid>
+                <ComboBox x:Name="cmbEditBase" ItemsSource="{Binding}" SelectionChanged="cmbEditBase_SelectionChanged"
+                                  Height="30" TabIndex="0"
+                                  SelectedValue="{Binding SchoolName}"
+                                  SelectedValuePath="Id"
+                                  VerticalAlignment="Top" HorizontalAlignment="Left" Width="195">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding SchoolName}" />
+                                <TextBlock Text=" - " />
+                                <TextBlock Text="{Binding Base}" />
+                                <TextBlock Text=" - " />
+                                <TextBlock Text="{Binding Year}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <TextBlock Text=" انتخاب کلاس " IsHitTestVisible="False" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="195">
+                    <TextBlock.Style>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Visibility" Value="Hidden" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding SelectedItem, ElementName=cmbEditBase}" Value="{x:Null}">
+                                    <Setter Property="Visibility" Value="Visible" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+            </Grid>
+        </StackPanel>
+        <DataGrid x:Name="dataGrid" AutoGenerateColumns="False" HorizontalAlignment="Left"
+                                      Background="#eceff5" RowHeaderWidth="0" AlternatingRowBackground="#fbfcfe"
+                                      GridLinesVisibility="Horizontal" CanUserReorderColumns="False" TabIndex="2"
+                                      CanUserResizeColumns="False" CanUserSortColumns="True" SelectionMode="Single" SelectionUnit="FullRow"
+                                      CanUserResizeRows="False" IsReadOnly="True" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}"
+                                      HorizontalGridLinesBrush="#dde8ef" CellStyle="{DynamicResource DataGridCellStyle}"
+                                      Margin="10,48,0,5" SelectionChanged="dataGrid_SelectionChanged" Width="311">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Id}" Visibility="Hidden" />
+                <DataGridTextColumn Binding="{Binding Name}" Header="نام" MinWidth="100" Width="*" />
+                <DataGridTextColumn Binding="{Binding LName}" Header="نام خانوادگی" MinWidth="100" Width="*" />
+                <DataGridTextColumn Binding="{Binding FName}" Header="نام پدر" MinWidth="90" Width="*" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Metro:MetroScrollViewer Margin="316,48,0,0">
+            <Metro:MetroWaterfallFlow x:Name="waterfallFlow" ListWidth="325"/>
         </Metro:MetroScrollViewer>
     </Grid>
 </UserControl>

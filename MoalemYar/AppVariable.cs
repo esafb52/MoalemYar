@@ -47,6 +47,19 @@ namespace MoalemYar
         public static string fileName = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\" + Assembly.GetExecutingAssembly().GetName().Name;
         #endregion App Details
 
+        #region Chart
+        public const string CHART_PURPLE = "#CE2156";
+        public const string CHART_ORANGE = "#EB5A13";
+        public const string CHART_GREEN = "#7DBD8D";
+
+        public const string CHART_Line = "Line";
+        public const string CHART_Line2 = "StackedLine";
+        public const string CHART_Column = "Column";
+        public const string CHART_Column2 = "StackedColumn";
+        public const string CHART_Area = "Area";
+
+        #endregion
+
         #region Colors
 
         public const string CYAN = "#00BCD4";
@@ -57,9 +70,7 @@ namespace MoalemYar
         public const string BLUE = "#1751C3";
         public const string DEFAULT_BORDER_BRUSH = "#6D819A";
 
-        public const string CHART_PURPLE = "#CE2156";
-        public const string CHART_ORANGE = "#EB5A13";
-        public const string CHART_GREEN = "#7DBD8D";
+      
 
         #endregion Colors
 
@@ -71,6 +82,8 @@ namespace MoalemYar
         public static string AutoSendReport = "AutoSendReport";
         public static string SkinCode = "SkinCode";
         public static string VersionCode = "Version";
+        public static string ChartType = "ChartType";
+        public static string ChartColor = "ChartColor";
 
         #endregion Config Key
 
