@@ -11,7 +11,9 @@
 using Microsoft.Win32;
 using System;
 using System.Diagnostics;
+using System.Drawing;
 using System.Reflection;
+using System.Windows.Media;
 
 namespace MoalemYar
 {
@@ -55,6 +57,10 @@ namespace MoalemYar
         public const string BLUE = "#1751C3";
         public const string DEFAULT_BORDER_BRUSH = "#6D819A";
 
+        public const string CHART_PURPLE = "#CE2156";
+        public const string CHART_ORANGE = "#EB5A13";
+        public const string CHART_GREEN = "#7DBD8D";
+
         #endregion Colors
 
         #region Config Key
@@ -68,6 +74,12 @@ namespace MoalemYar
 
         #endregion Config Key
 
+        public static System.Windows.Media.Brush GetBrush(string ColorString)
+        {
+            var color = (System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString(ColorString);
+            var brush = new SolidColorBrush(color);
+            return brush;
+        }
         public static string RunActionMeasurePerformance(Action action)
         {
             GC.Collect();

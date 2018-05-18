@@ -636,5 +636,10 @@ namespace MoalemYar
         {
             exContent.Content = new TopStudents();
         }
+
+        private void exAchievement_Click(object sender, EventArgs e)
+        {
+            exContent.Content = new Achievement();
+        }
     }
 }
