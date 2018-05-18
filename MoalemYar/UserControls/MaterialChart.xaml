@@ -20,6 +20,7 @@
                 <Setter Property="Fill" Value="Transparent"></Setter>
                 <Setter Property="MaxColumnWidth" Value="5"></Setter>
                 <Setter Property="PointGeometry" Value="{x:Null}"></Setter>
+                <Setter Property="DataLabels" Value="True"/>
             </Style>
             <Style TargetType="lvc:Axis">
                 <Setter Property="FontSize" Value="12"></Setter>
@@ -60,6 +61,7 @@
             <lvc:CartesianChart.Series>
                 <lvc:ColumnSeries/>
             </lvc:CartesianChart.Series>
+           
         </lvc:CartesianChart>
         <StackPanel Grid.Row="3" VerticalAlignment="Center" Margin="20, 0,20,0">
             <TextBlock Opacity=".4" FontSize="13">میانگین نمرات این درس برابر است با:</TextBlock>

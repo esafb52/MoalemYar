@@ -15,6 +15,9 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using LiveCharts;
 using LiveCharts.Wpf;
+using nucs.JsonSettings;
+using nucs.JsonSettings.Fluent;
+
 namespace MoalemYar.UserControls
 {
     /// <summary>
@@ -22,17 +25,12 @@ namespace MoalemYar.UserControls
     /// </summary>
     public partial class Achievement : UserControl
     {
+        private SettingsBag Setting { get; } = JsonSettings.Construct<SettingsBag>(AppVariable.fileName + @"\config.json").EnableAutosave().LoadNow();
+
         public Achievement()
         {
             InitializeComponent();
-            for (int i = 0; i < 7; i++)
-            {
-                MaterialChart _addUser;
-                Control _currentUser;
-                _addUser = new MaterialChart("کتاب" + i, "مهدی",new string[] { "ok","no", "ok", "no", "ok", "no" },new double[] { 10,20,100,60 }, new ColumnSeries { },AppVariable.GetBrush(AppVariable.CHART_GREEN));
-                _currentUser = _addUser;
-                waterfallFlow.Children.Add(_currentUser);
-            }
+           
             getSchool();
         }
 
@@ -95,16 +93,43 @@ namespace MoalemYar.UserControls
         private void cmbEditBase_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             getStudent(Convert.ToInt64(cmbEditBase.SelectedValue));
+           
         }
 
         private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            waterfallFlow.Children.Clear();
+            Series series = new ColumnSeries();
+            switch (Setting[AppVariable.ChartType])
+            {
+                case AppVariable.CHART_Column:
+                    series = new ColumnSeries { };
+                    break;
+                case AppVariable.CHART_Column2:
+                    series = new StackedColumnSeries { };
+                    break;
+                case AppVariable.CHART_Line:
+                    series = new LineSeries { };
+                    break;
+                case AppVariable.CHART_Line2:
+                    series = new StepLineSeries { };
+                    break;
+                case AppVariable.CHART_Area:
+                    series = new StackedAreaSeries { };
+                    break;
+            }
+
+            for (int i = 0; i < 7; i++)
+            {
+                MaterialChart _addUser;
+                Control _currentUser;
+                _addUser = new MaterialChart("کتاب" + i, "مهدی", new string[] { "ok", "no", "ok", "no", "ok", "no" }, new double[] { 10, 20, 100, 60 }, series, AppVariable.GetBrush(Convert.ToString(Setting[AppVariable.ChartColor] ?? AppVariable.CHART_GREEN)));
+                _currentUser = _addUser;
+                waterfallFlow.Children.Add(_currentUser);
+                waterfallFlow.Refresh();
+            }
 
         }
 
-        private void btnDraw_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

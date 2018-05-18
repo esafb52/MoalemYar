@@ -72,8 +72,10 @@ namespace MoalemYar.UserControls
                 Labels = Label,
                 Separator = new LiveCharts.Wpf.Separator { }
             });
+            
             txtBook.Text = Book;
             txtName.Text = Name;
+            
         }
     }
 }
