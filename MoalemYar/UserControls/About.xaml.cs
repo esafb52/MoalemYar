@@ -42,9 +42,7 @@ namespace MoalemYar.UserControls
             History = Properties.Resources.History;
             AppName = AppVariable.getAppTitle;
             AppVersion = AppVariable.getAppVersion;
-            var color = (Color)ColorConverter.ConvertFromString(MainWindow.main.BorderBrush.ToString());
-            var brush = new SolidColorBrush(color);
-            TimeColor = brush;
+            TimeColor = AppVariable.GetBrush(MainWindow.main.BorderBrush.ToString());
         }
 
         private void CheckUpdate()

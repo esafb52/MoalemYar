@@ -41,9 +41,7 @@ namespace MoalemYar.UserControls
             InitializeComponent();
             this.DataContext = this;
             main = this;
-            var color = (Color)ColorConverter.ConvertFromString(MainWindow.main.BorderBrush.ToString());
-            var brush = new SolidColorBrush(color);
-            BorderColor = brush;
+            BorderColor = AppVariable.GetBrush(MainWindow.main.BorderBrush.ToString());
         }
 
         #region "Async Query"
