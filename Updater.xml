@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <MoalemYar>
   <AppVersion>
-    <version>1.0.0.0</version>
+    <version>1.0.2734.0</version>
     <url>https://github.com/ghost1372/MoalemYar/releases</url>
     <changelog>
     بهبود رابط کاربری
-    حل مشکلات گزارش شده
+    حل مشکلات
     افزودن ویژگی های جدید
-    حل مشکل بسته شدن
     بهبود تجربه کاربری
-    رفع چند مشکل کوچک
     </changelog>
   </AppVersion>
 </MoalemYar>
