@@ -13,10 +13,13 @@ namespace MoalemYar.Migrations
 
         protected override void Seed(MoalemYar.DataClass.myDbContext context)
         {
-            //  This method will be called after migrating to the latest version.
+            context.Set<DataClass.Tables.User>().Add(new DataClass.Tables.User
+            {
+                Username = "test",
+                Password = "test"
+            });
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method
-            //  to avoid creating duplicate seed data.
+            context.SaveChanges();
         }
     }
 }

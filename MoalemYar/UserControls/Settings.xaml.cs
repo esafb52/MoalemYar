@@ -11,7 +11,9 @@
 using nucs.JsonSettings;
 using nucs.JsonSettings.Fluent;
 using System;
+using System.Data.Entity;
 using System.IO;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -115,7 +117,24 @@ namespace MoalemYar.UserControls
             {
                 File.Delete(folder);
                 MainWindow.main.DataResetDeletedNotification("دیتابیس برنامه");
+                using (var context = new DataClass.myDbContext())
+                {
+                    CreateAndSeedDatabase(context);
+                }
             }
+        }
+
+        private static void CreateAndSeedDatabase(DbContext context)
+        {
+            context.Database.Initialize(true);
+            context.Set<DataClass.Tables.User>().Add(new DataClass.Tables.User
+            {
+                Username = "test",
+                Password = "test"
+            });
+
+            context.SaveChanges();
+
         }
 
         private void btnDatabaseReset_Click(object sender, RoutedEventArgs e)
