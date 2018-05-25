@@ -55,7 +55,7 @@
                     </Metro:MetroGroupBox>
                 </Grid>
                 <Grid>
-                    
+
                     <Metro:MetroGroupBox Margin="5" Header="تنظیمات نمودار">
                             <Grid>
                             <StackPanel Orientation="Vertical">
@@ -103,7 +103,6 @@
                                         </ContentControl.ContentTemplate>
                                     </ContentControl>
                                     <Metro:MetroColorPicker Margin="10" x:Name="colorChart" Width="50" Height="50" Background="#CE2156" DefaultColor="#CE2156" ColorPickerClosed="colorChart_close" />
-
                                 </StackPanel>
                             </StackPanel>
                         </Grid>

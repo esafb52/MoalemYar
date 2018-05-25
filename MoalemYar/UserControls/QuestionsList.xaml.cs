@@ -64,7 +64,7 @@ namespace MoalemYar.UserControls
             using (var db = new DataClass.myDbContext())
             {
                 var query = (isExam == true) ? db.Students.Where(x => x.BaseId == SchoolId)
-                    .Select(x => new DataClass.DataTransferObjects.StudentsDto { Id = x.Id, BaseId = x.BaseId, Name = x.Name, LName = x.LName, FName = x.FName }):
+                    .Select(x => new DataClass.DataTransferObjects.StudentsDto { Id = x.Id, BaseId = x.BaseId, Name = x.Name, LName = x.LName, FName = x.FName }) :
                     db.Students.Where(x => !db.Questions.Any(f => f.StudentId == x.Id && f.Book == Book) && x.BaseId == SchoolId)
                     .Select(x => new DataClass.DataTransferObjects.StudentsDto { Id = x.Id, BaseId = x.BaseId, Name = x.Name, LName = x.LName, FName = x.FName });
 
@@ -610,7 +610,6 @@ namespace MoalemYar.UserControls
             if (isQuestion.IsChecked == true)
                 isExam.IsChecked = false;
             cmbBase.IsEnabled = true;
-
         }
 
         private void cmbBook_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -632,7 +631,6 @@ namespace MoalemYar.UserControls
             catch (Exception)
             {
             }
-           
         }
     }
 }

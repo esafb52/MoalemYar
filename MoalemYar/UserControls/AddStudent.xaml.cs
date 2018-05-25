@@ -86,7 +86,6 @@ namespace MoalemYar.UserControls
                 var DeleteAttendance = await db.Attendances.Where(x => x.StudentId == id).ToListAsync();
                 db.Attendances.RemoveRange(DeleteAttendance);
 
-
                 await db.SaveChangesAsync();
                 return "Student Deleted Successfully";
             }

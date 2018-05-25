@@ -11,7 +11,6 @@
 using Microsoft.Win32;
 using System;
 using System.Diagnostics;
-using System.Drawing;
 using System.Reflection;
 using System.Windows.Media;
 
@@ -45,9 +44,11 @@ namespace MoalemYar
         public static string getAppTitle = "معلم یار نسخه آزمایشی ";
 
         public static string fileName = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\" + Assembly.GetExecutingAssembly().GetName().Name;
+
         #endregion App Details
 
         #region Chart
+
         public const string CHART_PURPLE = "#CE2156";
         public const string CHART_ORANGE = "#EB5A13";
         public const string CHART_GREEN = "#7DBD8D";
@@ -58,7 +59,7 @@ namespace MoalemYar
         public const string CHART_Column2 = "StackedColumn";
         public const string CHART_Area = "Area";
 
-        #endregion
+        #endregion Chart
 
         #region Colors
 
@@ -69,8 +70,6 @@ namespace MoalemYar
         public const string RED = "#F44336";
         public const string BLUE = "#1751C3";
         public const string DEFAULT_BORDER_BRUSH = "#6D819A";
-
-      
 
         #endregion Colors
 
@@ -93,6 +92,7 @@ namespace MoalemYar
             var brush = new SolidColorBrush(color);
             return brush;
         }
+
         public static string RunActionMeasurePerformance(Action action)
         {
             GC.Collect();

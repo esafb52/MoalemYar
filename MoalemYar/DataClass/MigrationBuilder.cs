@@ -19,19 +19,19 @@ namespace SQLite.CodeFirst.Builder
     {
         #region Constants
 
-        const string _providerInvariantName = "System.Data.SQLite";
-        const string _defaultDateTimeFormat = "yyyy-MM-dd hh:mm:ss";
-        static readonly Regex _rxMatchParameterReference = new Regex("@p[0-9]+", RegexOptions.Compiled | RegexOptions.CultureInvariant | RegexOptions.Multiline);
+        private const string _providerInvariantName = "System.Data.SQLite";
+        private const string _defaultDateTimeFormat = "yyyy-MM-dd hh:mm:ss";
+        private static readonly Regex _rxMatchParameterReference = new Regex("@p[0-9]+", RegexOptions.Compiled | RegexOptions.CultureInvariant | RegexOptions.Multiline);
 
-        #endregion
+        #endregion Constants
 
         #region Instances
 
-        DbProviderServices _providerServices;
-        DbProviderManifest _providerManifest;
-        List<MigrationStatement> _migrationStatements;
+        private DbProviderServices _providerServices;
+        private DbProviderManifest _providerManifest;
+        private List<MigrationStatement> _migrationStatements;
 
-        #endregion
+        #endregion Instances
 
         #region Public Surface
 
@@ -62,7 +62,7 @@ namespace SQLite.CodeFirst.Builder
                 Generate(dynamicOperation);
         }
 
-        #endregion
+        #endregion Public Surface
 
         #region Migration Statement Generation
 
@@ -121,7 +121,6 @@ namespace SQLite.CodeFirst.Builder
 
                 migrationStatement.Sql = tw.InnerWriter.ToString();
             }
-
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "op")]
@@ -460,7 +459,7 @@ namespace SQLite.CodeFirst.Builder
             return string.Format(CultureInfo.InvariantCulture, "{0}", v);
         }
 
-        #endregion
+        #endregion Migration Statement Generation
 
         #region Support methods
 
@@ -576,6 +575,6 @@ namespace SQLite.CodeFirst.Builder
             tw.Write(")");
         }
 
-        #endregion
+        #endregion Support methods
     }
 }

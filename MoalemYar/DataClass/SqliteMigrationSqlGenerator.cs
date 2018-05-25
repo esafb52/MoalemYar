@@ -13,7 +13,6 @@ namespace SQLite.CodeFirst
     /// </remarks>
     public sealed class SqliteMigrationSqlGenerator : MigrationSqlGenerator
     {
-
         #region Overrides from MigrationSqlGenerator
 
         /// <summary>
@@ -39,6 +38,6 @@ namespace SQLite.CodeFirst
             return impl.MigrationStatements;
         }
 
-        #endregion
+        #endregion Overrides from MigrationSqlGenerator
     }
 }

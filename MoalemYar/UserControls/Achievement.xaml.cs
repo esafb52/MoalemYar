@@ -1,23 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using LiveCharts;
-using LiveCharts.Wpf;
+﻿using LiveCharts.Wpf;
 using nucs.JsonSettings;
 using nucs.JsonSettings.Fluent;
+using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace MoalemYar.UserControls
 {
@@ -32,11 +21,12 @@ namespace MoalemYar.UserControls
         public Achievement()
         {
             InitializeComponent();
-           
+
             getSchool();
         }
 
         #region Async Query
+
         public async static Task<List<DataClass.Tables.School>> GetAllSchoolsAsync()
         {
             using (var db = new DataClass.myDbContext())
@@ -45,6 +35,7 @@ namespace MoalemYar.UserControls
                 return await query.ToListAsync();
             }
         }
+
         public async static Task<List<DataClass.DataTransferObjects.StudentsDto>> GetAllStudentsAsync(long BaseId)
         {
             using (var db = new DataClass.myDbContext())
@@ -62,6 +53,7 @@ namespace MoalemYar.UserControls
                 return await query.ToListAsync();
             }
         }
+
         private void getSchool()
         {
             try
@@ -78,6 +70,7 @@ namespace MoalemYar.UserControls
             {
             }
         }
+
         private void getStudent(long BaseId)
         {
             try
@@ -98,6 +91,7 @@ namespace MoalemYar.UserControls
             {
             }
         }
+
         private void getStudentScore(long StudentId)
         {
             try
@@ -115,17 +109,15 @@ namespace MoalemYar.UserControls
             }
         }
 
+        #endregion Async Query
 
-        #endregion
         private void cmbEditBase_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             getStudent(Convert.ToInt64(cmbEditBase.SelectedValue));
-           
         }
 
         private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
             try
             {
                 dynamic selectedItem = dataGrid.SelectedItems[0];
@@ -137,15 +129,19 @@ namespace MoalemYar.UserControls
                     case AppVariable.CHART_Column:
                         series = new ColumnSeries { };
                         break;
+
                     case AppVariable.CHART_Column2:
                         series = new StackedColumnSeries { };
                         break;
+
                     case AppVariable.CHART_Line:
                         series = new LineSeries { };
                         break;
+
                     case AppVariable.CHART_Line2:
                         series = new StepLineSeries { };
                         break;
+
                     case AppVariable.CHART_Area:
                         series = new StackedAreaSeries { };
                         break;
@@ -164,7 +160,7 @@ namespace MoalemYar.UserControls
                             }).ToArray();
 
                 //get Book Count for generate chart
-                var bookCount = score.GroupBy(x => new {x.Book })
+                var bookCount = score.GroupBy(x => new { x.Book })
                      .Select(g => new
                      {
                          g.Key.Book
@@ -176,16 +172,15 @@ namespace MoalemYar.UserControls
                 //generate chart based on count of books
                 foreach (var item in bookCount)
                 {
-                    _addUser = new MaterialChart(item.Book, selectedItem.Name + " " + selectedItem.LName, getDateArray(item.Book), getScoreArray(item.Book),getAverage(item.Book), getAverageStatus(item.Book), series, AppVariable.GetBrush(Convert.ToString(Setting[AppVariable.ChartColor] ?? AppVariable.CHART_GREEN)));
+                    _addUser = new MaterialChart(item.Book, selectedItem.Name + " " + selectedItem.LName, getDateArray(item.Book), getScoreArray(item.Book), getAverage(item.Book), getAverageStatus(item.Book), series, AppVariable.GetBrush(Convert.ToString(Setting[AppVariable.ChartColor] ?? AppVariable.CHART_GREEN)));
                     _currentUser = _addUser;
                     waterfallFlow.Children.Add(_currentUser);
                 }
-             
+
                 waterfallFlow.Refresh();
             }
             catch (NullReferenceException)
             {
-
             }
         }
 
@@ -221,7 +216,6 @@ namespace MoalemYar.UserControls
                                x.Key.Date,
                                Sum = x.Sum(y => AppVariable.EnumToNumber(y.Scores))
                            }).Where(x => x.Book == Book).ToArray();
-
 
             var sum = score.Sum(x => x.Sum);
 
@@ -260,7 +254,7 @@ namespace MoalemYar.UserControls
                                x.Key.Book,
                                x.Key.Date,
                                Sum = x.Sum(y => AppVariable.EnumToNumber(y.Scores))
-                           }).Where(x=>x.Book == Book).ToArray();
+                           }).Where(x => x.Book == Book).ToArray();
             return score.Select(x => x.Date).ToArray();
         }
 
@@ -277,7 +271,5 @@ namespace MoalemYar.UserControls
                            }).Where(x => x.Book == Book).ToArray();
             return score.Select(x => Convert.ToDouble(x.Sum)).ToArray();
         }
-
     }
 }
-

@@ -1,19 +1,7 @@
 ﻿using LiveCharts;
 using LiveCharts.Wpf;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace MoalemYar.UserControls
 {
@@ -23,6 +11,7 @@ namespace MoalemYar.UserControls
     public partial class MaterialChart : UserControl
     {
         public Brush BorderColor { get; set; }
+
         public MaterialChart(string Book, string Name, string[] Label, double[] values, string Average, string AverageStatus, Series series, Brush Background)
         {
             InitializeComponent();
@@ -35,7 +24,8 @@ namespace MoalemYar.UserControls
                     Values = new ChartValues<double>(values),
                     StrokeDashArray = new System.Windows.Media.DoubleCollection(20)
                 });
-            }else if (series.GetType() == typeof(LineSeries))
+            }
+            else if (series.GetType() == typeof(LineSeries))
             {
                 AchievementChart.Series.Add(new LineSeries
                 {
@@ -76,7 +66,6 @@ namespace MoalemYar.UserControls
             txtAverage.Text = AverageStatus;
             txtBook.Text = Book;
             txtName.Text = Name;
-            
         }
     }
 }

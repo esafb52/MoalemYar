@@ -20,8 +20,8 @@
             <Metro:MetroTabItem Header="ثبت اطلاعات">
                 <Grid KeyboardNavigation.TabNavigation="Cycle"  Name="grd">
                     <StackPanel Orientation="Horizontal" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="800">
-                        <Metro:MetroSwitch Checked="isExam_Checked" Unchecked="isExam_Checked" Margin="15,5" Name="isExam" Content="امتحان / فعالیت"/>
-                        <Metro:MetroSwitch Checked="isQuestion_Checked" Unchecked="isQuestion_Checked" Margin="0,5" Name="isQuestion" Content="پرسش"/>
+                        <Metro:MetroSwitch Checked="isExam_Checked" Unchecked="isExam_Checked" Margin="15,5" Name="isExam" Content="امتحان / فعالیت" />
+                        <Metro:MetroSwitch Checked="isQuestion_Checked" Unchecked="isQuestion_Checked" Margin="0,5" Name="isQuestion" Content="پرسش" />
                     </StackPanel>
                     <Grid Margin="0,40,0,0">
                         <ComboBox SelectionChanged="cmbBase_SelectionChanged" x:Name="cmbBase"
@@ -72,7 +72,7 @@
                     </ContentControl>
 
                     <StackPanel Orientation="Vertical" Margin="0,40,10,0" Grid.ColumnSpan="2">
-                        <StackPanel Margin="10,0,0,0" Orientation="Horizontal" HorizontalAlignment="Left"/>
+                        <StackPanel Margin="10,0,0,0" Orientation="Horizontal" HorizontalAlignment="Left" />
                     </StackPanel>
                     <DataGrid x:Name="dataGrid" AutoGenerateColumns="False" MaxWidth="{Binding Path=ActualWidth, ElementName=grd, Converter={local1:MultiplyConverter Multiplier=.9}}"
                                       Background="#eceff5" RowHeaderWidth="0" AlternatingRowBackground="#fbfcfe" HorizontalAlignment="Stretch"

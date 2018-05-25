@@ -14,7 +14,7 @@
         <Metro:MetroTitleMenu>
             <Metro:MetroTitleMenuItem FlowDirection="RightToLeft" Header="منو" Icon="Resources/titleMuenIcon.png">
                 <Metro:MetroMenuItem Header="داشبورد" Tag="0" Click="MetroMenuItem_Click" />
-                <Metro:MetroMenuSeparator/>
+                <Metro:MetroMenuSeparator />
                 <Metro:MetroMenuItem Header="عملیات پایه">
                 <Metro:MetroMenuItem Header="مدرسه و کلاس" Tag="1" Click="MetroMenuItem_Click" />
                 <Metro:MetroMenuItem Header="دانش آموز" Tag="2" Click="MetroMenuItem_Click" />

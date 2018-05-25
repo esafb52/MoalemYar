@@ -10,10 +10,10 @@ namespace SQLite.CodeFirst.Utility
 {
     public static class MigrationFormatter
     {
-        const int _defaultStringMaxLength = 255;
-        const int _defaultNumericPrecision = 10;
-        const byte _defaultTimePrecision = 7;
-        const byte _defaultNumericScale = 0;
+        private const int _defaultStringMaxLength = 255;
+        private const int _defaultNumericPrecision = 10;
+        private const byte _defaultTimePrecision = 7;
+        private const byte _defaultNumericScale = 0;
 
         /// <summary>
         /// Builds a column type
@@ -57,10 +57,12 @@ namespace SQLite.CodeFirst.Utility
                     storeType += "(" + (column.Precision ?? _defaultNumericPrecision)
                                      + ", " + (column.Scale ?? _defaultNumericScale) + ")";
                     break;
+
                 case "DATETIME":
                 case "TIME":
                     storeType += "(" + (column.Precision ?? _defaultTimePrecision) + ")";
                     break;
+
                 case "BLOB":
                 case "VARCHAR2":
                 case "VARCHAR":
@@ -298,6 +300,5 @@ namespace SQLite.CodeFirst.Utility
                 ? " COLLATE " + collateCustomFunction
                 : " COLLATE " + colatteFunctionType.ToString().ToUpperInvariant();
         }
-
     }
 }

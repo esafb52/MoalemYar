@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
-using System.Text;
-using SQLite.CodeFirst.Extensions;
 
 namespace SQLite.CodeFirst
 {
@@ -17,7 +13,7 @@ namespace SQLite.CodeFirst
         /// Initializes a new instance of the SqliteMigrateDatabaseToLatestVersion class that will use
         ///             the connection information from a context constructed using the default constructor
         ///             or registered factory if applicable
-        /// 
+        ///
         /// </summary>
         /// <param name="modelBuilder">The builder that defines the model for the context being created. </param>
         public SqliteMigrateDatabaseToLatestVersion(DbModelBuilder modelBuilder)
@@ -29,7 +25,7 @@ namespace SQLite.CodeFirst
         /// <summary>
         /// Initializes a new instance of the SqliteMigrateDatabaseToLatestVersion class specifying whether to
         ///             use the connection information from the context that triggered initialization to perform the migration.
-        /// 
+        ///
         /// </summary>
         /// <param name="modelBuilder">The builder that defines the model for the context being created. </param>
         /// <param name="useSuppliedContext">If set to <c>true</c> the initializer is run using the connection information from the context that
@@ -46,7 +42,7 @@ namespace SQLite.CodeFirst
         /// Initializes a new instance of the SqliteMigrateDatabaseToLatestVersion class specifying whether to
         ///             use the connection information from the context that triggered initialization to perform the migration.
         ///             Also allows specifying migrations configuration to use during initialization.
-        /// 
+        ///
         /// </summary>
         /// <param name="modelBuilder">The builder that defines the model for the context being created. </param>
         /// <param name="useSuppliedContext">If set to <c>true</c> the initializer is run using the connection information from the context that
@@ -63,7 +59,7 @@ namespace SQLite.CodeFirst
         /// Initializes a new instance of the SqliteMigrateDatabaseToLatestVersion class that will
         ///             use a specific connection string from the configuration file to connect to
         ///             the database to perform the migration.
-        /// 
+        ///
         /// </summary>
         /// <param name="modelBuilder">The builder that defines the model for the context being created. </param>
         /// <param name="connectionStringName">The name of the connection string to use for migration. </param>
@@ -72,7 +68,6 @@ namespace SQLite.CodeFirst
         {
             Initialize(modelBuilder);
         }
-
 
         private static void Initialize(DbModelBuilder modelBuilder)
         {

@@ -16,7 +16,6 @@ using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 
 namespace MoalemYar.UserControls
 {
@@ -63,15 +62,17 @@ namespace MoalemYar.UserControls
             color1.Background = AppVariable.GetBrush(Convert.ToString(Setting[AppVariable.SkinCode] ?? AppVariable.DEFAULT_BORDER_BRUSH));
             colorChart.Background = AppVariable.GetBrush(Convert.ToString(Setting[AppVariable.ChartColor] ?? AppVariable.CHART_PURPLE));
         }
-        
+
         private void color1_close()
         {
             Setting[AppVariable.SkinCode] = color1.CurrentColor.OpaqueSolidColorBrush.ToString();
         }
+
         private void colorChart_close()
         {
             Setting[AppVariable.ChartColor] = colorChart.CurrentColor.OpaqueSolidColorBrush.ToString();
         }
+
         private void swLogin_Checked(object sender, RoutedEventArgs e)
         {
             Setting[AppVariable.CredentialLogin] = swLogin.IsChecked;
@@ -138,7 +139,6 @@ namespace MoalemYar.UserControls
             });
 
             context.SaveChanges();
-
         }
 
         private void btnDatabaseReset_Click(object sender, RoutedEventArgs e)
@@ -154,20 +154,23 @@ namespace MoalemYar.UserControls
                 case 0:
                     Setting[AppVariable.ChartType] = AppVariable.CHART_Column;
                     break;
+
                 case 1:
                     Setting[AppVariable.ChartType] = AppVariable.CHART_Column2;
                     break;
+
                 case 2:
                     Setting[AppVariable.ChartType] = AppVariable.CHART_Line;
                     break;
+
                 case 3:
                     Setting[AppVariable.ChartType] = AppVariable.CHART_Line2;
                     break;
+
                 case 4:
                     Setting[AppVariable.ChartType] = AppVariable.CHART_Area;
                     break;
             }
-
         }
 
         private void cmbChartColor_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -185,6 +188,7 @@ namespace MoalemYar.UserControls
                     colorChart.Background = AppVariable.GetBrush(AppVariable.CHART_PURPLE);
 
                     break;
+
                 case 2:
                     Setting[AppVariable.ChartColor] = AppVariable.CHART_ORANGE;
                     colorChart.Background = AppVariable.GetBrush(AppVariable.CHART_ORANGE);

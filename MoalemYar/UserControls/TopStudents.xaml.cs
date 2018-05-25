@@ -1,19 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace MoalemYar.UserControls
 {
@@ -31,6 +21,7 @@ namespace MoalemYar.UserControls
         }
 
         #region Async Query
+
         public async static Task<List<DataClass.Tables.School>> GetAllSchoolsAsync()
         {
             using (var db = new DataClass.myDbContext())
@@ -39,6 +30,7 @@ namespace MoalemYar.UserControls
                 return await query.ToListAsync();
             }
         }
+
         public async static Task<List<DataClass.DataTransferObjects.StudentsScoresDto>> GetAllStudentsAsync(long BaseId)
         {
             using (var db = new DataClass.myDbContext())
@@ -53,7 +45,7 @@ namespace MoalemYar.UserControls
                 return await query.ToListAsync();
             }
         }
-        
+
         private void getSchool()
         {
             try
@@ -70,7 +62,6 @@ namespace MoalemYar.UserControls
             {
             }
         }
-
 
         private void getStudent(long BaseId)
         {
@@ -92,7 +83,7 @@ namespace MoalemYar.UserControls
                                 LName = x.Key.LName,
                                 FName = x.Key.FName,
                                 Sum = x.Sum(y => AppVariable.EnumToNumber(y.Scores))
-                            }).OrderByDescending(x=>x.Sum).ToArray();
+                            }).OrderByDescending(x => x.Sum).ToArray();
 
                     dataGrid.ItemsSource = res.ToList();
                 }
@@ -107,7 +98,8 @@ namespace MoalemYar.UserControls
             }
         }
 
-        #endregion
+        #endregion Async Query
+
         private void cmbBaseEdit_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             getStudent(Convert.ToInt64(cmbBaseEdit.SelectedValue));
