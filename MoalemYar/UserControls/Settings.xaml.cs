@@ -11,14 +11,11 @@
 using nucs.JsonSettings;
 using nucs.JsonSettings.Fluent;
 using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 
 namespace MoalemYar.UserControls
 {
@@ -44,7 +41,7 @@ namespace MoalemYar.UserControls
         }
 
         #region Async Query
-       
+
         private void getSchool()
         {
             try
@@ -57,13 +54,14 @@ namespace MoalemYar.UserControls
                         cmbBase.ItemsSource = query.ToList();
                     }
                 }
-               
             }
             catch (NullReferenceException)
             {
             }
         }
-        #endregion
+
+        #endregion Async Query
+
         private void LoadSettings()
         {
             if (Convert.ToBoolean(Setting[AppVariable.CredentialLogin] ?? false))
@@ -205,37 +203,11 @@ namespace MoalemYar.UserControls
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-
-            var elementType = FindElementByName<ComboBox>(cmbChartType, "cmbChart");
-            var elementColor = FindElementByName<ComboBox>(cmbChartColor, "cmbChartColor");
+            var elementType = FindElement.FindElementByName<ComboBox>(cmbChartType, "cmbChart");
+            var elementColor = FindElement.FindElementByName<ComboBox>(cmbChartColor, "cmbChartColor");
             elementType.SelectedIndex = Convert.ToInt32(Setting[AppVariable.ChartType] ?? -1);
             elementColor.SelectedIndex = Convert.ToInt32(Setting[AppVariable.ChartColorIndex] ?? -1);
             cmbBase.SelectedIndex = Convert.ToInt32(Setting[AppVariable.DefaultSchool] ?? -1);
-
-        }
-        public T FindElementByName<T>(FrameworkElement element, string sChildName) where T : FrameworkElement
-        {
-            T childElement = null;
-            var nChildCount = VisualTreeHelper.GetChildrenCount(element);
-            for (int i = 0; i < nChildCount; i++)
-            {
-                FrameworkElement child = VisualTreeHelper.GetChild(element, i) as FrameworkElement;
-
-                if (child == null)
-                    continue;
-
-                if (child is T && child.Name.Equals(sChildName))
-                {
-                    childElement = (T)child;
-                    break;
-                }
-
-                childElement = FindElementByName<T>(child, sChildName);
-
-                if (childElement != null)
-                    break;
-            }
-            return childElement;
         }
 
         private void cmbBase_SelectionChanged(object sender, SelectionChangedEventArgs e)

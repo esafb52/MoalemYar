@@ -14,7 +14,7 @@
     <WarningLevel>4</WarningLevel>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <AssemblyVersion>1.0.2887.0</AssemblyVersion>
+    <AssemblyVersion>1.0.2897.0</AssemblyVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -118,6 +118,7 @@
     <Compile Include="DataClass\Tables\Score.cs" />
     <Compile Include="DataClass\Tables\User.cs" />
     <Compile Include="EmbeddedAssembly.cs" />
+    <Compile Include="FindElement.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MultiplyConverter.cs" />
     <Compile Include="UserControls\About.xaml.cs">

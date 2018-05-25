@@ -156,49 +156,6 @@ namespace MoalemYar.UserControls
 
         #endregion Func get Query Wait"
 
-        public T FindElementByName<T>(FrameworkElement element, string sChildName) where T : FrameworkElement
-        {
-            T childElement = null;
-            var nChildCount = VisualTreeHelper.GetChildrenCount(element);
-            for (int i = 0; i < nChildCount; i++)
-            {
-                FrameworkElement child = VisualTreeHelper.GetChild(element, i) as FrameworkElement;
-
-                if (child == null)
-                    continue;
-
-                if (child is T && child.Name.Equals(sChildName))
-                {
-                    childElement = (T)child;
-                    break;
-                }
-
-                childElement = FindElementByName<T>(child, sChildName);
-
-                if (childElement != null)
-                    break;
-            }
-            return childElement;
-        }
-
-        private childItem FindVisualChild<childItem>(DependencyObject obj)
-            where childItem : DependencyObject
-        {
-            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(obj); i++)
-            {
-                DependencyObject child = VisualTreeHelper.GetChild(obj, i);
-                if (child != null && child is childItem)
-                    return (childItem)child;
-                else
-                {
-                    childItem childOfChild = FindVisualChild<childItem>(child);
-                    if (childOfChild != null)
-                        return childOfChild;
-                }
-            }
-            return null;
-        }
-
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
             MainWindow.main.exContent.Content = null;
@@ -244,13 +201,13 @@ namespace MoalemYar.UserControls
 
         private string getComboValue()
         {
-            var element = FindElementByName<ComboBox>(cmbContent, "cmbBase");
+            var element = FindElement.FindElementByName<ComboBox>(cmbContent, "cmbBase");
             return element.Text;
         }
 
         private void setComboValue(string index)
         {
-            var element = FindElementByName<ComboBox>(cmbContent, "cmbBase");
+            var element = FindElement.FindElementByName<ComboBox>(cmbContent, "cmbBase");
             switch (index)
             {
                 case "اول":
@@ -304,7 +261,7 @@ namespace MoalemYar.UserControls
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            var element = FindElementByName<ComboBox>(cmbAddContent, "cmbBase");
+            var element = FindElement.FindElementByName<ComboBox>(cmbAddContent, "cmbBase");
             if (txtAddSchool.Text == string.Empty || txtAddAdmin.Text == string.Empty || txtAddYear.Text == string.Empty || element.SelectedIndex == -1)
             {
                 MainWindow.main.ShowFillAllDataNotification();

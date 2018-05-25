@@ -202,49 +202,6 @@ namespace MoalemYar.UserControls
 
         #endregion Func get Query Wait"
 
-        public T FindElementByName<T>(FrameworkElement element, string sChildName) where T : FrameworkElement
-        {
-            T childElement = null;
-            var nChildCount = VisualTreeHelper.GetChildrenCount(element);
-            for (int i = 0; i < nChildCount; i++)
-            {
-                FrameworkElement child = VisualTreeHelper.GetChild(element, i) as FrameworkElement;
-
-                if (child == null)
-                    continue;
-
-                if (child is T && child.Name.Equals(sChildName))
-                {
-                    childElement = (T)child;
-                    break;
-                }
-
-                childElement = FindElementByName<T>(child, sChildName);
-
-                if (childElement != null)
-                    break;
-            }
-            return childElement;
-        }
-
-        private childItem FindVisualChild<childItem>(DependencyObject obj)
-            where childItem : DependencyObject
-        {
-            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(obj); i++)
-            {
-                DependencyObject child = VisualTreeHelper.GetChild(obj, i);
-                if (child != null && child is childItem)
-                    return (childItem)child;
-                else
-                {
-                    childItem childOfChild = FindVisualChild<childItem>(child);
-                    if (childOfChild != null)
-                        return childOfChild;
-                }
-            }
-            return null;
-        }
-
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
             MainWindow.main.exContent.Content = null;
@@ -309,13 +266,13 @@ namespace MoalemYar.UserControls
 
         private string getComboValue()
         {
-            var element = FindElementByName<ComboBox>(cmbContentGender, "cmbGender");
+            var element = FindElement.FindElementByName<ComboBox>(cmbContentGender, "cmbGender");
             return element.Text;
         }
 
         private void setComboValue(string index)
         {
-            var element = FindElementByName<ComboBox>(cmbContentGender, "cmbGender");
+            var element = FindElement.FindElementByName<ComboBox>(cmbContentGender, "cmbGender");
             switch (index)
             {
                 case "پسر":
@@ -345,7 +302,7 @@ namespace MoalemYar.UserControls
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            var elementG = FindElementByName<ComboBox>(cmbAddContentGender, "cmbGender");
+            var elementG = FindElement.FindElementByName<ComboBox>(cmbAddContentGender, "cmbGender");
 
             if (txtAddName.Text == string.Empty || txtAddLName.Text == string.Empty || txtAddFName.Text == string.Empty || elementG.SelectedIndex == -1 || cmbBase.SelectedIndex == -1)
             {
@@ -434,7 +391,7 @@ namespace MoalemYar.UserControls
 
         private void cmbGender_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var element = FindElementByName<ComboBox>(cmbAddContentGender, "cmbGender");
+            var element = FindElement.FindElementByName<ComboBox>(cmbAddContentGender, "cmbGender");
             if (element.SelectedIndex == 0)
                 imgStudent.Source = new BitmapImage(new Uri("pack://application:,,,/MoalemYar;component/Resources/Boy.png", UriKind.Absolute));
             else

@@ -338,7 +338,7 @@ namespace MoalemYar.UserControls
         {
             try
             {
-                var element = FindElementByName<ComboBox>(frameworkElement, cmb);
+                var element = FindElement.FindElementByName<ComboBox>(frameworkElement, cmb);
                 dynamic selectedItem = combo.SelectedItem;
 
                 if (selectedItem.Base.Contains("اول"))
@@ -384,42 +384,15 @@ namespace MoalemYar.UserControls
             }
             catch (NullReferenceException)
             {
-
             }
-           
-        }
-
-        public T FindElementByName<T>(FrameworkElement element, string sChildName) where T : FrameworkElement
-        {
-            T childElement = null;
-            var nChildCount = VisualTreeHelper.GetChildrenCount(element);
-            for (int i = 0; i < nChildCount; i++)
-            {
-                FrameworkElement child = VisualTreeHelper.GetChild(element, i) as FrameworkElement;
-
-                if (child == null)
-                    continue;
-
-                if (child is T && child.Name.Equals(sChildName))
-                {
-                    childElement = (T)child;
-                    break;
-                }
-
-                childElement = FindElementByName<T>(child, sChildName);
-
-                if (childElement != null)
-                    break;
-            }
-            return childElement;
         }
 
         private void chkChecked_Checked(object sender, RoutedEventArgs e)
         {
             var row = dataGrid.ContainerFromElement(sender as DependencyObject);
-            Arthas.Controls.Metro.MetroTextBlock MyTextBlock = FindVisualChildByName<Arthas.Controls.Metro.MetroTextBlock>(row, "txtStatus");
+            Arthas.Controls.Metro.MetroTextBlock MyTextBlock = FindElement.FindVisualChildByName<Arthas.Controls.Metro.MetroTextBlock>(row, "txtStatus");
             dynamic selectedItem = dataGrid.SelectedItems[0];
-            var element = FindElementByName<ComboBox>(cmbBook, "cmbBook");
+            var element = FindElement.FindElementByName<ComboBox>(cmbBook, "cmbBook");
             switch ((sender as Arthas.Controls.Metro.MetroSwitch).Tag.ToString())
             {
                 case "exc":
@@ -479,28 +452,6 @@ namespace MoalemYar.UserControls
             }
         }
 
-        public T FindVisualChildByName<T>(DependencyObject parent, string name) where T : DependencyObject
-        {
-            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(parent); i++)
-            {
-                var child = VisualTreeHelper.GetChild(parent, i);
-                string controlName = child.GetValue(Control.NameProperty) as string;
-                if (controlName == name)
-                {
-                    return child as T;
-                }
-                else
-                {
-                    T result = FindVisualChildByName<T>(child, name);
-
-                    if (result != null)
-
-                        return result;
-                }
-            }
-            return null;
-        }
-
         private void StackPanel_Checked(object sender, RoutedEventArgs e)
         {
             Arthas.Controls.Metro.MetroSwitch cb = e.OriginalSource as Arthas.Controls.Metro.MetroSwitch;
@@ -532,8 +483,8 @@ namespace MoalemYar.UserControls
                 dynamic selectedItem = dataGridEdit.SelectedItems[0];
                 long id = selectedItem.Id;
 
-                var element = FindElementByName<ComboBox>(cmbContentScore, "cmbScore");
-                var element2 = FindElementByName<ComboBox>(cmbBookEdit, "cmbBookEdit");
+                var element = FindElement.FindElementByName<ComboBox>(cmbContentScore, "cmbScore");
+                var element2 = FindElement.FindElementByName<ComboBox>(cmbBookEdit, "cmbBookEdit");
 
                 updateScore(id, Convert.ToInt64(cmbEditStudent.SelectedValue), element.Text, txtDateEdit.SelectedDate.ToString(), element2.Text, txtDescEdit.Text);
                 MainWindow.main.ShowUpdateDataNotification(true, selectedItemName.Name + " " + selectedItemName.LName, "نمره");
@@ -598,8 +549,8 @@ namespace MoalemYar.UserControls
                 dynamic selectedItem = dataGridEdit.SelectedItems[0];
                 txtDateEdit.SelectedDate = new PersianCalendarWPF.PersianDate(Convert.ToInt32(selectedItem.Date.Substring(0, 4)), Convert.ToInt32(selectedItem.Date.Substring(5, 2)), Convert.ToInt32(selectedItem.Date.Substring(8, 2)));
                 txtDescEdit.Text = selectedItem.Desc;
-                var element = FindElementByName<ComboBox>(cmbContentScore, "cmbScore");
-                var element2 = FindElementByName<ComboBox>(cmbBookEdit, "cmbBookEdit");
+                var element = FindElement.FindElementByName<ComboBox>(cmbContentScore, "cmbScore");
+                var element2 = FindElement.FindElementByName<ComboBox>(cmbBookEdit, "cmbBookEdit");
                 element.Text = selectedItem.Scores;
                 element2.Text = selectedItem.Book;
             }
@@ -630,12 +581,12 @@ namespace MoalemYar.UserControls
             {
                 if (isQuestion.IsChecked == true)
                 {
-                    var element = FindElementByName<ComboBox>(cmbBook, "cmbBook");
+                    var element = FindElement.FindElementByName<ComboBox>(cmbBook, "cmbBook");
                     getStudents(Convert.ToInt64(cmbBase.SelectedValue), element.SelectedItem.ToString(), false);
                 }
                 else
                 {
-                    var element = FindElementByName<ComboBox>(cmbBook, "cmbBook");
+                    var element = FindElement.FindElementByName<ComboBox>(cmbBook, "cmbBook");
                     txtDesc.Text = "امتحان / فعالیت " + element.SelectedItem;
                     getStudents(Convert.ToInt64(cmbBase.SelectedValue), element.SelectedItem.ToString(), true);
                 }
