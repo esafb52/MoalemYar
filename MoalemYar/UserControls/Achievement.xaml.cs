@@ -160,7 +160,7 @@ namespace MoalemYar.UserControls
                                 x.Key.StudentId,
                                 x.Key.Book,
                                 x.Key.Date,
-                                Sum = x.Sum(y => EnumToNumber(y.Scores))
+                                Sum = x.Sum(y => AppVariable.EnumToNumber(y.Scores))
                             }).ToArray();
 
                 //get Book Count for generate chart
@@ -198,7 +198,7 @@ namespace MoalemYar.UserControls
                                x.Key.StudentId,
                                x.Key.Book,
                                x.Key.Date,
-                               Sum = x.Sum(y => EnumToNumber(y.Scores))
+                               Sum = x.Sum(y => AppVariable.EnumToNumber(y.Scores))
                            }).Where(x => x.Book == Book).ToArray();
             var dCount = score.Select(x => x.Date).Count();
             var sum = score.Sum(x => x.Sum);
@@ -219,7 +219,7 @@ namespace MoalemYar.UserControls
                                x.Key.StudentId,
                                x.Key.Book,
                                x.Key.Date,
-                               Sum = x.Sum(y => EnumToNumber(y.Scores))
+                               Sum = x.Sum(y => AppVariable.EnumToNumber(y.Scores))
                            }).Where(x => x.Book == Book).ToArray();
 
 
@@ -259,7 +259,7 @@ namespace MoalemYar.UserControls
                                x.Key.StudentId,
                                x.Key.Book,
                                x.Key.Date,
-                               Sum = x.Sum(y => EnumToNumber(y.Scores))
+                               Sum = x.Sum(y => AppVariable.EnumToNumber(y.Scores))
                            }).Where(x=>x.Book == Book).ToArray();
             return score.Select(x => x.Date).ToArray();
         }
@@ -273,34 +273,11 @@ namespace MoalemYar.UserControls
                                x.Key.StudentId,
                                x.Key.Book,
                                x.Key.Date,
-                               Sum = x.Sum(y => EnumToNumber(y.Scores))
+                               Sum = x.Sum(y => AppVariable.EnumToNumber(y.Scores))
                            }).Where(x => x.Book == Book).ToArray();
             return score.Select(x => Convert.ToDouble(x.Sum)).ToArray();
         }
 
-        //Convert string to int in linq
-        public static int EnumToNumber(string value)
-        {
-            switch (value)
-            {
-                case "خیلی خوب":
-                    return 4;
-
-                case "خوب":
-                    return 3;
-
-                case "قابل قبول":
-                    return 2;
-
-                case "نیاز به تلاش بیشتر":
-                    return 1;
-
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(value), value, "Value not recognized");
-            }
-        }
-
-        
     }
 }
 

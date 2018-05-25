@@ -126,5 +126,27 @@ namespace MoalemYar
                 registryKey.DeleteValue(productName);
             }
         }
+
+        //Convert string to int in linq
+        public static int EnumToNumber(string value)
+        {
+            switch (value)
+            {
+                case "خیلی خوب":
+                    return 4;
+
+                case "خوب":
+                    return 3;
+
+                case "قابل قبول":
+                    return 2;
+
+                case "نیاز به تلاش بیشتر":
+                    return 1;
+
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(value), value, "Value not recognized");
+            }
+        }
     }
 }
