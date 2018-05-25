@@ -221,10 +221,10 @@ namespace MoalemYar.UserControls
 
             var Avg = decimal.Divide(sum, dCount).ToString("0.00");
 
-            var one = decimal.Divide(sum, 1).ToString("0.00");
-            var sec = decimal.Divide(sum, 2).ToString("0.00");
-            var thi = decimal.Divide(sum, 3).ToString("0.00");
-            var forth = decimal.Divide(sum, 4).ToString("0.00");
+            var one = decimal.Divide(dCount * 4, 1).ToString("0.00");
+            var sec = decimal.Divide(dCount * 4, 2).ToString("0.00");
+            var thi = decimal.Divide(dCount * 4, 3).ToString("0.00");
+            var forth = decimal.Divide(dCount * 4, 4).ToString("0.00");
 
             string status = string.Empty;
 
@@ -232,7 +232,7 @@ namespace MoalemYar.UserControls
                 status = "خیلی خوب";
             else if (Convert.ToDecimal(Avg) < Convert.ToDecimal(one) && Convert.ToDecimal(Avg) >= Convert.ToDecimal(thi))
                 status = "خوب";
-            else if (Convert.ToDecimal(Avg) < Convert.ToDecimal(thi) && Convert.ToDecimal(Avg) >= Convert.ToDecimal(forth))
+            else if (Convert.ToDecimal(Avg) < Convert.ToDecimal(sec) && Convert.ToDecimal(Avg) >= Convert.ToDecimal(forth))
                 status = "قابل قبول";
             else if (Convert.ToDecimal(Avg) < Convert.ToDecimal(forth))
                 status = "نیاز به تلاش بیشتر";
