@@ -50,7 +50,7 @@
                 <DataGridTextColumn Binding="{Binding Name}" Header="نام" MinWidth="100" Width="*" />
                 <DataGridTextColumn Binding="{Binding LName}" Header="نام خانوادگی" MinWidth="100" Width="*" />
                 <DataGridTextColumn Binding="{Binding FName}" Header="نام پدر" MinWidth="100" Width="*" />
-                <DataGridTextColumn Binding="{Binding Score}" Header="امتیاز" Width="*" />
+                <DataGridTextColumn Binding="{Binding Sum}" Header="امتیاز" Width="*" />
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

@@ -22,6 +22,8 @@ namespace MoalemYar.UserControls
     /// </summary>
     public partial class TopStudents : UserControl
     {
+        private List<DataClass.DataTransferObjects.StudentsScoresDto> _initialCollection;
+
         public TopStudents()
         {
             InitializeComponent();
@@ -51,6 +53,7 @@ namespace MoalemYar.UserControls
                 return await query.ToListAsync();
             }
         }
+        
         private void getSchool()
         {
             try
@@ -68,8 +71,6 @@ namespace MoalemYar.UserControls
             }
         }
 
-        ObservableCollection<DataClass.DataTransferObjects.StudentsScoresDto> list = new ObservableCollection<DataClass.DataTransferObjects.StudentsScoresDto>();
-
 
         private void getStudent(long BaseId)
         {
@@ -79,29 +80,21 @@ namespace MoalemYar.UserControls
                 query.Wait();
 
                 List<DataClass.DataTransferObjects.StudentsScoresDto> data = query.Result;
-                List<TopScore> parts = new List<TopScore>();
-
-                foreach (var item in data)
-                {
-                    if (!list.Any(x=>x.StudentId == item.StudentId))
-                    {
-                        list.Add(item);
-                    }
-                }
-                
-                foreach (var item in list)
-                {
-                    var d = data.Where(x => x.StudentId == item.StudentId && x.Scores == "خیلی خوب").Count();
-                    var d1 = data.Where(x => x.StudentId == item.StudentId && x.Scores == "خوب").Count();
-                    var d2= data.Where(x => x.StudentId == item.StudentId && x.Scores == "قابل قبول").Count();
-                    var d3 = data.Where(x => x.StudentId == item.StudentId && x.Scores == "نیاز به تلاش بیشتر").Count();
-                    parts.Add(new TopScore() { Id = item.StudentId, Score = ((d * 4) + (d1 * 3) + (d2 * 2) + (d3 * 1)),Name = item.Name, LName = item.LName, FName = item.FName });
-                }
-
+                _initialCollection = data;
 
                 if (data.Any())
                 {
-                    dataGrid.ItemsSource = parts.OrderByDescending(x=>x.Score).ToList();
+                    var res = _initialCollection.GroupBy(x => new { x.StudentId, x.Name, x.LName, x.FName })
+                            .Select(x => new
+                            {
+                                x.Key.StudentId,
+                                Name = x.Key.Name,
+                                LName = x.Key.LName,
+                                FName = x.Key.FName,
+                                Sum = x.Sum(y => AppVariable.EnumToNumber(y.Scores))
+                            }).OrderByDescending(x=>x.Sum).ToArray();
+
+                    dataGrid.ItemsSource = res.ToList();
                 }
                 else
                 {
@@ -113,19 +106,11 @@ namespace MoalemYar.UserControls
             {
             }
         }
+
         #endregion
         private void cmbBaseEdit_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             getStudent(Convert.ToInt64(cmbBaseEdit.SelectedValue));
         }
     }
-}
-public class TopScore 
-{
-    public long Id { get; set; }
-    public int Score { get; set; }
-    public string Name { get; set; }
-    public string LName { get; set; }
-    public string FName { get; set; }
-
 }
