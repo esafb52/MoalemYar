@@ -136,7 +136,11 @@ namespace MoalemYar.UserControls
             string folder = AppVariable.fileName + @"\data.db";
             if (System.IO.File.Exists(folder))
             {
+                cmbBase.ItemsSource = null;
                 File.Delete(folder);
+                MainWindow.main.exAddOrUpdateSchool.Hint = "0";
+                MainWindow.main.exAddOrUpdateStudent.Hint = "0";
+                MainWindow.main.exAddOrUpdateUser.Hint = "0";
                 MainWindow.main.DataResetDeletedNotification("دیتابیس برنامه");
                 using (var context = new DataClass.myDbContext())
                 {
