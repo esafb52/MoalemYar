@@ -21,7 +21,7 @@ namespace MoalemYar
     {
         #region Crash Report
 
-        public static string LogifyOfflinePath = System.Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\" + Assembly.GetExecutingAssembly().GetName().Name + @"\";
+        public static string LogifyOfflinePath = fileName + @"\";
         public static string LogifyAPIKey = "SPECIFY_YOUR_API_KEY_HERE"; // http://logify.devexpress.com/   //Todo: Add API
 
         #endregion Crash Report
@@ -41,7 +41,7 @@ namespace MoalemYar
 
         public static string getAppName = Assembly.GetExecutingAssembly().GetName().Name;
         public static string getAppVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
-        public static string getAppNameAndVersion = Assembly.GetExecutingAssembly().GetName().Name + " " + Assembly.GetExecutingAssembly().GetName().Version.ToString();
+        public static string getAppNameAndVersion = getAppName + " " + getAppVersion;
         public static string getAppTitle = "معلم یار نسخه آزمایشی ";
 
         public static string fileName = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\" + Assembly.GetExecutingAssembly().GetName().Name;
