@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:MoalemYar.UserControls"
              xmlns:Metro="clr-namespace:Arthas.Controls.Metro;assembly=Arthas"
-             mc:Ignorable="d"
+             mc:Ignorable="d" Loaded="UserControl_Loaded"
              Style="{StaticResource myUserControl}"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
@@ -59,7 +59,7 @@
                     <Metro:MetroGroupBox Margin="5" Header="تنظیمات نمودار">
                             <Grid>
                             <StackPanel Orientation="Vertical">
-                                <ContentControl Margin="2" Name="cmbAddContent" TabIndex="3" Focusable="False" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="233">
+                                <ContentControl Margin="2" Name="cmbChartType" TabIndex="3" Focusable="False" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="233">
                                     <ContentControl.ContentTemplate>
                                         <DataTemplate>
                                             <Grid>
@@ -83,7 +83,7 @@
 
                                 <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
                                 <StackPanel Orientation="Horizontal">
-                                    <ContentControl Margin="2" Name="cmbAddContent2" TabIndex="3" Focusable="False" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="233">
+                                    <ContentControl Margin="2" Name="cmbChartColor" TabIndex="3" Focusable="False" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="233">
                                         <ContentControl.ContentTemplate>
                                             <DataTemplate>
                                                 <Grid>
@@ -107,6 +107,45 @@
                             </StackPanel>
                         </Grid>
                    </Metro:MetroGroupBox>
+                </Grid>
+                <Grid>
+
+                    <Metro:MetroGroupBox Margin="5" Header="مدرسه پیشفرض">
+                        <Grid>
+                            <StackPanel Orientation="Vertical">
+                                <Grid Margin="2">
+                                    <ComboBox x:Name="cmbBase" ItemsSource="{Binding}"
+                                       SelectedValue="{Binding SchoolName}" SelectionChanged="cmbBase_SelectionChanged"
+                                       SelectedValuePath="Id"   TabIndex="4"
+                                       VerticalAlignment="Top" HorizontalAlignment="Left" Width="200">
+                                        <ComboBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="{Binding SchoolName}" />
+                                                    <TextBlock Text=" - " />
+                                                    <TextBlock Text="{Binding Base}" />
+                                                    <TextBlock Text=" - " />
+                                                    <TextBlock Text="{Binding Year}" />
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </ComboBox.ItemTemplate>
+                                    </ComboBox>
+                                    <TextBlock Text=" انتخاب کلاس " IsHitTestVisible="False" HorizontalAlignment="Left" Width="200">
+                                        <TextBlock.Style>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="Visibility" Value="Hidden" />
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding ElementName=cmbBase,Path=SelectedItem}" Value="{x:Null}">
+                                                        <Setter Property="Visibility" Value="Visible" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+                                </Grid>
+                            </StackPanel>
+                        </Grid>
+                    </Metro:MetroGroupBox>
                 </Grid>
             </Metro:MetroWaterfallFlow>
         </Metro:MetroScrollViewer>

@@ -53,12 +53,6 @@ namespace MoalemYar
         public const string CHART_ORANGE = "#EB5A13";
         public const string CHART_GREEN = "#7DBD8D";
 
-        public const string CHART_Line = "Line";
-        public const string CHART_Line2 = "StackedLine";
-        public const string CHART_Column = "Column";
-        public const string CHART_Column2 = "StackedColumn";
-        public const string CHART_Area = "Area";
-
         #endregion Chart
 
         #region Colors
@@ -83,6 +77,8 @@ namespace MoalemYar
         public static string VersionCode = "Version";
         public static string ChartType = "ChartType";
         public static string ChartColor = "ChartColor";
+        public static string ChartColorIndex = "ChartColorIndex";
+        public static string DefaultSchool = "DefSchool";
 
         #endregion Config Key
 

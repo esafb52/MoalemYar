@@ -11,11 +11,14 @@
 using nucs.JsonSettings;
 using nucs.JsonSettings.Fluent;
 using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace MoalemYar.UserControls
 {
@@ -31,6 +34,7 @@ namespace MoalemYar.UserControls
         {
             InitializeComponent();
 
+            getSchool();
             color1.ColorChange += delegate
             {
                 MainWindow.main.BorderBrush = color1.CurrentColor.OpaqueSolidColorBrush;
@@ -39,6 +43,27 @@ namespace MoalemYar.UserControls
             LoadSettings();
         }
 
+        #region Async Query
+       
+        private void getSchool()
+        {
+            try
+            {
+                using (var db = new DataClass.myDbContext())
+                {
+                    var query = db.Schools.Select(x => x);
+                    if (query.Any())
+                    {
+                        cmbBase.ItemsSource = query.ToList();
+                    }
+                }
+               
+            }
+            catch (NullReferenceException)
+            {
+            }
+        }
+        #endregion
         private void LoadSettings()
         {
             if (Convert.ToBoolean(Setting[AppVariable.CredentialLogin] ?? false))
@@ -71,6 +96,7 @@ namespace MoalemYar.UserControls
         private void colorChart_close()
         {
             Setting[AppVariable.ChartColor] = colorChart.CurrentColor.OpaqueSolidColorBrush.ToString();
+            Setting[AppVariable.ChartColorIndex] = -1;
         }
 
         private void swLogin_Checked(object sender, RoutedEventArgs e)
@@ -149,33 +175,13 @@ namespace MoalemYar.UserControls
         private void cmbChart_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var element = sender as ComboBox;
-            switch (element.SelectedIndex)
-            {
-                case 0:
-                    Setting[AppVariable.ChartType] = AppVariable.CHART_Column;
-                    break;
-
-                case 1:
-                    Setting[AppVariable.ChartType] = AppVariable.CHART_Column2;
-                    break;
-
-                case 2:
-                    Setting[AppVariable.ChartType] = AppVariable.CHART_Line;
-                    break;
-
-                case 3:
-                    Setting[AppVariable.ChartType] = AppVariable.CHART_Line2;
-                    break;
-
-                case 4:
-                    Setting[AppVariable.ChartType] = AppVariable.CHART_Area;
-                    break;
-            }
+            Setting[AppVariable.ChartType] = element.SelectedIndex;
         }
 
         private void cmbChartColor_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var element = sender as ComboBox;
+            Setting[AppVariable.ChartColorIndex] = element.SelectedIndex;
             switch (element.SelectedIndex)
             {
                 case 0:
@@ -195,6 +201,46 @@ namespace MoalemYar.UserControls
 
                     break;
             }
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            var elementType = FindElementByName<ComboBox>(cmbChartType, "cmbChart");
+            var elementColor = FindElementByName<ComboBox>(cmbChartColor, "cmbChartColor");
+            elementType.SelectedIndex = Convert.ToInt32(Setting[AppVariable.ChartType] ?? -1);
+            elementColor.SelectedIndex = Convert.ToInt32(Setting[AppVariable.ChartColorIndex] ?? -1);
+            cmbBase.SelectedIndex = Convert.ToInt32(Setting[AppVariable.DefaultSchool] ?? -1);
+
+        }
+        public T FindElementByName<T>(FrameworkElement element, string sChildName) where T : FrameworkElement
+        {
+            T childElement = null;
+            var nChildCount = VisualTreeHelper.GetChildrenCount(element);
+            for (int i = 0; i < nChildCount; i++)
+            {
+                FrameworkElement child = VisualTreeHelper.GetChild(element, i) as FrameworkElement;
+
+                if (child == null)
+                    continue;
+
+                if (child is T && child.Name.Equals(sChildName))
+                {
+                    childElement = (T)child;
+                    break;
+                }
+
+                childElement = FindElementByName<T>(child, sChildName);
+
+                if (childElement != null)
+                    break;
+            }
+            return childElement;
+        }
+
+        private void cmbBase_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Setting[AppVariable.DefaultSchool] = cmbBase.SelectedIndex;
         }
     }
 }

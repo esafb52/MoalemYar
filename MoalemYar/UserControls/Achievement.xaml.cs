@@ -124,25 +124,26 @@ namespace MoalemYar.UserControls
 
                 waterfallFlow.Children.Clear();
                 Series series = new ColumnSeries();
-                switch (Setting[AppVariable.ChartType])
+
+                switch (Convert.ToInt32(Setting[AppVariable.ChartType] ?? 0))
                 {
-                    case AppVariable.CHART_Column:
+                    case 0:
                         series = new ColumnSeries { };
                         break;
 
-                    case AppVariable.CHART_Column2:
+                    case 1:
                         series = new StackedColumnSeries { };
                         break;
 
-                    case AppVariable.CHART_Line:
+                    case 2:
                         series = new LineSeries { };
                         break;
 
-                    case AppVariable.CHART_Line2:
+                    case 3:
                         series = new StepLineSeries { };
                         break;
 
-                    case AppVariable.CHART_Area:
+                    case 4:
                         series = new StackedAreaSeries { };
                         break;
                 }
@@ -230,8 +231,6 @@ namespace MoalemYar.UserControls
 
             string status = string.Empty;
 
-            Console.WriteLine(dCount * 4);
-            Console.WriteLine(one);
             if (Convert.ToDecimal(Avg) >= Convert.ToDecimal(sec))
                 status = "خیلی خوب";
             else if (Convert.ToDecimal(Avg) < Convert.ToDecimal(one) && Convert.ToDecimal(Avg) >= Convert.ToDecimal(thi))
@@ -270,6 +269,11 @@ namespace MoalemYar.UserControls
                                Sum = x.Sum(y => AppVariable.EnumToNumber(y.Scores))
                            }).Where(x => x.Book == Book).ToArray();
             return score.Select(x => Convert.ToDouble(x.Sum)).ToArray();
+        }
+
+        private void UserControl_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            cmbEditBase.SelectedIndex = Convert.ToInt32(Setting[AppVariable.DefaultSchool] ?? -1);
         }
     }
 }

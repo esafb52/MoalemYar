@@ -8,6 +8,8 @@
 *
 ***********************************************************************************/
 
+using nucs.JsonSettings;
+using nucs.JsonSettings.Fluent;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -27,6 +29,8 @@ namespace MoalemYar.UserControls
     /// </summary>
     public partial class QuestionsList : UserControl
     {
+        private SettingsBag Setting { get; } = JsonSettings.Construct<SettingsBag>(AppVariable.fileName + @"\config.json").EnableAutosave().LoadNow();
+
         private ObservableCollection<string> list = new ObservableCollection<string>();
         private bool runOnceSchool = true;
         internal static QuestionsList main;
@@ -327,54 +331,62 @@ namespace MoalemYar.UserControls
 
         private void cmbBase_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            fillComboBook(cmbAddContentBook, cmbBase, "cmbBook");
+            fillComboBook(cmbBook, cmbBase, "cmbBook");
         }
 
         private void fillComboBook(FrameworkElement frameworkElement, ComboBox combo, string cmb)
         {
-            var element = FindElementByName<ComboBox>(frameworkElement, cmb);
-            dynamic selectedItem = combo.SelectedItem;
+            try
+            {
+                var element = FindElementByName<ComboBox>(frameworkElement, cmb);
+                dynamic selectedItem = combo.SelectedItem;
 
-            if (selectedItem.Base.Contains("اول"))
-            {
-                list.Clear();
-                list.Add("قرآن");
-                list.Add("فارسی");
-                list.Add("علوم");
-                list.Add("ریاضی");
+                if (selectedItem.Base.Contains("اول"))
+                {
+                    list.Clear();
+                    list.Add("قرآن");
+                    list.Add("فارسی");
+                    list.Add("علوم");
+                    list.Add("ریاضی");
+                }
+                else if (selectedItem.Base.Contains("دوم"))
+                {
+                    list.Clear();
+                    list.Add("قرآن");
+                    list.Add("فارسی");
+                    list.Add("علوم");
+                    list.Add("ریاضی");
+                    list.Add("هدیه های آسمانی");
+                }
+                else if (selectedItem.Base.Contains("سوم") || selectedItem.Base.Contains("چهارم") || selectedItem.Base.Contains("پنجم"))
+                {
+                    list.Clear();
+                    list.Add("قرآن");
+                    list.Add("فارسی");
+                    list.Add("علوم");
+                    list.Add("ریاضی");
+                    list.Add("هدیه های آسمانی");
+                    list.Add("مطالعات اجتماعی");
+                }
+                else if (selectedItem.Base.Contains("ششم"))
+                {
+                    list.Clear();
+                    list.Add("قرآن");
+                    list.Add("فارسی");
+                    list.Add("علوم");
+                    list.Add("ریاضی");
+                    list.Add("هدیه های آسمانی");
+                    list.Add("مطالعات اجتماعی");
+                    list.Add("کار و فناوری");
+                    list.Add("تفکر");
+                }
+                element.ItemsSource = list;
             }
-            else if (selectedItem.Base.Contains("دوم"))
+            catch (NullReferenceException)
             {
-                list.Clear();
-                list.Add("قرآن");
-                list.Add("فارسی");
-                list.Add("علوم");
-                list.Add("ریاضی");
-                list.Add("هدیه های آسمانی");
+
             }
-            else if (selectedItem.Base.Contains("سوم") || selectedItem.Base.Contains("چهارم") || selectedItem.Base.Contains("پنجم"))
-            {
-                list.Clear();
-                list.Add("قرآن");
-                list.Add("فارسی");
-                list.Add("علوم");
-                list.Add("ریاضی");
-                list.Add("هدیه های آسمانی");
-                list.Add("مطالعات اجتماعی");
-            }
-            else if (selectedItem.Base.Contains("ششم"))
-            {
-                list.Clear();
-                list.Add("قرآن");
-                list.Add("فارسی");
-                list.Add("علوم");
-                list.Add("ریاضی");
-                list.Add("هدیه های آسمانی");
-                list.Add("مطالعات اجتماعی");
-                list.Add("کار و فناوری");
-                list.Add("تفکر");
-            }
-            element.ItemsSource = list;
+           
         }
 
         public T FindElementByName<T>(FrameworkElement element, string sChildName) where T : FrameworkElement
@@ -407,7 +419,7 @@ namespace MoalemYar.UserControls
             var row = dataGrid.ContainerFromElement(sender as DependencyObject);
             Arthas.Controls.Metro.MetroTextBlock MyTextBlock = FindVisualChildByName<Arthas.Controls.Metro.MetroTextBlock>(row, "txtStatus");
             dynamic selectedItem = dataGrid.SelectedItems[0];
-            var element = FindElementByName<ComboBox>(cmbAddContentBook, "cmbBook");
+            var element = FindElementByName<ComboBox>(cmbBook, "cmbBook");
             switch ((sender as Arthas.Controls.Metro.MetroSwitch).Tag.ToString())
             {
                 case "exc":
@@ -510,7 +522,6 @@ namespace MoalemYar.UserControls
         private void cmbEditBase_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             getStudent(Convert.ToInt64(cmbEditBase.SelectedValue));
-            fillComboBook(cmbAddContentBookEdit, cmbEditBase, "cmbBookEdit");
         }
 
         private void btnEditSave_Click(object sender, RoutedEventArgs e)
@@ -522,7 +533,7 @@ namespace MoalemYar.UserControls
                 long id = selectedItem.Id;
 
                 var element = FindElementByName<ComboBox>(cmbContentScore, "cmbScore");
-                var element2 = FindElementByName<ComboBox>(cmbAddContentBookEdit, "cmbBookEdit");
+                var element2 = FindElementByName<ComboBox>(cmbBookEdit, "cmbBookEdit");
 
                 updateScore(id, Convert.ToInt64(cmbEditStudent.SelectedValue), element.Text, txtDateEdit.SelectedDate.ToString(), element2.Text, txtDescEdit.Text);
                 MainWindow.main.ShowUpdateDataNotification(true, selectedItemName.Name + " " + selectedItemName.LName, "نمره");
@@ -576,6 +587,7 @@ namespace MoalemYar.UserControls
         private void cmbEditStudent_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             getScores(Convert.ToInt64(cmbEditStudent.SelectedValue));
+            fillComboBook(cmbBookEdit, cmbEditBase, "cmbBookEdit");
         }
 
         private void dataGridEdit_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -587,7 +599,7 @@ namespace MoalemYar.UserControls
                 txtDateEdit.SelectedDate = new PersianCalendarWPF.PersianDate(Convert.ToInt32(selectedItem.Date.Substring(0, 4)), Convert.ToInt32(selectedItem.Date.Substring(5, 2)), Convert.ToInt32(selectedItem.Date.Substring(8, 2)));
                 txtDescEdit.Text = selectedItem.Desc;
                 var element = FindElementByName<ComboBox>(cmbContentScore, "cmbScore");
-                var element2 = FindElementByName<ComboBox>(cmbAddContentBookEdit, "cmbBookEdit");
+                var element2 = FindElementByName<ComboBox>(cmbBookEdit, "cmbBookEdit");
                 element.Text = selectedItem.Scores;
                 element2.Text = selectedItem.Book;
             }
@@ -602,14 +614,14 @@ namespace MoalemYar.UserControls
         {
             if (isExam.IsChecked == true)
                 isQuestion.IsChecked = false;
-            cmbBase.IsEnabled = true;
+            cmbBook.IsEnabled = true;
         }
 
         private void isQuestion_Checked(object sender, RoutedEventArgs e)
         {
             if (isQuestion.IsChecked == true)
                 isExam.IsChecked = false;
-            cmbBase.IsEnabled = true;
+            cmbBook.IsEnabled = true;
         }
 
         private void cmbBook_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -618,12 +630,12 @@ namespace MoalemYar.UserControls
             {
                 if (isQuestion.IsChecked == true)
                 {
-                    var element = FindElementByName<ComboBox>(cmbAddContentBook, "cmbBook");
+                    var element = FindElementByName<ComboBox>(cmbBook, "cmbBook");
                     getStudents(Convert.ToInt64(cmbBase.SelectedValue), element.SelectedItem.ToString(), false);
                 }
                 else
                 {
-                    var element = FindElementByName<ComboBox>(cmbAddContentBook, "cmbBook");
+                    var element = FindElementByName<ComboBox>(cmbBook, "cmbBook");
                     txtDesc.Text = "امتحان / فعالیت " + element.SelectedItem;
                     getStudents(Convert.ToInt64(cmbBase.SelectedValue), element.SelectedItem.ToString(), true);
                 }
@@ -631,6 +643,12 @@ namespace MoalemYar.UserControls
             catch (Exception)
             {
             }
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            cmbBase.SelectedIndex = Convert.ToInt32(Setting[AppVariable.DefaultSchool] ?? -1);
+            cmbEditBase.SelectedIndex = Convert.ToInt32(Setting[AppVariable.DefaultSchool] ?? -1);
         }
     }
 }

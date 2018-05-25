@@ -1,4 +1,6 @@
-﻿using System;
+﻿using nucs.JsonSettings;
+using nucs.JsonSettings.Fluent;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -12,7 +14,7 @@ namespace MoalemYar.UserControls
     /// </summary>
     public partial class TopStudents : UserControl
     {
-        private List<DataClass.DataTransferObjects.StudentsScoresDto> _initialCollection;
+        private SettingsBag Setting { get; } = JsonSettings.Construct<SettingsBag>(AppVariable.fileName + @"\config.json").EnableAutosave().LoadNow();
 
         public TopStudents()
         {
@@ -71,11 +73,10 @@ namespace MoalemYar.UserControls
                 query.Wait();
 
                 List<DataClass.DataTransferObjects.StudentsScoresDto> data = query.Result;
-                _initialCollection = data;
 
                 if (data.Any())
                 {
-                    var res = _initialCollection.GroupBy(x => new { x.StudentId })
+                    var res = data.GroupBy(x => new { x.StudentId })
                             .Select(x => new
                             {
                                 x.Key.StudentId,
@@ -103,6 +104,11 @@ namespace MoalemYar.UserControls
         private void cmbBaseEdit_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             getStudent(Convert.ToInt64(cmbBaseEdit.SelectedValue));
+        }
+
+        private void UserControl_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            cmbBaseEdit.SelectedIndex = Convert.ToInt32(Setting[AppVariable.DefaultSchool] ?? -1);
         }
     }
 }
