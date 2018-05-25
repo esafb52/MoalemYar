@@ -152,62 +152,37 @@ namespace MoalemYar.UserControls
                 }
 
                 getStudentScore(selectedItem.Id); // get Student scores
-                List<ScoreBook> parts = new List<ScoreBook>();
-                var list = new List<string>();
-                List<double> listScore = new List<double>();
 
-                // get list of all book
-                foreach (var item in _initialCollection)
+                //get scores merge duplicates and replace string to int
+                var score = _initialCollection.GroupBy(x => new { x.Book, x.Date, x.StudentId })
+                            .Select(x => new
+                            {
+                                x.Key.StudentId,
+                                x.Key.Book,
+                                x.Key.Date,
+                                Sum = x.Sum(y => EnumToNumber(y.Scores))
+                            }).ToArray();
+
+                //get Book Count for generate chart
+                var bookCount = score.GroupBy(x => new {x.Book })
+                     .Select(g => new
+                     {
+                         g.Key.Book
+                     }).ToList();
+
+                MaterialChart _addUser;
+                Control _currentUser;
+
+                //generate chart based on count of books
+                foreach (var item in bookCount)
                 {
-                    if (!parts.Any(x => x.BookName == item.Book))
-                    {
-                        parts.Add(new ScoreBook() { Id = item.Id, BookName = item.Book });
-                    }
-                }
-
-                // create chart based on number of book exist
-                foreach (var item in parts)
-                {
-                    var score = _initialCollection.Where(x => x.Book == item.BookName && x.StudentId == selectedItem.Id).Select(x => x);
-                    MaterialChart _addUser;
-                    Control _currentUser;
-
-                    // get all date for student
-                    foreach (var sitem in score)
-                    {
-                        if (!list.Exists(x=>e.Equals(sitem.Date)))
-                        {
-                            list.Add(sitem.Date);
-                            var d = score.Where(x => x.Scores == "خیلی خوب" && x.Date == sitem.Date).Count();
-                            var d1 = score.Where(x => x.Scores == "خوب" && x.Date == sitem.Date).Count();
-                            var d2 = score.Where(x => x.Scores == "قابل قبول" && x.Date == sitem.Date).Count();
-                            var d3 = score.Where(x => x.Scores == "نیاز به تلاش بیشتر" && x.Date == sitem.Date).Count();
-                            listScore.Add(((d * 4) + (d1 * 3) + (d2 * 2) + (d3 * 1)));
-                        }
-
-                    }
-
-
-                    List<String> duplicates = list.GroupBy(x => x)
-                             .Where(g => g.Count() > 1)
-                             .Select(g => g.Key)
-                             .ToList();
-
-
-
-                    //convert to string[]
-                    String[] bok = { };
-                    bok = duplicates.ToArray();
-
-                    double[] scd = { };
-                    scd = listScore.ToArray();
-
-
-                    _addUser = new MaterialChart(item.BookName, selectedItem.Name + " " + selectedItem.LName, bok, scd, series, AppVariable.GetBrush(Convert.ToString(Setting[AppVariable.ChartColor] ?? AppVariable.CHART_GREEN)));
+                    Console.WriteLine(getScoreArray(item.Book).FirstOrDefault());
+                    _addUser = new MaterialChart(item.Book, selectedItem.Name + " " + selectedItem.LName, getDateArray(item.Book), getScoreArray(item.Book), series, AppVariable.GetBrush(Convert.ToString(Setting[AppVariable.ChartColor] ?? AppVariable.CHART_GREEN)));
                     _currentUser = _addUser;
                     waterfallFlow.Children.Add(_currentUser);
-                    waterfallFlow.Refresh();
                 }
+             
+                waterfallFlow.Refresh();
             }
             catch (NullReferenceException)
             {
@@ -215,10 +190,55 @@ namespace MoalemYar.UserControls
             }
         }
 
+        //get Dates to string[]
+        private string[] getDateArray(string Book)
+        {
+            var score = _initialCollection.GroupBy(x => new { x.Book, x.Date, x.StudentId })
+                           .Select(x => new
+                           {
+                               x.Key.StudentId,
+                               x.Key.Book,
+                               x.Key.Date,
+                               Sum = x.Sum(y => EnumToNumber(y.Scores))
+                           }).Where(x=>x.Book == Book).ToArray();
+            return score.Select(x => x.Date).ToArray();
+        }
+
+        //get Scores to double[]
+        private double[] getScoreArray(string Book)
+        {
+            var score = _initialCollection.GroupBy(x => new { x.Book, x.Date, x.StudentId })
+                           .Select(x => new
+                           {
+                               x.Key.StudentId,
+                               x.Key.Book,
+                               x.Key.Date,
+                               Sum = x.Sum(y => EnumToNumber(y.Scores))
+                           }).Where(x => x.Book == Book).ToArray();
+            return score.Select(x => Convert.ToDouble(x.Sum)).ToArray();
+        }
+
+        //Convert string to int in linq
+        public static int EnumToNumber(string value)
+        {
+            switch (value)
+            {
+                case "خیلی خوب":
+                    return 4;
+
+                case "خوب":
+                    return 3;
+
+                case "قابل قبول":
+                    return 2;
+
+                case "نیاز به تلاش بیشتر":
+                    return 1;
+
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(value), value, "Value not recognized");
+            }
+        }
     }
 }
-public class ScoreBook
-{
-    public long Id { get; set; }
-    public string BookName { get; set; }
-}
+
