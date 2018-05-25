@@ -176,8 +176,7 @@ namespace MoalemYar.UserControls
                 //generate chart based on count of books
                 foreach (var item in bookCount)
                 {
-                    Console.WriteLine(getScoreArray(item.Book).FirstOrDefault());
-                    _addUser = new MaterialChart(item.Book, selectedItem.Name + " " + selectedItem.LName, getDateArray(item.Book), getScoreArray(item.Book), series, AppVariable.GetBrush(Convert.ToString(Setting[AppVariable.ChartColor] ?? AppVariable.CHART_GREEN)));
+                    _addUser = new MaterialChart(item.Book, selectedItem.Name + " " + selectedItem.LName, getDateArray(item.Book), getScoreArray(item.Book),getAverage(item.Book), getAverageStatus(item.Book), series, AppVariable.GetBrush(Convert.ToString(Setting[AppVariable.ChartColor] ?? AppVariable.CHART_GREEN)));
                     _currentUser = _addUser;
                     waterfallFlow.Children.Add(_currentUser);
                 }
@@ -188,6 +187,67 @@ namespace MoalemYar.UserControls
             {
 
             }
+        }
+
+        //get Score Average to string
+        private string getAverage(string Book)
+        {
+            var score = _initialCollection.GroupBy(x => new { x.Book, x.Date, x.StudentId })
+                           .Select(x => new
+                           {
+                               x.Key.StudentId,
+                               x.Key.Book,
+                               x.Key.Date,
+                               Sum = x.Sum(y => EnumToNumber(y.Scores))
+                           }).Where(x => x.Book == Book).ToArray();
+            var dCount = score.Select(x => x.Date).Count();
+            var sum = score.Sum(x => x.Sum);
+
+            var one = decimal.Divide(sum, 1);
+            var sec = decimal.Divide(sum, 2);
+            var thi = decimal.Divide(sum, 3);
+            var forth = decimal.Divide(sum, 4);
+
+            return decimal.Divide(sum, dCount).ToString("0.00");
+        }
+
+        private string getAverageStatus(string Book)
+        {
+            var score = _initialCollection.GroupBy(x => new { x.Book, x.Date, x.StudentId })
+                           .Select(x => new
+                           {
+                               x.Key.StudentId,
+                               x.Key.Book,
+                               x.Key.Date,
+                               Sum = x.Sum(y => EnumToNumber(y.Scores))
+                           }).Where(x => x.Book == Book).ToArray();
+
+
+            var sum = score.Sum(x => x.Sum);
+
+            var dCount = score.Select(x => x.Date).Count();
+
+            var Avg = decimal.Divide(sum, dCount).ToString("0.00");
+
+            var one = decimal.Divide(sum, 1).ToString("0.00");
+            var sec = decimal.Divide(sum, 2).ToString("0.00");
+            var thi = decimal.Divide(sum, 3).ToString("0.00");
+            var forth = decimal.Divide(sum, 4).ToString("0.00");
+
+            string status = string.Empty;
+
+            Console.WriteLine(dCount * 4);
+            Console.WriteLine(one);
+            if (Convert.ToDecimal(Avg) >= Convert.ToDecimal(sec))
+                status = "خیلی خوب";
+            else if (Convert.ToDecimal(Avg) < Convert.ToDecimal(one) && Convert.ToDecimal(Avg) >= Convert.ToDecimal(thi))
+                status = "خوب";
+            else if (Convert.ToDecimal(Avg) < Convert.ToDecimal(thi) && Convert.ToDecimal(Avg) >= Convert.ToDecimal(forth))
+                status = "قابل قبول";
+            else if (Convert.ToDecimal(Avg) < Convert.ToDecimal(forth))
+                status = "نیاز به تلاش بیشتر";
+
+            return status;
         }
 
         //get Dates to string[]
@@ -239,6 +299,8 @@ namespace MoalemYar.UserControls
                     throw new ArgumentOutOfRangeException(nameof(value), value, "Value not recognized");
             }
         }
+
+        
     }
 }
 

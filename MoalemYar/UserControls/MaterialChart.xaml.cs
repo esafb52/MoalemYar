@@ -23,7 +23,7 @@ namespace MoalemYar.UserControls
     public partial class MaterialChart : UserControl
     {
         public Brush BorderColor { get; set; }
-        public MaterialChart(string Book, string Name, string[] Label, double[] values, Series series, Brush Background)
+        public MaterialChart(string Book, string Name, string[] Label, double[] values, string Average, string AverageStatus, Series series, Brush Background)
         {
             InitializeComponent();
             DataContext = this;
@@ -72,7 +72,8 @@ namespace MoalemYar.UserControls
                 Labels = Label,
                 Separator = new LiveCharts.Wpf.Separator { }
             });
-            
+            txtAverageDouble.Text = Average;
+            txtAverage.Text = AverageStatus;
             txtBook.Text = Book;
             txtName.Text = Name;
             
