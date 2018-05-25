@@ -9,6 +9,7 @@
 ***********************************************************************************/
 
 using MoalemYar.DataClass.Tables;
+using SQLite.CodeFirst;
 using System.Data.Entity;
 
 namespace MoalemYar.DataClass
@@ -27,7 +28,7 @@ namespace MoalemYar.DataClass
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<myDbContext, Migrations.Configuration>(true));
+            Database.SetInitializer(new SqliteMigrateDatabaseToLatestVersion<myDbContext, Migrations.Configuration>(modelBuilder, true));
         }
     }
 }
