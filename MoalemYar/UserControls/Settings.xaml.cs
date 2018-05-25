@@ -8,8 +8,6 @@
 *
 ***********************************************************************************/
 
-using nucs.JsonSettings;
-using nucs.JsonSettings.Fluent;
 using System;
 using System.Data.Entity;
 using System.IO;
@@ -25,8 +23,6 @@ namespace MoalemYar.UserControls
     public partial class Settings : UserControl
     {
         internal static Settings main;
-        private SettingsBag Setting { get; } = JsonSettings.Construct<SettingsBag>(AppVariable.fileName + @"\config.json").EnableAutosave().LoadNow();
-
         public Settings()
         {
             InitializeComponent();
@@ -64,59 +60,59 @@ namespace MoalemYar.UserControls
 
         private void LoadSettings()
         {
-            if (Convert.ToBoolean(Setting[AppVariable.CredentialLogin] ?? false))
+            if (Convert.ToBoolean(FindElement.Settings[AppVariable.CredentialLogin] ?? false))
                 swLogin.IsChecked = true;
             else
                 swLogin.IsChecked = false;
 
-            if (Convert.ToBoolean(Setting[AppVariable.Autorun] ?? false))
+            if (Convert.ToBoolean(FindElement.Settings[AppVariable.Autorun] ?? false))
                 swAutoStart.IsChecked = true;
             else
                 swAutoStart.IsChecked = false;
 
-            if (Convert.ToBoolean(Setting[AppVariable.AutoSendReport] ?? false))
+            if (Convert.ToBoolean(FindElement.Settings[AppVariable.AutoSendReport] ?? false))
                 swAutoReport.IsChecked = true;
             else
                 swAutoReport.IsChecked = false;
 
-            var hb_Menu = Convert.ToBoolean(Setting[AppVariable.HamburgerMenu] ?? true);
+            var hb_Menu = Convert.ToBoolean(FindElement.Settings[AppVariable.HamburgerMenu] ?? true);
             Hamborger_Menu.IsChecked = hb_Menu;
 
-            color1.Background = AppVariable.GetBrush(Convert.ToString(Setting[AppVariable.SkinCode] ?? AppVariable.DEFAULT_BORDER_BRUSH));
-            colorChart.Background = AppVariable.GetBrush(Convert.ToString(Setting[AppVariable.ChartColor] ?? AppVariable.CHART_PURPLE));
+            color1.Background = AppVariable.GetBrush(Convert.ToString(FindElement.Settings[AppVariable.SkinCode] ?? AppVariable.DEFAULT_BORDER_BRUSH));
+            colorChart.Background = AppVariable.GetBrush(Convert.ToString(FindElement.Settings[AppVariable.ChartColor] ?? AppVariable.CHART_PURPLE));
         }
 
         private void color1_close()
         {
-            Setting[AppVariable.SkinCode] = color1.CurrentColor.OpaqueSolidColorBrush.ToString();
+            FindElement.Settings[AppVariable.SkinCode] = color1.CurrentColor.OpaqueSolidColorBrush.ToString();
         }
 
         private void colorChart_close()
         {
-            Setting[AppVariable.ChartColor] = colorChart.CurrentColor.OpaqueSolidColorBrush.ToString();
-            Setting[AppVariable.ChartColorIndex] = -1;
+            FindElement.Settings[AppVariable.ChartColor] = colorChart.CurrentColor.OpaqueSolidColorBrush.ToString();
+            FindElement.Settings[AppVariable.ChartColorIndex] = -1;
         }
 
         private void swLogin_Checked(object sender, RoutedEventArgs e)
         {
-            Setting[AppVariable.CredentialLogin] = swLogin.IsChecked;
+            FindElement.Settings[AppVariable.CredentialLogin] = swLogin.IsChecked;
         }
 
         private void swAutoStart_Checked(object sender, RoutedEventArgs e)
         {
-            Setting[AppVariable.Autorun] = swAutoStart.IsChecked;
+            FindElement.Settings[AppVariable.Autorun] = swAutoStart.IsChecked;
             AppVariable.RegisterInStartup(Convert.ToBoolean(swAutoStart.IsChecked));
         }
 
         private void Hamborger_Menu_Checked(object sender, RoutedEventArgs e)
         {
-            Setting[AppVariable.HamburgerMenu] = Hamborger_Menu.IsChecked;
+            FindElement.Settings[AppVariable.HamburgerMenu] = Hamborger_Menu.IsChecked;
             MainWindow.main.tab.IconMode = Convert.ToBoolean(!Hamborger_Menu.IsChecked);
         }
 
         private void swAutoReport_Checked(object sender, RoutedEventArgs e)
         {
-            Setting[AppVariable.AutoSendReport] = swAutoReport.IsChecked;
+            FindElement.Settings[AppVariable.AutoSendReport] = swAutoReport.IsChecked;
             MainWindow.main.LogifyCrashReport();
         }
 
@@ -173,28 +169,28 @@ namespace MoalemYar.UserControls
         private void cmbChart_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var element = sender as ComboBox;
-            Setting[AppVariable.ChartType] = element.SelectedIndex;
+            FindElement.Settings[AppVariable.ChartType] = element.SelectedIndex;
         }
 
         private void cmbChartColor_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var element = sender as ComboBox;
-            Setting[AppVariable.ChartColorIndex] = element.SelectedIndex;
+            FindElement.Settings[AppVariable.ChartColorIndex] = element.SelectedIndex;
             switch (element.SelectedIndex)
             {
                 case 0:
-                    Setting[AppVariable.ChartColor] = AppVariable.CHART_GREEN;
+                    FindElement.Settings[AppVariable.ChartColor] = AppVariable.CHART_GREEN;
                     colorChart.Background = AppVariable.GetBrush(AppVariable.CHART_GREEN);
                     break;
 
                 case 1:
-                    Setting[AppVariable.ChartColor] = AppVariable.CHART_PURPLE;
+                    FindElement.Settings[AppVariable.ChartColor] = AppVariable.CHART_PURPLE;
                     colorChart.Background = AppVariable.GetBrush(AppVariable.CHART_PURPLE);
 
                     break;
 
                 case 2:
-                    Setting[AppVariable.ChartColor] = AppVariable.CHART_ORANGE;
+                    FindElement.Settings[AppVariable.ChartColor] = AppVariable.CHART_ORANGE;
                     colorChart.Background = AppVariable.GetBrush(AppVariable.CHART_ORANGE);
 
                     break;
@@ -205,14 +201,14 @@ namespace MoalemYar.UserControls
         {
             var elementType = FindElement.FindElementByName<ComboBox>(cmbChartType, "cmbChart");
             var elementColor = FindElement.FindElementByName<ComboBox>(cmbChartColor, "cmbChartColor");
-            elementType.SelectedIndex = Convert.ToInt32(Setting[AppVariable.ChartType] ?? -1);
-            elementColor.SelectedIndex = Convert.ToInt32(Setting[AppVariable.ChartColorIndex] ?? -1);
-            cmbBase.SelectedIndex = Convert.ToInt32(Setting[AppVariable.DefaultSchool] ?? -1);
+            elementType.SelectedIndex = Convert.ToInt32(FindElement.Settings[AppVariable.ChartType] ?? -1);
+            elementColor.SelectedIndex = Convert.ToInt32(FindElement.Settings[AppVariable.ChartColorIndex] ?? -1);
+            cmbBase.SelectedIndex = Convert.ToInt32(FindElement.Settings[AppVariable.DefaultSchool] ?? -1);
         }
 
         private void cmbBase_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Setting[AppVariable.DefaultSchool] = cmbBase.SelectedIndex;
+            FindElement.Settings[AppVariable.DefaultSchool] = cmbBase.SelectedIndex;
         }
     }
 }

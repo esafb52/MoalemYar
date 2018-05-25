@@ -1,6 +1,4 @@
 ﻿using LiveCharts.Wpf;
-using nucs.JsonSettings;
-using nucs.JsonSettings.Fluent;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -15,7 +13,6 @@ namespace MoalemYar.UserControls
     /// </summary>
     public partial class Achievement : UserControl
     {
-        private SettingsBag Setting { get; } = JsonSettings.Construct<SettingsBag>(AppVariable.fileName + @"\config.json").EnableAutosave().LoadNow();
         private List<DataClass.Tables.Score> _initialCollection;
 
         public Achievement()
@@ -125,7 +122,7 @@ namespace MoalemYar.UserControls
                 waterfallFlow.Children.Clear();
                 Series series = new ColumnSeries();
 
-                switch (Convert.ToInt32(Setting[AppVariable.ChartType] ?? 0))
+                switch (Convert.ToInt32(FindElement.Settings[AppVariable.ChartType] ?? 0))
                 {
                     case 0:
                         series = new ColumnSeries { };
@@ -173,7 +170,7 @@ namespace MoalemYar.UserControls
                 //generate chart based on count of books
                 foreach (var item in bookCount)
                 {
-                    _addUser = new MaterialChart(item.Book, selectedItem.Name + " " + selectedItem.LName, getDateArray(item.Book), getScoreArray(item.Book), getAverage(item.Book), getAverageStatus(item.Book), series, AppVariable.GetBrush(Convert.ToString(Setting[AppVariable.ChartColor] ?? AppVariable.CHART_GREEN)));
+                    _addUser = new MaterialChart(item.Book, selectedItem.Name + " " + selectedItem.LName, getDateArray(item.Book), getScoreArray(item.Book), getAverage(item.Book), getAverageStatus(item.Book), series, AppVariable.GetBrush(Convert.ToString(FindElement.Settings[AppVariable.ChartColor] ?? AppVariable.CHART_GREEN)));
                     _currentUser = _addUser;
                     waterfallFlow.Children.Add(_currentUser);
                 }
@@ -273,7 +270,7 @@ namespace MoalemYar.UserControls
 
         private void UserControl_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            cmbEditBase.SelectedIndex = Convert.ToInt32(Setting[AppVariable.DefaultSchool] ?? -1);
+            cmbEditBase.SelectedIndex = Convert.ToInt32(FindElement.Settings[AppVariable.DefaultSchool] ?? -1);
         }
     }
 }

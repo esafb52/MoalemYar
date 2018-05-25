@@ -1,6 +1,4 @@
-﻿using nucs.JsonSettings;
-using nucs.JsonSettings.Fluent;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -14,8 +12,6 @@ namespace MoalemYar.UserControls
     /// </summary>
     public partial class TopStudents : UserControl
     {
-        private SettingsBag Setting { get; } = JsonSettings.Construct<SettingsBag>(AppVariable.fileName + @"\config.json").EnableAutosave().LoadNow();
-
         public TopStudents()
         {
             InitializeComponent();
@@ -108,7 +104,7 @@ namespace MoalemYar.UserControls
 
         private void UserControl_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            cmbBaseEdit.SelectedIndex = Convert.ToInt32(Setting[AppVariable.DefaultSchool] ?? -1);
+            cmbBaseEdit.SelectedIndex = Convert.ToInt32(FindElement.Settings[AppVariable.DefaultSchool] ?? -1);
         }
     }
 }

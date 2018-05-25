@@ -12,8 +12,6 @@ using Arthas.Controls.Metro;
 using DevExpress.Logify.WPF;
 using Enterwell.Clients.Wpf.Notifications;
 using MoalemYar.UserControls;
-using nucs.JsonSettings;
-using nucs.JsonSettings.Fluent;
 using Ookii.Dialogs.Wpf;
 using System;
 using System.Collections.Generic;
@@ -35,8 +33,6 @@ namespace MoalemYar
         internal static MainWindow main;
         private PersianCalendar pc = new PersianCalendar();
         public INotificationMessageManager Manager { get; } = new NotificationMessageManager();
-        private SettingsBag Setting { get; } = JsonSettings.Construct<SettingsBag>(AppVariable.fileName + @"\config.json").EnableAutosave().LoadNow();
-
         public MainWindow()
         {
             InitializeComponent();
@@ -125,7 +121,7 @@ namespace MoalemYar
         {
             try
             {
-                var isEnabledReport = Convert.ToBoolean(Setting[AppVariable.AutoSendReport] ?? false);
+                var isEnabledReport = Convert.ToBoolean(FindElement.Settings[AppVariable.AutoSendReport] ?? false);
                 LogifyAlert client = LogifyAlert.Instance;
                 client.ApiKey = AppVariable.LogifyAPIKey;
                 client.AppName = AppVariable.getAppName;
@@ -149,11 +145,11 @@ namespace MoalemYar
         {
             try
             {
-                var color = (Color)ColorConverter.ConvertFromString(Convert.ToString(Setting[AppVariable.SkinCode] ?? AppVariable.DEFAULT_BORDER_BRUSH));
+                var color = (Color)ColorConverter.ConvertFromString(Convert.ToString(FindElement.Settings[AppVariable.SkinCode] ?? AppVariable.DEFAULT_BORDER_BRUSH));
                 var brush = new SolidColorBrush(color);
                 BorderBrush = brush;
 
-                var hb_Menu = Convert.ToBoolean(Setting[AppVariable.HamburgerMenu] ?? true);
+                var hb_Menu = Convert.ToBoolean(FindElement.Settings[AppVariable.HamburgerMenu] ?? true);
                 tab.IconMode = !hb_Menu;
             }
             catch (Exception)
@@ -490,7 +486,7 @@ namespace MoalemYar
         {
             try
             {
-                var isLogin = Convert.ToBoolean(Setting[AppVariable.CredentialLogin] ?? false);
+                var isLogin = Convert.ToBoolean(FindElement.Settings[AppVariable.CredentialLogin] ?? false);
                 if (isLogin)
                 {
                     using (CredentialDialog dialog = new CredentialDialog())
