@@ -203,7 +203,6 @@ namespace MoalemYar.UserControls
             var elementColor = FindElement.FindElementByName<ComboBox>(cmbChartColor, "cmbChartColor");
             elementType.SelectedIndex = Convert.ToInt32(FindElement.Settings[AppVariable.ChartType] ?? -1);
             elementColor.SelectedIndex = Convert.ToInt32(FindElement.Settings[AppVariable.ChartColorIndex] ?? -1);
-            cmbBase.SelectedIndex = Convert.ToInt32(FindElement.Settings[AppVariable.DefaultSchool] ?? -1);
         }
 
         private void cmbBase_SelectionChanged(object sender, SelectionChangedEventArgs e)
