@@ -30,7 +30,7 @@
                         <Setter Property="IsMerged" Value="False"></Setter>
                     </Trigger>
                     <Trigger Property="AxisOrientation" Value="X">
-                        <Setter Property="LabelsRotation" Value="15"></Setter>
+                        <Setter Property="LabelsRotation" Value="40"></Setter>
                     </Trigger>
                 </Style.Triggers>
             </Style>

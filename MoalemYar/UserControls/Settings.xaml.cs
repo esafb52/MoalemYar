@@ -127,6 +127,10 @@ namespace MoalemYar.UserControls
         private static void CreateAndSeedDatabase(DbContext context)
         {
             context.Database.Initialize(true);
+            if (context.Set<DataClass.Tables.User>().Count() != 0)
+            {
+                return;
+            }
             context.Set<DataClass.Tables.User>().Add(new DataClass.Tables.User
             {
                 Username = "test",
