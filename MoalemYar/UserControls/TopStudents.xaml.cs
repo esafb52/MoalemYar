@@ -75,13 +75,13 @@ namespace MoalemYar.UserControls
 
                 if (data.Any())
                 {
-                    var res = _initialCollection.GroupBy(x => new { x.StudentId, x.Name, x.LName, x.FName })
+                    var res = _initialCollection.GroupBy(x => new { x.StudentId })
                             .Select(x => new
                             {
                                 x.Key.StudentId,
-                                Name = x.Key.Name,
-                                LName = x.Key.LName,
-                                FName = x.Key.FName,
+                                Name = x.FirstOrDefault().Name,
+                                LName = x.FirstOrDefault().LName,
+                                FName = x.FirstOrDefault().FName,
                                 Sum = x.Sum(y => AppVariable.EnumToNumber(y.Scores))
                             }).OrderByDescending(x => x.Sum).ToArray();
 
