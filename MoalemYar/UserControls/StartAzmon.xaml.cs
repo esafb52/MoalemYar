@@ -292,12 +292,7 @@ namespace MoalemYar.UserControls
                 }
             }
             var uId = Convert.ToInt64(cmbEditStudent.SelectedValue);
-            //frmResult._True = sahih;
-            //frmResult._False = qalat;
-            //frmResult._Def = nazade;
-            //frmResult._UserId = uId;
-            //frmResult._GroupName = cmbGroup.Text;
-            //new frmResult().ShowDialog();
+            
             gpControl.Visibility = Visibility.Hidden;
             btnStart.IsEnabled = true;
             txtTedad.IsEnabled = true;
@@ -307,6 +302,13 @@ namespace MoalemYar.UserControls
             swRandom.IsEnabled = true;
             gpAzmon.IsEnabled = false;
             ClearCheck();
+            AzmonResult._True = sahih;
+            AzmonResult._False = qalat;
+            AzmonResult._None = nazade;
+            AzmonResult._UserId = uId;
+            AzmonResult._GroupName = cmbGroup.Text;
+            Azmon.main.exContent.Content = new AzmonResult();
+
         }
 
         private void btnNext_Click(object sender, RoutedEventArgs e)

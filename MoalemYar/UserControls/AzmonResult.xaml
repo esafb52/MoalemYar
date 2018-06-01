@@ -12,7 +12,7 @@
             <Metro:MetroTextBlock Name="txtTrue" HorizontalAlignment="Center" Margin="5,5" Foreground="Green" Text="تعداد پاسخ صحیح {0}"/>
             <Metro:MetroTextBlock Name="txtFalse" HorizontalAlignment="Center" Margin="5,5" Foreground="Red" Text="تعداد پاسخ غلط {0}"/>
             <Metro:MetroTextBlock Name="txtNon" HorizontalAlignment="Center" Margin="5,5" Foreground="Gray" Text="تعداد نزده {0}"/>
-            <Button x:Name="btnFinish" IsDefault="True" Click="btnFinish_Click" Margin="5,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="190" Style="{StaticResource WorkButtonGreen}" Height="35">
+            <Button x:Name="btnBack" Click="btnBack_Click" IsDefault="True" Margin="5,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="190" Style="{StaticResource WorkButtonGreen}" Height="35">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                     <Image Height="16" Width="16" Margin="10,0,30,0" Source="/Resources/checkmark.png" />
                     <TextBlock TextWrapping="NoWrap" Text="برگشت به آزمون" FontSize="13" Foreground="#ffffff" />

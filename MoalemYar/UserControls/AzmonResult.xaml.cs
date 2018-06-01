@@ -30,12 +30,23 @@ namespace MoalemYar.UserControls
     /// </summary>
     public partial class AzmonResult : UserControl
     {
+        public static int _True;
+        public static int _False;
+        public static int _None;
+        public static string _GroupName = string.Empty;
+        public static long _UserId;
         public AzmonResult()
         {
             InitializeComponent();
-            txtTrue.Text = "";
-            txtFalse.Text = "";
-            txtNon.Text = "";
+            txtTrue.Text = string.Format(txtTrue.Text, _True);
+            txtFalse.Text = string.Format(txtFalse.Text,_False);
+            txtNon.Text = string.Format(txtNon.Text, _None);
+        }
+
+        private void btnBack_Click(object sender, RoutedEventArgs e)
+        {
+            Azmon.main.exContent.Content = new StartAzmon();
+
         }
     }
 }
