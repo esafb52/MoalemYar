@@ -229,7 +229,21 @@ namespace MoalemYar
             .Dismiss().WithDelay(TimeSpan.FromSeconds(3));
             builder.Queue();
         }
-
+        public void ShowAzmonNotification()
+        {
+            var builder = this.Manager
+                .CreateMessage()
+               .Accent(AppVariable.RED)
+               .Background(AppVariable.BGBLACK)
+               .HasBadge("هشدار")
+               .HasMessage("تعداد سوالات وارد شده بیشتر از سوالات موجود است")
+               .Dismiss().WithButton("باشه", button => { })
+               .Animates(true)
+               .AnimationInDuration(0.75)
+               .AnimationOutDuration(0.5)
+            .Dismiss().WithDelay(TimeSpan.FromSeconds(3));
+            builder.Queue();
+        }
         public void ShowDeleteExistNotification(string Type, string Type2)
         {
             var builder = this.Manager

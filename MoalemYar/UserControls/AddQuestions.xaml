@@ -241,7 +241,7 @@
                                                     </TextBlock.Style>
                                                 </TextBlock>
                                             </Grid>
-                                            <ContentControl Margin="2" Name="cmbAddEditContent" TabIndex="3" Focusable="False" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="150">
+                                            <ContentControl Margin="2" Name="cmbAddEditContent" Focusable="False" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="150">
                                                 <ContentControl.ContentTemplate>
                                                     <DataTemplate>
                                                         <Grid>
@@ -264,7 +264,7 @@
                                                 </ContentControl.ContentTemplate>
                                             </ContentControl>
                                         </StackPanel>
-                                        <ContentControl Margin="5,0,0,0" Name="cmbEditAnswer" TabIndex="3" Focusable="False" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="150">
+                                        <ContentControl Margin="5,0,0,0" Name="cmbEditAnswer" Focusable="False" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="150">
                                             <ContentControl.ContentTemplate>
                                                 <DataTemplate>
                                                     <Grid>
@@ -284,7 +284,7 @@
                                                 </DataTemplate>
                                             </ContentControl.ContentTemplate>
                                         </ContentControl>
-                                        <PersianCalendarWPF:PersianDatePicker TabIndex="4" HorizontalAlignment="Left" x:Name="txtDateEdit" />
+                                        <PersianCalendarWPF:PersianDatePicker Margin="5,5,0,0" HorizontalAlignment="Left" x:Name="txtDateEdit" />
 
                                         <StackPanel Orientation="Vertical" HorizontalAlignment="Left"/>
                                     </StackPanel>

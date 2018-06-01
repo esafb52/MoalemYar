@@ -86,6 +86,7 @@ namespace MoalemYar.UserControls
 
         private void exAzmon_Click(object sender, EventArgs e)
         {
+            exContent.Content = new StartAzmon();
 
         }
 
