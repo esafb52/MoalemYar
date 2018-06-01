@@ -49,7 +49,8 @@ namespace MoalemYar.UserControls
                 return await query.ToListAsync();
             }
         }
-        private void getHint()
+     
+        public void getHint()
         {
             try
             {
@@ -58,8 +59,12 @@ namespace MoalemYar.UserControls
 
 
                 List<DataClass.Tables.Group> data = query.Result;
+                using (var db = new DataClass.myDbContext())
+                {
+                    var query2 = db.AQuestions.Count();
+                    exAddorUpdateQuestion.Hint = query2.ToString();
 
-
+                }
                 exAddorUpdateGroup.Hint = data.Count().ToString();
             }
             catch (Exception)

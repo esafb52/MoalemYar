@@ -10,6 +10,7 @@
 
 using System;
 using System.Data.Entity;
+using System.Data.SQLite;
 using System.IO;
 using System.Linq;
 using System.Windows;
@@ -48,6 +49,7 @@ namespace MoalemYar.UserControls
                     cmbBase.ItemsSource = query.ToList();
                 }
             }
+            catch (SQLiteException) { }
             catch (NullReferenceException)
             {
             }

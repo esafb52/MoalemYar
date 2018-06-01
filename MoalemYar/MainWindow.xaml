@@ -26,7 +26,12 @@
                     <Metro:MetroMenuItem Header="ارزشیابی" Tag="5" Click="MetroMenuItem_Click" />
                     <Metro:MetroMenuItem Header="نفرات برتر" Tag="6" Click="MetroMenuItem_Click" />
                     <Metro:MetroMenuItem Header="پیشرفت تحصیلی" Tag="7" Click="MetroMenuItem_Click" />
-                    <Metro:MetroMenuItem Header="استعداد یابی" Tag="8" Click="MetroMenuItem_Click" />
+                </Metro:MetroMenuItem>
+                <Metro:MetroMenuSeparator />
+                <Metro:MetroMenuItem Header="بیشتر">
+                    <Metro:MetroMenuItem Header="بخشنامه ها" Tag="8" Click="MetroMenuItem_Click" />
+                    <Metro:MetroMenuItem Header="کتب درسی" Tag="9" Click="MetroMenuItem_Click" />
+                    <Metro:MetroMenuItem Header="مجلات رشد" Tag="10" Click="MetroMenuItem_Click" />
                 </Metro:MetroMenuItem>
                 <Metro:MetroMenuSeparator />
             </Metro:MetroTitleMenuItem>
@@ -68,8 +73,9 @@
                                 </Metro:MetroExpander>
                                 <Metro:MetroExpander FontWeight="Medium" Header="بیشتر" Icon="Resources/more.png" IsExpanded="True">
                                     <StackPanel>
-                                        <Metro:MetroExpander Name="exBook" Click="exBook_Click" Header="کتب درسی" Icon="Resources/book.png" Hint="دانلود/مطالعه" HintBackground="#e15b4f" />
                                         <Metro:MetroExpander Name="exCircular" Click="exCircular_Click" Header="بخشنامه ها" Icon="Resources/circular.png" Hint="دانلود/مطالعه" HintBackground="#e15b4f" />
+                                        <Metro:MetroExpander Name="exBook" Click="exBook_Click" Header="کتب درسی" Icon="Resources/book.png" Hint="دانلود/مطالعه" HintBackground="#e15b4f" />
+                                        <Metro:MetroExpander Name="exRoshd" Click="exRoshd_Click" Header="مجلات رشد" Icon="Resources/roshd.png" Hint="دانلود/مطالعه" HintBackground="#e15b4f" />
                                     </StackPanel>
                                 </Metro:MetroExpander>
                             </StackPanel>

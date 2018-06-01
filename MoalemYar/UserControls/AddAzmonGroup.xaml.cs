@@ -222,6 +222,8 @@ namespace MoalemYar.UserControls
                     MainWindow.main.ShowAddDataNotification(true, txtAddGroup.Text, "گروه");
                     txtAddGroup.Text = string.Empty;
                     txtAddGroup.Focus();
+                    Azmon.main.getHint();
+
                 }
                 catch (Exception)
                 {
@@ -249,6 +251,8 @@ namespace MoalemYar.UserControls
                 MainWindow.main.ShowDeletedNotification(true, txtGroup.Text, "گروه");
                 editGrid.IsEnabled = false;
                 getGroup();
+                Azmon.main.getHint();
+
             }
             catch (Exception)
             {

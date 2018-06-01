@@ -14,7 +14,7 @@
     <WarningLevel>4</WarningLevel>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <AssemblyVersion>1.0.3024.0</AssemblyVersion>
+    <AssemblyVersion>1.0.3038.0</AssemblyVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -121,13 +121,9 @@
     <Compile Include="DataClass\Tables\User.cs" />
     <Compile Include="EmbeddedAssembly.cs" />
     <Compile Include="FindElement.cs" />
-    <Compile Include="Migrations\201805281144293_InitialCreate.cs" />
-    <Compile Include="Migrations\201805281144293_InitialCreate.Designer.cs">
-      <DependentUpon>201805281144293_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201806011337547_non.cs" />
-    <Compile Include="Migrations\201806011337547_non.Designer.cs">
-      <DependentUpon>201806011337547_non.cs</DependentUpon>
+    <Compile Include="Migrations\201806011852433_InitialCreate.cs" />
+    <Compile Include="Migrations\201806011852433_InitialCreate.Designer.cs">
+      <DependentUpon>201806011852433_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MultiplyConverter.cs" />
@@ -160,6 +156,15 @@
     </Compile>
     <Compile Include="UserControls\AzmonResult.xaml.cs">
       <DependentUpon>AzmonResult.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Books.xaml.cs">
+      <DependentUpon>Books.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Circular.xaml.cs">
+      <DependentUpon>Circular.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Magazine.xaml.cs">
+      <DependentUpon>Magazine.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\MaterialChart.xaml.cs">
       <DependentUpon>MaterialChart.xaml</DependentUpon>
@@ -238,6 +243,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\Books.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Circular.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Magazine.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\MaterialChart.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -277,11 +294,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\201805281144293_InitialCreate.resx">
-      <DependentUpon>201805281144293_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201806011337547_non.resx">
-      <DependentUpon>201806011337547_non.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201806011852433_InitialCreate.resx">
+      <DependentUpon>201806011852433_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -435,6 +449,9 @@
   <ItemGroup>
     <Resource Include="Resources\book.png" />
     <Resource Include="Resources\circular.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\roshd.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.108.0\build\net45\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.108.0\build\net45\System.Data.SQLite.Core.targets')" />

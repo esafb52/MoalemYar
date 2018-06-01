@@ -643,12 +643,20 @@ namespace MoalemYar
                     break;
 
                 case 7:
-                    //Todo
+                    exAchievement_Click(null, null);
 
                     break;
 
                 case 8:
-                    //Todo
+                    exCircular_Click(null, null);
+
+                    break;
+                case 9:
+                    exBook_Click(null, null);
+
+                    break;
+                case 10:
+                    exRoshd_Click(null, null);
 
                     break;
             }
@@ -671,11 +679,19 @@ namespace MoalemYar
 
         private void exBook_Click(object sender, EventArgs e)
         {
+            exContent.Content = new Books();
 
         }
 
         private void exCircular_Click(object sender, EventArgs e)
         {
+            exContent.Content = new Circular();
+
+        }
+
+        private void exRoshd_Click(object sender, EventArgs e)
+        {
+            exContent.Content = new Magazine();
 
         }
     }
