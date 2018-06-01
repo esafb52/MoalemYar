@@ -111,7 +111,7 @@
                 <Metro:MetroTextBox MaxLength="3" IsEnabled="{Binding ElementName=swLimit, Path=IsChecked}" Margin="5,0" x:Name="txtTime" InputHint="زمان هر سوال"  PopupHint="زمان هر سوال" Text="25" TextAlignment="Center" MetroPopupBackgroundState="DarkRed" PreviewTextInput="txtTedad_PreviewTextInput" Height="30" VerticalAlignment="Top" />
                 <Button x:Name="btnStart" IsDefault="True" Click="btnStart_Click" Margin="5,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Style="{StaticResource WorkButtonGreen}" Height="35">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                        <Image Height="16" Width="16" Margin="10,0,30,0" Source="/Resources/checkmark.png" />
+                        <Image Height="16" Width="16" Margin="10,0,30,0" Source="/Resources/start.png" />
                         <TextBlock TextWrapping="NoWrap" Text="شروع" FontSize="13" Foreground="#ffffff" />
                     </StackPanel>
                 </Button>
@@ -143,19 +143,19 @@
             <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
                 <Button x:Name="btnFinish" IsDefault="True" Click="btnFinish_Click" Margin="5,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Style="{StaticResource WorkButtonGreen}" Height="35">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                        <Image Height="16" Width="16" Margin="10,0,30,0" Source="/Resources/checkmark.png" />
+                        <Image Height="16" Width="16" Margin="10,0,30,0" Source="/Resources/finish.png" />
                         <TextBlock TextWrapping="NoWrap" Text="پایان" FontSize="13" Foreground="#ffffff" />
                     </StackPanel>
                 </Button>
                 <Button x:Name="btnNext" IsDefault="True" Click="btnNext_Click" Margin="5,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Style="{StaticResource WorkButtonGreen}" Height="35">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                        <Image Height="16" Width="16" Margin="10,0,30,0" Source="/Resources/checkmark.png" />
+                        <Image Height="16" Width="16" Margin="10,0,30,0" Source="/Resources/next.png" />
                         <TextBlock TextWrapping="NoWrap" Text="بعدی" FontSize="13" Foreground="#ffffff" />
                     </StackPanel>
                 </Button>
                 <Button x:Name="btnPrev" IsDefault="True" Click="btnPrev_Click" Margin="5,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Style="{StaticResource WorkButtonGreen}" Height="35">
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                        <Image Height="16" Width="16" Margin="10,0,30,0" Source="/Resources/checkmark.png" />
+                        <Image Height="16" Width="16" Margin="10,0,30,0" Source="/Resources/back.png" />
                         <TextBlock TextWrapping="NoWrap" Text="قبلی" FontSize="13" Foreground="#ffffff" />
                     </StackPanel>
                 </Button>
