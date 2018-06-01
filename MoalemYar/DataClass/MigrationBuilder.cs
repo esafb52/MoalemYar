@@ -234,7 +234,7 @@ namespace SQLite.CodeFirst.Builder
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "op")]
         private static void Generate(DropColumnOperation op)
         {
-            throw new NotImplementedException("DropColumn is non-trivial and has not been implemented. See http://sqlite.org/lang_altertable.html");
+            //throw new NotImplementedException("DropColumn is non-trivial and has not been implemented. See http://sqlite.org/lang_altertable.html");
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "op")]

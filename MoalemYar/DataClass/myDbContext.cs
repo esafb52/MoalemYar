@@ -22,6 +22,8 @@ namespace MoalemYar.DataClass
         public virtual DbSet<Attendance> Attendances { get; set; }
         public virtual DbSet<Question> Questions { get; set; }
         public virtual DbSet<Score> Scores { get; set; }
+        public virtual DbSet<Group> Groups { get; set; }
+        public virtual DbSet<AQuestion> AQuestions { get; set; }
 
         public myDbContext()
        : base("default") { }

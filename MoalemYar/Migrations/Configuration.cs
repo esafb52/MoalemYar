@@ -9,6 +9,7 @@ namespace MoalemYar.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
             SetSqlGenerator("System.Data.SQLite", new SqliteMigrationSqlGenerator());
         }
 

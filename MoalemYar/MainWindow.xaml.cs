@@ -198,6 +198,12 @@ namespace MoalemYar
                        case "TopStudent":
                            exQuestionsList_Click(null, null);
                            break;
+                       case "Group":
+                           AddAzmonGroup.main.tabc.SelectedIndex = 0;
+                           break;
+                       case "AQuestions":
+                           AddQuestions.main.tabc.SelectedIndex = 0;
+                           break;
                    }
                })
                .Dismiss().WithButton("بیخیال", button => { })
@@ -471,6 +477,12 @@ namespace MoalemYar
                          case "نمره":
                              QuestionsList.main.deleteScore();
                              break;
+                         case "گروه":
+                             AddAzmonGroup.main.deleteGroup();
+                             break;
+                         case "سوال":
+                             AddQuestions.main.deleteGroup();
+                             break;
                      }
                  })
                  .Animates(true)
@@ -636,6 +648,21 @@ namespace MoalemYar
         private void exAchievement_Click(object sender, EventArgs e)
         {
             exContent.Content = new Achievement();
+        }
+
+        private void exMore_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void exBook_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void exCircular_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

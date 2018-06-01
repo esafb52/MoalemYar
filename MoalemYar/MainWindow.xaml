@@ -60,9 +60,18 @@
                                         <Metro:MetroExpander Name="exQuestionsList" Click="exQuestionsList_Click" FontWeight="Normal" Header="ارزشیابی" Icon="Resources/Ask.png" Hint="پرسش / امتحان" HintBackground="#e15b4f" />
                                     </StackPanel>
                                 </Metro:MetroExpander>
-                                <Metro:MetroExpander Name="exTopStudents" Click="exTopStudents_Click" FontWeight="Medium" Header="نفرات برتر" Icon="Resources/Trophy.png" Hint="انتخاب شاگرد" HintBackground="#e15b4f" />
-                                <Metro:MetroExpander Name="exAchievement" Click="exAchievement_Click" FontWeight="Medium" Header="پیشرفت تحصیلی" Icon="Resources/Chart.png" Hint="نمودار" HintBackground="#e15b4f" />
-                                <Metro:MetroExpander FontWeight="Medium" Header="استعداد یابی" Icon="Resources/Talent.png" Hint="طرح شهاب" HintBackground="#e15b4f" />
+                                <Metro:MetroExpander FontWeight="Medium" Name="exMore" Header="گزارش وضعیت" Icon="Resources/Active.png" IsExpanded="True" Click="exMore_Click">
+                                    <StackPanel>
+                                        <Metro:MetroExpander Name="exTopStudents" Click="exTopStudents_Click" Header="نفرات برتر" Icon="Resources/Trophy.png" Hint="انتخاب شاگرد" HintBackground="#e15b4f" />
+                                        <Metro:MetroExpander Name="exAchievement" Click="exAchievement_Click" Header="پیشرفت تحصیلی" Icon="Resources/Chart.png" Hint="نمودار" HintBackground="#e15b4f" />
+                                    </StackPanel>
+                                </Metro:MetroExpander>
+                                <Metro:MetroExpander FontWeight="Medium" Header="بیشتر" Icon="Resources/Active.png" IsExpanded="True">
+                                    <StackPanel>
+                                        <Metro:MetroExpander Name="exBook" Click="exBook_Click" Header="کتب درسی" Icon="Resources/Trophy.png" Hint="دانلود/مطالعه" HintBackground="#e15b4f" />
+                                        <Metro:MetroExpander Name="exCircular" Click="exCircular_Click" Header="بخشنامه ها" Icon="Resources/Chart.png" Hint="دانلود/مطالعه" HintBackground="#e15b4f" />
+                                    </StackPanel>
+                                </Metro:MetroExpander>
                             </StackPanel>
                         </Border>
                     </Metro:MetroScrollViewer>
@@ -72,14 +81,28 @@
                 </Grid>
             </Metro:MetroMenuTabItem>
             <Metro:MetroMenuTabItem Name="ex2" Header="آزمون آنلاین" Icon="Resources/Exam.png" IconMove="Resources/ExamMove.png">
-                <!--<Grid>
-                Content must be here
-                </Grid>-->
+                <Grid>
+                    <Metro:MetroScrollViewer>
+                        <ContentControl>
+                            <ContentControl.ContentTemplate>
+                                <DataTemplate>
+                                    <local:Azmon />
+                                </DataTemplate>
+                            </ContentControl.ContentTemplate>
+                        </ContentControl>
+                    </Metro:MetroScrollViewer>
+                </Grid>
             </Metro:MetroMenuTabItem>
             <Metro:MetroMenuTabItem Name="ex3" Header="گزارش گیری" Icon="Resources/Report.png" IconMove="Resources/ReportMove.png">
-                <!--<Grid>
-                Content must be here
-                </Grid>-->
+                <Grid>
+                    <ContentControl>
+                        <ContentControl.ContentTemplate>
+                            <DataTemplate>
+                                <local:Reporting />
+                            </DataTemplate>
+                        </ContentControl.ContentTemplate>
+                    </ContentControl>
+                </Grid>
             </Metro:MetroMenuTabItem>
             <Metro:MetroMenuTabItem Name="ex4" Header="تنظیمات نرم افزار" Icon="Resources/Gears.png" IconMove="Resources/GearsMove.png">
                 <Grid>

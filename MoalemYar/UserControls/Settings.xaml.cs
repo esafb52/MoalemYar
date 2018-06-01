@@ -45,10 +45,7 @@ namespace MoalemYar.UserControls
                 using (var db = new DataClass.myDbContext())
                 {
                     var query = db.Schools.Select(x => x);
-                    if (query.Any())
-                    {
-                        cmbBase.ItemsSource = query.ToList();
-                    }
+                    cmbBase.ItemsSource = query.ToList();
                 }
             }
             catch (NullReferenceException)
