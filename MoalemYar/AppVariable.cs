@@ -83,6 +83,10 @@ namespace MoalemYar
 
         #endregion Config Key
 
+        public static double NotificationAnimInDur = 0.75;
+        public static double NotificationAnimOutDur = 0.5;
+        public static int NotificationDelay = 2;
+
         public static System.Windows.Media.Brush GetBrush(string ColorString)
         {
             var color = (System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString(ColorString);
