@@ -292,7 +292,8 @@ namespace MoalemYar.UserControls
                 }
             }
             var uId = Convert.ToInt64(cmbEditStudent.SelectedValue);
-            
+            dynamic getGroupName = cmbGroup.SelectedItem;
+            string gpName = getGroupName.GroupName;
             gpControl.Visibility = Visibility.Hidden;
             btnStart.IsEnabled = true;
             txtTedad.IsEnabled = true;
@@ -306,7 +307,7 @@ namespace MoalemYar.UserControls
             AzmonResult._False = qalat;
             AzmonResult._None = nazade;
             AzmonResult._UserId = uId;
-            AzmonResult._GroupName = cmbGroup.Text;
+            AzmonResult._GroupName = gpName;
             Azmon.main.exContent.Content = new AzmonResult();
 
         }
@@ -437,6 +438,11 @@ namespace MoalemYar.UserControls
                 isGuid = true;
             else
                 isGuid = false;
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            cmbEditBase.SelectedIndex = Convert.ToInt32(FindElement.Settings[AppVariable.DefaultSchool] ?? -1);
         }
 
         private void ClearCheck()

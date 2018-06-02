@@ -10,6 +10,7 @@
 ***********************************************************************************/
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,18 +36,40 @@ namespace MoalemYar.UserControls
         public static int _None;
         public static string _GroupName = string.Empty;
         public static long _UserId;
+
+        private PersianCalendar pc = new PersianCalendar();
+        private static string strDate;
         public AzmonResult()
         {
             InitializeComponent();
             txtTrue.Text = string.Format(txtTrue.Text, _True);
             txtFalse.Text = string.Format(txtFalse.Text,_False);
             txtNon.Text = string.Format(txtNon.Text, _None);
+            strDate = pc.GetYear(DateTime.Now).ToString("0000") + "/" + pc.GetMonth(DateTime.Now).ToString("00") + "/" + pc.GetDayOfMonth(DateTime.Now).ToString("00");
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
             Azmon.main.exContent.Content = new StartAzmon();
 
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            using (var db = new DataClass.myDbContext())
+            {
+                var data = new DataClass.Tables.AHistory()
+                {
+                    UserId = _UserId,
+                    FalseItem = _False,
+                    TrueItem = _True,
+                    NoneItem = _None,
+                    GroupName = _GroupName,
+                    DatePass = strDate
+                };
+                db.AHistories.Add(data);
+                db.SaveChanges();
+            }
         }
     }
 }

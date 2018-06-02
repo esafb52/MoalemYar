@@ -14,7 +14,7 @@
     <WarningLevel>4</WarningLevel>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <AssemblyVersion>1.0.3151.0</AssemblyVersion>
+    <AssemblyVersion>1.0.3174.0</AssemblyVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -115,6 +115,7 @@
     <Compile Include="DataClass\MigrationFormatter.cs" />
     <Compile Include="DataClass\SqliteMigrateDatabaseToLatestVersion.cs" />
     <Compile Include="DataClass\SqliteMigrationSqlGenerator.cs" />
+    <Compile Include="DataClass\Tables\AHistory.cs" />
     <Compile Include="DataClass\Tables\AQuestion.cs" />
     <Compile Include="DataClass\Tables\Attendance.cs" />
     <Compile Include="DataClass\Tables\Group.cs" />
@@ -156,6 +157,9 @@
     </Compile>
     <Compile Include="UserControls\Azmon.xaml.cs">
       <DependentUpon>Azmon.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\AzmonHistory.xaml.cs">
+      <DependentUpon>AzmonHistory.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\AzmonResult.xaml.cs">
       <DependentUpon>AzmonResult.xaml</DependentUpon>
@@ -242,6 +246,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\Azmon.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\AzmonHistory.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -97,7 +97,7 @@ namespace MoalemYar.UserControls
 
         private void exHistory_Click(object sender, EventArgs e)
         {
-
+            exContent.Content = new AzmonHistory();
         }
     }
 }
