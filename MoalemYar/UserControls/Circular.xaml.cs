@@ -38,6 +38,8 @@ namespace MoalemYar.UserControls
 
                 HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
                 doc.LoadHtml(page);
+
+                //Todo: fix order
                 var parsedValues = doc.DocumentNode.SelectNodes("//table[@class='table table-striped table-hover']/tr").Skip(1)
                      .Select(r =>
                      {
@@ -54,7 +56,7 @@ namespace MoalemYar.UserControls
                              SubType = r.SelectSingleNode(".//td[6]").InnerText,
                          };
                      }
-                     ).OrderByDescending(x => x.Row).Take(10).ToList();
+                     ).OrderByDescending(x => x.Row).ToList();
                 prgUpdate.Maximum = parsedValues.Count;
                 foreach (var item in parsedValues)
                 {
