@@ -53,7 +53,7 @@
                 </Button>
             </StackPanel>
             <TextBlock Name="txtRow" Opacity=".4" FontSize="10" Margin="10,5">ردیف</TextBlock>
-            <Metro:MetroProgressBar FlowDirection="LeftToRight" Name="prgDownload" Hint="{Binding ElementName=prgDownload, Path=Value}" Margin="10,0"/>
+            <Metro:MetroProgressBar Visibility="Hidden" FlowDirection="LeftToRight" Name="prgDownload" Hint="{Binding ElementName=prgDownload, Path=Value}" Margin="10,0"/>
         </StackPanel>
 
 

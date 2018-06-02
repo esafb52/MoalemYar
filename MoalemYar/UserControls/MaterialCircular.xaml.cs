@@ -60,6 +60,7 @@ namespace MoalemYar.UserControls
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
+            prgDownload.Visibility = Visibility.Visible;
             WebClient wc = new WebClient();
                    
             using (WebClient client = new WebClient())
@@ -85,6 +86,8 @@ namespace MoalemYar.UserControls
                 {
                     btnSave.IsEnabled = false;
                     btnOpen.IsEnabled = true;
+                    prgDownload.Visibility = Visibility.Hidden;
+
                 };
                 
                 string TotPath = AppVariable.fileNameBakhsh + txtRow.Text + txtTitle.Text;
