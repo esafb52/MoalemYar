@@ -244,20 +244,39 @@ namespace MoalemYar
                .Dismiss().WithDelay(TimeSpan.FromSeconds(AppVariable.NotificationDelay));
             builder.Queue();
         }
-        public void ShowRecivedCircularNotification()
+        public void ShowRecivedCircularNotification(bool isSuccess)
         {
-            var builder = this.Manager
-                .CreateMessage()
-               .Accent(AppVariable.GREEN)
-               .Background(AppVariable.BGBLACK)
-               .HasBadge("اطلاعیه")
-               .HasMessage("تمامی بخشنامه ها با موفقیت دریافت شد")
-               .Dismiss().WithButton("باشه", button => { })
-               .Animates(true)
-               .AnimationInDuration(AppVariable.NotificationAnimInDur)
-               .AnimationOutDuration(AppVariable.NotificationAnimOutDur)
-               .Dismiss().WithDelay(TimeSpan.FromSeconds(AppVariable.NotificationDelay));
-            builder.Queue();
+            if (isSuccess)
+            {
+                var builder = this.Manager
+                                .CreateMessage()
+                               .Accent(AppVariable.GREEN)
+                               .Background(AppVariable.BGBLACK)
+                               .HasBadge("اطلاعیه")
+                               .HasMessage("تمامی بخشنامه ها با موفقیت دریافت شد")
+                               .Dismiss().WithButton("باشه", button => { })
+                               .Animates(true)
+                               .AnimationInDuration(AppVariable.NotificationAnimInDur)
+                               .AnimationOutDuration(AppVariable.NotificationAnimOutDur)
+                               .Dismiss().WithDelay(TimeSpan.FromSeconds(AppVariable.NotificationDelay));
+                builder.Queue();
+            }
+            else
+            {
+                var builder = this.Manager
+                                .CreateMessage()
+                               .Accent(AppVariable.RED)
+                               .Background(AppVariable.BGBLACK)
+                               .HasBadge("هشدار")
+                               .HasMessage("درحال حاظر سرور در دسترس نیست! لطفا در صورت فعال بودن، VPN خود را غیرفعال کنید")
+                               .Dismiss().WithButton("باشه", button => { })
+                               .Animates(true)
+                               .AnimationInDuration(AppVariable.NotificationAnimInDur)
+                               .AnimationOutDuration(AppVariable.NotificationAnimOutDur)
+                               .Dismiss().WithDelay(TimeSpan.FromSeconds(AppVariable.NotificationDelay));
+                builder.Queue();
+            }
+            
         }
         public void ShowDeleteExistNotification(string Type, string Type2)
         {

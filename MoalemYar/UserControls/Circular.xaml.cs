@@ -33,54 +33,74 @@ namespace MoalemYar.UserControls
                 MaterialCircular _addUser;
                 Control _currentUser;
 
-                WebClient webClient = new WebClient();
-                var page = webClient.DownloadString(FindElement.Settings[AppVariable.DefaultServer].ToString() ?? AppVariable.DefaultServer2);
-
-                HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
-                doc.LoadHtml(page);
-
-                //Todo: fix order
-                var parsedValues = doc.DocumentNode.SelectNodes("//table[@class='table table-striped table-hover']/tr").Skip(1)
-                     .Select(r =>
-                     {
-                         var linkNode = r.SelectSingleNode(".//a");
-                         var linkNode2 = r.SelectSingleNode("th|td");
-                         return new DelegationLink()
-                         {
-                             Row = r.SelectSingleNode(".//td").InnerText,
-                             link = linkNode.GetAttributeValue("href", ""),
-                             Category = r.SelectSingleNode(".//td[2]").InnerText,
-                             Title = r.SelectSingleNode(".//td[3]").InnerText,
-                             Date = r.SelectSingleNode(".//td[4]").InnerText,
-                             Type = r.SelectSingleNode(".//td[5]").InnerText,
-                             SubType = r.SelectSingleNode(".//td[6]").InnerText,
-                         };
-                     }
-                     ).OrderByDescending(x => x.Row).ToList();
-                prgUpdate.Maximum = parsedValues.Count;
-                foreach (var item in parsedValues)
+                try
                 {
-                    Task.Delay(200).ContinueWith(ctx => {
-                        prgUpdate.Value += 1;
-                        prgUpdate.Hint = ((prgUpdate.Value * 100) / parsedValues.Count).ToString("0");
-                        _addUser = new MaterialCircular(item.Row, item.Title, item.Category, item.Type, item.SubType, item.Date, item.link, AppVariable.GetBrush(Convert.ToString(FindElement.Settings[AppVariable.ChartColor] ?? AppVariable.CHART_GREEN)));
-                        _currentUser = _addUser;
-                        waterfallFlow.Children.Add(_currentUser);
-                        waterfallFlow.Refresh();
-                    }, TaskScheduler.FromCurrentSynchronizationContext());
+                    WebClient webClient = new WebClientWithTimeout();
+                    var page = webClient.DownloadString(FindElement.Settings[AppVariable.DefaultServer].ToString() ?? AppVariable.DefaultServer2);
+                    HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
+                    doc.LoadHtml(page);
 
+                    //Todo: fix order
+                    var parsedValues = doc.DocumentNode.SelectNodes("//table[@class='table table-striped table-hover']/tr").Skip(1)
+                         .Select(r =>
+                         {
+                             var linkNode = r.SelectSingleNode(".//a");
+                             var linkNode2 = r.SelectSingleNode("th|td");
+                             return new DelegationLink()
+                             {
+                                 Row = r.SelectSingleNode(".//td").InnerText,
+                                 link = linkNode.GetAttributeValue("href", ""),
+                                 Category = r.SelectSingleNode(".//td[2]").InnerText,
+                                 Title = r.SelectSingleNode(".//td[3]").InnerText,
+                                 Date = r.SelectSingleNode(".//td[4]").InnerText,
+                                 Type = r.SelectSingleNode(".//td[5]").InnerText,
+                                 SubType = r.SelectSingleNode(".//td[6]").InnerText,
+                             };
+                         }
+                         ).OrderByDescending(x => x.Row).ToList();
+                    prgUpdate.Maximum = parsedValues.Count;
+                    foreach (var item in parsedValues)
+                    {
+                        Task.Delay(200).ContinueWith(ctx => {
+                            prgUpdate.Value += 1;
+                            prgUpdate.Hint = ((prgUpdate.Value * 100) / parsedValues.Count).ToString("0");
+                            _addUser = new MaterialCircular(item.Row, item.Title, item.Category, item.Type, item.SubType, item.Date, item.link, AppVariable.GetBrush(Convert.ToString(FindElement.Settings[AppVariable.ChartColor] ?? AppVariable.CHART_GREEN)));
+                            _currentUser = _addUser;
+                            waterfallFlow.Children.Add(_currentUser);
+                            waterfallFlow.Refresh();
+                        }, TaskScheduler.FromCurrentSynchronizationContext());
+
+                    }
                 }
+                catch (WebException)
+                {
+
+                    MainWindow.main.ShowRecivedCircularNotification(false);
+                    
+                }
+               
+               
+                
             }), DispatcherPriority.ContextIdle, null);
         }
       
         private void prgUpdate_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             if(prgUpdate.Value == prgUpdate.Maximum)
-                MainWindow.main.ShowRecivedCircularNotification();
+                MainWindow.main.ShowRecivedCircularNotification(true);
         }
     }
-}
 
+}
+public class WebClientWithTimeout : WebClient
+{
+    protected override WebRequest GetWebRequest(Uri address)
+    {
+        WebRequest wr = base.GetWebRequest(address);
+        wr.Timeout = 10000; // timeout in milliseconds (ms)
+        return wr;
+    }
+}
 public class DelegationLink
 {
     public string Row { get; set; }
