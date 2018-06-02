@@ -34,7 +34,7 @@ namespace MoalemYar.UserControls
                 Control _currentUser;
 
                 WebClient webClient = new WebClient();
-                var page = webClient.DownloadString("http://5743.zanjan.medu.ir/regulation/archive?ocode=100038170");
+                var page = webClient.DownloadString(FindElement.Settings[AppVariable.DefaultServer].ToString() ?? AppVariable.DefaultServer2);
 
                 HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
                 doc.LoadHtml(page);

@@ -9,6 +9,7 @@
 ***********************************************************************************/
 
 using System;
+using System.Collections.ObjectModel;
 using System.Data.Entity;
 using System.Data.SQLite;
 using System.IO;
@@ -23,6 +24,8 @@ namespace MoalemYar.UserControls
     /// </summary>
     public partial class Settings : UserControl
     {
+        private ObservableCollection<string> list = new ObservableCollection<string>();
+
         internal static Settings main;
         public Settings()
         {
@@ -59,6 +62,7 @@ namespace MoalemYar.UserControls
 
         private void LoadSettings()
         {
+            loadServers();
             if (Convert.ToBoolean(FindElement.Settings[AppVariable.CredentialLogin] ?? false))
                 swLogin.IsChecked = true;
             else
@@ -211,6 +215,116 @@ namespace MoalemYar.UserControls
         private void cmbBase_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             FindElement.Settings[AppVariable.DefaultSchool] = cmbBase.SelectedIndex;
+        }
+
+        private void cmbServer_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string[] url = {
+        "http://elam.medu.ir/regulation/archive?ocode=90340101",
+        "http://chardavol.ilam.medu.ir/regulation/archive?ocode=90341907",
+        "http://1805.ea.medu.ir/regulation/archive?ocode=90180501",
+        "http://1869.ea.medu.ir/regulation/archive?ocode=90186902",
+        "http://1891.ea.medu.ir/regulation/archive?ocode=90189104",
+        "http://1836.ea.medu.ir/regulation/archive?ocode=90183600",
+        "http://1823.ea.medu.ir/regulation/archive?ocode=90182302",
+        "http://1889.ea.medu.ir/regulation/archive?ocode=90188906",
+        "http://1901.arta.medu.ir/regulation/archive?ocode=90190104",
+        "http://1902.arta.medu.ir/regulation/archive?ocode=1000000106",
+        "http://1917.arta.medu.ir/regulation/archive?ocode=1000000108",
+        "http://1945.arta.medu.ir/regulation/archive?ocode=1000000112",
+        "http://1942.arta.medu.ir/regulation/archive?ocode=90194207",
+        "http://1935.arta.medu.ir/regulation/archive?ocode=90193501",
+        "http://1932.arta.medu.ir/regulation/archive?ocode=1000000111",
+        "http://1949.arta.medu.ir/regulation/archive?ocode=1000000114",
+        "http://1947.arta.medu.ir/regulation/archive?ocode=1000000113",
+        "http://1926.arta.medu.ir/regulation/archive?ocode=1000000109",
+        "http://1914.arta.medu.ir/regulation/archive?ocode=1000000107",
+        "http://karaj3.alborz.medu.ir/regulation/archive?ocode=1000000781",
+        "http://nahiye2.hormozgan.medu.ir/regulation/archive?ocode=1000000333",
+        "http://jenah.hormozgan.medu.ir/regulation/archive?ocode=1000000358",
+        "http://5743.zanjan.medu.ir/regulation/archive?ocode=100038170",
+        "http://5723.zanjan.medu.ir/regulation/archive?ocode=100038161",
+        "http://5701.zanjan.medu.ir/regulation/archive?ocode=100038159",
+        "http://5702.zanjan.medu.ir/regulation/archive?ocode=100038172",
+        "http://5711.zanjan.medu.ir/regulation/archive?ocode=100038160",
+        "http://5725.zanjan.medu.ir/regulation/archive?ocode=100038168",
+        "http://5745.zanjan.medu.ir/regulation/archive?ocode=100038171",
+        "http://5734.zanjan.medu.ir/regulation/archive?ocode=100038164",
+        "http://5712.zanjan.medu.ir/regulation/archive?ocode=100038163",
+        "http://5731.zanjan.medu.ir/regulation/archive?ocode=100038169",
+        "http://5747.zanjan.medu.ir/regulation/archive?ocode=100038167",
+        "http://5714.zanjan.medu.ir/regulation/archive?ocode=100038166",
+        "http://5705.zanjan.medu.ir/regulation/archive?ocode=100038162",
+        "http://5708.zanjan.medu.ir/regulation/archive?ocode=100038165",
+        "http://fars.medu.ir/regulation/archive?ocode=90230005",
+        "http://rfs.kerman.medu.ir/regulation/archive?ocode=1000000538",
+        "http://orz.kerman.medu.ir/regulation/archive?ocode=90384104",
+        "http://bisotun.kermanshah.medu.ir/regulation/archive?ocode=1000000373",
+        "http://kh1.lorestan.medu.ir/regulation/archive?ocode=80131603",
+        "http://kh2.lorestan.medu.ir/regulation/archive?ocode=80227001",
+        "http://est.lorestan.medu.ir/regulation/archive?ocode=1000000340",
+        "http://dur.lorestan.medu.ir/regulation/archive?ocode=80418406",
+        "http://mazand.medu.ir/regulation/archive?ocode=1000000282"
+};
+            FindElement.Settings[AppVariable.DefaultServer] = url[cmbServer.SelectedIndex].ToString();
+        }
+
+        private void loadServers()
+        {
+            string[] city = new string[]{
+        "ایلام← ایلام",
+        "ایلام← چرداول",
+        "آذربایجان شرقی← ناحیه5 تبریز",
+        "آذربایجان شرقی← تسوج",
+        "آذربایجان شرقی← تیکمه داش",
+        "آذربایجان شرقی← خاروانا",
+        "آذربایجان شرقی← خواجه",
+        "آذربایجان شرقی← عشایر در کلیبر",
+        "اردبیل← ناحیه1",
+        "اردبیل← ناحیه2",
+        "اردبیل← خلخال",
+        "اردبیل← ارشق",
+        "اردبیل← انگوت",
+        "اردبیل← بیله سوار",
+        "اردبیل← پارس آباد",
+        "اردبیل← سرعین",
+        "اردبیل← جعفرآباد",
+        "اردبیل← کوثر",
+        "اردبیل ← نمین",
+        "البرز← ناحیه3",
+        "هرمزگان← ناحیه2 بندرعباس",
+        "هرمزگان← جناح",
+        "زنجان← بزینه رود",
+        "زنجان← خدابنده",
+        "زنجان← ناحیه 1 زنجان",
+        "زنجان← ناحیه 2 زنجان",
+        "زنجان← ابهر",
+        "زنجان← افشار",
+        "زنجان← انگوران",
+        "زنجان← ایجرود",
+        "زنجان← خرمدره",
+        "زنجان← زنجان رود",
+        "زنجان← سجاس رود",
+        "زنجان← سلطانیه",
+        "زنجان← طارم",
+        "زنجان← ماهنشان",
+        "فارس← کلیه مناطق فارس",
+        "کرمان← رفسنجان",
+        "کرمان← ارزونیه",
+        "کرمانشاه← بیستون",
+        "لرستان← ناحیه1 خرم آباد",
+        "لرستان← ناحیه2 خرم آباد",
+        "لرستان← استثنایی",
+        "لرستان← دورود",
+        "مازندران← کلیه مناطق"
+ };
+
+            for (int i = 0; i < city.Length; i++)
+            {
+                list.Add(city[i].ToString());
+                Console.WriteLine(city[i].ToString());
+            }
+            cmbServer.ItemsSource = city;
         }
     }
 }

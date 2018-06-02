@@ -46,6 +46,7 @@ namespace MoalemYar
 
         public static string fileName = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\" + Assembly.GetExecutingAssembly().GetName().Name;
         public static string fileNameBakhsh = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\" + Assembly.GetExecutingAssembly().GetName().Name + @"\Circular\";
+        public static string DefaultServer2 = "http://5743.zanjan.medu.ir/regulation/archive?ocode=100038170";
 
         #endregion App Details
 
@@ -81,6 +82,7 @@ namespace MoalemYar
         public static string ChartColor = "ChartColor";
         public static string ChartColorIndex = "ChartColorIndex";
         public static string DefaultSchool = "DefSchool";
+        public static string DefaultServer = "DefServer";
 
         #endregion Config Key
 

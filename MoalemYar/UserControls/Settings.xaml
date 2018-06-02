@@ -16,6 +16,26 @@
                         <StackPanel>
                             <Metro:MetroSwitch x:Name="swLogin" Content="ورود با استفاده از رمز عبور" Margin="10" Checked="swLogin_Checked" Unchecked="swLogin_Checked" />
                             <Metro:MetroSwitch x:Name="swAutoStart" Content="اجرای خودکار همراه با ویندوز"  Margin="10" Checked="swAutoStart_Checked" Unchecked="swAutoStart_Checked" />
+                            <Grid Margin="2">
+                                <ComboBox x:Name="cmbServer" ItemsSource="{Binding}"
+                                       SelectionChanged="cmbServer_SelectionChanged"
+                                          TabIndex="4"
+                                       VerticalAlignment="Top" HorizontalAlignment="Left" Width="200">
+                                </ComboBox>
+                                <TextBlock Text=" انتخاب سرور " IsHitTestVisible="False" HorizontalAlignment="Left" Width="200">
+                                    <TextBlock.Style>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="Visibility" Value="Hidden" />
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding ElementName=cmbServer,Path=SelectedItem}" Value="{x:Null}">
+                                                    <Setter Property="Visibility" Value="Visible" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                            </Grid>
+
                         </StackPanel>
                     </Metro:MetroGroupBox>
                 </Grid>
