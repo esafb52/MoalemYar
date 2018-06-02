@@ -8,6 +8,8 @@
 *	Written by Mahdi Hosseini <Mahdidvb72@gmail.com>,  2018, 6, 2, 07:58 ب.ظ
 *	
 ***********************************************************************************/
+using LiveCharts;
+using LiveCharts.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,9 +32,14 @@ namespace MoalemYar.UserControls
     /// </summary>
     public partial class AzmonHistory : UserControl
     {
+        public Brush BorderColor { get; set; }
+
         public AzmonHistory()
         {
             InitializeComponent();
+            DataContext = this;
+            BorderColor = AppVariable.GetBrush(Convert.ToString(FindElement.Settings[AppVariable.ChartColor] ?? AppVariable.CHART_GREEN));
+
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
@@ -93,7 +100,101 @@ namespace MoalemYar.UserControls
 
         private void cmbAzmon_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            double[] values = new double[] { };
 
+            try
+            {
+                dynamic getGroupName = cmbGroups.SelectedItem;
+                string gpName = getGroupName.GroupName;
+                dynamic getDateText = cmbAzmon.SelectedItem;
+                string dPass = getDateText.DatePass;
+                using (var db = new DataClass.myDbContext())
+                {
+                    dynamic selectedItem = dataGrid.SelectedItems[0];
+                    long uId = selectedItem.Id;
+                    var data = db.AHistories.Where(x => x.UserId == uId && x.DatePass == dPass && x.GroupName.Equals(gpName)).Select(x => x).OrderByDescending(x => x.DatePass).ToList();
+                    values = new double[] { data.FirstOrDefault().TrueItem, data.FirstOrDefault().FalseItem, data.FirstOrDefault().NoneItem };
+
+                    Series series = new ColumnSeries();
+
+                    switch (Convert.ToInt32(FindElement.Settings[AppVariable.ChartType] ?? 0))
+                    {
+                        case 0:
+                            series = new ColumnSeries { };
+                            break;
+
+                        case 1:
+                            series = new StackedColumnSeries { };
+                            break;
+
+                        case 2:
+                            series = new LineSeries { };
+                            break;
+
+                        case 3:
+                            series = new StepLineSeries { };
+                            break;
+
+                        case 4:
+                            series = new StackedAreaSeries { };
+                            break;
+                    }
+
+                    if (series.GetType() == typeof(ColumnSeries))
+                    {
+                        AchievementChart.Series.Add(new ColumnSeries
+                        {
+                            Values = new ChartValues<double>(values),
+                            StrokeDashArray = new System.Windows.Media.DoubleCollection(20)
+                        });
+                    }
+                    else if (series.GetType() == typeof(LineSeries))
+                    {
+                        AchievementChart.Series.Add(new LineSeries
+                        {
+                            Values = new ChartValues<double>(values),
+                            StrokeDashArray = new System.Windows.Media.DoubleCollection(20)
+                        });
+                    }
+                    else if (series.GetType() == typeof(StackedAreaSeries))
+                    {
+                        AchievementChart.Series.Add(new StackedAreaSeries
+                        {
+                            Values = new ChartValues<double>(values),
+                            StrokeDashArray = new System.Windows.Media.DoubleCollection(20)
+                        });
+                    }
+                    else if (series.GetType() == typeof(StackedColumnSeries))
+                    {
+                        AchievementChart.Series.Add(new StackedColumnSeries
+                        {
+                            Values = new ChartValues<double>(values),
+                            StrokeDashArray = new System.Windows.Media.DoubleCollection(20)
+                        });
+                    }
+                    else if (series.GetType() == typeof(StepLineSeries))
+                    {
+                        AchievementChart.Series.Add(new StepLineSeries
+                        {
+                            Values = new ChartValues<double>(values),
+                            StrokeDashArray = new System.Windows.Media.DoubleCollection(20)
+                        });
+                    }
+
+                    AchievementChart.AxisX.Add(new Axis
+                    {
+                        Labels = new string[] { "پاسخ صحیح","پاسخ غلط","بدون پاسخ" },
+                        Separator = new LiveCharts.Wpf.Separator { }
+                    });
+                    txtName.Text = dPass;
+                    txtBook.Text = gpName;
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+            
         }
     }
 }
