@@ -100,6 +100,7 @@ namespace MoalemYar.UserControls
 
         private void cmbAzmon_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            gpChart.Visibility = Visibility.Visible;
             double[] values = new double[] { };
 
             try
