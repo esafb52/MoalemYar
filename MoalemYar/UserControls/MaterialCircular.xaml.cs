@@ -11,6 +11,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -31,11 +32,12 @@ namespace MoalemYar.UserControls
     public partial class MaterialCircular : UserControl
     {
         public Brush BorderColor { get; set; }
-
-        public MaterialCircular(string Row ,string Title, string Category, string Type, string SubType, string Date, Brush Background)
+        string Dlink;
+        public MaterialCircular(string Row ,string Title, string Category, string Type, string SubType, string Date, string Link, Brush Background)
         {
             InitializeComponent();
             DataContext = this;
+            Dlink = Link;
             BorderColor = Background;
             txtCategory.Text = Category;
             txtDate.Text = Date;
@@ -43,16 +45,59 @@ namespace MoalemYar.UserControls
             txtTitle.Text = Title;
             txtType.Text = Type;
             txtRow.Text = Row;
+
+            if (!System.IO.Directory.Exists(AppVariable.fileNameBakhsh + txtRow.Text + txtTitle.Text))
+            {
+                btnOpen.IsEnabled = false;
+                btnSave.IsEnabled = true;
+            }
+            else
+            {
+                btnOpen.IsEnabled = true;
+                btnSave.IsEnabled = false;
+            }
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
+            WebClient wc = new WebClient();
+                   
+            using (WebClient client = new WebClient())
+            {
+                Uri ur = new Uri(Dlink);
+                var data = wc.DownloadData(Dlink);
 
+                string fileExt = "";
+                if (!String.IsNullOrEmpty(wc.ResponseHeaders["Content-Disposition"]))
+                {
+                    fileExt = System.IO.Path.GetExtension(wc.ResponseHeaders["Content-Disposition"].Substring(wc.ResponseHeaders["Content-Disposition"].IndexOf("filename=") + 9).Replace("\"", ""));
+                }
+                
+                client.DownloadProgressChanged += (o, ex) =>
+                {
+                    // updating the UI
+                    Dispatcher.Invoke(() =>
+                    {
+                        prgDownload.Value = ex.ProgressPercentage;
+                    });
+                };
+                client.DownloadFileCompleted += (o, ex) =>
+                {
+                    btnSave.IsEnabled = false;
+                    btnOpen.IsEnabled = true;
+                };
+                
+                string TotPath = AppVariable.fileNameBakhsh + txtRow.Text + txtTitle.Text;
+                if(!System.IO.Directory.Exists(TotPath))
+                    System.IO.Directory.CreateDirectory(TotPath);
+                client.DownloadFileAsync(ur, TotPath + @"\" + txtRow.Text + txtTitle.Text + fileExt);
+
+            }
         }
 
         private void btnOpen_Click(object sender, RoutedEventArgs e)
         {
-
+            System.Diagnostics.Process.Start(AppVariable.fileNameBakhsh + txtRow.Text + txtTitle.Text);
         }
     }
 }

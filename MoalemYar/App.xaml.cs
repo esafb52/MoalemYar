@@ -50,6 +50,9 @@ namespace MoalemYar
             if (!Directory.Exists(AppVariable.fileName))
                 Directory.CreateDirectory(AppVariable.fileName);
 
+            if (!Directory.Exists(AppVariable.fileNameBakhsh))
+                Directory.CreateDirectory(AppVariable.fileNameBakhsh);
+
             #endregion Check AppData Folder Existen and Create Config.json
         }
 

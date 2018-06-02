@@ -54,14 +54,14 @@ namespace MoalemYar.UserControls
                              SubType = r.SelectSingleNode(".//td[6]").InnerText,
                          };
                      }
-                     ).OrderByDescending(x => x.Row).ToList();
+                     ).OrderByDescending(x => x.Row).Take(10).ToList();
                 prgUpdate.Maximum = parsedValues.Count;
                 foreach (var item in parsedValues)
                 {
                     Task.Delay(200).ContinueWith(ctx => {
                         prgUpdate.Value += 1;
                         prgUpdate.Hint = ((prgUpdate.Value * 100) / parsedValues.Count).ToString("0");
-                        _addUser = new MaterialCircular(item.Row, item.Title, item.Category, item.Type, item.SubType, item.Date, AppVariable.GetBrush(Convert.ToString(FindElement.Settings[AppVariable.ChartColor] ?? AppVariable.CHART_GREEN)));
+                        _addUser = new MaterialCircular(item.Row, item.Title, item.Category, item.Type, item.SubType, item.Date, item.link, AppVariable.GetBrush(Convert.ToString(FindElement.Settings[AppVariable.ChartColor] ?? AppVariable.CHART_GREEN)));
                         _currentUser = _addUser;
                         waterfallFlow.Children.Add(_currentUser);
                         waterfallFlow.Refresh();
