@@ -322,7 +322,6 @@ namespace MoalemYar.UserControls
             for (int i = 0; i < city.Length; i++)
             {
                 list.Add(city[i].ToString());
-                Console.WriteLine(city[i].ToString());
             }
             cmbServer.ItemsSource = city;
         }

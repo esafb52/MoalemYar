@@ -34,5 +34,41 @@ namespace MoalemYar.UserControls
         {
             InitializeComponent();
         }
+
+        private void exEbtedayi_Click(object sender, EventArgs e)
+        {
+            web.Source = new Uri("http://www.chap.sch.ir/school-books");
+
+        }
+
+        private void exMot1_Click(object sender, EventArgs e)
+        {
+            web.Source = new Uri("http://www.chap.sch.ir/guide-books");
+
+        }
+
+        private void exMot2_Click(object sender, EventArgs e)
+        {
+            web.Source = new Uri("http://www.chap.sch.ir/motevasete-list");
+
+        }
+
+        private void exJografi_Click(object sender, EventArgs e)
+        {
+            web.Source = new Uri("http://www.chap.sch.ir/joghrafia-books");
+
+        }
+
+        private void exFani_Click(object sender, EventArgs e)
+        {
+            web.Source = new Uri("http://www.chap.sch.ir/fanni-list");
+
+        }
+
+        private void exRahnam_Click(object sender, EventArgs e)
+        {
+            web.Source = new Uri("http://www.chap.sch.ir/rahnama-tadris");
+
+        }
     }
 }
