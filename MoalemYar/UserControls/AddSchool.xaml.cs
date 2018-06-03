@@ -41,80 +41,26 @@ namespace MoalemYar.UserControls
             GenerateEducateYear();
         }
 
-        #region "Async Query"
-
-        public async static Task<List<DataClass.Tables.School>> GetAllSchoolsAsync()
-        {
-            using (var db = new DataClass.myDbContext())
-            {
-                var query = db.Schools.Select(x => x);
-                return await query.ToListAsync();
-            }
-        }
-
-        public static async Task<string> DeleteSchoolAsync(long id)
-        {
-            using (var db = new DataClass.myDbContext())
-            {
-                var DeleteSchool = await db.Schools.FindAsync(id);
-                db.Schools.Remove(DeleteSchool);
-                await db.SaveChangesAsync();
-                return "School Deleted Successfully";
-            }
-        }
-
-        public async static Task<string> UpdateSchoolAsync(long id, string Name, string Base, string Admin, string Year)
-        {
-            using (var db = new DataClass.myDbContext())
-            {
-                var EditSchool = await db.Schools.FindAsync(id);
-                EditSchool.SchoolName = Name;
-                EditSchool.Base = Base;
-                EditSchool.Admin = Admin;
-                EditSchool.Year = Year;
-                await db.SaveChangesAsync();
-                return "School Updated Successfully";
-            }
-        }
-
-        public async static Task<string> InsertSchoolAsync(string Name, string Base, string Admin, string Year)
-        {
-            using (var db = new DataClass.myDbContext())
-            {
-                var School = new DataClass.Tables.School();
-                School.SchoolName = Name;
-                School.Base = Base;
-                School.Admin = Admin;
-                School.Year = Year;
-                db.Schools.Add(School);
-
-                await db.SaveChangesAsync();
-
-                return "School Added Successfully";
-            }
-        }
-
-        #endregion "Async Query"
-
-        #region Func get Query Wait"
+       
+        #region Query"
 
         private void getSchool()
         {
             try
             {
-                var query = GetAllSchoolsAsync();
-                query.Wait();
-
-                List<DataClass.Tables.School> data = query.Result;
-                _initialCollection = query.Result;
-                if (data.Any())
+                using (var db = new DataClass.myDbContext())
                 {
-                    dataGrid.ItemsSource = data;
-                }
-                else
-                {
-                    dataGrid.ItemsSource = null;
-                    MainWindow.main.ShowNoDataNotification("School");
+                    var query = db.Schools.Select(x => x);
+                    _initialCollection = query.ToList();
+                    if (query.Any())
+                    {
+                        dataGrid.ItemsSource = query.ToList();
+                    }
+                    else
+                    {
+                        dataGrid.ItemsSource = null;
+                        MainWindow.main.ShowNoDataNotification("School");
+                    }
                 }
             }
             catch (Exception)
@@ -133,8 +79,9 @@ namespace MoalemYar.UserControls
                 }
                 else
                 {
-                    var query = DeleteSchoolAsync(id);
-                    query.Wait();
+                    var DeleteSchool = db.Schools.Find(id);
+                    db.Schools.Remove(DeleteSchool);
+                     db.SaveChangesAsync();
                     MainWindow.main.getexHint();
                     MainWindow.main.ShowDeletedNotification(true, txtSchool.Text, "مدرسه");
                 }
@@ -143,15 +90,32 @@ namespace MoalemYar.UserControls
 
         private void updateSchool(long id, string Name, string Base, string Admin, string Year)
         {
-            var query = UpdateSchoolAsync(id, Name, Base, Admin, Year);
-            query.Wait();
+            using (var db = new DataClass.myDbContext())
+            {
+                var EditSchool = db.Schools.Find(id);
+                EditSchool.SchoolName = Name;
+                EditSchool.Base = Base;
+                EditSchool.Admin = Admin;
+                EditSchool.Year = Year;
+                db.SaveChangesAsync();
+            }
         }
 
         private void addSchool(string Name, string Base, string Admin, string Year)
         {
-            var query = InsertSchoolAsync(Name, Base, Admin, Year);
-            query.Wait();
-            MainWindow.main.getexHint();
+            using (var db = new DataClass.myDbContext())
+            {
+                var School = new DataClass.Tables.School();
+                School.SchoolName = Name;
+                School.Base = Base;
+                School.Admin = Admin;
+                School.Year = Year;
+                db.Schools.Add(School);
+
+                db.SaveChangesAsync();
+
+                MainWindow.main.getexHint();
+            }
         }
 
         #endregion Func get Query Wait"
