@@ -9,7 +9,6 @@
 ***********************************************************************************/
 
 using Microsoft.Win32;
-using nucs.JsonSettings;
 using System;
 using System.Diagnostics;
 using System.Reflection;

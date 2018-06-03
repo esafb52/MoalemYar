@@ -1,28 +1,21 @@
-﻿
-/****************************** ghost1372.github.io ******************************\
+﻿/****************************** ghost1372.github.io ******************************\
 *	Module Name:	StartAzmon.xaml.cs
 *	Project:		MoalemYar
 *	Copyright (C) 2017 Mahdi Hosseini, All rights reserved.
 *	This software may be modified and distributed under the terms of the MIT license.  See LICENSE file for details.
 *
 *	Written by Mahdi Hosseini <Mahdidvb72@gmail.com>,  2018, 6, 1, 08:34 ب.ظ
-*	
+*
 ***********************************************************************************/
+
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Threading;
 
 namespace MoalemYar.UserControls
@@ -32,7 +25,6 @@ namespace MoalemYar.UserControls
     /// </summary>
     public partial class StartAzmon : UserControl
     {
-
         private int QN = 0;
         private int gozineh;
         private int sahih, nazade, qalat;
@@ -42,8 +34,8 @@ namespace MoalemYar.UserControls
         private string uClass;
         private bool isGuid = true;
 
-        DispatcherTimer dispatcherTimer = new DispatcherTimer();
-        
+        private DispatcherTimer dispatcherTimer = new DispatcherTimer();
+
         public StartAzmon()
         {
             InitializeComponent();
@@ -53,6 +45,7 @@ namespace MoalemYar.UserControls
         }
 
         #region Async Query
+
         public async static Task<List<DataClass.DataTransferObjects.StudentsDto>> GetAllStudentsAsync(long SchoolId)
         {
             using (var db = new DataClass.myDbContext())
@@ -63,6 +56,7 @@ namespace MoalemYar.UserControls
                 return await query.ToListAsync();
             }
         }
+
         public async static Task<List<DataClass.Tables.School>> GetAllSchoolsAsync()
         {
             using (var db = new DataClass.myDbContext())
@@ -88,6 +82,7 @@ namespace MoalemYar.UserControls
             {
             }
         }
+
         public async static Task<List<DataClass.Tables.Group>> GetAllGroupAsync()
         {
             using (var db = new DataClass.myDbContext())
@@ -96,6 +91,7 @@ namespace MoalemYar.UserControls
                 return await query.ToListAsync();
             }
         }
+
         private void getStudent(long BaseId)
         {
             try
@@ -119,6 +115,7 @@ namespace MoalemYar.UserControls
             {
             }
         }
+
         private void getGroup()
         {
             try
@@ -142,7 +139,7 @@ namespace MoalemYar.UserControls
             }
         }
 
-        #endregion
+        #endregion Async Query
 
         private void txtTedad_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
@@ -158,62 +155,65 @@ namespace MoalemYar.UserControls
             {
                 MainWindow.main.ShowFillAllDataNotification();
                 return;
-            }else {
-                    using (var db = new DataClass.myDbContext())
+            }
+            else
+            {
+                using (var db = new DataClass.myDbContext())
+                {
+                    var id = Convert.ToInt64(cmbGroup.SelectedValue);
+                    var classText = uClass;
+
+                    if (isGuid)
+                        result = db.AQuestions.Where(x => x.GroupId == id && x.Class == classText).OrderBy(x => Guid.NewGuid()).Take(Convert.ToInt32(txtTedad.Text)).ToList();
+                    else
+                        result = db.AQuestions.Where(x => x.GroupId == id && x.Class == classText).Take(Convert.ToInt32(txtTedad.Text)).ToList();
+
+                    if (result.Count < Convert.ToInt32(txtTedad.Text))
+                        MainWindow.main.ShowAzmonNotification();
+                    else
                     {
-                        var id = Convert.ToInt64(cmbGroup.SelectedValue);
-                        var classText = uClass;
+                        QN = 0;
 
-                        if (isGuid)
-                            result = db.AQuestions.Where(x => x.GroupId == id && x.Class == classText).OrderBy(x => Guid.NewGuid()).Take(Convert.ToInt32(txtTedad.Text)).ToList();
-                        else
-                            result = db.AQuestions.Where(x => x.GroupId == id && x.Class == classText).Take(Convert.ToInt32(txtTedad.Text)).ToList();
+                        lblQNumber.Text = Convert.ToString(QN + 1);
 
-                        if (result.Count < Convert.ToInt32(txtTedad.Text))
-                            MainWindow.main.ShowAzmonNotification();
-                         else
-                        {
-                            QN = 0;
-
-                            lblQNumber.Text = Convert.ToString(QN + 1);
-
-                            lblQtext.Text = result[QN].QuestionText;
-                            swCase1.Content = result[QN].Case1;
+                        lblQtext.Text = result[QN].QuestionText;
+                        swCase1.Content = result[QN].Case1;
                         swCase2.Content = result[QN].Case2;
                         swCase3.Content = result[QN].Case3;
                         swCase4.Content = result[QN].Case4;
-                            btnNext.IsEnabled = true;
-                            btnPrev.IsEnabled = false;
-                            btnStart.IsEnabled = false;
-                            swLimit.IsEnabled = false;
-                            txtTedad.IsEnabled = false;
-                            cmbGroup.IsEnabled = false;
-                            cmbEditBase.IsEnabled = false;
-                            swRandom.IsEnabled = false;
+                        btnNext.IsEnabled = true;
+                        btnPrev.IsEnabled = false;
+                        btnStart.IsEnabled = false;
+                        swLimit.IsEnabled = false;
+                        txtTedad.IsEnabled = false;
+                        cmbGroup.IsEnabled = false;
+                        cmbEditBase.IsEnabled = false;
+                        swRandom.IsEnabled = false;
                         gpAzmon.IsEnabled = true;
-                            ClearCheck();
-                            answerlist = new ListBox();
+                        ClearCheck();
+                        answerlist = new ListBox();
 
-                            for (int i = 0; i < result.Count; i++)
-                            {
-                                answerlist.Items.Add("0");
-                            }
+                        for (int i = 0; i < result.Count; i++)
+                        {
+                            answerlist.Items.Add("0");
+                        }
 
-                            gpControl.Visibility = Visibility.Visible;
+                        gpControl.Visibility = Visibility.Visible;
 
-                            if (swLimit.IsChecked == true)
-                            {
-                                lblTime.Text = Convert.ToString(Convert.ToInt32(txtTime.Text) * (Convert.ToInt32(txtTedad.Text)));
+                        if (swLimit.IsChecked == true)
+                        {
+                            lblTime.Text = Convert.ToString(Convert.ToInt32(txtTime.Text) * (Convert.ToInt32(txtTedad.Text)));
                             dispatcherTimer.Start();
                         }
-                            else
-                            {
-                                lblTime.Text = "نامحدود";
-                            }
+                        else
+                        {
+                            lblTime.Text = "نامحدود";
                         }
                     }
+                }
             }
         }
+
         private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
             if (Convert.ToInt32(lblTime.Text) > 1)
@@ -225,6 +225,7 @@ namespace MoalemYar.UserControls
                 btnFinish_Click(null, null);
             }
         }
+
         private void cmbEditBase_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             getStudent(Convert.ToInt64(cmbEditBase.SelectedValue));
@@ -232,10 +233,8 @@ namespace MoalemYar.UserControls
 
         private void cmbEditStudent_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-         
             try
             {
-
                 getGroup();
                 dynamic selectedItem = cmbEditBase.SelectedItem;
                 uClass = selectedItem.Base;
@@ -309,7 +308,6 @@ namespace MoalemYar.UserControls
             AzmonResult._UserId = uId;
             AzmonResult._GroupName = gpName;
             Azmon.main.exContent.Content = new AzmonResult();
-
         }
 
         private void btnNext_Click(object sender, RoutedEventArgs e)
@@ -434,7 +432,7 @@ namespace MoalemYar.UserControls
 
         private void swRandom_Checked(object sender, RoutedEventArgs e)
         {
-            if (swRandom.IsChecked==true)
+            if (swRandom.IsChecked == true)
                 isGuid = true;
             else
                 isGuid = false;
@@ -452,6 +450,7 @@ namespace MoalemYar.UserControls
             swCase3.IsChecked = false;
             swCase4.IsChecked = false;
         }
+
         private void StackPanel_Checked(object sender, RoutedEventArgs e)
         {
             Arthas.Controls.Metro.MetroSwitch cb = e.OriginalSource as Arthas.Controls.Metro.MetroSwitch;

@@ -1,20 +1,15 @@
-﻿
-/****************************** ghost1372.github.io ******************************\
+﻿/****************************** ghost1372.github.io ******************************\
 *	Module Name:	AQuestion.cs
 *	Project:		MoalemYar
 *	Copyright (C) 2017 Mahdi Hosseini, All rights reserved.
 *	This software may be modified and distributed under the terms of the MIT license.  See LICENSE file for details.
 *
 *	Written by Mahdi Hosseini <Mahdidvb72@gmail.com>,  2018, 6, 1, 07:03 ب.ظ
-*	
+*
 ***********************************************************************************/
-using System;
-using System.Collections.Generic;
+
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MoalemYar.DataClass.Tables
 {

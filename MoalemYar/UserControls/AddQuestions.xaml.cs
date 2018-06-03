@@ -1,29 +1,22 @@
-﻿
-/****************************** ghost1372.github.io ******************************\
+﻿/****************************** ghost1372.github.io ******************************\
 *	Module Name:	AddQuestions.xaml.cs
 *	Project:		MoalemYar
 *	Copyright (C) 2017 Mahdi Hosseini, All rights reserved.
 *	This software may be modified and distributed under the terms of the MIT license.  See LICENSE file for details.
 *
 *	Written by Mahdi Hosseini <Mahdidvb72@gmail.com>,  2018, 6, 1, 06:55 ب.ظ
-*	
+*
 ***********************************************************************************/
+
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Globalization;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace MoalemYar.UserControls
 {
@@ -37,7 +30,8 @@ namespace MoalemYar.UserControls
         private int runOnce = 0;
         private List<DataClass.Tables.AQuestion> _initialCollection;
         private PersianCalendar pc = new PersianCalendar();
-        string strDate;
+        private string strDate;
+
         public AddQuestions()
         {
             InitializeComponent();
@@ -62,7 +56,7 @@ namespace MoalemYar.UserControls
         {
             using (var db = new DataClass.myDbContext())
             {
-                var query = db.AQuestions.Where(x=>x.GroupId == GroupId).Select(x => x);
+                var query = db.AQuestions.Where(x => x.GroupId == GroupId).Select(x => x);
                 return await query.ToListAsync();
             }
         }
@@ -83,15 +77,15 @@ namespace MoalemYar.UserControls
             using (var db = new DataClass.myDbContext())
             {
                 var EditAQuestions = await db.AQuestions.FindAsync(id);
-                EditAQuestions.GroupId =GroupId;
-                EditAQuestions.Class =Class;
-                EditAQuestions.QuestionText =QuestionText;
-                EditAQuestions.Case1 =Case1;
-                EditAQuestions.Case2 =Case2;
-                EditAQuestions.Case3 =Case3;
-                EditAQuestions.Case4 =Case4;
-                EditAQuestions.Answer =Answer;
-                EditAQuestions.Date =Date;
+                EditAQuestions.GroupId = GroupId;
+                EditAQuestions.Class = Class;
+                EditAQuestions.QuestionText = QuestionText;
+                EditAQuestions.Case1 = Case1;
+                EditAQuestions.Case2 = Case2;
+                EditAQuestions.Case3 = Case3;
+                EditAQuestions.Case4 = Case4;
+                EditAQuestions.Answer = Answer;
+                EditAQuestions.Date = Date;
                 await db.SaveChangesAsync();
                 return "AQuestions Updated Successfully";
             }
@@ -118,6 +112,7 @@ namespace MoalemYar.UserControls
                 return "AQuestions Added Successfully";
             }
         }
+
         #endregion "Async Query"
 
         #region Func get Query Wait"
@@ -145,6 +140,7 @@ namespace MoalemYar.UserControls
             {
             }
         }
+
         private void getGroup()
         {
             try
@@ -169,6 +165,7 @@ namespace MoalemYar.UserControls
             {
             }
         }
+
         private void deleteAQuestions(long id)
         {
             var query = DeleteAQuestionsAsync(id);
@@ -204,6 +201,7 @@ namespace MoalemYar.UserControls
                 runOnce = 1;
             }
         }
+
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             var elementG = FindElement.FindElementByName<ComboBox>(cmbAddContent, "cmbBase");
@@ -222,17 +220,20 @@ namespace MoalemYar.UserControls
                         case 0:
                             answ = 1;
                             break;
+
                         case 1:
                             answ = 2;
                             break;
+
                         case 2:
                             answ = 3;
                             break;
+
                         case 3:
                             answ = 4;
                             break;
                     }
-                    addAQuestions(Convert.ToInt64(cmbGroup.SelectedValue), elementG.Text, txtQuestionText.Text, txtCase1.Text, txtCase2.Text,txtCase3.Text, txtCase4.Text, answ, strDate);
+                    addAQuestions(Convert.ToInt64(cmbGroup.SelectedValue), elementG.Text, txtQuestionText.Text, txtCase1.Text, txtCase2.Text, txtCase3.Text, txtCase4.Text, answ, strDate);
                     MainWindow.main.ShowAddDataNotification(true, "", "سوال");
                     txtCase1.Text = string.Empty;
                     txtCase2.Text = string.Empty;
@@ -252,8 +253,8 @@ namespace MoalemYar.UserControls
         private void txtEditSearch_ButtonClick(object sender, EventArgs e)
         {
             getAQuestions(Convert.ToInt64(cmbBaseEdit.SelectedValue));
-
         }
+
         private void txtEditSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (dataGrid.ItemsSource != null)
@@ -264,6 +265,7 @@ namespace MoalemYar.UserControls
                     dataGrid.ItemsSource = _initialCollection.Select(x => x);
             }
         }
+
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             MainWindow.main.ShowDeleteConfirmNotification("", "سوال");
@@ -280,7 +282,6 @@ namespace MoalemYar.UserControls
                 editStack.IsEnabled = false;
                 getAQuestions(Convert.ToInt64(cmbBaseEdit.SelectedValue));
                 Azmon.main.getHint();
-
             }
             catch (Exception)
             {
@@ -293,11 +294,13 @@ namespace MoalemYar.UserControls
             var element = FindElement.FindElementByName<ComboBox>(cmbAddEditContent, "cmbBase");
             return element.Text;
         }
+
         private string getComboValue2()
         {
             var element = FindElement.FindElementByName<ComboBox>(cmbEditAnswer, "cmbEditAnswers");
             return element.Text;
         }
+
         private void setComboValue(string index)
         {
             var element = FindElement.FindElementByName<ComboBox>(cmbAddEditContent, "cmbBase");
@@ -310,23 +313,29 @@ namespace MoalemYar.UserControls
                 case "دوم":
                     element.SelectedIndex = 1;
                     break;
+
                 case "سوم":
                     element.SelectedIndex = 2;
                     break;
+
                 case "چهارم":
                     element.SelectedIndex = 3;
                     break;
+
                 case "پنجم":
                     element.SelectedIndex = 4;
                     break;
+
                 case "ششم":
                     element.SelectedIndex = 5;
                     break;
+
                 case null:
                     element.SelectedIndex = -1;
                     break;
             }
         }
+
         private void setComboValue2(string index)
         {
             var element = FindElement.FindElementByName<ComboBox>(cmbEditAnswer, "cmbEditAnswers");
@@ -339,24 +348,28 @@ namespace MoalemYar.UserControls
                 case "2":
                     element.SelectedIndex = 1;
                     break;
+
                 case "3":
                     element.SelectedIndex = 2;
                     break;
+
                 case "4":
                     element.SelectedIndex = 3;
                     break;
+
                 case null:
                     element.SelectedIndex = -1;
                     break;
             }
         }
+
         private void cmbBaseEdit_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             getAQuestions(Convert.ToInt64(cmbBaseEdit.SelectedValue));
         }
+
         private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
             try
             {
                 editStack.IsEnabled = true;
@@ -375,6 +388,7 @@ namespace MoalemYar.UserControls
             {
             }
         }
+
         private void btnEditSave_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -388,7 +402,6 @@ namespace MoalemYar.UserControls
             }
             catch (Exception)
             {
-
             }
         }
 

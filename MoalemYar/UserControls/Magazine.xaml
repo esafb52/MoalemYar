@@ -1,8 +1,8 @@
 ﻿<UserControl x:Class="MoalemYar.UserControls.Magazine"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:MoalemYar.UserControls"
              xmlns:Metro="clr-namespace:Arthas.Controls.Metro;assembly=Arthas"
              mc:Ignorable="d" Style="{StaticResource myUserControl}"
@@ -21,7 +21,7 @@
                                 <StackPanel>
                                     <Metro:MetroExpander FontWeight="Medium" Icon="/Resources/Verify.png" Header="دانش آموزان" Hint="ابتدایی،متوسطه" HintBackground="#e15b4f" IsExpanded="False">
                                         <StackPanel>
-                                            <Metro:MetroExpander FontWeight="Normal" Name="exKodak" Click="exKodak_Click" Icon="/Resources/Active.png" Header="کودک"  />
+                                            <Metro:MetroExpander FontWeight="Normal" Name="exKodak" Click="exKodak_Click" Icon="/Resources/Active.png" Header="کودک" />
                                             <Metro:MetroExpander FontWeight="Normal" Name="exNoAmoz" Click="exNoAmoz_Click" Icon="/Resources/Question.png" Header="نوآموز" />
                                             <Metro:MetroExpander FontWeight="Normal" Name="exNoAmozRoshan" Click="exNoAmozRoshan_Click" Icon="/Resources/Question.png" Header="روشن نوآموز" />
                                             <Metro:MetroExpander FontWeight="Normal" Name="exDaneshAmoz" Click="exDaneshAmoz_Click" Icon="/Resources/Question.png" Header="دانش آموز" />
@@ -30,7 +30,7 @@
                                             <Metro:MetroExpander FontWeight="Normal" Name="exNojavanRoshan" Click="exNojavanRoshan_Click" Icon="/Resources/Question.png" Header="روشن نوجوان" />
                                             <Metro:MetroExpander FontWeight="Normal" Name="exJavan" Click="exJavan_Click" Icon="/Resources/Question.png" Header="جوان" />
                                             <Metro:MetroExpander FontWeight="Normal" Name="exJavanRoshan" Click="exJavanRoshan_Click" Icon="/Resources/Question.png" Header="روشن جوان" />
-                                            <Metro:MetroExpander FontWeight="Normal" Name="exBorhan" Click="exBorhan_Click" Icon="/Resources/Question.png" Header="برهان ریاضی" Hint="متوسطه اول"/>
+                                            <Metro:MetroExpander FontWeight="Normal" Name="exBorhan" Click="exBorhan_Click" Icon="/Resources/Question.png" Header="برهان ریاضی" Hint="متوسطه اول" />
                                             <Metro:MetroExpander FontWeight="Normal" Name="exBorhanDovom" Click="exBorhanDovom_Click" Icon="/Resources/Question.png" Header="برهان ریاضی" Hint="متوسطه دوم" />
                                         </StackPanel>
                                     </Metro:MetroExpander>
@@ -43,7 +43,6 @@
                                             <Metro:MetroExpander Name="exMotavasete" Click="exMotavasete_Click" FontWeight="Normal" Header="آموزش متوسطه" Icon="/Resources/History.png" />
                                         </StackPanel>
                                     </Metro:MetroExpander>
-
                                 </StackPanel>
                             </Metro:MetroExpander>
                             <Metro:MetroExpander FontWeight="Medium" Header="فصل نامه های تخصصی" Icon="/Resources/ExamMove.png" IsExpanded="False">
@@ -82,7 +81,7 @@
             </Border>
         </Metro:MetroScrollViewer>
         <Metro:MetroScrollViewer Grid.Column="1">
-            <Metro:MetroWebBrowser Name="web"/>
+            <Metro:MetroWebBrowser Name="web" />
         </Metro:MetroScrollViewer>
     </Grid>
 </UserControl>

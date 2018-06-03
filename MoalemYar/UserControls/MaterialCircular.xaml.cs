@@ -1,36 +1,25 @@
-﻿
-/****************************** ghost1372.github.io ******************************\
+﻿/****************************** ghost1372.github.io ******************************\
 *	Module Name:	MaterialCircular.xaml.cs
 *	Project:		MoalemYar
 *	Copyright (C) 2017 Mahdi Hosseini, All rights reserved.
 *	This software may be modified and distributed under the terms of the MIT license.  See LICENSE file for details.
 *
 *	Written by Mahdi Hosseini <Mahdidvb72@gmail.com>,  2018, 6, 2, 01:57 ب.ظ
-*	
+*
 ***********************************************************************************/
-using Microsoft.Win32;
+
 using SharpCompress.Archives;
 using SharpCompress.Archives.Rar;
 using SharpCompress.Archives.Zip;
 using SharpCompress.Readers;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace MoalemYar.UserControls
 {
@@ -40,8 +29,9 @@ namespace MoalemYar.UserControls
     public partial class MaterialCircular : UserControl
     {
         public Brush BorderColor { get; set; }
-        string Dlink;
-        public MaterialCircular(string Row ,string Title, string Category, string Type, string SubType, string Date, string Link, Brush Background)
+        private string Dlink;
+
+        public MaterialCircular(string Row, string Title, string Category, string Type, string SubType, string Date, string Link, Brush Background)
         {
             InitializeComponent();
             DataContext = this;
@@ -70,7 +60,7 @@ namespace MoalemYar.UserControls
         {
             prgDownload.Visibility = Visibility.Visible;
             WebClient wc = new WebClient();
-                   
+
             using (WebClient client = new WebClient())
             {
                 Uri ur = new Uri(Dlink);
@@ -81,7 +71,7 @@ namespace MoalemYar.UserControls
                 {
                     fileExt = System.IO.Path.GetExtension(wc.ResponseHeaders["Content-Disposition"].Substring(wc.ResponseHeaders["Content-Disposition"].IndexOf("filename=") + 9).Replace("\"", ""));
                 }
-                
+
                 client.DownloadProgressChanged += (o, ex) =>
                 {
                     // updating the UI
@@ -94,20 +84,16 @@ namespace MoalemYar.UserControls
                 string TotPath = AppVariable.fileNameBakhsh + txtRow.Text + txtTitle.Text;
                 string dPath = string.Empty;
 
-               
                 if (fileExt.Equals(".rar") || fileExt.Equals(".zip"))
                 {
                     dPath = AppVariable.fileNameBakhsh + @"\" + txtRow.Text + txtTitle.Text + fileExt;
-
                 }
                 else
                 {
                     if (!System.IO.Directory.Exists(TotPath))
                         System.IO.Directory.CreateDirectory(TotPath);
                     dPath = TotPath + @"\" + txtRow.Text + txtTitle.Text + fileExt;
-
                 }
-
 
                 client.DownloadFileAsync(ur, dPath);
 
@@ -119,13 +105,12 @@ namespace MoalemYar.UserControls
 
                     if (fileExt.Equals(".rar") || fileExt.Equals(".zip"))
                     {
-                        
                         UnCompress(AppVariable.fileNameBakhsh + @"\" + txtRow.Text + txtTitle.Text + fileExt, AppVariable.fileNameBakhsh + @"\", fileExt);
                     }
-
                 };
             }
         }
+
         public void UnCompress(string Open, string Write, string FileExt)
         {
             try
@@ -158,24 +143,24 @@ namespace MoalemYar.UserControls
                         }
                     }
                 }
-               
             }
             catch (Exception)
             {
-
             }
             finally
             {
                 System.IO.File.Delete(Open);
             };
         }
+
         private void btnOpen_Click(object sender, RoutedEventArgs e)
         {
             try
             {
                 System.Diagnostics.Process.Start(AppVariable.fileNameBakhsh + txtRow.Text + txtTitle.Text);
             }
-            catch (Win32Exception) {
+            catch (Win32Exception)
+            {
                 System.Diagnostics.Process.Start(AppVariable.fileNameBakhsh + txtTitle.Text);
             }
             catch (FileNotFoundException)

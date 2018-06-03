@@ -27,6 +27,7 @@ namespace MoalemYar.UserControls
         private ObservableCollection<string> list = new ObservableCollection<string>();
 
         internal static Settings main;
+
         public Settings()
         {
             InitializeComponent();

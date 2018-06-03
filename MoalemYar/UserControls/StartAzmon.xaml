@@ -1,8 +1,8 @@
 ﻿<UserControl x:Class="MoalemYar.UserControls.StartAzmon"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:MoalemYar.UserControls"
              xmlns:Metro="clr-namespace:Arthas.Controls.Metro;assembly=Arthas"
              mc:Ignorable="d"  Style="{StaticResource myUserControl}" Loaded="UserControl_Loaded"
@@ -75,7 +75,6 @@
                             </TextBlock.Style>
                         </TextBlock>
                     </Grid>
-
                 </StackPanel>
                 <Grid Margin="5,0">
                     <ComboBox x:Name="cmbGroup" ItemsSource="{Binding}"
@@ -105,8 +104,8 @@
                 </Grid>
                 <Metro:MetroTextBox MaxLength="3" Name="txtTedad" InputHint="تعداد سوالات"  PopupHint="تعداد سوالات" Text="0" TextAlignment="Center" MetroPopupBackgroundState="DarkRed" PreviewTextInput="txtTedad_PreviewTextInput" Height="30" VerticalAlignment="Top" />
                 <StackPanel Orientation="Vertical">
-                    <Metro:MetroSwitch x:Name="swLimit" Content="محدودیت زمانی" Margin="5,0"/>
-                    <Metro:MetroSwitch x:Name="swRandom" Content="سوالات تصادفی" Checked="swRandom_Checked" Unchecked="swRandom_Checked" IsChecked="True" Margin="5,5"/>
+                    <Metro:MetroSwitch x:Name="swLimit" Content="محدودیت زمانی" Margin="5,0" />
+                    <Metro:MetroSwitch x:Name="swRandom" Content="سوالات تصادفی" Checked="swRandom_Checked" Unchecked="swRandom_Checked" IsChecked="True" Margin="5,5" />
                 </StackPanel>
                 <Metro:MetroTextBox MaxLength="3" IsEnabled="{Binding ElementName=swLimit, Path=IsChecked}" Margin="5,0" x:Name="txtTime" InputHint="زمان هر سوال"  PopupHint="زمان هر سوال" Text="25" TextAlignment="Center" MetroPopupBackgroundState="DarkRed" PreviewTextInput="txtTedad_PreviewTextInput" Height="30" VerticalAlignment="Top" />
                 <Button x:Name="btnStart" IsDefault="True" Click="btnStart_Click" Margin="5,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Style="{StaticResource WorkButtonGreen}" Height="35">
@@ -122,18 +121,18 @@
                 <Grid>
                     <StackPanel Orientation="Vertical">
                         <StackPanel Orientation="Horizontal">
-                            <Metro:MetroTextBlock Margin="5,5" Foreground="Red" Text="زمان"/>
-                            <Metro:MetroTextBlock Margin="5,5" Foreground="Red" Name="lblTime" Text="0"/>
+                            <Metro:MetroTextBlock Margin="5,5" Foreground="Red" Text="زمان" />
+                            <Metro:MetroTextBlock Margin="5,5" Foreground="Red" Name="lblTime" Text="0" />
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="5,5">
-                            <Metro:MetroTextBlock Name="lblQNumber" Margin="5,5" Foreground="Red" Text="0"/>
-                            <Metro:MetroTextBlock Name="lblQtext" Margin="30,5" Text="متن سوال"/>
+                            <Metro:MetroTextBlock Name="lblQNumber" Margin="5,5" Foreground="Red" Text="0" />
+                            <Metro:MetroTextBlock Name="lblQtext" Margin="30,5" Text="متن سوال" />
                         </StackPanel>
                         <StackPanel Orientation="Vertical" ToggleButton.Checked="StackPanel_Checked">
-                            <Metro:MetroSwitch x:Name="swCase1" HorizontalAlignment="Left" FlowDirection="LeftToRight" Margin="5,0"/>
-                            <Metro:MetroSwitch x:Name="swCase2" HorizontalAlignment="Left" FlowDirection="LeftToRight" Margin="5,5"/>
-                            <Metro:MetroSwitch x:Name="swCase3" HorizontalAlignment="Left" FlowDirection="LeftToRight" Margin="5,0"/>
-                            <Metro:MetroSwitch x:Name="swCase4" HorizontalAlignment="Left" FlowDirection="LeftToRight" Margin="5,5"/>
+                            <Metro:MetroSwitch x:Name="swCase1" HorizontalAlignment="Left" FlowDirection="LeftToRight" Margin="5,0" />
+                            <Metro:MetroSwitch x:Name="swCase2" HorizontalAlignment="Left" FlowDirection="LeftToRight" Margin="5,5" />
+                            <Metro:MetroSwitch x:Name="swCase3" HorizontalAlignment="Left" FlowDirection="LeftToRight" Margin="5,0" />
+                            <Metro:MetroSwitch x:Name="swCase4" HorizontalAlignment="Left" FlowDirection="LeftToRight" Margin="5,5" />
                         </StackPanel>
                     </StackPanel>
                 </Grid>

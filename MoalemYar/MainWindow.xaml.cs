@@ -33,6 +33,7 @@ namespace MoalemYar
         internal static MainWindow main;
         private PersianCalendar pc = new PersianCalendar();
         public INotificationMessageManager Manager { get; } = new NotificationMessageManager();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -198,9 +199,11 @@ namespace MoalemYar
                        case "TopStudent":
                            exQuestionsList_Click(null, null);
                            break;
+
                        case "Group":
                            AddAzmonGroup.main.tabc.SelectedIndex = 0;
                            break;
+
                        case "AQuestions":
                            AddQuestions.main.tabc.SelectedIndex = 0;
                            break;
@@ -229,6 +232,7 @@ namespace MoalemYar
                .Dismiss().WithDelay(TimeSpan.FromSeconds(AppVariable.NotificationDelay));
             builder.Queue();
         }
+
         public void ShowAzmonNotification()
         {
             var builder = this.Manager
@@ -244,6 +248,7 @@ namespace MoalemYar
                .Dismiss().WithDelay(TimeSpan.FromSeconds(AppVariable.NotificationDelay));
             builder.Queue();
         }
+
         public void ShowRecivedCircularNotification(bool isSuccess)
         {
             if (isSuccess)
@@ -276,8 +281,8 @@ namespace MoalemYar
                                .Dismiss().WithDelay(TimeSpan.FromSeconds(AppVariable.NotificationDelay));
                 builder.Queue();
             }
-            
         }
+
         public void ShowDeleteExistNotification(string Type, string Type2)
         {
             var builder = this.Manager
@@ -525,9 +530,11 @@ namespace MoalemYar
                          case "نمره":
                              QuestionsList.main.deleteScore();
                              break;
+
                          case "گروه":
                              AddAzmonGroup.main.deleteGroup();
                              break;
+
                          case "سوال":
                              AddQuestions.main.deleteGroup();
                              break;
@@ -685,10 +692,12 @@ namespace MoalemYar
                     exCircular_Click(null, null);
 
                     break;
+
                 case 9:
                     exBook_Click(null, null);
 
                     break;
+
                 case 10:
                     exRoshd_Click(null, null);
 
@@ -708,25 +717,21 @@ namespace MoalemYar
 
         private void exMore_Click(object sender, EventArgs e)
         {
-
         }
 
         private void exBook_Click(object sender, EventArgs e)
         {
             exContent.Content = new Books();
-
         }
 
         private void exCircular_Click(object sender, EventArgs e)
         {
             exContent.Content = new Circular();
-
         }
 
         private void exRoshd_Click(object sender, EventArgs e)
         {
             exContent.Content = new Magazine();
-
         }
     }
 }

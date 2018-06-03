@@ -1,13 +1,13 @@
-﻿
-/****************************** ghost1372.github.io ******************************\
+﻿/****************************** ghost1372.github.io ******************************\
 *	Module Name:	Circular.xaml.cs
 *	Project:		MoalemYar
 *	Copyright (C) 2017 Mahdi Hosseini, All rights reserved.
 *	This software may be modified and distributed under the terms of the MIT license.  See LICENSE file for details.
 *
 *	Written by Mahdi Hosseini <Mahdidvb72@gmail.com>,  2018, 6, 1, 11:27 ب.ظ
-*	
+*
 ***********************************************************************************/
+
 using System;
 using System.Linq;
 using System.Net;
@@ -28,7 +28,8 @@ namespace MoalemYar.UserControls
         {
             InitializeComponent();
 
-            Dispatcher.Invoke(new Action(() => {
+            Dispatcher.Invoke(new Action(() =>
+            {
                 waterfallFlow.Children.Clear();
                 MaterialCircular _addUser;
                 Control _currentUser;
@@ -61,7 +62,8 @@ namespace MoalemYar.UserControls
                     prgUpdate.Maximum = parsedValues.Count;
                     foreach (var item in parsedValues)
                     {
-                        Task.Delay(200).ContinueWith(ctx => {
+                        Task.Delay(200).ContinueWith(ctx =>
+                        {
                             prgUpdate.Value += 1;
                             prgUpdate.Hint = ((prgUpdate.Value * 100) / parsedValues.Count).ToString("0");
                             _addUser = new MaterialCircular(item.Row, item.Title, item.Category, item.Type, item.SubType, item.Date, item.link, AppVariable.GetBrush(Convert.ToString(FindElement.Settings[AppVariable.ChartColor] ?? AppVariable.CHART_GREEN)));
@@ -69,29 +71,23 @@ namespace MoalemYar.UserControls
                             waterfallFlow.Children.Add(_currentUser);
                             waterfallFlow.Refresh();
                         }, TaskScheduler.FromCurrentSynchronizationContext());
-
                     }
                 }
                 catch (WebException)
                 {
-
                     MainWindow.main.ShowRecivedCircularNotification(false);
-                    
                 }
-               
-               
-                
             }), DispatcherPriority.ContextIdle, null);
         }
-      
+
         private void prgUpdate_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            if(prgUpdate.Value == prgUpdate.Maximum)
+            if (prgUpdate.Value == prgUpdate.Maximum)
                 MainWindow.main.ShowRecivedCircularNotification(true);
         }
     }
-
 }
+
 public class WebClientWithTimeout : WebClient
 {
     protected override WebRequest GetWebRequest(Uri address)
@@ -101,6 +97,7 @@ public class WebClientWithTimeout : WebClient
         return wr;
     }
 }
+
 public class DelegationLink
 {
     public string Row { get; set; }

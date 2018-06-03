@@ -1,8 +1,8 @@
 ﻿<UserControl x:Class="MoalemYar.UserControls.AddQuestions"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:MoalemYar.UserControls"
              xmlns:Metro="clr-namespace:Arthas.Controls.Metro;assembly=Arthas"
              xmlns:local1="clr-namespace:MoalemYar"
@@ -115,7 +115,6 @@
                                         </DataTemplate>
                                     </ContentControl.ContentTemplate>
                                 </ContentControl>
-
                             </StackPanel>
                         </Metro:MetroWaterfallFlow>
                     </StackPanel>
@@ -286,14 +285,13 @@
                                         </ContentControl>
                                         <PersianCalendarWPF:PersianDatePicker Margin="5,5,0,0" HorizontalAlignment="Left" x:Name="txtDateEdit" />
 
-                                        <StackPanel Orientation="Vertical" HorizontalAlignment="Left"/>
+                                        <StackPanel Orientation="Vertical" HorizontalAlignment="Left" />
                                     </StackPanel>
                                 </Grid>
                             </Grid>
                         </StackPanel>
                     </StackPanel>
                 </Grid>
-
             </Metro:MetroTabItem>
         </Metro:MetroTabControl>
     </Grid>

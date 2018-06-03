@@ -34,7 +34,6 @@
                                     </TextBlock.Style>
                                 </TextBlock>
                             </Grid>
-
                         </StackPanel>
                     </Metro:MetroGroupBox>
                 </Grid>

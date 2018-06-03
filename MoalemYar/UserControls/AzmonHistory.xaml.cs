@@ -1,29 +1,20 @@
-﻿
-/****************************** ghost1372.github.io ******************************\
+﻿/****************************** ghost1372.github.io ******************************\
 *	Module Name:	AzmonHistory.xaml.cs
 *	Project:		MoalemYar
 *	Copyright (C) 2017 Mahdi Hosseini, All rights reserved.
 *	This software may be modified and distributed under the terms of the MIT license.  See LICENSE file for details.
 *
 *	Written by Mahdi Hosseini <Mahdidvb72@gmail.com>,  2018, 6, 2, 07:58 ب.ظ
-*	
+*
 ***********************************************************************************/
+
 using LiveCharts;
 using LiveCharts.Wpf;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace MoalemYar.UserControls
 {
@@ -39,7 +30,6 @@ namespace MoalemYar.UserControls
             InitializeComponent();
             DataContext = this;
             BorderColor = AppVariable.GetBrush(Convert.ToString(FindElement.Settings[AppVariable.ChartColor] ?? AppVariable.CHART_GREEN));
-
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
@@ -49,20 +39,15 @@ namespace MoalemYar.UserControls
                 var qschool = db.Schools.ToList();
                 cmbEditBase.ItemsSource = qschool.Any() ? qschool : null;
 
-
                 var qGroupName = db.Groups.ToList();
                 cmbGroups.ItemsSource = qGroupName.Any() ? qGroupName : null;
-
-                
-
             }
             cmbEditBase.SelectedIndex = Convert.ToInt32(FindElement.Settings[AppVariable.DefaultSchool] ?? -1);
-           
         }
 
         private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            cmbGroups_SelectionChanged(null, null);  
+            cmbGroups_SelectionChanged(null, null);
         }
 
         private void cmbEditBase_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -72,7 +57,6 @@ namespace MoalemYar.UserControls
                 long id = Convert.ToInt64(cmbEditBase.SelectedValue);
                 var qUser = db.Students.Where(x => x.BaseId == id).ToList();
                 dataGrid.ItemsSource = qUser.Any() ? qUser : null;
-
             }
         }
 
@@ -86,16 +70,13 @@ namespace MoalemYar.UserControls
                 {
                     dynamic selectedItem = dataGrid.SelectedItems[0];
                     long uId = selectedItem.Id;
-                    var qDates = db.AHistories.Where(x => x.UserId == uId && x.GroupName.Equals(gpName)).Select(x => new { x.DatePass, x.Id }).OrderByDescending(x=>x.DatePass).ToList();
+                    var qDates = db.AHistories.Where(x => x.UserId == uId && x.GroupName.Equals(gpName)).Select(x => new { x.DatePass, x.Id }).OrderByDescending(x => x.DatePass).ToList();
                     cmbAzmon.ItemsSource = qDates.Any() ? qDates : null;
                 }
             }
             catch (Exception)
             {
-
             }
-          
-           
         }
 
         private void cmbAzmon_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -184,7 +165,7 @@ namespace MoalemYar.UserControls
 
                     AchievementChart.AxisX.Add(new Axis
                     {
-                        Labels = new string[] { "پاسخ صحیح","پاسخ غلط","بدون پاسخ" },
+                        Labels = new string[] { "پاسخ صحیح", "پاسخ غلط", "بدون پاسخ" },
                         Separator = new LiveCharts.Wpf.Separator { }
                     });
                     txtName.Text = dPass;
@@ -193,9 +174,7 @@ namespace MoalemYar.UserControls
             }
             catch (Exception)
             {
-
             }
-            
         }
     }
 }
