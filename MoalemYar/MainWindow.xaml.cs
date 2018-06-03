@@ -14,11 +14,8 @@ using Enterwell.Clients.Wpf.Notifications;
 using MoalemYar.UserControls;
 using Ookii.Dialogs.Wpf;
 using System;
-using System.Collections.Generic;
-using System.Data.Entity;
 using System.Globalization;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
 
@@ -33,7 +30,6 @@ namespace MoalemYar
         internal static MainWindow main;
         private PersianCalendar pc = new PersianCalendar();
         public INotificationMessageManager Manager { get; } = new NotificationMessageManager();
-
         public MainWindow()
         {
             InitializeComponent();

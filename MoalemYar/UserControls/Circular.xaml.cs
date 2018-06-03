@@ -9,8 +9,10 @@
 ***********************************************************************************/
 
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -28,6 +30,18 @@ namespace MoalemYar.UserControls
         {
             InitializeComponent();
 
+           
+        }
+
+        private void prgUpdate_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (prgUpdate.Value == prgUpdate.Maximum)
+                MainWindow.main.ShowRecivedCircularNotification(true);
+        }
+
+        
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
             Dispatcher.Invoke(new Action(() =>
             {
                 waterfallFlow.Children.Clear();
@@ -58,10 +72,12 @@ namespace MoalemYar.UserControls
                                  SubType = r.SelectSingleNode(".//td[6]").InnerText,
                              };
                          }
-                         ).OrderByDescending(x => x.Row).ToList();
+                         ).ToList();
                     prgUpdate.Maximum = parsedValues.Count;
                     foreach (var item in parsedValues)
                     {
+
+
                         Task.Delay(200).ContinueWith(ctx =>
                         {
                             prgUpdate.Value += 1;
@@ -71,6 +87,8 @@ namespace MoalemYar.UserControls
                             waterfallFlow.Children.Add(_currentUser);
                             waterfallFlow.Refresh();
                         }, TaskScheduler.FromCurrentSynchronizationContext());
+
+
                     }
                 }
                 catch (WebException)
@@ -78,14 +96,10 @@ namespace MoalemYar.UserControls
                     MainWindow.main.ShowRecivedCircularNotification(false);
                 }
             }), DispatcherPriority.ContextIdle, null);
-        }
-
-        private void prgUpdate_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-            if (prgUpdate.Value == prgUpdate.Maximum)
-                MainWindow.main.ShowRecivedCircularNotification(true);
+            
         }
     }
+   
 }
 
 public class WebClientWithTimeout : WebClient

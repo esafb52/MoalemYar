@@ -9,6 +9,7 @@
 ***********************************************************************************/
 
 using nucs.JsonSettings;
+using nucs.JsonSettings.Autosave;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -18,7 +19,7 @@ namespace MoalemYar
     public class FindElement
     {
         public static SettingsBag Settings = JsonSettings.Load<SettingsBag>(AppVariable.fileName + @"\config.json").EnableAutosave();
-
+        //public static JsonSettings Settings = JsonSettings.Load<ISettings>(AppVariable.fileName + @"\config.json").EnableAutosave();
         public static T FindElementByName<T>(FrameworkElement element, string sChildName) where T : FrameworkElement
         {
             T childElement = null;
