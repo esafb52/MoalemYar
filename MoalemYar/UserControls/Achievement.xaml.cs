@@ -18,71 +18,45 @@ namespace MoalemYar.UserControls
         public Achievement()
         {
             InitializeComponent();
-
             getSchool();
         }
 
-        #region Async Query
-
-        public async static Task<List<DataClass.Tables.School>> GetAllSchoolsAsync()
-        {
-            using (var db = new DataClass.myDbContext())
-            {
-                var query = db.Schools.Select(x => x);
-                return await query.ToListAsync();
-            }
-        }
-
-        public async static Task<List<DataClass.DataTransferObjects.StudentsDto>> GetAllStudentsAsync(long BaseId)
-        {
-            using (var db = new DataClass.myDbContext())
-            {
-                var query = db.Students.OrderBy(x => x.LName).Where(x => x.BaseId == BaseId).Select(x => new DataClass.DataTransferObjects.StudentsDto { Name = x.Name, LName = x.LName, FName = x.FName, BaseId = x.BaseId, Id = x.Id });
-                return await query.ToListAsync();
-            }
-        }
-
-        public async static Task<List<DataClass.Tables.Score>> GetAllStudentsScoreAsync(long StudentId)
-        {
-            using (var db = new DataClass.myDbContext())
-            {
-                var query = db.Scores.Where(x => x.StudentId == StudentId).Select(x => x);
-                return await query.ToListAsync();
-            }
-        }
-
-        private void getSchool()
+        #region Query
+        public void getSchool()
         {
             try
             {
-                var query = GetAllSchoolsAsync();
-                query.Wait();
-                List<DataClass.Tables.School> data = query.Result;
-                if (data.Any())
+                using (var db = new DataClass.myDbContext())
                 {
-                    cmbEditBase.ItemsSource = data;
+                    var query = db.Schools.Select(x => x);
+                    if (query.Any())
+                    {
+                        cmbEditBase.ItemsSource = query.ToList();
+                    }
                 }
             }
             catch (Exception)
             {
             }
-        }
 
+        }
         private void getStudent(long BaseId)
         {
             try
             {
-                var query = GetAllStudentsAsync(BaseId);
-                query.Wait();
-                List<DataClass.DataTransferObjects.StudentsDto> data = query.Result;
-                if (data.Any())
+                using (var db = new DataClass.myDbContext())
                 {
-                    dataGrid.ItemsSource = data;
+                    var query = db.Students.OrderBy(x => x.LName).Where(x => x.BaseId == BaseId).Select(x => new DataClass.DataTransferObjects.StudentsDto { Name = x.Name, LName = x.LName, FName = x.FName, BaseId = x.BaseId, Id = x.Id });
+                    if (query.Any())
+                    {
+                        dataGrid.ItemsSource = query.ToList();
+                    }
+                    else
+                    {
+                        MainWindow.main.ShowNoDataNotification(null);
+                    }
                 }
-                else
-                {
-                    MainWindow.main.ShowNoDataNotification(null);
-                }
+
             }
             catch (Exception)
             {
@@ -93,21 +67,22 @@ namespace MoalemYar.UserControls
         {
             try
             {
-                var query = GetAllStudentsScoreAsync(StudentId);
-                query.Wait();
-                List<DataClass.Tables.Score> data = query.Result;
-                if (data.Any())
-                    _initialCollection = data;
-                else
-                    _initialCollection = null;
+                using (var db = new DataClass.myDbContext())
+                {
+                    var query = db.Scores.Where(x => x.StudentId == StudentId).Select(x => x);
+                    if (query.Any())
+                        _initialCollection = query.ToList();
+                    else
+                        _initialCollection = null;
+                }
+                
             }
             catch (NullReferenceException)
             {
             }
         }
 
-        #endregion Async Query
-
+        #endregion Query
         private void cmbEditBase_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             getStudent(Convert.ToInt64(cmbEditBase.SelectedValue));
@@ -177,6 +152,7 @@ namespace MoalemYar.UserControls
 
                 waterfallFlow.Refresh();
             }
+            catch (ArgumentNullException) { }
             catch (NullReferenceException)
             {
             }
