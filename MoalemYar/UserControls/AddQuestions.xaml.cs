@@ -43,15 +43,6 @@ namespace MoalemYar.UserControls
 
         #region "Async Query"
 
-        public async static Task<List<DataClass.Tables.Group>> GetAllGroupAsync()
-        {
-            using (var db = new DataClass.myDbContext())
-            {
-                var query = db.Groups.Select(x => x);
-                return await query.ToListAsync();
-            }
-        }
-
         public async static Task<List<DataClass.Tables.AQuestion>> GetAllAQuestionsAsync(long GroupId)
         {
             using (var db = new DataClass.myDbContext())
@@ -72,47 +63,7 @@ namespace MoalemYar.UserControls
             }
         }
 
-        public async static Task<string> UpdateAQuestionsAsync(long id, long GroupId, string Class, string QuestionText, string Case1, string Case2, string Case3, string Case4, int Answer, string Date)
-        {
-            using (var db = new DataClass.myDbContext())
-            {
-                var EditAQuestions = await db.AQuestions.FindAsync(id);
-                EditAQuestions.GroupId = GroupId;
-                EditAQuestions.Class = Class;
-                EditAQuestions.QuestionText = QuestionText;
-                EditAQuestions.Case1 = Case1;
-                EditAQuestions.Case2 = Case2;
-                EditAQuestions.Case3 = Case3;
-                EditAQuestions.Case4 = Case4;
-                EditAQuestions.Answer = Answer;
-                EditAQuestions.Date = Date;
-                await db.SaveChangesAsync();
-                return "AQuestions Updated Successfully";
-            }
-        }
-
-        public async static Task<string> InsertAQuestionsAsync(long GroupId, string Class, string QuestionText, string Case1, string Case2, string Case3, string Case4, int Answer, string Date)
-        {
-            using (var db = new DataClass.myDbContext())
-            {
-                var aQuestion = new DataClass.Tables.AQuestion();
-                aQuestion.GroupId = GroupId;
-                aQuestion.Class = Class;
-                aQuestion.QuestionText = QuestionText;
-                aQuestion.Case1 = Case1;
-                aQuestion.Case2 = Case2;
-                aQuestion.Case3 = Case3;
-                aQuestion.Case4 = Case4;
-                aQuestion.Answer = Answer;
-                aQuestion.Date = Date;
-                db.AQuestions.Add(aQuestion);
-
-                await db.SaveChangesAsync();
-
-                return "AQuestions Added Successfully";
-            }
-        }
-
+       
         #endregion "Async Query"
 
         #region Func get Query Wait"
@@ -145,21 +96,22 @@ namespace MoalemYar.UserControls
         {
             try
             {
-                var query = GetAllGroupAsync();
-                query.Wait();
-
-                List<DataClass.Tables.Group> data = query.Result;
-                if (data.Any())
+                using (var db = new DataClass.myDbContext())
                 {
-                    cmbGroup.ItemsSource = data;
-                    cmbBaseEdit.ItemsSource = data;
-                    cmbGroupEdit.ItemsSource = data;
+                    var query = db.Groups.Select(x => x);
+                    if (query.Any())
+                    {
+                        cmbGroup.ItemsSource = query.ToList();
+                        cmbBaseEdit.ItemsSource = query.ToList();
+                        cmbGroupEdit.ItemsSource = query.ToList();
+                    }
+                    else
+                    {
+                        dataGrid.ItemsSource = null;
+                        MainWindow.main.ShowNoDataNotification("Group");
+                    }
                 }
-                else
-                {
-                    dataGrid.ItemsSource = null;
-                    MainWindow.main.ShowNoDataNotification("Group");
-                }
+               
             }
             catch (Exception)
             {
@@ -175,15 +127,43 @@ namespace MoalemYar.UserControls
 
         private void updateAQuestions(long id, long GroupId, string Class, string QuestionText, string Case1, string Case2, string Case3, string Case4, int Answer, string Date)
         {
-            var query = UpdateAQuestionsAsync(id, GroupId, Class, QuestionText, Case1, Case2, Case3, Case4, Answer, Date);
-            query.Wait();
+            using (var db = new DataClass.myDbContext())
+            {
+                var EditAQuestions =  db.AQuestions.Find(id);
+                EditAQuestions.GroupId = GroupId;
+                EditAQuestions.Class = Class;
+                EditAQuestions.QuestionText = QuestionText;
+                EditAQuestions.Case1 = Case1;
+                EditAQuestions.Case2 = Case2;
+                EditAQuestions.Case3 = Case3;
+                EditAQuestions.Case4 = Case4;
+                EditAQuestions.Answer = Answer;
+                EditAQuestions.Date = Date;
+                 db.SaveChangesAsync();
+            }
         }
 
         private void addAQuestions(long GroupId, string Class, string QuestionText, string Case1, string Case2, string Case3, string Case4, int Answer, string Date)
         {
-            var query = InsertAQuestionsAsync(GroupId, Class, QuestionText, Case1, Case2, Case3, Case4, Answer, Date);
-            query.Wait();
-            MainWindow.main.getexHint();
+            using (var db = new DataClass.myDbContext())
+            {
+                var aQuestion = new DataClass.Tables.AQuestion();
+                aQuestion.GroupId = GroupId;
+                aQuestion.Class = Class;
+                aQuestion.QuestionText = QuestionText;
+                aQuestion.Case1 = Case1;
+                aQuestion.Case2 = Case2;
+                aQuestion.Case3 = Case3;
+                aQuestion.Case4 = Case4;
+                aQuestion.Answer = Answer;
+                aQuestion.Date = Date;
+                db.AQuestions.Add(aQuestion);
+
+                db.SaveChangesAsync();
+
+                MainWindow.main.getexHint();
+            }
+            
         }
 
         #endregion Func get Query Wait"
