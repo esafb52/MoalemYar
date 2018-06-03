@@ -37,42 +37,58 @@ namespace MoalemYar.UserControls
             BorderColor = AppVariable.GetBrush(MainWindow.main.BorderBrush.ToString());
         }
 
-        #region "Async Query"
+     
+        #region Query
 
-        public async static Task<List<DataClass.Tables.User>> GetAllUsersAsync()
+        private void getUser()
         {
-            using (var db = new DataClass.myDbContext())
+            try
             {
-                var query = db.Users.Select(x => x);
-                return await query.ToListAsync();
+                using (var db = new DataClass.myDbContext())
+                {
+                    var query = db.Users.Select(x => x);
+                    _initialCollection = query.ToList();
+                    if (query.Any())
+                    {
+                        dataGrid.ItemsSource = query.ToList();
+                    }
+                    else
+                    {
+                        dataGrid.ItemsSource = null;
+                        MainWindow.main.ShowNoDataNotification("User");
+                    }
+                }
+               
+            }
+            catch (Exception)
+            {
             }
         }
 
-        public static async Task<string> DeleteUserAsync(long id)
+        private void deleteUser(long id)
         {
             using (var db = new DataClass.myDbContext())
             {
-                var DeleteUser = await db.Users.FindAsync(id);
+                var DeleteUser = db.Users.Find(id);
                 db.Users.Remove(DeleteUser);
-                await db.SaveChangesAsync();
-                return "User Deleted Successfully";
+                db.SaveChangesAsync();
             }
+            MainWindow.main.getexHint();
         }
 
-        public async static Task<string> UpdateUserAsync(long id, string Username, string Password)
+        private void updateUser(long id, string Username, string Password)
         {
             using (var db = new DataClass.myDbContext())
             {
-                var EditUser = await db.Users.FindAsync(id);
+                var EditUser = db.Users.Find(id);
                 EditUser.Username = Username;
                 EditUser.Password = Password;
 
-                await db.SaveChangesAsync();
-                return "User Updated Successfully";
+                db.SaveChangesAsync();
             }
         }
 
-        public async static Task<string> InsertUserAsync(string Username, string Password)
+        private void addUser(string Username, string Password)
         {
             using (var db = new DataClass.myDbContext())
             {
@@ -82,57 +98,8 @@ namespace MoalemYar.UserControls
 
                 db.Users.Add(User);
 
-                await db.SaveChangesAsync();
-
-                return "User Added Successfully";
+                db.SaveChangesAsync();
             }
-        }
-
-        #endregion "Async Query"
-
-        #region Func get Query Wait"
-
-        private void getUser()
-        {
-            try
-            {
-                var query = GetAllUsersAsync();
-                query.Wait();
-
-                List<DataClass.Tables.User> data = query.Result;
-                _initialCollection = query.Result;
-                if (data.Any())
-                {
-                    dataGrid.ItemsSource = data;
-                }
-                else
-                {
-                    dataGrid.ItemsSource = null;
-                    MainWindow.main.ShowNoDataNotification("User");
-                }
-            }
-            catch (Exception)
-            {
-            }
-        }
-
-        private void deleteUser(long id)
-        {
-            var query = DeleteUserAsync(id);
-            query.Wait();
-            MainWindow.main.getexHint();
-        }
-
-        private void updateUser(long id, string Username, string Password)
-        {
-            var query = UpdateUserAsync(id, Username, Password);
-            query.Wait();
-        }
-
-        private void addUser(string Username, string Password)
-        {
-            var query = InsertUserAsync(Username, Password);
-            query.Wait();
             MainWindow.main.getexHint();
         }
 
