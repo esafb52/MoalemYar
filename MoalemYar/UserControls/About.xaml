@@ -13,7 +13,8 @@
         <Metro:MetroGroupBox>
             <StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <fa:ImageAwesome Width="30" Foreground="{Binding Path=TimeColor}" Icon="Code" />
+
+                    <Image Width="32" Source="/Resources/developer.png" />
                     <Metro:MetroTextBlock Margin="10,0,0,0" VerticalAlignment="Center" FontSize="18" Text="برنامه نویس و توسعه دهنده" />
                 </StackPanel>
                 <Grid Margin="10,0">
@@ -39,7 +40,7 @@
                                Text="mahdidvb72@gmail.com" />
                 </Grid>
                 <StackPanel Orientation="Horizontal">
-                    <fa:ImageAwesome Width="30" Foreground="{Binding Path=TimeColor}" Icon="Connectdevelop" />
+                    <Image Width="32" Source="/Resources/csharp.png" />
                     <Metro:MetroTextBlock Margin="10,0,0,0" VerticalAlignment="Center" FontSize="18"
                                Text="مشخصات نرم افزار" />
                 </StackPanel>
@@ -79,7 +80,7 @@
                                Text="این نرم افزار بصورت کاملا رایگان بوده و برای کمک به معلمان در مدارس به جهت پیشرفت تحصیلی دانش آموزان طراحی شده است.هرگونه فروش ممنوع می باشد" Grid.ColumnSpan="2" />
                 </Grid>
                 <StackPanel Orientation="Horizontal">
-                    <fa:ImageAwesome Width="30" Foreground="{Binding Path=TimeColor}" Icon="History" />
+                    <Image Width="32" Source="/Resources/fork.png" />
                     <Metro:MetroTextBlock Margin="10,0,0,0" VerticalAlignment="Center" FontSize="18"
                                Text="تاریخچه نسخه" />
                 </StackPanel>

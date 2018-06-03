@@ -25,7 +25,7 @@
                     <Metro:MetroExpander FontWeight="Medium" Name="exActivity" Header="آزمون" Icon="/Resources/ExamMove.png" IsExpanded="True" Click="exActivity_Click">
                         <StackPanel>
                             <Metro:MetroExpander Name="exAzmon" Click="exAzmon_Click" FontWeight="Normal" Header="برگزاری آزمون"  Icon="/Resources/ExamMove.png" />
-                            <Metro:MetroExpander Name="exHistory" Click="exHistory_Click" FontWeight="Normal" Header="تاریخچه آزمون" Icon="/Resources/History.png" />
+                            <Metro:MetroExpander Name="exHistory" Click="exHistory_Click" FontWeight="Normal" Header="تاریخچه آزمون" Icon="/Resources/fork.png" />
                         </StackPanel>
                     </Metro:MetroExpander>
                 </StackPanel>
