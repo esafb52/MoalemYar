@@ -17,7 +17,7 @@
             <ColumnDefinition Width="141*" />
         </Grid.ColumnDefinitions>
         <Metro:MetroTabControl Focusable="False" x:Name="tabc" IsTabStop="True" TabIndex="-1" SelectionChanged="tabc_SelectionChanged" Grid.ColumnSpan="2">
-            <Metro:MetroTabItem Header="ثبت اطلاعات">
+            <Metro:MetroTabItem Header="ثبت اطلاعات" Icon="/Resources/QuestionTab.png">
                 <Grid KeyboardNavigation.TabNavigation="Cycle"  Name="grd">
                     <StackPanel Orientation="Horizontal" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="800">
                         <Metro:MetroSwitch Checked="isExam_Checked" Unchecked="isExam_Checked" Margin="15,5" Name="isExam" Content="امتحان / فعالیت" />
@@ -112,7 +112,7 @@
                     <Metro:MetroTextBox Name="txtDesc" TabIndex="2" TextWrapping="Wrap" MaxHeight="158" InputHint="توضیحات" MetroPopupBackgroundState="DarkRed" PopupHint="توضیحات مربوط به این پرسش" Margin="421,10,0,0" Height="70" VerticalAlignment="Top" HorizontalAlignment="Left" Width="{Binding Path=ActualWidth, ElementName=dataGrid, Converter={local1:MultiplyConverter Multiplier=.5}}" />
                 </Grid>
             </Metro:MetroTabItem>
-            <Metro:MetroTabItem Header="ویرایش اطلاعات">
+            <Metro:MetroTabItem Header="ویرایش اطلاعات" Icon="/Resources/QuestionEditTab.png">
                 <Grid KeyboardNavigation.TabNavigation="Cycle">
                     <StackPanel Orientation="Vertical" Margin="5,5,5,0">
                         <StackPanel Orientation="Horizontal" Height="50" VerticalAlignment="Top">

@@ -14,7 +14,7 @@
     <WarningLevel>4</WarningLevel>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <AssemblyVersion>1.0.3280.0</AssemblyVersion>
+    <AssemblyVersion>1.0.3298.0</AssemblyVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -488,6 +488,49 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Reset.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\EditTab.png" />
+    <Resource Include="Resources\EditTickTab.png" />
+    <Resource Include="Resources\PlusTab.png" />
+    <Resource Include="Resources\QuestionEditTab.png" />
+    <Resource Include="Resources\QuestionTab.png" />
+    <Resource Include="Resources\TickTab.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\LockEditTab.png" />
+    <Resource Include="Resources\LockTab.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\slack.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Book_w.png" />
+    <Resource Include="Resources\circular_w.png" />
+    <Resource Include="Resources\roshd_w.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\More_w.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Active_w.png" />
+    <Resource Include="Resources\Verify_w.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Dashboard_w.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Protect_w.png" />
+    <Resource Include="Resources\School_w.png" />
+    <Resource Include="Resources\Student_w.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Check_w.png" />
+    <Resource Include="Resources\Tick_w.png" />
+    <Resource Include="Resources\Trophy_w.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Chart_w.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.108.0\build\net45\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.108.0\build\net45\System.Data.SQLite.Core.targets')" />

@@ -12,7 +12,7 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Metro:MetroTabControl Focusable="False" x:Name="tabc" IsTabStop="True" TabIndex="-1" SelectionChanged="tabc_SelectionChanged">
-            <Metro:MetroTabItem Header="ثبت اطلاعات">
+            <Metro:MetroTabItem Header="ثبت اطلاعات" Icon="/Resources/TickTab.png">
                 <Grid KeyboardNavigation.TabNavigation="Cycle">
                     <Grid Name="grdedit">
                         <ComboBox SelectionChanged="cmbBase_SelectionChanged" x:Name="cmbBase" ItemsSource="{Binding}"
@@ -85,7 +85,7 @@
                     </Grid>
                 </Grid>
             </Metro:MetroTabItem>
-            <Metro:MetroTabItem Header="ویرایش اطلاعات">
+            <Metro:MetroTabItem Header="ویرایش اطلاعات" Icon="/Resources/EditTickTab.png">
                 <Grid KeyboardNavigation.TabNavigation="Cycle">
                     <StackPanel Orientation="Vertical" Margin="5,5,5,0">
                         <StackPanel Orientation="Horizontal" Height="50" VerticalAlignment="Top">

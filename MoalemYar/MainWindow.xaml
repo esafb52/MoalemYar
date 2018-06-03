@@ -12,26 +12,26 @@
                    Title="{Binding Path=appTitle}" Loaded="MetroWindow_Loaded">
     <Metro:MetroWindow.Menu>
         <Metro:MetroTitleMenu>
-            <Metro:MetroTitleMenuItem FlowDirection="RightToLeft" Header="منو" Icon="Resources/titleMuenIcon.png">
-                <Metro:MetroMenuItem Header="داشبورد" Tag="0" Click="MetroMenuItem_Click" />
+            <Metro:MetroTitleMenuItem FlowDirection="RightToLeft" Header="منو" Icon="Resources/slack.png">
+                <Metro:MetroMenuItem Header="داشبورد" Icon="/Resources/Dashboard_w.png" Tag="0" Click="MetroMenuItem_Click" />
                 <Metro:MetroMenuSeparator />
-                <Metro:MetroMenuItem Header="عملیات پایه">
-                    <Metro:MetroMenuItem Header="مدرسه و کلاس" Tag="1" Click="MetroMenuItem_Click" />
-                    <Metro:MetroMenuItem Header="دانش آموز" Tag="2" Click="MetroMenuItem_Click" />
-                    <Metro:MetroMenuItem Header="حساب کاربری" Tag="3" Click="MetroMenuItem_Click" />
+                <Metro:MetroMenuItem Header="عملیات پایه" Icon="/Resources/verify_w.png">
+                    <Metro:MetroMenuItem Header="مدرسه و کلاس" Icon="/Resources/School_w.png" Tag="1" Click="MetroMenuItem_Click" />
+                    <Metro:MetroMenuItem Header="دانش آموز" Icon="/Resources/Student_w.png" Tag="2" Click="MetroMenuItem_Click" />
+                    <Metro:MetroMenuItem Header="حساب کاربری" Icon="/Resources/Protect_w.png" Tag="3" Click="MetroMenuItem_Click" />
                 </Metro:MetroMenuItem>
                 <Metro:MetroMenuSeparator />
-                <Metro:MetroMenuItem Header="فعالیت ها">
-                    <Metro:MetroMenuItem Header="حضور و غیاب" Tag="4" Click="MetroMenuItem_Click" />
-                    <Metro:MetroMenuItem Header="ارزشیابی" Tag="5" Click="MetroMenuItem_Click" />
-                    <Metro:MetroMenuItem Header="نفرات برتر" Tag="6" Click="MetroMenuItem_Click" />
-                    <Metro:MetroMenuItem Header="پیشرفت تحصیلی" Tag="7" Click="MetroMenuItem_Click" />
+                <Metro:MetroMenuItem Header="فعالیت ها" Icon="/Resources/Active_w.png">
+                    <Metro:MetroMenuItem Header="حضور و غیاب" Icon="/Resources/Tick_w.png" Tag="4" Click="MetroMenuItem_Click" />
+                    <Metro:MetroMenuItem Header="ارزشیابی" Icon="/Resources/Check_w.png" Tag="5" Click="MetroMenuItem_Click" />
+                    <Metro:MetroMenuItem Header="نفرات برتر" Icon="/Resources/Trophy_w.png" Tag="6" Click="MetroMenuItem_Click" />
+                    <Metro:MetroMenuItem Header="پیشرفت تحصیلی" Icon="/Resources/Chart_w.png" Tag="7" Click="MetroMenuItem_Click" />
                 </Metro:MetroMenuItem>
                 <Metro:MetroMenuSeparator />
-                <Metro:MetroMenuItem Header="بیشتر">
-                    <Metro:MetroMenuItem Header="بخشنامه ها" Tag="8" Click="MetroMenuItem_Click" />
-                    <Metro:MetroMenuItem Header="کتب درسی" Tag="9" Click="MetroMenuItem_Click" />
-                    <Metro:MetroMenuItem Header="مجلات رشد" Tag="10" Click="MetroMenuItem_Click" />
+                <Metro:MetroMenuItem Header="بیشتر" Icon="/Resources/More_w.png">
+                    <Metro:MetroMenuItem Header="بخشنامه ها" Icon="/Resources/circular_w.png" Tag="8" Click="MetroMenuItem_Click" />
+                    <Metro:MetroMenuItem Header="کتب درسی" Icon="/Resources/book_w.png" Tag="9" Click="MetroMenuItem_Click" />
+                    <Metro:MetroMenuItem Header="مجلات رشد" Icon="/Resources/roshd_w.png" Tag="10" Click="MetroMenuItem_Click" />
                 </Metro:MetroMenuItem>
                 <Metro:MetroMenuSeparator />
             </Metro:MetroTitleMenuItem>
