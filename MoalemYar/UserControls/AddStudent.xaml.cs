@@ -46,30 +46,7 @@ namespace MoalemYar.UserControls
 
         #region "Async Query"
 
-        public async static Task<List<DataClass.DataTransferObjects.SchoolsStudentsJointDto>> GetAllStudentsAsync(long BaseId)
-        {
-            using (var db = new DataClass.myDbContext())
-            {
-                var query = db.Schools.Join(
-                  db.Students,
-                  c => c.Id,
-                  v => v.BaseId,
-                  (c, v) => new DataClass.DataTransferObjects.SchoolsStudentsJointDto { Name = v.Name, LName = v.LName, FName = v.FName, Gender = v.Gender, BaseId = v.BaseId, Image = v.Image, Id = v.Id, Base = c.Base }
-              ).OrderBy(x => x.LName).Where(x => x.BaseId == BaseId);
-
-                return await query.ToListAsync();
-            }
-        }
-
-        public async static Task<List<DataClass.Tables.School>> GetAllSchoolsAsync()
-        {
-            using (var db = new DataClass.myDbContext())
-            {
-                var query = db.Schools.Select(x => x);
-                return await query.ToListAsync();
-            }
-        }
-
+       
         public static async Task<string> DeleteStudentAsync(long id)
         {
             using (var db = new DataClass.myDbContext())
@@ -89,45 +66,7 @@ namespace MoalemYar.UserControls
                 await db.SaveChangesAsync();
                 return "Student Deleted Successfully";
             }
-        }
-
-        public async static Task<string> UpdateStudentAsync(long id, long BaseId, string Name, string LName, string FName, string Gender, byte[] Image)
-        {
-            using (var db = new DataClass.myDbContext())
-            {
-                var EditStudent = await db.Students.FindAsync(id);
-                EditStudent.Name = Name;
-
-                EditStudent.LName = LName;
-
-                EditStudent.FName = FName;
-                EditStudent.Gender = Gender;
-                EditStudent.BaseId = BaseId;
-                EditStudent.Image = Image;
-                await db.SaveChangesAsync();
-                return "Student Updated Successfully";
-            }
-        }
-
-        public async static Task<string> InsertStudentAsync(long BaseId, string Name, string LName, string FName, string Gender, byte[] Image)
-        {
-            using (var db = new DataClass.myDbContext())
-            {
-                var Student = new DataClass.Tables.Student();
-                Student.BaseId = BaseId;
-                Student.Name = Name;
-                Student.LName = LName;
-                Student.FName = FName;
-                Student.Gender = Gender;
-                Student.Image = Image;
-                db.Students.Add(Student);
-
-                await db.SaveChangesAsync();
-
-                return "Student Added Successfully";
-            }
-        }
-
+        }       
         #endregion "Async Query"
 
         #region Func get Query Wait"
@@ -136,15 +75,17 @@ namespace MoalemYar.UserControls
         {
             try
             {
-                var query = GetAllSchoolsAsync();
-                query.Wait();
-                List<DataClass.Tables.School> data = query.Result;
-                if (data.Any())
+                using (var db = new DataClass.myDbContext())
                 {
-                    cmbBase.ItemsSource = data;
-                    cmbEditBase.ItemsSource = data;
-                    cmbBaseEdit.ItemsSource = data;
+                    var query = db.Schools.Select(x => x);
+                    if (query.Any())
+                    {
+                        cmbBase.ItemsSource = query.ToList();
+                        cmbEditBase.ItemsSource = query.ToList();
+                        cmbBaseEdit.ItemsSource = query.ToList();
+                    }
                 }
+               
             }
             catch (Exception)
             {
@@ -155,21 +96,28 @@ namespace MoalemYar.UserControls
         {
             try
             {
-                var query = GetAllStudentsAsync(BaseId);
-                query.Wait();
-
-                List<DataClass.DataTransferObjects.SchoolsStudentsJointDto> data = query.Result;
-                _initialCollection = query.Result;
-
-                if (data.Any())
+                using (var db = new DataClass.myDbContext())
                 {
-                    dataGrid.ItemsSource = data.ToList();
+                    var query = db.Schools.Join(
+                      db.Students,
+                      c => c.Id,
+                      v => v.BaseId,
+                      (c, v) => new DataClass.DataTransferObjects.SchoolsStudentsJointDto { Name = v.Name, LName = v.LName, FName = v.FName, Gender = v.Gender, BaseId = v.BaseId, Image = v.Image, Id = v.Id, Base = c.Base }
+                  ).OrderBy(x => x.LName).Where(x => x.BaseId == BaseId);
+
+                    _initialCollection = query.ToList();
+
+                    if (query.Any())
+                    {
+                        dataGrid.ItemsSource = query.ToList();
+                    }
+                    else
+                    {
+                        dataGrid.ItemsSource = null;
+                        MainWindow.main.ShowNoDataNotification("Student");
+                    }
                 }
-                else
-                {
-                    dataGrid.ItemsSource = null;
-                    MainWindow.main.ShowNoDataNotification("Student");
-                }
+               
             }
             catch (Exception)
             {
@@ -189,15 +137,37 @@ namespace MoalemYar.UserControls
 
         private void updateStudent(long id, long BaseId, string Name, string LName, string FName, string Gender, byte[] Image)
         {
-            var query = UpdateStudentAsync(id, BaseId, Name, LName, FName, Gender, Image);
-            query.Wait();
+            using (var db = new DataClass.myDbContext())
+            {
+                var EditStudent = db.Students.Find(id);
+                EditStudent.Name = Name;
+
+                EditStudent.LName = LName;
+
+                EditStudent.FName = FName;
+                EditStudent.Gender = Gender;
+                EditStudent.BaseId = BaseId;
+                EditStudent.Image = Image;
+                db.SaveChangesAsync();
+            }
         }
 
         private void addStudent(long BaseId, string Name, string LName, string FName, string Gender, byte[] Image)
         {
-            var query = InsertStudentAsync(BaseId, Name, LName, FName, Gender, Image);
-            query.Wait();
-            MainWindow.main.getexHint();
+            using (var db = new DataClass.myDbContext())
+            {
+                var Student = new DataClass.Tables.Student();
+                Student.BaseId = BaseId;
+                Student.Name = Name;
+                Student.LName = LName;
+                Student.FName = FName;
+                Student.Gender = Gender;
+                Student.Image = Image;
+                db.Students.Add(Student);
+
+                db.SaveChangesAsync();
+                MainWindow.main.getexHint();
+            }
         }
 
         #endregion Func get Query Wait"
