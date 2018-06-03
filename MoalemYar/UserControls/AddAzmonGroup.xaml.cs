@@ -37,16 +37,7 @@ namespace MoalemYar.UserControls
             BorderColor = AppVariable.GetBrush(MainWindow.main.BorderBrush.ToString());
         }
 
-        #region "Async Query"
-
-        public async static Task<List<DataClass.Tables.Group>> GetAllGroupAsync()
-        {
-            using (var db = new DataClass.myDbContext())
-            {
-                var query = db.Groups.Select(x => x);
-                return await query.ToListAsync();
-            }
-        }
+        #region "Query"
 
         public static async Task<string> DeleteGroupAsync(long id)
         {
@@ -63,53 +54,29 @@ namespace MoalemYar.UserControls
             }
         }
 
-        public async static Task<string> UpdateGroupAsync(long id, string GroupName)
-        {
-            using (var db = new DataClass.myDbContext())
-            {
-                var EditGroup = await db.Groups.FindAsync(id);
-                EditGroup.GroupName = GroupName;
-                await db.SaveChangesAsync();
-                return "Group Updated Successfully";
-            }
-        }
-
-        public async static Task<string> InsertGroupAsync(string GroupName)
-        {
-            using (var db = new DataClass.myDbContext())
-            {
-                var group = new DataClass.Tables.Group();
-                group.GroupName = GroupName;
-                db.Groups.Add(group);
-
-                await db.SaveChangesAsync();
-
-                return "Group Added Successfully";
-            }
-        }
-
         #endregion "Async Query"
 
-        #region Func get Query Wait"
+        #region Query"
 
         private void getGroup()
         {
             try
             {
-                var query = GetAllGroupAsync();
-                query.Wait();
-
-                List<DataClass.Tables.Group> data = query.Result;
-                _initialCollection = query.Result;
-                if (data.Any())
+                using (var db = new DataClass.myDbContext())
                 {
-                    dataGrid.ItemsSource = data;
+                    var query = db.Groups.Select(x => x);
+                    _initialCollection = query.ToList();
+                    if (query.Any())
+                    {
+                        dataGrid.ItemsSource = query.ToList();
+                    }
+                    else
+                    {
+                        dataGrid.ItemsSource = null;
+                        MainWindow.main.ShowNoDataNotification("Group");
+                    }
                 }
-                else
-                {
-                    dataGrid.ItemsSource = null;
-                    MainWindow.main.ShowNoDataNotification("Group");
-                }
+               
             }
             catch (Exception)
             {
@@ -125,18 +92,27 @@ namespace MoalemYar.UserControls
 
         private void updateGroup(long id, string GroupName)
         {
-            var query = UpdateGroupAsync(id, GroupName);
-            query.Wait();
+            using (var db = new DataClass.myDbContext())
+            {
+                var EditGroup = db.Groups.Find(id);
+                EditGroup.GroupName = GroupName;
+                db.SaveChangesAsync();
+            }
         }
 
         private void addGroup(string GroupName)
         {
-            var query = InsertGroupAsync(GroupName);
-            query.Wait();
-            MainWindow.main.getexHint();
+            using (var db = new DataClass.myDbContext())
+            {
+                var group = new DataClass.Tables.Group();
+                group.GroupName = GroupName;
+                db.Groups.Add(group);
+                db.SaveChangesAsync();
+                MainWindow.main.getexHint();
+            }
         }
 
-        #endregion Func get Query Wait"
+        #endregion Query"
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
