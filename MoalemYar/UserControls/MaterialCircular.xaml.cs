@@ -8,8 +8,16 @@
 *	Written by Mahdi Hosseini <Mahdidvb72@gmail.com>,  2018, 6, 2, 01:57 ب.ظ
 *	
 ***********************************************************************************/
+using Microsoft.Win32;
+using SharpCompress.Archives;
+using SharpCompress.Archives.Rar;
+using SharpCompress.Archives.Zip;
+using SharpCompress.Readers;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -82,25 +90,97 @@ namespace MoalemYar.UserControls
                         prgDownload.Value = ex.ProgressPercentage;
                     });
                 };
+
+                string TotPath = AppVariable.fileNameBakhsh + txtRow.Text + txtTitle.Text;
+                string dPath = string.Empty;
+
+               
+                if (fileExt.Equals(".rar") || fileExt.Equals(".zip"))
+                {
+                    dPath = AppVariable.fileNameBakhsh + @"\" + txtRow.Text + txtTitle.Text + fileExt;
+
+                }
+                else
+                {
+                    if (!System.IO.Directory.Exists(TotPath))
+                        System.IO.Directory.CreateDirectory(TotPath);
+                    dPath = TotPath + @"\" + txtRow.Text + txtTitle.Text + fileExt;
+
+                }
+
+
+                client.DownloadFileAsync(ur, dPath);
+
                 client.DownloadFileCompleted += (o, ex) =>
                 {
                     btnSave.IsEnabled = false;
                     btnOpen.IsEnabled = true;
                     prgDownload.Visibility = Visibility.Hidden;
 
-                };
-                
-                string TotPath = AppVariable.fileNameBakhsh + txtRow.Text + txtTitle.Text;
-                if(!System.IO.Directory.Exists(TotPath))
-                    System.IO.Directory.CreateDirectory(TotPath);
-                client.DownloadFileAsync(ur, TotPath + @"\" + txtRow.Text + txtTitle.Text + fileExt);
+                    if (fileExt.Equals(".rar") || fileExt.Equals(".zip"))
+                    {
+                        
+                        UnCompress(AppVariable.fileNameBakhsh + @"\" + txtRow.Text + txtTitle.Text + fileExt, AppVariable.fileNameBakhsh + @"\", fileExt);
+                    }
 
+                };
             }
         }
+        public void UnCompress(string Open, string Write, string FileExt)
+        {
+            try
+            {
+                if (FileExt.Equals(".rar"))
+                {
+                    using (var archive = RarArchive.Open(Open))
+                    {
+                        foreach (var entry in archive.Entries.Where(entry => !entry.IsDirectory))
+                        {
+                            entry.WriteToDirectory(Write, new ExtractionOptions()
+                            {
+                                ExtractFullPath = true,
+                                Overwrite = true
+                            });
+                        }
+                    }
+                }
+                else
+                {
+                    using (var archive = ZipArchive.Open(Open))
+                    {
+                        foreach (var entry in archive.Entries.Where(entry => !entry.IsDirectory))
+                        {
+                            entry.WriteToDirectory(Write, new ExtractionOptions()
+                            {
+                                ExtractFullPath = true,
+                                Overwrite = true
+                            });
+                        }
+                    }
+                }
+               
+            }
+            catch (Exception)
+            {
 
+            }
+            finally
+            {
+                System.IO.File.Delete(Open);
+            };
+        }
         private void btnOpen_Click(object sender, RoutedEventArgs e)
         {
-            System.Diagnostics.Process.Start(AppVariable.fileNameBakhsh + txtRow.Text + txtTitle.Text);
+            try
+            {
+                System.Diagnostics.Process.Start(AppVariable.fileNameBakhsh + txtRow.Text + txtTitle.Text);
+            }
+            catch (Win32Exception) {
+                System.Diagnostics.Process.Start(AppVariable.fileNameBakhsh + txtTitle.Text);
+            }
+            catch (FileNotFoundException)
+            {
+            }
         }
     }
 }

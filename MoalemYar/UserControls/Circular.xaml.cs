@@ -97,7 +97,7 @@ public class WebClientWithTimeout : WebClient
     protected override WebRequest GetWebRequest(Uri address)
     {
         WebRequest wr = base.GetWebRequest(address);
-        wr.Timeout = 10000; // timeout in milliseconds (ms)
+        wr.Timeout = 20000; // timeout in milliseconds (ms)
         return wr;
     }
 }
