@@ -50,7 +50,7 @@
                     <Metro:MetroScrollViewer>
                         <Border BorderBrush="#19000000" BorderThickness="0,0,1,0">
                             <StackPanel x:Name="lists">
-                                <Metro:MetroExpander FontWeight="Medium" Header="داشبورد" Hint="نگاه کلی به اطلاعات" Icon="Resources/Dashboard.png" />
+                                <Metro:MetroExpander Name="exDashboard" Click="exDashboard_Click" FontWeight="Medium" Header="داشبورد" Hint="نگاه کلی به اطلاعات" Icon="Resources/Dashboard.png" />
                                 <Metro:MetroExpander FontWeight="Medium" Name="exBase" Icon="Resources/Verify.png" Header="عملیات پایه" Hint="ثبت اطلاعات" HintBackground="#e15b4f" IsExpanded="True" Click="MetroExpander_Click">
                                     <StackPanel>
                                         <Metro:MetroExpander FontWeight="Normal" Name="exAddOrUpdateSchool" Click="exAddOrUpdateSchool_Click" Icon="Resources/School.png" Header="مدرسه و کلاس" Hint="0" HintBackground="Green" />

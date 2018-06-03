@@ -41,7 +41,7 @@ namespace MoalemYar
             main = this;
 
             appTitle = AppVariable.getAppTitle + AppVariable.getAppVersion; // App Title with Version
-
+            exContent.Content = new Dashboard();
             ShowCredentialDialog();
         }
 
@@ -613,7 +613,7 @@ namespace MoalemYar
             switch (Convert.ToInt32(menuItem.Tag))
             {
                 case 0:
-                    //Todo
+                    exDashboard_Click(null, null);
                     break;
 
                 case 1:
@@ -694,6 +694,11 @@ namespace MoalemYar
         private void exRoshd_Click(object sender, EventArgs e)
         {
             exContent.Content = new Magazine();
+        }
+
+        private void exDashboard_Click(object sender, EventArgs e)
+        {
+            exContent.Content = new Dashboard();
         }
     }
 }
