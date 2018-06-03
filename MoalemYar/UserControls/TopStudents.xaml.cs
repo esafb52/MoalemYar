@@ -20,15 +20,6 @@ namespace MoalemYar.UserControls
 
         #region Async Query
 
-        public async static Task<List<DataClass.Tables.School>> GetAllSchoolsAsync()
-        {
-            using (var db = new DataClass.myDbContext())
-            {
-                var query = db.Schools.Select(x => x);
-                return await query.ToListAsync();
-            }
-        }
-
         public async static Task<List<DataClass.DataTransferObjects.StudentsScoresDto>> GetAllStudentsAsync(long BaseId)
         {
             using (var db = new DataClass.myDbContext())
@@ -48,13 +39,15 @@ namespace MoalemYar.UserControls
         {
             try
             {
-                var query = GetAllSchoolsAsync();
-                query.Wait();
-                List<DataClass.Tables.School> data = query.Result;
-                if (data.Any())
+                using (var db = new DataClass.myDbContext())
                 {
-                    cmbBaseEdit.ItemsSource = data;
+                    var query = db.Schools.Select(x => x);
+                    if (query.Any())
+                    {
+                        cmbBaseEdit.ItemsSource = query.ToList();
+                    }
                 }
+                
             }
             catch (Exception)
             {
