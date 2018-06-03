@@ -40,75 +40,37 @@ namespace MoalemYar
             DataContext = this;
             main = this;
 
-            //Todo: Remove RunAction
-            appTitle = AppVariable.getAppTitle + AppVariable.getAppVersion + AppVariable.RunActionMeasurePerformance(() => getexHint()); // App Title with Version
+            appTitle = AppVariable.getAppTitle + AppVariable.getAppVersion; // App Title with Version
 
             ShowCredentialDialog();
-
-            LoadSettings();
-
-            LogifyCrashReport();
         }
 
         private void MetroWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            //Todo: Enable this
-            //getexHint();
+            LoadSettings();
+            LogifyCrashReport();
+            getexHint();
         }
 
-        #region "Async Query"
 
-        public async static Task<List<DataClass.Tables.School>> GetAllSchoolAsync()
-        {
-            using (var db = new DataClass.myDbContext())
-            {
-                var query = db.Schools.Select(x => x);
-                return await query.ToListAsync();
-            }
-        }
-
-        public async static Task<List<DataClass.Tables.User>> GetAllUserAsync()
-        {
-            using (var db = new DataClass.myDbContext())
-            {
-                var query = db.Users.Select(x => x);
-                return await query.ToListAsync();
-            }
-        }
-
-        public async static Task<List<DataClass.Tables.Student>> GetAllStudentAsync()
-        {
-            using (var db = new DataClass.myDbContext())
-            {
-                var query = db.Students.Select(x => x);
-                return await query.ToListAsync();
-            }
-        }
-
-        #endregion "Async Query"
-
-        #region Func get Query Wait"
+        #region Query
 
         public void getexHint()
         {
             try
             {
-                var querySchool = GetAllSchoolAsync();
-                querySchool.Wait();
+                using (var db = new DataClass.myDbContext())
+                {
+                    var query = db.Schools.Select(x => x);
+                    exAddOrUpdateSchool.Hint = query.Count().ToString();
 
-                var queryUser = GetAllUserAsync();
-                queryUser.Wait();
+                    var query2 = db.Users.Select(x => x);
+                    exAddOrUpdateUser.Hint = query2.Count().ToString();
 
-                var queryStudent = GetAllStudentAsync();
-                queryStudent.Wait();
+                    var query3 = db.Students.Select(x => x);
+                    exAddOrUpdateStudent.Hint = query3.Count().ToString();
+                }
 
-                List<DataClass.Tables.School> dataSchool = querySchool.Result;
-                List<DataClass.Tables.User> dataUser = queryUser.Result;
-                List<DataClass.Tables.Student> dataStudent = queryStudent.Result;
-
-                exAddOrUpdateSchool.Hint = dataSchool.Count().ToString();
-                exAddOrUpdateUser.Hint = dataUser.Count().ToString();
-                exAddOrUpdateStudent.Hint = dataStudent.Count().ToString();
                 exAttendancelist.Hint = pc.GetYear(DateTime.Now).ToString("0000") + "/" + pc.GetMonth(DateTime.Now).ToString("00") + "/" + pc.GetDayOfMonth(DateTime.Now).ToString("00");
             }
             catch (Exception)
@@ -116,7 +78,7 @@ namespace MoalemYar
             }
         }
 
-        #endregion Func get Query Wait"
+        #endregion Query
 
         public void LogifyCrashReport()
         {
