@@ -104,12 +104,11 @@ namespace MoalemYar.UserControls
 
                     if (fileExt.Equals(".rar") || fileExt.Equals(".zip"))
                     {
-                        UnCompress(AppVariable.fileNameBakhsh + @"\" + txtRow.Text + txtTitle.Text + fileExt, AppVariable.fileNameBakhsh + @"\", fileExt);
+                        UnCompress(AppVariable.fileNameBakhsh + @"\" + txtRow.Text + txtTitle.Text + fileExt, AppVariable.fileNameBakhsh + @"\" + txtRow.Text + txtTitle.Text, fileExt);
                     }
                 };
             }
         }
-        //Todo: folder name is not correct
         public void UnCompress(string Open, string Write, string FileExt)
         {
             try
@@ -120,7 +119,6 @@ namespace MoalemYar.UserControls
                     {
                         foreach (var entry in archive.Entries.Where(entry => !entry.IsDirectory))
                         {
-                            Console.WriteLine(entry.ToString());
                             entry.WriteToDirectory(Write, new ExtractionOptions()
                             {
                                 ExtractFullPath = true,
