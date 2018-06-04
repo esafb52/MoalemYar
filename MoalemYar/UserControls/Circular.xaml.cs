@@ -42,7 +42,7 @@ namespace MoalemYar.UserControls
         
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            Dispatcher.Invoke(new Action(() =>
+            Dispatcher.Invoke<Task>(async () =>
             {
                 waterfallFlow.Children.Clear();
                 MaterialCircular _addUser;
@@ -55,7 +55,6 @@ namespace MoalemYar.UserControls
                     HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
                     doc.LoadHtml(page);
 
-                    //Todo: fix order
                     var parsedValues = doc.DocumentNode.SelectNodes("//table[@class='table table-striped table-hover']/tr").Skip(1)
                          .Select(r =>
                          {
@@ -76,27 +75,21 @@ namespace MoalemYar.UserControls
                     prgUpdate.Maximum = parsedValues.Count;
                     foreach (var item in parsedValues)
                     {
-
-
-                        Task.Delay(200).ContinueWith(ctx =>
-                        {
-                            prgUpdate.Value += 1;
-                            prgUpdate.Hint = ((prgUpdate.Value * 100) / parsedValues.Count).ToString("0");
-                            _addUser = new MaterialCircular(item.Row, item.Title, item.Category, item.Type, item.SubType, item.Date, item.link, AppVariable.GetBrush(Convert.ToString(FindElement.Settings[AppVariable.ChartColor] ?? AppVariable.CHART_GREEN)));
-                            _currentUser = _addUser;
-                            waterfallFlow.Children.Add(_currentUser);
-                            waterfallFlow.Refresh();
-                        }, TaskScheduler.FromCurrentSynchronizationContext());
-
-
+                        await Task.Delay(100);
+                        prgUpdate.Value += 1;
+                        prgUpdate.Hint = ((prgUpdate.Value * 100) / parsedValues.Count).ToString("0");
+                        _addUser = new MaterialCircular(item.Row, item.Title, item.Category, item.Type, item.SubType, item.Date, item.link, AppVariable.GetBrush(Convert.ToString(FindElement.Settings[AppVariable.ChartColor] ?? AppVariable.CHART_GREEN)));
+                        _currentUser = _addUser;
+                        waterfallFlow.Children.Add(_currentUser);
+                        waterfallFlow.Refresh();
                     }
                 }
                 catch (WebException)
                 {
                     MainWindow.main.ShowRecivedCircularNotification(false);
                 }
-            }), DispatcherPriority.ContextIdle, null);
-            
+            }, DispatcherPriority.ContextIdle);
+
         }
     }
    

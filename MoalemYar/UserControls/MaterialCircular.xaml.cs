@@ -161,7 +161,7 @@ namespace MoalemYar.UserControls
             }
             catch (Win32Exception)
             {
-                System.Diagnostics.Process.Start(AppVariable.fileNameBakhsh + txtTitle.Text);
+                System.Diagnostics.Process.Start(AppVariable.fileNameBakhsh +  txtTitle.Text);
             }
             catch (FileNotFoundException)
             {
