@@ -29,6 +29,9 @@ namespace MoalemYar
         public string appTitle { get; set; }
         internal static MainWindow main;
         private PersianCalendar pc = new PersianCalendar();
+        int _sch = 0;
+        int _stu = 0;
+        int _usr = 0;
         public INotificationMessageManager Manager { get; } = new NotificationMessageManager();
 
         public MainWindow()
@@ -46,6 +49,10 @@ namespace MoalemYar
             LoadSettings();
             LogifyCrashReport();
             getexHint();
+            Dashboard._SchoolCount = _sch;
+            Dashboard._StudentCount = _stu;
+            Dashboard._UserCount = _usr;
+            exContent.Content = new Dashboard();
         }
 
         #region Query
@@ -64,11 +71,9 @@ namespace MoalemYar
 
                     var query3 = db.Students.Select(x => x);
                     exAddOrUpdateStudent.Hint = query3.Count().ToString();
-
-                    Dashboard._SchoolCount = query.Count();
-                    Dashboard._StudentCount = query3.Count();
-                    Dashboard._UserCount = query2.Count();
-                    exContent.Content = new Dashboard();
+                    _sch = query.Count();
+                    _stu = query3.Count();
+                    _usr = query2.Count();
                 }
 
                 exAttendancelist.Hint = pc.GetYear(DateTime.Now).ToString("0000") + "/" + pc.GetMonth(DateTime.Now).ToString("00") + "/" + pc.GetDayOfMonth(DateTime.Now).ToString("00");
