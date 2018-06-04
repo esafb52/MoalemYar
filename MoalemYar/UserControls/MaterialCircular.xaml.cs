@@ -31,12 +31,12 @@ namespace MoalemYar.UserControls
         public Brush BorderColor { get; set; }
         private string Dlink;
 
-        public MaterialCircular(string Row, string Title, string Category, string Type, string SubType, string Date, string Link, Brush Background)
+        public MaterialCircular(string Row, string Title, string Category, string Type, string SubType, string Date, string Link)
         {
             InitializeComponent();
             DataContext = this;
             Dlink = Link;
-            BorderColor = Background;
+            BorderColor = AppVariable.GetBrush(FindElement.Settings.SkinCode ?? AppVariable.DEFAULT_BORDER_BRUSH);
             txtCategory.Text = Category;
             txtDate.Text = Date;
             txtSubType.Text = SubType;
