@@ -74,7 +74,6 @@ namespace MoalemYar.UserControls
 
                 client.DownloadProgressChanged += (o, ex) =>
                 {
-                    // updating the UI
                     Dispatcher.Invoke(() =>
                     {
                         prgDownload.Value = ex.ProgressPercentage;
@@ -110,7 +109,7 @@ namespace MoalemYar.UserControls
                 };
             }
         }
-
+        //Todo: folder name is not correct
         public void UnCompress(string Open, string Write, string FileExt)
         {
             try
@@ -121,6 +120,7 @@ namespace MoalemYar.UserControls
                     {
                         foreach (var entry in archive.Entries.Where(entry => !entry.IsDirectory))
                         {
+                            Console.WriteLine(entry.ToString());
                             entry.WriteToDirectory(Write, new ExtractionOptions()
                             {
                                 ExtractFullPath = true,
