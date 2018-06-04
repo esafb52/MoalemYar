@@ -64,59 +64,58 @@ namespace MoalemYar.UserControls
         private void LoadSettings()
         {
             loadServers();
-            if (Convert.ToBoolean(FindElement.Settings[AppVariable.CredentialLogin] ?? false))
+            if (FindElement.Settings.CredentialLogin)
                 swLogin.IsChecked = true;
             else
                 swLogin.IsChecked = false;
 
-            if (Convert.ToBoolean(FindElement.Settings[AppVariable.Autorun] ?? false))
+            if (FindElement.Settings.Autorun)
                 swAutoStart.IsChecked = true;
             else
                 swAutoStart.IsChecked = false;
 
-            if (Convert.ToBoolean(FindElement.Settings[AppVariable.AutoSendReport] ?? false))
+            if (FindElement.Settings.AutoSendReport)
                 swAutoReport.IsChecked = true;
             else
                 swAutoReport.IsChecked = false;
 
-            var hb_Menu = Convert.ToBoolean(FindElement.Settings[AppVariable.HamburgerMenu] ?? true);
+            var hb_Menu = FindElement.Settings.HamburgerMenu ?? true;
             Hamborger_Menu.IsChecked = hb_Menu;
 
-            color1.Background = AppVariable.GetBrush(Convert.ToString(FindElement.Settings[AppVariable.SkinCode] ?? AppVariable.DEFAULT_BORDER_BRUSH));
-            colorChart.Background = AppVariable.GetBrush(Convert.ToString(FindElement.Settings[AppVariable.ChartColor] ?? AppVariable.CHART_PURPLE));
+            color1.Background = AppVariable.GetBrush(FindElement.Settings.SkinCode ?? AppVariable.DEFAULT_BORDER_BRUSH);
+            colorChart.Background = AppVariable.GetBrush(FindElement.Settings.ChartColor ?? AppVariable.CHART_PURPLE);
         }
 
         private void color1_close()
         {
-            FindElement.Settings[AppVariable.SkinCode] = color1.CurrentColor.OpaqueSolidColorBrush.ToString();
+            FindElement.Settings.SkinCode = color1.CurrentColor.OpaqueSolidColorBrush.ToString();
         }
 
         private void colorChart_close()
         {
-            FindElement.Settings[AppVariable.ChartColor] = colorChart.CurrentColor.OpaqueSolidColorBrush.ToString();
-            FindElement.Settings[AppVariable.ChartColorIndex] = -1;
+            FindElement.Settings.ChartColor = colorChart.CurrentColor.OpaqueSolidColorBrush.ToString();
+            FindElement.Settings.ChartColorIndex = -1;
         }
-
         private void swLogin_Checked(object sender, RoutedEventArgs e)
         {
-            FindElement.Settings[AppVariable.CredentialLogin] = swLogin.IsChecked;
+            FindElement.Settings.CredentialLogin = Convert.ToBoolean(swLogin.IsChecked);
         }
 
         private void swAutoStart_Checked(object sender, RoutedEventArgs e)
         {
-            FindElement.Settings[AppVariable.Autorun] = swAutoStart.IsChecked;
+            FindElement.Settings.Autorun = Convert.ToBoolean(swAutoStart.IsChecked);
             AppVariable.RegisterInStartup(Convert.ToBoolean(swAutoStart.IsChecked));
         }
 
         private void Hamborger_Menu_Checked(object sender, RoutedEventArgs e)
         {
-            FindElement.Settings[AppVariable.HamburgerMenu] = Hamborger_Menu.IsChecked;
+            FindElement.Settings.HamburgerMenu = Hamborger_Menu.IsChecked;
             MainWindow.main.tab.IconMode = Convert.ToBoolean(!Hamborger_Menu.IsChecked);
         }
 
         private void swAutoReport_Checked(object sender, RoutedEventArgs e)
         {
-            FindElement.Settings[AppVariable.AutoSendReport] = swAutoReport.IsChecked;
+            FindElement.Settings.AutoSendReport = Convert.ToBoolean(swAutoReport.IsChecked);
             MainWindow.main.LogifyCrashReport();
         }
 
@@ -177,28 +176,28 @@ namespace MoalemYar.UserControls
         private void cmbChart_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var element = sender as ComboBox;
-            FindElement.Settings[AppVariable.ChartType] = element.SelectedIndex;
+            FindElement.Settings.ChartType = element.SelectedIndex;
         }
 
         private void cmbChartColor_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var element = sender as ComboBox;
-            FindElement.Settings[AppVariable.ChartColorIndex] = element.SelectedIndex;
+            FindElement.Settings.ChartColorIndex = element.SelectedIndex;
             switch (element.SelectedIndex)
             {
                 case 0:
-                    FindElement.Settings[AppVariable.ChartColor] = AppVariable.CHART_GREEN;
+                    FindElement.Settings.ChartColor = AppVariable.CHART_GREEN;
                     colorChart.Background = AppVariable.GetBrush(AppVariable.CHART_GREEN);
                     break;
 
                 case 1:
-                    FindElement.Settings[AppVariable.ChartColor] = AppVariable.CHART_PURPLE;
+                    FindElement.Settings.ChartColor = AppVariable.CHART_PURPLE;
                     colorChart.Background = AppVariable.GetBrush(AppVariable.CHART_PURPLE);
 
                     break;
 
                 case 2:
-                    FindElement.Settings[AppVariable.ChartColor] = AppVariable.CHART_ORANGE;
+                    FindElement.Settings.ChartColor = AppVariable.CHART_ORANGE;
                     colorChart.Background = AppVariable.GetBrush(AppVariable.CHART_ORANGE);
 
                     break;
@@ -209,13 +208,13 @@ namespace MoalemYar.UserControls
         {
             var elementType = FindElement.FindElementByName<ComboBox>(cmbChartType, "cmbChart");
             var elementColor = FindElement.FindElementByName<ComboBox>(cmbChartColor, "cmbChartColor");
-            elementType.SelectedIndex = Convert.ToInt32(FindElement.Settings[AppVariable.ChartType] ?? -1);
-            elementColor.SelectedIndex = Convert.ToInt32(FindElement.Settings[AppVariable.ChartColorIndex] ?? -1);
+            elementType.SelectedIndex = FindElement.Settings.ChartType ?? -1;
+            elementColor.SelectedIndex = FindElement.Settings.ChartColorIndex ?? -1;
         }
 
         private void cmbBase_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            FindElement.Settings[AppVariable.DefaultSchool] = cmbBase.SelectedIndex;
+            FindElement.Settings.DefaultSchool = cmbBase.SelectedIndex;
         }
 
         private void cmbServer_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -267,7 +266,7 @@ namespace MoalemYar.UserControls
         "http://dur.lorestan.medu.ir/regulation/archive?ocode=80418406",
         "http://mazand.medu.ir/regulation/archive?ocode=1000000282"
 };
-            FindElement.Settings[AppVariable.DefaultServer] = url[cmbServer.SelectedIndex].ToString();
+            FindElement.Settings.DefaultServer = url[cmbServer.SelectedIndex].ToString();
         }
 
         private void loadServers()

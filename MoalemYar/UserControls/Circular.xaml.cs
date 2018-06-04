@@ -51,7 +51,7 @@ namespace MoalemYar.UserControls
                 try
                 {
                     WebClient webClient = new WebClientWithTimeout();
-                    var page = webClient.DownloadString(FindElement.Settings[AppVariable.DefaultServer].ToString() ?? AppVariable.DefaultServer2);
+                    var page = webClient.DownloadString(FindElement.Settings.DefaultServer ?? AppVariable.DefaultServer2);
                     HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
                     doc.LoadHtml(page);
 
@@ -78,7 +78,7 @@ namespace MoalemYar.UserControls
                         await Task.Delay(100);
                         prgUpdate.Value += 1;
                         prgUpdate.Hint = ((prgUpdate.Value * 100) / parsedValues.Count).ToString("0");
-                        _addUser = new MaterialCircular(item.Row, item.Title, item.Category, item.Type, item.SubType, item.Date, item.link, AppVariable.GetBrush(Convert.ToString(FindElement.Settings[AppVariable.ChartColor] ?? AppVariable.CHART_GREEN)));
+                        _addUser = new MaterialCircular(item.Row, item.Title, item.Category, item.Type, item.SubType, item.Date, item.link, AppVariable.GetBrush(FindElement.Settings.ChartColor ?? AppVariable.CHART_GREEN));
                         _currentUser = _addUser;
                         waterfallFlow.Children.Add(_currentUser);
                         waterfallFlow.Refresh();

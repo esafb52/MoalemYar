@@ -38,7 +38,7 @@ namespace MoalemYar.UserControls
             InitializeComponent();
 
             DataContext = this;
-            BorderColor = AppVariable.GetBrush(Convert.ToString(FindElement.Settings[AppVariable.ChartColor] ?? AppVariable.CHART_GREEN));
+            BorderColor = AppVariable.GetBrush(FindElement.Settings.ChartColor ?? AppVariable.CHART_GREEN);
             AchievementChart.Series.Add(new LineSeries
             {
                 Values = new ChartValues<double>(new double[] { 10,25,65,57,15,70 }),

@@ -71,17 +71,17 @@ namespace MoalemYar
 
         #region Config Key
 
-        public static string CredentialLogin = "Credential";
-        public static string Autorun = "Autorun";
-        public static string HamburgerMenu = "HamburgerMenu";
-        public static string AutoSendReport = "AutoSendReport";
-        public static string SkinCode = "SkinCode";
-        public static string VersionCode = "Version";
-        public static string ChartType = "ChartType";
-        public static string ChartColor = "ChartColor";
-        public static string ChartColorIndex = "ChartColorIndex";
-        public static string DefaultSchool = "DefSchool";
-        public static string DefaultServer = "DefServer";
+        //public static string CredentialLogin = "Credential";
+        //public static string Autorun = "Autorun";
+        //public static string HamburgerMenu = "HamburgerMenu";
+        //public static string AutoSendReport = "AutoSendReport";
+        //public static string SkinCode = "SkinCode";
+        //public static string VersionCode = "Version";
+        //public static string ChartType = "ChartType";
+        //public static string ChartColor = "ChartColor";
+        //public static string ChartColorIndex = "ChartColorIndex";
+        //public static string DefaultSchool = "DefSchool";
+        //public static string DefaultServer = "DefServer";
 
         #endregion Config Key
 

@@ -18,8 +18,7 @@ namespace MoalemYar
 {
     public class FindElement
     {
-        public static SettingsBag Settings = JsonSettings.Load<SettingsBag>(AppVariable.fileName + @"\config.json").EnableAutosave();
-        //public static JsonSettings Settings = JsonSettings.Load<ISettings>(AppVariable.fileName + @"\config.json").EnableAutosave();
+        public static ISettings Settings = JsonSettings.Load<ISettings>(AppVariable.fileName + @"\config.json").EnableAutosave();
         public static T FindElementByName<T>(FrameworkElement element, string sChildName) where T : FrameworkElement
         {
             T childElement = null;
@@ -30,7 +29,7 @@ namespace MoalemYar
 
                 if (child == null)
                     continue;
-
+                
                 if (child is T && child.Name.Equals(sChildName))
                 {
                     childElement = (T)child;

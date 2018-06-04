@@ -29,7 +29,7 @@ namespace MoalemYar.UserControls
         {
             InitializeComponent();
             DataContext = this;
-            BorderColor = AppVariable.GetBrush(Convert.ToString(FindElement.Settings[AppVariable.ChartColor] ?? AppVariable.CHART_GREEN));
+            BorderColor = AppVariable.GetBrush(FindElement.Settings.ChartColor ?? AppVariable.CHART_GREEN);
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
@@ -42,7 +42,7 @@ namespace MoalemYar.UserControls
                 var qGroupName = db.Groups.ToList();
                 cmbGroups.ItemsSource = qGroupName.Any() ? qGroupName : null;
             }
-            cmbEditBase.SelectedIndex = Convert.ToInt32(FindElement.Settings[AppVariable.DefaultSchool] ?? -1);
+            cmbEditBase.SelectedIndex = FindElement.Settings.DefaultSchool ?? -1;
         }
 
         private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -99,7 +99,7 @@ namespace MoalemYar.UserControls
 
                     Series series = new ColumnSeries();
 
-                    switch (Convert.ToInt32(FindElement.Settings[AppVariable.ChartType] ?? 0))
+                    switch (FindElement.Settings.ChartType ?? 0)
                     {
                         case 0:
                             series = new ColumnSeries { };

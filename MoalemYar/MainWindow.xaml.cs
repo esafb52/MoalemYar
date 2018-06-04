@@ -80,7 +80,7 @@ namespace MoalemYar
         {
             try
             {
-                var isEnabledReport = Convert.ToBoolean(FindElement.Settings[AppVariable.AutoSendReport] ?? false);
+                var isEnabledReport = FindElement.Settings.AutoSendReport;
                 LogifyAlert client = LogifyAlert.Instance;
                 client.ApiKey = AppVariable.LogifyAPIKey;
                 client.AppName = AppVariable.getAppName;
@@ -104,11 +104,11 @@ namespace MoalemYar
         {
             try
             {
-                var color = (Color)ColorConverter.ConvertFromString(Convert.ToString(FindElement.Settings[AppVariable.SkinCode] ?? AppVariable.DEFAULT_BORDER_BRUSH));
+                var color = (Color)ColorConverter.ConvertFromString(FindElement.Settings.SkinCode ?? AppVariable.DEFAULT_BORDER_BRUSH);
                 var brush = new SolidColorBrush(color);
                 BorderBrush = brush;
 
-                var hb_Menu = Convert.ToBoolean(FindElement.Settings[AppVariable.HamburgerMenu] ?? true);
+                var hb_Menu = FindElement.Settings.HamburgerMenu ?? true;
                 tab.IconMode = !hb_Menu;
             }
             catch (Exception)
@@ -511,7 +511,7 @@ namespace MoalemYar
         {
             try
             {
-                var isLogin = Convert.ToBoolean(FindElement.Settings[AppVariable.CredentialLogin] ?? false);
+                var isLogin = FindElement.Settings.CredentialLogin;
                 if (isLogin)
                 {
                     using (CredentialDialog dialog = new CredentialDialog())

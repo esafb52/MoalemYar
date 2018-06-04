@@ -22,15 +22,15 @@ public class ISettings : JsonSettings
     #region Property
     public virtual bool CredentialLogin { get; set; }
     public virtual bool Autorun { get; set; }
-    public virtual bool HamburgerMenu { get; set; }
+    public virtual bool? HamburgerMenu { get; set; }
     public virtual bool AutoSendReport { get; set; }
     public virtual string SkinCode { get; set; }
     public virtual string VersionCode { get; set; }
-    public virtual string ChartType { get; set; }
+    public virtual int? ChartType { get; set; }
     public virtual string ChartColor { get; set; }
-    public virtual int ChartColorIndex { get; set; }
-    public virtual int DefaultSchool { get; set; }
-    public virtual int DefaultServer { get; set; }
+    public virtual int? ChartColorIndex { get; set; }
+    public virtual int? DefaultSchool { get; set; }
+    public virtual string DefaultServer { get; set; }
 
     #endregion
     public ISettings() { }

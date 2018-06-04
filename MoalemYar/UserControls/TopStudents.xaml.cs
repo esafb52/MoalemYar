@@ -97,7 +97,7 @@ namespace MoalemYar.UserControls
 
         private void UserControl_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            cmbBaseEdit.SelectedIndex = Convert.ToInt32(FindElement.Settings[AppVariable.DefaultSchool] ?? -1);
+            cmbBaseEdit.SelectedIndex = FindElement.Settings.DefaultSchool ?? -1;
         }
     }
 }
