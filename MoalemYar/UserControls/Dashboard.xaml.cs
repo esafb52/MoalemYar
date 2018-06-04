@@ -69,20 +69,29 @@ namespace MoalemYar.UserControls
                               FName = x.FirstOrDefault().FName,
                               Sum = x.Sum(y => AppVariable.EnumToNumber(y.Scores))
                           }).OrderByDescending(x => x.Sum).ToArray();
-                Console.WriteLine(res.Count());
-                Console.WriteLine(query.Count());
-                txtSt1.Text = query[0].Name + " " + query[0].LName;
-                txtSt2.Text = query[1].Name + " " + query[1].LName;
-                txtSt3.Text = query[2].Name + " " + query[2].LName;
-                txtSt4.Text = query[3].Name + " " + query[3].LName;
-                txtSt5.Text = query[4].Name + " " + query[4].LName;
-                txtSt6.Text = query[5].Name + " " + query[5].LName;
-                prgSt1.Value = res[0].Sum;
-                prgSt2.Value = res[1].Sum;
-                prgSt3.Value = res[2].Sum;
-                prgSt4.Value = res[3].Sum;
-                prgSt5.Value = res[4].Sum;
-                prgSt6.Value = res[5].Sum;
+                if (query.Any())
+                {
+                    try
+                    {
+                        txtSt1.Text = query[0].Name + " " + query[0].LName;
+                        txtSt2.Text = query[1].Name + " " + query[1].LName;
+                        txtSt3.Text = query[2].Name + " " + query[2].LName;
+                        txtSt4.Text = query[3].Name + " " + query[3].LName;
+                        txtSt5.Text = query[4].Name + " " + query[4].LName;
+                        txtSt6.Text = query[5].Name + " " + query[5].LName;
+                        prgSt1.Value = res[0].Sum;
+                        prgSt2.Value = res[1].Sum;
+                        prgSt3.Value = res[2].Sum;
+                        prgSt4.Value = res[3].Sum;
+                        prgSt5.Value = res[4].Sum;
+                        prgSt6.Value = res[5].Sum;
+                    }
+                    catch (Exception)
+                    {
+
+                    }
+                }
+                
             }
         }
 

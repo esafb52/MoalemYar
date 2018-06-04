@@ -138,19 +138,27 @@ namespace MoalemYar.UserControls
         public void resetDatabase()
         {
             string folder = AppVariable.fileName + @"\data.db";
-            if (System.IO.File.Exists(folder))
+            try
             {
-                cmbBase.ItemsSource = null;
-                File.Delete(folder);
-                MainWindow.main.exAddOrUpdateSchool.Hint = "0";
-                MainWindow.main.exAddOrUpdateStudent.Hint = "0";
-                MainWindow.main.exAddOrUpdateUser.Hint = "0";
-                MainWindow.main.DataResetDeletedNotification("دیتابیس برنامه");
-                using (var context = new DataClass.myDbContext())
+                if (System.IO.File.Exists(folder))
                 {
-                    CreateAndSeedDatabase(context);
+                    cmbBase.ItemsSource = null;
+                    File.Delete(folder);
+                    MainWindow.main.exAddOrUpdateSchool.Hint = "0";
+                    MainWindow.main.exAddOrUpdateStudent.Hint = "0";
+                    MainWindow.main.exAddOrUpdateUser.Hint = "0";
+                    MainWindow.main.DataResetDeletedNotification("دیتابیس برنامه");
+                    using (var context = new DataClass.myDbContext())
+                    {
+                        CreateAndSeedDatabase(context);
+                    }
                 }
             }
+            catch (IOException)
+            {
+
+            }
+           
         }
 
         private static void CreateAndSeedDatabase(DbContext context)

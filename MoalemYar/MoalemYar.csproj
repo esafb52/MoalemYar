@@ -14,7 +14,7 @@
     <WarningLevel>4</WarningLevel>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <AssemblyVersion>1.0.3455.0</AssemblyVersion>
+    <AssemblyVersion>1.0.3464.0</AssemblyVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -132,10 +132,6 @@
     <Compile Include="EmbeddedAssembly.cs" />
     <Compile Include="FindElement.cs" />
     <Compile Include="ISettings.cs" />
-    <Compile Include="Migrations\201806011852433_InitialCreate.cs" />
-    <Compile Include="Migrations\201806011852433_InitialCreate.Designer.cs">
-      <DependentUpon>201806011852433_InitialCreate.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MultiplyConverter.cs" />
     <Compile Include="UserControls\About.xaml.cs">
@@ -326,9 +322,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\201806011852433_InitialCreate.resx">
-      <DependentUpon>201806011852433_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
