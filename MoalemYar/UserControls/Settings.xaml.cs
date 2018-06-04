@@ -11,6 +11,7 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Data.Entity;
+using System.Data.Entity.Core;
 using System.Data.SQLite;
 using System.IO;
 using System.Linq;
@@ -49,12 +50,11 @@ namespace MoalemYar.UserControls
             {
                 using (var db = new DataClass.myDbContext())
                 {
-                    var query = db.Schools.Select(x => x);
-                    cmbBase.ItemsSource = query.ToList();
+                    var query = db.Schools.ToList();
+                    cmbBase.ItemsSource = query.Any() ? query : null;
                 }
             }
-            catch (SQLiteException) { }
-            catch (NullReferenceException)
+            catch (Exception)
             {
             }
         }
@@ -156,17 +156,25 @@ namespace MoalemYar.UserControls
         private static void CreateAndSeedDatabase(DbContext context)
         {
             context.Database.Initialize(true);
-            if (context.Set<DataClass.Tables.User>().Count() != 0)
+            try
             {
-                return;
-            }
-            context.Set<DataClass.Tables.User>().Add(new DataClass.Tables.User
-            {
-                Username = "test",
-                Password = "test"
-            });
+                if (context.Set<DataClass.Tables.User>().Count() != 0)
+                {
+                    return;
+                }
+                context.Set<DataClass.Tables.User>().Add(new DataClass.Tables.User
+                {
+                    Username = "test",
+                    Password = "test"
+                });
 
-            context.SaveChanges();
+                context.SaveChanges();
+            }
+            catch (Exception)
+            {
+
+            }
+            
         }
 
         private void btnDatabaseReset_Click(object sender, RoutedEventArgs e)

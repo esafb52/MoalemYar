@@ -15,17 +15,25 @@ namespace MoalemYar.Migrations
 
         protected override void Seed(MoalemYar.DataClass.myDbContext context)
         {
-            if (context.Set<DataClass.Tables.User>().Count() != 0)
+            try
             {
-                return;
-            }
-            context.Set<DataClass.Tables.User>().Add(new DataClass.Tables.User
-            {
-                Username = "test",
-                Password = "test"
-            });
+                if (context.Set<DataClass.Tables.User>().Count() != 0)
+                {
+                    return;
+                }
+                context.Set<DataClass.Tables.User>().Add(new DataClass.Tables.User
+                {
+                    Username = "test",
+                    Password = "test"
+                });
 
-            context.SaveChanges();
+                context.SaveChanges();
+            }
+            catch (System.Exception)
+            {
+
+            }
+           
         }
     }
 }

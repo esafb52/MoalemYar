@@ -34,14 +34,22 @@ namespace MoalemYar.UserControls
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            using (var db = new DataClass.myDbContext())
+            try
             {
-                var qschool = db.Schools.ToList();
-                cmbEditBase.ItemsSource = qschool.Any() ? qschool : null;
+                using (var db = new DataClass.myDbContext())
+                {
+                    var qschool = db.Schools.ToList();
+                    cmbEditBase.ItemsSource = qschool.Any() ? qschool : null;
 
-                var qGroupName = db.Groups.ToList();
-                cmbGroups.ItemsSource = qGroupName.Any() ? qGroupName : null;
+                    var qGroupName = db.Groups.ToList();
+                    cmbGroups.ItemsSource = qGroupName.Any() ? qGroupName : null;
+                }
             }
+            catch (Exception)
+            {
+
+            }
+           
             cmbEditBase.SelectedIndex = FindElement.Settings.DefaultSchool ?? -1;
         }
 
