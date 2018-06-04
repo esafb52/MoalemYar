@@ -47,6 +47,7 @@ namespace MoalemYar.UserControls
                 Labels = new string[] { "Item", "Item", "Item", "Item", "Item", "Item" },
                 Separator = new LiveCharts.Wpf.Separator { }
             });
+            
         }
 
         public void getTopStudent(long BaseId)
@@ -97,7 +98,7 @@ namespace MoalemYar.UserControls
 
         private void cmbEditBase_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            getTopStudent(Convert.ToInt64(cmbEditBase.SelectedValue));
         }
         private void getSchool()
         {
@@ -121,7 +122,11 @@ namespace MoalemYar.UserControls
         {
             getSchool();
             cmbEditBase.SelectedIndex = FindElement.Settings.DefaultSchool ?? -1;
-            getTopStudent(Convert.ToInt64(cmbEditBase.SelectedValue));
+        }
+
+        private void btnCheckUpdate_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            MainWindow.main.tab.SelectedIndex = 4;
         }
     }
 }

@@ -38,13 +38,11 @@ namespace MoalemYar.UserControls
         {
             InitializeComponent();
             DataContext = this;
-
             History = Properties.Resources.History;
             AppName = AppVariable.getAppTitle;
             AppVersion = AppVariable.getAppVersion;
             TimeColor = AppVariable.GetBrush(MainWindow.main.BorderBrush.ToString());
         }
-
         private void CheckUpdate()
         {
             try
