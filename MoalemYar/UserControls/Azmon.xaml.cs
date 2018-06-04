@@ -31,30 +31,17 @@ namespace MoalemYar.UserControls
             main = this;
             getHint();
         }
-
-        public async static Task<List<DataClass.Tables.Group>> GetAllGroupAsync()
-        {
-            using (var db = new DataClass.myDbContext())
-            {
-                var query = db.Groups.Select(x => x);
-                return await query.ToListAsync();
-            }
-        }
-
         public void getHint()
         {
             try
             {
-                var query = GetAllGroupAsync();
-                query.Wait();
-
-                List<DataClass.Tables.Group> data = query.Result;
                 using (var db = new DataClass.myDbContext())
                 {
+                    var query = db.Groups.Count();
+                    exAddorUpdateGroup.Hint = query.ToString();
                     var query2 = db.AQuestions.Count();
                     exAddorUpdateQuestion.Hint = query2.ToString();
                 }
-                exAddorUpdateGroup.Hint = data.Count().ToString();
             }
             catch (Exception)
             {

@@ -47,15 +47,6 @@ namespace MoalemYar.UserControls
 
         #region "Async Query"
 
-        public async static Task<List<DataClass.Tables.School>> GetAllSchoolsAsync()
-        {
-            using (var db = new DataClass.myDbContext())
-            {
-                var query = db.Schools.Select(x => x);
-                return await query.ToListAsync();
-            }
-        }
-
         public async static Task<List<DataClass.DataTransferObjects.StudentsDto>> GetAllStudentsAsync(long BaseId)
         {
             using (var db = new DataClass.myDbContext())
@@ -74,23 +65,6 @@ namespace MoalemYar.UserControls
             }
         }
 
-        public async static Task<string> InsertAttendanceAsync(long StudentId, bool Exist, string Date)
-        {
-            using (var db = new DataClass.myDbContext())
-            {
-                var Attendance = new DataClass.Tables.Attendance();
-                Attendance.StudentId = StudentId;
-                Attendance.Exist = Exist;
-                Attendance.Date = Date;
-
-                db.Attendances.Add(Attendance);
-
-                await db.SaveChangesAsync();
-
-                return "Attendances Added Successfully";
-            }
-        }
-
         public async static Task<List<DataClass.Tables.Attendance>> GetAttendanceAsync(long StudentId)
         {
             using (var db = new DataClass.myDbContext())
@@ -99,32 +73,6 @@ namespace MoalemYar.UserControls
                 return await query.ToListAsync();
             }
         }
-
-        public static async Task<string> DeleteAttendanceAsync(long StudentId, long AttendanceId)
-        {
-            using (var db = new DataClass.myDbContext())
-            {
-                var DeleteAttendance = await db.Attendances.FirstOrDefaultAsync(x => x.StudentId == StudentId && x.Id == AttendanceId);
-
-                db.Attendances.Remove(DeleteAttendance);
-                await db.SaveChangesAsync();
-                return "Attendance Deleted Successfully";
-            }
-        }
-
-        public async static Task<string> UpdateAttendanceAsync(long AttendanceId, long StudentId, bool Exist, string Date)
-        {
-            using (var db = new DataClass.myDbContext())
-            {
-                var EditAttendance = await db.Attendances.FirstOrDefaultAsync(x => x.StudentId == StudentId && x.Id == AttendanceId);
-                EditAttendance.Exist = Exist;
-
-                EditAttendance.Date = Date;
-                await db.SaveChangesAsync();
-                return "Attendance Updated Successfully";
-            }
-        }
-
         #endregion "Async Query"
 
         #region Func get Query Wait"
@@ -133,14 +81,16 @@ namespace MoalemYar.UserControls
         {
             try
             {
-                var query = GetAllSchoolsAsync();
-                query.Wait();
-                List<DataClass.Tables.School> data = query.Result;
-                if (data.Any())
+                using (var db = new DataClass.myDbContext())
                 {
-                    cmbBase.ItemsSource = data;
-                    cmbEditBase.ItemsSource = data;
+                    var query = db.Schools.Select(x => x);
+                    if (query.Any())
+                    {
+                        cmbBase.ItemsSource = query.ToList();
+                        cmbEditBase.ItemsSource = query.ToList();
+                    }
                 }
+               
             }
             catch (Exception)
             {
@@ -200,8 +150,15 @@ namespace MoalemYar.UserControls
         {
             try
             {
-                var query = InsertAttendanceAsync(StudentId, Exist, Date);
-                query.Wait();
+                using (var db = new DataClass.myDbContext())
+                {
+                    var Attendance = new DataClass.Tables.Attendance();
+                    Attendance.StudentId = StudentId;
+                    Attendance.Exist = Exist;
+                    Attendance.Date = Date;
+                    db.Attendances.Add(Attendance);
+                    db.SaveChanges();
+                }
             }
             catch (Exception)
             {
@@ -235,8 +192,13 @@ namespace MoalemYar.UserControls
         {
             try
             {
-                var query = DeleteAttendanceAsync(StudentId, AttendanceId);
-                query.Wait();
+                using (var db = new DataClass.myDbContext())
+                {
+                    var DeleteAttendance = db.Attendances.FirstOrDefault(x => x.StudentId == StudentId && x.Id == AttendanceId);
+
+                    db.Attendances.Remove(DeleteAttendance);
+                    db.SaveChanges();
+                }
             }
             catch (Exception)
             {
@@ -245,8 +207,14 @@ namespace MoalemYar.UserControls
 
         private void updateAttendance(long AttendanceId, long StudentId, bool Exist, string Date)
         {
-            var query = UpdateAttendanceAsync(AttendanceId, StudentId, Exist, Date);
-            query.Wait();
+            using (var db = new DataClass.myDbContext())
+            {
+                var EditAttendance =  db.Attendances.FirstOrDefault(x => x.StudentId == StudentId && x.Id == AttendanceId);
+                EditAttendance.Exist = Exist;
+
+                EditAttendance.Date = Date;
+                db.SaveChanges();
+            }
         }
 
         #endregion Func get Query Wait"

@@ -56,42 +56,24 @@ namespace MoalemYar.UserControls
                 return await query.ToListAsync();
             }
         }
-
-        public async static Task<List<DataClass.Tables.School>> GetAllSchoolsAsync()
-        {
-            using (var db = new DataClass.myDbContext())
-            {
-                var query = db.Schools.Select(x => x);
-                return await query.ToListAsync();
-            }
-        }
-
         private void getSchool()
         {
             try
             {
-                var query = GetAllSchoolsAsync();
-                query.Wait();
-                List<DataClass.Tables.School> data = query.Result;
-                if (data.Any())
+                using (var db = new DataClass.myDbContext())
                 {
-                    cmbEditBase.ItemsSource = data;
+                    var query = db.Schools.Select(x => x);
+                    if (query.Any())
+                    {
+                        cmbEditBase.ItemsSource = query.ToList();
+                    }
                 }
+                
             }
             catch (Exception)
             {
             }
         }
-
-        public async static Task<List<DataClass.Tables.Group>> GetAllGroupAsync()
-        {
-            using (var db = new DataClass.myDbContext())
-            {
-                var query = db.Groups.Select(x => x);
-                return await query.ToListAsync();
-            }
-        }
-
         private void getStudent(long BaseId)
         {
             try
@@ -120,19 +102,20 @@ namespace MoalemYar.UserControls
         {
             try
             {
-                var query = GetAllGroupAsync();
-                query.Wait();
-
-                List<DataClass.Tables.Group> data = query.Result;
-                if (data.Any())
+                using (var db = new DataClass.myDbContext())
                 {
-                    cmbGroup.ItemsSource = data;
+                    var query = db.Groups.Select(x => x);
+                    if (query.Any())
+                    {
+                        cmbGroup.ItemsSource = query.ToList();
+                    }
+                    else
+                    {
+                        cmbGroup.ItemsSource = null;
+                        MainWindow.main.ShowNoDataNotification("Group");
+                    }
                 }
-                else
-                {
-                    cmbGroup.ItemsSource = null;
-                    MainWindow.main.ShowNoDataNotification("Group");
-                }
+                
             }
             catch (Exception)
             {

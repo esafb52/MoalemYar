@@ -96,7 +96,7 @@ namespace MoalemYar.UserControls
             {
                 var EditGroup = db.Groups.Find(id);
                 EditGroup.GroupName = GroupName;
-                db.SaveChangesAsync();
+                db.SaveChanges();
             }
         }
 
@@ -107,7 +107,7 @@ namespace MoalemYar.UserControls
                 var group = new DataClass.Tables.Group();
                 group.GroupName = GroupName;
                 db.Groups.Add(group);
-                db.SaveChangesAsync();
+                db.SaveChanges();
                 MainWindow.main.getexHint();
             }
         }

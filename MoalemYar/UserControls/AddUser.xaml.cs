@@ -71,7 +71,7 @@ namespace MoalemYar.UserControls
             {
                 var DeleteUser = db.Users.Find(id);
                 db.Users.Remove(DeleteUser);
-                db.SaveChangesAsync();
+                db.SaveChanges();
             }
             MainWindow.main.getexHint();
         }
@@ -84,7 +84,7 @@ namespace MoalemYar.UserControls
                 EditUser.Username = Username;
                 EditUser.Password = Password;
 
-                db.SaveChangesAsync();
+                db.SaveChanges();
             }
         }
 
@@ -98,7 +98,7 @@ namespace MoalemYar.UserControls
 
                 db.Users.Add(User);
 
-                db.SaveChangesAsync();
+                db.SaveChanges();
             }
             MainWindow.main.getexHint();
         }

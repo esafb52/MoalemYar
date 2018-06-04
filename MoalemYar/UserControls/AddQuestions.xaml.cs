@@ -139,7 +139,7 @@ namespace MoalemYar.UserControls
                 EditAQuestions.Case4 = Case4;
                 EditAQuestions.Answer = Answer;
                 EditAQuestions.Date = Date;
-                 db.SaveChangesAsync();
+                 db.SaveChanges();
             }
         }
 
@@ -159,7 +159,7 @@ namespace MoalemYar.UserControls
                 aQuestion.Date = Date;
                 db.AQuestions.Add(aQuestion);
 
-                db.SaveChangesAsync();
+                db.SaveChanges();
 
                 MainWindow.main.getexHint();
             }

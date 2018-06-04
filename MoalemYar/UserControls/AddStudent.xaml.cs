@@ -148,7 +148,7 @@ namespace MoalemYar.UserControls
                 EditStudent.Gender = Gender;
                 EditStudent.BaseId = BaseId;
                 EditStudent.Image = Image;
-                db.SaveChangesAsync();
+                db.SaveChanges();
             }
         }
 
@@ -165,7 +165,7 @@ namespace MoalemYar.UserControls
                 Student.Image = Image;
                 db.Students.Add(Student);
 
-                db.SaveChangesAsync();
+                db.SaveChanges();
                 MainWindow.main.getexHint();
             }
         }

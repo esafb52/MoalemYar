@@ -50,15 +50,6 @@ namespace MoalemYar.UserControls
 
         #region "Async Query"
 
-        public async static Task<List<DataClass.Tables.School>> GetAllSchoolsAsync()
-        {
-            using (var db = new DataClass.myDbContext())
-            {
-                var query = db.Schools.Select(x => x);
-                return await query.ToListAsync();
-            }
-        }
-
         public async static Task<List<DataClass.DataTransferObjects.StudentsDto>> GetAllStudentsAsync(long SchoolId, string Book, bool isExam)
         {
             using (var db = new DataClass.myDbContext())
@@ -103,15 +94,6 @@ namespace MoalemYar.UserControls
             }
         }
 
-        public async static Task<List<DataClass.Tables.Score>> GetAllScoresAsync(long StudentId)
-        {
-            using (var db = new DataClass.myDbContext())
-            {
-                var query = db.Scores.Where(x => x.StudentId == StudentId).Select(x => x).OrderByDescending(x => new { x.Date, x.Book }).ThenBy(x => x.Scores);
-                return await query.ToListAsync();
-            }
-        }
-
         public async static Task<string> InsertScoreAsync(long StudentId, string Book, string Date, string Scorez, string Desc)
         {
             using (var db = new DataClass.myDbContext())
@@ -130,46 +112,6 @@ namespace MoalemYar.UserControls
                 return "Score Added Successfully";
             }
         }
-
-        public async static Task<string> UpdateScoreAsync(long ScoreId, long StudentId, string Score, string Date, string Book, string Desc)
-        {
-            using (var db = new DataClass.myDbContext())
-            {
-                var EditScore = await db.Scores.FirstOrDefaultAsync(x => x.Id == ScoreId);
-                EditScore.Scores = Score;
-                EditScore.Book = Book;
-                EditScore.Date = Date;
-                EditScore.Desc = Desc;
-                EditScore.StudentId = StudentId;
-                await db.SaveChangesAsync();
-                return "EditScore Updated Successfully";
-            }
-        }
-
-        public static async Task<string> DeleteQuestionAsync(long SchoolId, string Book)
-        {
-            using (var db = new DataClass.myDbContext())
-            {
-                var DeleteQuestion = await db.Questions.Where(x => x.SchoolId == SchoolId && x.Book == Book).ToListAsync();
-
-                db.Questions.RemoveRange(DeleteQuestion);
-                await db.SaveChangesAsync();
-                return "Question Deleted Successfully";
-            }
-        }
-
-        public static async Task<string> DeleteScoreAsync(long ScoreId)
-        {
-            using (var db = new DataClass.myDbContext())
-            {
-                var DeleteScore = await db.Scores.Where(x => x.Id == ScoreId).ToListAsync();
-
-                db.Scores.RemoveRange(DeleteScore);
-                await db.SaveChangesAsync();
-                return "Scores Deleted Successfully";
-            }
-        }
-
         #endregion "Async Query"
 
         #region Func get Query Wait"
@@ -178,14 +120,16 @@ namespace MoalemYar.UserControls
         {
             try
             {
-                var query = GetAllSchoolsAsync();
-                query.Wait();
-                List<DataClass.Tables.School> data = query.Result;
-                if (data.Any())
+                using (var db = new DataClass.myDbContext())
                 {
-                    cmbBase.ItemsSource = data;
-                    cmbEditBase.ItemsSource = data;
+                    var query = db.Schools.Select(x => x);
+                    if (query.Any())
+                    {
+                        cmbBase.ItemsSource = query.ToList();
+                        cmbEditBase.ItemsSource = query.ToList();
+                    }
                 }
+                
             }
             catch (Exception)
             {
@@ -221,22 +165,22 @@ namespace MoalemYar.UserControls
         {
             try
             {
-                var query = GetAllScoresAsync(StudentId);
-                query.Wait();
-
-                List<DataClass.Tables.Score> data = query.Result;
-                _initialCollectionScore = query.Result;
-
-                if (data.Any())
+                using (var db = new DataClass.myDbContext())
                 {
-                    dataGridEdit.ItemsSource = data.ToList();
-                }
-                else
-                {
-                    stEdit.IsEnabled = false;
-                    dataGridEdit.ItemsSource = null;
-                    MainWindow.main.ShowNoDataNotification("Score");
-                }
+                    var query = db.Scores.Where(x => x.StudentId == StudentId).Select(x => x).OrderByDescending(x => new { x.Date, x.Book }).ThenBy(x => x.Scores);
+                    _initialCollectionScore = query.ToList();
+                    if (query.Any())
+                    {
+                        dataGridEdit.ItemsSource = query.ToList();
+                    }
+                    else
+                    {
+                        stEdit.IsEnabled = false;
+                        dataGridEdit.ItemsSource = null;
+                        MainWindow.main.ShowNoDataNotification("Score");
+                    }
+                }                
+
             }
             catch (Exception)
             {
@@ -286,16 +230,29 @@ namespace MoalemYar.UserControls
 
         private void updateScore(long ScoreId, long StudentId, string Score, string Date, string Book, string Desc)
         {
-            var query = UpdateScoreAsync(ScoreId, StudentId, Score, Date, Book, Desc);
-            query.Wait();
+            using (var db = new DataClass.myDbContext())
+            {
+                var EditScore = db.Scores.FirstOrDefault(x => x.Id == ScoreId);
+                EditScore.Scores = Score;
+                EditScore.Book = Book;
+                EditScore.Date = Date;
+                EditScore.Desc = Desc;
+                EditScore.StudentId = StudentId;
+                db.SaveChanges();
+            }
         }
 
         private void deleteQuestion(long SchoolId, string Book)
         {
             try
             {
-                var query = DeleteQuestionAsync(SchoolId, Book);
-                query.Wait();
+                using (var db = new DataClass.myDbContext())
+                {
+                    var DeleteQuestion =  db.Questions.Where(x => x.SchoolId == SchoolId && x.Book == Book).ToList();
+
+                    db.Questions.RemoveRange(DeleteQuestion);
+                    db.SaveChanges();
+                }
             }
             catch (Exception)
             {
@@ -306,8 +263,13 @@ namespace MoalemYar.UserControls
         {
             try
             {
-                var query = DeleteScoreAsync(ScoreId);
-                query.Wait();
+                using (var db = new DataClass.myDbContext())
+                {
+                    var DeleteScore = db.Scores.Where(x => x.Id == ScoreId).ToList();
+
+                    db.Scores.RemoveRange(DeleteScore);
+                    db.SaveChanges();
+                }
             }
             catch (Exception)
             {
