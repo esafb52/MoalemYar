@@ -10,7 +10,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
@@ -54,7 +53,7 @@ namespace MoalemYar.UserControls
             }
         }
 
-        #endregion "Async Query"
+        #endregion "Query"
 
         #region Query"
 
@@ -76,7 +75,6 @@ namespace MoalemYar.UserControls
                         MainWindow.main.ShowNoDataNotification("Group");
                     }
                 }
-               
             }
             catch (Exception)
             {

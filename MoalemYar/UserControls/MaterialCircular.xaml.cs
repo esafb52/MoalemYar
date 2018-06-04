@@ -109,6 +109,7 @@ namespace MoalemYar.UserControls
                 };
             }
         }
+
         public void UnCompress(string Open, string Write, string FileExt)
         {
             try
@@ -159,7 +160,7 @@ namespace MoalemYar.UserControls
             }
             catch (Win32Exception)
             {
-                System.Diagnostics.Process.Start(AppVariable.fileNameBakhsh +  txtTitle.Text);
+                System.Diagnostics.Process.Start(AppVariable.fileNameBakhsh + txtTitle.Text);
             }
             catch (FileNotFoundException)
             {

@@ -47,7 +47,6 @@ namespace MoalemYar.UserControls
                         cmbBaseEdit.ItemsSource = query.ToList();
                     }
                 }
-                
             }
             catch (Exception)
             {

@@ -46,7 +46,6 @@ namespace MoalemYar.UserControls
 
         #region "Async Query"
 
-       
         public static async Task<string> DeleteStudentAsync(long id)
         {
             using (var db = new DataClass.myDbContext())
@@ -66,7 +65,8 @@ namespace MoalemYar.UserControls
                 await db.SaveChangesAsync();
                 return "Student Deleted Successfully";
             }
-        }       
+        }
+
         #endregion "Async Query"
 
         #region Func get Query Wait"
@@ -85,7 +85,6 @@ namespace MoalemYar.UserControls
                         cmbBaseEdit.ItemsSource = query.ToList();
                     }
                 }
-               
             }
             catch (Exception)
             {
@@ -117,7 +116,6 @@ namespace MoalemYar.UserControls
                         MainWindow.main.ShowNoDataNotification("Student");
                     }
                 }
-               
             }
             catch (Exception)
             {

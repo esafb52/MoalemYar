@@ -9,10 +9,7 @@
 ***********************************************************************************/
 
 using System;
-using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Controls;
 
 namespace MoalemYar.UserControls
@@ -31,6 +28,7 @@ namespace MoalemYar.UserControls
             main = this;
             getHint();
         }
+
         public void getHint()
         {
             try

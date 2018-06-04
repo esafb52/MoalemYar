@@ -1,9 +1,7 @@
 ﻿using LiveCharts.Wpf;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Controls;
 
 namespace MoalemYar.UserControls
@@ -22,6 +20,7 @@ namespace MoalemYar.UserControls
         }
 
         #region Query
+
         public void getSchool()
         {
             try
@@ -38,8 +37,8 @@ namespace MoalemYar.UserControls
             catch (Exception)
             {
             }
-
         }
+
         private void getStudent(long BaseId)
         {
             try
@@ -56,7 +55,6 @@ namespace MoalemYar.UserControls
                         MainWindow.main.ShowNoDataNotification(null);
                     }
                 }
-
             }
             catch (Exception)
             {
@@ -75,7 +73,6 @@ namespace MoalemYar.UserControls
                     else
                         _initialCollection = null;
                 }
-                
             }
             catch (NullReferenceException)
             {
@@ -83,6 +80,7 @@ namespace MoalemYar.UserControls
         }
 
         #endregion Query
+
         private void cmbEditBase_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             getStudent(Convert.ToInt64(cmbEditBase.SelectedValue));

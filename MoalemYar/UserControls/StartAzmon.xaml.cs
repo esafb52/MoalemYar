@@ -56,6 +56,7 @@ namespace MoalemYar.UserControls
                 return await query.ToListAsync();
             }
         }
+
         private void getSchool()
         {
             try
@@ -68,12 +69,12 @@ namespace MoalemYar.UserControls
                         cmbEditBase.ItemsSource = query.ToList();
                     }
                 }
-                
             }
             catch (Exception)
             {
             }
         }
+
         private void getStudent(long BaseId)
         {
             try
@@ -115,7 +116,6 @@ namespace MoalemYar.UserControls
                         MainWindow.main.ShowNoDataNotification("Group");
                     }
                 }
-                
             }
             catch (Exception)
             {

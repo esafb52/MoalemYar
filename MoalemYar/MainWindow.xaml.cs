@@ -30,6 +30,7 @@ namespace MoalemYar
         internal static MainWindow main;
         private PersianCalendar pc = new PersianCalendar();
         public INotificationMessageManager Manager { get; } = new NotificationMessageManager();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -47,7 +48,6 @@ namespace MoalemYar
             LogifyCrashReport();
             getexHint();
         }
-
 
         #region Query
 

@@ -112,6 +112,7 @@ namespace MoalemYar.UserControls
                 return "Score Added Successfully";
             }
         }
+
         #endregion "Async Query"
 
         #region Func get Query Wait"
@@ -129,7 +130,6 @@ namespace MoalemYar.UserControls
                         cmbEditBase.ItemsSource = query.ToList();
                     }
                 }
-                
             }
             catch (Exception)
             {
@@ -179,8 +179,7 @@ namespace MoalemYar.UserControls
                         dataGridEdit.ItemsSource = null;
                         MainWindow.main.ShowNoDataNotification("Score");
                     }
-                }                
-
+                }
             }
             catch (Exception)
             {
@@ -248,7 +247,7 @@ namespace MoalemYar.UserControls
             {
                 using (var db = new DataClass.myDbContext())
                 {
-                    var DeleteQuestion =  db.Questions.Where(x => x.SchoolId == SchoolId && x.Book == Book).ToList();
+                    var DeleteQuestion = db.Questions.Where(x => x.SchoolId == SchoolId && x.Book == Book).ToList();
 
                     db.Questions.RemoveRange(DeleteQuestion);
                     db.SaveChanges();

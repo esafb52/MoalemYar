@@ -73,6 +73,7 @@ namespace MoalemYar.UserControls
                 return await query.ToListAsync();
             }
         }
+
         #endregion "Async Query"
 
         #region Func get Query Wait"
@@ -90,7 +91,6 @@ namespace MoalemYar.UserControls
                         cmbEditBase.ItemsSource = query.ToList();
                     }
                 }
-               
             }
             catch (Exception)
             {
@@ -209,7 +209,7 @@ namespace MoalemYar.UserControls
         {
             using (var db = new DataClass.myDbContext())
             {
-                var EditAttendance =  db.Attendances.FirstOrDefault(x => x.StudentId == StudentId && x.Id == AttendanceId);
+                var EditAttendance = db.Attendances.FirstOrDefault(x => x.StudentId == StudentId && x.Id == AttendanceId);
                 EditAttendance.Exist = Exist;
 
                 EditAttendance.Date = Date;

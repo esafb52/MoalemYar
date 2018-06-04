@@ -63,7 +63,6 @@ namespace MoalemYar.UserControls
             }
         }
 
-       
         #endregion "Async Query"
 
         #region Func get Query Wait"
@@ -111,7 +110,6 @@ namespace MoalemYar.UserControls
                         MainWindow.main.ShowNoDataNotification("Group");
                     }
                 }
-               
             }
             catch (Exception)
             {
@@ -129,7 +127,7 @@ namespace MoalemYar.UserControls
         {
             using (var db = new DataClass.myDbContext())
             {
-                var EditAQuestions =  db.AQuestions.Find(id);
+                var EditAQuestions = db.AQuestions.Find(id);
                 EditAQuestions.GroupId = GroupId;
                 EditAQuestions.Class = Class;
                 EditAQuestions.QuestionText = QuestionText;
@@ -139,7 +137,7 @@ namespace MoalemYar.UserControls
                 EditAQuestions.Case4 = Case4;
                 EditAQuestions.Answer = Answer;
                 EditAQuestions.Date = Date;
-                 db.SaveChanges();
+                db.SaveChanges();
             }
         }
 
@@ -163,7 +161,6 @@ namespace MoalemYar.UserControls
 
                 MainWindow.main.getexHint();
             }
-            
         }
 
         #endregion Func get Query Wait"

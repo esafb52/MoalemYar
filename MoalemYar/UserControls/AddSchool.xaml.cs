@@ -10,10 +10,8 @@
 
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Globalization;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -41,7 +39,6 @@ namespace MoalemYar.UserControls
             GenerateEducateYear();
         }
 
-       
         #region Query"
 
         private void getSchool()
@@ -81,7 +78,7 @@ namespace MoalemYar.UserControls
                 {
                     var DeleteSchool = db.Schools.Find(id);
                     db.Schools.Remove(DeleteSchool);
-                     db.SaveChanges();
+                    db.SaveChanges();
                     MainWindow.main.getexHint();
                     MainWindow.main.ShowDeletedNotification(true, txtSchool.Text, "مدرسه");
                 }
@@ -118,7 +115,7 @@ namespace MoalemYar.UserControls
             }
         }
 
-        #endregion Func get Query Wait"
+        #endregion Query"
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {

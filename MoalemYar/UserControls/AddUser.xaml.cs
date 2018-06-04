@@ -10,9 +10,7 @@
 
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -37,7 +35,6 @@ namespace MoalemYar.UserControls
             BorderColor = AppVariable.GetBrush(MainWindow.main.BorderBrush.ToString());
         }
 
-     
         #region Query
 
         private void getUser()
@@ -58,7 +55,6 @@ namespace MoalemYar.UserControls
                         MainWindow.main.ShowNoDataNotification("User");
                     }
                 }
-               
             }
             catch (Exception)
             {
@@ -103,7 +99,7 @@ namespace MoalemYar.UserControls
             MainWindow.main.getexHint();
         }
 
-        #endregion Func get Query Wait"
+        #endregion Query
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {

@@ -9,10 +9,8 @@
 ***********************************************************************************/
 
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -29,8 +27,6 @@ namespace MoalemYar.UserControls
         public Circular()
         {
             InitializeComponent();
-
-           
         }
 
         private void prgUpdate_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -39,7 +35,6 @@ namespace MoalemYar.UserControls
                 MainWindow.main.ShowRecivedCircularNotification(true);
         }
 
-        
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             Dispatcher.Invoke<Task>(async () =>
@@ -89,10 +84,8 @@ namespace MoalemYar.UserControls
                     MainWindow.main.ShowRecivedCircularNotification(false);
                 }
             }, DispatcherPriority.ContextIdle);
-
         }
     }
-   
 }
 
 public class WebClientWithTimeout : WebClient

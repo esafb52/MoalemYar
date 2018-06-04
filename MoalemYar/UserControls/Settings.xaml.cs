@@ -96,6 +96,7 @@ namespace MoalemYar.UserControls
             FindElement.Settings.ChartColor = colorChart.CurrentColor.OpaqueSolidColorBrush.ToString();
             FindElement.Settings.ChartColorIndex = -1;
         }
+
         private void swLogin_Checked(object sender, RoutedEventArgs e)
         {
             FindElement.Settings.CredentialLogin = Convert.ToBoolean(swLogin.IsChecked);
