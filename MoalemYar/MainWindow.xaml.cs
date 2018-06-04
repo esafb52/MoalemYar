@@ -38,7 +38,6 @@ namespace MoalemYar
             main = this;
 
             appTitle = AppVariable.getAppTitle + AppVariable.getAppVersion; // App Title with Version
-            exContent.Content = new Dashboard();
             ShowCredentialDialog();
         }
 
@@ -65,6 +64,11 @@ namespace MoalemYar
 
                     var query3 = db.Students.Select(x => x);
                     exAddOrUpdateStudent.Hint = query3.Count().ToString();
+
+                    Dashboard._SchoolCount = query.Count();
+                    Dashboard._StudentCount = query3.Count();
+                    Dashboard._UserCount = query2.Count();
+                    exContent.Content = new Dashboard();
                 }
 
                 exAttendancelist.Hint = pc.GetYear(DateTime.Now).ToString("0000") + "/" + pc.GetMonth(DateTime.Now).ToString("00") + "/" + pc.GetDayOfMonth(DateTime.Now).ToString("00");

@@ -72,7 +72,7 @@ namespace MoalemYar.UserControls
                     {
                         await Task.Delay(100);
                         prgUpdate.Value += 1;
-                        prgUpdate.Hint = ((prgUpdate.Value * 100) / parsedValues.Count).ToString("0");
+                        prgUpdate.Hint = string.Format("{0}%",((prgUpdate.Value * 100) / parsedValues.Count).ToString("0"));
                         _addUser = new MaterialCircular(item.Row, item.Title, item.Category, item.Type, item.SubType, item.Date, item.link, AppVariable.GetBrush(FindElement.Settings.ChartColor ?? AppVariable.CHART_GREEN));
                         _currentUser = _addUser;
                         waterfallFlow.Children.Add(_currentUser);
