@@ -11,8 +11,6 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Data.Entity;
-using System.Data.Entity.Core;
-using System.Data.SQLite;
 using System.IO;
 using System.Linq;
 using System.Windows;
@@ -156,9 +154,7 @@ namespace MoalemYar.UserControls
             }
             catch (IOException)
             {
-
             }
-           
         }
 
         private static void CreateAndSeedDatabase(DbContext context)
@@ -180,9 +176,7 @@ namespace MoalemYar.UserControls
             }
             catch (Exception)
             {
-
             }
-            
         }
 
         private void btnDatabaseReset_Click(object sender, RoutedEventArgs e)

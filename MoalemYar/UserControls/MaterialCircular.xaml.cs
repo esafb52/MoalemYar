@@ -47,7 +47,7 @@ namespace MoalemYar.UserControls
 
             if (!System.IO.Directory.Exists(AppVariable.fileNameBakhsh + txtRow.Text + txtTitle.Text))
             {
-                txtDown.Text= "دانلود";
+                txtDown.Text = "دانلود";
             }
             else
             {
@@ -130,7 +130,6 @@ namespace MoalemYar.UserControls
                 {
                 }
             }
-          
         }
 
         public void UnCompress(string Open, string Write, string FileExt)
@@ -174,6 +173,5 @@ namespace MoalemYar.UserControls
                 System.IO.File.Delete(Open);
             };
         }
-
     }
 }

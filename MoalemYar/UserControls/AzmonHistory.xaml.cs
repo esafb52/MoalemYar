@@ -47,9 +47,8 @@ namespace MoalemYar.UserControls
             }
             catch (Exception)
             {
-
             }
-           
+
             cmbEditBase.SelectedIndex = FindElement.Settings.DefaultSchool ?? -1;
         }
 

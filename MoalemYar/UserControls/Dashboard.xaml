@@ -31,13 +31,13 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition />
                     </Grid.RowDefinitions>
-                    <Border x:Name="Border2" Grid.Row="0" Grid.RowSpan="3" CornerRadius="5" Background="White"/>
+                    <Border x:Name="Border2" Grid.Row="0" Grid.RowSpan="3" CornerRadius="5" Background="White" />
 
                     <StackPanel Grid.Row="2" VerticalAlignment="Center" Margin="20,37,20,29" Height="58">
-                        <TextBlock Opacity=".4" FontSize="16"><Run Text="تعداد دانش آموزان"/></TextBlock>
+                        <TextBlock Opacity=".4" FontSize="16"><Run Text="تعداد دانش آموزان" /></TextBlock>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock x:Name="txtStCount" Foreground="#303030" FontSize="18" Text="تعداد" />
-                            <TextBlock Foreground="#303030" FontSize="16" VerticalAlignment="Bottom" Margin="8, 6"><Run Text="نفر"/></TextBlock>
+                            <TextBlock Foreground="#303030" FontSize="16" VerticalAlignment="Bottom" Margin="8, 6"><Run Text="نفر" /></TextBlock>
                         </StackPanel>
                     </StackPanel>
                 </Grid>
@@ -54,12 +54,12 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition />
                     </Grid.RowDefinitions>
-                    <Border x:Name="Border" Grid.Row="0" Grid.RowSpan="3" CornerRadius="5" Background="White"/>
+                    <Border x:Name="Border" Grid.Row="0" Grid.RowSpan="3" CornerRadius="5" Background="White" />
                     <StackPanel Grid.Row="2" VerticalAlignment="Center" Margin="20,37,20,29" Height="58">
-                        <TextBlock Opacity=".4" FontSize="16"><Run Text="تعداد کلاس"/></TextBlock>
+                        <TextBlock Opacity=".4" FontSize="16"><Run Text="تعداد کلاس" /></TextBlock>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock x:Name="txtScCount" Foreground="#303030" FontSize="18" Text="تعداد" />
-                            <TextBlock Foreground="#303030" FontSize="16" VerticalAlignment="Bottom" Margin="8, 6"><Run Text="کلاس"/></TextBlock>
+                            <TextBlock Foreground="#303030" FontSize="16" VerticalAlignment="Bottom" Margin="8, 6"><Run Text="کلاس" /></TextBlock>
                         </StackPanel>
                     </StackPanel>
                 </Grid>
@@ -76,12 +76,12 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition />
                     </Grid.RowDefinitions>
-                    <Border x:Name="Border3" Grid.Row="0" Grid.RowSpan="3" CornerRadius="5" Background="White"/>
+                    <Border x:Name="Border3" Grid.Row="0" Grid.RowSpan="3" CornerRadius="5" Background="White" />
                     <StackPanel Grid.Row="2" VerticalAlignment="Center" Margin="20,37,20,29" Height="58">
-                        <TextBlock Opacity=".4" FontSize="16"><Run Text="تعداد کاربر"/></TextBlock>
+                        <TextBlock Opacity=".4" FontSize="16"><Run Text="تعداد کاربر" /></TextBlock>
                         <StackPanel Orientation="Horizontal">
                             <TextBlock x:Name="txtUCount" Foreground="#303030" FontSize="18" Text="تعداد" />
-                            <TextBlock Foreground="#303030" FontSize="16" VerticalAlignment="Bottom" Margin="8, 6"><Run Text="نفر"/></TextBlock>
+                            <TextBlock Foreground="#303030" FontSize="16" VerticalAlignment="Bottom" Margin="8, 6"><Run Text="نفر" /></TextBlock>
                         </StackPanel>
                     </StackPanel>
                 </Grid>
@@ -97,18 +97,18 @@
                     <Border x:Name="brdprg" CornerRadius="5" Background="White">
 
                         <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" Margin="10,10,10,10">
-                            <TextBlock FontWeight="Bold" Opacity=".4" Margin="0,5" FontSize="15"><Run Text="دانش آموزان برتر"/></TextBlock>
-                            <TextBlock x:Name="txtSt1"  Opacity=".4" Margin="0,5" FontSize="15"><Run Text="دانش آموز 1"/></TextBlock>
+                            <TextBlock FontWeight="Bold" Opacity=".4" Margin="0,5" FontSize="15"><Run Text="دانش آموزان برتر" /></TextBlock>
+                            <TextBlock x:Name="txtSt1"  Opacity=".4" Margin="0,5" FontSize="15"><Run Text="دانش آموز 1" /></TextBlock>
                             <Metro:MetroProgressBar x:Name="prgSt1" FlowDirection="LeftToRight" Value="89" Background="#15a4fa" CornerRadius="0" />
-                            <TextBlock x:Name="txtSt2"  Opacity=".4" Margin="0,5" FontSize="15"><Run Text="دانش آموز 2"/></TextBlock>
+                            <TextBlock x:Name="txtSt2"  Opacity=".4" Margin="0,5" FontSize="15"><Run Text="دانش آموز 2" /></TextBlock>
                             <Metro:MetroProgressBar x:Name="prgSt2" FlowDirection="LeftToRight" Value="76" Background="#15a4fa" CornerRadius="0" />
-                            <TextBlock x:Name="txtSt3" Opacity=".4" Margin="0,5" FontSize="15"><Run Text="دانش آموز 3"/></TextBlock>
+                            <TextBlock x:Name="txtSt3" Opacity=".4" Margin="0,5" FontSize="15"><Run Text="دانش آموز 3" /></TextBlock>
                             <Metro:MetroProgressBar x:Name="prgSt3" FlowDirection="LeftToRight" Value="66" Background="#15a4fa" CornerRadius="0" />
-                            <TextBlock x:Name="txtSt4" Opacity=".4" Margin="0,5" FontSize="15"><Run Text="دانش آموز 4"/></TextBlock>
+                            <TextBlock x:Name="txtSt4" Opacity=".4" Margin="0,5" FontSize="15"><Run Text="دانش آموز 4" /></TextBlock>
                             <Metro:MetroProgressBar x:Name="prgSt4" FlowDirection="LeftToRight" Value="69" Background="#15a4fa" CornerRadius="0" />
-                            <TextBlock x:Name="txtSt5" Opacity=".4" Margin="0,5" FontSize="15"><Run Text="دانش آموز 5"/></TextBlock>
+                            <TextBlock x:Name="txtSt5" Opacity=".4" Margin="0,5" FontSize="15"><Run Text="دانش آموز 5" /></TextBlock>
                             <Metro:MetroProgressBar x:Name="prgSt5" FlowDirection="LeftToRight" Value="69" Background="#88d969" CornerRadius="0" />
-                            <TextBlock x:Name="txtSt6" Opacity=".4" Margin="0,5" FontSize="15"><Run Text="دانش آموز 6"/></TextBlock>
+                            <TextBlock x:Name="txtSt6" Opacity=".4" Margin="0,5" FontSize="15"><Run Text="دانش آموز 6" /></TextBlock>
                             <Metro:MetroProgressBar x:Name="prgSt6" FlowDirection="LeftToRight" Value="69" Background="#FFFF5656" CornerRadius="0" />
                         </StackPanel>
                     </Border>
@@ -116,32 +116,32 @@
                 <Grid Margin="10" Width="300" Height="350">
                     <Grid.Resources>
                         <Style TargetType="{x:Type lvc:ColumnSeries}">
-                            <Setter Property="StrokeThickness" Value="5"/>
-                            <Setter Property="Stroke" Value="White"/>
-                            <Setter Property="Fill" Value="Transparent"/>
-                            <Setter Property="MaxColumnWidth" Value="5"/>
-                            <Setter Property="PointGeometry" Value="{x:Null}"/>
+                            <Setter Property="StrokeThickness" Value="5" />
+                            <Setter Property="Stroke" Value="White" />
+                            <Setter Property="Fill" Value="Transparent" />
+                            <Setter Property="MaxColumnWidth" Value="5" />
+                            <Setter Property="PointGeometry" Value="{x:Null}" />
                             <Setter Property="DataLabels" Value="True" />
                         </Style>
                         <Style TargetType="{x:Type lvc:Axis}">
-                            <Setter Property="FontSize" Value="12"/>
-                            <Setter Property="Foreground" Value="#64FFFFFF"/>
+                            <Setter Property="FontSize" Value="12" />
+                            <Setter Property="Foreground" Value="#64FFFFFF" />
                             <Style.Triggers>
                                 <Trigger Property="AxisOrientation" Value="Y">
-                                    <Setter Property="IsMerged" Value="False"/>
+                                    <Setter Property="IsMerged" Value="False" />
                                 </Trigger>
                                 <Trigger Property="AxisOrientation" Value="X">
-                                    <Setter Property="LabelsRotation" Value="40"/>
+                                    <Setter Property="LabelsRotation" Value="40" />
                                 </Trigger>
                             </Style.Triggers>
                         </Style>
                         <Style TargetType="{x:Type lvc:Separator}">
-                            <Setter Property="StrokeThickness" Value="1"/>
-                            <Setter Property="Stroke" Value="#4BFFFFFF"/>
+                            <Setter Property="StrokeThickness" Value="1" />
+                            <Setter Property="Stroke" Value="#4BFFFFFF" />
                             <Style.Triggers>
                                 <Trigger Property="AxisOrientation" Value="X">
-                                    <Setter Property="IsEnabled" Value="False"/>
-                                    <Setter Property="Step" Value="1"/>
+                                    <Setter Property="IsEnabled" Value="False" />
+                                    <Setter Property="Step" Value="1" />
                                 </Trigger>
                             </Style.Triggers>
                         </Style>
@@ -153,10 +153,10 @@
                         <VisualBrush Visual="{Binding ElementName=Borderc}" />
                     </Grid.OpacityMask>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height=".50*"/>
-                        <RowDefinition Height=".5*"/>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height=".50*" />
+                        <RowDefinition Height=".5*" />
                     </Grid.RowDefinitions>
                     <Border x:Name="Borderc" Grid.Row="0" Grid.RowSpan="4" CornerRadius="5" Background="White" />
                     <Border Grid.Row="0" Grid.RowSpan="4" Background="{Binding BorderColor}" Margin="5,5,5,115" />
@@ -166,7 +166,7 @@
                         </lvc:CartesianChart.Series>
                     </lvc:CartesianChart>
                     <StackPanel Grid.Row="3" VerticalAlignment="Center" Margin="20, 0,20,0">
-                        <TextBlock Opacity=".4" FontSize="13"><Run Text="وضعیت دانش آموزان کلاس بصورت کلی"/></TextBlock>
+                        <TextBlock Opacity=".4" FontSize="13"><Run Text="وضعیت دانش آموزان کلاس بصورت کلی" /></TextBlock>
                     </StackPanel>
                 </Grid>
                 <Grid Margin="10" Width="270">
@@ -180,7 +180,7 @@
                     <Border x:Name="brdcl" CornerRadius="5" Background="White">
 
                         <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" Margin="10,10,10,10">
-                            <PersianCalendarWPF:PersianCalendar/>
+                            <PersianCalendarWPF:PersianCalendar />
                         </StackPanel>
                     </Border>
                 </Grid>

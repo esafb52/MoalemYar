@@ -11,7 +11,6 @@
 using LiveCharts;
 using LiveCharts.Wpf;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -27,6 +26,7 @@ namespace MoalemYar.UserControls
         public static int _SchoolCount = 0;
         public static int _StudentCount = 0;
         public static int _UserCount = 0;
+
         public Dashboard()
         {
             InitializeComponent();
@@ -47,7 +47,7 @@ namespace MoalemYar.UserControls
                 var xxxx = query.Where(y => y.Scores == "خیلی خوب").ToList();
                 AchievementChart.Series.Add(new LineSeries
                 {
-                    Values = new ChartValues<double>(new double[] { xxxx.Count,xxx.Count,xx.Count,x.Count }),
+                    Values = new ChartValues<double>(new double[] { xxxx.Count, xxx.Count, xx.Count, x.Count }),
                     StrokeDashArray = new System.Windows.Media.DoubleCollection(20)
                 });
                 AchievementChart.AxisX.Add(new Axis
@@ -55,7 +55,6 @@ namespace MoalemYar.UserControls
                     Labels = new string[] { "خیلی خوب", "خوب", "قابل قبول", "نیاز به تلاش بیشتر" },
                     Separator = new LiveCharts.Wpf.Separator { }
                 });
-
             }
         }
 
@@ -98,10 +97,8 @@ namespace MoalemYar.UserControls
                     }
                     catch (Exception)
                     {
-
                     }
                 }
-                
             }
         }
 
@@ -109,6 +106,7 @@ namespace MoalemYar.UserControls
         {
             getTopStudent(Convert.ToInt64(cmbEditBase.SelectedValue));
         }
+
         private void getSchool()
         {
             try

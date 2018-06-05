@@ -29,9 +29,9 @@ namespace MoalemYar
         public string appTitle { get; set; }
         internal static MainWindow main;
         private PersianCalendar pc = new PersianCalendar();
-        int _sch = 0;
-        int _stu = 0;
-        int _usr = 0;
+        private int _sch = 0;
+        private int _stu = 0;
+        private int _usr = 0;
         public INotificationMessageManager Manager { get; } = new NotificationMessageManager();
 
         public MainWindow()

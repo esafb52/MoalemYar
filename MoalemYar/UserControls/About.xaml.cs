@@ -43,6 +43,7 @@ namespace MoalemYar.UserControls
             AppVersion = AppVariable.getAppVersion;
             TimeColor = AppVariable.GetBrush(MainWindow.main.BorderBrush.ToString());
         }
+
         private void CheckUpdate()
         {
             try
