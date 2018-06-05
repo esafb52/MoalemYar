@@ -162,7 +162,7 @@
                     </Grid.RowDefinitions>
                     <Border x:Name="Borderc" Grid.Row="0" Grid.RowSpan="4" CornerRadius="5" Background="White" />
                     <Border Grid.Row="0" Grid.RowSpan="4" Background="{Binding BorderColor}" Margin="5,5,5,115" ></Border>
-                    <lvc:CartesianChart Name="AchievementChart" Grid.Row="2" Margin="10,10,10,115"  Hoverable="False" DataTooltip="{x:Null}" Grid.RowSpan="2">
+                    <lvc:CartesianChart Name="AchievementChart" Grid.Row="2" Margin="10,10,10,115"  Hoverable="True" DataTooltip="{x:Null}" Grid.RowSpan="2">
                         <lvc:CartesianChart.Series>
                             <lvc:ColumnSeries />
                         </lvc:CartesianChart.Series>
