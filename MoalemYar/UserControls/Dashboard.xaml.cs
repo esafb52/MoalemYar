@@ -37,17 +37,26 @@ namespace MoalemYar.UserControls
             txtStCount.Text = _StudentCount.ToString();
             txtUCount.Text = _UserCount.ToString();
             txtScCount.Text = _SchoolCount.ToString();
-            AchievementChart.Series.Add(new LineSeries
+
+            using (var db = new DataClass.myDbContext())
             {
-                Values = new ChartValues<double>(new double[] { 10, 25, 65, 57, 15, 70 }),
-                StrokeDashArray = new System.Windows.Media.DoubleCollection(20)
-            });
-            AchievementChart.AxisX.Add(new Axis
-            {
-                Labels = new string[] { "Item", "Item", "Item", "Item", "Item", "Item" },
-                Separator = new LiveCharts.Wpf.Separator { }
-            });
-            
+                var query = db.Scores;
+                var x = query.Where(y => y.Scores == "نیاز به تلاش بیشتر").ToList();
+                var xx = query.Where(y => y.Scores == "قابل قبول").ToList();
+                var xxx = query.Where(y => y.Scores == "خوب").ToList();
+                var xxxx = query.Where(y => y.Scores == "خیلی خوب").ToList();
+                AchievementChart.Series.Add(new LineSeries
+                {
+                    Values = new ChartValues<double>(new double[] { xxxx.Count,xxx.Count,xx.Count,x.Count }),
+                    StrokeDashArray = new System.Windows.Media.DoubleCollection(20)
+                });
+                AchievementChart.AxisX.Add(new Axis
+                {
+                    Labels = new string[] { "خیلی خوب", "خوب", "قابل قبول", "نیاز به تلاش بیشتر" },
+                    Separator = new LiveCharts.Wpf.Separator { }
+                });
+
+            }
         }
 
         public void getTopStudent(long BaseId)

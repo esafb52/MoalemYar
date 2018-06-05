@@ -7,7 +7,7 @@
              xmlns:Metro="clr-namespace:Arthas.Controls.Metro;assembly=Arthas"
              xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf" Loaded="UserControl_Loaded"
              mc:Ignorable="d" Style="{StaticResource myUserControl}"
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="800" d:DesignWidth="800">
     <Grid>
         <Button x:Name="btnCheckUpdate" Click="btnCheckUpdate_Click" Margin="5" HorizontalAlignment="Left" Grid.Row="2" Grid.Column="1" VerticalAlignment="Top" Width="235" Style="{StaticResource WorkButton}" Height="35">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
@@ -97,7 +97,7 @@
                     </Grid.OpacityMask>
 
                     <Border Name="brdprg" CornerRadius="5" Background="White">
-                        
+
                         <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" Margin="10,10,10,10">
                             <TextBlock FontWeight="Bold" Opacity=".4" Margin="0,5" FontSize="15">دانش آموزان برتر</TextBlock>
                             <TextBlock Name="txtSt1"  Opacity=".4" Margin="0,5" FontSize="15">دانش آموز 1</TextBlock>
@@ -161,18 +161,14 @@
                         <RowDefinition Height=".5*"></RowDefinition>
                     </Grid.RowDefinitions>
                     <Border x:Name="Borderc" Grid.Row="0" Grid.RowSpan="4" CornerRadius="5" Background="White" />
-                    <Border Grid.Row="0" Grid.RowSpan="3" Background="{Binding BorderColor}" Margin="5,5,5,0" ></Border>
-                    <lvc:CartesianChart Name="AchievementChart" Grid.Row="2" Margin="10, 0, 10, 10"  Hoverable="False" DataTooltip="{x:Null}">
+                    <Border Grid.Row="0" Grid.RowSpan="4" Background="{Binding BorderColor}" Margin="5,5,5,115" ></Border>
+                    <lvc:CartesianChart Name="AchievementChart" Grid.Row="2" Margin="10,10,10,115"  Hoverable="False" DataTooltip="{x:Null}" Grid.RowSpan="2">
                         <lvc:CartesianChart.Series>
                             <lvc:ColumnSeries />
                         </lvc:CartesianChart.Series>
                     </lvc:CartesianChart>
                     <StackPanel Grid.Row="3" VerticalAlignment="Center" Margin="20, 0,20,0">
-                        <TextBlock Opacity=".4" FontSize="13">میانگین نمرات این درس برابر است با:</TextBlock>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Name="txtAverageDouble" Foreground="#303030" FontSize="30" Text="20.45" />
-                            <TextBlock Name="txtAverage" Foreground="#303030" FontSize="16" VerticalAlignment="Bottom" Margin="8, 6">نیاز به تلاش بیشتر</TextBlock>
-                        </StackPanel>
+                        <TextBlock Opacity=".4" FontSize="13">وضعیت دانش آموزان کلاس بصورت کلی</TextBlock>
                     </StackPanel>
                 </Grid>
             </Metro:MetroWaterfallFlow>
