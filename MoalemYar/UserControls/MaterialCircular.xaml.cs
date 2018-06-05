@@ -20,6 +20,7 @@ using System.Net;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace MoalemYar.UserControls
 {
@@ -46,68 +47,90 @@ namespace MoalemYar.UserControls
 
             if (!System.IO.Directory.Exists(AppVariable.fileNameBakhsh + txtRow.Text + txtTitle.Text))
             {
-                btnOpen.IsEnabled = false;
-                btnSave.IsEnabled = true;
+                txtDown.Text= "دانلود";
             }
             else
             {
-                btnOpen.IsEnabled = true;
-                btnSave.IsEnabled = false;
+                txtDown.Text = "مطالعه";
+                Style style = this.FindResource("WorkButton") as Style;
+                btnSave.Style = style;
+                imgDown.Source = new BitmapImage(new Uri("pack://application:,,,/MoalemYar;component/Resources/pdf.png", UriKind.Absolute));
             }
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            prgDownload.Visibility = Visibility.Visible;
-            WebClient wc = new WebClient();
-
-            using (WebClient client = new WebClient())
+            if (!System.IO.Directory.Exists(AppVariable.fileNameBakhsh + txtRow.Text + txtTitle.Text))
             {
-                Uri ur = new Uri(Dlink);
-                var data = wc.DownloadData(Dlink);
+                prgDownload.Visibility = Visibility.Visible;
+                WebClient wc = new WebClient();
 
-                string fileExt = "";
-                if (!String.IsNullOrEmpty(wc.ResponseHeaders["Content-Disposition"]))
+                using (WebClient client = new WebClient())
                 {
-                    fileExt = System.IO.Path.GetExtension(wc.ResponseHeaders["Content-Disposition"].Substring(wc.ResponseHeaders["Content-Disposition"].IndexOf("filename=") + 9).Replace("\"", ""));
-                }
+                    Uri ur = new Uri(Dlink);
+                    var data = wc.DownloadData(Dlink);
 
-                client.DownloadProgressChanged += (o, ex) =>
-                {
-                    Dispatcher.Invoke(() =>
+                    string fileExt = "";
+                    if (!String.IsNullOrEmpty(wc.ResponseHeaders["Content-Disposition"]))
                     {
-                        prgDownload.Value = ex.ProgressPercentage;
-                    });
-                };
+                        fileExt = System.IO.Path.GetExtension(wc.ResponseHeaders["Content-Disposition"].Substring(wc.ResponseHeaders["Content-Disposition"].IndexOf("filename=") + 9).Replace("\"", ""));
+                    }
 
-                string TotPath = AppVariable.fileNameBakhsh + txtRow.Text + txtTitle.Text;
-                string dPath = string.Empty;
+                    client.DownloadProgressChanged += (o, ex) =>
+                    {
+                        Dispatcher.Invoke(() =>
+                        {
+                            prgDownload.Value = ex.ProgressPercentage;
+                        });
+                    };
 
-                if (fileExt.Equals(".rar") || fileExt.Equals(".zip"))
-                {
-                    dPath = AppVariable.fileNameBakhsh + @"\" + txtRow.Text + txtTitle.Text + fileExt;
-                }
-                else
-                {
-                    if (!System.IO.Directory.Exists(TotPath))
-                        System.IO.Directory.CreateDirectory(TotPath);
-                    dPath = TotPath + @"\" + txtRow.Text + txtTitle.Text + fileExt;
-                }
-
-                client.DownloadFileAsync(ur, dPath);
-
-                client.DownloadFileCompleted += (o, ex) =>
-                {
-                    btnSave.IsEnabled = false;
-                    btnOpen.IsEnabled = true;
-                    prgDownload.Visibility = Visibility.Hidden;
+                    string TotPath = AppVariable.fileNameBakhsh + txtRow.Text + txtTitle.Text;
+                    string dPath = string.Empty;
 
                     if (fileExt.Equals(".rar") || fileExt.Equals(".zip"))
                     {
-                        UnCompress(AppVariable.fileNameBakhsh + @"\" + txtRow.Text + txtTitle.Text + fileExt, AppVariable.fileNameBakhsh + @"\" + txtRow.Text + txtTitle.Text, fileExt);
+                        dPath = AppVariable.fileNameBakhsh + @"\" + txtRow.Text + txtTitle.Text + fileExt;
                     }
-                };
+                    else
+                    {
+                        if (!System.IO.Directory.Exists(TotPath))
+                            System.IO.Directory.CreateDirectory(TotPath);
+                        dPath = TotPath + @"\" + txtRow.Text + txtTitle.Text + fileExt;
+                    }
+
+                    client.DownloadFileAsync(ur, dPath);
+
+                    client.DownloadFileCompleted += (o, ex) =>
+                    {
+                        txtDown.Text = "مطالعه";
+                        Style style = this.FindResource("WorkButton") as Style;
+                        btnSave.Style = style;
+                        imgDown.Source = new BitmapImage(new Uri("pack://application:,,,/MoalemYar;component/Resources/pdf.png", UriKind.Absolute));
+
+                        prgDownload.Visibility = Visibility.Hidden;
+
+                        if (fileExt.Equals(".rar") || fileExt.Equals(".zip"))
+                        {
+                            UnCompress(AppVariable.fileNameBakhsh + @"\" + txtRow.Text + txtTitle.Text + fileExt, AppVariable.fileNameBakhsh + @"\" + txtRow.Text + txtTitle.Text, fileExt);
+                        }
+                    };
+                }
             }
+            else
+            {
+                try
+                {
+                    System.Diagnostics.Process.Start(AppVariable.fileNameBakhsh + txtRow.Text + txtTitle.Text);
+                }
+                catch (Win32Exception)
+                {
+                    System.Diagnostics.Process.Start(AppVariable.fileNameBakhsh + txtTitle.Text);
+                }
+                catch (FileNotFoundException)
+                {
+                }
+            }
+          
         }
 
         public void UnCompress(string Open, string Write, string FileExt)
@@ -152,19 +175,5 @@ namespace MoalemYar.UserControls
             };
         }
 
-        private void btnOpen_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                System.Diagnostics.Process.Start(AppVariable.fileNameBakhsh + txtRow.Text + txtTitle.Text);
-            }
-            catch (Win32Exception)
-            {
-                System.Diagnostics.Process.Start(AppVariable.fileNameBakhsh + txtTitle.Text);
-            }
-            catch (FileNotFoundException)
-            {
-            }
-        }
     }
 }
