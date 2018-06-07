@@ -627,47 +627,42 @@ namespace MoalemYar
 
                 case 2:
                     exAddOrUpdateStudent_Click(null, null);
-
                     break;
 
                 case 3:
                     exAddOrUpdateUser_Click(null, null);
-
                     break;
 
                 case 4:
                     exAttendancelist_Click(null, null);
-
                     break;
 
                 case 5:
                     exQuestionsList_Click(null, null);
-
                     break;
 
                 case 6:
                     exTopStudents_Click(null, null);
-
                     break;
 
                 case 7:
                     exAchievement_Click(null, null);
-
                     break;
 
                 case 8:
-                    exCircular_Click(null, null);
-
+                    exReport_Click(null, null);
                     break;
 
                 case 9:
-                    exBook_Click(null, null);
-
+                    exCircular_Click(null, null);
                     break;
 
                 case 10:
-                    exRoshd_Click(null, null);
+                    exBook_Click(null, null);
+                    break;
 
+                case 11:
+                    exRoshd_Click(null, null);
                     break;
             }
         }
@@ -682,10 +677,6 @@ namespace MoalemYar
         {
             if (!exContent.Content.ToString().Equals("MoalemYar.UserControls.Achievement"))
                 exContent.Content = new Achievement();
-        }
-
-        private void exMore_Click(object sender, EventArgs e)
-        {
         }
 
         private void exBook_Click(object sender, EventArgs e)

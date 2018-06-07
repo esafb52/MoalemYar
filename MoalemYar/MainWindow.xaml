@@ -26,12 +26,13 @@
                     <Metro:MetroMenuItem Header="ارزشیابی" Icon="/Resources/Check_w.png" Tag="5" Click="MetroMenuItem_Click" />
                     <Metro:MetroMenuItem Header="نفرات برتر" Icon="/Resources/Trophy_w.png" Tag="6" Click="MetroMenuItem_Click" />
                     <Metro:MetroMenuItem Header="پیشرفت تحصیلی" Icon="/Resources/Chart_w.png" Tag="7" Click="MetroMenuItem_Click" />
+                    <Metro:MetroMenuItem Header="کارنامه" Icon="/Resources/Chart_w.png" Tag="8" Click="MetroMenuItem_Click" />
                 </Metro:MetroMenuItem>
                 <Metro:MetroMenuSeparator />
                 <Metro:MetroMenuItem Header="بیشتر" Icon="/Resources/More_w.png">
-                    <Metro:MetroMenuItem Header="بخشنامه ها" Icon="/Resources/circular_w.png" Tag="8" Click="MetroMenuItem_Click" />
-                    <Metro:MetroMenuItem Header="کتب درسی" Icon="/Resources/book_w.png" Tag="9" Click="MetroMenuItem_Click" />
-                    <Metro:MetroMenuItem Header="مجلات رشد" Icon="/Resources/roshd_w.png" Tag="10" Click="MetroMenuItem_Click" />
+                    <Metro:MetroMenuItem Header="بخشنامه ها" Icon="/Resources/circular_w.png" Tag="9" Click="MetroMenuItem_Click" />
+                    <Metro:MetroMenuItem Header="کتب درسی" Icon="/Resources/book_w.png" Tag="10" Click="MetroMenuItem_Click" />
+                    <Metro:MetroMenuItem Header="مجلات رشد" Icon="/Resources/roshd_w.png" Tag="11" Click="MetroMenuItem_Click" />
                 </Metro:MetroMenuItem>
                 <Metro:MetroMenuSeparator />
             </Metro:MetroTitleMenuItem>
@@ -65,7 +66,7 @@
                                         <Metro:MetroExpander Name="exQuestionsList" Click="exQuestionsList_Click" FontWeight="Normal" Header="ارزشیابی" Icon="Resources/Ask.png" Hint="پرسش / امتحان" HintBackground="#e15b4f" />
                                     </StackPanel>
                                 </Metro:MetroExpander>
-                                <Metro:MetroExpander FontWeight="Medium" Name="exMore" Header="گزارش وضعیت" Icon="Resources/reportmove.png" IsExpanded="True" Click="exMore_Click">
+                                <Metro:MetroExpander FontWeight="Medium" Header="گزارش وضعیت" Icon="Resources/reportmove.png" IsExpanded="True">
                                     <StackPanel>
                                         <Metro:MetroExpander Name="exTopStudents" Click="exTopStudents_Click" Header="نفرات برتر" Icon="Resources/Trophy.png" Hint="انتخاب شاگرد" HintBackground="#e15b4f" />
                                         <Metro:MetroExpander Name="exAchievement" Click="exAchievement_Click" Header="پیشرفت تحصیلی" Icon="Resources/Chart.png" Hint="نمودار" HintBackground="#e15b4f" />

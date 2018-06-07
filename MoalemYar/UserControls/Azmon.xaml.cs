@@ -46,10 +46,6 @@ namespace MoalemYar.UserControls
             }
         }
 
-        private void exActivity_Click(object sender, EventArgs e)
-        {
-        }
-
         private void exAddorUpdateGroup_Click(object sender, EventArgs e)
         {
             if (!exContent.Content.ToString().Equals("MoalemYar.UserControls.AddAzmonGroup"))
