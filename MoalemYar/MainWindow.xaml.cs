@@ -49,9 +49,7 @@ namespace MoalemYar
             LoadSettings();
             LogifyCrashReport();
             getexHint();
-            Dashboard._SchoolCount = _sch;
-            Dashboard._StudentCount = _stu;
-            Dashboard._UserCount = _usr;
+            
             exContent.Content = new Dashboard();
         }
 

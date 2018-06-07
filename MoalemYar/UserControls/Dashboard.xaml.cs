@@ -23,9 +23,6 @@ namespace MoalemYar.UserControls
     public partial class Dashboard : UserControl
     {
         public Brush BorderColor { get; set; }
-        public static int _SchoolCount = 0;
-        public static int _StudentCount = 0;
-        public static int _UserCount = 0;
 
         public Dashboard()
         {
@@ -34,9 +31,9 @@ namespace MoalemYar.UserControls
             DataContext = this;
             BorderColor = AppVariable.GetBrush(FindElement.Settings.ChartColor ?? AppVariable.CHART_GREEN);
 
-            txtStCount.Text = _StudentCount.ToString();
-            txtUCount.Text = _UserCount.ToString();
-            txtScCount.Text = _SchoolCount.ToString();
+            txtStCount.Text = MainWindow.main.exAddOrUpdateStudent.Hint;
+            txtUCount.Text = MainWindow.main.exAddOrUpdateUser.Hint;
+            txtScCount.Text = MainWindow.main.exAddOrUpdateSchool.Hint;
 
             using (var db = new DataClass.myDbContext())
             {
