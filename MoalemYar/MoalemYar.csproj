@@ -14,7 +14,7 @@
     <WarningLevel>4</WarningLevel>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <AssemblyVersion>1.0.3526.0</AssemblyVersion>
+    <AssemblyVersion>1.0.3577.0</AssemblyVersion>
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -83,6 +83,14 @@
     </Reference>
     <Reference Include="SQLite.CodeFirst, Version=1.5.0.22, Culture=neutral, PublicKeyToken=eb96ba0a78d831a7, processorArchitecture=MSIL">
       <HintPath>..\packages\SQLite.CodeFirst.1.5.0.22\lib\net45\SQLite.CodeFirst.dll</HintPath>
+    </Reference>
+    <Reference Include="Stimulsoft.Report, Version=2018.2.2.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Stimulsoft Reports 2018.2.2\Libs\Wpf\Stimulsoft.Report.dll</HintPath>
+    </Reference>
+    <Reference Include="Stimulsoft.Report.Wpf, Version=2018.2.2.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Stimulsoft Reports 2018.2.2\Libs\Wpf\Stimulsoft.Report.Wpf.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -546,14 +554,14 @@
   <Target Name="EmbedReferencedAssemblies" AfterTargets="ResolveAssemblyReferences">
     <ItemGroup>
       <AssembliesToEmbed Include="@(ReferenceCopyLocalPaths)" />
-      <EmbeddedResource Include="@(AssembliesToEmbed)" Condition="$([System.Text.RegularExpressions.Regex]::IsMatch('%(AssembliesToEmbed.Filename)', ^((?!Logify.Alert.Wpf|Entity|System.Data.SQLite|Code).)*$)) And '%(AssembliesToEmbed.Extension)' == '.dll'">
+      <EmbeddedResource Include="@(AssembliesToEmbed)" Condition="$([System.Text.RegularExpressions.Regex]::IsMatch('%(AssembliesToEmbed.Filename)', ^((?!Logify.Alert.Wpf|Stimulsoft|Entity|System.Data.SQLite|Code).)*$)) And '%(AssembliesToEmbed.Extension)' == '.dll'">
         <LogicalName>%(AssembliesToEmbed.DestinationSubDirectory)%(AssembliesToEmbed.Filename)%(AssembliesToEmbed.Extension)</LogicalName>
       </EmbeddedResource>
     </ItemGroup>
     <Message Importance="high" Text="Embedding: @(AssembliesToEmbed->'%(DestinationSubDirectory)%(Filename)%(Extension)', ', ')" />
   </Target>
   <Target Name="DeleteAllReferenceCopyLocalPaths" AfterTargets="Build">
-    <Delete Files="@(ReferenceCopyLocalPaths->'$(OutDir)%(DestinationSubDirectory)%(Filename)%(Extension)')" Condition="$([System.Text.RegularExpressions.Regex]::IsMatch('%(Filename)', ^((?!Logify.Alert.Wpf|Entity|System.Data.SQLite|Code).)*$)) Or '%(Extension)' == '.xml'" />
+    <Delete Files="@(ReferenceCopyLocalPaths->'$(OutDir)%(DestinationSubDirectory)%(Filename)%(Extension)')" Condition="$([System.Text.RegularExpressions.Regex]::IsMatch('%(Filename)', ^((?!Logify.Alert.Wpf|Stimulsoft|Entity|System.Data.SQLite|Code).)*$)) Or '%(Extension)' == '.xml'" />
   </Target>
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.108.0\build\net451\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.108.0\build\net451\System.Data.SQLite.Core.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -12,6 +12,7 @@ using LiveCharts;
 using LiveCharts.Wpf;
 using System;
 using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
@@ -64,7 +65,8 @@ namespace MoalemYar.UserControls
                   c => c.StudentId,
                   v => v.Id,
                   (c, v) => new DataClass.DataTransferObjects.StudentsScoresDto { Id = c.Id, BaseId = v.BaseId, StudentId = v.Id, Name = v.Name, LName = v.LName, FName = v.FName, Scores = c.Scores }
-              ).OrderBy(x => x.Scores).Where(x => x.BaseId == BaseId).Take(7).ToList();
+              ).OrderBy(x => x.Scores).Where(x => x.BaseId == BaseId).ToList();
+
 
                 var res = query.GroupBy(x => new { x.StudentId })
                           .Select(x => new
@@ -74,27 +76,33 @@ namespace MoalemYar.UserControls
                               LName = x.FirstOrDefault().LName,
                               FName = x.FirstOrDefault().FName,
                               Sum = x.Sum(y => AppVariable.EnumToNumber(y.Scores))
-                          }).OrderByDescending(x => x.Sum).ToArray();
-                if (query.Any())
+                          }).OrderByDescending(x => x.Sum).Take(6).ToArray();
+
+                foreach (var item in res)
                 {
-                    try
+                    Arthas.Controls.Metro.MetroProgressBar metroProgressBar;
+                    TextBlock textBlock;
+                    Control _currentUser;
+                    metroProgressBar = new Arthas.Controls.Metro.MetroProgressBar()
                     {
-                        txtSt1.Text = query[0].Name + " " + query[0].LName;
-                        txtSt2.Text = query[1].Name + " " + query[1].LName;
-                        txtSt3.Text = query[2].Name + " " + query[2].LName;
-                        txtSt4.Text = query[3].Name + " " + query[3].LName;
-                        txtSt5.Text = query[4].Name + " " + query[4].LName;
-                        txtSt6.Text = query[5].Name + " " + query[5].LName;
-                        prgSt1.Value = res[0].Sum;
-                        prgSt2.Value = res[1].Sum;
-                        prgSt3.Value = res[2].Sum;
-                        prgSt4.Value = res[3].Sum;
-                        prgSt5.Value = res[4].Sum;
-                        prgSt6.Value = res[5].Sum;
-                    }
-                    catch (Exception)
+                        FlowDirection = FlowDirection.LeftToRight,
+                        Background = AppVariable.GetBrush("#15a4fa"),
+                        CornerRadius = new CornerRadius(0),
+                        Value = item.Sum
+                    };
+                    textBlock = new TextBlock()
                     {
-                    }
+                        Opacity = .4,
+                        Margin = new Thickness(0, 5, 0, 0),
+                        FontSize = 15,
+                        Text = item.Name + " " + item.LName
+                    };
+
+
+                    _currentUser = metroProgressBar;
+                    stkDash.Children.Add(textBlock);
+
+                    stkDash.Children.Add(_currentUser);
                 }
             }
         }
