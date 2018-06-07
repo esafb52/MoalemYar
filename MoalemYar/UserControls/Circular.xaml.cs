@@ -24,6 +24,7 @@ namespace MoalemYar.UserControls
     /// </summary>
     public partial class Circular : UserControl
     {
+        bool Permission = true;
         public Circular()
         {
             InitializeComponent();
@@ -70,6 +71,9 @@ namespace MoalemYar.UserControls
                     prgUpdate.Maximum = parsedValues.Count;
                     foreach (var item in parsedValues)
                     {
+                        if (!Permission)
+                            return;
+
                         await Task.Delay(100);
                         prgUpdate.Value += 1;
                         prgUpdate.Hint = string.Format("{0}%", ((prgUpdate.Value * 100) / parsedValues.Count).ToString("0"));
@@ -84,6 +88,11 @@ namespace MoalemYar.UserControls
                     MainWindow.main.ShowRecivedCircularNotification(false);
                 }
             }, DispatcherPriority.ContextIdle);
+        }
+
+        private void UserControl_Unloaded(object sender, RoutedEventArgs e)
+        {
+            Permission = false;
         }
     }
 }
