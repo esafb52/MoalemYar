@@ -711,5 +711,11 @@ namespace MoalemYar
             if(!exContent.Content.ToString().Equals("MoalemYar.UserControls.Dashboard"))
                 exContent.Content = new Dashboard();
         }
+
+        private void exReport_Click(object sender, EventArgs e)
+        {
+            if (!exContent.Content.ToString().Equals("MoalemYar.UserControls.Reporting"))
+                exContent.Content = new Reporting();
+        }
     }
 }

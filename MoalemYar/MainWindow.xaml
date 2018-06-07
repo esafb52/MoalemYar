@@ -69,6 +69,7 @@
                                     <StackPanel>
                                         <Metro:MetroExpander Name="exTopStudents" Click="exTopStudents_Click" Header="نفرات برتر" Icon="Resources/Trophy.png" Hint="انتخاب شاگرد" HintBackground="#e15b4f" />
                                         <Metro:MetroExpander Name="exAchievement" Click="exAchievement_Click" Header="پیشرفت تحصیلی" Icon="Resources/Chart.png" Hint="نمودار" HintBackground="#e15b4f" />
+                                        <Metro:MetroExpander Name="exReport" Click="exReport_Click" Header="کارنامه" Icon="Resources/Chart.png" Hint="ماهانه" HintBackground="#e15b4f" />
                                     </StackPanel>
                                 </Metro:MetroExpander>
                                 <Metro:MetroExpander FontWeight="Medium" Header="بیشتر" Icon="Resources/more.png" IsExpanded="True">
