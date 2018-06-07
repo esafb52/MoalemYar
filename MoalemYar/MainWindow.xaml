@@ -99,17 +99,6 @@
                     </Metro:MetroScrollViewer>
                 </Grid>
             </Metro:MetroMenuTabItem>
-            <Metro:MetroMenuTabItem Name="ex3" Header="گزارش گیری" Icon="Resources/Report.png" IconMove="Resources/ReportMove.png">
-                <Grid>
-                    <ContentControl>
-                        <ContentControl.ContentTemplate>
-                            <DataTemplate>
-                                <local:Reporting />
-                            </DataTemplate>
-                        </ContentControl.ContentTemplate>
-                    </ContentControl>
-                </Grid>
-            </Metro:MetroMenuTabItem>
             <Metro:MetroMenuTabItem Name="ex4" Header="تنظیمات نرم افزار" Icon="Resources/Gears.png" IconMove="Resources/GearsMove.png">
                 <Grid>
                     <Metro:MetroScrollViewer>

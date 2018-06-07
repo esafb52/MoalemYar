@@ -52,22 +52,26 @@ namespace MoalemYar.UserControls
 
         private void exAddorUpdateGroup_Click(object sender, EventArgs e)
         {
-            exContent.Content = new AddAzmonGroup();
+            if (!exContent.Content.ToString().Equals("MoalemYar.UserControls.AddAzmonGroup"))
+                exContent.Content = new AddAzmonGroup();
         }
 
         private void exAddorUpdateQuestion_Click(object sender, EventArgs e)
         {
-            exContent.Content = new AddQuestions();
+            if (!exContent.Content.ToString().Equals("MoalemYar.UserControls.AddQuestions"))
+                exContent.Content = new AddQuestions();
         }
 
         private void exAzmon_Click(object sender, EventArgs e)
         {
-            exContent.Content = new StartAzmon();
+            if (!exContent.Content.ToString().Equals("MoalemYar.UserControls.StartAzmon"))
+                exContent.Content = new StartAzmon();
         }
 
         private void exHistory_Click(object sender, EventArgs e)
         {
-            exContent.Content = new AzmonHistory();
+            if (!exContent.Content.ToString().Equals("MoalemYar.UserControls.AzmonHistory"))
+                exContent.Content = new AzmonHistory();
         }
     }
 }

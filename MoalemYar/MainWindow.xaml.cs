@@ -572,12 +572,8 @@ namespace MoalemYar
 
         private void exAddOrUpdateSchool_Click(object sender, EventArgs e)
         {
-            exContent.Content = new AddSchool();
-        }
-
-        private void exAddOrUpdateClass_Click(object sender, EventArgs e)
-        {
-            exContent.Content = new About();
+            if (!exContent.Content.ToString().Equals("MoalemYar.UserControls.AddSchool"))
+                exContent.Content = new AddSchool();
         }
 
         private void MetroExpander_Click(object sender, EventArgs e)
@@ -594,22 +590,26 @@ namespace MoalemYar
 
         private void exAddOrUpdateUser_Click(object sender, EventArgs e)
         {
-            exContent.Content = new AddUser();
+            if (!exContent.Content.ToString().Equals("MoalemYar.UserControls.AddUser"))
+                exContent.Content = new AddUser();
         }
 
         private void exAddOrUpdateStudent_Click(object sender, EventArgs e)
         {
-            exContent.Content = new AddStudent();
+            if (!exContent.Content.ToString().Equals("MoalemYar.UserControls.AddStudent"))
+                exContent.Content = new AddStudent();
         }
 
         private void exAttendancelist_Click(object sender, EventArgs e)
         {
-            exContent.Content = new Attendancelist();
+            if (!exContent.Content.ToString().Equals("MoalemYar.UserControls.Attendancelist"))
+                exContent.Content = new Attendancelist();
         }
 
         private void exQuestionsList_Click(object sender, EventArgs e)
         {
-            exContent.Content = new QuestionsList();
+            if (!exContent.Content.ToString().Equals("MoalemYar.UserControls.QuestionsList"))
+                exContent.Content = new QuestionsList();
         }
 
         private void MetroMenuItem_Click(object sender, RoutedEventArgs e)
@@ -674,12 +674,14 @@ namespace MoalemYar
 
         private void exTopStudents_Click(object sender, EventArgs e)
         {
-            exContent.Content = new TopStudents();
+            if (!exContent.Content.ToString().Equals("MoalemYar.UserControls.TopStudents"))
+                exContent.Content = new TopStudents();
         }
 
         private void exAchievement_Click(object sender, EventArgs e)
         {
-            exContent.Content = new Achievement();
+            if (!exContent.Content.ToString().Equals("MoalemYar.UserControls.Achievement"))
+                exContent.Content = new Achievement();
         }
 
         private void exMore_Click(object sender, EventArgs e)
@@ -688,22 +690,26 @@ namespace MoalemYar
 
         private void exBook_Click(object sender, EventArgs e)
         {
-            exContent.Content = new Books();
+            if (!exContent.Content.ToString().Equals("MoalemYar.UserControls.Books"))
+                exContent.Content = new Books();
         }
 
         private void exCircular_Click(object sender, EventArgs e)
         {
-            exContent.Content = new Circular();
+            if (!exContent.Content.ToString().Equals("MoalemYar.UserControls.Circular"))
+                exContent.Content = new Circular();
         }
 
         private void exRoshd_Click(object sender, EventArgs e)
         {
-            exContent.Content = new Magazine();
+            if (!exContent.Content.ToString().Equals("MoalemYar.UserControls.Magazine"))
+                exContent.Content = new Magazine();
         }
 
         private void exDashboard_Click(object sender, EventArgs e)
         {
-            exContent.Content = new Dashboard();
+            if(!exContent.Content.ToString().Equals("MoalemYar.UserControls.Dashboard"))
+                exContent.Content = new Dashboard();
         }
     }
 }
