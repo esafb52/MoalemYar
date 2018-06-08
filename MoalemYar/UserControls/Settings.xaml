@@ -48,13 +48,6 @@
                     </Metro:MetroGroupBox>
                 </Grid>
                 <Grid>
-                    <Metro:MetroGroupBox Margin="5" Header="کمک به بهبود برنامه">
-                        <StackPanel>
-                            <Metro:MetroSwitch Name="swAutoReport" Margin="19" IsChecked="True" Content="ارسال خودکار خطاهای برنامه به سازنده" Checked="swAutoReport_Checked" Unchecked="swAutoReport_Checked"></Metro:MetroSwitch>
-                        </StackPanel>
-                    </Metro:MetroGroupBox>
-                </Grid>
-                <Grid>
                     <Metro:MetroGroupBox Margin="5" Header="تنظیمات کارخانه">
                         <StackPanel Orientation="Horizontal">
                             <Button x:Name="btnFactoryReset" Click="btnFactoryReset_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Style="{StaticResource WorkButtonRed}" Height="35">

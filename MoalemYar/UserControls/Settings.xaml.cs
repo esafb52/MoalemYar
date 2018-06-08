@@ -72,11 +72,6 @@ namespace MoalemYar.UserControls
             else
                 swAutoStart.IsChecked = false;
 
-            if (FindElement.Settings.AutoSendReport)
-                swAutoReport.IsChecked = true;
-            else
-                swAutoReport.IsChecked = false;
-
             var hb_Menu = FindElement.Settings.HamburgerMenu ?? true;
             Hamborger_Menu.IsChecked = hb_Menu;
 
@@ -110,12 +105,6 @@ namespace MoalemYar.UserControls
         {
             FindElement.Settings.HamburgerMenu = Hamborger_Menu.IsChecked;
             MainWindow.main.tab.IconMode = Convert.ToBoolean(!Hamborger_Menu.IsChecked);
-        }
-
-        private void swAutoReport_Checked(object sender, RoutedEventArgs e)
-        {
-            FindElement.Settings.AutoSendReport = Convert.ToBoolean(swAutoReport.IsChecked);
-            MainWindow.main.LogifyCrashReport();
         }
 
         private void btnFactoryReset_Click(object sender, RoutedEventArgs e)

@@ -19,7 +19,6 @@ public class ISettings : JsonSettings
     public virtual bool CredentialLogin { get; set; }
     public virtual bool Autorun { get; set; }
     public virtual bool? HamburgerMenu { get; set; }
-    public virtual bool AutoSendReport { get; set; }
     public virtual string SkinCode { get; set; }
     public virtual string VersionCode { get; set; }
     public virtual int? ChartType { get; set; }

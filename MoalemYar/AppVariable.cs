@@ -18,12 +18,6 @@ namespace MoalemYar
 {
     public class AppVariable
     {
-        #region Crash Report
-
-        public static string LogifyOfflinePath = fileName + @"\";
-        public static string LogifyAPIKey = "SPECIFY_YOUR_API_KEY_HERE"; // http://logify.devexpress.com/   //Todo: Add API
-
-        #endregion Crash Report
 
         #region Update Configuration
 

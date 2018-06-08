@@ -9,7 +9,6 @@
 ***********************************************************************************/
 
 using Arthas.Controls.Metro;
-using DevExpress.Logify.WPF;
 using Enterwell.Clients.Wpf.Notifications;
 using MoalemYar.UserControls;
 using Ookii.Dialogs.Wpf;
@@ -47,7 +46,6 @@ namespace MoalemYar
         private void MetroWindow_Loaded(object sender, RoutedEventArgs e)
         {
             LoadSettings();
-            LogifyCrashReport();
             getexHint();
             
             exContent.Content = new Dashboard();
@@ -82,30 +80,6 @@ namespace MoalemYar
         }
 
         #endregion Query
-
-        public void LogifyCrashReport()
-        {
-            try
-            {
-                var isEnabledReport = FindElement.Settings.AutoSendReport;
-                LogifyAlert client = LogifyAlert.Instance;
-                client.ApiKey = AppVariable.LogifyAPIKey;
-                client.AppName = AppVariable.getAppName;
-                client.AppVersion = AppVariable.getAppVersion;
-                client.OfflineReportsEnabled = true;
-                client.OfflineReportsCount = 20;
-                client.OfflineReportsDirectory = AppVariable.LogifyOfflinePath;
-                client.SendOfflineReports();
-                client.StartExceptionsHandling();
-                if (isEnabledReport.Equals("True"))
-                    client.StartExceptionsHandling();
-                else
-                    client.StopExceptionsHandling();
-            }
-            catch (Exception)
-            {
-            }
-        }
 
         private void LoadSettings()
         {
