@@ -37,6 +37,9 @@ Migration<br>
 ![Optional Text](Screen8.png)
 ![Optional Text](Screen9.png)
 ![Optional Text](Screen10.png)
-
+![Optional Text](Screen11.png)
+![Optional Text](Screen12.png)
+![Optional Text](Screen13.png)
+![Optional Text](Screen14.png)
 ## Previous Version
 https://github.com/ghost1372/ClassSRM
