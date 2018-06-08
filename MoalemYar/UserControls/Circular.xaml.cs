@@ -52,7 +52,7 @@ namespace MoalemYar.UserControls
                     HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
                     doc.LoadHtml(page);
 
-                    var parsedValues = doc.DocumentNode.SelectNodes("//table[@class='table table-striped table-hover']/tr").Skip(1)
+                    var query = doc.DocumentNode.SelectNodes("//table[@class='table table-striped table-hover']/tr").Skip(1)
                          .Select(r =>
                          {
                              var linkNode = r.SelectSingleNode(".//a");
@@ -68,14 +68,15 @@ namespace MoalemYar.UserControls
                                  SubType = r.SelectSingleNode(".//td[6]").InnerText,
                              };
                          }
-                         ).Take(Limited ? 10 : 99999).ToList();
+                         ).ToList();
+                    var parsedValues = query.Take(Limited ? 20 : query.Count).ToList();
                     prgUpdate.Maximum = parsedValues.Count;
                     foreach (var item in parsedValues)
                     {
                         if (!Permission)
                             return;
 
-                        await Task.Delay(100);
+                        await Task.Delay(10);
                         prgUpdate.Value += 1;
                         prgUpdate.Hint = string.Format("{0}%", ((prgUpdate.Value * 100) / parsedValues.Count).ToString("0"));
                         _addUser = new MaterialCircular(item.Row, item.Title, item.Category, item.Type, item.SubType, item.Date, item.link);

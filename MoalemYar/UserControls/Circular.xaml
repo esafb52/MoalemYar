@@ -16,7 +16,7 @@
                     <TextBlock Name="txtStop" TextWrapping="NoWrap" Text="توقف" FontSize="13" Foreground="#ffffff" />
                 </StackPanel>
             </Button>
-            <Metro:MetroSwitch IsChecked="True" Name="swLimit" Checked="MetroSwitch_Checked" Unchecked="MetroSwitch_Checked" FlowDirection="LeftToRight" Margin="10" Content="دریافت 10 بخشنامه آخر"/>
+            <Metro:MetroSwitch IsChecked="True" Name="swLimit" Checked="MetroSwitch_Checked" Unchecked="MetroSwitch_Checked" FlowDirection="LeftToRight" Margin="10" Content="دریافت 20 بخشنامه آخر"/>
         </StackPanel>
         <Metro:MetroProgressBar Margin="20,56,20,0" Name="prgUpdate" CornerRadius="0" Background="#15a4fa" ValueChanged="prgUpdate_ValueChanged" FlowDirection="LeftToRight" VerticalAlignment="Top"/>
         <Metro:MetroScrollViewer Margin="20,85,20,10">
