@@ -647,10 +647,6 @@ namespace MoalemYar
                     exAchievement_Click(null, null);
                     break;
 
-                case 8:
-                    exReport_Click(null, null);
-                    break;
-
                 case 9:
                     exCircular_Click(null, null);
                     break;
@@ -701,10 +697,5 @@ namespace MoalemYar
                 exContent.Content = new Dashboard();
         }
 
-        private void exReport_Click(object sender, EventArgs e)
-        {
-            if (!exContent.Content.ToString().Equals("MoalemYar.UserControls.Reporting"))
-                exContent.Content = new Reporting();
-        }
     }
 }

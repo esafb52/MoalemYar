@@ -14,7 +14,7 @@
     <WarningLevel>4</WarningLevel>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <AssemblyVersion>1.0.3577.0</AssemblyVersion>
+    <AssemblyVersion>1.0.3622.0</AssemblyVersion>
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -83,14 +83,6 @@
     </Reference>
     <Reference Include="SQLite.CodeFirst, Version=1.5.0.22, Culture=neutral, PublicKeyToken=eb96ba0a78d831a7, processorArchitecture=MSIL">
       <HintPath>..\packages\SQLite.CodeFirst.1.5.0.22\lib\net45\SQLite.CodeFirst.dll</HintPath>
-    </Reference>
-    <Reference Include="Stimulsoft.Report, Version=2018.2.2.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files (x86)\Stimulsoft Reports 2018.2.2\Libs\Wpf\Stimulsoft.Report.dll</HintPath>
-    </Reference>
-    <Reference Include="Stimulsoft.Report.Wpf, Version=2018.2.2.0, Culture=neutral, PublicKeyToken=ebe6666cba19647a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files (x86)\Stimulsoft Reports 2018.2.2\Libs\Wpf\Stimulsoft.Report.Wpf.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -200,9 +192,6 @@
     <Compile Include="UserControls\QuestionsList.xaml.cs">
       <DependentUpon>QuestionsList.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Reporting.xaml.cs">
-      <DependentUpon>Reporting.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UserControls\Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
@@ -300,10 +289,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\QuestionsList.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UserControls\Reporting.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
