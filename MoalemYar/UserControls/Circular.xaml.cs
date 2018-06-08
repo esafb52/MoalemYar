@@ -14,7 +14,7 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-
+using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 
 namespace MoalemYar.UserControls
@@ -25,6 +25,7 @@ namespace MoalemYar.UserControls
     public partial class Circular : UserControl
     {
         bool Permission = true;
+        bool Limited = false;
         public Circular()
         {
             InitializeComponent();
@@ -67,7 +68,7 @@ namespace MoalemYar.UserControls
                                  SubType = r.SelectSingleNode(".//td[6]").InnerText,
                              };
                          }
-                         ).ToList();
+                         ).Take(Limited ? 10 : 99999).ToList();
                     prgUpdate.Maximum = parsedValues.Count;
                     foreach (var item in parsedValues)
                     {
@@ -82,6 +83,15 @@ namespace MoalemYar.UserControls
                         waterfallFlow.Children.Add(_currentUser);
                         waterfallFlow.Refresh();
                     }
+                    if(prgUpdate.Hint=="100%")
+                    {
+                        Permission = false;
+                        txtStop.Text = "دریافت";
+                        Style style = this.FindResource("WorkButtonGreen") as Style;
+                        btnStop.Style = style;
+                        img.Source = new BitmapImage(new Uri("pack://application:,,,/MoalemYar;component/Resources/start.png", UriKind.Absolute));
+
+                    }
                 }
                 catch (WebException)
                 {
@@ -93,6 +103,35 @@ namespace MoalemYar.UserControls
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
         {
             Permission = false;
+        }
+
+        private void btnStop_Click(object sender, RoutedEventArgs e)
+        {
+            if(Permission)
+            {
+                Permission = false;
+                txtStop.Text = "دریافت";
+                Style style = this.FindResource("WorkButtonGreen") as Style;
+                btnStop.Style = style;
+                img.Source = new BitmapImage(new Uri("pack://application:,,,/MoalemYar;component/Resources/start.png", UriKind.Absolute));
+            }
+            else
+            {
+                Permission = true;
+                txtStop.Text = "توقف";
+                Style style = this.FindResource("WorkButton") as Style;
+                btnStop.Style = style;
+                img.Source = new BitmapImage(new Uri("pack://application:,,,/MoalemYar;component/Resources/stop.png", UriKind.Absolute));
+                UserControl_Loaded(null, null);
+            }
+        }
+
+        private void MetroSwitch_Checked(object sender, RoutedEventArgs e)
+        {
+            if (swLimit.IsChecked == true)
+                Limited = true;
+            else
+                Limited = false;
         }
     }
 }

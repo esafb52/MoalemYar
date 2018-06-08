@@ -8,8 +8,18 @@
              mc:Ignorable="d" Style="{StaticResource myUserControl}"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <Metro:MetroProgressBar Margin="20,10,20,407" Name="prgUpdate" CornerRadius="0" Background="#15a4fa" FlowDirection="LeftToRight" ValueChanged="prgUpdate_ValueChanged" />
-        <Metro:MetroScrollViewer Margin="20,48,20,10">
+
+        <StackPanel Orientation="Horizontal" Height="56" VerticalAlignment="Top">
+            <Button x:Name="btnStop" Click="btnStop_Click" Margin="20,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="134" Style="{StaticResource WorkButton}" Height="35">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                    <Image Name="img" Height="16" Width="16" Margin="10,0,30,0" Source="/Resources/stop.png" />
+                    <TextBlock Name="txtStop" TextWrapping="NoWrap" Text="توقف" FontSize="13" Foreground="#ffffff" />
+                </StackPanel>
+            </Button>
+            <Metro:MetroSwitch IsChecked="True" Name="swLimit" Checked="MetroSwitch_Checked" Unchecked="MetroSwitch_Checked" FlowDirection="LeftToRight" Margin="10" Content="دریافت 10 بخشنامه آخر"/>
+        </StackPanel>
+        <Metro:MetroProgressBar Margin="20,56,20,0" Name="prgUpdate" CornerRadius="0" Background="#15a4fa" ValueChanged="prgUpdate_ValueChanged" FlowDirection="LeftToRight" VerticalAlignment="Top"/>
+        <Metro:MetroScrollViewer Margin="20,85,20,10">
             <Metro:MetroWaterfallFlow  x:Name="waterfallFlow" ListWidth="300" />
         </Metro:MetroScrollViewer>
     </Grid>
