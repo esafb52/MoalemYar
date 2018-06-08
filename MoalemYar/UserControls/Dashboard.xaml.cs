@@ -24,7 +24,7 @@ namespace MoalemYar.UserControls
     public partial class Dashboard : UserControl
     {
         public Brush BorderColor { get; set; }
-
+        bool runFirst = false;
         public Dashboard()
         {
             InitializeComponent();
@@ -132,8 +132,13 @@ namespace MoalemYar.UserControls
 
         private void UserControl_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            getSchool();
-            cmbEditBase.SelectedIndex = FindElement.Settings.DefaultSchool ?? -1;
+            if (!runFirst)
+            {
+                getSchool();
+                cmbEditBase.SelectedIndex = FindElement.Settings.DefaultSchool ?? -1;
+                runFirst = true;
+            }
+            
         }
 
         private void btnCheckUpdate_Click(object sender, System.Windows.RoutedEventArgs e)
