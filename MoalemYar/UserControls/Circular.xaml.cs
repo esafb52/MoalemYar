@@ -52,7 +52,7 @@ namespace MoalemYar.UserControls
                     HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
                     doc.LoadHtml(page);
 
-                    var query = doc.DocumentNode.SelectNodes("//table[@class='table table-striped table-hover']/tr").Skip(1)
+                    var query = doc.DocumentNode.SelectNodes("//table[@class='table table-striped table-hover']/tr")
                          .Select(r =>
                          {
                              var linkNode = r.SelectSingleNode(".//a");
