@@ -8,7 +8,7 @@
              xmlns:Metro="clr-namespace:Arthas.Controls.Metro;assembly=Arthas"
 
              Width="325" Height="240">
-    <Grid Width="300" Height="230">
+    <Grid Margin="5" Width="300" Height="210">
         <Grid.Effect>
             <DropShadowEffect BlurRadius="15" Direction="-90" RenderingBias="Quality" Opacity=".2" ShadowDepth="1" />
         </Grid.Effect>

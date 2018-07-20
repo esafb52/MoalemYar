@@ -18,7 +18,9 @@
             </Button>
             <Metro:MetroSwitch IsChecked="True" Name="swLimit" Checked="MetroSwitch_Checked" Unchecked="MetroSwitch_Checked" FlowDirection="LeftToRight" Margin="10" Content="دریافت 20 بخشنامه آخر"/>
         </StackPanel>
-        <Metro:MetroProgressBar Margin="20,56,20,0" Name="prgUpdate" CornerRadius="0" Background="#15a4fa" ValueChanged="prgUpdate_ValueChanged" FlowDirection="LeftToRight" VerticalAlignment="Top"/>
+        <Metro:MetroTextBox IsEnabled="False" Name="txtSearch" TextChanged="MetroTextBox_TextChanged" InputHint="جستجو..." PopupHint="جستجو..." MetroPopupBackgroundState="Red2" Height="30" VerticalAlignment="Top" Margin="391,10,40,0"/>
+
+        <Metro:MetroProgressBar Margin="20,56,40,0" Name="prgUpdate" CornerRadius="0" Background="#15a4fa" ValueChanged="prgUpdate_ValueChanged" FlowDirection="LeftToRight" VerticalAlignment="Top"/>
         <Metro:MetroScrollViewer Margin="20,85,20,10">
             <Metro:MetroWaterfallFlow  x:Name="waterfallFlow" ListWidth="300" />
         </Metro:MetroScrollViewer>

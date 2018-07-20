@@ -24,6 +24,7 @@ namespace MoalemYar.UserControls
     /// </summary>
     public partial class Circular : UserControl
     {
+        System.Collections.Generic.List<DelegationLink> myClass;
         bool Permission = true;
         bool Limited = false;
         public Circular()
@@ -70,6 +71,7 @@ namespace MoalemYar.UserControls
                          }
                          ).ToList();
                     var parsedValues = query.Take(Limited ? 20 : query.Count).ToList();
+                    myClass = parsedValues;
                     prgUpdate.Maximum = parsedValues.Count;
                     foreach (var item in parsedValues)
                     {
@@ -91,7 +93,7 @@ namespace MoalemYar.UserControls
                         Style style = this.FindResource("WorkButtonGreen") as Style;
                         btnStop.Style = style;
                         img.Source = new BitmapImage(new Uri("pack://application:,,,/MoalemYar;component/Resources/start.png", UriKind.Absolute));
-
+                        txtSearch.IsEnabled = true;
                     }
                 }
                 catch (WebException)
@@ -133,6 +135,26 @@ namespace MoalemYar.UserControls
                 Limited = true;
             else
                 Limited = false;
+        }
+
+        private void MetroTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Dispatcher.Invoke<Task>(async () =>
+            {
+                waterfallFlow.Children.Clear();
+                MaterialCircular _addUser;
+                Control _currentUser;
+                var parsedValues = myClass.Where(x=>x.Title.Contains(txtSearch.Text) || x.Date.Contains(txtSearch.Text));
+                foreach (var item in parsedValues)
+                {
+                    
+                    await Task.Delay(10);                   
+                    _addUser = new MaterialCircular(item.Row, item.Title, item.Category, item.Type, item.SubType, item.Date, item.link);
+                    _currentUser = _addUser;
+                    waterfallFlow.Children.Add(_currentUser);
+                    waterfallFlow.Refresh();
+                }
+            }, DispatcherPriority.ContextIdle);
         }
     }
 }
