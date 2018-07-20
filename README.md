@@ -27,19 +27,19 @@ Migration<br>
  [via the releases tab](https://github.com/ghost1372/MoalemYar/releases).<br>
 
 ## Images
-![Optional Text](Screen1.png)
-![Optional Text](Screen2.png)
-![Optional Text](Screen3.png)
-![Optional Text](Screen4.png)
-![Optional Text](Screen5.png)
-![Optional Text](Screen6.png)
-![Optional Text](Screen7.png)
-![Optional Text](Screen8.png)
-![Optional Text](Screen9.png)
-![Optional Text](Screen10.png)
-![Optional Text](Screen11.png)
-![Optional Text](Screen12.png)
-![Optional Text](Screen13.png)
-![Optional Text](Screen14.png)
+![Optional Text](ScreenShot/Screen1.png)
+![Optional Text](ScreenShot/Screen2.png)
+![Optional Text](ScreenShot/Screen3.png)
+![Optional Text](ScreenShot/Screen4.png)
+![Optional Text](ScreenShot/Screen5.png)
+![Optional Text](ScreenShot/Screen6.png)
+![Optional Text](ScreenShot/Screen7.png)
+![Optional Text](ScreenShot/Screen8.png)
+![Optional Text](ScreenShot/Screen9.png)
+![Optional Text](ScreenShot/Screen10.png)
+![Optional Text](ScreenShot/Screen11.png)
+![Optional Text](ScreenShot/Screen12.png)
+![Optional Text](ScreenShot/Screen13.png)
+![Optional Text](ScreenShot/Screen14.png)
 ## Previous Version
 https://github.com/ghost1372/ClassSRM
