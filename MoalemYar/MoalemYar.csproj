@@ -114,6 +114,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BaseAttachedProperty.cs" />
+    <Compile Include="BaseValueConverter.cs" />
+    <Compile Include="BooleanToVisiblityConverter.cs" />
     <Compile Include="DataClass\DataTransferObjects.cs" />
     <Compile Include="DataClass\MigrationBuilder.cs" />
     <Compile Include="DataClass\MigrationFormatter.cs" />
@@ -131,6 +134,7 @@
     <Compile Include="FindElement.cs" />
     <Compile Include="ISettings.cs" />
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="MonitorPasswordProperty.cs" />
     <Compile Include="MultiplyConverter.cs" />
     <Compile Include="UserControls\About.xaml.cs">
       <DependentUpon>About.xaml</DependentUpon>

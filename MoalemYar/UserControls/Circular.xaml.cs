@@ -46,9 +46,9 @@ namespace MoalemYar.UserControls
                 MaterialCircular _addUser;
                 Control _currentUser;
 
-                try
-                {
-                    WebClient webClient = new WebClientWithTimeout();
+            try
+            {
+                WebClient webClient = new WebClientWithTimeout();
                     var page = webClient.DownloadString(FindElement.Settings.DefaultServer ?? AppVariable.DefaultServer2);
                     HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
                     doc.LoadHtml(page);

@@ -42,8 +42,8 @@
                         <Metro:MetroWaterfallFlow ListWidth="350" VerticalAlignment="Top" Height="55" Grid.Row="1">
                             <StackPanel Margin="0,5,0,0" Orientation="Vertical">
                                 <Metro:MetroTextBox MaxLength="20" Margin="2" Name="txtAddUsername" TabIndex="0" InputHint="نام کاربری" Height="30" PopupHint="نام کاربری باید بصورت لاتین باشد" MetroPopupBackgroundState="DarkRed" />
-                                <Metro:MetroTextBox MaxLength="20" Margin="2" Name="txtAddPassword" IsPassWordBox="True" TabIndex="1" InputHint="رمز عبور" PopupHint="رمز عبور می تواند ترکیبی از حروف و اعداد باشد" MetroPopupBackgroundState="DarkRed" Height="30" />
-                                <Metro:MetroTextBox MaxLength="20" Margin="2" Name="txtAddPasswordAg" IsPassWordBox="True" TabIndex="2" InputHint="تکرار رمز عبور" Height="30" PopupHint="رمز عبور خود را تکرار کنید" MetroPopupBackgroundState="DarkRed" />
+                                <PasswordBox Style="{StaticResource txtPassword}" MaxLength="20" Margin="2" Name="txtAddPassword" Tag="رمز عبور" TabIndex="1" />
+                                <PasswordBox Style="{StaticResource txtPassword}" MaxLength="20" Margin="2" Name="txtAddPasswordAg" TabIndex="2" Tag="تکرار رمز عبور"/>
                             </StackPanel>
                         </Metro:MetroWaterfallFlow>
                     </StackPanel>

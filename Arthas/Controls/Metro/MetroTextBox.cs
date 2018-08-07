@@ -65,7 +65,6 @@ namespace Arthas.Controls.Metro
 
         public MetroTextBox()
         {
-            ContextMenu = null;
             Loaded += delegate { ErrorCheck(); };
             TextChanged += delegate { ErrorCheck(); };
             CommandBindings.Add(new CommandBinding(ButtonClickCommand, delegate { if (ButtonClick != null) { ButtonClick(this, null); } }));

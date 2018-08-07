@@ -178,11 +178,11 @@ namespace MoalemYar.UserControls
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            if (txtAddUsername.Text == string.Empty || txtAddPassword.Text == string.Empty || txtAddPasswordAg.Text == string.Empty)
+            if (txtAddUsername.Text == string.Empty || txtAddPassword.Password == string.Empty || txtAddPasswordAg.Password == string.Empty)
             {
                 MainWindow.main.ShowFillAllDataNotification();
             }
-            else if (txtAddPassword.Text != txtAddPasswordAg.Text)
+            else if (txtAddPassword.Password != txtAddPasswordAg.Password)
             {
                 MainWindow.main.ShowSamePasswordNotification();
             }
@@ -190,11 +190,11 @@ namespace MoalemYar.UserControls
             {
                 try
                 {
-                    addUser(txtAddUsername.Text.ToLower(), txtAddPassword.Text.ToLower());
+                    addUser(txtAddUsername.Text.ToLower(), txtAddPassword.Password.ToLower());
                     MainWindow.main.ShowAddDataNotification(true, txtAddUsername.Text, "نام کاربری");
                     txtAddUsername.Text = string.Empty;
-                    txtAddPassword.Text = string.Empty;
-                    txtAddPasswordAg.Text = string.Empty;
+                    txtAddPassword.Password = string.Empty;
+                    txtAddPasswordAg.Password = string.Empty;
                     txtAddPassword.Focus();
                 }
                 catch (Exception)
