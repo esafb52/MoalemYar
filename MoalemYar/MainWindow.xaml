@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MoalemYar.UserControls"
+                   Icon="Resources\Approval.ico"
         xmlns:Metro="clr-namespace:Arthas.Controls.Metro;assembly=Arthas"
                    xmlns:controls="clr-namespace:Enterwell.Clients.Wpf.Notifications.Controls;assembly=Enterwell.Clients.Wpf.Notifications"
                    mc:Ignorable="d"
