@@ -55,29 +55,5 @@ namespace MoalemYar.UserControls
         {
             ExecuteNavigation();
         }
-        public void AddAzmonGroup()
-        {
-            ExecuteNavigation();
-        }
-        public void AddQuestions()
-        {
-            ExecuteNavigation();
-        }
-        public void Azmon()
-        {
-            ExecuteNavigation();
-        }
-        public void AzmonHistory()
-        {
-            ExecuteNavigation();
-        }
-        public void AzmonResult()
-        {
-            ExecuteNavigation();
-        }
-        public void StartAzmon()
-        {
-            ExecuteNavigation();
-        }
     }
 }
