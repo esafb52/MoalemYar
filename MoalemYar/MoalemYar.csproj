@@ -142,65 +142,77 @@
     <Compile Include="UserControls\About.xaml.cs">
       <DependentUpon>About.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Achievement.xaml.cs">
-      <DependentUpon>Achievement.xaml</DependentUpon>
+    <Compile Include="UserControls\AchievementView.xaml.cs">
+      <DependentUpon>AchievementView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\AddAzmonGroup.xaml.cs">
-      <DependentUpon>AddAzmonGroup.xaml</DependentUpon>
+    <Compile Include="ViewModel\AchievementViewModel.cs" />
+    <Compile Include="UserControls\AddAzmonGroupView.xaml.cs">
+      <DependentUpon>AddAzmonGroupView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\AddQuestions.xaml.cs">
-      <DependentUpon>AddQuestions.xaml</DependentUpon>
+    <Compile Include="UserControls\AddQuestionsView.xaml.cs">
+      <DependentUpon>AddQuestionsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\AddSchool.xaml.cs">
-      <DependentUpon>AddSchool.xaml</DependentUpon>
+    <Compile Include="UserControls\AddSchoolView.xaml.cs">
+      <DependentUpon>AddSchoolView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\AddStudent.xaml.cs">
-      <DependentUpon>AddStudent.xaml</DependentUpon>
+    <Compile Include="ViewModel\AddSchoolViewModel.cs" />
+    <Compile Include="UserControls\AddStudentView.xaml.cs">
+      <DependentUpon>AddStudentView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\AddUser.xaml.cs">
-      <DependentUpon>AddUser.xaml</DependentUpon>
+    <Compile Include="ViewModel\AddStudentViewModel.cs" />
+    <Compile Include="UserControls\AddUserView.xaml.cs">
+      <DependentUpon>AddUserView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Attendancelist.xaml.cs">
-      <DependentUpon>Attendancelist.xaml</DependentUpon>
+    <Compile Include="ViewModel\AddUserViewModel.cs" />
+    <Compile Include="UserControls\AttendancelistView.xaml.cs">
+      <DependentUpon>AttendancelistView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Azmon.xaml.cs">
-      <DependentUpon>Azmon.xaml</DependentUpon>
+    <Compile Include="ViewModel\AttendancelistViewModel.cs" />
+    <Compile Include="UserControls\AzmonView.xaml.cs">
+      <DependentUpon>AzmonView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\AzmonHistory.xaml.cs">
-      <DependentUpon>AzmonHistory.xaml</DependentUpon>
+    <Compile Include="UserControls\AzmonHistoryView.xaml.cs">
+      <DependentUpon>AzmonHistoryView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\AzmonResult.xaml.cs">
-      <DependentUpon>AzmonResult.xaml</DependentUpon>
+    <Compile Include="UserControls\AzmonResultView.xaml.cs">
+      <DependentUpon>AzmonResultView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Books.xaml.cs">
-      <DependentUpon>Books.xaml</DependentUpon>
+    <Compile Include="UserControls\BooksView.xaml.cs">
+      <DependentUpon>BooksView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Circular.xaml.cs">
-      <DependentUpon>Circular.xaml</DependentUpon>
+    <Compile Include="ViewModel\BooksViewModel.cs" />
+    <Compile Include="UserControls\CircularView.xaml.cs">
+      <DependentUpon>CircularView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Dashboard.xaml.cs">
-      <DependentUpon>Dashboard.xaml</DependentUpon>
+    <Compile Include="ViewModel\CircularViewModel.cs" />
+    <Compile Include="UserControls\InitialView.xaml.cs">
+      <DependentUpon>InitialView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Magazine.xaml.cs">
-      <DependentUpon>Magazine.xaml</DependentUpon>
+    <Compile Include="ViewModel\InitialViewModel.cs" />
+    <Compile Include="UserControls\MagazineView.xaml.cs">
+      <DependentUpon>MagazineView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\MagazineViewModel.cs" />
+    <Compile Include="ViewModel\QuestionsListViewModel.cs" />
+    <Compile Include="ViewModel\TopStudentsViewModel.cs" />
+    <Compile Include="UserControls\UserControlsController.cs" />
     <Compile Include="UserControls\MaterialChart.xaml.cs">
       <DependentUpon>MaterialChart.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\MaterialCircular.xaml.cs">
       <DependentUpon>MaterialCircular.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\QuestionsList.xaml.cs">
-      <DependentUpon>QuestionsList.xaml</DependentUpon>
+    <Compile Include="UserControls\QuestionsListView.xaml.cs">
+      <DependentUpon>QuestionsListView.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\StartAzmon.xaml.cs">
-      <DependentUpon>StartAzmon.xaml</DependentUpon>
+    <Compile Include="UserControls\StartAzmonView.xaml.cs">
+      <DependentUpon>StartAzmonView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\TopStudents.xaml.cs">
-      <DependentUpon>TopStudents.xaml</DependentUpon>
+    <Compile Include="UserControls\TopStudentsView.xaml.cs">
+      <DependentUpon>TopStudentsView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -225,59 +237,59 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Achievement.xaml">
+    <Page Include="UserControls\AchievementView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\AddAzmonGroup.xaml">
+    <Page Include="UserControls\AddAzmonGroupView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\AddQuestions.xaml">
+    <Page Include="UserControls\AddQuestionsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\AddSchool.xaml">
+    <Page Include="UserControls\AddSchoolView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\AddStudent.xaml">
+    <Page Include="UserControls\AddStudentView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\AddUser.xaml">
+    <Page Include="UserControls\AddUserView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Attendancelist.xaml">
+    <Page Include="UserControls\AttendancelistView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Azmon.xaml">
+    <Page Include="UserControls\AzmonView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\AzmonHistory.xaml">
+    <Page Include="UserControls\AzmonHistoryView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\AzmonResult.xaml">
+    <Page Include="UserControls\AzmonResultView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Books.xaml">
+    <Page Include="UserControls\BooksView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Circular.xaml">
+    <Page Include="UserControls\CircularView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Dashboard.xaml">
+    <Page Include="UserControls\InitialView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\Magazine.xaml">
+    <Page Include="UserControls\MagazineView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -289,7 +301,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\QuestionsList.xaml">
+    <Page Include="UserControls\QuestionsListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -297,11 +309,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\StartAzmon.xaml">
+    <Page Include="UserControls\StartAzmonView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\TopStudents.xaml">
+    <Page Include="UserControls\TopStudentsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -345,6 +357,10 @@
     <ProjectReference Include="..\Arthas\Arthas.csproj">
       <Project>{f5dbbc65-f7d3-4a0d-8a9f-3dafd3deb7ed}</Project>
       <Name>Arthas</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MVVMC\MVVMC.csproj">
+      <Project>{dca1956e-025a-49c9-b6b2-47d1240fe0a0}</Project>
+      <Name>MVVMC</Name>
     </ProjectReference>
     <ProjectReference Include="..\PersianCalendarWPF\PersianCalendarWPF.csproj">
       <Project>{89795b99-58a3-4ce9-bf55-fe8d4d1219c8}</Project>
@@ -501,37 +517,6 @@
   <ItemGroup>
     <Resource Include="Resources\LockEditTab.png" />
     <Resource Include="Resources\LockTab.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\slack.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Book_w.png" />
-    <Resource Include="Resources\circular_w.png" />
-    <Resource Include="Resources\roshd_w.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\More_w.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Active_w.png" />
-    <Resource Include="Resources\Verify_w.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Dashboard_w.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Protect_w.png" />
-    <Resource Include="Resources\School_w.png" />
-    <Resource Include="Resources\Student_w.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Check_w.png" />
-    <Resource Include="Resources\Tick_w.png" />
-    <Resource Include="Resources\Trophy_w.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Chart_w.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\PDF.png" />

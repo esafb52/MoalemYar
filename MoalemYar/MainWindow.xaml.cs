@@ -11,6 +11,7 @@
 using Arthas.Controls.Metro;
 using Enterwell.Clients.Wpf.Notifications;
 using MoalemYar.UserControls;
+using MVVMC;
 using Ookii.Dialogs.Wpf;
 using System;
 using System.Globalization;
@@ -48,7 +49,6 @@ namespace MoalemYar
             LoadSettings();
             getexHint();
             
-            exContent.Content = new Dashboard();
         }
 
         #region Query
@@ -112,39 +112,39 @@ namespace MoalemYar
                    switch (Type)
                    {
                        case "School":
-                           AddSchool.main.tabc.SelectedIndex = 0;
+                           AddSchoolView.main.tabc.SelectedIndex = 0;
                            break;
 
                        case "User":
-                           AddUser.main.tabc.SelectedIndex = 0;
+                           AddUserView.main.tabc.SelectedIndex = 0;
                            break;
 
                        case "Student":
-                           AddStudent.main.tabc.SelectedIndex = 0;
+                           AddStudentView.main.tabc.SelectedIndex = 0;
                            break;
 
                        case "Attendance":
-                           Attendancelist.main.tabc.SelectedIndex = 0;
+                           AttendancelistView.main.tabc.SelectedIndex = 0;
                            break;
 
                        case "Question":
-                           exAddOrUpdateStudent_Click(null, null);
+                           //exAddOrUpdateStudent_Click(null, null);
                            break;
 
                        case "Score":
-                           QuestionsList.main.tabc.SelectedIndex = 0;
+                           QuestionsListView.main.tabc.SelectedIndex = 0;
                            break;
 
                        case "TopStudent":
-                           exQuestionsList_Click(null, null);
+                           //exQuestionsList_Click(null, null);
                            break;
 
                        case "Group":
-                           AddAzmonGroup.main.tabc.SelectedIndex = 0;
+                           AddAzmonGroupView.main.tabc.SelectedIndex = 0;
                            break;
 
                        case "AQuestions":
-                           AddQuestions.main.tabc.SelectedIndex = 0;
+                           AddQuestionsView.main.tabc.SelectedIndex = 0;
                            break;
                    }
                })
@@ -451,31 +451,31 @@ namespace MoalemYar
                      switch (Type)
                      {
                          case "مدرسه":
-                             AddSchool.main.deleteSchool();
+                             AddSchoolView.main.deleteSchool();
                              break;
 
                          case "دانش آموز":
-                             AddStudent.main.deleteStudent();
+                             AddStudentView.main.deleteStudent();
                              break;
 
                          case "کاربر":
-                             AddUser.main.deleteUser();
+                             AddUserView.main.deleteUser();
                              break;
 
                          case "حضورغیاب":
-                             Attendancelist.main.deleteAttendance();
+                             AttendancelistView.main.deleteAttendance();
                              break;
 
                          case "نمره":
-                             QuestionsList.main.deleteScore();
+                             QuestionsListView.main.deleteScore();
                              break;
 
                          case "گروه":
-                             AddAzmonGroup.main.deleteGroup();
+                             AddAzmonGroupView.main.deleteGroup();
                              break;
 
                          case "سوال":
-                             AddQuestions.main.deleteGroup();
+                             AddQuestionsView.main.deleteGroup();
                              break;
                      }
                  })
@@ -542,10 +542,46 @@ namespace MoalemYar
             }
         }
 
-        private void exAddOrUpdateSchool_Click(object sender, EventArgs e)
+        private void NavigationMenuItem_Click(object sender, EventArgs e)
         {
-            if (!exContent.Content.ToString().Equals("MoalemYar.UserControls.AddSchool"))
-                exContent.Content = new AddSchool();
+            var navigationService = NavigationServiceProvider.GetNavigationServiceInstance();
+            var selectedItem = sender as MetroExpander;
+            switch (selectedItem.Tag)
+            {
+                case "initial":
+                    navigationService.GetController<UserControls.UserControlsController>().Initial();
+                    break;
+                case "addOrUpdateSchool":
+                    navigationService.GetController<UserControls.UserControlsController>().AddSchool();
+                    break;
+                case "exAddOrUpdateStudent":
+                    navigationService.GetController<UserControls.UserControlsController>().AddStudent();
+                    break;
+                case "exAddOrUpdateUser":
+                    navigationService.GetController<UserControls.UserControlsController>().AddUser();
+                    break;
+                case "exAttendancelist":
+                    navigationService.GetController<UserControls.UserControlsController>().Attendancelist();
+                    break;
+                case "exQuestionsList":
+                    navigationService.GetController<UserControls.UserControlsController>().Questionslist();
+                    break;
+                case "exTopStudents":
+                    navigationService.GetController<UserControls.UserControlsController>().TopStudents();
+                    break;
+                case "exAchievement":
+                    navigationService.GetController<UserControls.UserControlsController>().Achievement();
+                    break;
+                case "exCircular":
+                    navigationService.GetController<UserControls.UserControlsController>().Circular();
+                    break;
+                case "exBook":
+                    navigationService.GetController<UserControls.UserControlsController>().Books();
+                    break;
+                case "exRoshd":
+                    navigationService.GetController<UserControls.UserControlsController>().Magazine();
+                    break;
+            }
         }
 
         private void MetroExpander_Click(object sender, EventArgs e)
@@ -558,118 +594,6 @@ namespace MoalemYar
         {
             if (exBase.IsExpanded)
                 exBase.IsExpanded = false;
-        }
-
-        private void exAddOrUpdateUser_Click(object sender, EventArgs e)
-        {
-            if (!exContent.Content.ToString().Equals("MoalemYar.UserControls.AddUser"))
-                exContent.Content = new AddUser();
-        }
-
-        private void exAddOrUpdateStudent_Click(object sender, EventArgs e)
-        {
-            if (!exContent.Content.ToString().Equals("MoalemYar.UserControls.AddStudent"))
-                exContent.Content = new AddStudent();
-        }
-
-        private void exAttendancelist_Click(object sender, EventArgs e)
-        {
-            if (!exContent.Content.ToString().Equals("MoalemYar.UserControls.Attendancelist"))
-                exContent.Content = new Attendancelist();
-        }
-
-        private void exQuestionsList_Click(object sender, EventArgs e)
-        {
-            if (!exContent.Content.ToString().Equals("MoalemYar.UserControls.QuestionsList"))
-                exContent.Content = new QuestionsList();
-        }
-
-        private void MetroMenuItem_Click(object sender, RoutedEventArgs e)
-        {
-            var menuItem = sender as Arthas.Controls.Metro.MetroMenuItem;
-            switch (Convert.ToInt32(menuItem.Tag))
-            {
-                case 0:
-                    exDashboard_Click(null, null);
-                    break;
-
-                case 1:
-                    exAddOrUpdateSchool_Click(null, null);
-                    break;
-
-                case 2:
-                    exAddOrUpdateStudent_Click(null, null);
-                    break;
-
-                case 3:
-                    exAddOrUpdateUser_Click(null, null);
-                    break;
-
-                case 4:
-                    exAttendancelist_Click(null, null);
-                    break;
-
-                case 5:
-                    exQuestionsList_Click(null, null);
-                    break;
-
-                case 6:
-                    exTopStudents_Click(null, null);
-                    break;
-
-                case 7:
-                    exAchievement_Click(null, null);
-                    break;
-
-                case 9:
-                    exCircular_Click(null, null);
-                    break;
-
-                case 10:
-                    exBook_Click(null, null);
-                    break;
-
-                case 11:
-                    exRoshd_Click(null, null);
-                    break;
-            }
-        }
-
-        private void exTopStudents_Click(object sender, EventArgs e)
-        {
-            if (!exContent.Content.ToString().Equals("MoalemYar.UserControls.TopStudents"))
-                exContent.Content = new TopStudents();
-        }
-
-        private void exAchievement_Click(object sender, EventArgs e)
-        {
-            if (!exContent.Content.ToString().Equals("MoalemYar.UserControls.Achievement"))
-                exContent.Content = new Achievement();
-        }
-
-        private void exBook_Click(object sender, EventArgs e)
-        {
-            if (!exContent.Content.ToString().Equals("MoalemYar.UserControls.Books"))
-                exContent.Content = new Books();
-        }
-
-        private void exCircular_Click(object sender, EventArgs e)
-        {
-            if (!exContent.Content.ToString().Equals("MoalemYar.UserControls.Circular"))
-                exContent.Content = new Circular();
-        }
-
-        private void exRoshd_Click(object sender, EventArgs e)
-        {
-            if (!exContent.Content.ToString().Equals("MoalemYar.UserControls.Magazine"))
-                exContent.Content = new Magazine();
-        }
-
-        private void exDashboard_Click(object sender, EventArgs e)
-        {
-            if(!exContent.Content.ToString().Equals("MoalemYar.UserControls.Dashboard"))
-                exContent.Content = new Dashboard();
-        }
-
+        }        
     }
 }

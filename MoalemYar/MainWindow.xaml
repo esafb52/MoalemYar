@@ -4,41 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MoalemYar.UserControls"
-                   Icon="Resources\Approval.ico"
         xmlns:Metro="clr-namespace:Arthas.Controls.Metro;assembly=Arthas"
+                   Icon="Resources/Approval.ico"
+                   xmlns:mvvmc="clr-namespace:MVVMC;assembly=MVVMC"
                    xmlns:controls="clr-namespace:Enterwell.Clients.Wpf.Notifications.Controls;assembly=Enterwell.Clients.Wpf.Notifications"
                    mc:Ignorable="d"
         d:DesignWidth="1600" d:DesignHeight="1200"
         Style="{StaticResource myWindow}"
                    Title="{Binding Path=appTitle}" Loaded="MetroWindow_Loaded">
-    <Metro:MetroWindow.Menu>
-        <Metro:MetroTitleMenu>
-            <Metro:MetroTitleMenuItem FlowDirection="RightToLeft" Header="منو" Icon="Resources/slack.png">
-                <Metro:MetroMenuItem Header="داشبورد" Icon="/Resources/Dashboard_w.png" Tag="0" Click="MetroMenuItem_Click" />
-                <Metro:MetroMenuSeparator />
-                <Metro:MetroMenuItem Header="عملیات پایه" Icon="/Resources/verify_w.png">
-                    <Metro:MetroMenuItem Header="مدرسه و کلاس" Icon="/Resources/School_w.png" Tag="1" Click="MetroMenuItem_Click" />
-                    <Metro:MetroMenuItem Header="دانش آموز" Icon="/Resources/Student_w.png" Tag="2" Click="MetroMenuItem_Click" />
-                    <Metro:MetroMenuItem Header="حساب کاربری" Icon="/Resources/Protect_w.png" Tag="3" Click="MetroMenuItem_Click" />
-                </Metro:MetroMenuItem>
-                <Metro:MetroMenuSeparator />
-                <Metro:MetroMenuItem Header="فعالیت ها" Icon="/Resources/Active_w.png">
-                    <Metro:MetroMenuItem Header="حضور و غیاب" Icon="/Resources/Tick_w.png" Tag="4" Click="MetroMenuItem_Click" />
-                    <Metro:MetroMenuItem Header="ارزشیابی" Icon="/Resources/Check_w.png" Tag="5" Click="MetroMenuItem_Click" />
-                    <Metro:MetroMenuItem Header="نفرات برتر" Icon="/Resources/Trophy_w.png" Tag="6" Click="MetroMenuItem_Click" />
-                    <Metro:MetroMenuItem Header="پیشرفت تحصیلی" Icon="/Resources/Chart_w.png" Tag="7" Click="MetroMenuItem_Click" />
-                </Metro:MetroMenuItem>
-                <Metro:MetroMenuSeparator />
-                <Metro:MetroMenuItem Header="بیشتر" Icon="/Resources/More_w.png">
-                    <Metro:MetroMenuItem Header="بخشنامه ها" Icon="/Resources/circular_w.png" Tag="9" Click="MetroMenuItem_Click" />
-                    <Metro:MetroMenuItem Header="کتب درسی" Icon="/Resources/book_w.png" Tag="10" Click="MetroMenuItem_Click" />
-                    <Metro:MetroMenuItem Header="مجلات رشد" Icon="/Resources/roshd_w.png" Tag="11" Click="MetroMenuItem_Click" />
-                </Metro:MetroMenuItem>
-                <Metro:MetroMenuSeparator />
-            </Metro:MetroTitleMenuItem>
-        </Metro:MetroTitleMenu>
-    </Metro:MetroWindow.Menu>
-
     <Grid>
 
         <Metro:MetroMenuTabControl TabIndex="-1" FlowDirection="RightToLeft" x:Name="tab" IconMode="False">
@@ -51,39 +24,39 @@
                     <Metro:MetroScrollViewer>
                         <Border BorderBrush="#19000000" BorderThickness="0,0,1,0">
                             <StackPanel x:Name="lists">
-                                <Metro:MetroExpander Name="exDashboard" Click="exDashboard_Click" FontWeight="Medium" Header="داشبورد" Hint="نگاه کلی به اطلاعات" Icon="Resources/Dashboard.png" />
+                                <Metro:MetroExpander Tag="initial" Click="NavigationMenuItem_Click" FontWeight="Medium" Header="داشبورد" Hint="نگاه کلی به اطلاعات" Icon="Resources/Dashboard.png" />
                                 <Metro:MetroExpander FontWeight="Medium" Name="exBase" Icon="Resources/Verify.png" Header="عملیات پایه" Hint="ثبت اطلاعات" HintBackground="#e15b4f" IsExpanded="True" Click="MetroExpander_Click">
                                     <StackPanel>
-                                        <Metro:MetroExpander FontWeight="Normal" Name="exAddOrUpdateSchool" Click="exAddOrUpdateSchool_Click" Icon="Resources/School.png" Header="مدرسه و کلاس" Hint="0" HintBackground="Green" />
-                                        <Metro:MetroExpander FontWeight="Normal" Name="exAddOrUpdateStudent" Click="exAddOrUpdateStudent_Click" Icon="Resources/Students.png" Header="دانش آموز" Hint="0" HintBackground="Green" />
-                                        <Metro:MetroExpander FontWeight="Normal" Name="exAddOrUpdateUser" Click="exAddOrUpdateUser_Click" Icon="Resources/User.png" Header="حساب کاربری" Hint="0" HintBackground="Orange" />
+                                        <Metro:MetroExpander Name="exAddOrUpdateSchool" FontWeight="Normal" Tag="addOrUpdateSchool" Click="NavigationMenuItem_Click" Icon="Resources/School.png" Header="مدرسه و کلاس" Hint="0" HintBackground="Green" />
+                                        <Metro:MetroExpander FontWeight="Normal" Name="exAddOrUpdateStudent" Tag="exAddOrUpdateStudent" Click="NavigationMenuItem_Click" Icon="Resources/Students.png" Header="دانش آموز" Hint="0" HintBackground="Green" />
+                                        <Metro:MetroExpander FontWeight="Normal" Name="exAddOrUpdateUser" Tag="exAddOrUpdateUser" Click="NavigationMenuItem_Click" Icon="Resources/User.png" Header="حساب کاربری" Hint="0" HintBackground="Orange" />
                                     </StackPanel>
                                 </Metro:MetroExpander>
 
                                 <Metro:MetroExpander FontWeight="Medium" Name="exActivity" Header="فعالیت ها" Icon="Resources/Active.png" IsExpanded="True" Click="exActivity_Click">
                                     <StackPanel>
-                                        <Metro:MetroExpander Name="exAttendancelist" Click="exAttendancelist_Click" FontWeight="Normal" Header="حضور و غیاب" Icon="Resources/Checkmark.png" Hint="1397/01/07" />
-                                        <Metro:MetroExpander Name="exQuestionsList" Click="exQuestionsList_Click" FontWeight="Normal" Header="ارزشیابی" Icon="Resources/Ask.png" Hint="پرسش / امتحان" HintBackground="#e15b4f" />
+                                        <Metro:MetroExpander Name="exAttendancelist" Tag="exAttendancelist" Click="NavigationMenuItem_Click" FontWeight="Normal" Header="حضور و غیاب" Icon="Resources/Checkmark.png" Hint="1397/01/07" />
+                                        <Metro:MetroExpander Tag="exQuestionsList" Click="NavigationMenuItem_Click" FontWeight="Normal" Header="ارزشیابی" Icon="Resources/Ask.png" Hint="پرسش / امتحان" HintBackground="#e15b4f" />
                                     </StackPanel>
                                 </Metro:MetroExpander>
                                 <Metro:MetroExpander FontWeight="Medium" Header="گزارش وضعیت" Icon="Resources/reportmove.png" IsExpanded="True">
                                     <StackPanel>
-                                        <Metro:MetroExpander Name="exTopStudents" Click="exTopStudents_Click" Header="نفرات برتر" Icon="Resources/Trophy.png" Hint="انتخاب شاگرد" HintBackground="#e15b4f" />
-                                        <Metro:MetroExpander Name="exAchievement" Click="exAchievement_Click" Header="پیشرفت تحصیلی" Icon="Resources/Chart.png" Hint="نمودار" HintBackground="#e15b4f" />
+                                        <Metro:MetroExpander Tag="exTopStudents" Click="NavigationMenuItem_Click" Header="نفرات برتر" Icon="Resources/Trophy.png" Hint="انتخاب شاگرد" HintBackground="#e15b4f" />
+                                        <Metro:MetroExpander Tag="exAchievement" Click="NavigationMenuItem_Click" Header="پیشرفت تحصیلی" Icon="Resources/Chart.png" Hint="نمودار" HintBackground="#e15b4f" />
                                     </StackPanel>
                                 </Metro:MetroExpander>
                                 <Metro:MetroExpander FontWeight="Medium" Header="بیشتر" Icon="Resources/more.png" IsExpanded="True">
                                     <StackPanel>
-                                        <Metro:MetroExpander Name="exCircular" Click="exCircular_Click" Header="بخشنامه ها" Icon="Resources/circular.png" Hint="دانلود/مطالعه" HintBackground="#e15b4f" />
-                                        <Metro:MetroExpander Name="exBook" Click="exBook_Click" Header="کتب درسی" Icon="Resources/book.png" Hint="دانلود/مطالعه" HintBackground="#e15b4f" />
-                                        <Metro:MetroExpander Name="exRoshd" Click="exRoshd_Click" Header="مجلات رشد" Icon="Resources/roshd.png" Hint="دانلود/مطالعه" HintBackground="#e15b4f" />
+                                        <Metro:MetroExpander Tag="exCircular" Click="NavigationMenuItem_Click" Header="بخشنامه ها" Icon="Resources/circular.png" Hint="دانلود/مطالعه" HintBackground="#e15b4f" />
+                                        <Metro:MetroExpander Tag="exBook" Click="NavigationMenuItem_Click" Header="کتب درسی" Icon="Resources/book.png" Hint="دانلود/مطالعه" HintBackground="#e15b4f" />
+                                        <Metro:MetroExpander Tag="exRoshd" Click="NavigationMenuItem_Click" Header="مجلات رشد" Icon="Resources/roshd.png" Hint="دانلود/مطالعه" HintBackground="#e15b4f" />
                                     </StackPanel>
                                 </Metro:MetroExpander>
                             </StackPanel>
                         </Border>
                     </Metro:MetroScrollViewer>
                     <Metro:MetroScrollViewer Grid.Column="1">
-                        <ContentControl Name="exContent" />
+                        <mvvmc:Region Name="region" ControllerID="UserControls"></mvvmc:Region>
                     </Metro:MetroScrollViewer>
                 </Grid>
             </Metro:MetroMenuTabItem>
@@ -93,7 +66,7 @@
                         <ContentControl>
                             <ContentControl.ContentTemplate>
                                 <DataTemplate>
-                                    <local:Azmon />
+                                    <local:AzmonView />
                                 </DataTemplate>
                             </ContentControl.ContentTemplate>
                         </ContentControl>

@@ -1,0 +1,161 @@
+﻿<UserControl x:Class="MoalemYar.UserControls.AddSchoolView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:MoalemYar.UserControls"
+             xmlns:Metro="clr-namespace:Arthas.Controls.Metro;assembly=Arthas"
+             xmlns:local1="clr-namespace:MoalemYar"
+             mc:Ignorable="d"
+             Style="{StaticResource myUserControl}"
+             d:DesignHeight="450" d:DesignWidth="800" IsTabStop="True">
+    <Grid>
+        <Metro:MetroTabControl Focusable="False" x:Name="tabc" IsTabStop="True" TabIndex="-1" SelectionChanged="tabc_SelectionChanged">
+            <Metro:MetroTabItem Header="ثبت اطلاعات" Icon="/Resources/PlusTab.png">
+                <Grid KeyboardNavigation.TabNavigation="Cycle">
+                    <StackPanel Orientation="Vertical" Margin="5,5,5,0">
+                        <Grid HorizontalAlignment="Stretch" Margin="5,5,5,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="auto" />
+                                <ColumnDefinition Width="auto" />
+                            </Grid.ColumnDefinitions>
+                            <Button x:Name="btnSave" IsDefault="True" Click="btnSave_Click" Grid.Column="0" Margin="10,5,5,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Style="{StaticResource WorkButtonGreen}" Height="35">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                    <Image Height="16" Width="16" Margin="10,0,30,0" Source="/Resources/add.png" />
+                                    <TextBlock TextWrapping="NoWrap" Text="ذخیره" FontSize="13" Foreground="#ffffff" />
+                                </StackPanel>
+                            </Button>
+                            <Button x:Name="btnCancel" IsCancel="True" Click="btnCancel_Click" Grid.Column="1" Margin="10,5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Style="{StaticResource CancelButton}" Height="35">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                    <Image Height="16" Width="16" Margin="-30,0,30,0" Source="/Resources/cancel.png" />
+                                    <TextBlock TextWrapping="NoWrap" Text="انصراف" FontSize="13" Foreground="#ffffff" />
+                                </StackPanel>
+                            </Button>
+                        </Grid>
+                        <Grid Margin="0,5,0,0">
+                            <Metro:MetroBorder HorizontalAlignment="Stretch" BorderThickness="1" BorderBrush="{Binding BorderColor}" />
+                        </Grid>
+                        <Metro:MetroWaterfallFlow ListWidth="350" Height="55">
+                            <StackPanel Margin="0,5,0,0" Orientation="Vertical">
+                                <Metro:MetroTextBox MaxLength="5" Margin="2" Name="txtAddYear" TabIndex="0" InputHint="سال تحصیلی" Height="30" PopupHint="سال تحصیلی باید بصورت 97-98 وارد شود" MetroPopupBackgroundState="DarkRed" />
+                                <Metro:MetroTextBox MaxLength="20" Margin="2" Name="txtAddSchool" TabIndex="1" InputHint="نام مدرسه" PopupHint="نام آموزشگاه را وارد کنید" MetroPopupBackgroundState="DarkRed"  Height="30" />
+                                <Metro:MetroTextBox MaxLength="20" Margin="2" Name="txtAddAdmin" TabIndex="2" InputHint="نام مدیر" Height="30" PopupHint="نام مدیریت آموزشگاه" MetroPopupBackgroundState="DarkRed" />
+                                <ContentControl Margin="2" Name="cmbAddContent" TabIndex="3" Focusable="False" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="233">
+                                    <ContentControl.ContentTemplate>
+                                        <DataTemplate>
+                                            <Grid>
+                                                <ComboBox TabIndex="4" x:Name="cmbBase">
+                                                    <ComboBoxItem Content="اول" />
+                                                    <ComboBoxItem Content="دوم" />
+                                                    <ComboBoxItem Content="سوم" />
+                                                    <ComboBoxItem Content="چهارم" />
+                                                    <ComboBoxItem Content="پنجم" />
+                                                    <ComboBoxItem Content="ششم" />
+                                                </ComboBox>
+                                                <TextBlock x:Name="tb" Text=" انتخاب پایه " IsHitTestVisible="False" Visibility="Hidden" />
+                                            </Grid>
+                                            <DataTemplate.Triggers>
+                                                <Trigger SourceName="cmbBase" Property="SelectedItem" Value="{x:Null}">
+                                                    <Setter TargetName="tb" Property="Visibility" Value="Visible" />
+                                                </Trigger>
+                                            </DataTemplate.Triggers>
+                                        </DataTemplate>
+                                    </ContentControl.ContentTemplate>
+                                </ContentControl>
+                            </StackPanel>
+                        </Metro:MetroWaterfallFlow>
+                    </StackPanel>
+                </Grid>
+            </Metro:MetroTabItem>
+            <Metro:MetroTabItem Header="ویرایش اطلاعات" Icon="/Resources/EditTab.png">
+                <Grid KeyboardNavigation.TabNavigation="Cycle">
+                    <StackPanel Orientation="Vertical" Margin="5,5,5,0">
+                        <StackPanel Orientation="Horizontal" Height="50" VerticalAlignment="Top">
+                            <Button x:Name="btnEditSave" IsDefault="True" Click="btnEditSave_Click" Grid.Column="0" Grid.Row="0" Margin="10,5,5,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Style="{StaticResource WorkButtonGreen}" Height="35">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                    <Image Height="16" Width="16" Margin="10,0,30,0" Source="/Resources/update.png" />
+                                    <TextBlock TextWrapping="NoWrap" Text="ذخیره" FontSize="13" Foreground="#ffffff" />
+                                </StackPanel>
+                            </Button>
+                            <Button x:Name="btnDelete" Click="btnDelete_Click" Grid.Column="1"  Grid.ColumnSpan="2" Grid.Row="1" Margin="5,5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Style="{StaticResource WorkButtonRed}" Height="35">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                    <Image Height="16" Width="16" Margin="10,0,30,0" Source="/Resources/Delete.png" />
+                                    <TextBlock TextWrapping="NoWrap" Text="حذف" FontSize="13" Foreground="#ffffff" />
+                                </StackPanel>
+                            </Button>
+                            <Button x:Name="btnEditCancel" IsCancel="True" Click="btnEditCancel_Click" Grid.Column="1" Grid.Row="0" Margin="5,5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Style="{StaticResource CancelButton}" Height="35">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                    <Image Height="16" Width="16" Margin="-30,0,30,0" Source="/Resources/cancel.png" RenderTransformOrigin="-1.688,0.625" />
+                                    <TextBlock TextWrapping="NoWrap" Text="انصراف" FontSize="13" Foreground="#ffffff" />
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+                        <Grid Margin="0,5,0,0">
+                            <Metro:MetroBorder HorizontalAlignment="Stretch" BorderThickness="1" BorderBrush="{Binding BorderColor}" />
+                        </Grid>
+                        <StackPanel Margin="0,10,0,0" Orientation="Vertical">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid Name="grdedit" Grid.Column="0">
+                                    <StackPanel Orientation="Vertical">
+                                        <Metro:MetroTextBox Name="txtEditSearch" MaxLength="40" HorizontalAlignment="Stretch" MaxWidth="{Binding Path=ActualWidth, ElementName=grdedit, Converter={local1:MultiplyConverter Multiplier=.9}}" ButtonTitle="بروزرسانی لیست" ButtonClick="txtEditSearch_ButtonClick" FlowDirection="RightToLeft" InputHint="جستجو..." PopupHint="جستجو بصورت خودکار انجام می شود" MetroPopupBackgroundState="Red2" Icon="../Resources/editIcon.png" TextChanged="txtEditSearch_TextChanged" />
+                                        <DataGrid x:Name="dataGrid" AutoGenerateColumns="False" HorizontalAlignment="Stretch"
+                                      Background="#eceff5" RowHeaderWidth="0" AlternatingRowBackground="#fbfcfe"
+                                      GridLinesVisibility="Horizontal" CanUserReorderColumns="False"  MaxWidth="{Binding Path=ActualWidth, ElementName=grdedit, Converter={local1:MultiplyConverter Multiplier=.9}}"
+                                      CanUserResizeColumns="False" CanUserSortColumns="True" SelectionMode="Single" SelectionUnit="FullRow"
+                                      CanUserResizeRows="False" IsReadOnly="True" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}"
+                                      HorizontalGridLinesBrush="#dde8ef" CellStyle="{DynamicResource DataGridCellStyle}"
+                                      Margin="0,5" SelectionChanged="dataGrid_SelectionChanged">
+                                            <DataGrid.Columns>
+                                                <DataGridTextColumn Binding="{Binding Id}" Visibility="Hidden" />
+                                                <DataGridTextColumn Binding="{Binding SchoolName}" Header="آموزشگاه" MinWidth="100" Width="*" />
+                                                <DataGridTextColumn Binding="{Binding Admin}" Header="مدیر" MinWidth="100" Width="*" />
+                                                <DataGridTextColumn Binding="{Binding Base}" Header="پایه" MinWidth="70" Width="*" />
+                                                <DataGridTextColumn Binding="{Binding Year}" Header="سال تحصیلی" Width="*" />
+                                            </DataGrid.Columns>
+                                            <DataGrid.ContextMenu>
+                                                <Metro:MetroContextMenu>
+                                                    <Metro:MetroMenuItem Icon="/Resources/delete.png" Header="حذف" Click="btnDelete_Click" />
+                                                </Metro:MetroContextMenu>
+                                            </DataGrid.ContextMenu>
+                                        </DataGrid>
+                                    </StackPanel>
+                                </Grid>
+                                <StackPanel Name="editGrid" IsEnabled="False" Orientation="Vertical" Grid.Column="1" Margin="5,0,0,0">
+                                    <Metro:MetroTextBox Margin="2" MaxLength="5" Name="txtYear"  InputHint="سال تحصیلی" Height="30" PopupHint="سال تحصیلی باید بصورت 97-98 وارد شود" MetroPopupBackgroundState="DarkRed" VerticalAlignment="Top" />
+                                    <Metro:MetroTextBox Margin="2" MaxLength="20" Name="txtSchool"  InputHint="نام مدرسه" PopupHint="نام آموزشگاه را وارد کنید" MetroPopupBackgroundState="DarkRed" Height="30" VerticalAlignment="Top" />
+                                    <Metro:MetroTextBox Margin="2" MaxLength="20" Name="txtAdmin" InputHint="نام مدیر" Height="30" PopupHint="نام مدیریت آموزشگاه" MetroPopupBackgroundState="DarkRed" VerticalAlignment="Top" />
+                                    <ContentControl Name="cmbContent" Focusable="False" Margin="2,2,1,2" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="188">
+                                        <ContentControl.ContentTemplate>
+                                            <DataTemplate>
+                                                <Grid>
+                                                    <ComboBox  Name="cmbBase" TabIndex="4">
+                                                        <ComboBoxItem Content="اول" />
+                                                        <ComboBoxItem Content="دوم" />
+                                                        <ComboBoxItem Content="سوم" />
+                                                        <ComboBoxItem Content="چهارم" />
+                                                        <ComboBoxItem Content="پنجم" />
+                                                        <ComboBoxItem Content="ششم" />
+                                                    </ComboBox>
+                                                    <TextBlock x:Name="tb" Text=" انتخاب پایه " IsHitTestVisible="False" Visibility="Hidden" />
+                                                </Grid>
+                                                <DataTemplate.Triggers>
+                                                    <Trigger SourceName="cmbBase" Property="SelectedItem" Value="{x:Null}">
+                                                        <Setter TargetName="tb" Property="Visibility" Value="Visible" />
+                                                    </Trigger>
+                                                </DataTemplate.Triggers>
+                                            </DataTemplate>
+                                        </ContentControl.ContentTemplate>
+                                    </ContentControl>
+                                </StackPanel>
+                            </Grid>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+            </Metro:MetroTabItem>
+        </Metro:MetroTabControl>
+    </Grid>
+</UserControl>
