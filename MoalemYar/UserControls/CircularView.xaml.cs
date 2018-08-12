@@ -40,69 +40,70 @@ namespace MoalemYar.UserControls
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
+            
             Dispatcher.Invoke<Task>(async () =>
+        {
+            waterfallFlow.Children.Clear();
+            MaterialCircular _addUser;
+            Control _currentUser;
+            try
             {
-                waterfallFlow.Children.Clear();
-                MaterialCircular _addUser;
-                Control _currentUser;
-                try
+                using (WebClient webClient = new WebClientWithTimeout())
                 {
-                    using (WebClient webClient = new WebClientWithTimeout())
+                    webClient.Headers.Add("User-Agent: Other");
+                    var page = webClient.DownloadString(FindElement.Settings.DefaultServer ?? AppVariable.DefaultServer2);
+                    HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
+                    doc.LoadHtml(page);
+                    var query = doc.DocumentNode.SelectNodes("//table[@class='table table-striped table-hover']/tbody/tr")
+                .Select(r =>
+                {
+                    var linkNode = r.Descendants("a").Select(node => node.Attributes["href"].Value).ToArray();
+                    var linkNode2 = r.SelectSingleNode("th|td");
+                    return new DelegationLink()
                     {
-                        webClient.Headers.Add("User-Agent: Other");   //that is the simple line!
-                        var page = webClient.DownloadString(FindElement.Settings.DefaultServer ?? AppVariable.DefaultServer2);
-                        HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
-                        doc.LoadHtml(page);
-                        var query = doc.DocumentNode.SelectNodes("//table[@class='table table-striped table-hover']/tr")
-                    .Select(r =>
+                        Row = r.SelectSingleNode(".//td").InnerText,
+                        link = FindElement.Settings.DefaultServer + linkNode.FirstOrDefault(),
+                        Category = r.SelectSingleNode(".//td[2]").InnerText,
+                        Title = r.SelectSingleNode(".//td[3]").InnerText,
+                        Date = r.SelectSingleNode(".//td[4]").InnerText,
+                        Type = r.SelectSingleNode(".//td[5]").InnerText,
+                        SubType = r.SelectSingleNode(".//td[6]").InnerText
+                    };
+                }
+                ).ToList();
+                    var parsedValues = query.Take(Limited ? 20 : query.Count).ToList();
+                    myClass = parsedValues;
+                    prgUpdate.Maximum = parsedValues.Count;
+
+                    foreach (var item in parsedValues)
                     {
-                        var linkNode = r.SelectSingleNode(".//a");
-                        var linkNode2 = r.SelectSingleNode("th|td");
-                        return new DelegationLink()
-                        {
-                            Row = r.SelectSingleNode(".//td").InnerText,
-                            link = linkNode.GetAttributeValue("href", ""),
-                            Category = r.SelectSingleNode(".//td[2]").InnerText,
-                            Title = r.SelectSingleNode(".//td[3]").InnerText,
-                            Date = r.SelectSingleNode(".//td[4]").InnerText,
-                            Type = r.SelectSingleNode(".//td[5]").InnerText,
-                            SubType = r.SelectSingleNode(".//td[6]").InnerText,
-                        };
+                        if (!Permission)
+                            return;
+
+                        await Task.Delay(10);
+                        prgUpdate.Value += 1;
+                        prgUpdate.Hint = string.Format("{0}%", ((prgUpdate.Value * 100) / parsedValues.Count).ToString("0"));
+                        _addUser = new MaterialCircular(item.Row, item.Title, item.Category, item.Type, item.SubType, item.Date, item.link);
+                        _currentUser = _addUser;
+                        waterfallFlow.Children.Add(_currentUser);
+                        waterfallFlow.Refresh();
                     }
-                    ).ToList();
-                        var parsedValues = query.Take(Limited ? 20 : query.Count).ToList();
-                        myClass = parsedValues;
-                        prgUpdate.Maximum = parsedValues.Count;
-
-                        foreach (var item in parsedValues)
-                        {
-                            if (!Permission)
-                                return;
-
-                            await Task.Delay(10);
-                            prgUpdate.Value += 1;
-                            prgUpdate.Hint = string.Format("{0}%", ((prgUpdate.Value * 100) / parsedValues.Count).ToString("0"));
-                            _addUser = new MaterialCircular(item.Row, item.Title, item.Category, item.Type, item.SubType, item.Date, item.link);
-                            _currentUser = _addUser;
-                            waterfallFlow.Children.Add(_currentUser);
-                            waterfallFlow.Refresh();
-                        }
-                        if (prgUpdate.Hint == "100%")
-                        {
-                            Permission = false;
-                            txtStop.Text = "دریافت";
-                            Style style = this.FindResource("WorkButtonGreen") as Style;
-                            btnStop.Style = style;
-                            img.Source = new BitmapImage(new Uri("pack://application:,,,/MoalemYar;component/Resources/start.png", UriKind.Absolute));
-                            txtSearch.IsEnabled = true;
-                        }
+                    if (prgUpdate.Hint == "100%")
+                    {
+                        Permission = false;
+                        txtStop.Text = "دریافت";
+                        Style style = this.FindResource("WorkButtonGreen") as Style;
+                        btnStop.Style = style;
+                        img.Source = new BitmapImage(new Uri("pack://application:,,,/MoalemYar;component/Resources/start.png", UriKind.Absolute));
+                        txtSearch.IsEnabled = true;
                     }
                 }
-                catch (WebException)
-                {
-                    MainWindow.main.ShowRecivedCircularNotification(false);
-                }
-            }, DispatcherPriority.ContextIdle);
+            }
+            catch (WebException)
+            {
+                MainWindow.main.ShowRecivedCircularNotification(false);
+            }
+        }, DispatcherPriority.ContextIdle);
         }
 
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
