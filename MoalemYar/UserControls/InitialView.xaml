@@ -111,7 +111,6 @@
                             <Setter Property="Foreground" Value="#64FFFFFF" />
                             <Style.Triggers>
                                 <Trigger Property="AxisOrientation" Value="Y">
-                                    <Setter Property="ShowLabels" Value="False"/>
                                     <Setter Property="IsMerged" Value="False" />
                                 </Trigger>
                                 <Trigger Property="AxisOrientation" Value="X">
@@ -143,8 +142,8 @@
                         <RowDefinition Height=".5*" />
                     </Grid.RowDefinitions>
                     <Border x:Name="Borderc" Grid.Row="0" Grid.RowSpan="4" CornerRadius="5" Background="White" />
-                    <Border Grid.Row="0" Grid.RowSpan="4" Background="{Binding BorderColor}" Margin="5,5,5,115" />
-                    <lvc:CartesianChart x:Name="AchievementChart" Grid.Row="2" Margin="10,10,10,135"  Hoverable="True" DataTooltip="{x:Null}" Grid.RowSpan="2">
+                    <Border Grid.Row="0" Grid.RowSpan="4" Background="#7DBD8D" Margin="5,5,5,115" />
+                    <lvc:CartesianChart x:Name="AchievementChart" Grid.Row="2" Margin="10,10,10,135"  Hoverable="False" DataTooltip="{x:Null}" Grid.RowSpan="2">
                         <lvc:CartesianChart.Series>
                             <lvc:ColumnSeries />
                         </lvc:CartesianChart.Series>

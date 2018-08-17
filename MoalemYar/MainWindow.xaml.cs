@@ -101,6 +101,7 @@ namespace MoalemYar
 
         public void ShowNoDataNotification(string Type)
         {
+            var navigationService = NavigationServiceProvider.GetNavigationServiceInstance();
             var builder = this.Manager
                .CreateMessage()
                .Accent(AppVariable.RED)
@@ -128,7 +129,7 @@ namespace MoalemYar
                            break;
 
                        case "Question":
-                           //exAddOrUpdateStudent_Click(null, null);
+                           navigationService.GetController<UserControls.UserControlsController>().AddStudent();
                            break;
 
                        case "Score":
@@ -136,7 +137,7 @@ namespace MoalemYar
                            break;
 
                        case "TopStudent":
-                           //exQuestionsList_Click(null, null);
+                           navigationService.GetController<UserControls.UserControlsController>().Questionslist();
                            break;
 
                        case "Group":

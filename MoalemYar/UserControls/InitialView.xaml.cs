@@ -23,21 +23,20 @@ namespace MoalemYar.UserControls
     /// </summary>
     public partial class InitialView : UserControl
     {
-        public Brush BorderColor { get; set; }
         bool runFirst = false;
         public InitialView()
         {
             InitializeComponent();
 
             DataContext = this;
-            BorderColor = AppVariable.GetBrush(FindElement.Settings.ChartColor ?? AppVariable.CHART_GREEN);
-
+            
             txtStCount.Text = MainWindow.main.exAddOrUpdateStudent.Hint;
             txtUCount.Text = MainWindow.main.exAddOrUpdateUser.Hint;
             txtScCount.Text = MainWindow.main.exAddOrUpdateSchool.Hint;
-
+            var defSchool = FindElement.Settings.DefaultSchool;
             using (var db = new DataClass.myDbContext())
             {
+              
                 var query = db.Scores;
                 var x = query.Where(y => y.Scores == "نیاز به تلاش بیشتر").ToList();
                 var xx = query.Where(y => y.Scores == "قابل قبول").ToList();
