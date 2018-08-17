@@ -49,7 +49,7 @@ namespace MoalemYar.UserControls
             {
             }
 
-            cmbEditBase.SelectedIndex = FindElement.Settings.DefaultSchool ?? -1;
+            cmbEditBase.SelectedIndex = Convert.ToInt32(FindElement.Settings.DefaultSchool);
         }
 
         private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)

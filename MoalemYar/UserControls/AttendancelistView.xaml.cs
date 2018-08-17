@@ -389,8 +389,8 @@ namespace MoalemYar.UserControls
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            cmbBase.SelectedIndex = FindElement.Settings.DefaultSchool ?? -1;
-            cmbEditBase.SelectedIndex = FindElement.Settings.DefaultSchool ?? -1;
+            cmbBase.SelectedIndex = Convert.ToInt32(FindElement.Settings.DefaultSchool);
+            cmbEditBase.SelectedIndex = Convert.ToInt32(FindElement.Settings.DefaultSchool);
         }
     }
 }

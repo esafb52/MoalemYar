@@ -530,6 +530,7 @@ namespace MoalemYar
                 {
                     using (CredentialDialog dialog = new CredentialDialog())
                     {
+                        
                         dialog.WindowTitle = "ورود به نرم افزار";
                         dialog.MainInstruction = "لطفا نام کاربری و رمز عبور خود را وارد کنید";
                         //dialog.Content = "";

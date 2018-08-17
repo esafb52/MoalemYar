@@ -524,7 +524,6 @@ namespace MoalemYar.UserControls
             if (isExam.IsChecked == true)
                 isQuestion.IsChecked = false;
             cmbBook.IsEnabled = true;
-            cmbBase.SelectedIndex = Convert.ToInt32(FindElement.Settings.DefaultSchool);
         }
 
         private void isQuestion_Checked(object sender, RoutedEventArgs e)
@@ -532,7 +531,6 @@ namespace MoalemYar.UserControls
             if (isQuestion.IsChecked == true)
                 isExam.IsChecked = false;
             cmbBook.IsEnabled = true;
-            cmbBase.SelectedIndex = Convert.ToInt32(FindElement.Settings.DefaultSchool);
         }
 
         private void cmbBook_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -558,8 +556,8 @@ namespace MoalemYar.UserControls
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            cmbBase.SelectedIndex = FindElement.Settings.DefaultSchool ?? -1;
-            cmbEditBase.SelectedIndex = FindElement.Settings.DefaultSchool ?? -1;
+            cmbBase.SelectedIndex = Convert.ToInt32(FindElement.Settings.DefaultSchool);
+            cmbEditBase.SelectedIndex = Convert.ToInt32(FindElement.Settings.DefaultSchool);
         }
     }
 }

@@ -423,7 +423,7 @@ namespace MoalemYar.UserControls
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            cmbEditBase.SelectedIndex = FindElement.Settings.DefaultSchool ?? -1;
+            cmbEditBase.SelectedIndex = Convert.ToInt32(FindElement.Settings.DefaultSchool);
         }
 
         private void ClearCheck()
