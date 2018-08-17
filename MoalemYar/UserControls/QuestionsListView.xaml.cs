@@ -8,6 +8,7 @@
 *
 ***********************************************************************************/
 
+using Microsoft.CSharp.RuntimeBinder;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -282,6 +283,7 @@ namespace MoalemYar.UserControls
             if (runOnceSchool)
             {
                 getSchool();
+
                 runOnceSchool = false;
             }
         }
@@ -339,9 +341,8 @@ namespace MoalemYar.UserControls
                 }
                 element.ItemsSource = list;
             }
-            catch (NullReferenceException)
-            {
-            }
+            catch (NullReferenceException) { }
+            catch (RuntimeBinderException) { }
         }
 
         private void chkChecked_Checked(object sender, RoutedEventArgs e)
@@ -523,6 +524,7 @@ namespace MoalemYar.UserControls
             if (isExam.IsChecked == true)
                 isQuestion.IsChecked = false;
             cmbBook.IsEnabled = true;
+            cmbBase.SelectedIndex = Convert.ToInt32(FindElement.Settings.DefaultSchool);
         }
 
         private void isQuestion_Checked(object sender, RoutedEventArgs e)
@@ -530,6 +532,7 @@ namespace MoalemYar.UserControls
             if (isQuestion.IsChecked == true)
                 isExam.IsChecked = false;
             cmbBook.IsEnabled = true;
+            cmbBase.SelectedIndex = Convert.ToInt32(FindElement.Settings.DefaultSchool);
         }
 
         private void cmbBook_SelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -11,7 +11,7 @@
 using SharpCompress.Archives;
 using SharpCompress.Archives.Rar;
 using SharpCompress.Archives.Zip;
-using SharpCompress.Readers;
+using SharpCompress.Common;
 using System;
 using System.ComponentModel;
 using System.IO;

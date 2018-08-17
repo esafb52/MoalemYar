@@ -155,7 +155,39 @@ namespace MoalemYar
                .Dismiss().WithDelay(TimeSpan.FromSeconds(AppVariable.NotificationDelay));
             builder.Queue();
         }
-
+        public void ShowBackupNotification(bool isSuccess, string BackupOrRestore)
+        {
+            if (isSuccess)
+            {
+                var builder = this.Manager
+                                .CreateMessage()
+                               .Accent(AppVariable.GREEN)
+                               .Background(AppVariable.BGBLACK)
+                               .HasBadge("اطلاعیه")
+                               .HasMessage($"{BackupOrRestore} با موفقیت انجام شد")
+                               .Dismiss().WithButton("باشه", button => { })
+                               .Animates(true)
+                               .AnimationInDuration(AppVariable.NotificationAnimInDur)
+                               .AnimationOutDuration(AppVariable.NotificationAnimOutDur)
+                               .Dismiss().WithDelay(TimeSpan.FromSeconds(AppVariable.NotificationDelay));
+                builder.Queue();
+            }
+            else
+            {
+                var builder = this.Manager
+                                .CreateMessage()
+                               .Accent(AppVariable.RED)
+                               .Background(AppVariable.BGBLACK)
+                               .HasBadge("هشدار")
+                               .HasMessage($"{BackupOrRestore} با مشکل مواجه شد")
+                               .Dismiss().WithButton("باشه", button => { })
+                               .Animates(true)
+                               .AnimationInDuration(AppVariable.NotificationAnimInDur)
+                               .AnimationOutDuration(AppVariable.NotificationAnimOutDur)
+                               .Dismiss().WithDelay(TimeSpan.FromSeconds(AppVariable.NotificationDelay));
+                builder.Queue();
+            }
+        }
         public void ShowFillAllDataNotification()
         {
             var builder = this.Manager

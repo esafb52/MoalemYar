@@ -158,6 +158,26 @@
                         </Grid>
                     </Metro:MetroGroupBox>
                 </Grid>
+                <Grid>
+                    <Metro:MetroGroupBox Margin="5" Header="پشتیبان گیری از اطلاعات">
+                        <Grid>
+                            <StackPanel Orientation="Horizontal" Margin="5">
+                                <Button Tag="Backup" Click="btnBackup_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150" Style="{StaticResource LoginButton}" Height="35">
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                        <Image Height="16" Width="16" Margin="0,0,10,0" Source="/Resources/backup.png" />
+                                        <TextBlock TextWrapping="NoWrap" Text="تهیه فایل پشتیبان" FontSize="13" Foreground="#ffffff" />
+                                    </StackPanel>
+                                </Button>
+                                <Button Tag="Restore" Click="btnBackup_Click" Margin="10,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="160" Style="{StaticResource LoginButton}" Height="35">
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                        <Image Height="16" Width="16" Margin="0,0,10,0" Source="/Resources/restore.png" />
+                                        <TextBlock TextWrapping="NoWrap" Text="بازگرداندن فایل پشتیبان" FontSize="13" Foreground="#ffffff" />
+                                    </StackPanel>
+                                </Button>
+                            </StackPanel>
+                        </Grid>
+                    </Metro:MetroGroupBox>
+                </Grid>
             </Metro:MetroWaterfallFlow>
         </Metro:MetroScrollViewer>
     </Grid>
