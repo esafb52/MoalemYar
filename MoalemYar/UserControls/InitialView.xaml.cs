@@ -33,26 +33,6 @@ namespace MoalemYar.UserControls
             txtStCount.Text = MainWindow.main.exAddOrUpdateStudent.Hint;
             txtUCount.Text = MainWindow.main.exAddOrUpdateUser.Hint;
             txtScCount.Text = MainWindow.main.exAddOrUpdateSchool.Hint;
-            var defSchool = FindElement.Settings.DefaultSchool;
-            using (var db = new DataClass.myDbContext())
-            {
-              
-                var query = db.Scores;
-                var x = query.Where(y => y.Scores == "نیاز به تلاش بیشتر").ToList();
-                var xx = query.Where(y => y.Scores == "قابل قبول").ToList();
-                var xxx = query.Where(y => y.Scores == "خوب").ToList();
-                var xxxx = query.Where(y => y.Scores == "خیلی خوب").ToList();
-                AchievementChart.Series.Add(new LineSeries
-                {
-                    Values = new ChartValues<double>(new double[] { xxxx.Count, xxx.Count, xx.Count, x.Count }),
-                    StrokeDashArray = new System.Windows.Media.DoubleCollection(20)
-                });
-                AchievementChart.AxisX.Add(new Axis
-                {
-                    Labels = new string[] { "خیلی خوب", "خوب", "قابل قبول", "نیاز به تلاش بیشتر" },
-                    Separator = new LiveCharts.Wpf.Separator { }
-                });
-            }
         }
 
         public void getTopStudent(long BaseId)
@@ -137,6 +117,30 @@ namespace MoalemYar.UserControls
                 getSchool();
                 cmbEditBase.SelectedIndex = Convert.ToInt32(FindElement.Settings.DefaultSchool);
                 runFirst = true;
+            }
+            using (var db = new DataClass.myDbContext())
+            {
+                long baseId = Convert.ToInt64(cmbEditBase.SelectedValue);
+                var query = db.Scores.Join(
+                   db.Students,
+                   c => c.StudentId,
+                   v => v.Id,
+                   (c, v) => new DataClass.DataTransferObjects.StudentsScoresDto { Id = c.Id, BaseId = v.BaseId, StudentId = v.Id, Name = v.Name, LName = v.LName, FName = v.FName, Scores = c.Scores }
+               ).Where(y => y.BaseId == baseId).ToList();
+                var x = query.Where(y => y.Scores == "نیاز به تلاش بیشتر").ToList();
+                var xx = query.Where(y => y.Scores == "قابل قبول").ToList();
+                var xxx = query.Where(y => y.Scores == "خوب").ToList();
+                var xxxx = query.Where(y => y.Scores == "خیلی خوب").ToList();
+                AchievementChart.Series.Add(new LineSeries
+                {
+                    Values = new ChartValues<double>(new double[] { xxxx.Count, xxx.Count, xx.Count, x.Count }),
+                    StrokeDashArray = new System.Windows.Media.DoubleCollection(20)
+                });
+                AchievementChart.AxisX.Add(new Axis
+                {
+                    Labels = new string[] { "خیلی خوب", "خوب", "قابل قبول", "نیاز به تلاش بیشتر" },
+                    Separator = new LiveCharts.Wpf.Separator { }
+                });
             }
         }
 
