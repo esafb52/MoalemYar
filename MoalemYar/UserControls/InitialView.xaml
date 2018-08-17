@@ -187,18 +187,6 @@
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
-            <TextBlock Text=" انتخاب کلاس " IsHitTestVisible="False" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="190">
-                <TextBlock.Style>
-                    <Style TargetType="{x:Type TextBlock}">
-                        <Setter Property="Visibility" Value="Hidden" />
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding SelectedItem, ElementName=cmbEditBase}" Value="{x:Null}">
-                                <Setter Property="Visibility" Value="Visible" />
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </TextBlock.Style>
-            </TextBlock>
         </Grid>
     </Grid>
 </UserControl>

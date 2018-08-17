@@ -103,6 +103,7 @@ namespace MoalemYar.UserControls
 
                     stkDash.Children.Add(_currentUser);
                 }
+
             }
         }
 
@@ -134,10 +135,9 @@ namespace MoalemYar.UserControls
             if (!runFirst)
             {
                 getSchool();
-                cmbEditBase.SelectedIndex = FindElement.Settings.DefaultSchool ?? -1;
+                cmbEditBase.SelectedIndex = Convert.ToInt32(FindElement.Settings.DefaultSchool);
                 runFirst = true;
             }
-            
         }
 
         private void btnCheckUpdate_Click(object sender, System.Windows.RoutedEventArgs e)
