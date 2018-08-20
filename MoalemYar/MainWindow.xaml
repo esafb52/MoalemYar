@@ -9,7 +9,7 @@
                    xmlns:mvvmc="clr-namespace:MVVMC;assembly=MVVMC"
                    xmlns:controls="clr-namespace:Enterwell.Clients.Wpf.Notifications.Controls;assembly=Enterwell.Clients.Wpf.Notifications"
                    mc:Ignorable="d"
-        d:DesignWidth="1600" d:DesignHeight="1200"
+        d:DesignWidth="1600" d:DesignHeight="1200" 
         Style="{StaticResource myWindow}"
                    Title="{Binding Path=appTitle}" Loaded="MetroWindow_Loaded">
     <Grid>
