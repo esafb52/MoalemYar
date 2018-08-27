@@ -22,10 +22,10 @@ namespace MVVMC
         DiscardParameterInstance
     }
 
+    public enum NavigationMode { Regular, HistoryBack, HistoryForward };
 
     public abstract class Controller : IController
     {
-        enum NavigationMode { Regular, HistoryBack, HistoryForward };
 
         protected class HistoryItem
         {
@@ -90,8 +90,8 @@ namespace MVVMC
             CheckGoBackPossible();
             var historyItem = History[HistoryCurrentItemIndex - 1];
             VerifyHistoryModeAtTheTimeWasSaveParameter(historyItem.HistoryModeAtTheTime);
-            ExecuteNavigationInternal(historyItem.PageName, 
-                historyItem.NavigationParameter, 
+            ExecuteNavigationInternal(historyItem.PageName,
+                historyItem.NavigationParameter,
                 NavigationMode.HistoryBack,
                 historyItem.ViewBag == null ? null : new Dictionary<string, object>(historyItem.ViewBag));
         }
@@ -140,7 +140,7 @@ namespace MVVMC
 
         private void CheckGoForwardPossible()
         {
-            if (HistoryCurrentItemIndex >= History.Count -1)
+            if (HistoryCurrentItemIndex >= History.Count - 1)
             {
                 throw new InvalidOperationException("Trying to GoForward with Controller, when it's the last navigation history item");
             }
@@ -175,14 +175,39 @@ namespace MVVMC
 
         private void ExecuteNavigationInternal(string pageName, object parameter, NavigationMode navigationMode, Dictionary<string, object> viewBag = null)
         {
+            bool shouldCancel = CallOnLeavingNavigation(ID);
+            if (shouldCancel)
+                return;
             ModifyHistory(pageName, parameter, navigationMode, viewBag);
-            NavigationExecutor.ExecuteNavigation(ID, pageName, parameter, viewBag);
+            NavigationExecutor.ExecuteNavigation(ID, pageName, parameter, navigationMode, viewBag);
             _navigationService.RunOnUIThread(() =>
             {
                 _navigationService.ChangeCanGoBack(ID);
                 _navigationService.ChangeCanGoForward(ID);
             });
+            var currentViewModel = GetCurrentViewModel();
+            if (currentViewModel != null)
+            {
+                _navigationService.RunOnUIThreadAsync(() => currentViewModel.OnLoad());
+            }
         }
+
+        /// <summary>
+        /// Return value indicates whether navigation should be cancelled
+        /// </summary>
+        private bool CallOnLeavingNavigation(string controllerId)
+        {
+            var vm = GetCurrentViewModel();
+            if (vm != null)
+            {
+                var ev = new LeavingPageEventArgs();
+                vm.OnLeave(ev);
+                return ev.CancelNavigation;
+            }
+            return false;
+        }
+
+
 
         private void ModifyHistory(string pageName, object parameter, NavigationMode navigationMode, Dictionary<string, object> viewBag)
         {
@@ -206,7 +231,7 @@ namespace MVVMC
 
                     break;
                 case NavigationMode.HistoryBack:
-                    
+
                     HistoryCurrentItemIndex--;
                     break;
 
