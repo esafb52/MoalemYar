@@ -8,7 +8,10 @@
 *	Written by Mahdi Hosseini <Mahdidvb72@gmail.com>,  2018, 3, 28, 02:12 ب.ظ
 *	
 ***********************************************************************************/
+using Newtonsoft.Json.Linq;
 using System;
+using System.Globalization;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -19,6 +22,9 @@ namespace PersianCalendarWPF
     [System.ComponentModel.DefaultProperty("DisplayDate")]
     public partial class PersianCalendar : UserControl
     {
+
+        HijriCalendar hc = new HijriCalendar();
+
         //Properties
 
         public static readonly DependencyProperty DisplayDateProperty;
@@ -497,7 +503,68 @@ namespace PersianCalendarWPF
                     }
                     if (dateInRange && date.Month == firstDayInMonth.Month)
                     {//we're good!
-                        button.Foreground = Brushes.Black;
+                        JObject oo = JObject.Parse(Properties.Resources.events);
+                        var myHcMonth = hc.GetMonth(Convert.ToDateTime(date.Year + "/" + date.Month + "/" + date.Day));
+
+                        switch (Convert.ToInt32(myHcMonth))
+                        {
+
+                            case 1:
+                                hc.HijriAdjustment = Convert.ToInt32(myAdjust.Moharam);
+                                break;
+                            case 2:
+                                hc.HijriAdjustment = Convert.ToInt32(myAdjust.Safar);
+                                break;
+                            case 3:
+                                hc.HijriAdjustment = Convert.ToInt32(myAdjust.RabiAval);
+                                break;
+
+                            case 4:
+                                hc.HijriAdjustment = Convert.ToInt32(myAdjust.RabiSani);
+                                break;
+                            case 5:
+                                hc.HijriAdjustment = Convert.ToInt32(myAdjust.JamadiAval);
+                                break;
+                            case 6:
+                                hc.HijriAdjustment = Convert.ToInt32(myAdjust.JamadiSani);
+                                break;
+                            case 7:
+                                hc.HijriAdjustment = Convert.ToInt32(myAdjust.Rajab);
+                                break;
+                            case 8:
+                                hc.HijriAdjustment = Convert.ToInt32(myAdjust.Shaban);
+                                break;
+                            case 9:
+                                hc.HijriAdjustment = Convert.ToInt32(myAdjust.Ramazan);
+                                break;
+                            case 10:
+                                hc.HijriAdjustment = Convert.ToInt32(myAdjust.Shaval);
+                                break;
+
+                            case 11:
+                                hc.HijriAdjustment = Convert.ToInt32(myAdjust.Zogade);
+                                break;
+                            case 12:
+                                hc.HijriAdjustment = Convert.ToInt32(myAdjust.Zihaje);
+                                break;
+
+                        }
+                        var myHcDay = hc.GetDayOfMonth(Convert.ToDateTime(date.Year + "/" + date.Month + "/" + date.Day));
+
+
+
+                        var getPersianEvents = oo["Persian Calendar"].Where(x => x != null && x.SelectToken("day").ToString() == date.Day.ToString() && x.SelectToken("month").ToString() == date.Month.ToString() && x.SelectToken("type").ToString() == "Iran").Select(m => (string)m.SelectToken("holiday")).ToArray();
+                        var getHijriEvents = oo["Hijri Calendar"].Where(x => x != null && x.SelectToken("day").ToString() == myHcDay.ToString() && x.SelectToken("month").ToString() == myHcMonth.ToString() && x.SelectToken("type").ToString() == "Islamic Iran").Select(m => (string)m.SelectToken("holiday")).ToArray();
+
+                        if (string.Join(", ", getPersianEvents).Contains("True") || string.Join(", ", getHijriEvents).Contains("True"))
+                        {
+                            button.Foreground = Brushes.Red;
+                        }
+                        else
+                        {
+                            button.Foreground = Brushes.Black;
+
+                        }
                         button.Content = date.Day.ToString();
                         button.IsEnabled = true;
                         button.Tag = date;
@@ -523,7 +590,21 @@ namespace PersianCalendarWPF
             this.todayCheck();
             this.selectedDateCheck(null);
         }
-
+        enum myAdjust
+        {
+            Moharam = 0,
+            Safar = 0,
+            RabiAval = 0,
+            RabiSani = 0,
+            JamadiAval = 0,
+            JamadiSani = -1,
+            Rajab = -1,
+            Shaban = -1,
+            Ramazan = -1,
+            Shaval = -1,
+            Zogade = -1,
+            Zihaje = -1
+        }
         private void setYearMode()
         {
             this.monthUniformGrid.Visibility = this.decadeUniformGrid.Visibility = Visibility.Collapsed;
