@@ -48,7 +48,6 @@ namespace MoalemYar
         {
             LoadSettings();
             getexHint();
-            
         }
 
         #region Query
