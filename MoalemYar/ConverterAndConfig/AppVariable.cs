@@ -35,7 +35,7 @@ namespace MoalemYar
         public static string getAppName = Assembly.GetExecutingAssembly().GetName().Name;
         public static string getAppVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
         public static string getAppNameAndVersion = getAppName + " " + getAppVersion;
-        public static string getAppTitle = "معلم یار نسخه آزمایشی ";
+        public static string getAppTitle = "معلم یار نسخه ";
 
         public static string fileName = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\" + Assembly.GetExecutingAssembly().GetName().Name;
         public static string fileNameBakhsh = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\" + Assembly.GetExecutingAssembly().GetName().Name + @"\Circular\";
