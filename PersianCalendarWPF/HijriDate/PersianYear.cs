@@ -4,21 +4,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MoalemYar
+namespace PersianCalendarWPF
 {
     /// <summary>
 
-    /// اجزای ماه شمسی
+    /// اجزای سال شمسی
 
     /// </summary>
 
-    public class PersianMonth
+    public class PersianYear
 
     {
 
         /// <summary>
 
-        /// اولین روز ماه شمسی
+        /// اولین روز سال شمسی
 
         /// </summary>
 
@@ -28,7 +28,7 @@ namespace MoalemYar
 
         /// <summary>
 
-        /// آخرین روز ماه شمسی
+        /// آخرین روز سال شمسی
 
         /// </summary>
 

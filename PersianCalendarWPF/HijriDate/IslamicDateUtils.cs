@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace MoalemYar
+namespace PersianCalendarWPF
 {
     /// <summary>
     /// کلاسی برای محاسبات تاریخ قمری

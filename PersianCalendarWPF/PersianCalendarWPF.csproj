@@ -58,6 +58,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CalendarMode.cs" />
+    <Compile Include="HijriDate\DateTimeOffsetPart.cs" />
+    <Compile Include="HijriDate\DateTimeUtils.cs" />
+    <Compile Include="HijriDate\IslamicDateUtils.cs" />
+    <Compile Include="HijriDate\IslamicDay.cs" />
+    <Compile Include="HijriDate\PersianDay.cs" />
+    <Compile Include="HijriDate\PersianMonth.cs" />
+    <Compile Include="HijriDate\PersianYear.cs" />
     <Compile Include="PersianCalendar.xaml.cs">
       <DependentUpon>PersianCalendar.xaml</DependentUpon>
     </Compile>

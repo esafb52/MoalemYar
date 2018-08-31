@@ -14,7 +14,7 @@
     <WarningLevel>4</WarningLevel>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <AssemblyVersion>1.1.3993.0</AssemblyVersion>
+    <AssemblyVersion>1.1.3996.0</AssemblyVersion>
     <TargetFrameworkProfile />
     <ShouldCreateLogs>False</ShouldCreateLogs>
     <AdvancedSettingsExpanded>True</AdvancedSettingsExpanded>
@@ -149,13 +149,6 @@
     <Compile Include="ConverterAndConfig\EmbeddedAssembly.cs" />
     <Compile Include="ConverterAndConfig\FindElement.cs" />
     <Compile Include="ConverterAndConfig\ISettings.cs" />
-    <Compile Include="HijriDate\DateTimeOffsetPart.cs" />
-    <Compile Include="HijriDate\DateTimeUtils.cs" />
-    <Compile Include="HijriDate\IslamicDateUtils.cs" />
-    <Compile Include="HijriDate\IslamicDay.cs" />
-    <Compile Include="HijriDate\PersianDay.cs" />
-    <Compile Include="HijriDate\PersianMonth.cs" />
-    <Compile Include="HijriDate\PersianYear.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ConverterAndConfig\MonitorPasswordProperty.cs" />
     <Compile Include="ConverterAndConfig\MultiplyConverter.cs" />
