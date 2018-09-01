@@ -23,6 +23,9 @@ Migration<br>
 [ThumbnailSharp](https://github.com/mirzaevolution/ThumbnailSharp) written by mirzaevolution for create an image thumbnail from various sources with better result and supports different image formats.<br>
 [sharpcompress](https://github.com/adamhathcock/sharpcompress) written by adamhathcock for deal with many compression types and formats.<br>
 [MVVMC](https://github.com/michaelscodingspot/WPF_MVVMC) written by michaelscodingspot for deal with MVVM and Navigation System
+<br>
+[PersianCalendarWPF](https://github.com/ghost1372/PersianCalendarWPF) written by Mahdi Hosseini for deal with Persian Calendar and Date also Use Hijri date based on the algorithm of this project [DroidPersianCalendar](https://github.com/ebraminio/DroidPersianCalendar) written by Ebrahim Byagowi
+
 ## Download
  [via the releases tab](https://github.com/ghost1372/MoalemYar/releases).<br>
 
