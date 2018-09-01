@@ -347,60 +347,49 @@ namespace MoalemYar.UserControls
 
         private void chkChecked_Checked(object sender, RoutedEventArgs e)
         {
+            
             var row = dataGrid.ContainerFromElement(sender as DependencyObject);
             Arthas.Controls.Metro.MetroTextBlock MyTextBlock = FindElement.FindVisualChildByName<Arthas.Controls.Metro.MetroTextBlock>(row, "txtStatus");
+            Arthas.Controls.Metro.MetroSwitch MyCHK1 = FindElement.FindVisualChildByName<Arthas.Controls.Metro.MetroSwitch>(row, "chkExc");
+            Arthas.Controls.Metro.MetroSwitch MyCHK2 = FindElement.FindVisualChildByName<Arthas.Controls.Metro.MetroSwitch>(row, "chkGood");
+            Arthas.Controls.Metro.MetroSwitch MyCHK3 = FindElement.FindVisualChildByName<Arthas.Controls.Metro.MetroSwitch>(row, "chkNbad");
+            Arthas.Controls.Metro.MetroSwitch MyCHK4 = FindElement.FindVisualChildByName<Arthas.Controls.Metro.MetroSwitch>(row, "chkBad");
+
+            MyCHK1.IsEnabled = MyCHK2.IsEnabled = MyCHK3.IsEnabled = MyCHK4.IsEnabled = false;
+
             dynamic selectedItem = dataGrid.SelectedItems[0];
             var element = FindElement.FindElementByName<ComboBox>(cmbBook, "cmbBook");
-            switch ((sender as Arthas.Controls.Metro.MetroSwitch).Tag.ToString())
+            var selectedChk = sender as Arthas.Controls.Metro.MetroSwitch;
+            string newStatus = string.Empty;
+
+            if (MyTextBlock.Text == "ثبت نشده")
             {
-                case "exc":
-                    if (MyTextBlock.Text == "ثبت نشده")
-                    {
-                        MyTextBlock.Foreground = new SolidColorBrush(Colors.Green);
-                        MyTextBlock.Text = "ثبت شده";
-                        if (isQuestion.IsChecked == true)
-                            addQuestion((long)selectedItem.BaseId, (long)selectedItem.Id, element.SelectedItem.ToString());
+                MyTextBlock.Foreground = new SolidColorBrush(Colors.Green);
+                MyTextBlock.Text = "ثبت شده";
+                if (isQuestion.IsChecked == true)
+                    addQuestion((long)selectedItem.BaseId, (long)selectedItem.Id, element.SelectedItem.ToString());
 
-                        addScore((long)selectedItem.Id, element.SelectedItem.ToString(), strDate, "خیلی خوب", (txtDesc.Text == string.Empty ? "بدون توضیحات" : txtDesc.Text));
-                    }
-                    break;
-
-                case "good":
-                    if (MyTextBlock.Text == "ثبت نشده")
-                    {
-                        MyTextBlock.Foreground = new SolidColorBrush(Colors.Green);
-                        MyTextBlock.Text = "ثبت شده";
-                        if (isQuestion.IsChecked == true)
-                            addQuestion((long)selectedItem.BaseId, (long)selectedItem.Id, element.SelectedItem.ToString());
-
-                        addScore((long)selectedItem.Id, element.SelectedItem.ToString(), strDate, "خوب", (txtDesc.Text == string.Empty ? "بدون توضیحات" : txtDesc.Text));
-                    }
-                    break;
-
-                case "nbad":
-                    if (MyTextBlock.Text == "ثبت نشده")
-                    {
-                        MyTextBlock.Foreground = new SolidColorBrush(Colors.Green);
-                        MyTextBlock.Text = "ثبت شده";
-                        if (isQuestion.IsChecked == true)
-                            addQuestion((long)selectedItem.BaseId, (long)selectedItem.Id, element.SelectedItem.ToString());
-
-                        addScore((long)selectedItem.Id, element.SelectedItem.ToString(), strDate, "قابل قبول", (txtDesc.Text == string.Empty ? "بدون توضیحات" : txtDesc.Text));
-                    }
-                    break;
-
-                case "bad":
-                    if (MyTextBlock.Text == "ثبت نشده")
-                    {
-                        MyTextBlock.Foreground = new SolidColorBrush(Colors.Green);
-                        MyTextBlock.Text = "ثبت شده";
-                        if (isQuestion.IsChecked == true)
-                            addQuestion((long)selectedItem.BaseId, (long)selectedItem.Id, element.SelectedItem.ToString());
-
-                        addScore((long)selectedItem.Id, element.SelectedItem.ToString(), strDate, "نیاز به تلاش بیشتر", (txtDesc.Text == string.Empty ? "بدون توضیحات" : txtDesc.Text));
-                    }
-                    break;
+                switch ((selectedChk).Tag.ToString())
+                {
+                    case "exc":
+                        newStatus = "خیلی خوب";
+                        break;
+                    case "good":
+                        
+                        newStatus = "خوب";
+                        break;
+                    case "nbad":
+                        newStatus = "قابل قبول";
+                        break;
+                    case "bad":
+                        newStatus = "نیاز به تلاش بیشتر";
+                        break;
+                }
+                addScore((long)selectedItem.Id, element.SelectedItem.ToString(), strDate, newStatus, (txtDesc.Text == string.Empty ? "بدون توضیحات" : txtDesc.Text));
             }
+            
+            
+
             var DeleteQuestion = _initialCollection.Where(x => x.Id == (long)selectedItem.Id).FirstOrDefault();
             _initialCollection.Remove(DeleteQuestion);
 

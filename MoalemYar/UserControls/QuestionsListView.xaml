@@ -90,10 +90,10 @@
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Vertical" Margin="5" HorizontalAlignment="Right" ToggleButton.Checked="StackPanel_Checked">
-                                            <Metro:MetroSwitch Checked="chkChecked_Checked" Tag="exc" Margin="0,2">خیلی خوب</Metro:MetroSwitch>
-                                            <Metro:MetroSwitch Checked="chkChecked_Checked" Tag="good" Margin="0,2">خوب</Metro:MetroSwitch>
-                                            <Metro:MetroSwitch Checked="chkChecked_Checked" Tag="nbad" Margin="0,2">قابل قبول</Metro:MetroSwitch>
-                                            <Metro:MetroSwitch Checked="chkChecked_Checked" Tag="bad" Margin="0,2">نیاز به تلاش بیشتر</Metro:MetroSwitch>
+                                            <Metro:MetroSwitch Name="chkExc" Checked="chkChecked_Checked" Tag="exc" Margin="0,2">خیلی خوب</Metro:MetroSwitch>
+                                            <Metro:MetroSwitch Name="chkGood" Checked="chkChecked_Checked" Tag="good" Margin="0,2">خوب</Metro:MetroSwitch>
+                                            <Metro:MetroSwitch Name="chkNbad" Checked="chkChecked_Checked" Tag="nbad" Margin="0,2">قابل قبول</Metro:MetroSwitch>
+                                            <Metro:MetroSwitch Name="chkBad" Checked="chkChecked_Checked" Tag="bad" Margin="0,2">نیاز به تلاش بیشتر</Metro:MetroSwitch>
                                         </StackPanel>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
