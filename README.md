@@ -29,6 +29,9 @@ Migration<br>
 ## Download
  [via the releases tab](https://github.com/ghost1372/MoalemYar/releases).<br>
 
+## Compile
+for Compile this Project you need Visual Studio 2017
+
 ## Images
 ![Optional Text](ScreenShot/Screen1.png)
 ![Optional Text](ScreenShot/Screen2.png)
