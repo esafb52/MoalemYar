@@ -1,6 +1,8 @@
 [![Total downloads](https://img.shields.io/github/downloads/ghost1372/MoalemYar/total.svg)](https://github.com/ghost1372/MoalemYar/releases)
 [![GitHub version](https://badge.fury.io/gh/ghost1372%2FMoalemYar.svg)](https://badge.fury.io/gh/ghost1372%2FMoalemYar)
 
+### this branch is under development for changing ui
+
 # MoalemYar
 A personal project for class management, using various technologies like WPF, Entityframwork, CodeFirst, Sqlite, Migration and more.
 
@@ -33,19 +35,6 @@ Migration<br>
 for Compile this Project you need Visual Studio 2017
 
 ## Images
-![Optional Text](ScreenShot/Screen1.png)
-![Optional Text](ScreenShot/Screen2.png)
-![Optional Text](ScreenShot/Screen3.png)
-![Optional Text](ScreenShot/Screen4.png)
-![Optional Text](ScreenShot/Screen5.png)
-![Optional Text](ScreenShot/Screen6.png)
-![Optional Text](ScreenShot/Screen7.png)
-![Optional Text](ScreenShot/Screen8.png)
-![Optional Text](ScreenShot/Screen9.png)
-![Optional Text](ScreenShot/Screen10.png)
-![Optional Text](ScreenShot/Screen11.png)
-![Optional Text](ScreenShot/Screen12.png)
-![Optional Text](ScreenShot/Screen13.png)
-![Optional Text](ScreenShot/Screen14.png)
+Soon...
 ## Previous Version
 https://github.com/ghost1372/ClassSRM
