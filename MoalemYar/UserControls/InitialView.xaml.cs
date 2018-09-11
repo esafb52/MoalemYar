@@ -30,9 +30,10 @@ namespace MoalemYar.UserControls
 
             DataContext = this;
             
-            txtStCount.Text = MainWindow.main.exAddOrUpdateStudent.Hint;
-            txtUCount.Text = MainWindow.main.exAddOrUpdateUser.Hint;
-            txtScCount.Text = MainWindow.main.exAddOrUpdateSchool.Hint;
+            //Todo: Fix
+            //txtStCount.Text = MainWindow.main.exAddOrUpdateStudent.Hint;
+            //txtUCount.Text = MainWindow.main.exAddOrUpdateUser.Hint;
+            //txtScCount.Text = MainWindow.main.exAddOrUpdateSchool.Hint;
         }
 
         public void getTopStudent(long BaseId)
