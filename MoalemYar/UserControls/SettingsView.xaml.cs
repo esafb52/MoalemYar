@@ -104,8 +104,9 @@ namespace MoalemYar.UserControls
 
         private void Hamborger_Menu_Checked(object sender, RoutedEventArgs e)
         {
-            FindElement.Settings.HamburgerMenu = Hamborger_Menu.IsChecked;
-            MainWindow.main.tab.IconMode = Convert.ToBoolean(!Hamborger_Menu.IsChecked);
+            //Todo: Fix
+            //FindElement.Settings.HamburgerMenu = Hamborger_Menu.IsChecked;
+            //MainWindow.main.tab.IconMode = Convert.ToBoolean(!Hamborger_Menu.IsChecked);
         }
 
         private void btnFactoryReset_Click(object sender, RoutedEventArgs e)
@@ -132,9 +133,11 @@ namespace MoalemYar.UserControls
                 {
                     cmbBase.ItemsSource = null;
                     File.Delete(folder);
-                    MainWindow.main.exAddOrUpdateSchool.Hint = "0";
-                    MainWindow.main.exAddOrUpdateStudent.Hint = "0";
-                    MainWindow.main.exAddOrUpdateUser.Hint = "0";
+
+                    //Todo: Fix
+                    //MainWindow.main.exAddOrUpdateSchool.Hint = "0";
+                    //MainWindow.main.exAddOrUpdateStudent.Hint = "0";
+                    //MainWindow.main.exAddOrUpdateUser.Hint = "0";
                     MainWindow.main.DataResetDeletedNotification("دیتابیس برنامه");
                     using (var context = new DataClass.myDbContext())
                     {

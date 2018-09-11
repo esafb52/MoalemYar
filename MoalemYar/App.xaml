@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:MoalemYar"
              xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
-             StartupUri="Main.xaml">
+             StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
 

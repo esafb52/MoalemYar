@@ -8,25 +8,24 @@
 *
 ***********************************************************************************/
 
-using Arthas.Controls.Metro;
-using Enterwell.Clients.Wpf.Notifications;
-using MoalemYar.UserControls;
-using MVVMC;
-using Ookii.Dialogs.Wpf;
 using System;
 using System.Globalization;
 using System.Linq;
 using System.Windows;
-using System.Windows.Media;
+using System.Windows.Controls;
+using Enterwell.Clients.Wpf.Notifications;
+using HandyControl.Controls;
+using MoalemYar.UserControls;
+using MVVMC;
+using Ookii.Dialogs.Wpf;
 
 namespace MoalemYar
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : MetroWindow
+    public partial class MainWindow : WindowBorderless
     {
-        public string appTitle { get; set; }
         internal static MainWindow main;
         private PersianCalendar pc = new PersianCalendar();
         private int _sch = 0;
@@ -40,62 +39,165 @@ namespace MoalemYar
             DataContext = this;
             main = this;
 
-            appTitle = AppVariable.getAppTitle + AppVariable.getAppVersion; // App Title with Version
             ShowCredentialDialog();
         }
 
-        private void MetroWindow_Loaded(object sender, RoutedEventArgs e)
+        private void TreeViewItem_Selected(object sender, RoutedEventArgs e)
         {
-            LoadSettings();
+            var navigationService = NavigationServiceProvider.GetNavigationServiceInstance();
+            var selectedItem = sender as TreeViewItem;
+            switch (selectedItem.Tag)
+            {
+                case "initial":
+                    navigationService.GetController<UserControls.UserControlsController>().Initial();
+                    break;
+                case "addOrUpdateSchool":
+                    navigationService.GetController<UserControls.UserControlsController>().AddSchool();
+                    break;
+                case "exAddOrUpdateStudent":
+                    navigationService.GetController<UserControls.UserControlsController>().AddStudent();
+                    break;
+                case "exAddOrUpdateUser":
+                    navigationService.GetController<UserControls.UserControlsController>().AddUser();
+                    break;
+                case "exAttendancelist":
+                    navigationService.GetController<UserControls.UserControlsController>().Attendancelist();
+                    break;
+                case "exQuestionsList":
+                    navigationService.GetController<UserControls.UserControlsController>().Questionslist();
+                    break;
+                case "exTopStudents":
+                    navigationService.GetController<UserControls.UserControlsController>().TopStudents();
+                    break;
+                case "exAchievement":
+                    navigationService.GetController<UserControls.UserControlsController>().Achievement();
+                    break;
+                case "exCircular":
+                    navigationService.GetController<UserControls.UserControlsController>().Circular();
+                    break;
+                case "exBook":
+                    navigationService.GetController<UserControls.UserControlsController>().Books();
+                    break;
+                case "exRoshd":
+                    navigationService.GetController<UserControls.UserControlsController>().Magazine();
+                    break;
+
+            }
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            var navigationService = NavigationServiceProvider.GetNavigationServiceInstance();
+            var selectedItem = sender as MenuItem;
+            switch (selectedItem.Tag)
+            {
+                case "makeAzmon":
+                    navigationService.GetController<UserControls.UserControlsController>().StartAzmon();
+                    break;
+                case "quesAzmon":
+                    navigationService.GetController<UserControls.UserControlsController>().AddQuestions();
+                    break;
+                case "resultAzmon":
+                    navigationService.GetController<UserControls.UserControlsController>().AzmonHistory();
+                    break;
+                case "settingView":
+                    navigationService.GetController<UserControls.UserControlsController>().Settings();
+                    break;
+                case "aboutView":
+                    navigationService.GetController<UserControls.UserControlsController>().About();
+                    break;
+                case "groupAzmon":
+                    navigationService.GetController<UserControls.UserControlsController>().AddAzmonGroup();
+                    break;
+            }
+        }
+
+        private void WindowBorderless_Loaded(object sender, RoutedEventArgs e)
+        {
             getexHint();
         }
 
-        #region Query
-
         public void getexHint()
         {
-            try
-            {
-                using (var db = new DataClass.myDbContext())
-                {
-                    var query = db.Schools.Select(x => x);
-                    exAddOrUpdateSchool.Hint = query.Count().ToString();
+            //Todo: must find a better way
+            //try
+            //{
+            //    using (var db = new DataClass.myDbContext())
+            //    {
+            //        var query = db.Schools.Select(x => x);
+            //        exAddOrUpdateSchool.Hint = query.Count().ToString();
 
-                    var query2 = db.Users.Select(x => x);
-                    exAddOrUpdateUser.Hint = query2.Count().ToString();
+            //        var query2 = db.Users.Select(x => x);
+            //        exAddOrUpdateUser.Hint = query2.Count().ToString();
 
-                    var query3 = db.Students.Select(x => x);
-                    exAddOrUpdateStudent.Hint = query3.Count().ToString();
-                    _sch = query.Count();
-                    _stu = query3.Count();
-                    _usr = query2.Count();
-                }
+            //        var query3 = db.Students.Select(x => x);
+            //        exAddOrUpdateStudent.Hint = query3.Count().ToString();
+            //        _sch = query.Count();
+            //        _stu = query3.Count();
+            //        _usr = query2.Count();
+            //    }
 
-                exAttendancelist.Hint = pc.GetYear(DateTime.Now).ToString("0000") + "/" + pc.GetMonth(DateTime.Now).ToString("00") + "/" + pc.GetDayOfMonth(DateTime.Now).ToString("00");
-            }
-            catch (Exception)
-            {
-            }
+            //    exAttendancelist.Hint = pc.GetYear(DateTime.Now).ToString("0000") + "/" + pc.GetMonth(DateTime.Now).ToString("00") + "/" + pc.GetDayOfMonth(DateTime.Now).ToString("00");
+            //}
+            //catch (Exception)
+            //{
+            //}
         }
 
-        #endregion Query
-
-        private void LoadSettings()
+        private void ShowCredentialDialog()
         {
             try
             {
-                var color = (Color)ColorConverter.ConvertFromString(FindElement.Settings.SkinCode ?? AppVariable.DEFAULT_BORDER_BRUSH);
-                var brush = new SolidColorBrush(color);
-                BorderBrush = brush;
+                var isLogin = FindElement.Settings.CredentialLogin;
+                if (isLogin)
+                {
+                    using (CredentialDialog dialog = new CredentialDialog())
+                    {
 
-                var hb_Menu = FindElement.Settings.HamburgerMenu ?? true;
-                tab.IconMode = !hb_Menu;
+                        dialog.WindowTitle = "ورود به نرم افزار";
+                        dialog.MainInstruction = "لطفا نام کاربری و رمز عبور خود را وارد کنید";
+                        //dialog.Content = "";
+                        dialog.ShowSaveCheckBox = true;
+                        dialog.ShowUIForSavedCredentials = true;
+                        // The target is the key under which the credentials will be stored.
+                        dialog.Target = "Mahdi72_MoalemYar_www.127.0.0.1.com";
+
+                        try
+                        {
+                            while (isLogin)
+                            {
+                                if (dialog.ShowDialog(this))
+                                {
+                                    using (var db = new DataClass.myDbContext())
+                                    {
+                                        var usr = db.Users.Where(x => x.Username == dialog.Credentials.UserName && x.Password == dialog.Credentials.Password);
+                                        if (usr.Any())
+                                        {
+                                            dialog.ConfirmCredentials(true);
+                                            isLogin = false;
+                                        }
+                                        else
+                                        {
+                                            dialog.Content = "مشخصات اشتباه است دوباره امتحان کنید";
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    Environment.Exit(0);
+                                }
+                            }
+                        }
+                        catch (InvalidOperationException)
+                        {
+                        }
+                    }
+                }
             }
             catch (Exception)
             {
             }
         }
-
         #region "Notification"
 
         public void ShowNoDataNotification(string Type)
@@ -520,113 +622,5 @@ namespace MoalemYar
 
         #endregion "Notification"
 
-        private void ShowCredentialDialog()
-        {
-            try
-            {
-                var isLogin = FindElement.Settings.CredentialLogin;
-                if (isLogin)
-                {
-                    using (CredentialDialog dialog = new CredentialDialog())
-                    {
-                        
-                        dialog.WindowTitle = "ورود به نرم افزار";
-                        dialog.MainInstruction = "لطفا نام کاربری و رمز عبور خود را وارد کنید";
-                        //dialog.Content = "";
-                        dialog.ShowSaveCheckBox = true;
-                        dialog.ShowUIForSavedCredentials = true;
-                        // The target is the key under which the credentials will be stored.
-                        dialog.Target = "Mahdi72_MoalemYar_www.127.0.0.1.com";
-
-                        try
-                        {
-                            while (isLogin)
-                            {
-                                if (dialog.ShowDialog(this))
-                                {
-                                    using (var db = new DataClass.myDbContext())
-                                    {
-                                        var usr = db.Users.Where(x => x.Username == dialog.Credentials.UserName && x.Password == dialog.Credentials.Password);
-                                        if (usr.Any())
-                                        {
-                                            dialog.ConfirmCredentials(true);
-                                            isLogin = false;
-                                        }
-                                        else
-                                        {
-                                            dialog.Content = "مشخصات اشتباه است دوباره امتحان کنید";
-                                        }
-                                    }
-                                }
-                                else
-                                {
-                                    Environment.Exit(0);
-                                }
-                            }
-                        }
-                        catch (InvalidOperationException)
-                        {
-                        }
-                    }
-                }
-            }
-            catch (Exception)
-            {
-            }
-        }
-
-        private void NavigationMenuItem_Click(object sender, EventArgs e)
-        {
-            var navigationService = NavigationServiceProvider.GetNavigationServiceInstance();
-            var selectedItem = sender as MetroExpander;
-            switch (selectedItem.Tag)
-            {
-                case "initial":
-                    navigationService.GetController<UserControls.UserControlsController>().Initial();
-                    break;
-                case "addOrUpdateSchool":
-                    navigationService.GetController<UserControls.UserControlsController>().AddSchool();
-                    break;
-                case "exAddOrUpdateStudent":
-                    navigationService.GetController<UserControls.UserControlsController>().AddStudent();
-                    break;
-                case "exAddOrUpdateUser":
-                    navigationService.GetController<UserControls.UserControlsController>().AddUser();
-                    break;
-                case "exAttendancelist":
-                    navigationService.GetController<UserControls.UserControlsController>().Attendancelist();
-                    break;
-                case "exQuestionsList":
-                    navigationService.GetController<UserControls.UserControlsController>().Questionslist();
-                    break;
-                case "exTopStudents":
-                    navigationService.GetController<UserControls.UserControlsController>().TopStudents();
-                    break;
-                case "exAchievement":
-                    navigationService.GetController<UserControls.UserControlsController>().Achievement();
-                    break;
-                case "exCircular":
-                    navigationService.GetController<UserControls.UserControlsController>().Circular();
-                    break;
-                case "exBook":
-                    navigationService.GetController<UserControls.UserControlsController>().Books();
-                    break;
-                case "exRoshd":
-                    navigationService.GetController<UserControls.UserControlsController>().Magazine();
-                    break;
-            }
-        }
-
-        private void MetroExpander_Click(object sender, EventArgs e)
-        {
-            if (exActivity.IsExpanded)
-                exActivity.IsExpanded = false;
-        }
-
-        private void exActivity_Click(object sender, EventArgs e)
-        {
-            if (exBase.IsExpanded)
-                exBase.IsExpanded = false;
-        }        
     }
 }

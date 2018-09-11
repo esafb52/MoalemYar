@@ -1,105 +1,102 @@
-﻿<Metro:MetroWindow x:Class="MoalemYar.MainWindow"
+﻿<controls:WindowBorderless x:Class="MoalemYar.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:MoalemYar.UserControls"
-        xmlns:Metro="clr-namespace:Arthas.Controls.Metro;assembly=Arthas"
-                   Icon="Resources/Approval.ico"
-                   xmlns:mvvmc="clr-namespace:MVVMC;assembly=MVVMC"
-                   xmlns:controls="clr-namespace:Enterwell.Clients.Wpf.Notifications.Controls;assembly=Enterwell.Clients.Wpf.Notifications"
-                   mc:Ignorable="d"
-        d:DesignWidth="1600" d:DesignHeight="1200" 
-        Style="{StaticResource myWindow}"
-                   Title="{Binding Path=appTitle}" Loaded="MetroWindow_Loaded">
+        xmlns:local="clr-namespace:MoalemYar"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:controls="clr-namespace:HandyControl.Controls;assembly=HandyControl"
+        xmlns:mvvmc="clr-namespace:MVVMC;assembly=MVVMC"
+        xmlns:Ncontrols="clr-namespace:Enterwell.Clients.Wpf.Notifications.Controls;assembly=Enterwell.Clients.Wpf.Notifications"
+        mc:Ignorable="d" UseLayoutRounding="True" BorderThickness="1" BorderBrush="#262e2f" NoUserAreaBackground="#262e2f"
+        OtherButtonHoverBrush="#888580" Style="{StaticResource CustomWindowStyle}" TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto" TextOptions.TextHintingMode="Auto" FontFamily="{StaticResource TeacherYar.Fonts.IRANSans}"
+        FontSize="14" MinWidth="1300" MinHeight="600" Title="معلم یار" Height="450" Width="800"
+        Loaded="WindowBorderless_Loaded">
+    <controls:WindowBorderless.NoUserContent>
+        <StackPanel Orientation="Horizontal" FlowDirection="RightToLeft">
+            <Border Margin="10,0,0,0" Width="16" Height="16">
+                <Border.Background>
+                    <ImageBrush ImageSource="Resources/Approval.ico"/>
+                </Border.Background>
+            </Border>
+            <Menu Margin="10,0,0,0" WindowChrome.IsHitTestVisibleInChrome="True" Background="Transparent">
+                <MenuItem Foreground="White" Header="منو">
+                    <MenuItem Header="خروج"></MenuItem>
+                </MenuItem>
+                <MenuItem Foreground="White" Header="ویرایش">
+                    <MenuItem Header="کپی" Command="ApplicationCommands.Copy"></MenuItem>
+                    <MenuItem Header="چسباندن" Command="ApplicationCommands.Paste"></MenuItem>
+                    <MenuItem Header="برش" Command="ApplicationCommands.Cut"></MenuItem>
+                </MenuItem>
+                <MenuItem Foreground="White" Header="آزمون">
+                    <MenuItem Tag="makeAzmon" Click="MenuItem_Click" Header="آزمون آنلاین"/>
+                    <Separator></Separator>
+                    <MenuItem Tag="groupAzmon" Click="MenuItem_Click" Header="گروه بندی سوالات"/>
+                    <MenuItem Tag="quesAzmon" Click="MenuItem_Click" Header="ساخت سوال"/>
+                    <MenuItem Tag="resultAzmon" Click="MenuItem_Click" Header="نتایج گذشته"/>
+
+                </MenuItem>
+                <MenuItem Tag="settingView" Click="MenuItem_Click" Foreground="White" Header="تنظیمات"></MenuItem>
+                <MenuItem Tag="aboutView" Click="MenuItem_Click" Foreground="White" Header="درباره"/>
+            </Menu>
+        </StackPanel>
+    </controls:WindowBorderless.NoUserContent>
     <Grid>
-
-        <Metro:MetroMenuTabControl TabIndex="-1" FlowDirection="RightToLeft" x:Name="tab" IconMode="False">
-            <Metro:MetroMenuTabItem Name="ex1" Header="داشبورد مدیریتی" Icon="Resources/Home.png" IconMove="Resources/HomeMove.png">
-                <Grid FlowDirection="RightToLeft">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition MinWidth="160" Width="Auto" />
-                        <ColumnDefinition />
-                    </Grid.ColumnDefinitions>
-                    <Metro:MetroScrollViewer>
-                        <Border BorderBrush="#19000000" BorderThickness="0,0,1,0">
-                            <StackPanel x:Name="lists">
-                                <Metro:MetroExpander Tag="initial" Click="NavigationMenuItem_Click" FontWeight="Medium" Header="داشبورد" Hint="نگاه کلی به اطلاعات" Icon="Resources/Dashboard.png" />
-                                <Metro:MetroExpander FontWeight="Medium" Name="exBase" Icon="Resources/Verify.png" Header="عملیات پایه" Hint="ثبت اطلاعات" HintBackground="#e15b4f" IsExpanded="True" Click="MetroExpander_Click">
-                                    <StackPanel>
-                                        <Metro:MetroExpander Name="exAddOrUpdateSchool" FontWeight="Normal" Tag="addOrUpdateSchool" Click="NavigationMenuItem_Click" Icon="Resources/School.png" Header="مدرسه و کلاس" Hint="0" HintBackground="Green" />
-                                        <Metro:MetroExpander FontWeight="Normal" Name="exAddOrUpdateStudent" Tag="exAddOrUpdateStudent" Click="NavigationMenuItem_Click" Icon="Resources/Students.png" Header="دانش آموز" Hint="0" HintBackground="Green" />
-                                        <Metro:MetroExpander FontWeight="Normal" Name="exAddOrUpdateUser" Tag="exAddOrUpdateUser" Click="NavigationMenuItem_Click" Icon="Resources/User.png" Header="حساب کاربری" Hint="0" HintBackground="Orange" />
-                                    </StackPanel>
-                                </Metro:MetroExpander>
-
-                                <Metro:MetroExpander FontWeight="Medium" Name="exActivity" Header="فعالیت ها" Icon="Resources/Active.png" IsExpanded="True" Click="exActivity_Click">
-                                    <StackPanel>
-                                        <Metro:MetroExpander Name="exAttendancelist" Tag="exAttendancelist" Click="NavigationMenuItem_Click" FontWeight="Normal" Header="حضور و غیاب" Icon="Resources/Checkmark.png" Hint="1397/01/07" />
-                                        <Metro:MetroExpander Tag="exQuestionsList" Click="NavigationMenuItem_Click" FontWeight="Normal" Header="ارزشیابی" Icon="Resources/Ask.png" Hint="پرسش / امتحان" HintBackground="#e15b4f" />
-                                    </StackPanel>
-                                </Metro:MetroExpander>
-                                <Metro:MetroExpander FontWeight="Medium" Header="گزارش وضعیت" Icon="Resources/reportmove.png" IsExpanded="True">
-                                    <StackPanel>
-                                        <Metro:MetroExpander Tag="exTopStudents" Click="NavigationMenuItem_Click" Header="نفرات برتر" Icon="Resources/Trophy.png" Hint="انتخاب شاگرد" HintBackground="#e15b4f" />
-                                        <Metro:MetroExpander Tag="exAchievement" Click="NavigationMenuItem_Click" Header="پیشرفت تحصیلی" Icon="Resources/Chart.png" Hint="نمودار" HintBackground="#e15b4f" />
-                                    </StackPanel>
-                                </Metro:MetroExpander>
-                                <Metro:MetroExpander FontWeight="Medium" Header="بیشتر" Icon="Resources/more.png" IsExpanded="True">
-                                    <StackPanel>
-                                        <Metro:MetroExpander Tag="exCircular" Click="NavigationMenuItem_Click" Header="بخشنامه ها" Icon="Resources/circular.png" Hint="دانلود/مطالعه" HintBackground="#e15b4f" />
-                                        <Metro:MetroExpander Tag="exBook" Click="NavigationMenuItem_Click" Header="کتب درسی" Icon="Resources/book.png" Hint="دانلود/مطالعه" HintBackground="#e15b4f" />
-                                        <Metro:MetroExpander Tag="exRoshd" Click="NavigationMenuItem_Click" Header="مجلات رشد" Icon="Resources/roshd.png" Hint="دانلود/مطالعه" HintBackground="#e15b4f" />
-                                    </StackPanel>
-                                </Metro:MetroExpander>
-                            </StackPanel>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition MinWidth="200"/>
+            <ColumnDefinition Width="200" MinWidth="200" MaxWidth="400"/>
+        </Grid.ColumnDefinitions>
+        <Grid FlowDirection="RightToLeft" Grid.Column="1">
+            <Border controls:ScrollViewer.IsEnableInertia="True">
+                <TreeView Name="treeview" controls:ScrollViewer.IsEnableInertia="True" BorderThickness="0">
+                    <TreeViewItem IsSelected="True" Tag="initial" Header="داشبورد" Selected="TreeViewItem_Selected"/>
+                    <TreeViewItem IsExpanded="True" Header="منوی اصلی">
+                        <TreeViewItem Tag="handle" Header="عملیات پایه">
+                            <TreeViewItem Tag="addOrUpdateSchool" Header="مدرسه و کلاس" Selected="TreeViewItem_Selected"/>
+                            <TreeViewItem Tag="exAddOrUpdateStudent" Header="دانش آموز" Selected="TreeViewItem_Selected"/>
+                            <TreeViewItem Tag="exAddOrUpdateUser" Header="حساب کاربری" Selected="TreeViewItem_Selected"/>
+                        </TreeViewItem>
+                        <TreeViewItem Tag="handle" Header="فعالیت ها">
+                            <TreeViewItem Tag="exAttendancelist" Header="حضور و غیاب" Selected="TreeViewItem_Selected"/>
+                            <TreeViewItem Tag="exQuestionsList" Header="ارزشیابی" Selected="TreeViewItem_Selected"/>
+                        </TreeViewItem>
+                        <TreeViewItem Tag="handle" Header="گزارش وضعیت">
+                            <TreeViewItem Tag="exTopStudents" Header="نفرات برتر" Selected="TreeViewItem_Selected"/>
+                            <TreeViewItem Tag="exAchievement" Header="پیشرفت تحصیلی" Selected="TreeViewItem_Selected"/>
+                        </TreeViewItem>
+                    </TreeViewItem>
+                    <TreeViewItem IsExpanded="True" Header="بیشتر">
+                        <TreeViewItem Tag="exCircular" Header="بخشنامه ها" Selected="TreeViewItem_Selected"/>
+                        <TreeViewItem Tag="exBook" Header="کتب درسی" Selected="TreeViewItem_Selected"/>
+                        <TreeViewItem Tag="exRoshd" Header="مجلات رشد" Selected="TreeViewItem_Selected"/>
+                    </TreeViewItem>
+                </TreeView>
+            </Border>
+        </Grid>
+        <Grid>
+            <Border Background="#f0f0f0">
+                <Border Background="{StaticResource MainContentBackground}">
+                    <Grid Name="GridMain" MinHeight="300" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="16">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Border Name="BorderEffect" Grid.RowSpan="2" Background="White" CornerRadius="10" Effect="{StaticResource EffectShadow4}"></Border>
+                        <Border Height="32" Name="BorderTitle" Grid.Row="0" CornerRadius="10,10,0,0" Background="{StaticResource PrimaryBrush}">
+                            <TextBlock Style="{StaticResource TextBlockDefault}" Foreground="White" Text="{Binding ElementName=treeview, Path=SelectedItem.Header}"></TextBlock>
                         </Border>
-                    </Metro:MetroScrollViewer>
-                    <Metro:MetroScrollViewer Grid.Column="1">
-                        <mvvmc:Region Name="region" ControllerID="UserControls"></mvvmc:Region>
-                    </Metro:MetroScrollViewer>
-                </Grid>
-            </Metro:MetroMenuTabItem>
-            <Metro:MetroMenuTabItem Name="ex2" Header="آزمون آنلاین" Icon="Resources/Exam.png" IconMove="Resources/ExamMove.png">
-                <Grid>
-                    <Metro:MetroScrollViewer>
-                        <ContentControl>
-                            <ContentControl.ContentTemplate>
-                                <DataTemplate>
-                                    <local:AzmonView />
-                                </DataTemplate>
-                            </ContentControl.ContentTemplate>
-                        </ContentControl>
-                    </Metro:MetroScrollViewer>
-                </Grid>
-            </Metro:MetroMenuTabItem>
-            <Metro:MetroMenuTabItem Name="ex4" Header="تنظیمات نرم افزار" Icon="Resources/Gears.png" IconMove="Resources/GearsMove.png">
-                <Grid>
-                    <Metro:MetroScrollViewer>
-                        <ContentControl>
-                            <ContentControl.ContentTemplate>
-                                <DataTemplate>
-                                    <local:SettingsView />
-                                </DataTemplate>
-                            </ContentControl.ContentTemplate>
-                        </ContentControl>
-                    </Metro:MetroScrollViewer>
-                </Grid>
-            </Metro:MetroMenuTabItem>
-            <Metro:MetroMenuTabItem Name="ex5" Header="درباره نرم افزار" Icon="Resources/Fingerprint.png" IconMove="Resources/FingerprintMove.png">
-                <Grid>
-                    <Metro:MetroScrollViewer>
-                        <ContentControl Name="abtContent">
-                            <ContentControl.ContentTemplate>
-                                <DataTemplate>
-                                    <local:AboutView />
-                                </DataTemplate>
-                            </ContentControl.ContentTemplate>
-                        </ContentControl>
-                    </Metro:MetroScrollViewer>
-                </Grid>
-            </Metro:MetroMenuTabItem>
-        </Metro:MetroMenuTabControl>
-        <controls:NotificationMessageContainer Focusable="False" TabIndex="-1" FlowDirection="RightToLeft" Manager="{Binding Manager}" />
+                        <Border Grid.Row="1" ClipToBounds="True">
+                            <mvvmc:Region Margin="0,0,0,10" Name="region" ControllerID="UserControls"></mvvmc:Region>
+                        </Border>
+                    </Grid>
+                </Border>
+            </Border>
+        </Grid>
+        <GridSplitter Grid.Column="1" HorizontalAlignment="Left" Width="4" Background="Transparent" BorderThickness="1,0,0,0" BorderBrush="{StaticResource BorderBrush}"></GridSplitter>
+        <controls:ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Hidden" HorizontalAlignment="Right" IsEnableInertia="True" IsPenetrating="True">
+            <StackPanel IsHitTestVisible="True" VerticalAlignment="Top" Background="Transparent" Name="PanelMessage" Margin="0,10,10,10"></StackPanel>
+        </controls:ScrollViewer>
+        <Ncontrols:NotificationMessageContainer Focusable="False" TabIndex="-1" FlowDirection="RightToLeft" Manager="{Binding Manager}" />
     </Grid>
-</Metro:MetroWindow>
+</controls:WindowBorderless>
