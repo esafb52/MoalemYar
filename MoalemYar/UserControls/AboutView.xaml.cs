@@ -22,10 +22,6 @@ namespace MoalemYar.UserControls
     /// </summary>
     public partial class AboutView : UserControl
     {
-        public string History { get; set; }
-        public string AppName { get; set; }
-        public string AppVersion { get; set; }
-
         //XmlTextReader reader;
         private string newVersion = string.Empty;
 
@@ -36,9 +32,9 @@ namespace MoalemYar.UserControls
         {
             InitializeComponent();
             DataContext = this;
-            History = Properties.Resources.History;
-            AppName = AppVariable.getAppTitle;
-            AppVersion = AppVariable.getAppVersion;
+            txtHistory.Text = Properties.Resources.History;
+            AppName.Content = AppVariable.getAppTitle;
+            AppVersion.Content = AppVariable.getAppVersion;
             
         }
 
@@ -72,7 +68,7 @@ namespace MoalemYar.UserControls
         {
             if (IsVersionLater(newVersion, AppVariable.getAppVersion.ToString()))
             {
-                txtNewVersion.Text = newVersion;
+                txtNewVersion.Content = newVersion;
                 txtNewVersion.Foreground = new SolidColorBrush(Colors.Green);
                 txtChangeLog.Visibility = Visibility.Visible;
                 txtChangeLog.Text = ChangeLog;
@@ -82,7 +78,7 @@ namespace MoalemYar.UserControls
             {
                 MainWindow.main.ShowUpdateNotification(false, null, null);
                 txtNewVersion.Foreground = new SolidColorBrush(Colors.Red);
-                txtNewVersion.Text = newVersion;
+                txtNewVersion.Content = newVersion;
             }
         }
 
