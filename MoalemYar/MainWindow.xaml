@@ -52,16 +52,16 @@
                 <TreeView Name="treeview" controls:ScrollViewer.IsEnableInertia="True" BorderThickness="0">
                     <TreeViewItem IsSelected="True" Tag="initial" Header="داشبورد" Selected="TreeViewItem_Selected"/>
                     <TreeViewItem IsExpanded="True" Header="منوی اصلی">
-                        <TreeViewItem Tag="handle" Header="عملیات پایه">
+                        <TreeViewItem Header="عملیات پایه">
                             <TreeViewItem Tag="addOrUpdateSchool" Header="مدرسه و کلاس" Selected="TreeViewItem_Selected"/>
                             <TreeViewItem Tag="exAddOrUpdateStudent" Header="دانش آموز" Selected="TreeViewItem_Selected"/>
                             <TreeViewItem Tag="exAddOrUpdateUser" Header="حساب کاربری" Selected="TreeViewItem_Selected"/>
                         </TreeViewItem>
-                        <TreeViewItem Tag="handle" Header="فعالیت ها">
+                        <TreeViewItem Header="فعالیت ها">
                             <TreeViewItem Tag="exAttendancelist" Header="حضور و غیاب" Selected="TreeViewItem_Selected"/>
                             <TreeViewItem Tag="exQuestionsList" Header="ارزشیابی" Selected="TreeViewItem_Selected"/>
                         </TreeViewItem>
-                        <TreeViewItem Tag="handle" Header="گزارش وضعیت">
+                        <TreeViewItem Header="گزارش وضعیت">
                             <TreeViewItem Tag="exTopStudents" Header="نفرات برتر" Selected="TreeViewItem_Selected"/>
                             <TreeViewItem Tag="exAchievement" Header="پیشرفت تحصیلی" Selected="TreeViewItem_Selected"/>
                         </TreeViewItem>
