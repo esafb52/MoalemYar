@@ -24,24 +24,31 @@
     
     Title="Main" Height="450" Width="800">
     <controls:WindowBorderless.NoUserContent>
-        <StackPanel Orientation="Horizontal">
+        <StackPanel Orientation="Horizontal" FlowDirection="RightToLeft">
             <Border Margin="10,0,0,0" Width="16" Height="16">
                 <Border.Background>
                     <ImageBrush ImageSource="Resources/Approval.ico"/>
                 </Border.Background>
             </Border>
             <Menu Margin="10,0,0,0" WindowChrome.IsHitTestVisibleInChrome="True" Background="Transparent">
-                <MenuItem Foreground="White" Header="File">
-                    <MenuItem Header="New repository" InputGestureText="Ctrl+N"></MenuItem>
-                    <Separator></Separator>
-                    <MenuItem Header="Add local repository"></MenuItem>
-                    <MenuItem Header="Clone repository"></MenuItem>
+                <MenuItem Foreground="White" Header="منو">
+                    <MenuItem Header="خروج"></MenuItem>
                 </MenuItem>
-                <MenuItem Foreground="White" Header="Edit"></MenuItem>
-                <MenuItem Foreground="White" Header="View"></MenuItem>
-                <MenuItem Foreground="White" Header="Repository"></MenuItem>
-                <MenuItem Foreground="White" Header="Branch"></MenuItem>
-                <MenuItem Foreground="White" Header="Help"></MenuItem>
+                <MenuItem Foreground="White" Header="ویرایش">
+                    <MenuItem Header="کپی" Command="ApplicationCommands.Copy"></MenuItem>
+                    <MenuItem Header="چسباندن" Command="ApplicationCommands.Paste"></MenuItem>
+                    <MenuItem Header="برش" Command="ApplicationCommands.Cut"></MenuItem>
+                </MenuItem>
+                <MenuItem Foreground="White" Header="آزمون">
+                    <MenuItem Tag="makeAzmon" Click="MenuItem_Click" Header="آزمون آنلاین"/>
+                    <Separator></Separator>
+                    <MenuItem Tag="groupAzmon" Click="MenuItem_Click" Header="گروه بندی سوالات"/>
+                    <MenuItem Tag="quesAzmon" Click="MenuItem_Click" Header="ساخت سوال"/>
+                    <MenuItem Tag="resultAzmon" Click="MenuItem_Click" Header="نتایج گذشته"/>
+
+                </MenuItem>
+                <MenuItem Tag="settingView" Click="MenuItem_Click" Foreground="White" Header="تنظیمات"></MenuItem>
+                <MenuItem Tag="aboutView" Click="MenuItem_Click" Foreground="White" Header="درباره"/>
             </Menu>
         </StackPanel>
     </controls:WindowBorderless.NoUserContent>

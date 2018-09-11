@@ -420,9 +420,9 @@ namespace MoalemYar
                  .Dismiss().WithButton("بله", button =>
                  {
                      if (Type == "تنظیمات برنامه")
-                         Settings.main.resetConfig();
+                         SettingsView.main.resetConfig();
                      else
-                         Settings.main.resetDatabase();
+                         SettingsView.main.resetDatabase();
                  })
                  .Animates(true)
                .AnimationInDuration(AppVariable.NotificationAnimInDur)

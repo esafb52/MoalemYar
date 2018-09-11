@@ -20,7 +20,7 @@ namespace MoalemYar.UserControls
     /// <summary>
     /// Interaction logic for About.xaml
     /// </summary>
-    public partial class About : UserControl
+    public partial class AboutView : UserControl
     {
         public string History { get; set; }
         public string AppName { get; set; }
@@ -32,16 +32,14 @@ namespace MoalemYar.UserControls
         private string ChangeLog = string.Empty;
         private string url = "";
 
-        public Brush TimeColor { get; set; }
-
-        public About()
+        public AboutView()
         {
             InitializeComponent();
             DataContext = this;
             History = Properties.Resources.History;
             AppName = AppVariable.getAppTitle;
             AppVersion = AppVariable.getAppVersion;
-            TimeColor = AppVariable.GetBrush(MainWindow.main.BorderBrush.ToString());
+            
         }
 
         private void CheckUpdate()

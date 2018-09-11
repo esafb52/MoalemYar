@@ -65,6 +65,34 @@ namespace MoalemYar
                 case "exRoshd":
                     navigationService.GetController<UserControls.UserControlsController>().Magazine();
                     break;
+                
+            }
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            var navigationService = NavigationServiceProvider.GetNavigationServiceInstance();
+            var selectedItem = sender as MenuItem;
+            switch (selectedItem.Tag)
+            {
+                case "makeAzmon":
+                    navigationService.GetController<UserControls.UserControlsController>().StartAzmon();
+                    break;
+                case "quesAzmon":
+                    navigationService.GetController<UserControls.UserControlsController>().AddQuestions();
+                    break;
+                case "resultAzmon":
+                    navigationService.GetController<UserControls.UserControlsController>().AzmonHistory();
+                    break;
+                case "settingView":
+                    navigationService.GetController<UserControls.UserControlsController>().Settings();
+                    break;
+                case "aboutView":
+                    navigationService.GetController<UserControls.UserControlsController>().About();
+                    break;
+                case "groupAzmon":
+                    navigationService.GetController<UserControls.UserControlsController>().AddAzmonGroup();
+                    break;
             }
         }
     }

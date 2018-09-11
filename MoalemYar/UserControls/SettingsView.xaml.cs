@@ -22,13 +22,13 @@ namespace MoalemYar.UserControls
     /// <summary>
     /// Interaction logic for Settings.xaml
     /// </summary>
-    public partial class Settings : UserControl
+    public partial class SettingsView : UserControl
     {
         private ObservableCollection<string> list = new ObservableCollection<string>();
 
-        internal static Settings main;
+        internal static SettingsView main;
 
-        public Settings()
+        public SettingsView()
         {
             InitializeComponent();
 

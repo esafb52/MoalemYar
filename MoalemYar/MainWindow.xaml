@@ -79,7 +79,7 @@
                         <ContentControl>
                             <ContentControl.ContentTemplate>
                                 <DataTemplate>
-                                    <local:Settings />
+                                    <local:SettingsView />
                                 </DataTemplate>
                             </ContentControl.ContentTemplate>
                         </ContentControl>
@@ -92,7 +92,7 @@
                         <ContentControl Name="abtContent">
                             <ContentControl.ContentTemplate>
                                 <DataTemplate>
-                                    <local:About />
+                                    <local:AboutView />
                                 </DataTemplate>
                             </ContentControl.ContentTemplate>
                         </ContentControl>
