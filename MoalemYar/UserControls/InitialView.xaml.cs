@@ -15,7 +15,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-
+using HandyControl.Controls;
 namespace MoalemYar.UserControls
 {
     /// <summary>
@@ -60,14 +60,12 @@ namespace MoalemYar.UserControls
 
                 foreach (var item in res)
                 {
-                    Arthas.Controls.Metro.MetroProgressBar metroProgressBar;
+                   ProgressBar progressBar;
                     TextBlock textBlock;
                     Control _currentUser;
-                    metroProgressBar = new Arthas.Controls.Metro.MetroProgressBar()
+                    progressBar = new ProgressBar()
                     {
                         FlowDirection = FlowDirection.LeftToRight,
-                        Background = AppVariable.GetBrush("#15a4fa"),
-                        CornerRadius = new CornerRadius(0),
                         Value = item.Sum
                     };
                     textBlock = new TextBlock()
@@ -79,7 +77,7 @@ namespace MoalemYar.UserControls
                     };
 
 
-                    _currentUser = metroProgressBar;
+                    _currentUser = progressBar;
                     stkDash.Children.Add(textBlock);
 
                     stkDash.Children.Add(_currentUser);
@@ -144,10 +142,6 @@ namespace MoalemYar.UserControls
                 });
             }
         }
-
-        private void btnCheckUpdate_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            MainWindow.main.tab.SelectedIndex = 4;
-        }
+        
     }
 }

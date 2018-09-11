@@ -4,9 +4,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:MoalemYar.UserControls"
-             xmlns:Metro="clr-namespace:Arthas.Controls.Metro;assembly=Arthas"
-    xmlns:controls="clr-namespace:HandyControl.Controls;assembly=HandyControl"
-             xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf" xmlns:PersianCalendarWPF="clr-namespace:PersianCalendarWPF;assembly=PersianCalendarWPF" x:Class="MoalemYar.UserControls.InitialView"
+             xmlns:controls="clr-namespace:HandyControl.Controls;assembly=HandyControl"
+             xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf" 
+             xmlns:PersianCalendarWPF="clr-namespace:PersianCalendarWPF;assembly=PersianCalendarWPF"
+             x:Class="MoalemYar.UserControls.InitialView"
              Loaded="UserControl_Loaded"
              Style="{StaticResource myUserControl}">
     <controls:TransitioningContentControl>

@@ -52,7 +52,7 @@
         </Grid.ColumnDefinitions>
         <Grid FlowDirection="RightToLeft" Grid.Column="1">
             <Border controls:ScrollViewer.IsEnableInertia="True">
-                <TreeView controls:ScrollViewer.IsEnableInertia="True" BorderThickness="0">
+                <TreeView Name="treeview" controls:ScrollViewer.IsEnableInertia="True" BorderThickness="0">
                     <TreeViewItem IsSelected="True" Tag="initial" Header="داشبورد" Selected="TreeViewItem_Selected"/>
                     <TreeViewItem IsExpanded="True" Header="منوی اصلی">
                         <TreeViewItem Tag="handle" Header="عملیات پایه">
@@ -87,7 +87,7 @@
                         </Grid.RowDefinitions>
                         <Border Name="BorderEffect" Grid.RowSpan="2" Background="White" CornerRadius="10" Effect="{StaticResource EffectShadow4}"></Border>
                         <Border Height="32" Name="BorderTitle" Grid.Row="0" CornerRadius="10,10,0,0" Background="{StaticResource PrimaryBrush}">
-                            <TextBlock Style="{StaticResource TextBlockDefault}" Foreground="White" Text="{Binding ContentTitle}"></TextBlock>
+                            <TextBlock Style="{StaticResource TextBlockDefault}" Foreground="White" Text="{Binding ElementName=treeview, Path=SelectedItem.Header}"></TextBlock>
                         </Border>
                         <Border Grid.Row="1" ClipToBounds="True">
                             <mvvmc:Region Margin="0,0,0,10" Name="region" ControllerID="UserControls"></mvvmc:Region>
