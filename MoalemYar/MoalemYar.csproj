@@ -545,14 +545,14 @@
   <Target Name="EmbedReferencedAssemblies" AfterTargets="ResolveAssemblyReferences">
     <ItemGroup>
       <AssembliesToEmbed Include="@(ReferenceCopyLocalPaths)" />
-      <EmbeddedResource Include="@(AssembliesToEmbed)" Condition="$([System.Text.RegularExpressions.Regex]::IsMatch('%(AssembliesToEmbed.Filename)', ^((?!Logify.Alert.Wpf|Stimulsoft|Entity|System.Data.SQLite|Code).)*$)) And '%(AssembliesToEmbed.Extension)' == '.dll'">
+      <EmbeddedResource Include="@(AssembliesToEmbed)" Condition="$([System.Text.RegularExpressions.Regex]::IsMatch('%(AssembliesToEmbed.Filename)', ^((?!Handy|Entity|System.Data.SQLite|Code).)*$)) And '%(AssembliesToEmbed.Extension)' == '.dll'">
         <LogicalName>%(AssembliesToEmbed.DestinationSubDirectory)%(AssembliesToEmbed.Filename)%(AssembliesToEmbed.Extension)</LogicalName>
       </EmbeddedResource>
     </ItemGroup>
     <Message Importance="high" Text="Embedding: @(AssembliesToEmbed->'%(DestinationSubDirectory)%(Filename)%(Extension)', ', ')" />
   </Target>
   <Target Name="DeleteAllReferenceCopyLocalPaths" AfterTargets="Build">
-    <Delete Files="@(ReferenceCopyLocalPaths->'$(OutDir)%(DestinationSubDirectory)%(Filename)%(Extension)')" Condition="$([System.Text.RegularExpressions.Regex]::IsMatch('%(Filename)', ^((?!Logify.Alert.Wpf|Stimulsoft|Entity|System.Data.SQLite|Code).)*$)) Or '%(Extension)' == '.xml'" />
+    <Delete Files="@(ReferenceCopyLocalPaths->'$(OutDir)%(DestinationSubDirectory)%(Filename)%(Extension)')" Condition="$([System.Text.RegularExpressions.Regex]::IsMatch('%(Filename)', ^((?!Handy|Entity|System.Data.SQLite|Code).)*$)) Or '%(Extension)' == '.xml'" />
   </Target>
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.108.0\build\net451\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.108.0\build\net451\System.Data.SQLite.Core.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
