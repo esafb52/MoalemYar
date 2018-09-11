@@ -35,7 +35,7 @@ namespace MoalemYar.UserControls
             InitializeComponent();
             this.DataContext = this;
             main = this;
-            BorderColor = AppVariable.GetBrush(MainWindow.main.BorderBrush.ToString());
+
             GenerateEducateYear();
         }
 
@@ -203,13 +203,13 @@ namespace MoalemYar.UserControls
 
         private void txtEditSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (dataGrid.ItemsSource != null)
-            {
-                if (txtEditSearch.Text != string.Empty)
-                    dataGrid.ItemsSource = _initialCollection.Where(x => x.SchoolName.Contains(txtEditSearch.Text) || x.Admin.Contains(txtEditSearch.Text) || x.Base.Contains(txtEditSearch.Text) || x.Year.Contains(txtEditSearch.Text)).Select(x => x);
-                else
-                    dataGrid.ItemsSource = _initialCollection.Select(x => x);
-            }
+            //if (dataGrid.ItemsSource != null)
+            //{
+            //    if (txtEditSearch.Text != string.Empty)
+            //        dataGrid.ItemsSource = _initialCollection.Where(x => x.SchoolName.Contains(txtEditSearch.Text) || x.Admin.Contains(txtEditSearch.Text) || x.Base.Contains(txtEditSearch.Text) || x.Year.Contains(txtEditSearch.Text)).Select(x => x);
+            //    else
+            //        dataGrid.ItemsSource = _initialCollection.Select(x => x);
+            //}
         }
 
         private void GenerateEducateYear()
