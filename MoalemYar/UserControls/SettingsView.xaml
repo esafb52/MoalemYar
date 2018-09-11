@@ -5,17 +5,17 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:MoalemYar.UserControls"
              xmlns:Metro="clr-namespace:Arthas.Controls.Metro;assembly=Arthas"
+             xmlns:controls="clr-namespace:HandyControl.Controls;assembly=HandyControl"
              mc:Ignorable="d" Loaded="UserControl_Loaded"
-             Style="{StaticResource myUserControl}"
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <Metro:MetroScrollViewer>
-            <Metro:MetroWaterfallFlow x:Name="waterfallFlow" ListWidth="350">
-                <Grid>
-                    <Metro:MetroGroupBox Margin="5" Header="عمومی">
-                        <StackPanel>
-                            <Metro:MetroSwitch x:Name="swLogin" Content="ورود با استفاده از رمز عبور" Margin="10" Checked="swLogin_Checked" Unchecked="swLogin_Checked" />
-                            <Metro:MetroSwitch x:Name="swAutoStart" Content="اجرای خودکار همراه با ویندوز"  Margin="10" Checked="swAutoStart_Checked" Unchecked="swAutoStart_Checked" />
+             Style="{StaticResource myUserControl}">
+    <controls:TransitioningContentControl>
+        <controls:ScrollViewer HorizontalScrollBarVisibility="Auto">
+            <WrapPanel>
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel Orientation="Vertical">
+                            <ToggleButton x:Name="swLogin"  Margin="10" Checked="swLogin_Checked" Unchecked="swLogin_Checked" Style="{StaticResource ToggleButtonSwitch}" />
+                            <ToggleButton x:Name="swAutoStart" Margin="10" Checked="swAutoStart_Checked" Unchecked="swAutoStart_Checked" Style="{StaticResource ToggleButtonSwitch}" />
                             <Grid Margin="10">
                                 <ComboBox x:Name="cmbServer" ItemsSource="{Binding}"
                                        SelectionChanged="cmbServer_SelectionChanged"
@@ -35,150 +35,118 @@
                                 </TextBlock>
                             </Grid>
                         </StackPanel>
-                    </Metro:MetroGroupBox>
-                </Grid>
-                <Grid>
-                    <Metro:MetroGroupBox Margin="5" Header="پوسته">
-                        <StackPanel>
-                            <WrapPanel Orientation="Horizontal">
-                                <Metro:MetroColorPicker Margin="10" x:Name="color1" Width="50" Height="50" Background="#6D819A" DefaultColor="#6D819A" Padding="5" ColorPickerClosed="color1_close" />
-                            </WrapPanel>
-                            <Metro:MetroSwitch Margin="19" Name="Hamborger_Menu" Content="منوی همبرگری همواره باز باشد" Checked="Hamborger_Menu_Checked" Unchecked="Hamborger_Menu_Checked"></Metro:MetroSwitch>
-                        </StackPanel>
-                    </Metro:MetroGroupBox>
-                </Grid>
-                <Grid>
-                    <Metro:MetroGroupBox Margin="5" Header="تنظیمات کارخانه">
-                        <StackPanel Orientation="Horizontal">
-                            <Button x:Name="btnFactoryReset" Click="btnFactoryReset_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Style="{StaticResource WorkButtonRed}" Height="35">
+                        <StackPanel Margin="10" Orientation="Horizontal">
+                            <Button x:Name="btnFactoryReset" Click="btnFactoryReset_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Style="{StaticResource ButtonWarning}" Height="35">
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                                    <Image Height="16" Width="16" Margin="10,0,10,0" Source="/Resources/Reset.png" />
+                                    <Image Height="16" Width="16" Margin="0,0,10,0" Source="/Resources/Reset.png" />
                                     <TextBlock TextWrapping="NoWrap" Text="بازیابی تنظیمات" FontSize="13" Foreground="#ffffff" />
                                 </StackPanel>
                             </Button>
-                            <Button x:Name="btnDatabaseReset" Margin="10,0" Click="btnDatabaseReset_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Style="{StaticResource WorkButtonRed}" Height="35">
+                            <Button x:Name="btnDatabaseReset" Margin="10,0" Click="btnDatabaseReset_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Style="{StaticResource ButtonDanger}" Height="35">
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                                    <Image Height="16" Width="16" Margin="10,0,10,0" Source="/Resources/Reset.png" />
+                                    <Image Height="16" Width="16" Margin="0,0,10,0" Source="/Resources/Reset.png" />
                                     <TextBlock TextWrapping="NoWrap" Text="بازیابی دیتابیس" FontSize="13" Foreground="#ffffff" />
                                 </StackPanel>
                             </Button>
                         </StackPanel>
-                    </Metro:MetroGroupBox>
-                </Grid>
-                <Grid>
+                        <StackPanel Margin="10" Orientation="Vertical">
+                            <ContentControl Margin="2" Name="cmbChartType" TabIndex="3" Focusable="False" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="233">
+                                <ContentControl.ContentTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <ComboBox TabIndex="4" x:Name="cmbChart" SelectionChanged="cmbChart_SelectionChanged">
+                                                <ComboBoxItem Content="ستونی" />
+                                                <ComboBoxItem Content="ستونی نوع 2" />
+                                                <ComboBoxItem Content="خطی" />
+                                                <ComboBoxItem Content="خطی نوع 2" />
+                                                <ComboBoxItem Content="ناحیه" />
+                                            </ComboBox>
+                                            <TextBlock x:Name="tb" Text=" نوع نمودار " IsHitTestVisible="False" Visibility="Hidden" />
+                                        </Grid>
+                                        <DataTemplate.Triggers>
+                                            <Trigger SourceName="cmbChart" Property="SelectedItem" Value="{x:Null}">
+                                                <Setter TargetName="tb" Property="Visibility" Value="Visible" />
+                                            </Trigger>
+                                        </DataTemplate.Triggers>
+                                    </DataTemplate>
+                                </ContentControl.ContentTemplate>
+                            </ContentControl>
 
-                    <Metro:MetroGroupBox Margin="5" Header="تنظیمات نمودار">
-                            <Grid>
-                            <StackPanel Orientation="Vertical">
-                                <ContentControl Margin="2" Name="cmbChartType" TabIndex="3" Focusable="False" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="233">
+                            <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+                            <StackPanel Orientation="Horizontal">
+                                <ContentControl Margin="2" Name="cmbChartColor" TabIndex="3" Focusable="False" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="233">
                                     <ContentControl.ContentTemplate>
                                         <DataTemplate>
                                             <Grid>
-                                                <ComboBox TabIndex="4" x:Name="cmbChart" SelectionChanged="cmbChart_SelectionChanged">
-                                                    <ComboBoxItem Content="ستونی" />
-                                                    <ComboBoxItem Content="ستونی نوع 2" />
-                                                    <ComboBoxItem Content="خطی" />
-                                                    <ComboBoxItem Content="خطی نوع 2" />
-                                                    <ComboBoxItem Content="ناحیه" />
+                                                <ComboBox TabIndex="4" x:Name="cmbChartColor" SelectionChanged="cmbChartColor_SelectionChanged">
+                                                    <ComboBoxItem Content="سبز" />
+                                                    <ComboBoxItem Content="بنفش" />
+                                                    <ComboBoxItem Content="نارنجی" />
                                                 </ComboBox>
-                                                <TextBlock x:Name="tb" Text=" نوع نمودار " IsHitTestVisible="False" Visibility="Hidden" />
+                                                <TextBlock x:Name="tb" Text=" رنگ نمودار " IsHitTestVisible="False" Visibility="Hidden" />
                                             </Grid>
                                             <DataTemplate.Triggers>
-                                                <Trigger SourceName="cmbChart" Property="SelectedItem" Value="{x:Null}">
+                                                <Trigger SourceName="cmbChartColor" Property="SelectedItem" Value="{x:Null}">
                                                     <Setter TargetName="tb" Property="Visibility" Value="Visible" />
                                                 </Trigger>
                                             </DataTemplate.Triggers>
                                         </DataTemplate>
                                     </ContentControl.ContentTemplate>
                                 </ContentControl>
-
-                                <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
-                                <StackPanel Orientation="Horizontal">
-                                    <ContentControl Margin="2" Name="cmbChartColor" TabIndex="3" Focusable="False" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="233">
-                                        <ContentControl.ContentTemplate>
-                                            <DataTemplate>
-                                                <Grid>
-                                                    <ComboBox TabIndex="4" x:Name="cmbChartColor" SelectionChanged="cmbChartColor_SelectionChanged">
-                                                        <ComboBoxItem Content="سبز" />
-                                                        <ComboBoxItem Content="بنفش" />
-                                                        <ComboBoxItem Content="نارنجی" />
-                                                    </ComboBox>
-                                                    <TextBlock x:Name="tb" Text=" رنگ نمودار " IsHitTestVisible="False" Visibility="Hidden" />
-                                                </Grid>
-                                                <DataTemplate.Triggers>
-                                                    <Trigger SourceName="cmbChartColor" Property="SelectedItem" Value="{x:Null}">
-                                                        <Setter TargetName="tb" Property="Visibility" Value="Visible" />
-                                                    </Trigger>
-                                                </DataTemplate.Triggers>
-                                            </DataTemplate>
-                                        </ContentControl.ContentTemplate>
-                                    </ContentControl>
-                                    <Metro:MetroColorPicker Margin="10" x:Name="colorChart" Width="50" Height="50" Background="#CE2156" DefaultColor="#CE2156" ColorPickerClosed="colorChart_close" />
-                                </StackPanel>
                             </StackPanel>
-                        </Grid>
-                   </Metro:MetroGroupBox>
-                </Grid>
-                <Grid>
-
-                    <Metro:MetroGroupBox Margin="5" Header="مدرسه پیشفرض">
-                        <Grid>
-                            <StackPanel Orientation="Vertical">
-                                <Grid Margin="2">
-                                    <ComboBox x:Name="cmbBase" ItemsSource="{Binding}"
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Margin="10" Orientation="Horizontal">
+                        <StackPanel Orientation="Vertical">
+                            <Grid Margin="2">
+                                <ComboBox x:Name="cmbBase" ItemsSource="{Binding}"
                                        SelectedValue="{Binding SchoolName}" SelectionChanged="cmbBase_SelectionChanged"
                                        SelectedValuePath="Id"   TabIndex="4"
                                        VerticalAlignment="Top" HorizontalAlignment="Left" Width="200">
-                                        <ComboBox.ItemTemplate>
-                                            <DataTemplate>
-                                                <StackPanel Orientation="Horizontal">
-                                                    <TextBlock Text="{Binding SchoolName}" />
-                                                    <TextBlock Text=" - " />
-                                                    <TextBlock Text="{Binding Base}" />
-                                                    <TextBlock Text=" - " />
-                                                    <TextBlock Text="{Binding Year}" />
-                                                </StackPanel>
-                                            </DataTemplate>
-                                        </ComboBox.ItemTemplate>
-                                    </ComboBox>
-                                    <TextBlock Text=" انتخاب کلاس " IsHitTestVisible="False" HorizontalAlignment="Left" Width="200">
-                                        <TextBlock.Style>
-                                            <Style TargetType="TextBlock">
-                                                <Setter Property="Visibility" Value="Hidden" />
-                                                <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding ElementName=cmbBase,Path=SelectedItem}" Value="{x:Null}">
-                                                        <Setter Property="Visibility" Value="Visible" />
-                                                    </DataTrigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </TextBlock.Style>
-                                    </TextBlock>
-                                </Grid>
-                            </StackPanel>
-                        </Grid>
-                    </Metro:MetroGroupBox>
-                </Grid>
-                <Grid>
-                    <Metro:MetroGroupBox Margin="5" Header="پشتیبان گیری از اطلاعات">
-                        <Grid>
-                            <StackPanel Orientation="Horizontal" Margin="5">
-                                <Button Tag="Backup" Click="btnBackup_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150" Style="{StaticResource LoginButton}" Height="35">
-                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                                        <Image Height="16" Width="16" Margin="0,0,10,0" Source="/Resources/backup.png" />
-                                        <TextBlock TextWrapping="NoWrap" Text="تهیه فایل پشتیبان" FontSize="13" Foreground="#ffffff" />
-                                    </StackPanel>
-                                </Button>
-                                <Button Tag="Restore" Click="btnBackup_Click" Margin="10,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="160" Style="{StaticResource LoginButton}" Height="35">
-                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                                        <Image Height="16" Width="16" Margin="0,0,10,0" Source="/Resources/restore.png" />
-                                        <TextBlock TextWrapping="NoWrap" Text="بازگرداندن فایل پشتیبان" FontSize="13" Foreground="#ffffff" />
-                                    </StackPanel>
-                                </Button>
-                            </StackPanel>
-                        </Grid>
-                    </Metro:MetroGroupBox>
-                </Grid>
-            </Metro:MetroWaterfallFlow>
-        </Metro:MetroScrollViewer>
-    </Grid>
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="{Binding SchoolName}" />
+                                                <TextBlock Text=" - " />
+                                                <TextBlock Text="{Binding Base}" />
+                                                <TextBlock Text=" - " />
+                                                <TextBlock Text="{Binding Year}" />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
+                                <TextBlock Text=" انتخاب کلاس " IsHitTestVisible="False" HorizontalAlignment="Left" Width="200">
+                                    <TextBlock.Style>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="Visibility" Value="Hidden" />
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding ElementName=cmbBase,Path=SelectedItem}" Value="{x:Null}">
+                                                    <Setter Property="Visibility" Value="Visible" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                            </Grid>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="10,0">
+                            <Button Tag="Backup" Click="btnBackup_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150" Style="{StaticResource ButtonSuccess}" Height="35">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                    <Image Height="16" Width="16" Margin="0,0,10,0" Source="/Resources/backup.png" />
+                                    <TextBlock TextWrapping="NoWrap" Text="تهیه فایل پشتیبان" FontSize="13" Foreground="#ffffff" />
+                                </StackPanel>
+                            </Button>
+                            <Button Tag="Restore" Click="btnBackup_Click" Margin="10,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="160" Style="{StaticResource ButtonPrimary}" Height="35">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                    <Image Height="16" Width="16" Margin="0,0,10,0" Source="/Resources/restore.png" />
+                                    <TextBlock TextWrapping="NoWrap" Text="بازگرداندن پشتیبان" FontSize="13" Foreground="#ffffff" />
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+               
+            </WrapPanel>
+        </controls:ScrollViewer>
+    </controls:TransitioningContentControl>
 </UserControl>

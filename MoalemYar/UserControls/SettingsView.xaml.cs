@@ -33,10 +33,7 @@ namespace MoalemYar.UserControls
             InitializeComponent();
 
             getSchool();
-            color1.ColorChange += delegate
-            {
-                MainWindow.main.BorderBrush = color1.CurrentColor.OpaqueSolidColorBrush;
-            };
+            
             main = this;
             LoadSettings();
         }
@@ -71,26 +68,9 @@ namespace MoalemYar.UserControls
             if (FindElement.Settings.Autorun)
                 swAutoStart.IsChecked = true;
             else
-                swAutoStart.IsChecked = false;
-
-            var hb_Menu = FindElement.Settings.HamburgerMenu ?? true;
-            Hamborger_Menu.IsChecked = hb_Menu;
-
-            color1.Background = AppVariable.GetBrush(FindElement.Settings.SkinCode ?? AppVariable.DEFAULT_BORDER_BRUSH);
-            colorChart.Background = AppVariable.GetBrush(FindElement.Settings.ChartColor ?? AppVariable.CHART_PURPLE);
+                swAutoStart.IsChecked = false;            
         }
-
-        private void color1_close()
-        {
-            FindElement.Settings.SkinCode = color1.CurrentColor.OpaqueSolidColorBrush.ToString();
-        }
-
-        private void colorChart_close()
-        {
-            FindElement.Settings.ChartColor = colorChart.CurrentColor.OpaqueSolidColorBrush.ToString();
-            FindElement.Settings.ChartColorIndex = -1;
-        }
-
+  
         private void swLogin_Checked(object sender, RoutedEventArgs e)
         {
             FindElement.Settings.CredentialLogin = Convert.ToBoolean(swLogin.IsChecked);
@@ -191,19 +171,14 @@ namespace MoalemYar.UserControls
             {
                 case 0:
                     FindElement.Settings.ChartColor = AppVariable.CHART_GREEN;
-                    colorChart.Background = AppVariable.GetBrush(AppVariable.CHART_GREEN);
                     break;
 
                 case 1:
                     FindElement.Settings.ChartColor = AppVariable.CHART_PURPLE;
-                    colorChart.Background = AppVariable.GetBrush(AppVariable.CHART_PURPLE);
-
                     break;
 
                 case 2:
                     FindElement.Settings.ChartColor = AppVariable.CHART_ORANGE;
-                    colorChart.Background = AppVariable.GetBrush(AppVariable.CHART_ORANGE);
-
                     break;
             }
         }
