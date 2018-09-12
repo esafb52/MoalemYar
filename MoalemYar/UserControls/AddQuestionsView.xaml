@@ -10,271 +10,284 @@
              mc:Ignorable="d" Style="{StaticResource myUserControl}">
     <controls:TransitioningContentControl>
         <controls:ScrollViewer HorizontalScrollBarVisibility="Auto">
-            <controls:TabControl Name="tabc" IsEnableAnimation="True" IsDraggable="True" IsEnableTabFill="True" Width="800" Height="300" SelectionChanged="tabc_SelectionChanged">
-                <controls:TabItem IsSelected="True" Header="ثبت اطلاعات">
-                    <Grid KeyboardNavigation.TabNavigation="Cycle">
-                        <StackPanel Orientation="Vertical" Margin="5,5,5,0">
-                            <Grid HorizontalAlignment="Stretch" Margin="5,5,5,0">
-                                <StackPanel Orientation="Horizontal">
-                                    <Button x:Name="btnSave" IsDefault="True" Click="btnSave_Click" Grid.Column="0" Grid.Row="0" Margin="10,5,5,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Style="{StaticResource ButtonPrimary}" Height="35">
-                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                                            <Image Height="16" Width="16" Margin="10,0,30,0" Source="/Resources/add.png" />
-                                            <TextBlock TextWrapping="NoWrap" Text="ذخیره" FontSize="13" Foreground="#ffffff" />
-                                        </StackPanel>
-                                    </Button>
-                                    <Button x:Name="btnCancel" IsCancel="True" Click="btnCancel_Click" Grid.Column="1" Grid.Row="0" Margin="10,5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Style="{StaticResource ButtonWarning}" Height="35">
-                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                                            <Image Height="16" Width="16" Margin="-30,0,30,0" Source="/Resources/cancel.png" />
-                                            <TextBlock TextWrapping="NoWrap" Text="انصراف" FontSize="13" Foreground="#ffffff" />
-                                        </StackPanel>
-                                    </Button>
-                                </StackPanel>
-                                <GridSplitter Height="2" Margin="60,45,96,-7" HorizontalAlignment="Stretch" />
-                            </Grid>
-                            <StackPanel Margin="10" Orientation="Vertical" Height="222">
-                                <Grid Margin="2">
-                                    <ComboBox x:Name="cmbGroup" ItemsSource="{Binding}"
+            <WrapPanel>
+                <controls:TabControl Name="tabc" IsEnableAnimation="True" IsDraggable="True" IsEnableTabFill="True" Width="800" SelectionChanged="tabc_SelectionChanged">
+                    <controls:TabItem IsSelected="True" Header="ثبت اطلاعات">
+                        <Grid KeyboardNavigation.TabNavigation="Cycle">
+                            <StackPanel Orientation="Vertical" Margin="5,5,5,0">
+                                <Grid HorizontalAlignment="Stretch" Margin="5,5,5,0">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button x:Name="btnSave" IsDefault="True" Click="btnSave_Click" Grid.Column="0"
+                                            Grid.Row="0" Margin="10,5" HorizontalAlignment="Left" VerticalAlignment="Top" 
+                                            Width="140" Style="{StaticResource ButtonSuccess}" Height="35">
+                                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                                <Image Height="16" Width="16" Margin="-30,0,30,0" Source="/Resources/add.png" />
+                                                <TextBlock TextWrapping="NoWrap" Text="ذخیره" FontSize="13" Foreground="#ffffff" />
+                                            </StackPanel>
+                                        </Button>
+                                        <Button x:Name="btnCancel" IsCancel="True" Click="btnCancel_Click" Grid.Column="1" Grid.Row="0"
+                                            Margin="10,5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" 
+                                            Style="{StaticResource ButtonInfo}" Height="35">
+                                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                                <Image Height="16" Width="16" Margin="-30,0,30,0" Source="/Resources/cancel.png" />
+                                                <TextBlock TextWrapping="NoWrap" Text="انصراف" FontSize="13" Foreground="#ffffff" />
+                                            </StackPanel>
+                                        </Button>
+                                    </StackPanel>
+                                    <GridSplitter Height="2" Margin="60,45,96,-7" HorizontalAlignment="Stretch" />
+                                </Grid>
+                                <StackPanel Margin="10" Orientation="Vertical">
+                                    <Grid Margin="2">
+                                        <ComboBox x:Name="cmbGroup" ItemsSource="{Binding}"
                                        SelectedValue="{Binding GroupName}"
                                        SelectedValuePath="Id"   TabIndex="4"
                                        VerticalAlignment="Top" HorizontalAlignment="Left" Width="231">
-                                        <ComboBox.ItemTemplate>
+                                            <ComboBox.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBlock Text="{Binding GroupName}" />
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </ComboBox.ItemTemplate>
+                                        </ComboBox>
+                                        <TextBlock Text=" انتخاب گروه " IsHitTestVisible="False" HorizontalAlignment="Left" Width="231">
+                                            <TextBlock.Style>
+                                                <Style TargetType="TextBlock">
+                                                    <Setter Property="Visibility" Value="Hidden" />
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding ElementName=cmbGroup,Path=SelectedItem}" Value="{x:Null}">
+                                                            <Setter Property="Visibility" Value="Visible" />
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </TextBlock.Style>
+                                        </TextBlock>
+                                    </Grid>
+                                    <ContentControl Margin="2" Name="cmbAddContent" TabIndex="3" Focusable="False" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="231">
+                                        <ContentControl.ContentTemplate>
                                             <DataTemplate>
-                                                <StackPanel Orientation="Horizontal">
-                                                    <TextBlock Text="{Binding GroupName}" />
-                                                </StackPanel>
+                                                <Grid>
+                                                    <ComboBox TabIndex="4" x:Name="cmbBase">
+                                                        <ComboBoxItem Content="اول" />
+                                                        <ComboBoxItem Content="دوم" />
+                                                        <ComboBoxItem Content="سوم" />
+                                                        <ComboBoxItem Content="چهارم" />
+                                                        <ComboBoxItem Content="پنجم" />
+                                                        <ComboBoxItem Content="ششم" />
+                                                    </ComboBox>
+                                                    <TextBlock x:Name="tb" Text=" انتخاب پایه " IsHitTestVisible="False" Visibility="Hidden" />
+                                                </Grid>
+                                                <DataTemplate.Triggers>
+                                                    <Trigger SourceName="cmbBase" Property="SelectedItem" Value="{x:Null}">
+                                                        <Setter TargetName="tb" Property="Visibility" Value="Visible" />
+                                                    </Trigger>
+                                                </DataTemplate.Triggers>
                                             </DataTemplate>
-                                        </ComboBox.ItemTemplate>
-                                    </ComboBox>
-                                    <TextBlock Text=" انتخاب گروه " IsHitTestVisible="False" HorizontalAlignment="Left" Width="231">
-                                        <TextBlock.Style>
-                                            <Style TargetType="TextBlock">
-                                                <Setter Property="Visibility" Value="Hidden" />
-                                                <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding ElementName=cmbGroup,Path=SelectedItem}" Value="{x:Null}">
-                                                        <Setter Property="Visibility" Value="Visible" />
-                                                    </DataTrigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </TextBlock.Style>
-                                    </TextBlock>
-                                </Grid>
-                                <ContentControl Margin="2" Name="cmbAddContent" TabIndex="3" Focusable="False" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="231">
-                                    <ContentControl.ContentTemplate>
-                                        <DataTemplate>
-                                            <Grid>
-                                                <ComboBox TabIndex="4" x:Name="cmbBase">
-                                                    <ComboBoxItem Content="اول" />
-                                                    <ComboBoxItem Content="دوم" />
-                                                    <ComboBoxItem Content="سوم" />
-                                                    <ComboBoxItem Content="چهارم" />
-                                                    <ComboBoxItem Content="پنجم" />
-                                                    <ComboBoxItem Content="ششم" />
-                                                </ComboBox>
-                                                <TextBlock x:Name="tb" Text=" انتخاب پایه " IsHitTestVisible="False" Visibility="Hidden" />
-                                            </Grid>
-                                            <DataTemplate.Triggers>
-                                                <Trigger SourceName="cmbBase" Property="SelectedItem" Value="{x:Null}">
-                                                    <Setter TargetName="tb" Property="Visibility" Value="Visible" />
-                                                </Trigger>
-                                            </DataTemplate.Triggers>
-                                        </DataTemplate>
-                                    </ContentControl.ContentTemplate>
-                                </ContentControl>
-                                <controls:InfoTextBox FlowDirection="RightToLeft" MaxLength="20" Margin="2" Name="txtQuestionText" TabIndex="0" PlaceHolder="متن سوال" Height="30" />
-                                <controls:InfoTextBox FlowDirection="RightToLeft" MaxLength="20" Margin="2" Name="txtCase1" TabIndex="0" PlaceHolder="گزینه 1" Height="30" />
-                                <controls:InfoTextBox FlowDirection="RightToLeft" MaxLength="20" Margin="2" Name="txtCase2" TabIndex="0" PlaceHolder="گزینه 2" Height="30" />
-                                <controls:InfoTextBox FlowDirection="RightToLeft" MaxLength="20" Margin="2" Name="txtCase3" TabIndex="0" PlaceHolder="گزینه 3" Height="30" />
-                                <controls:InfoTextBox FlowDirection="RightToLeft" MaxLength="20" Margin="2" Name="txtCase4" TabIndex="0" PlaceHolder="گزینه 4" Height="30" />
-                                <ContentControl Margin="2" Name="cmbContentAnswer" TabIndex="3" Focusable="False" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="231">
-                                    <ContentControl.ContentTemplate>
-                                        <DataTemplate>
-                                            <Grid>
-                                                <ComboBox TabIndex="4" x:Name="cmbBase">
-                                                    <ComboBoxItem Content="1" />
-                                                    <ComboBoxItem Content="2" />
-                                                    <ComboBoxItem Content="3" />
-                                                    <ComboBoxItem Content="4" />
-                                                </ComboBox>
-                                                <TextBlock x:Name="tb" Text=" گزینه صحیح  " IsHitTestVisible="False" Visibility="Hidden" />
-                                            </Grid>
-                                            <DataTemplate.Triggers>
-                                                <Trigger SourceName="cmbBase" Property="SelectedItem" Value="{x:Null}">
-                                                    <Setter TargetName="tb" Property="Visibility" Value="Visible" />
-                                                </Trigger>
-                                            </DataTemplate.Triggers>
-                                        </DataTemplate>
-                                    </ContentControl.ContentTemplate>
-                                </ContentControl>
-                            </StackPanel>
-                        </StackPanel>
-                    </Grid>
-                </controls:TabItem>
-                <controls:TabItem IsSelected="True" Header="ویرایش اطلاعات">
-                    <Grid KeyboardNavigation.TabNavigation="Cycle">
-                        <StackPanel Orientation="Vertical" Margin="5,5,5,0">
-                            <Grid>
-                                <StackPanel Orientation="Horizontal" Height="50" VerticalAlignment="Top">
-                                    <Button x:Name="btnEditSave" IsDefault="True" Click="btnEditSave_Click" Grid.Column="0" Grid.Row="0" Margin="10,5,5,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Style="{StaticResource ButtonPrimary}" Height="35">
-                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                                            <Image Height="16" Width="16" Margin="10,0,30,0" Source="/Resources/update.png" />
-                                            <TextBlock TextWrapping="NoWrap" Text="ذخیره" FontSize="13" Foreground="#ffffff" />
-                                        </StackPanel>
-                                    </Button>
-                                    <Button x:Name="btnDelete" Click="btnDelete_Click" Grid.Column="1"  Grid.ColumnSpan="2" Grid.Row="1" Margin="5,5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Style="{StaticResource ButtonDanger}" Height="35">
-                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                                            <Image Height="16" Width="16" Margin="10,0,30,0" Source="/Resources/Delete.png" />
-                                            <TextBlock TextWrapping="NoWrap" Text="حذف" FontSize="13" Foreground="#ffffff" />
-                                        </StackPanel>
-                                    </Button>
-                                    <Button x:Name="btnEditCancel" IsCancel="True" Click="btnEditCancel_Click" Grid.Column="1" Grid.Row="0" Margin="5,5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Style="{StaticResource ButtonWarning}" Height="35">
-                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                                            <Image Height="16" Width="16" Margin="-30,0,30,0" Source="/Resources/cancel.png" RenderTransformOrigin="-1.688,0.625" />
-                                            <TextBlock TextWrapping="NoWrap" Text="انصراف" FontSize="13" Foreground="#ffffff" />
-                                        </StackPanel>
-                                    </Button>
+                                        </ContentControl.ContentTemplate>
+                                    </ContentControl>
+                                    <controls:InfoTextBox FlowDirection="RightToLeft" MaxLength="20" Margin="2" Name="txtQuestionText" TabIndex="0" PlaceHolder="متن سوال" Height="30" />
+                                    <controls:InfoTextBox FlowDirection="RightToLeft" MaxLength="20" Margin="2" Name="txtCase1" TabIndex="0" PlaceHolder="گزینه 1" Height="30" />
+                                    <controls:InfoTextBox FlowDirection="RightToLeft" MaxLength="20" Margin="2" Name="txtCase2" TabIndex="0" PlaceHolder="گزینه 2" Height="30" />
+                                    <controls:InfoTextBox FlowDirection="RightToLeft" MaxLength="20" Margin="2" Name="txtCase3" TabIndex="0" PlaceHolder="گزینه 3" Height="30" />
+                                    <controls:InfoTextBox FlowDirection="RightToLeft" MaxLength="20" Margin="2" Name="txtCase4" TabIndex="0" PlaceHolder="گزینه 4" Height="30" />
+                                    <ContentControl Margin="2" Name="cmbContentAnswer" TabIndex="3" Focusable="False" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="231">
+                                        <ContentControl.ContentTemplate>
+                                            <DataTemplate>
+                                                <Grid>
+                                                    <ComboBox TabIndex="4" x:Name="cmbBase">
+                                                        <ComboBoxItem Content="1" />
+                                                        <ComboBoxItem Content="2" />
+                                                        <ComboBoxItem Content="3" />
+                                                        <ComboBoxItem Content="4" />
+                                                    </ComboBox>
+                                                    <TextBlock x:Name="tb" Text=" گزینه صحیح  " IsHitTestVisible="False" Visibility="Hidden" />
+                                                </Grid>
+                                                <DataTemplate.Triggers>
+                                                    <Trigger SourceName="cmbBase" Property="SelectedItem" Value="{x:Null}">
+                                                        <Setter TargetName="tb" Property="Visibility" Value="Visible" />
+                                                    </Trigger>
+                                                </DataTemplate.Triggers>
+                                            </DataTemplate>
+                                        </ContentControl.ContentTemplate>
+                                    </ContentControl>
                                 </StackPanel>
-                                <GridSplitter Height="2" Margin="60,45,96,-7" HorizontalAlignment="Stretch" />
-                            </Grid>
-                            <StackPanel Margin="0,10,0,0" Orientation="Vertical">
+                            </StackPanel>
+                        </Grid>
+                    </controls:TabItem>
+                    <controls:TabItem IsSelected="True" Header="ویرایش اطلاعات">
+                        <Grid KeyboardNavigation.TabNavigation="Cycle">
+                            <StackPanel Orientation="Vertical" Margin="5,5,5,0">
                                 <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="2*" />
-                                        <ColumnDefinition Width="*" />
-                                    </Grid.ColumnDefinitions>
-                                    <ComboBox Grid.Column="0" Margin="10,0" FlowDirection="RightToLeft" x:Name="cmbBaseEdit" SelectionChanged="cmbBaseEdit_SelectionChanged"
+                                    <StackPanel Orientation="Horizontal" Height="50" VerticalAlignment="Top">
+                                        <Button x:Name="btnEditSave" IsDefault="True" Click="btnEditSave_Click" Grid.Column="0"
+                                            Grid.Row="0" Margin="10,5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" 
+                                            Style="{StaticResource ButtonSuccess}" Height="35">
+                                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                                <Image Height="16" Width="16" Margin="-30,0,30,0" Source="/Resources/update.png" />
+                                                <TextBlock TextWrapping="NoWrap" Text="ذخیره" FontSize="13" Foreground="#ffffff" />
+                                            </StackPanel>
+                                        </Button>
+                                        <Button x:Name="btnDelete" Click="btnDelete_Click" Grid.Column="1"  Grid.ColumnSpan="2" Grid.Row="1"
+                                            Margin="5,5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140"
+                                            Style="{StaticResource ButtonDanger}" Height="35">
+                                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                                <Image Height="16" Width="16" Margin="-30,0,30,0" Source="/Resources/Delete.png" />
+                                                <TextBlock TextWrapping="NoWrap" Text="حذف" FontSize="13" Foreground="#ffffff" />
+                                            </StackPanel>
+                                        </Button>
+                                        <Button x:Name="btnEditCancel" IsCancel="True" Click="btnEditCancel_Click" Grid.Column="1"
+                                            Grid.Row="0" Margin="10,5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" 
+                                            Style="{StaticResource ButtonInfo}" Height="35">
+                                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                                <Image Height="16" Width="16" Margin="-30,0,30,0" Source="/Resources/cancel.png" RenderTransformOrigin="-1.688,0.625" />
+                                                <TextBlock TextWrapping="NoWrap" Text="انصراف" FontSize="13" Foreground="#ffffff" />
+                                            </StackPanel>
+                                        </Button>
+                                    </StackPanel>
+                                    <GridSplitter Height="2" Margin="60,45,96,-7" HorizontalAlignment="Stretch" />
+                                </Grid>
+                                <StackPanel Margin="0,10,0,0" Orientation="Vertical">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="2*" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <ComboBox Grid.Column="0" Margin="10,0" FlowDirection="RightToLeft" x:Name="cmbBaseEdit" SelectionChanged="cmbBaseEdit_SelectionChanged"
                             SelectedValue="{Binding GroupName}" SelectedValuePath="Id" TabIndex="0"
                             Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="190">
-                                        <ComboBox.ItemTemplate>
-                                            <DataTemplate>
-                                                <StackPanel Orientation="Horizontal">
-                                                    <TextBlock Text="{Binding GroupName}" />
-                                                </StackPanel>
-                                            </DataTemplate>
-                                        </ComboBox.ItemTemplate>
-                                    </ComboBox>
-                                    <TextBlock Text=" انتخاب گروه " Margin="10,0" FlowDirection="RightToLeft" IsHitTestVisible="False"  Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="190">
-                                        <TextBlock.Style>
-                                            <Style TargetType="{x:Type TextBlock}">
-                                                <Setter Property="Visibility" Value="Hidden" />
-                                                <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding SelectedItem, ElementName=cmbBaseEdit}" Value="{x:Null}">
-                                                        <Setter Property="Visibility" Value="Visible" />
-                                                    </DataTrigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </TextBlock.Style>
-                                    </TextBlock>
-                                    <Grid Name="grdedit" Grid.Column="0" Margin="0,35,10,5">
-                                        <StackPanel Orientation="Vertical">
-                                            <TextBox TabIndex="1" MaxLength="40" x:Name="txtEditSearch" HorizontalAlignment="Stretch" MaxWidth="{Binding Path=ActualWidth, ElementName=grdedit, Converter={local1:MultiplyConverter Multiplier=.9}}" VerticalAlignment="Top" FlowDirection="RightToLeft" TextChanged="txtEditSearch_TextChanged" />
-                                            <DataGrid x:Name="dataGrid" AutoGenerateColumns="False" HorizontalAlignment="Stretch"
+                                            <ComboBox.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBlock Text="{Binding GroupName}" />
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </ComboBox.ItemTemplate>
+                                        </ComboBox>
+                                        <TextBlock Text=" انتخاب گروه " Margin="10,0" FlowDirection="RightToLeft" IsHitTestVisible="False"  Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="190">
+                                            <TextBlock.Style>
+                                                <Style TargetType="{x:Type TextBlock}">
+                                                    <Setter Property="Visibility" Value="Hidden" />
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding SelectedItem, ElementName=cmbBaseEdit}" Value="{x:Null}">
+                                                            <Setter Property="Visibility" Value="Visible" />
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </TextBlock.Style>
+                                        </TextBlock>
+                                        <Grid Name="grdedit" Grid.Column="0" Margin="0,35,10,5">
+                                            <StackPanel Orientation="Vertical">
+                                                <TextBox TabIndex="1" MaxLength="40" x:Name="txtEditSearch" HorizontalAlignment="Stretch" MaxWidth="{Binding Path=ActualWidth, ElementName=grdedit, Converter={local1:MultiplyConverter Multiplier=.9}}" VerticalAlignment="Top" FlowDirection="RightToLeft" TextChanged="txtEditSearch_TextChanged" />
+                                                <DataGrid x:Name="dataGrid" AutoGenerateColumns="False" HorizontalAlignment="Stretch"
                                       Background="#eceff5" RowHeaderWidth="0" AlternatingRowBackground="#fbfcfe" MaxWidth="{Binding Path=ActualWidth, ElementName=grdedit, Converter={local1:MultiplyConverter Multiplier=.9}}"
                                       GridLinesVisibility="Horizontal" CanUserReorderColumns="False" TabIndex="2"
                                       CanUserResizeColumns="False" CanUserSortColumns="True" SelectionMode="Single" SelectionUnit="FullRow"
                                       CanUserResizeRows="False" IsReadOnly="True" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}"
                                       HorizontalGridLinesBrush="#dde8ef" CellStyle="{DynamicResource DataGridCellStyle}"
                                       Margin="0,5" SelectionChanged="dataGrid_SelectionChanged">
-                                                <DataGrid.Columns>
-                                                    <DataGridTextColumn Binding="{Binding Id}" Visibility="Hidden" />
-                                                    <DataGridTextColumn Binding="{Binding GroupId}" Visibility="Hidden" />
-                                                    <DataGridTextColumn Binding="{Binding Answer}" Visibility="Hidden" />
-                                                    <DataGridTextColumn Binding="{Binding Class}" Header="پایه" MinWidth="100" Width="*" />
-                                                    <DataGridTextColumn Binding="{Binding QuestionText}" Header="سوال" MinWidth="100" Width="*" />
-                                                    <DataGridTextColumn Binding="{Binding Case1}" Header="گزینه 1" MinWidth="100" Width="*" />
-                                                    <DataGridTextColumn Binding="{Binding Case2}" Header="گزینه 2" MinWidth="100" Width="*" />
-                                                    <DataGridTextColumn Binding="{Binding Case3}" Header="گزینه 3" MinWidth="100" Width="*" />
-                                                    <DataGridTextColumn Binding="{Binding Case4}" Header="گزینه 4" Width="*" />
-                                                    <DataGridTextColumn Binding="{Binding Date}" Header="تاریخ" Width="*" />
-                                                </DataGrid.Columns>
-                                            </DataGrid>
-                                        </StackPanel>
-                                    </Grid>
-                                    <Grid Grid.Column="1" Margin="5,0,0,0">
-                                        <StackPanel Name="editStack" IsEnabled="False" Orientation="Vertical">
-                                            <controls:InfoTextBox FlowDirection="RightToLeft" MaxLength="20" Margin="2" Name="txtEditQuestionText" TabIndex="0" PlaceHolder="متن سوال" Height="30" />
-                                            <controls:InfoTextBox FlowDirection="RightToLeft" MaxLength="20" Margin="2" Name="txtEditCase1" TabIndex="0" PlaceHolder="گزینه 1" Height="30" />
-                                            <controls:InfoTextBox FlowDirection="RightToLeft" MaxLength="20" Margin="2" Name="txtEditCase2" TabIndex="0" PlaceHolder="گزینه 2" Height="30" />
-                                            <controls:InfoTextBox FlowDirection="RightToLeft" MaxLength="20" Margin="2" Name="txtEditCase3" TabIndex="0" PlaceHolder="گزینه 3" Height="30" />
-                                            <controls:InfoTextBox FlowDirection="RightToLeft" MaxLength="20" Margin="2" Name="txtEditCase4" TabIndex="0" PlaceHolder="گزینه 4" Height="30" />
-                                            <StackPanel Orientation="Horizontal" Margin="2">
-                                                <Grid Margin="2">
-                                                    <ComboBox x:Name="cmbGroupEdit" ItemsSource="{Binding}"
+                                                    <DataGrid.Columns>
+                                                        <DataGridTextColumn Binding="{Binding Id}" Visibility="Hidden" />
+                                                        <DataGridTextColumn Binding="{Binding GroupId}" Visibility="Hidden" />
+                                                        <DataGridTextColumn Binding="{Binding Answer}" Visibility="Hidden" />
+                                                        <DataGridTextColumn Binding="{Binding Class}" Header="پایه" MinWidth="100" Width="*" />
+                                                        <DataGridTextColumn Binding="{Binding QuestionText}" Header="سوال" MinWidth="100" Width="*" />
+                                                        <DataGridTextColumn Binding="{Binding Case1}" Header="گزینه 1" MinWidth="100" Width="*" />
+                                                        <DataGridTextColumn Binding="{Binding Case2}" Header="گزینه 2" MinWidth="100" Width="*" />
+                                                        <DataGridTextColumn Binding="{Binding Case3}" Header="گزینه 3" MinWidth="100" Width="*" />
+                                                        <DataGridTextColumn Binding="{Binding Case4}" Header="گزینه 4" Width="*" />
+                                                        <DataGridTextColumn Binding="{Binding Date}" Header="تاریخ" Width="*" />
+                                                    </DataGrid.Columns>
+                                                </DataGrid>
+                                            </StackPanel>
+                                        </Grid>
+                                        <Grid Grid.Column="1" Margin="5,0,0,0">
+                                            <StackPanel Name="editStack" IsEnabled="False" Orientation="Vertical">
+                                                <controls:InfoTextBox FlowDirection="RightToLeft" MaxLength="20" Margin="2" Name="txtEditQuestionText" TabIndex="0" PlaceHolder="متن سوال" Height="30" />
+                                                <controls:InfoTextBox FlowDirection="RightToLeft" MaxLength="20" Margin="2" Name="txtEditCase1" TabIndex="0" PlaceHolder="گزینه 1" Height="30" />
+                                                <controls:InfoTextBox FlowDirection="RightToLeft" MaxLength="20" Margin="2" Name="txtEditCase2" TabIndex="0" PlaceHolder="گزینه 2" Height="30" />
+                                                <controls:InfoTextBox FlowDirection="RightToLeft" MaxLength="20" Margin="2" Name="txtEditCase3" TabIndex="0" PlaceHolder="گزینه 3" Height="30" />
+                                                <controls:InfoTextBox FlowDirection="RightToLeft" MaxLength="20" Margin="2" Name="txtEditCase4" TabIndex="0" PlaceHolder="گزینه 4" Height="30" />
+                                                <StackPanel Orientation="Horizontal" Margin="2">
+                                                    <Grid Margin="2">
+                                                        <ComboBox x:Name="cmbGroupEdit" ItemsSource="{Binding}"
                                        SelectedValue="{Binding GroupName}"
                                        SelectedValuePath="Id"   TabIndex="4"
                                        VerticalAlignment="Top" HorizontalAlignment="Left" Width="150">
-                                                        <ComboBox.ItemTemplate>
+                                                            <ComboBox.ItemTemplate>
+                                                                <DataTemplate>
+                                                                    <StackPanel Orientation="Horizontal">
+                                                                        <TextBlock Text="{Binding GroupName}" />
+                                                                    </StackPanel>
+                                                                </DataTemplate>
+                                                            </ComboBox.ItemTemplate>
+                                                        </ComboBox>
+                                                        <TextBlock Text=" انتخاب گروه " IsHitTestVisible="False" HorizontalAlignment="Left" Width="150">
+                                                            <TextBlock.Style>
+                                                                <Style TargetType="TextBlock">
+                                                                    <Setter Property="Visibility" Value="Hidden" />
+                                                                    <Style.Triggers>
+                                                                        <DataTrigger Binding="{Binding ElementName=cmbGroupEdit,Path=SelectedItem}" Value="{x:Null}">
+                                                                            <Setter Property="Visibility" Value="Visible" />
+                                                                        </DataTrigger>
+                                                                    </Style.Triggers>
+                                                                </Style>
+                                                            </TextBlock.Style>
+                                                        </TextBlock>
+                                                    </Grid>
+                                                    <ContentControl Margin="2" Name="cmbAddEditContent" Focusable="False" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="150">
+                                                        <ContentControl.ContentTemplate>
                                                             <DataTemplate>
-                                                                <StackPanel Orientation="Horizontal">
-                                                                    <TextBlock Text="{Binding GroupName}" />
-                                                                </StackPanel>
+                                                                <Grid>
+                                                                    <ComboBox TabIndex="4" x:Name="cmbBase">
+                                                                        <ComboBoxItem Content="اول" />
+                                                                        <ComboBoxItem Content="دوم" />
+                                                                        <ComboBoxItem Content="سوم" />
+                                                                        <ComboBoxItem Content="چهارم" />
+                                                                        <ComboBoxItem Content="پنجم" />
+                                                                        <ComboBoxItem Content="ششم" />
+                                                                    </ComboBox>
+                                                                    <TextBlock x:Name="tb" Text=" انتخاب پایه " IsHitTestVisible="False" Visibility="Hidden" />
+                                                                </Grid>
+                                                                <DataTemplate.Triggers>
+                                                                    <Trigger SourceName="cmbBase" Property="SelectedItem" Value="{x:Null}">
+                                                                        <Setter TargetName="tb" Property="Visibility" Value="Visible" />
+                                                                    </Trigger>
+                                                                </DataTemplate.Triggers>
                                                             </DataTemplate>
-                                                        </ComboBox.ItemTemplate>
-                                                    </ComboBox>
-                                                    <TextBlock Text=" انتخاب گروه " IsHitTestVisible="False" HorizontalAlignment="Left" Width="150">
-                                                        <TextBlock.Style>
-                                                            <Style TargetType="TextBlock">
-                                                                <Setter Property="Visibility" Value="Hidden" />
-                                                                <Style.Triggers>
-                                                                    <DataTrigger Binding="{Binding ElementName=cmbGroupEdit,Path=SelectedItem}" Value="{x:Null}">
-                                                                        <Setter Property="Visibility" Value="Visible" />
-                                                                    </DataTrigger>
-                                                                </Style.Triggers>
-                                                            </Style>
-                                                        </TextBlock.Style>
-                                                    </TextBlock>
-                                                </Grid>
-                                                <ContentControl Margin="2" Name="cmbAddEditContent" Focusable="False" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="150">
+                                                        </ContentControl.ContentTemplate>
+                                                    </ContentControl>
+                                                </StackPanel>
+                                                <ContentControl Margin="5,0,0,0" Name="cmbEditAnswer" Focusable="False" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="150">
                                                     <ContentControl.ContentTemplate>
                                                         <DataTemplate>
                                                             <Grid>
-                                                                <ComboBox TabIndex="4" x:Name="cmbBase">
-                                                                    <ComboBoxItem Content="اول" />
-                                                                    <ComboBoxItem Content="دوم" />
-                                                                    <ComboBoxItem Content="سوم" />
-                                                                    <ComboBoxItem Content="چهارم" />
-                                                                    <ComboBoxItem Content="پنجم" />
-                                                                    <ComboBoxItem Content="ششم" />
+                                                                <ComboBox TabIndex="4" x:Name="cmbEditAnswers">
+                                                                    <ComboBoxItem Content="1" />
+                                                                    <ComboBoxItem Content="2" />
+                                                                    <ComboBoxItem Content="3" />
+                                                                    <ComboBoxItem Content="4" />
                                                                 </ComboBox>
-                                                                <TextBlock x:Name="tb" Text=" انتخاب پایه " IsHitTestVisible="False" Visibility="Hidden" />
+                                                                <TextBlock x:Name="tb" Text=" گزینه صحیح  " IsHitTestVisible="False" Visibility="Hidden" />
                                                             </Grid>
                                                             <DataTemplate.Triggers>
-                                                                <Trigger SourceName="cmbBase" Property="SelectedItem" Value="{x:Null}">
+                                                                <Trigger SourceName="cmbEditAnswers" Property="SelectedItem" Value="{x:Null}">
                                                                     <Setter TargetName="tb" Property="Visibility" Value="Visible" />
                                                                 </Trigger>
                                                             </DataTemplate.Triggers>
                                                         </DataTemplate>
                                                     </ContentControl.ContentTemplate>
                                                 </ContentControl>
+                                                <PersianCalendarWPF:PersianDatePicker Margin="5,5,0,0" HorizontalAlignment="Left" x:Name="txtDateEdit" />
                                             </StackPanel>
-                                            <ContentControl Margin="5,0,0,0" Name="cmbEditAnswer" Focusable="False" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="150">
-                                                <ContentControl.ContentTemplate>
-                                                    <DataTemplate>
-                                                        <Grid>
-                                                            <ComboBox TabIndex="4" x:Name="cmbEditAnswers">
-                                                                <ComboBoxItem Content="1" />
-                                                                <ComboBoxItem Content="2" />
-                                                                <ComboBoxItem Content="3" />
-                                                                <ComboBoxItem Content="4" />
-                                                            </ComboBox>
-                                                            <TextBlock x:Name="tb" Text=" گزینه صحیح  " IsHitTestVisible="False" Visibility="Hidden" />
-                                                        </Grid>
-                                                        <DataTemplate.Triggers>
-                                                            <Trigger SourceName="cmbEditAnswers" Property="SelectedItem" Value="{x:Null}">
-                                                                <Setter TargetName="tb" Property="Visibility" Value="Visible" />
-                                                            </Trigger>
-                                                        </DataTemplate.Triggers>
-                                                    </DataTemplate>
-                                                </ContentControl.ContentTemplate>
-                                            </ContentControl>
-                                            <PersianCalendarWPF:PersianDatePicker Margin="5,5,0,0" HorizontalAlignment="Left" x:Name="txtDateEdit" />
-                                        </StackPanel>
+                                        </Grid>
                                     </Grid>
-                                </Grid>
+                                </StackPanel>
                             </StackPanel>
-                        </StackPanel>
-                    </Grid>
-                </controls:TabItem>
-            </controls:TabControl>
+                        </Grid>
+                    </controls:TabItem>
+                </controls:TabControl>
+
+            </WrapPanel>
         </controls:ScrollViewer>
     </controls:TransitioningContentControl>
 </UserControl>
