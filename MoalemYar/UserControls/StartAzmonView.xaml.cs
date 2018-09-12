@@ -15,6 +15,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Threading;
 
@@ -436,7 +437,7 @@ namespace MoalemYar.UserControls
 
         private void StackPanel_Checked(object sender, RoutedEventArgs e)
         {
-            Arthas.Controls.Metro.MetroSwitch cb = e.OriginalSource as Arthas.Controls.Metro.MetroSwitch;
+            var cb = e.OriginalSource as ToggleButton;
             if (cb.IsChecked == false)
             {
                 return;
@@ -445,7 +446,7 @@ namespace MoalemYar.UserControls
             {
                 if (item != cb)
                 {
-                    ((Arthas.Controls.Metro.MetroSwitch)item).IsChecked = false;
+                    ((ToggleButton)item).IsChecked = false;
                 }
             }
         }

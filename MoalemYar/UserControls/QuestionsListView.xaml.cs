@@ -19,6 +19,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 
 namespace MoalemYar.UserControls
@@ -346,17 +347,17 @@ namespace MoalemYar.UserControls
         {
             
             var row = dataGrid.ContainerFromElement(sender as DependencyObject);
-            Arthas.Controls.Metro.MetroTextBlock MyTextBlock = FindElement.FindVisualChildByName<Arthas.Controls.Metro.MetroTextBlock>(row, "txtStatus");
-            Arthas.Controls.Metro.MetroSwitch MyCHK1 = FindElement.FindVisualChildByName<Arthas.Controls.Metro.MetroSwitch>(row, "chkExc");
-            Arthas.Controls.Metro.MetroSwitch MyCHK2 = FindElement.FindVisualChildByName<Arthas.Controls.Metro.MetroSwitch>(row, "chkGood");
-            Arthas.Controls.Metro.MetroSwitch MyCHK3 = FindElement.FindVisualChildByName<Arthas.Controls.Metro.MetroSwitch>(row, "chkNbad");
-            Arthas.Controls.Metro.MetroSwitch MyCHK4 = FindElement.FindVisualChildByName<Arthas.Controls.Metro.MetroSwitch>(row, "chkBad");
+            var MyTextBlock = FindElement.FindVisualChildByName<TextBlock>(row, "txtStatus");
+            var MyCHK1 = FindElement.FindVisualChildByName<ToggleButton>(row, "chkExc");
+            var MyCHK2 = FindElement.FindVisualChildByName<ToggleButton>(row, "chkGood");
+            var MyCHK3 = FindElement.FindVisualChildByName<ToggleButton>(row, "chkNbad");
+            var MyCHK4 = FindElement.FindVisualChildByName<ToggleButton>(row, "chkBad");
 
             MyCHK1.IsEnabled = MyCHK2.IsEnabled = MyCHK3.IsEnabled = MyCHK4.IsEnabled = false;
 
             dynamic selectedItem = dataGrid.SelectedItems[0];
             var element = FindElement.FindElementByName<ComboBox>(cmbBook, "cmbBook");
-            var selectedChk = sender as Arthas.Controls.Metro.MetroSwitch;
+            var selectedChk = sender as ToggleButton;
             string newStatus = string.Empty;
 
             if (MyTextBlock.Text == "ثبت نشده")
@@ -398,7 +399,7 @@ namespace MoalemYar.UserControls
 
         private void StackPanel_Checked(object sender, RoutedEventArgs e)
         {
-            Arthas.Controls.Metro.MetroSwitch cb = e.OriginalSource as Arthas.Controls.Metro.MetroSwitch;
+            var cb = e.OriginalSource as ToggleButton;
             if (cb.IsChecked == false)
             {
                 return;
@@ -407,7 +408,7 @@ namespace MoalemYar.UserControls
             {
                 if (item != cb)
                 {
-                    ((Arthas.Controls.Metro.MetroSwitch)item).IsChecked = false;
+                    ((ToggleButton)item).IsChecked = false;
                 }
             }
         }
