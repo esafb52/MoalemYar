@@ -7,206 +7,203 @@
              xmlns:Metro="clr-namespace:Arthas.Controls.Metro;assembly=Arthas"
              xmlns:PersianCalendarWPF="clr-namespace:PersianCalendarWPF;assembly=PersianCalendarWPF"
              xmlns:local1="clr-namespace:MoalemYar"
+             xmlns:controls="clr-namespace:HandyControl.Controls;assembly=HandyControl"
              mc:Ignorable="d" Loaded="UserControl_Loaded"
-             Style="{StaticResource myUserControl}"
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <Metro:MetroTabControl Focusable="False" x:Name="tabc" IsTabStop="True" TabIndex="-1" SelectionChanged="tabc_SelectionChanged">
-            <Metro:MetroTabItem Header="ثبت اطلاعات" Icon="/Resources/TickTab.png">
-                <Grid KeyboardNavigation.TabNavigation="Cycle">
-                    <Grid Name="grdedit">
-                        <ComboBox SelectionChanged="cmbBase_SelectionChanged" x:Name="cmbBase" ItemsSource="{Binding}"
+             Style="{StaticResource myUserControl}">
+    <controls:TransitioningContentControl>
+        <controls:ScrollViewer HorizontalScrollBarVisibility="Auto">
+            <controls:TabControl Name="tabc" IsEnableAnimation="True" IsDraggable="True" IsEnableTabFill="True" Width="800" Height="300" SelectionChanged="tabc_SelectionChanged">
+                <controls:TabItem IsSelected="True" Header="ثبت اطلاعات">
+                    <Grid KeyboardNavigation.TabNavigation="Cycle">
+                        <Grid Name="grdedit">
+                            <ComboBox SelectionChanged="cmbBase_SelectionChanged" x:Name="cmbBase" ItemsSource="{Binding}"
                   Height="30"
                       SelectedValue="{Binding SchoolName}"
                                   SelectedValuePath="Id"
                   Margin="10,10,0,0"
                   VerticalAlignment="Top" HorizontalAlignment="Left" Width="190">
-                            <ComboBox.ItemTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="{Binding SchoolName}" />
-                                        <TextBlock Text=" - " />
-                                        <TextBlock Text="{Binding Base}" />
-                                        <TextBlock Text=" - " />
-                                        <TextBlock Text="{Binding Year}" />
-                                    </StackPanel>
-                                </DataTemplate>
-                            </ComboBox.ItemTemplate>
-                        </ComboBox>
-                        <TextBlock Text=" انتخاب کلاس " IsHitTestVisible="False" Margin="10,10,0,0" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="190">
-                            <TextBlock.Style>
-                                <Style TargetType="TextBlock">
-                                    <Setter Property="Visibility" Value="Hidden" />
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Binding ElementName=cmbBase,Path=SelectedItem}" Value="{x:Null}">
-                                            <Setter Property="Visibility" Value="Visible" />
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </TextBlock.Style>
-                        </TextBlock>
-                        <StackPanel Orientation="Vertical" Margin="0,40,10,0" Grid.ColumnSpan="2">
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                <Metro:MetroTextBlock Name="txtDate" HorizontalAlignment="Center" Margin="5" Text="تاریخ امروز" />
-                                <Metro:MetroSwitch Name="swAllPresent" Checked="swAllPresent_Checked" IsEnabled="False" Margin="5,0,50,0" HorizontalAlignment="Center" IsChecked="False">همه حاضر</Metro:MetroSwitch>
-                            </StackPanel>
-                            <DataGrid x:Name="dataGrid" AutoGenerateColumns="False" HorizontalAlignment="Stretch"
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding SchoolName}" />
+                                            <TextBlock Text=" - " />
+                                            <TextBlock Text="{Binding Base}" />
+                                            <TextBlock Text=" - " />
+                                            <TextBlock Text="{Binding Year}" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                            <TextBlock Text=" انتخاب کلاس " IsHitTestVisible="False" Margin="10,10,0,0" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="190">
+                                <TextBlock.Style>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="Visibility" Value="Hidden" />
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding ElementName=cmbBase,Path=SelectedItem}" Value="{x:Null}">
+                                                <Setter Property="Visibility" Value="Visible" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                            <StackPanel Orientation="Vertical" Margin="0,40,10,0" Grid.ColumnSpan="2">
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                    <Label Name="txtDate" HorizontalAlignment="Center" Margin="5" Style="{StaticResource LabelInfo}" Content="تاریخ امروز" />
+                                    <ToggleButton Style="{StaticResource ToggleButtonSwitch}" Name="swAllPresent" Checked="swAllPresent_Checked" IsEnabled="False" Margin="5,0,50,0" HorizontalAlignment="Center" IsChecked="False"/>
+                                </StackPanel>
+                                <DataGrid x:Name="dataGrid" AutoGenerateColumns="False" HorizontalAlignment="Stretch"
                                       Background="#eceff5" RowHeaderWidth="0" AlternatingRowBackground="#fbfcfe"
                                       GridLinesVisibility="Horizontal" CanUserReorderColumns="False" MaxWidth="{Binding Path=ActualWidth, ElementName=grdedit, Converter={local1:MultiplyConverter Multiplier=.9}}"
                                       CanUserResizeColumns="False" CanUserSortColumns="True" SelectionMode="Single" SelectionUnit="FullRow"
                                       CanUserResizeRows="False" IsReadOnly="True" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}"
                                       HorizontalGridLinesBrush="#dde8ef" CellStyle="{DynamicResource DataGridCellStyle}" Margin="0,10">
-                                <DataGrid.Columns>
-                                    <DataGridTextColumn Binding="{Binding Path=Id}" Visibility="Hidden" />
-                                    <DataGridTextColumn Binding="{Binding Path=Name}" Header="نام" MinWidth="120" Width="*" />
-                                    <DataGridTextColumn Binding="{Binding Path=LName}" Header="نام خانوادگی" MinWidth="130" Width="*" />
-                                    <DataGridTextColumn Binding="{Binding Path=FName}" Header="نام پدر" MinWidth="130" Width="*" />
-                                    <DataGridTemplateColumn Header="وضعیت" MinWidth="150" Width="*">
-                                        <DataGridTemplateColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <StackPanel Orientation="Vertical" Margin="5" HorizontalAlignment="Right">
-                                                    <Metro:MetroSwitch Margin="5" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" IsChecked="False" Name="chkIsPresent" CornerRadius="2" BorderCornerRadius="3" Checked="chkIsPresent_Checked">حاضر</Metro:MetroSwitch>
-                                                    <Metro:MetroSwitch Margin="5" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right" IsChecked="False" Name="chkIsAbsent" CornerRadius="2" BorderCornerRadius="3" Checked="chkIsAbsent_Checked">غایب</Metro:MetroSwitch>
-                                                </StackPanel>
-                                            </DataTemplate>
-                                        </DataGridTemplateColumn.CellTemplate>
-                                    </DataGridTemplateColumn>
-                                </DataGrid.Columns>
-                                <DataGrid.ContextMenu>
-                                    <Metro:MetroContextMenu>
-                                        <Metro:MetroMenuItem Icon="/Resources/add.png" Header="حاضر" Click="chkIsPresent_Checked" />
-                                        <Metro:MetroMenuItem Icon="/Resources/add.png" Header="غایب" Click="chkIsAbsent_Checked" />
-                                        <Metro:MetroMenuSeparator />
-                                        <Metro:MetroMenuItem Icon="/Resources/add.png" Header="همه حاضر" Click="swAllPresent_Checked" />
-                                    </Metro:MetroContextMenu>
-                                </DataGrid.ContextMenu>
-                            </DataGrid>
-                        </StackPanel>
-                    </Grid>
-                </Grid>
-            </Metro:MetroTabItem>
-            <Metro:MetroTabItem Header="ویرایش اطلاعات" Icon="/Resources/EditTickTab.png">
-                <Grid KeyboardNavigation.TabNavigation="Cycle">
-                    <StackPanel Orientation="Vertical" Margin="5,5,5,0">
-                        <StackPanel Orientation="Horizontal" Height="50" VerticalAlignment="Top">
-                            <Button x:Name="btnEditSave" IsDefault="True" Click="btnEditSave_Click" Grid.Column="0" Grid.Row="0" Margin="10,5,5,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Style="{StaticResource WorkButtonGreen}" Height="35">
-                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                                    <Image Height="16" Width="16" Margin="10,0,30,0" Source="/Resources/update.png" />
-                                    <TextBlock TextWrapping="NoWrap" Text="ذخیره" FontSize="13" Foreground="#ffffff" />
-                                </StackPanel>
-                            </Button>
-                            <Button x:Name="btnDelete" IsCancel="True" Click="btnDelete_Click" Grid.Column="1"  Grid.ColumnSpan="2" Grid.Row="1" Margin="5,5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Style="{StaticResource WorkButtonRed}" Height="35">
-                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                                    <Image Height="16" Width="16" Margin="10,0,30,0" Source="/Resources/Delete.png" />
-                                    <TextBlock TextWrapping="NoWrap" Text="حذف" FontSize="13" Foreground="#ffffff" />
-                                </StackPanel>
-                            </Button>
-                        </StackPanel>
-                        <Grid Margin="0,5,0,0">
-                            <Metro:MetroBorder HorizontalAlignment="Stretch" BorderThickness="1" BorderBrush="{Binding BorderColor}" />
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Binding="{Binding Path=Id}" Visibility="Hidden" />
+                                        <DataGridTextColumn Binding="{Binding Path=Name}" Header="نام" MinWidth="120" Width="*" />
+                                        <DataGridTextColumn Binding="{Binding Path=LName}" Header="نام خانوادگی" MinWidth="130" Width="*" />
+                                        <DataGridTextColumn Binding="{Binding Path=FName}" Header="نام پدر" MinWidth="130" Width="*" />
+                                        <DataGridTemplateColumn Header="وضعیت" MinWidth="150" Width="*">
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel Orientation="Vertical" Margin="5" HorizontalAlignment="Right">
+                                                        <Metro:MetroSwitch Margin="5" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Right" IsChecked="False" Name="chkIsPresent" CornerRadius="2" BorderCornerRadius="3" Checked="chkIsPresent_Checked">حاضر</Metro:MetroSwitch>
+                                                        <Metro:MetroSwitch Margin="5" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right" IsChecked="False" Name="chkIsAbsent" CornerRadius="2" BorderCornerRadius="3" Checked="chkIsAbsent_Checked">غایب</Metro:MetroSwitch>
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
+                                    </DataGrid.Columns>
+                                    <DataGrid.ContextMenu>
+                                        <Metro:MetroContextMenu>
+                                            <Metro:MetroMenuItem Icon="/Resources/add.png" Header="حاضر" Click="chkIsPresent_Checked" />
+                                            <Metro:MetroMenuItem Icon="/Resources/add.png" Header="غایب" Click="chkIsAbsent_Checked" />
+                                            <Metro:MetroMenuSeparator />
+                                            <Metro:MetroMenuItem Icon="/Resources/add.png" Header="همه حاضر" Click="swAllPresent_Checked" />
+                                        </Metro:MetroContextMenu>
+                                    </DataGrid.ContextMenu>
+                                </DataGrid>
+                            </StackPanel>
                         </Grid>
-                        <StackPanel Margin="0,10,0,0" Orientation="Vertical">
-                            <StackPanel Orientation="Horizontal">
-                                <Grid>
-                                    <ComboBox x:Name="cmbEditBase" ItemsSource="{Binding}" SelectionChanged="cmbEditBase_SelectionChanged"
+                    </Grid>
+                </controls:TabItem>
+                <controls:TabItem IsSelected="True" Header="ویرایش اطلاعات">
+                    <Grid KeyboardNavigation.TabNavigation="Cycle">
+                        <StackPanel Orientation="Vertical" Margin="5,5,5,0">
+                            <Grid>
+                                <StackPanel Orientation="Horizontal" Height="50" VerticalAlignment="Top">
+                                    <Button x:Name="btnEditSave" IsDefault="True" Click="btnEditSave_Click" Grid.Column="0" Grid.Row="0" Margin="10,5,5,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Style="{StaticResource ButtonPrimary}" Height="35">
+                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                            <Image Height="16" Width="16" Margin="10,0,30,0" Source="/Resources/update.png" />
+                                            <TextBlock TextWrapping="NoWrap" Text="ذخیره" FontSize="13" Foreground="#ffffff" />
+                                        </StackPanel>
+                                    </Button>
+                                    <Button x:Name="btnDelete" IsCancel="True" Click="btnDelete_Click" Grid.Column="1"  Grid.ColumnSpan="2" Grid.Row="1" Margin="5,5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Style="{StaticResource ButtonDanger}" Height="35">
+                                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                            <Image Height="16" Width="16" Margin="10,0,30,0" Source="/Resources/Delete.png" />
+                                            <TextBlock TextWrapping="NoWrap" Text="حذف" FontSize="13" Foreground="#ffffff" />
+                                        </StackPanel>
+                                    </Button>
+                                </StackPanel>
+                                <GridSplitter Height="2" Margin="60,45,96,-7" HorizontalAlignment="Stretch" />
+                            </Grid>
+                            <StackPanel Margin="0,10,0,0" Orientation="Vertical">
+                                <StackPanel Orientation="Horizontal">
+                                    <Grid>
+                                        <ComboBox x:Name="cmbEditBase" ItemsSource="{Binding}" SelectionChanged="cmbEditBase_SelectionChanged"
                                   Height="30" TabIndex="0"
                                   SelectedValue="{Binding SchoolName}"
                                   SelectedValuePath="Id"
                                   VerticalAlignment="Top" HorizontalAlignment="Left" Width="195">
-                                        <ComboBox.ItemTemplate>
-                                            <DataTemplate>
-                                                <StackPanel Orientation="Horizontal">
-                                                    <TextBlock Text="{Binding SchoolName}" />
-                                                    <TextBlock Text=" - " />
-                                                    <TextBlock Text="{Binding Base}" />
-                                                    <TextBlock Text=" - " />
-                                                    <TextBlock Text="{Binding Year}" />
-                                                </StackPanel>
-                                            </DataTemplate>
-                                        </ComboBox.ItemTemplate>
-                                    </ComboBox>
-                                    <TextBlock Text=" انتخاب کلاس " IsHitTestVisible="False" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="195">
-                                        <TextBlock.Style>
-                                            <Style TargetType="{x:Type TextBlock}">
-                                                <Setter Property="Visibility" Value="Hidden" />
-                                                <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding SelectedItem, ElementName=cmbEditBase}" Value="{x:Null}">
-                                                        <Setter Property="Visibility" Value="Visible" />
-                                                    </DataTrigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </TextBlock.Style>
-                                    </TextBlock>
-                                </Grid>
-                                <Grid Margin="10,0,0,0">
-                                    <ComboBox x:Name="cmbEditStudent" SelectionChanged="cmbEditStudent_SelectionChanged"
+                                            <ComboBox.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBlock Text="{Binding SchoolName}" />
+                                                        <TextBlock Text=" - " />
+                                                        <TextBlock Text="{Binding Base}" />
+                                                        <TextBlock Text=" - " />
+                                                        <TextBlock Text="{Binding Year}" />
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </ComboBox.ItemTemplate>
+                                        </ComboBox>
+                                        <TextBlock Text=" انتخاب کلاس " IsHitTestVisible="False" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="195">
+                                            <TextBlock.Style>
+                                                <Style TargetType="{x:Type TextBlock}">
+                                                    <Setter Property="Visibility" Value="Hidden" />
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding SelectedItem, ElementName=cmbEditBase}" Value="{x:Null}">
+                                                            <Setter Property="Visibility" Value="Visible" />
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </TextBlock.Style>
+                                        </TextBlock>
+                                    </Grid>
+                                    <Grid Margin="10,0,0,0">
+                                        <ComboBox x:Name="cmbEditStudent" SelectionChanged="cmbEditStudent_SelectionChanged"
                                   Height="30" TabIndex="1"
                                   SelectedValue="{Binding LName}"
                                   SelectedValuePath="Id"
                                   VerticalAlignment="Top" HorizontalAlignment="Left" Width="190">
-                                        <ComboBox.ItemTemplate>
-                                            <DataTemplate>
-                                                <StackPanel Orientation="Horizontal">
-                                                    <TextBlock Text="{Binding Name}" />
-                                                    <TextBlock Text=" " />
-                                                    <TextBlock Text="{Binding LName}" />
-                                                    <TextBlock Text=" - " />
-                                                    <TextBlock Text="نام پدر(" />
-                                                    <TextBlock Text="{Binding FName}" />
-                                                    <TextBlock Text=")" />
-                                                </StackPanel>
-                                            </DataTemplate>
-                                        </ComboBox.ItemTemplate>
-                                    </ComboBox>
-                                    <TextBlock Text=" انتخاب دانش آموز " IsHitTestVisible="False" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="190">
-                                        <TextBlock.Style>
-                                            <Style TargetType="{x:Type TextBlock}">
-                                                <Setter Property="Visibility" Value="Hidden" />
-                                                <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding SelectedItem, ElementName=cmbEditStudent}" Value="{x:Null}">
-                                                        <Setter Property="Visibility" Value="Visible" />
-                                                    </DataTrigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </TextBlock.Style>
-                                    </TextBlock>
+                                            <ComboBox.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBlock Text="{Binding Name}" />
+                                                        <TextBlock Text=" " />
+                                                        <TextBlock Text="{Binding LName}" />
+                                                        <TextBlock Text=" - " />
+                                                        <TextBlock Text="نام پدر(" />
+                                                        <TextBlock Text="{Binding FName}" />
+                                                        <TextBlock Text=")" />
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </ComboBox.ItemTemplate>
+                                        </ComboBox>
+                                        <TextBlock Text=" انتخاب دانش آموز " IsHitTestVisible="False" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="190">
+                                            <TextBlock.Style>
+                                                <Style TargetType="{x:Type TextBlock}">
+                                                    <Setter Property="Visibility" Value="Hidden" />
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding SelectedItem, ElementName=cmbEditStudent}" Value="{x:Null}">
+                                                            <Setter Property="Visibility" Value="Visible" />
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </TextBlock.Style>
+                                        </TextBlock>
+                                    </Grid>
+                                </StackPanel>
+                                <TextBox MaxLength="40" x:Name="txtEditSearch" TabIndex="2" HorizontalAlignment="Stretch" VerticalAlignment="Top" FlowDirection="RightToLeft" Margin="0,5,0,0" TextChanged="txtEditSearch_TextChanged" />
+                                <Grid>
+                                    <ListView Style="{StaticResource ListBoxBaseStyle}" Margin="0,5,0,0" TabIndex="3" ScrollViewer.VerticalScrollBarVisibility="Auto" VerticalAlignment="Top" FlowDirection="RightToLeft" SelectionMode="Single" x:Name="dgv" SelectionChanged="dgv_SelectionChanged">
+                                        <ListView.View>
+                                            <GridView>
+                                                <GridViewColumn Header="وضعیت حضور" Width="0"  DisplayMemberBinding="{Binding Exist}" />
+                                                <GridViewColumn Header="StudentId" Width="0" DisplayMemberBinding="{Binding StudentId}" />
+                                                <GridViewColumn Header="Id" Width="0"  DisplayMemberBinding="{Binding Id}" />
+                                                <GridViewColumn Header="وضعیت حضور" Width="100">
+                                                    <GridViewColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <ToggleButton Style="{StaticResource ToggleButtonSwitch}" Checked="MetroSwitch_Checked" Unchecked="MetroSwitch_Unchecked" IsChecked="{Binding Exist}" />
+                                                        </DataTemplate>
+                                                    </GridViewColumn.CellTemplate>
+                                                </GridViewColumn>
+                                                <GridViewColumn Header="تاریخ" Width="200">
+                                                    <GridViewColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <PersianCalendarWPF:PersianDatePicker HorizontalAlignment="Left" Text="{Binding Date}" SelectedDate="{Binding Date}" SelectedDateChanged="txtDateEdit_SelectedDateChanged" Name="txtDateEdit" />
+                                                        </DataTemplate>
+                                                    </GridViewColumn.CellTemplate>
+                                                </GridViewColumn>
+                                            </GridView>
+                                        </ListView.View>
+                                    </ListView>
                                 </Grid>
                             </StackPanel>
-                            <Metro:MetroTextBox MaxLength="40" x:Name="txtEditSearch" TabIndex="2" HorizontalAlignment="Stretch" VerticalAlignment="Top" ButtonTitle="بروزرسانی لیست" ButtonClick="txtEditSearch_ButtonClick" FlowDirection="RightToLeft" InputHint="جستجو..." PopupHint="جستجو بصورت خودکار انجام می شود" MetroPopupBackgroundState="Red2" Margin="0,5,0,0" Icon="../Resources/editIcon.png" TextChanged="txtEditSearch_TextChanged" />
-                            <Grid>
-                                <ListView Margin="0,5,0,0" TabIndex="3" ScrollViewer.VerticalScrollBarVisibility="Auto" VerticalAlignment="Top" FlowDirection="RightToLeft" SelectionMode="Single" x:Name="dgv" SelectionChanged="dgv_SelectionChanged">
-                                    <ListView.View>
-                                        <GridView>
-                                            <GridViewColumn Header="وضعیت حضور" Width="0"  DisplayMemberBinding="{Binding Exist}" />
-                                            <GridViewColumn Header="StudentId" Width="0" DisplayMemberBinding="{Binding StudentId}" />
-                                            <GridViewColumn Header="Id" Width="0"  DisplayMemberBinding="{Binding Id}" />
-                                            <GridViewColumn Header="وضعیت حضور" Width="100">
-                                                <GridViewColumn.CellTemplate>
-                                                    <DataTemplate>
-                                                        <Metro:MetroSwitch Checked="MetroSwitch_Checked" Unchecked="MetroSwitch_Unchecked" IsChecked="{Binding Exist}" />
-                                                    </DataTemplate>
-                                                </GridViewColumn.CellTemplate>
-                                            </GridViewColumn>
-                                            <GridViewColumn Header="تاریخ" Width="200">
-                                                <GridViewColumn.CellTemplate>
-                                                    <DataTemplate>
-                                                        <PersianCalendarWPF:PersianDatePicker HorizontalAlignment="Left" Text="{Binding Date}" SelectedDate="{Binding Date}" SelectedDateChanged="txtDateEdit_SelectedDateChanged" Name="txtDateEdit" />
-                                                    </DataTemplate>
-                                                </GridViewColumn.CellTemplate>
-                                            </GridViewColumn>
-                                        </GridView>
-                                    </ListView.View>
-                                    <ListView.ContextMenu>
-                                            <Metro:MetroContextMenu>
-                                                <Metro:MetroMenuItem Icon="/Resources/delete.png" Header="حذف" Click="btnDelete_Click" />
-                                            </Metro:MetroContextMenu>
-                                    </ListView.ContextMenu>
-                                </ListView>
-                            </Grid>
                         </StackPanel>
-                    </StackPanel>
-                </Grid>
-            </Metro:MetroTabItem>
-        </Metro:MetroTabControl>
-    </Grid>
+                    </Grid>
+                </controls:TabItem>
+            </controls:TabControl>
+        </controls:ScrollViewer>
+    </controls:TransitioningContentControl>
 </UserControl>

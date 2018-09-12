@@ -32,7 +32,6 @@ namespace MoalemYar.UserControls
         private static string strDate;
         private bool isPresentEdit = true;
         private string changedDate = string.Empty;
-        public System.Windows.Media.Brush BorderColor { get; set; }
 
         public AttendancelistView()
         {
@@ -41,8 +40,7 @@ namespace MoalemYar.UserControls
             this.DataContext = this;
             main = this;
             strDate = pc.GetYear(DateTime.Now).ToString("0000") + "/" + pc.GetMonth(DateTime.Now).ToString("00") + "/" + pc.GetDayOfMonth(DateTime.Now).ToString("00");
-            txtDate.Text = string.Format("تاریخ امروز : {0} ", strDate);
-            BorderColor = AppVariable.GetBrush(MainWindow.main.BorderBrush.ToString());
+            txtDate.Content = string.Format("تاریخ امروز : {0} ", strDate);
         }
 
         #region "Async Query"
@@ -295,18 +293,13 @@ namespace MoalemYar.UserControls
 
         private void txtEditSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (dgv.ItemsSource != null)
-            {
-                if (txtEditSearch.Text != string.Empty)
-                    dgv.ItemsSource = _initialCollectionAtendance.Where(x => x.Date.Contains(txtEditSearch.Text)).Select(x => x);
-                else
-                    dgv.ItemsSource = _initialCollectionAtendance.Select(x => x);
-            }
-        }
-
-        private void txtEditSearch_ButtonClick(object sender, EventArgs e)
-        {
-            getAttendance(Convert.ToInt64(cmbEditStudent.SelectedValue));
+            //if (dgv.ItemsSource != null)
+            //{
+            //    if (txtEditSearch.Text != string.Empty)
+            //        dgv.ItemsSource = _initialCollectionAtendance.Where(x => x.Date.Contains(txtEditSearch.Text)).Select(x => x);
+            //    else
+            //        dgv.ItemsSource = _initialCollectionAtendance.Select(x => x);
+            //}
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
