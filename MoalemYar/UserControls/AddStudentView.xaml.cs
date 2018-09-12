@@ -30,7 +30,6 @@ namespace MoalemYar.UserControls
     /// </summary>
     public partial class AddStudentView : UserControl
     {
-        public Brush BorderColor { get; set; }
         private bool runOnceSchool = true;
         private bool isCreateThumbnail = false;
         internal static AddStudentView main;
@@ -41,7 +40,6 @@ namespace MoalemYar.UserControls
             InitializeComponent();
             this.DataContext = this;
             main = this;
-            BorderColor = AppVariable.GetBrush(MainWindow.main.BorderBrush.ToString());
         }
 
         #region "Async Query"
@@ -73,64 +71,64 @@ namespace MoalemYar.UserControls
 
         private void getSchool()
         {
-            try
-            {
-                using (var db = new DataClass.myDbContext())
-                {
-                    var query = db.Schools.Select(x => x);
-                    if (query.Any())
-                    {
-                        cmbBase.ItemsSource = query.ToList();
-                        cmbEditBase.ItemsSource = query.ToList();
-                        cmbBaseEdit.ItemsSource = query.ToList();
-                    }
-                }
-            }
-            catch (Exception)
-            {
-            }
+            //try
+            //{
+            //    using (var db = new DataClass.myDbContext())
+            //    {
+            //        var query = db.Schools.Select(x => x);
+            //        if (query.Any())
+            //        {
+            //            cmbBase.ItemsSource = query.ToList();
+            //            cmbEditBase.ItemsSource = query.ToList();
+            //            cmbBaseEdit.ItemsSource = query.ToList();
+            //        }
+            //    }
+            //}
+            //catch (Exception)
+            //{
+            //}
         }
 
         private void getStudent(long BaseId)
         {
-            try
-            {
-                using (var db = new DataClass.myDbContext())
-                {
-                    var query = db.Schools.Join(
-                      db.Students,
-                      c => c.Id,
-                      v => v.BaseId,
-                      (c, v) => new DataClass.DataTransferObjects.SchoolsStudentsJointDto { Name = v.Name, LName = v.LName, FName = v.FName, Gender = v.Gender, BaseId = v.BaseId, Image = v.Image, Id = v.Id, Base = c.Base }
-                  ).OrderBy(x => x.LName).Where(x => x.BaseId == BaseId);
+            //try
+            //{
+            //    using (var db = new DataClass.myDbContext())
+            //    {
+            //        var query = db.Schools.Join(
+            //          db.Students,
+            //          c => c.Id,
+            //          v => v.BaseId,
+            //          (c, v) => new DataClass.DataTransferObjects.SchoolsStudentsJointDto { Name = v.Name, LName = v.LName, FName = v.FName, Gender = v.Gender, BaseId = v.BaseId, Image = v.Image, Id = v.Id, Base = c.Base }
+            //      ).OrderBy(x => x.LName).Where(x => x.BaseId == BaseId);
 
-                    _initialCollection = query.ToList();
+            //        _initialCollection = query.ToList();
 
-                    if (query.Any())
-                    {
-                        dataGrid.ItemsSource = query.ToList();
-                    }
-                    else
-                    {
-                        dataGrid.ItemsSource = null;
-                        MainWindow.main.ShowNoDataNotification("Student");
-                    }
-                }
-            }
-            catch (Exception)
-            {
-            }
+            //        if (query.Any())
+            //        {
+            //            dataGrid.ItemsSource = query.ToList();
+            //        }
+            //        else
+            //        {
+            //            dataGrid.ItemsSource = null;
+            //            MainWindow.main.ShowNoDataNotification("Student");
+            //        }
+            //    }
+            //}
+            //catch (Exception)
+            //{
+            //}
         }
 
         private void deleteStudent(long id)
         {
-            using (var db = new DataClass.myDbContext())
-            {
-                var query = DeleteStudentAsync(id);
-                query.Wait();
-                MainWindow.main.getexHint();
-                MainWindow.main.ShowDeletedNotification(true, txtName.Text, "دانش آموز");
-            }
+            //using (var db = new DataClass.myDbContext())
+            //{
+            //    var query = DeleteStudentAsync(id);
+            //    query.Wait();
+            //    MainWindow.main.getexHint();
+            //    MainWindow.main.ShowDeletedNotification(true, txtName.Text, "دانش آموز");
+            //}
         }
 
         private void updateStudent(long id, long BaseId, string Name, string LName, string FName, string Gender, byte[] Image)
@@ -177,121 +175,124 @@ namespace MoalemYar.UserControls
 
         private void tabc_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (runOnceSchool)
-            {
-                getSchool();
-                runOnceSchool = false;
-            }
+            //if (runOnceSchool)
+            //{
+            //    getSchool();
+            //    runOnceSchool = false;
+            //}
         }
 
         private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            try
-            {
-                editStack.IsEnabled = true;
-                dynamic selectedItem = dataGrid.SelectedItems[0];
-                txtName.Text = selectedItem.Name;
-                txtLName.Text = selectedItem.LName;
-                txtFName.Text = selectedItem.FName;
-                setComboValue(selectedItem.Gender);
-                cmbEditBase.SelectedValue = selectedItem.BaseId;
+            //try
+            //{
+            //    editStack.IsEnabled = true;
+            //    dynamic selectedItem = dataGrid.SelectedItems[0];
+            //    txtName.Text = selectedItem.Name;
+            //    txtLName.Text = selectedItem.LName;
+            //    txtFName.Text = selectedItem.FName;
+            //    setComboValue(selectedItem.Gender);
+            //    cmbEditBase.SelectedValue = selectedItem.BaseId;
 
-                byte[] bytes = selectedItem.Image as byte[];
-                MemoryStream stream = new MemoryStream(bytes);
-                BitmapImage image = new BitmapImage();
-                image.BeginInit();
-                image.StreamSource = stream;
-                image.EndInit();
-                imgEditStudent.Source = image;
-            }
-            catch (Exception)
-            {
-            }
+            //    byte[] bytes = selectedItem.Image as byte[];
+            //    MemoryStream stream = new MemoryStream(bytes);
+            //    BitmapImage image = new BitmapImage();
+            //    image.BeginInit();
+            //    image.StreamSource = stream;
+            //    image.EndInit();
+
+            //    //Todo: fix
+            //    //imgEditStudent.Source = image;
+            //}
+            //catch (Exception)
+            //{
+            //}
         }
 
         private void btnEditSave_Click(object sender, RoutedEventArgs e)
         {
-            dynamic selectedItem = dataGrid.SelectedItems[0];
-            long id = selectedItem.Id;
+            //dynamic selectedItem = dataGrid.SelectedItems[0];
+            //long id = selectedItem.Id;
 
-            updateStudent(id, Convert.ToInt64(cmbEditBase.SelectedValue), txtName.Text, txtLName.Text, txtFName.Text, getComboValue(), (isCreateThumbnail ? CreateThumbnail(imgEditStudent.Source as BitmapImage) : getImageByte(imgEditStudent.Source as BitmapImage)));
-            isCreateThumbnail = false;
+            ////updateStudent(id, Convert.ToInt64(cmbEditBase.SelectedValue), txtName.Text, txtLName.Text, txtFName.Text, getComboValue(), (isCreateThumbnail ? CreateThumbnail(imgEditStudent.Source as BitmapImage) : getImageByte(imgEditStudent.Source as BitmapImage)));
+            //isCreateThumbnail = false;
 
-            MainWindow.main.ShowUpdateDataNotification(true, txtName.Text, "دانش آموز");
-            editStack.IsEnabled = false;
-            getStudent(Convert.ToInt64(cmbBaseEdit.SelectedValue));
+            //MainWindow.main.ShowUpdateDataNotification(true, txtName.Text, "دانش آموز");
+            //editStack.IsEnabled = false;
+            //getStudent(Convert.ToInt64(cmbBaseEdit.SelectedValue));
         }
 
         private void btnEditCancel_Click(object sender, RoutedEventArgs e)
         {
-            txtName.Text = string.Empty;
-            txtLName.Text = string.Empty;
-            txtFName.Text = string.Empty;
-            setComboValue(null);
-            cmbEditBase.SelectedIndex = -1;
-            editStack.IsEnabled = false;
+            //txtName.Text = string.Empty;
+            //txtLName.Text = string.Empty;
+            //txtFName.Text = string.Empty;
+            //setComboValue(null);
+            //cmbEditBase.SelectedIndex = -1;
+            //editStack.IsEnabled = false;
         }
 
-        private string getComboValue()
-        {
-            var element = FindElement.FindElementByName<ComboBox>(cmbContentGender, "cmbGender");
-            return element.Text;
-        }
+        //private string getComboValue()
+        //{
+        //    //var element = FindElement.FindElementByName<ComboBox>(cmbContentGender, "cmbGender");
+        //    //return element.Text;
+        //}
 
         private void setComboValue(string index)
         {
-            var element = FindElement.FindElementByName<ComboBox>(cmbContentGender, "cmbGender");
-            switch (index)
-            {
-                case "پسر":
-                    element.SelectedIndex = 0;
-                    break;
+            //var element = FindElement.FindElementByName<ComboBox>(cmbContentGender, "cmbGender");
+            //switch (index)
+            //{
+            //    case "پسر":
+            //        element.SelectedIndex = 0;
+            //        break;
 
-                case "دختر":
-                    element.SelectedIndex = 1;
-                    break;
+            //    case "دختر":
+            //        element.SelectedIndex = 1;
+            //        break;
 
-                case null:
-                    element.SelectedIndex = -1;
-                    break;
-            }
+            //    case null:
+            //        element.SelectedIndex = -1;
+            //        break;
+            //}
         }
 
         private void txtEditSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (dataGrid.ItemsSource != null)
-            {
-                if (txtEditSearch.Text != string.Empty)
-                    dataGrid.ItemsSource = _initialCollection.Where(x => x.Name.Contains(txtEditSearch.Text) || x.LName.Contains(txtEditSearch.Text) || x.FName.Contains(txtEditSearch.Text) || x.Gender.Contains(txtEditSearch.Text)).Select(x => x);
-                else
-                    dataGrid.ItemsSource = _initialCollection.Select(x => x);
-            }
+            //Todo: fix
+            //if (dataGrid.ItemsSource != null)
+            //{
+            //    if (txtEditSearch.Text != string.Empty)
+            //        dataGrid.ItemsSource = _initialCollection.Where(x => x.Name.Contains(txtEditSearch.Text) || x.LName.Contains(txtEditSearch.Text) || x.FName.Contains(txtEditSearch.Text) || x.Gender.Contains(txtEditSearch.Text)).Select(x => x);
+            //    else
+            //        dataGrid.ItemsSource = _initialCollection.Select(x => x);
+            //}
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            var elementG = FindElement.FindElementByName<ComboBox>(cmbAddContentGender, "cmbGender");
+            //var elementG = FindElement.FindElementByName<ComboBox>(cmbAddContentGender, "cmbGender");
 
-            if (txtAddName.Text == string.Empty || txtAddLName.Text == string.Empty || txtAddFName.Text == string.Empty || elementG.SelectedIndex == -1 || cmbBase.SelectedIndex == -1)
-            {
-                MainWindow.main.ShowFillAllDataNotification();
-            }
-            else
-            {
-                try
-                {
-                    addStudent(Convert.ToInt64(cmbBase.SelectedValue), txtAddName.Text, txtAddLName.Text, txtAddFName.Text, elementG.Text, CreateThumbnail(imgStudent.Source as BitmapImage));
-                    MainWindow.main.ShowAddDataNotification(true, txtAddName.Text, "دانش آموز");
-                    txtAddName.Text = string.Empty;
-                    txtAddLName.Text = string.Empty;
-                    txtAddFName.Text = string.Empty;
-                    txtAddName.Focus();
-                }
-                catch (Exception)
-                {
-                    MainWindow.main.ShowAddDataNotification(false, txtAddName.Text, "دانش آموز");
-                }
-            }
+            //if (txtAddName.Text == string.Empty || txtAddLName.Text == string.Empty || txtAddFName.Text == string.Empty || elementG.SelectedIndex == -1 || cmbBase.SelectedIndex == -1)
+            //{
+            //    MainWindow.main.ShowFillAllDataNotification();
+            //}
+            //else
+            //{
+            //    try
+            //    {
+            //       // addStudent(Convert.ToInt64(cmbBase.SelectedValue), txtAddName.Text, txtAddLName.Text, txtAddFName.Text, elementG.Text, CreateThumbnail(imgStudent.Source as BitmapImage));
+            //        MainWindow.main.ShowAddDataNotification(true, txtAddName.Text, "دانش آموز");
+            //        txtAddName.Text = string.Empty;
+            //        txtAddLName.Text = string.Empty;
+            //        txtAddFName.Text = string.Empty;
+            //        txtAddName.Focus();
+            //    }
+            //    catch (Exception)
+            //    {
+            //        MainWindow.main.ShowAddDataNotification(false, txtAddName.Text, "دانش آموز");
+            //    }
+            //}
         }
 
         public byte[] CreateThumbnail(BitmapImage imageC)
@@ -322,65 +323,60 @@ namespace MoalemYar.UserControls
             return memStream.ToArray();
         }
 
-        private void txtEditSearch_ButtonClick(object sender, EventArgs e)
-        {
-            getStudent(Convert.ToInt64(cmbBaseEdit.SelectedValue));
-        }
-
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.main.ShowDeleteConfirmNotification(txtName.Text, "دانش آموز");
+            //MainWindow.main.ShowDeleteConfirmNotification(txtName.Text, "دانش آموز");
         }
 
         public void deleteStudent()
         {
-            try
-            {
-                dynamic selectedItem = dataGrid.SelectedItems[0];
-                long id = selectedItem.Id;
-                deleteStudent(id);
-                editStack.IsEnabled = false;
-                getStudent(Convert.ToInt64(cmbBaseEdit.SelectedValue));
-            }
-            catch (Exception)
-            {
-                MainWindow.main.ShowDeletedNotification(false, txtName.Text, "دانش آموز");
-            }
+            //try
+            //{
+            //    dynamic selectedItem = dataGrid.SelectedItems[0];
+            //    long id = selectedItem.Id;
+            //    deleteStudent(id);
+            //    editStack.IsEnabled = false;
+            //    getStudent(Convert.ToInt64(cmbBaseEdit.SelectedValue));
+            //}
+            //catch (Exception)
+            //{
+            //    MainWindow.main.ShowDeletedNotification(false, txtName.Text, "دانش آموز");
+            //}
         }
 
         private void btnChoose_Click(object sender, RoutedEventArgs e)
         {
-            VistaOpenFileDialog dialog = new VistaOpenFileDialog();
-            var imageExtensions = string.Join(";", ImageCodecInfo.GetImageDecoders().Select(ici => ici.FilenameExtension));
-            dialog.Filter = string.Format("تصاویر|{0}|تمام فایل ها|*.*", imageExtensions);
-            if ((bool)dialog.ShowDialog())
-                imgStudent.Source = new BitmapImage(new Uri(dialog.FileName));
+            //VistaOpenFileDialog dialog = new VistaOpenFileDialog();
+            //var imageExtensions = string.Join(";", ImageCodecInfo.GetImageDecoders().Select(ici => ici.FilenameExtension));
+            //dialog.Filter = string.Format("تصاویر|{0}|تمام فایل ها|*.*", imageExtensions);
+            //if ((bool)dialog.ShowDialog())
+               // imgStudent.Source = new BitmapImage(new Uri(dialog.FileName));
         }
 
         private void cmbGender_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var element = FindElement.FindElementByName<ComboBox>(cmbAddContentGender, "cmbGender");
-            if (element.SelectedIndex == 0)
-                imgStudent.Source = new BitmapImage(new Uri("pack://application:,,,/MoalemYar;component/Resources/Boy.png", UriKind.Absolute));
-            else
-                imgStudent.Source = new BitmapImage(new Uri("pack://application:,,,/MoalemYar;component/Resources/Girl.png", UriKind.Absolute));
+            //var element = FindElement.FindElementByName<ComboBox>(cmbAddContentGender, "cmbGender");
+           // if (element.SelectedIndex == 0)
+               // imgStudent.Source = new BitmapImage(new Uri("pack://application:,,,/MoalemYar;component/Resources/Boy.png", UriKind.Absolute));
+            //else
+               // imgStudent.Source = new BitmapImage(new Uri("pack://application:,,,/MoalemYar;component/Resources/Girl.png", UriKind.Absolute));
         }
 
         private void btnEditChoose_Click(object sender, RoutedEventArgs e)
         {
-            VistaOpenFileDialog dialog = new VistaOpenFileDialog();
-            var imageExtensions = string.Join(";", ImageCodecInfo.GetImageDecoders().Select(ici => ici.FilenameExtension));
-            dialog.Filter = string.Format("تصاویر|{0}|تمام فایل ها|*.*", imageExtensions);
-            if ((bool)dialog.ShowDialog())
-            {
-                imgEditStudent.Source = new BitmapImage(new Uri(dialog.FileName));
-                isCreateThumbnail = true;
-            }
+            //VistaOpenFileDialog dialog = new VistaOpenFileDialog();
+            //var imageExtensions = string.Join(";", ImageCodecInfo.GetImageDecoders().Select(ici => ici.FilenameExtension));
+            //dialog.Filter = string.Format("تصاویر|{0}|تمام فایل ها|*.*", imageExtensions);
+            //if ((bool)dialog.ShowDialog())
+            //{
+            //    //imgEditStudent.Source = new BitmapImage(new Uri(dialog.FileName));
+            //    isCreateThumbnail = true;
+            //}
         }
 
         private void cmbBaseEdit_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            getStudent(Convert.ToInt64(cmbBaseEdit.SelectedValue));
+            //getStudent(Convert.ToInt64(cmbBaseEdit.SelectedValue));
         }
     }
 }
