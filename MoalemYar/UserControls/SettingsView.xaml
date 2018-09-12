@@ -11,90 +11,100 @@
         <controls:ScrollViewer HorizontalScrollBarVisibility="Auto">
             <WrapPanel>
                 <StackPanel Orientation="Vertical">
-                    <StackPanel Orientation="Horizontal">
-                        <StackPanel Orientation="Vertical">
-                            <ToggleButton x:Name="swLogin"  Margin="10" Checked="swLogin_Checked" Unchecked="swLogin_Checked" Style="{StaticResource ToggleButtonSwitch}" />
-                            <ToggleButton x:Name="swAutoStart" Margin="10" Checked="swAutoStart_Checked" Unchecked="swAutoStart_Checked" Style="{StaticResource ToggleButtonSwitch}" />
-                            <Grid Margin="10">
-                                <ComboBox x:Name="cmbServer" ItemsSource="{Binding}"
+                    <Grid>
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel Orientation="Vertical">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Margin="10" Style="{StaticResource TextBlockSubTitle}" Text="اجرای خودکار"/>
+                                    <ToggleButton x:Name="swAutoStart" Margin="10" Checked="swAutoStart_Checked" Unchecked="swAutoStart_Checked" Style="{StaticResource ToggleButtonSwitch}" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Margin="10" Style="{StaticResource TextBlockSubTitle}" Text="ورود با رمز عبور"/>
+                                    <ToggleButton x:Name="swLogin"  Margin="10" Checked="swLogin_Checked" Unchecked="swLogin_Checked" Style="{StaticResource ToggleButtonSwitch}" />
+                                </StackPanel>
+                                <Grid Margin="10">
+                                    <ComboBox x:Name="cmbServer" ItemsSource="{Binding}"
                                        SelectionChanged="cmbServer_SelectionChanged"
                                        VerticalAlignment="Top" HorizontalAlignment="Left" Width="200">
-                                </ComboBox>
-                                <TextBlock Text=" انتخاب سرور بخشنامه " IsHitTestVisible="False" HorizontalAlignment="Left" Width="200">
-                                    <TextBlock.Style>
-                                        <Style TargetType="TextBlock">
-                                            <Setter Property="Visibility" Value="Hidden" />
-                                            <Style.Triggers>
-                                                <DataTrigger Binding="{Binding ElementName=cmbServer,Path=SelectedItem}" Value="{x:Null}">
-                                                    <Setter Property="Visibility" Value="Visible" />
-                                                </DataTrigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </TextBlock.Style>
-                                </TextBlock>
-                            </Grid>
-                        </StackPanel>
-                        <StackPanel Margin="10" Orientation="Horizontal">
-                            <Button x:Name="btnFactoryReset" Click="btnFactoryReset_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Style="{StaticResource ButtonWarning}" Height="35">
-                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                                    <Image Height="16" Width="16" Margin="0,0,10,0" Source="/Resources/Reset.png" />
-                                    <TextBlock TextWrapping="NoWrap" Text="بازیابی تنظیمات" FontSize="13" Foreground="#ffffff" />
-                                </StackPanel>
-                            </Button>
-                            <Button x:Name="btnDatabaseReset" Margin="10,0" Click="btnDatabaseReset_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Style="{StaticResource ButtonDanger}" Height="35">
-                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                                    <Image Height="16" Width="16" Margin="0,0,10,0" Source="/Resources/Reset.png" />
-                                    <TextBlock TextWrapping="NoWrap" Text="بازیابی دیتابیس" FontSize="13" Foreground="#ffffff" />
-                                </StackPanel>
-                            </Button>
-                        </StackPanel>
-                        <StackPanel Margin="10" Orientation="Vertical">
-                            <ContentControl Margin="2" Name="cmbChartType" TabIndex="3" Focusable="False" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="233">
-                                <ContentControl.ContentTemplate>
-                                    <DataTemplate>
-                                        <Grid>
-                                            <ComboBox TabIndex="4" x:Name="cmbChart" SelectionChanged="cmbChart_SelectionChanged">
-                                                <ComboBoxItem Content="ستونی" />
-                                                <ComboBoxItem Content="ستونی نوع 2" />
-                                                <ComboBoxItem Content="خطی" />
-                                                <ComboBoxItem Content="خطی نوع 2" />
-                                                <ComboBoxItem Content="ناحیه" />
-                                            </ComboBox>
-                                            <TextBlock x:Name="tb" Text=" نوع نمودار " IsHitTestVisible="False" Visibility="Hidden" />
-                                        </Grid>
-                                        <DataTemplate.Triggers>
-                                            <Trigger SourceName="cmbChart" Property="SelectedItem" Value="{x:Null}">
-                                                <Setter TargetName="tb" Property="Visibility" Value="Visible" />
-                                            </Trigger>
-                                        </DataTemplate.Triggers>
-                                    </DataTemplate>
-                                </ContentControl.ContentTemplate>
-                            </ContentControl>
-
-                            <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
-                            <StackPanel Orientation="Horizontal">
-                                <ContentControl Margin="2" Name="cmbChartColor" TabIndex="3" Focusable="False" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="233">
+                                    </ComboBox>
+                                    <TextBlock Text=" انتخاب سرور بخشنامه " IsHitTestVisible="False" HorizontalAlignment="Left" Width="200">
+                                        <TextBlock.Style>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="Visibility" Value="Hidden" />
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding ElementName=cmbServer,Path=SelectedItem}" Value="{x:Null}">
+                                                        <Setter Property="Visibility" Value="Visible" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+                                </Grid>
+                            </StackPanel>
+                            <StackPanel Margin="10" Orientation="Horizontal">
+                                <Button x:Name="btnFactoryReset" Click="btnFactoryReset_Click" HorizontalAlignment="Left
+                                        " VerticalAlignment="Top" Width="140" Style="{StaticResource ButtonDanger}" Height="35">
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                        <Image Height="16" Width="16" Margin="0,0,10,0" Source="/Resources/Reset.png" />
+                                        <TextBlock TextWrapping="NoWrap" Text="بازیابی تنظیمات" FontSize="13" Foreground="#ffffff" />
+                                    </StackPanel>
+                                </Button>
+                                <Button x:Name="btnDatabaseReset" Margin="10,0" Click="btnDatabaseReset_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Style="{StaticResource ButtonDanger}" Height="35">
+                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
+                                        <Image Height="16" Width="16" Margin="0,0,10,0" Source="/Resources/Reset.png" />
+                                        <TextBlock TextWrapping="NoWrap" Text="بازیابی دیتابیس" FontSize="13" Foreground="#ffffff" />
+                                    </StackPanel>
+                                </Button>
+                            </StackPanel>
+                            <StackPanel Margin="10" Orientation="Vertical">
+                                <ContentControl Margin="2" Name="cmbChartType" TabIndex="3" Focusable="False" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="233">
                                     <ContentControl.ContentTemplate>
                                         <DataTemplate>
                                             <Grid>
-                                                <ComboBox TabIndex="4" x:Name="cmbChartColor" SelectionChanged="cmbChartColor_SelectionChanged">
-                                                    <ComboBoxItem Content="سبز" />
-                                                    <ComboBoxItem Content="بنفش" />
-                                                    <ComboBoxItem Content="نارنجی" />
+                                                <ComboBox TabIndex="4" x:Name="cmbChart" SelectionChanged="cmbChart_SelectionChanged">
+                                                    <ComboBoxItem Content="ستونی" />
+                                                    <ComboBoxItem Content="ستونی نوع 2" />
+                                                    <ComboBoxItem Content="خطی" />
+                                                    <ComboBoxItem Content="خطی نوع 2" />
+                                                    <ComboBoxItem Content="ناحیه" />
                                                 </ComboBox>
-                                                <TextBlock x:Name="tb" Text=" رنگ نمودار " IsHitTestVisible="False" Visibility="Hidden" />
+                                                <TextBlock x:Name="tb" Text=" نوع نمودار " IsHitTestVisible="False" Visibility="Hidden" />
                                             </Grid>
                                             <DataTemplate.Triggers>
-                                                <Trigger SourceName="cmbChartColor" Property="SelectedItem" Value="{x:Null}">
+                                                <Trigger SourceName="cmbChart" Property="SelectedItem" Value="{x:Null}">
                                                     <Setter TargetName="tb" Property="Visibility" Value="Visible" />
                                                 </Trigger>
                                             </DataTemplate.Triggers>
                                         </DataTemplate>
                                     </ContentControl.ContentTemplate>
                                 </ContentControl>
+
+                                <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
+                                <StackPanel Orientation="Horizontal">
+                                    <ContentControl Margin="2" Name="cmbChartColor" TabIndex="3" Focusable="False" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="233">
+                                        <ContentControl.ContentTemplate>
+                                            <DataTemplate>
+                                                <Grid>
+                                                    <ComboBox TabIndex="4" x:Name="cmbChartColor" SelectionChanged="cmbChartColor_SelectionChanged">
+                                                        <ComboBoxItem Content="سبز" />
+                                                        <ComboBoxItem Content="بنفش" />
+                                                        <ComboBoxItem Content="نارنجی" />
+                                                    </ComboBox>
+                                                    <TextBlock x:Name="tb" Text=" رنگ نمودار " IsHitTestVisible="False" Visibility="Hidden" />
+                                                </Grid>
+                                                <DataTemplate.Triggers>
+                                                    <Trigger SourceName="cmbChartColor" Property="SelectedItem" Value="{x:Null}">
+                                                        <Setter TargetName="tb" Property="Visibility" Value="Visible" />
+                                                    </Trigger>
+                                                </DataTemplate.Triggers>
+                                            </DataTemplate>
+                                        </ContentControl.ContentTemplate>
+                                    </ContentControl>
+                                </StackPanel>
                             </StackPanel>
                         </StackPanel>
-                    </StackPanel>
+                        <GridSplitter Height="2" Margin="60,45,96,-7" HorizontalAlignment="Stretch" />
+                    </Grid>
                     <StackPanel Margin="10" Orientation="Horizontal">
                         <StackPanel Orientation="Vertical">
                             <Grid Margin="2">
@@ -129,13 +139,15 @@
                             </Grid>
                         </StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="10,0">
-                            <Button Tag="Backup" Click="btnBackup_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Width="150" Style="{StaticResource ButtonSuccess}" Height="35">
+                            <Button Tag="Backup" Click="btnBackup_Click" HorizontalAlignment="Left" VerticalAlignment="Top" 
+                                    Width="150" Style="{StaticResource ButtonSuccess}" Height="35">
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                                     <Image Height="16" Width="16" Margin="0,0,10,0" Source="/Resources/backup.png" />
                                     <TextBlock TextWrapping="NoWrap" Text="تهیه فایل پشتیبان" FontSize="13" Foreground="#ffffff" />
                                 </StackPanel>
                             </Button>
-                            <Button Tag="Restore" Click="btnBackup_Click" Margin="10,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="160" Style="{StaticResource ButtonPrimary}" Height="35">
+                            <Button Tag="Restore" Click="btnBackup_Click" Margin="10,0" HorizontalAlignment="Left" 
+                                    VerticalAlignment="Top" Width="160" Style="{StaticResource ButtonSuccess}" Height="35">
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                                     <Image Height="16" Width="16" Margin="0,0,10,0" Source="/Resources/restore.png" />
                                     <TextBlock TextWrapping="NoWrap" Text="بازگرداندن پشتیبان" FontSize="13" Foreground="#ffffff" />

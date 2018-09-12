@@ -82,13 +82,6 @@ namespace MoalemYar.UserControls
             AppVariable.RegisterInStartup(Convert.ToBoolean(swAutoStart.IsChecked));
         }
 
-        private void Hamborger_Menu_Checked(object sender, RoutedEventArgs e)
-        {
-            //Todo: Fix
-            //FindElement.Settings.HamburgerMenu = Hamborger_Menu.IsChecked;
-            //MainWindow.main.tab.IconMode = Convert.ToBoolean(!Hamborger_Menu.IsChecked);
-        }
-
         private void btnFactoryReset_Click(object sender, RoutedEventArgs e)
         {
             MainWindow.main.ResetDataConfirmNotification("تنظیمات برنامه");
@@ -114,10 +107,6 @@ namespace MoalemYar.UserControls
                     cmbBase.ItemsSource = null;
                     File.Delete(folder);
 
-                    //Todo: Fix
-                    //MainWindow.main.exAddOrUpdateSchool.Hint = "0";
-                    //MainWindow.main.exAddOrUpdateStudent.Hint = "0";
-                    //MainWindow.main.exAddOrUpdateUser.Hint = "0";
                     MainWindow.main.DataResetDeletedNotification("دیتابیس برنامه");
                     using (var context = new DataClass.myDbContext())
                     {
@@ -827,6 +816,7 @@ namespace MoalemYar.UserControls
             FindElement.Settings.DefaultServer = url[cmbServer.SelectedIndex].ToString();
         }
 
+        //Todo: Update Servers
         private void loadServers()
         {
             string[] city = new string[]{
