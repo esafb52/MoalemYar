@@ -147,8 +147,6 @@ namespace MoalemYar.UserControls
                     _currentUser = _addUser;
                     waterfallFlow.Children.Add(_currentUser);
                 }
-
-                waterfallFlow.Refresh();
             }
             catch (ArgumentNullException) { }
             catch (NullReferenceException)
