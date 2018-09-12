@@ -82,17 +82,15 @@ namespace MoalemYar.UserControls
 
                         await Task.Delay(10);
                         prgUpdate.Value += 1;
-                        prgUpdate.Hint = string.Format("{0}%", ((prgUpdate.Value * 100) / parsedValues.Count).ToString("0"));
                         _addUser = new MaterialCircular(item.Row, item.Title, item.Category, item.Type, item.SubType, item.Date, item.link);
                         _currentUser = _addUser;
                         waterfallFlow.Children.Add(_currentUser);
-                        waterfallFlow.Refresh();
                     }
-                    if (prgUpdate.Hint == "100%")
+                    if (prgUpdate.Value == 100)
                     {
                         Permission = false;
                         txtStop.Text = "دریافت";
-                        Style style = this.FindResource("WorkButtonGreen") as Style;
+                        Style style = this.FindResource("ButtonPrimary") as Style;
                         btnStop.Style = style;
                         img.Source = new BitmapImage(new Uri("pack://application:,,,/MoalemYar;component/Resources/start.png", UriKind.Absolute));
                         txtSearch.IsEnabled = true;
@@ -117,7 +115,7 @@ namespace MoalemYar.UserControls
             {
                 Permission = false;
                 txtStop.Text = "دریافت";
-                Style style = this.FindResource("WorkButtonGreen") as Style;
+                Style style = this.FindResource("ButtonPrimary") as Style;
                 btnStop.Style = style;
                 img.Source = new BitmapImage(new Uri("pack://application:,,,/MoalemYar;component/Resources/start.png", UriKind.Absolute));
             }
@@ -125,7 +123,7 @@ namespace MoalemYar.UserControls
             {
                 Permission = true;
                 txtStop.Text = "توقف";
-                Style style = this.FindResource("WorkButton") as Style;
+                Style style = this.FindResource("ButtonDanger") as Style;
                 btnStop.Style = style;
                 img.Source = new BitmapImage(new Uri("pack://application:,,,/MoalemYar;component/Resources/stop.png", UriKind.Absolute));
                 UserControl_Loaded(null, null);
@@ -155,7 +153,6 @@ namespace MoalemYar.UserControls
                     _addUser = new MaterialCircular(item.Row, item.Title, item.Category, item.Type, item.SubType, item.Date, item.link);
                     _currentUser = _addUser;
                     waterfallFlow.Children.Add(_currentUser);
-                    waterfallFlow.Refresh();
                 }
             }, DispatcherPriority.ContextIdle);
         }

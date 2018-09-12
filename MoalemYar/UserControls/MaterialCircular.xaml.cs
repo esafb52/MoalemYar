@@ -69,7 +69,6 @@ namespace MoalemYar.UserControls
                 {
                     Uri ur = new Uri(Dlink);
                     var data = wc.DownloadData(Dlink);
-
                     string fileExt = "";
                     if (!String.IsNullOrEmpty(wc.ResponseHeaders["Content-Disposition"]))
                     {
