@@ -15,12 +15,7 @@
         Loaded="WindowBorderless_Loaded">
     <controls:WindowBorderless.NoUserContent>
         <StackPanel Orientation="Horizontal" FlowDirection="RightToLeft">
-            <Border Margin="10,0,0,0" Width="16" Height="16">
-                <Border.Background>
-                    <ImageBrush ImageSource="Resources/Approval.ico" />
-                </Border.Background>
-            </Border>
-            <Menu Margin="10,0,0,0" WindowChrome.IsHitTestVisibleInChrome="True" Background="Transparent">
+            <Menu Margin="10,0,0,0" WindowChrome.IsHitTestVisibleInChrome="True" Background="Transparent" FontFamily="{StaticResource TeacherYar.Fonts.IRANSans}">
                 <MenuItem Foreground="White" Header="منو">
                     <MenuItem Header="خروج"></MenuItem>
                 </MenuItem>
