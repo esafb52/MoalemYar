@@ -46,15 +46,6 @@ namespace MoalemYar.UserControls
         {
             ExecuteNavigation();
         }
-        public void Books()
-        {
-            ExecuteNavigation();
-        }
-
-        public void Magazine()
-        {
-            ExecuteNavigation();
-        }
         public void About()
         {
             ExecuteNavigation();

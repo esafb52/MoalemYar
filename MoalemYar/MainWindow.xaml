@@ -52,7 +52,7 @@
         <Grid FlowDirection="RightToLeft" Grid.Column="1">
             <Border controls:ScrollViewer.IsEnableInertia="True">
                 <TreeView Name="treeview" controls:ScrollViewer.IsEnableInertia="True" BorderThickness="0">
-                    <TreeViewItem IsSelected="True" Tag="initial" Header="داشبورد" Selected="TreeViewItem_Selected"/>
+                    <TreeViewItem Tag="initial" Header="داشبورد" Selected="TreeViewItem_Selected"/>
                     <TreeViewItem IsExpanded="True" Header="منوی اصلی">
                         <TreeViewItem Header="عملیات پایه">
                             <TreeViewItem Tag="addOrUpdateSchool" Header="مدرسه و کلاس" Selected="TreeViewItem_Selected"/>
@@ -70,8 +70,6 @@
                     </TreeViewItem>
                     <TreeViewItem IsExpanded="True" Header="بیشتر">
                         <TreeViewItem Tag="exCircular" Header="بخشنامه ها" Selected="TreeViewItem_Selected"/>
-                        <TreeViewItem Tag="exBook" Header="کتب درسی" Selected="TreeViewItem_Selected"/>
-                        <TreeViewItem Tag="exRoshd" Header="مجلات رشد" Selected="TreeViewItem_Selected"/>
                     </TreeViewItem>
                 </TreeView>
             </Border>

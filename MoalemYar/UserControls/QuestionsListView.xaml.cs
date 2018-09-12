@@ -37,8 +37,6 @@ namespace MoalemYar.UserControls
         private List<DataClass.DataTransferObjects.StudentsDto> _initialCollection;
         private List<DataClass.Tables.Score> _initialCollectionScore;
 
-        public System.Windows.Media.Brush BorderColor { get; set; }
-
         public QuestionsListView()
         {
             InitializeComponent();
@@ -46,7 +44,6 @@ namespace MoalemYar.UserControls
             this.DataContext = this;
             main = this;
             strDate = pc.GetYear(DateTime.Now).ToString("0000") + "/" + pc.GetMonth(DateTime.Now).ToString("00") + "/" + pc.GetDayOfMonth(DateTime.Now).ToString("00");
-            BorderColor = AppVariable.GetBrush(MainWindow.main.BorderBrush.ToString());
         }
 
         #region "Async Query"

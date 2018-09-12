@@ -75,13 +75,6 @@ namespace MoalemYar
                 case "exCircular":
                     navigationService.GetController<UserControls.UserControlsController>().Circular();
                     break;
-                case "exBook":
-                    navigationService.GetController<UserControls.UserControlsController>().Books();
-                    break;
-                case "exRoshd":
-                    navigationService.GetController<UserControls.UserControlsController>().Magazine();
-                    break;
-
             }
         }
 

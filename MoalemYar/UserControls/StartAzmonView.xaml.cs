@@ -157,9 +157,9 @@ namespace MoalemYar.UserControls
                     {
                         QN = 0;
 
-                        lblQNumber.Text = Convert.ToString(QN + 1);
+                        lblQNumber.Content = Convert.ToString(QN + 1);
 
-                        lblQtext.Text = result[QN].QuestionText;
+                        lblQtext.Content = result[QN].QuestionText;
                         swCase1.Content = result[QN].Case1;
                         swCase2.Content = result[QN].Case2;
                         swCase3.Content = result[QN].Case3;
@@ -185,12 +185,12 @@ namespace MoalemYar.UserControls
 
                         if (swLimit.IsChecked == true)
                         {
-                            lblTime.Text = Convert.ToString(Convert.ToInt32(txtTime.Text) * (Convert.ToInt32(txtTedad.Text)));
+                            lblTime.Content = Convert.ToString(Convert.ToInt32(txtTime.Text) * (Convert.ToInt32(txtTedad.Text)));
                             dispatcherTimer.Start();
                         }
                         else
                         {
-                            lblTime.Text = "نامحدود";
+                            lblTime.Content = "نامحدود";
                         }
                     }
                 }
@@ -199,9 +199,9 @@ namespace MoalemYar.UserControls
 
         private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
-            if (Convert.ToInt32(lblTime.Text) > 1)
+            if (Convert.ToInt32(lblTime.Content) > 1)
             {
-                lblTime.Text = Convert.ToString(Convert.ToInt32(lblTime.Text) - 1);
+                lblTime.Content = Convert.ToString(Convert.ToInt32(lblTime.Content) - 1);
             }
             else
             {
@@ -311,12 +311,12 @@ namespace MoalemYar.UserControls
             if (QN < result.Count - 1)
             {
                 QN++;
-                lblQtext.Text = result[QN].QuestionText;
+                lblQtext.Content = result[QN].QuestionText;
                 swCase1.Content = result[QN].Case1;
                 swCase2.Content = result[QN].Case2;
                 swCase3.Content = result[QN].Case3;
                 swCase4.Content = result[QN].Case4;
-                lblQNumber.Text = Convert.ToString(Convert.ToInt32(lblQNumber.Text) + 1);
+                lblQNumber.Content = Convert.ToString(Convert.ToInt32(lblQNumber.Content) + 1);
             }
 
             if (QN == result.Count - 1)
@@ -378,12 +378,12 @@ namespace MoalemYar.UserControls
             if (QN > 0)
             {
                 QN--;
-                lblQtext.Text = result[QN].QuestionText.ToString();
+                lblQtext.Content = result[QN].QuestionText.ToString();
                 swCase1.Content = result[QN].Case1.ToString();
                 swCase2.Content = result[QN].Case2.ToString();
                 swCase3.Content = result[QN].Case3.ToString();
                 swCase4.Content = result[QN].Case4.ToString();
-                lblQNumber.Text = Convert.ToString(Convert.ToInt32(lblQNumber.Text) - 1);
+                lblQNumber.Content = Convert.ToString(Convert.ToInt32(lblQNumber.Content) - 1);
             }
 
             if (QN == 0)
