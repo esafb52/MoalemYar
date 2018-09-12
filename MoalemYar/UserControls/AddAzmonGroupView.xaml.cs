@@ -112,7 +112,7 @@ namespace MoalemYar.UserControls
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
-            AzmonView.main.exContent.Content = null;
+            MainWindow.main.region.Content = null;
         }
 
         private void tabc_SelectionChanged(object sender, SelectionChangedEventArgs e)

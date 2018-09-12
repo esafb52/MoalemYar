@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2011
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoalemYar", "MoalemYar\MoalemYar.csproj", "{BC9F9F23-87F0-4C50-9B5C-18F2243BFFA2}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arthas", "Arthas\Arthas.csproj", "{F5DBBC65-F7D3-4A0D-8A9F-3DAFD3DEB7ED}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersianCalendarWPF", "PersianCalendarWPF\PersianCalendarWPF.csproj", "{89795B99-58A3-4CE9-BF55-FE8D4D1219C8}"
@@ -13,16 +11,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVVMC", "MVVMC\MVVMC.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HandyControl", "HandyControl\HandyControl.csproj", "{DC966E3D-BCFF-4652-98CF-070E5494749A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoalemYar", "MoalemYar\MoalemYar.csproj", "{BC9F9F23-87F0-4C50-9B5C-18F2243BFFA2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{BC9F9F23-87F0-4C50-9B5C-18F2243BFFA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BC9F9F23-87F0-4C50-9B5C-18F2243BFFA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BC9F9F23-87F0-4C50-9B5C-18F2243BFFA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BC9F9F23-87F0-4C50-9B5C-18F2243BFFA2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F5DBBC65-F7D3-4A0D-8A9F-3DAFD3DEB7ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F5DBBC65-F7D3-4A0D-8A9F-3DAFD3DEB7ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F5DBBC65-F7D3-4A0D-8A9F-3DAFD3DEB7ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -39,6 +35,10 @@ Global
 		{DC966E3D-BCFF-4652-98CF-070E5494749A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DC966E3D-BCFF-4652-98CF-070E5494749A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DC966E3D-BCFF-4652-98CF-070E5494749A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC9F9F23-87F0-4C50-9B5C-18F2243BFFA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC9F9F23-87F0-4C50-9B5C-18F2243BFFA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC9F9F23-87F0-4C50-9B5C-18F2243BFFA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC9F9F23-87F0-4C50-9B5C-18F2243BFFA2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

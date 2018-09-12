@@ -25,7 +25,6 @@ namespace MoalemYar.UserControls
     /// </summary>
     public partial class AddQuestionsView : UserControl
     {
-        public Brush BorderColor { get; set; }
         internal static AddQuestionsView main;
         private int runOnce = 0;
         private List<DataClass.Tables.AQuestion> _initialCollection;
@@ -37,7 +36,6 @@ namespace MoalemYar.UserControls
             InitializeComponent();
             this.DataContext = this;
             main = this;
-            BorderColor = AppVariable.GetBrush(MainWindow.main.BorderBrush.ToString());
             strDate = pc.GetYear(DateTime.Now).ToString("0000") + "/" + pc.GetMonth(DateTime.Now).ToString("00") + "/" + pc.GetDayOfMonth(DateTime.Now).ToString("00");
         }
 
@@ -167,7 +165,7 @@ namespace MoalemYar.UserControls
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
-            AzmonView.main.exContent.Content = null;
+            MainWindow.main.region.Content = null;
         }
 
         private void tabc_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -227,20 +225,15 @@ namespace MoalemYar.UserControls
             }
         }
 
-        private void txtEditSearch_ButtonClick(object sender, EventArgs e)
-        {
-            getAQuestions(Convert.ToInt64(cmbBaseEdit.SelectedValue));
-        }
-
         private void txtEditSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (dataGrid.ItemsSource != null)
-            {
-                if (txtEditSearch.Text != string.Empty)
-                    dataGrid.ItemsSource = _initialCollection.Where(x => x.QuestionText.Contains(txtEditSearch.Text) || x.Date.Contains(txtEditSearch.Text));
-                else
-                    dataGrid.ItemsSource = _initialCollection.Select(x => x);
-            }
+            //if (dataGrid.ItemsSource != null)
+            //{
+            //    if (txtEditSearch.Text != string.Empty)
+            //        dataGrid.ItemsSource = _initialCollection.Where(x => x.QuestionText.Contains(txtEditSearch.Text) || x.Date.Contains(txtEditSearch.Text));
+            //    else
+            //        dataGrid.ItemsSource = _initialCollection.Select(x => x);
+            //}
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
