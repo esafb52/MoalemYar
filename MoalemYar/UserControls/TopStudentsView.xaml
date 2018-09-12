@@ -9,7 +9,7 @@
              mc:Ignorable="d" Style="{StaticResource myUserControl}">
     <controls:TransitioningContentControl>
         <controls:ScrollViewer HorizontalScrollBarVisibility="Auto">
-            <Grid Name="grdedit">
+            <Grid Name="grdedit" Width="1000">
                 <ComboBox Grid.Column="0" Margin="10,10,0,0" FlowDirection="RightToLeft" x:Name="cmbBaseEdit" SelectionChanged="cmbBaseEdit_SelectionChanged"
                             SelectedValue="{Binding SchoolName}" SelectedValuePath="Id" TabIndex="0"
                             Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="190">
