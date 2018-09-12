@@ -11,7 +11,8 @@
             <Grid>
 
                 <StackPanel Orientation="Horizontal" Height="56" VerticalAlignment="Top">
-                    <Button x:Name="btnStop" Click="btnStop_Click" Margin="20,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="134" Style="{StaticResource ButtonDanger}" Height="35">
+                    <Button x:Name="btnStop" Click="btnStop_Click" Margin="20,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="134" 
+                            Style="{StaticResource ButtonInfo}" Height="35">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
                             <Image Name="img" Height="16" Width="16" Margin="10,0,30,0" Source="/Resources/stop.png" />
                             <TextBlock Name="txtStop" TextWrapping="NoWrap" Text="توقف" FontSize="13" Foreground="#ffffff" />
