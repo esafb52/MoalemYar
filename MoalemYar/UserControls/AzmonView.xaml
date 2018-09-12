@@ -16,14 +16,14 @@
                 <StackPanel x:Name="lists">
                     <Expander Header="عملیات پایه" IsExpanded="True">
                         <TreeView BorderThickness="0">
-                            <TreeViewItem Tag="exAddorUpdateGroup" Header="داشبورد" Selected="TreeViewItem_Selected"/>
-                            <TreeViewItem Tag="exAddorUpdateQuestion" Header="سوالات" Selected="TreeViewItem_Selected"/>
+                            <TreeViewItem Tag="exAddorUpdateGroup" Header="داشبورد" Selected="TreeViewItem_Selected" />
+                            <TreeViewItem Tag="exAddorUpdateQuestion" Header="سوالات" Selected="TreeViewItem_Selected" />
                         </TreeView>
                     </Expander>
                     <Expander Header="آزمون" IsExpanded="True">
                         <TreeView BorderThickness="0">
-                            <TreeViewItem Tag="exAzmon" Header="برگزاری آزمون" Selected="TreeViewItem_Selected"/>
-                            <TreeViewItem Tag="exHistory" Header="تاریخچه آزمون" Selected="TreeViewItem_Selected"/>
+                            <TreeViewItem Tag="exAzmon" Header="برگزاری آزمون" Selected="TreeViewItem_Selected" />
+                            <TreeViewItem Tag="exHistory" Header="تاریخچه آزمون" Selected="TreeViewItem_Selected" />
                         </TreeView>
                     </Expander>
                 </StackPanel>
@@ -31,5 +31,4 @@
             </Grid>
         </controls:ScrollViewer>
     </controls:TransitioningContentControl>
-   
 </UserControl>

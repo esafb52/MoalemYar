@@ -8,16 +8,16 @@
 *
 ***********************************************************************************/
 
-using System;
-using System.Globalization;
-using System.Linq;
-using System.Windows;
-using System.Windows.Controls;
 using Enterwell.Clients.Wpf.Notifications;
 using HandyControl.Controls;
 using MoalemYar.UserControls;
 using MVVMC;
 using Ookii.Dialogs.Wpf;
+using System;
+using System.Globalization;
+using System.Linq;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace MoalemYar
 {
@@ -51,27 +51,35 @@ namespace MoalemYar
                 case "initial":
                     navigationService.GetController<UserControls.UserControlsController>().Initial();
                     break;
+
                 case "addOrUpdateSchool":
                     navigationService.GetController<UserControls.UserControlsController>().AddSchool();
                     break;
+
                 case "exAddOrUpdateStudent":
                     navigationService.GetController<UserControls.UserControlsController>().AddStudent();
                     break;
+
                 case "exAddOrUpdateUser":
                     navigationService.GetController<UserControls.UserControlsController>().AddUser();
                     break;
+
                 case "exAttendancelist":
                     navigationService.GetController<UserControls.UserControlsController>().Attendancelist();
                     break;
+
                 case "exQuestionsList":
                     navigationService.GetController<UserControls.UserControlsController>().Questionslist();
                     break;
+
                 case "exTopStudents":
                     navigationService.GetController<UserControls.UserControlsController>().TopStudents();
                     break;
+
                 case "exAchievement":
                     navigationService.GetController<UserControls.UserControlsController>().Achievement();
                     break;
+
                 case "exCircular":
                     navigationService.GetController<UserControls.UserControlsController>().Circular();
                     break;
@@ -87,21 +95,27 @@ namespace MoalemYar
                 case "Azmon":
                     navigationService.GetController<UserControls.UserControlsController>().Azmon();
                     break;
+
                 case "makeAzmon":
                     navigationService.GetController<UserControls.UserControlsController>().StartAzmon();
                     break;
+
                 case "quesAzmon":
                     navigationService.GetController<UserControls.UserControlsController>().AddQuestions();
                     break;
+
                 case "resultAzmon":
                     navigationService.GetController<UserControls.UserControlsController>().AzmonHistory();
                     break;
+
                 case "settingView":
                     navigationService.GetController<UserControls.UserControlsController>().Settings();
                     break;
+
                 case "aboutView":
                     navigationService.GetController<UserControls.UserControlsController>().About();
                     break;
+
                 case "groupAzmon":
                     navigationService.GetController<UserControls.UserControlsController>().AddAzmonGroup();
                     break;
@@ -149,7 +163,6 @@ namespace MoalemYar
                 {
                     using (CredentialDialog dialog = new CredentialDialog())
                     {
-
                         dialog.WindowTitle = "ورود به نرم افزار";
                         dialog.MainInstruction = "لطفا نام کاربری و رمز عبور خود را وارد کنید";
                         //dialog.Content = "";
@@ -194,6 +207,7 @@ namespace MoalemYar
             {
             }
         }
+
         #region "Notification"
 
         public void ShowNoDataNotification(string Type)
@@ -253,6 +267,7 @@ namespace MoalemYar
                .Dismiss().WithDelay(TimeSpan.FromSeconds(AppVariable.NotificationDelay));
             builder.Queue();
         }
+
         public void ShowBackupNotification(bool isSuccess, string BackupOrRestore)
         {
             if (isSuccess)
@@ -286,6 +301,7 @@ namespace MoalemYar
                 builder.Queue();
             }
         }
+
         public void ShowFillAllDataNotification()
         {
             var builder = this.Manager
@@ -617,6 +633,5 @@ namespace MoalemYar
         }
 
         #endregion "Notification"
-
     }
 }

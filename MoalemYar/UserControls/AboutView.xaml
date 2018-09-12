@@ -106,7 +106,7 @@ x:Class="MoalemYar.UserControls.AboutView"
                                Foreground="Green" />
                 </Grid>
                 <Grid>
-                    <TextBox Name="txtChangeLog" Visibility="Hidden" IsReadOnly="True" TextWrapping="WrapWithOverflow"/>
+                    <TextBox Name="txtChangeLog" Visibility="Hidden" IsReadOnly="True" TextWrapping="WrapWithOverflow" />
                 </Grid>
                 <TextBox Name="txtHistory" IsReadOnly="True" TextWrapping="WrapWithOverflow" Margin="10,10" Height="200" />
             </StackPanel>

@@ -33,7 +33,7 @@ namespace MoalemYar.UserControls
             InitializeComponent();
 
             getSchool();
-            
+
             main = this;
             LoadSettings();
         }
@@ -68,9 +68,9 @@ namespace MoalemYar.UserControls
             if (FindElement.Settings.Autorun)
                 swAutoStart.IsChecked = true;
             else
-                swAutoStart.IsChecked = false;            
+                swAutoStart.IsChecked = false;
         }
-  
+
         private void swLogin_Checked(object sender, RoutedEventArgs e)
         {
             FindElement.Settings.CredentialLogin = Convert.ToBoolean(swLogin.IsChecked);
@@ -1477,11 +1477,12 @@ namespace MoalemYar.UserControls
                     break;
             }
         }
+
         private void dbRestore()
         {
             try
             {
-               var openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+                var openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
 
                 openFileDialog1.Filter = "Backup files (*.db)|*.db";
                 openFileDialog1.FilterIndex = 1;
@@ -1490,16 +1491,15 @@ namespace MoalemYar.UserControls
                 if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
                     System.IO.File.Copy(openFileDialog1.FileName, AppVariable.fileName + @"\data.db", true);
-                    MainWindow.main.ShowBackupNotification(true,"بازگردانی اطلاعات ");
+                    MainWindow.main.ShowBackupNotification(true, "بازگردانی اطلاعات ");
                 }
             }
             catch (Exception)
             {
-
                 MainWindow.main.ShowBackupNotification(false, "بازگردانی اطلاعات ");
             }
-
         }
+
         private void takeBackup()
         {
             try
@@ -1525,7 +1525,6 @@ namespace MoalemYar.UserControls
             {
                 MainWindow.main.ShowBackupNotification(false, "پشتیبان گیری از اطلاعات ");
             }
-
         }
     }
 }

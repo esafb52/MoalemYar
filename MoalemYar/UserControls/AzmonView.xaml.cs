@@ -8,8 +8,6 @@
 *
 ***********************************************************************************/
 
-using System;
-using System.Linq;
 using System.Windows.Controls;
 
 namespace MoalemYar.UserControls
@@ -39,18 +37,21 @@ namespace MoalemYar.UserControls
                     else if (!exContent.Content.ToString().Equals("MoalemYar.UserControls.AddAzmonGroup"))
                         exContent.Content = new AddAzmonGroupView();
                     break;
+
                 case "exAddorUpdateQuestion":
                     if (exContent.Content == null)
                         exContent.Content = new AddQuestionsView();
                     else if (!exContent.Content.ToString().Equals("MoalemYar.UserControls.AddQuestions"))
                         exContent.Content = new AddQuestionsView();
                     break;
+
                 case "exAzmon":
                     if (exContent.Content == null)
                         exContent.Content = new StartAzmonView();
                     else if (!exContent.Content.ToString().Equals("MoalemYar.UserControls.StartAzmon"))
                         exContent.Content = new StartAzmonView();
                     break;
+
                 case "exHistory":
                     if (exContent.Content == null)
                         exContent.Content = new AzmonHistoryView();
@@ -58,7 +59,6 @@ namespace MoalemYar.UserControls
                         exContent.Content = new AzmonHistoryView();
                     break;
             }
-           
         }
     }
 }

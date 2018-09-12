@@ -24,9 +24,10 @@ namespace MoalemYar.UserControls
     /// </summary>
     public partial class CircularView : UserControl
     {
-        System.Collections.Generic.List<DelegationLink> myClass;
-        bool Permission = true;
-        bool Limited = false;
+        private System.Collections.Generic.List<DelegationLink> myClass;
+        private bool Permission = true;
+        private bool Limited = false;
+
         public CircularView()
         {
             InitializeComponent();
@@ -40,7 +41,6 @@ namespace MoalemYar.UserControls
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            
             Dispatcher.Invoke<Task>(async () =>
         {
             waterfallFlow.Children.Clear();
@@ -111,7 +111,7 @@ namespace MoalemYar.UserControls
 
         private void btnStop_Click(object sender, RoutedEventArgs e)
         {
-            if(Permission)
+            if (Permission)
             {
                 Permission = false;
                 txtStop.Text = "دریافت";
@@ -145,11 +145,10 @@ namespace MoalemYar.UserControls
                 waterfallFlow.Children.Clear();
                 MaterialCircular _addUser;
                 Control _currentUser;
-                var parsedValues = myClass.Where(x=>x.Title.Contains(txtSearch.Text) || x.Date.Contains(txtSearch.Text));
+                var parsedValues = myClass.Where(x => x.Title.Contains(txtSearch.Text) || x.Date.Contains(txtSearch.Text));
                 foreach (var item in parsedValues)
                 {
-                    
-                    await Task.Delay(10);                   
+                    await Task.Delay(10);
                     _addUser = new MaterialCircular(item.Row, item.Title, item.Category, item.Type, item.SubType, item.Date, item.link);
                     _currentUser = _addUser;
                     waterfallFlow.Children.Add(_currentUser);

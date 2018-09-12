@@ -144,7 +144,6 @@
                         </StackPanel>
                     </StackPanel>
                 </StackPanel>
-               
             </WrapPanel>
         </controls:ScrollViewer>
     </controls:TransitioningContentControl>

@@ -15,16 +15,16 @@
                     <StackPanel Orientation="Vertical">
                         <Grid HorizontalAlignment="Stretch">
                             <StackPanel Orientation="Horizontal">
-                                <Button x:Name="btnSave" Content="ذخیره" Height="35"  Margin="10" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Style="{StaticResource ButtonPrimary}" IsDefault="True" Click="btnSave_Click" Grid.Column="0"/>
-                                <Button x:Name="btnCancel" Content="انصراف" Height="35"  Margin="0,10" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Style="{StaticResource ButtonInfo}" IsCancel="True" Click="btnCancel_Click" Grid.Column="1"/>
+                                <Button x:Name="btnSave" Content="ذخیره" Height="35"  Margin="10" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Style="{StaticResource ButtonPrimary}" IsDefault="True" Click="btnSave_Click" Grid.Column="0" />
+                                <Button x:Name="btnCancel" Content="انصراف" Height="35"  Margin="0,10" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Style="{StaticResource ButtonInfo}" IsCancel="True" Click="btnCancel_Click" Grid.Column="1" />
                             </StackPanel>
                             <GridSplitter Height="2" Margin="60,45,96,-7" HorizontalAlignment="Stretch" />
                         </Grid>
                         <WrapPanel Margin="10">
                             <StackPanel Margin="0,5,0,0" Orientation="Vertical">
-                                <controls:InfoTextBox Margin="2" MaxLength="5" FlowDirection="RightToLeft" Name="txtAddYear" TabIndex="0" PlaceHolder="سال تحصیلی" Height="30"/>
-                                <controls:InfoTextBox Margin="2" MaxLength="20" FlowDirection="RightToLeft" Name="txtAddSchool" TabIndex="1" PlaceHolder="نام مدرسه" Height="30"/>
-                                <controls:InfoTextBox Margin="2" MaxLength="20" FlowDirection="RightToLeft" Name="txtAddAdmin" TabIndex="2" PlaceHolder="نام مدیر" Height="30"/>
+                                <controls:InfoTextBox Margin="2" MaxLength="5" FlowDirection="RightToLeft" Name="txtAddYear" TabIndex="0" PlaceHolder="سال تحصیلی" Height="30" />
+                                <controls:InfoTextBox Margin="2" MaxLength="20" FlowDirection="RightToLeft" Name="txtAddSchool" TabIndex="1" PlaceHolder="نام مدرسه" Height="30" />
+                                <controls:InfoTextBox Margin="2" MaxLength="20" FlowDirection="RightToLeft" Name="txtAddAdmin" TabIndex="2" PlaceHolder="نام مدیر" Height="30" />
                                 <ContentControl Margin="2" Name="cmbAddContent" TabIndex="3" Focusable="False" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="233">
                                     <ContentControl.ContentTemplate>
                                         <DataTemplate>
@@ -57,9 +57,9 @@
                     <StackPanel Orientation="Vertical">
                         <Grid HorizontalAlignment="Stretch">
                             <StackPanel Orientation="Horizontal">
-                                <Button x:Name="btnEditSave" Content="ذخیره" Height="35" Margin="10" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Style="{StaticResource ButtonPrimary}" IsDefault="True" Click="btnEditSave_Click" Grid.Column="0"/>
-                                <Button x:Name="btnDelete" Content="حذف" Height="35" Margin="0,10" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Style="{StaticResource ButtonDanger}" Click="btnDelete_Click" Grid.Column="1"/>
-                                <Button x:Name="btnEditCancel" Content="انصراف" Height="35" Margin="10" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Style="{StaticResource ButtonInfo}" IsCancel="True" Click="btnEditCancel_Click"/>
+                                <Button x:Name="btnEditSave" Content="ذخیره" Height="35" Margin="10" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Style="{StaticResource ButtonPrimary}" IsDefault="True" Click="btnEditSave_Click" Grid.Column="0" />
+                                <Button x:Name="btnDelete" Content="حذف" Height="35" Margin="0,10" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Style="{StaticResource ButtonDanger}" Click="btnDelete_Click" Grid.Column="1" />
+                                <Button x:Name="btnEditCancel" Content="انصراف" Height="35" Margin="10" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Style="{StaticResource ButtonInfo}" IsCancel="True" Click="btnEditCancel_Click" />
                             </StackPanel>
                             <GridSplitter Height="2" Margin="60,45,96,-7" HorizontalAlignment="Stretch" />
                         </Grid>
@@ -71,7 +71,7 @@
                                 </Grid.ColumnDefinitions>
                                 <Grid Name="grdedit" Grid.Column="0">
                                     <StackPanel Orientation="Vertical">
-                                        <TextBox TextChanged="txtEditSearch_TextChanged" Name="txtEditSearch" MaxLength="40" HorizontalAlignment="Stretch" MaxWidth="{Binding Path=ActualWidth, ElementName=grdedit, Converter={local1:MultiplyConverter Multiplier=.9}}" FlowDirection="RightToLeft" Text="جستجو..."  />
+                                        <TextBox TextChanged="txtEditSearch_TextChanged" Name="txtEditSearch" MaxLength="40" HorizontalAlignment="Stretch" MaxWidth="{Binding Path=ActualWidth, ElementName=grdedit, Converter={local1:MultiplyConverter Multiplier=.9}}" FlowDirection="RightToLeft" Text="جستجو..." />
                                         <DataGrid x:Name="dataGrid" AutoGenerateColumns="False" HorizontalAlignment="Stretch"
                                       Background="#eceff5" RowHeaderWidth="0" AlternatingRowBackground="#fbfcfe"
                                       GridLinesVisibility="Horizontal" CanUserReorderColumns="False"  MaxWidth="{Binding Path=ActualWidth, ElementName=grdedit, Converter={local1:MultiplyConverter Multiplier=.9}}"
@@ -90,7 +90,7 @@
                                     </StackPanel>
                                 </Grid>
                                 <StackPanel Name="editGrid" IsEnabled="False" Orientation="Vertical" Grid.Column="1" Margin="5,0,0,0">
-                                    <controls:InfoTextBox Margin="2" MaxLength="5" Name="txtYear"  PlaceHolder="سال تحصیلی" Height="30" VerticalAlignment="Top" FlowDirection="RightToLeft"/>
+                                    <controls:InfoTextBox Margin="2" MaxLength="5" Name="txtYear"  PlaceHolder="سال تحصیلی" Height="30" VerticalAlignment="Top" FlowDirection="RightToLeft" />
                                     <controls:InfoTextBox Margin="2" MaxLength="20" Name="txtSchool"  PlaceHolder="نام مدرسه" Height="30" VerticalAlignment="Top" FlowDirection="RightToLeft" />
                                     <controls:InfoTextBox Margin="2" MaxLength="20" Name="txtAdmin" PlaceHolder="نام مدیر" Height="30" VerticalAlignment="Top" FlowDirection="RightToLeft" />
                                     <ContentControl Name="cmbContent" Focusable="False" Margin="2,2,1,2" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="188">
@@ -120,10 +120,7 @@
                         </StackPanel>
                     </StackPanel>
                 </Grid>
-
             </controls:TabItem>
         </controls:TabControl>
-
     </controls:TransitioningContentControl>
-
 </UserControl>

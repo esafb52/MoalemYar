@@ -169,7 +169,6 @@
                             </lvc:CartesianChart.Series>
                         </lvc:CartesianChart>
                     </Grid>
-
                 </WrapPanel>
             </Grid>
         </controls:ScrollViewer>

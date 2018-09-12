@@ -17,7 +17,7 @@
         <StackPanel Orientation="Horizontal" FlowDirection="RightToLeft">
             <Border Margin="10,0,0,0" Width="16" Height="16">
                 <Border.Background>
-                    <ImageBrush ImageSource="Resources/Approval.ico"/>
+                    <ImageBrush ImageSource="Resources/Approval.ico" />
                 </Border.Background>
             </Border>
             <Menu Margin="10,0,0,0" WindowChrome.IsHitTestVisibleInChrome="True" Background="Transparent">
@@ -30,46 +30,45 @@
                     <MenuItem Header="برش" Command="ApplicationCommands.Cut"></MenuItem>
                 </MenuItem>
                 <MenuItem Foreground="White" Header="آزمون">
-                    <MenuItem Tag="Azmon" Click="MenuItem_Click" Header="آزمون"/>
+                    <MenuItem Tag="Azmon" Click="MenuItem_Click" Header="آزمون" />
                     <Separator></Separator>
-                    <MenuItem Tag="makeAzmon" Click="MenuItem_Click" Header="آزمون آنلاین"/>
+                    <MenuItem Tag="makeAzmon" Click="MenuItem_Click" Header="آزمون آنلاین" />
                     <Separator></Separator>
-                    <MenuItem Tag="groupAzmon" Click="MenuItem_Click" Header="گروه بندی سوالات"/>
-                    <MenuItem Tag="quesAzmon" Click="MenuItem_Click" Header="ساخت سوال"/>
-                    <MenuItem Tag="resultAzmon" Click="MenuItem_Click" Header="نتایج گذشته"/>
-
+                    <MenuItem Tag="groupAzmon" Click="MenuItem_Click" Header="گروه بندی سوالات" />
+                    <MenuItem Tag="quesAzmon" Click="MenuItem_Click" Header="ساخت سوال" />
+                    <MenuItem Tag="resultAzmon" Click="MenuItem_Click" Header="نتایج گذشته" />
                 </MenuItem>
                 <MenuItem Tag="settingView" Click="MenuItem_Click" Foreground="White" Header="تنظیمات"></MenuItem>
-                <MenuItem Tag="aboutView" Click="MenuItem_Click" Foreground="White" Header="درباره"/>
+                <MenuItem Tag="aboutView" Click="MenuItem_Click" Foreground="White" Header="درباره" />
             </Menu>
         </StackPanel>
     </controls:WindowBorderless.NoUserContent>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition MinWidth="200"/>
-            <ColumnDefinition Width="200" MinWidth="200" MaxWidth="400"/>
+            <ColumnDefinition MinWidth="200" />
+            <ColumnDefinition Width="200" MinWidth="200" MaxWidth="400" />
         </Grid.ColumnDefinitions>
         <Grid FlowDirection="RightToLeft" Grid.Column="1">
             <Border controls:ScrollViewer.IsEnableInertia="True">
                 <TreeView Name="treeview" controls:ScrollViewer.IsEnableInertia="True" BorderThickness="0">
-                    <TreeViewItem Tag="initial" Header="داشبورد" Selected="TreeViewItem_Selected"/>
+                    <TreeViewItem Tag="initial" Header="داشبورد" Selected="TreeViewItem_Selected" />
                     <TreeViewItem IsExpanded="True" Header="منوی اصلی">
                         <TreeViewItem Header="عملیات پایه">
-                            <TreeViewItem Tag="addOrUpdateSchool" Header="مدرسه و کلاس" Selected="TreeViewItem_Selected"/>
-                            <TreeViewItem Tag="exAddOrUpdateStudent" Header="دانش آموز" Selected="TreeViewItem_Selected"/>
-                            <TreeViewItem Tag="exAddOrUpdateUser" Header="حساب کاربری" Selected="TreeViewItem_Selected"/>
+                            <TreeViewItem Tag="addOrUpdateSchool" Header="مدرسه و کلاس" Selected="TreeViewItem_Selected" />
+                            <TreeViewItem Tag="exAddOrUpdateStudent" Header="دانش آموز" Selected="TreeViewItem_Selected" />
+                            <TreeViewItem Tag="exAddOrUpdateUser" Header="حساب کاربری" Selected="TreeViewItem_Selected" />
                         </TreeViewItem>
                         <TreeViewItem Header="فعالیت ها">
-                            <TreeViewItem Tag="exAttendancelist" Header="حضور و غیاب" Selected="TreeViewItem_Selected"/>
-                            <TreeViewItem Tag="exQuestionsList" Header="ارزشیابی" Selected="TreeViewItem_Selected"/>
+                            <TreeViewItem Tag="exAttendancelist" Header="حضور و غیاب" Selected="TreeViewItem_Selected" />
+                            <TreeViewItem Tag="exQuestionsList" Header="ارزشیابی" Selected="TreeViewItem_Selected" />
                         </TreeViewItem>
                         <TreeViewItem Header="گزارش وضعیت">
-                            <TreeViewItem Tag="exTopStudents" Header="نفرات برتر" Selected="TreeViewItem_Selected"/>
-                            <TreeViewItem Tag="exAchievement" Header="پیشرفت تحصیلی" Selected="TreeViewItem_Selected"/>
+                            <TreeViewItem Tag="exTopStudents" Header="نفرات برتر" Selected="TreeViewItem_Selected" />
+                            <TreeViewItem Tag="exAchievement" Header="پیشرفت تحصیلی" Selected="TreeViewItem_Selected" />
                         </TreeViewItem>
                     </TreeViewItem>
                     <TreeViewItem IsExpanded="True" Header="بیشتر">
-                        <TreeViewItem Tag="exCircular" Header="بخشنامه ها" Selected="TreeViewItem_Selected"/>
+                        <TreeViewItem Tag="exCircular" Header="بخشنامه ها" Selected="TreeViewItem_Selected" />
                     </TreeViewItem>
                 </TreeView>
             </Border>
@@ -79,8 +78,8 @@
                 <Border Background="{StaticResource MainContentBackground}">
                     <Grid Name="GridMain" MinHeight="300" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="16">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition/>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition />
                         </Grid.RowDefinitions>
                         <Border Name="BorderEffect" Grid.RowSpan="2" Background="White" CornerRadius="10" Effect="{StaticResource EffectShadow4}"></Border>
                         <Border Height="32" Name="BorderTitle" Grid.Row="0" CornerRadius="10,10,0,0" Background="{StaticResource PrimaryBrush}">

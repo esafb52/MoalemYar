@@ -8,18 +8,14 @@
 *
 ***********************************************************************************/
 
-using Ookii.Dialogs.Wpf;
-using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
-using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using ThumbnailSharp;
 
@@ -350,16 +346,16 @@ namespace MoalemYar.UserControls
             //var imageExtensions = string.Join(";", ImageCodecInfo.GetImageDecoders().Select(ici => ici.FilenameExtension));
             //dialog.Filter = string.Format("تصاویر|{0}|تمام فایل ها|*.*", imageExtensions);
             //if ((bool)dialog.ShowDialog())
-               // imgStudent.Source = new BitmapImage(new Uri(dialog.FileName));
+            // imgStudent.Source = new BitmapImage(new Uri(dialog.FileName));
         }
 
         private void cmbGender_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             //var element = FindElement.FindElementByName<ComboBox>(cmbAddContentGender, "cmbGender");
-           // if (element.SelectedIndex == 0)
-               // imgStudent.Source = new BitmapImage(new Uri("pack://application:,,,/MoalemYar;component/Resources/Boy.png", UriKind.Absolute));
+            // if (element.SelectedIndex == 0)
+            // imgStudent.Source = new BitmapImage(new Uri("pack://application:,,,/MoalemYar;component/Resources/Boy.png", UriKind.Absolute));
             //else
-               // imgStudent.Source = new BitmapImage(new Uri("pack://application:,,,/MoalemYar;component/Resources/Girl.png", UriKind.Absolute));
+            // imgStudent.Source = new BitmapImage(new Uri("pack://application:,,,/MoalemYar;component/Resources/Girl.png", UriKind.Absolute));
         }
 
         private void btnEditChoose_Click(object sender, RoutedEventArgs e)

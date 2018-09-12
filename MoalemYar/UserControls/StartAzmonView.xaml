@@ -117,7 +117,7 @@
                         </Button>
                     </StackPanel>
                 </GroupBox>
-                
+
                 <GroupBox Name="gpAzmon" IsEnabled="False" Header="آزمون" Margin="0,113,5,0" Height="230" VerticalAlignment="Top">
                     <StackPanel>
                         <Grid>

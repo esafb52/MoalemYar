@@ -14,8 +14,7 @@ using System;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
-using HandyControl.Controls;
+
 namespace MoalemYar.UserControls
 {
     /// <summary>
@@ -23,13 +22,14 @@ namespace MoalemYar.UserControls
     /// </summary>
     public partial class InitialView : UserControl
     {
-        bool runFirst = false;
+        private bool runFirst = false;
+
         public InitialView()
         {
             InitializeComponent();
 
             DataContext = this;
-            
+
             //Todo: Fix
             //txtStCount.Text = MainWindow.main.exAddOrUpdateStudent.Hint;
             //txtUCount.Text = MainWindow.main.exAddOrUpdateUser.Hint;
@@ -47,7 +47,6 @@ namespace MoalemYar.UserControls
                   (c, v) => new DataClass.DataTransferObjects.StudentsScoresDto { Id = c.Id, BaseId = v.BaseId, StudentId = v.Id, Name = v.Name, LName = v.LName, FName = v.FName, Scores = c.Scores }
               ).OrderBy(x => x.Scores).Where(x => x.BaseId == BaseId).ToList();
 
-
                 var res = query.GroupBy(x => new { x.StudentId })
                           .Select(x => new
                           {
@@ -60,7 +59,7 @@ namespace MoalemYar.UserControls
 
                 foreach (var item in res)
                 {
-                   ProgressBar progressBar;
+                    ProgressBar progressBar;
                     TextBlock textBlock;
                     Control _currentUser;
                     progressBar = new ProgressBar()
@@ -76,13 +75,11 @@ namespace MoalemYar.UserControls
                         Text = item.Name + " " + item.LName
                     };
 
-
                     _currentUser = progressBar;
                     stkDash.Children.Add(textBlock);
 
                     stkDash.Children.Add(_currentUser);
                 }
-
             }
         }
 
@@ -142,6 +139,5 @@ namespace MoalemYar.UserControls
                 });
             }
         }
-        
     }
 }

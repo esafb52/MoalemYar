@@ -35,7 +35,6 @@ namespace MoalemYar.UserControls
             txtHistory.Text = Properties.Resources.History;
             AppName.Content = AppVariable.getAppTitle;
             AppVersion.Content = AppVariable.getAppVersion;
-            
         }
 
         private void CheckUpdate()

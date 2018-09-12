@@ -345,7 +345,6 @@ namespace MoalemYar.UserControls
 
         private void chkChecked_Checked(object sender, RoutedEventArgs e)
         {
-            
             var row = dataGrid.ContainerFromElement(sender as DependencyObject);
             var MyTextBlock = FindElement.FindVisualChildByName<TextBlock>(row, "txtStatus");
             var MyCHK1 = FindElement.FindVisualChildByName<ToggleButton>(row, "chkExc");
@@ -372,21 +371,22 @@ namespace MoalemYar.UserControls
                     case "exc":
                         newStatus = "خیلی خوب";
                         break;
+
                     case "good":
-                        
+
                         newStatus = "خوب";
                         break;
+
                     case "nbad":
                         newStatus = "قابل قبول";
                         break;
+
                     case "bad":
                         newStatus = "نیاز به تلاش بیشتر";
                         break;
                 }
                 addScore((long)selectedItem.Id, element.SelectedItem.ToString(), strDate, newStatus, (txtDesc.Text == string.Empty ? "بدون توضیحات" : txtDesc.Text));
             }
-            
-            
 
             var DeleteQuestion = _initialCollection.Where(x => x.Id == (long)selectedItem.Id).FirstOrDefault();
             _initialCollection.Remove(DeleteQuestion);

@@ -48,7 +48,7 @@
                             <StackPanel Orientation="Vertical" Margin="0,40,10,0" Grid.ColumnSpan="2">
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                     <Label Name="txtDate" HorizontalAlignment="Center" Margin="5" Style="{StaticResource LabelInfo}" Content="تاریخ امروز" />
-                                    <ToggleButton Style="{StaticResource ToggleButtonSwitch}" Name="swAllPresent" Checked="swAllPresent_Checked" IsEnabled="False" Margin="5,0,50,0" HorizontalAlignment="Center" IsChecked="False"/>
+                                    <ToggleButton Style="{StaticResource ToggleButtonSwitch}" Name="swAllPresent" Checked="swAllPresent_Checked" IsEnabled="False" Margin="5,0,50,0" HorizontalAlignment="Center" IsChecked="False" />
                                 </StackPanel>
                                 <DataGrid x:Name="dataGrid" AutoGenerateColumns="False" HorizontalAlignment="Stretch"
                                       Background="#eceff5" RowHeaderWidth="0" AlternatingRowBackground="#fbfcfe"

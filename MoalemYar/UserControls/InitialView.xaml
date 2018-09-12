@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:MoalemYar.UserControls"
              xmlns:controls="clr-namespace:HandyControl.Controls;assembly=HandyControl"
-             xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf" 
+             xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
              xmlns:PersianCalendarWPF="clr-namespace:PersianCalendarWPF;assembly=PersianCalendarWPF"
              x:Class="MoalemYar.UserControls.InitialView"
              Loaded="UserControl_Loaded"
@@ -84,11 +84,6 @@
                         </Grid>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
-
-
-
-
-
 
                         <Grid Margin="10" Width="270">
                             <Grid.Effect>

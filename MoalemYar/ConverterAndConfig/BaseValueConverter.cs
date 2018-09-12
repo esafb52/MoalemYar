@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows.Markup;
 
@@ -19,12 +15,12 @@ namespace MoalemYar
         /// </summary>
         private static T Converter = null;
 
-        #endregion
+        #endregion Private Members
 
         #region Markup Extension Methods
 
         /// <summary>
-        /// Provides a static instance of the value converter 
+        /// Provides a static instance of the value converter
         /// </summary>
         /// <param name="serviceProvider">The service provider</param>
         /// <returns></returns>
@@ -33,7 +29,7 @@ namespace MoalemYar
             return Converter ?? (Converter = new T());
         }
 
-        #endregion
+        #endregion Markup Extension Methods
 
         #region Value Converter Methods
 
@@ -57,6 +53,6 @@ namespace MoalemYar
         /// <returns></returns>
         public abstract object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture);
 
-        #endregion
+        #endregion Value Converter Methods
     }
 }

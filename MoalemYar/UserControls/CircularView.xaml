@@ -17,12 +17,12 @@
                             <TextBlock Name="txtStop" TextWrapping="NoWrap" Text="توقف" FontSize="13" Foreground="#ffffff" />
                         </StackPanel>
                     </Button>
-                    <ToggleButton Style="{StaticResource ToggleButtonSwitch}" IsChecked="True" Name="swLimit" Checked="MetroSwitch_Checked" Unchecked="MetroSwitch_Checked" FlowDirection="LeftToRight" Margin="10"/>
+                    <ToggleButton Style="{StaticResource ToggleButtonSwitch}" IsChecked="True" Name="swLimit" Checked="MetroSwitch_Checked" Unchecked="MetroSwitch_Checked" FlowDirection="LeftToRight" Margin="10" />
                 </StackPanel>
-                <TextBox IsEnabled="False" Name="txtSearch" TextChanged="MetroTextBox_TextChanged" Height="30" VerticalAlignment="Top" Margin="391,10,40,0"/>
+                <TextBox IsEnabled="False" Name="txtSearch" TextChanged="MetroTextBox_TextChanged" Height="30" VerticalAlignment="Top" Margin="391,10,40,0" />
 
-                <ProgressBar Style="{StaticResource ProgressBarDanger}" Margin="20,56,40,0" Name="prgUpdate" ValueChanged="prgUpdate_ValueChanged" FlowDirection="LeftToRight" VerticalAlignment="Top"/>
-                <WrapPanel Width="1000" x:Name="waterfallFlow" Margin="20,85,20,10"/>
+                <ProgressBar Style="{StaticResource ProgressBarDanger}" Margin="20,56,40,0" Name="prgUpdate" ValueChanged="prgUpdate_ValueChanged" FlowDirection="LeftToRight" VerticalAlignment="Top" />
+                <WrapPanel Width="1000" x:Name="waterfallFlow" Margin="20,85,20,10" />
             </Grid>
         </controls:ScrollViewer>
     </controls:TransitioningContentControl>

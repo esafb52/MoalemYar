@@ -80,11 +80,11 @@
                                         </DataTemplate>
                                     </ContentControl.ContentTemplate>
                                 </ContentControl>
-                                <controls:InfoTextBox FlowDirection="RightToLeft" MaxLength="20" Margin="2" Name="txtQuestionText" TabIndex="0" PlaceHolder="متن سوال" Height="30"/>
-                                <controls:InfoTextBox FlowDirection="RightToLeft" MaxLength="20" Margin="2" Name="txtCase1" TabIndex="0" PlaceHolder="گزینه 1" Height="30"/>
-                                <controls:InfoTextBox FlowDirection="RightToLeft" MaxLength="20" Margin="2" Name="txtCase2" TabIndex="0" PlaceHolder="گزینه 2" Height="30"/>
-                                <controls:InfoTextBox FlowDirection="RightToLeft" MaxLength="20" Margin="2" Name="txtCase3" TabIndex="0" PlaceHolder="گزینه 3" Height="30"/>
-                                <controls:InfoTextBox FlowDirection="RightToLeft" MaxLength="20" Margin="2" Name="txtCase4" TabIndex="0" PlaceHolder="گزینه 4" Height="30"/>
+                                <controls:InfoTextBox FlowDirection="RightToLeft" MaxLength="20" Margin="2" Name="txtQuestionText" TabIndex="0" PlaceHolder="متن سوال" Height="30" />
+                                <controls:InfoTextBox FlowDirection="RightToLeft" MaxLength="20" Margin="2" Name="txtCase1" TabIndex="0" PlaceHolder="گزینه 1" Height="30" />
+                                <controls:InfoTextBox FlowDirection="RightToLeft" MaxLength="20" Margin="2" Name="txtCase2" TabIndex="0" PlaceHolder="گزینه 2" Height="30" />
+                                <controls:InfoTextBox FlowDirection="RightToLeft" MaxLength="20" Margin="2" Name="txtCase3" TabIndex="0" PlaceHolder="گزینه 3" Height="30" />
+                                <controls:InfoTextBox FlowDirection="RightToLeft" MaxLength="20" Margin="2" Name="txtCase4" TabIndex="0" PlaceHolder="گزینه 4" Height="30" />
                                 <ContentControl Margin="2" Name="cmbContentAnswer" TabIndex="3" Focusable="False" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="231">
                                     <ContentControl.ContentTemplate>
                                         <DataTemplate>
@@ -191,11 +191,11 @@
                                     </Grid>
                                     <Grid Grid.Column="1" Margin="5,0,0,0">
                                         <StackPanel Name="editStack" IsEnabled="False" Orientation="Vertical">
-                                            <controls:InfoTextBox FlowDirection="RightToLeft" MaxLength="20" Margin="2" Name="txtEditQuestionText" TabIndex="0" PlaceHolder="متن سوال" Height="30"/>
-                                            <controls:InfoTextBox FlowDirection="RightToLeft" MaxLength="20" Margin="2" Name="txtEditCase1" TabIndex="0" PlaceHolder="گزینه 1" Height="30"/>
-                                            <controls:InfoTextBox FlowDirection="RightToLeft" MaxLength="20" Margin="2" Name="txtEditCase2" TabIndex="0" PlaceHolder="گزینه 2" Height="30"/>
-                                            <controls:InfoTextBox FlowDirection="RightToLeft" MaxLength="20" Margin="2" Name="txtEditCase3" TabIndex="0" PlaceHolder="گزینه 3" Height="30"/>
-                                            <controls:InfoTextBox FlowDirection="RightToLeft" MaxLength="20" Margin="2" Name="txtEditCase4" TabIndex="0" PlaceHolder="گزینه 4" Height="30"/>
+                                            <controls:InfoTextBox FlowDirection="RightToLeft" MaxLength="20" Margin="2" Name="txtEditQuestionText" TabIndex="0" PlaceHolder="متن سوال" Height="30" />
+                                            <controls:InfoTextBox FlowDirection="RightToLeft" MaxLength="20" Margin="2" Name="txtEditCase1" TabIndex="0" PlaceHolder="گزینه 1" Height="30" />
+                                            <controls:InfoTextBox FlowDirection="RightToLeft" MaxLength="20" Margin="2" Name="txtEditCase2" TabIndex="0" PlaceHolder="گزینه 2" Height="30" />
+                                            <controls:InfoTextBox FlowDirection="RightToLeft" MaxLength="20" Margin="2" Name="txtEditCase3" TabIndex="0" PlaceHolder="گزینه 3" Height="30" />
+                                            <controls:InfoTextBox FlowDirection="RightToLeft" MaxLength="20" Margin="2" Name="txtEditCase4" TabIndex="0" PlaceHolder="گزینه 4" Height="30" />
                                             <StackPanel Orientation="Horizontal" Margin="2">
                                                 <Grid Margin="2">
                                                     <ComboBox x:Name="cmbGroupEdit" ItemsSource="{Binding}"
@@ -266,7 +266,7 @@
                                                     </DataTemplate>
                                                 </ContentControl.ContentTemplate>
                                             </ContentControl>
-                                            <PersianCalendarWPF:PersianDatePicker Margin="5,5,0,0" HorizontalAlignment="Left" x:Name="txtDateEdit"/>
+                                            <PersianCalendarWPF:PersianDatePicker Margin="5,5,0,0" HorizontalAlignment="Left" x:Name="txtDateEdit" />
                                         </StackPanel>
                                     </Grid>
                                 </Grid>

@@ -18,7 +18,6 @@ namespace MoalemYar
 {
     public class AppVariable
     {
-
         #region Update Configuration
 
         public static string UpdateServer = "https://raw.githubusercontent.com/ghost1372/MoalemYar/master/Updater.xml";
@@ -62,7 +61,6 @@ namespace MoalemYar
         public const string DEFAULT_BORDER_BRUSH = "#6D819A";
 
         #endregion Colors
-
 
         public static double NotificationAnimInDur = 0.75;
         public static double NotificationAnimOutDur = 0.5;

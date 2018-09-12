@@ -10,10 +10,10 @@
 
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/MoalemYar;component/Resources/Fonts/FontsDictionary.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/ThemesDefault.xaml"/>
-                <ResourceDictionary Source="Resources/Themes/Styles/Style.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/ThemesDefault.xaml" />
+                <ResourceDictionary Source="Resources/Themes/Styles/Style.xaml" />
             </ResourceDictionary.MergedDictionaries>
-            
+
             <Style x:Key="myUserControl" TargetType="UserControl">
                 <Setter Property="TextOptions.TextFormattingMode" Value="Ideal" />
                 <Setter Property="TextOptions.TextRenderingMode" Value="Auto" />
@@ -275,7 +275,7 @@
             <SolidColorBrush x:Key="ForegroundLightBrush" Color="{StaticResource ForegroundLight}" />
             <Color x:Key="ForegroundVeryDark">#000000</Color>
             <SolidColorBrush x:Key="ForegroundVeryDarkBrush" Color="{StaticResource ForegroundVeryDark}" />
-            
+
             <Style x:Key="txtPassword" TargetType="{x:Type PasswordBox}">
                 <Setter Property="Padding" Value="4" />
                 <Setter Property="Margin" Value="0 5 0 5" />
@@ -291,12 +291,12 @@
 
                             <Grid>
 
-                                <Border x:Name="border" 
-                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                <Border x:Name="border"
+                                BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}"
                                 Background="{TemplateBinding Background}"
                                 SnapsToDevicePixels="True">
-                                    <ScrollViewer x:Name="PART_ContentHost" Focusable="False" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+                                    <ScrollViewer x:Name="PART_ContentHost" Focusable="False" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden" />
                                 </Border>
 
                                 <TextBlock IsHitTestVisible="False"
@@ -306,27 +306,24 @@
                                    Visibility="{TemplateBinding local:HasTextProperty.Value, Converter={local:BooleanToVisiblityConverter}}"
                                    VerticalAlignment="Center"
                                    HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
-                                   Foreground="{StaticResource ForegroundVeryDarkBrush}"
-                                   >
+                                   Foreground="{StaticResource ForegroundVeryDarkBrush}">
                                 </TextBlock>
-
                             </Grid>
 
                             <ControlTemplate.Triggers>
                                 <Trigger Property="IsEnabled" Value="False">
-                                    <Setter Property="Opacity" TargetName="border" Value="0.56"/>
+                                    <Setter Property="Opacity" TargetName="border" Value="0.56" />
                                 </Trigger>
                                 <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="BorderBrush" TargetName="border" Value="#FF7EB4EA"/>
+                                    <Setter Property="BorderBrush" TargetName="border" Value="#FF7EB4EA" />
                                 </Trigger>
                                 <Trigger Property="IsKeyboardFocused" Value="True">
-                                    <Setter Property="BorderBrush" TargetName="border" Value="#FF569DE5"/>
+                                    <Setter Property="BorderBrush" TargetName="border" Value="#FF569DE5" />
                                 </Trigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
-
             </Style>
         </ResourceDictionary>
     </Application.Resources>

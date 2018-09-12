@@ -37,8 +37,8 @@
                     </Grid>
                 </controls:TabItem>
                 <controls:TabItem IsSelected="True" Header="ویرایش اطلاعات">
-                        <Grid KeyboardNavigation.TabNavigation="Cycle">
-                            <StackPanel Orientation="Vertical" Margin="5,5,5,0">
+                    <Grid KeyboardNavigation.TabNavigation="Cycle">
+                        <StackPanel Orientation="Vertical" Margin="5,5,5,0">
                             <Grid>
                                 <StackPanel Orientation="Horizontal" Height="50" VerticalAlignment="Top">
                                     <Button x:Name="btnEditSave" IsDefault="True" Click="btnEditSave_Click" Grid.Column="0" Grid.Row="0" Margin="10,5,5,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Style="{StaticResource ButtonPrimary}" Height="35">
@@ -61,41 +61,39 @@
                                     </Button>
                                 </StackPanel>
                                 <GridSplitter Height="2" Margin="60,45,96,-7" HorizontalAlignment="Stretch" />
-
                             </Grid>
                             <StackPanel Orientation="Vertical" Margin="0,10,0,0">
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="2*" />
-                                            <ColumnDefinition Width="*" />
-                                        </Grid.ColumnDefinitions>
-                                        <Grid Name="grdedit" Grid.Column="0">
-                                            <StackPanel Orientation="Vertical">
-                                                <TextBox MaxLength="40" Name="txtEditSearch" HorizontalAlignment="Stretch" MaxWidth="{Binding Path=ActualWidth, ElementName=grdedit, Converter={local1:MultiplyConverter Multiplier=.9}}" FlowDirection="RightToLeft" Text="جستجو..." TextChanged="txtEditSearch_TextChanged" />
-                                                <DataGrid x:Name="dataGrid" AutoGenerateColumns="False" HorizontalAlignment="Stretch"
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid Name="grdedit" Grid.Column="0">
+                                        <StackPanel Orientation="Vertical">
+                                            <TextBox MaxLength="40" Name="txtEditSearch" HorizontalAlignment="Stretch" MaxWidth="{Binding Path=ActualWidth, ElementName=grdedit, Converter={local1:MultiplyConverter Multiplier=.9}}" FlowDirection="RightToLeft" Text="جستجو..." TextChanged="txtEditSearch_TextChanged" />
+                                            <DataGrid x:Name="dataGrid" AutoGenerateColumns="False" HorizontalAlignment="Stretch"
                                       Background="#eceff5" RowHeaderWidth="0" AlternatingRowBackground="#fbfcfe"
                                       GridLinesVisibility="Horizontal" CanUserReorderColumns="False" MaxWidth="{Binding Path=ActualWidth, ElementName=grdedit, Converter={local1:MultiplyConverter Multiplier=.9}}"
                                       CanUserResizeColumns="False" CanUserSortColumns="True" SelectionMode="Single" SelectionUnit="FullRow"
                                       CanUserResizeRows="False" IsReadOnly="True" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}"
                                       HorizontalGridLinesBrush="#dde8ef" CellStyle="{DynamicResource DataGridCellStyle}"
                                       Margin="0,5" SelectionChanged="dataGrid_SelectionChanged">
-                                                    <DataGrid.Columns>
-                                                        <DataGridTextColumn Binding="{Binding Id}" Visibility="Hidden" />
-                                                        <DataGridTextColumn Binding="{Binding GroupName}" Header="نام گروه" MinWidth="100" Width="*" />
-                                                    </DataGrid.Columns>
-                                                </DataGrid>
-                                            </StackPanel>
-                                        </Grid>
-                                        <StackPanel IsEnabled="False" Orientation="Vertical" Grid.Column="1" Name="editGrid" Margin="5,0,0,0">
-                                            <controls:InfoTextBox MaxLength="20" Name="txtGroup" Margin="2" PlaceHolder="نام گروه" Height="30" VerticalAlignment="Top" FlowDirection="RightToLeft" />
+                                                <DataGrid.Columns>
+                                                    <DataGridTextColumn Binding="{Binding Id}" Visibility="Hidden" />
+                                                    <DataGridTextColumn Binding="{Binding GroupName}" Header="نام گروه" MinWidth="100" Width="*" />
+                                                </DataGrid.Columns>
+                                            </DataGrid>
                                         </StackPanel>
                                     </Grid>
-                                </StackPanel>
+                                    <StackPanel IsEnabled="False" Orientation="Vertical" Grid.Column="1" Name="editGrid" Margin="5,0,0,0">
+                                        <controls:InfoTextBox MaxLength="20" Name="txtGroup" Margin="2" PlaceHolder="نام گروه" Height="30" VerticalAlignment="Top" FlowDirection="RightToLeft" />
+                                    </StackPanel>
+                                </Grid>
                             </StackPanel>
-                        </Grid>
+                        </StackPanel>
+                    </Grid>
                 </controls:TabItem>
             </controls:TabControl>
-           
         </controls:ScrollViewer>
     </controls:TransitioningContentControl>
 </UserControl>
