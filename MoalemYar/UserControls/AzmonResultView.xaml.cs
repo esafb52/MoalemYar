@@ -32,9 +32,9 @@ namespace MoalemYar.UserControls
         public AzmonResultView()
         {
             InitializeComponent();
-            txtTrue.Text = string.Format(txtTrue.Text, _True);
-            txtFalse.Text = string.Format(txtFalse.Text, _False);
-            txtNon.Text = string.Format(txtNon.Text, _None);
+            txtTrue.Content = string.Format(txtTrue.Content.ToString(), _True);
+            txtFalse.Content = string.Format(txtFalse.Content.ToString(), _False);
+            txtNon.Content = string.Format(txtNon.Content.ToString(), _None);
             strDate = pc.GetYear(DateTime.Now).ToString("0000") + "/" + pc.GetMonth(DateTime.Now).ToString("00") + "/" + pc.GetDayOfMonth(DateTime.Now).ToString("00");
         }
 

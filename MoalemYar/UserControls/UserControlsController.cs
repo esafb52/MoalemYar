@@ -79,5 +79,9 @@ namespace MoalemYar.UserControls
         {
             ExecuteNavigation();
         }
+        public void Azmon()
+        {
+            ExecuteNavigation();
+        }
     }
 }

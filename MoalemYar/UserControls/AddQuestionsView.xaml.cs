@@ -216,7 +216,6 @@ namespace MoalemYar.UserControls
                     txtCase4.Text = string.Empty;
                     txtQuestionText.Text = string.Empty;
                     txtQuestionText.Focus();
-                    AzmonView.main.getHint();
                 }
                 catch (Exception)
                 {
@@ -251,7 +250,6 @@ namespace MoalemYar.UserControls
                 MainWindow.main.ShowDeletedNotification(true, "", "سوال");
                 editStack.IsEnabled = false;
                 getAQuestions(Convert.ToInt64(cmbBaseEdit.SelectedValue));
-                AzmonView.main.getHint();
             }
             catch (Exception)
             {

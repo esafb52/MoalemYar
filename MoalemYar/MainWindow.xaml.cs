@@ -91,6 +91,9 @@ namespace MoalemYar
             var selectedItem = sender as MenuItem;
             switch (selectedItem.Tag)
             {
+                case "Azmon":
+                    navigationService.GetController<UserControls.UserControlsController>().Azmon();
+                    break;
                 case "makeAzmon":
                     navigationService.GetController<UserControls.UserControlsController>().StartAzmon();
                     break;

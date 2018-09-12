@@ -30,6 +30,8 @@
                     <MenuItem Header="برش" Command="ApplicationCommands.Cut"></MenuItem>
                 </MenuItem>
                 <MenuItem Foreground="White" Header="آزمون">
+                    <MenuItem Tag="Azmon" Click="MenuItem_Click" Header="آزمون"/>
+                    <Separator></Separator>
                     <MenuItem Tag="makeAzmon" Click="MenuItem_Click" Header="آزمون آنلاین"/>
                     <Separator></Separator>
                     <MenuItem Tag="groupAzmon" Click="MenuItem_Click" Header="گروه بندی سوالات"/>
