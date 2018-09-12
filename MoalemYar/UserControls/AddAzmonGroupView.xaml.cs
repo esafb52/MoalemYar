@@ -23,7 +23,6 @@ namespace MoalemYar.UserControls
     /// </summary>
     public partial class AddAzmonGroupView : UserControl
     {
-        public Brush BorderColor { get; set; }
         internal static AddAzmonGroupView main;
         private int runOnce = 0;
         private List<DataClass.Tables.Group> _initialCollection;
@@ -33,7 +32,6 @@ namespace MoalemYar.UserControls
             InitializeComponent();
             this.DataContext = this;
             main = this;
-            BorderColor = AppVariable.GetBrush(MainWindow.main.BorderBrush.ToString());
         }
 
         #region "Query"
@@ -197,11 +195,6 @@ namespace MoalemYar.UserControls
                     MainWindow.main.ShowAddDataNotification(false, txtAddGroup.Text, "گروه");
                 }
             }
-        }
-
-        private void txtEditSearch_ButtonClick(object sender, EventArgs e)
-        {
-            getGroup();
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
