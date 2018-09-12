@@ -52,7 +52,7 @@ namespace MoalemYar.UserControls
             else
             {
                 txtDown.Text = "مطالعه";
-                Style style = this.FindResource("WorkButton") as Style;
+                Style style = this.FindResource("ButtonDanger") as Style;
                 btnSave.Style = style;
                 imgDown.Source = new BitmapImage(new Uri("pack://application:,,,/MoalemYar;component/Resources/pdf.png", UriKind.Absolute));
             }
@@ -102,7 +102,7 @@ namespace MoalemYar.UserControls
                     client.DownloadFileCompleted += (o, ex) =>
                     {
                         txtDown.Text = "مطالعه";
-                        Style style = this.FindResource("WorkButton") as Style;
+                        Style style = this.FindResource("ButtonDanger") as Style;
                         btnSave.Style = style;
                         imgDown.Source = new BitmapImage(new Uri("pack://application:,,,/MoalemYar;component/Resources/pdf.png", UriKind.Absolute));
 
