@@ -105,8 +105,14 @@
                         </Grid>
                         <controls:InfoTextBox MaxLength="3" Name="txtTedad" PlaceHolder="تعداد سوالات"  Text="0" PreviewTextInput="txtTedad_PreviewTextInput" Height="30" VerticalAlignment="Top" />
                         <StackPanel Orientation="Vertical">
-                            <ToggleButton Style="{StaticResource ToggleButtonSwitch}" x:Name="swLimit" Content="محدودیت زمانی" Margin="5,0" />
-                            <ToggleButton Style="{StaticResource ToggleButtonSwitch}" x:Name="swRandom" Content="سوالات تصادفی" Checked="swRandom_Checked" Unchecked="swRandom_Checked" IsChecked="True" Margin="5,5" />
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock HorizontalAlignment="Center" Margin="5" Style="{StaticResource TextBlockSubTitle}" Text="محدودیت زمانی" />
+                                <ToggleButton Style="{StaticResource ToggleButtonSwitch}" x:Name="swLimit" Content="" Margin="5,0" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock HorizontalAlignment="Center" Margin="5" Style="{StaticResource TextBlockSubTitle}" Text="سوالات تصادفی" />
+                                <ToggleButton Style="{StaticResource ToggleButtonSwitch}" x:Name="swRandom" Checked="swRandom_Checked" Unchecked="swRandom_Checked" IsChecked="True" Margin="5,5" />
+                            </StackPanel>
                         </StackPanel>
                         <controls:InfoTextBox MaxLength="3" IsEnabled="{Binding ElementName=swLimit, Path=IsChecked}" Margin="5,0" x:Name="txtTime" PlaceHolder="زمان هر سوال" Text="25" PreviewTextInput="txtTedad_PreviewTextInput" Height="30" VerticalAlignment="Top" />
                         <Button x:Name="btnStart" IsDefault="True" Click="btnStart_Click" Margin="5,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Style="{StaticResource ButtonSuccess}" Height="35">

@@ -27,7 +27,7 @@
                         </TreeView>
                     </Expander>
                 </StackPanel>
-                <ContentControl Grid.Column="1" Name="exContent" />
+                <ContentControl Width="800" Grid.Column="1" Name="exContent" />
             </Grid>
         </controls:ScrollViewer>
     </controls:TransitioningContentControl>

@@ -15,8 +15,10 @@
                 <controls:TabItem IsSelected="True" Header="ثبت اطلاعات">
                     <Grid KeyboardNavigation.TabNavigation="Cycle"  Name="grd">
                         <StackPanel Orientation="Horizontal" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="800">
-                            <ToggleButton Style="{StaticResource ToggleButtonSwitch}" Checked="isExam_Checked" Unchecked="isExam_Checked" Margin="15,5" Name="isExam" Content="امتحان / فعالیت" />
-                            <ToggleButton Style="{StaticResource ToggleButtonSwitch}" Checked="isQuestion_Checked" Unchecked="isQuestion_Checked" Margin="0,5" Name="isQuestion" Content="پرسش" />
+                            <TextBlock HorizontalAlignment="Center" Margin="5" Style="{StaticResource TextBlockSubTitle}" Text="امتحان / فعالیت" />
+                            <ToggleButton Style="{StaticResource ToggleButtonSwitch}" Checked="isExam_Checked" Unchecked="isExam_Checked" Margin="10,5" Name="isExam"/>
+                            <TextBlock HorizontalAlignment="Center" Margin="5" Style="{StaticResource TextBlockSubTitle}" Text="پرسش" />
+                            <ToggleButton Style="{StaticResource ToggleButtonSwitch}" Checked="isQuestion_Checked" Unchecked="isQuestion_Checked" Margin="10,5" Name="isQuestion"/>
                         </StackPanel>
                         <Grid Margin="0,40,0,0">
                             <ComboBox SelectionChanged="cmbBase_SelectionChanged" x:Name="cmbBase"

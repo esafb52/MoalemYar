@@ -18,6 +18,7 @@
                             <TextBlock Name="txtStop" TextWrapping="NoWrap" Text="توقف" FontSize="13" Foreground="#ffffff" />
                         </StackPanel>
                     </Button>
+                    <TextBlock HorizontalAlignment="Center" Margin="5" Style="{StaticResource TextBlockSubTitle}" Text="دریافت 20 بخشنامه آخر" />
                     <ToggleButton Style="{StaticResource ToggleButtonSwitch}" IsChecked="True" Name="swLimit" Checked="MetroSwitch_Checked" Unchecked="MetroSwitch_Checked" FlowDirection="LeftToRight" Margin="10" />
                 </StackPanel>
                 <TextBox IsEnabled="False" Name="txtSearch" TextChanged="MetroTextBox_TextChanged" Height="30" VerticalAlignment="Top" Margin="391,10,40,0" />
