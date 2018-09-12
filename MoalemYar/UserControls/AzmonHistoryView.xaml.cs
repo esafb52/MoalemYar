@@ -23,13 +23,10 @@ namespace MoalemYar.UserControls
     /// </summary>
     public partial class AzmonHistoryView : UserControl
     {
-        public Brush BorderColor { get; set; }
-
         public AzmonHistoryView()
         {
             InitializeComponent();
             DataContext = this;
-            BorderColor = AppVariable.GetBrush(FindElement.Settings.ChartColor ?? AppVariable.CHART_GREEN);
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
