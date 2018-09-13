@@ -1,18 +1,31 @@
-﻿<UserControl x:Class="MoalemYar.UserControls.TopStudentsView"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:MoalemYar.UserControls"
-             xmlns:local1="clr-namespace:MoalemYar"
-             xmlns:controls="clr-namespace:HandyControl.Controls;assembly=HandyControl" Loaded="UserControl_Loaded"
-             mc:Ignorable="d" Style="{StaticResource myUserControl}">
+﻿<UserControl
+    x:Class="MoalemYar.UserControls.TopStudentsView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:HandyControl.Controls;assembly=HandyControl"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:MoalemYar.UserControls"
+    xmlns:local1="clr-namespace:MoalemYar"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Loaded="UserControl_Loaded"
+    Style="{StaticResource myUserControl}"
+    mc:Ignorable="d">
     <controls:TransitioningContentControl>
         <controls:ScrollViewer HorizontalScrollBarVisibility="Auto">
-            <Grid Name="grdedit" Width="1000">
-                <ComboBox Grid.Column="0" Margin="10,10,0,0" FlowDirection="RightToLeft" x:Name="cmbBaseEdit" SelectionChanged="cmbBaseEdit_SelectionChanged"
-                            SelectedValue="{Binding SchoolName}" SelectedValuePath="Id" TabIndex="0"
-                            Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="190">
+            <Grid Name="grdedit" MinWidth="800">
+                <ComboBox
+                    x:Name="cmbBaseEdit"
+                    Grid.Column="0"
+                    Width="190"
+                    Height="30"
+                    Margin="10,10,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    FlowDirection="RightToLeft"
+                    SelectedValue="{Binding SchoolName}"
+                    SelectedValuePath="Id"
+                    SelectionChanged="cmbBaseEdit_SelectionChanged"
+                    TabIndex="0">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
@@ -25,7 +38,15 @@
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                 </ComboBox>
-                <TextBlock Text=" انتخاب کلاس " Margin="10,10,0,0" FlowDirection="RightToLeft" IsHitTestVisible="False"  Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="190">
+                <TextBlock
+                    Width="190"
+                    Height="30"
+                    Margin="10,10,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    FlowDirection="RightToLeft"
+                    IsHitTestVisible="False"
+                    Text=" انتخاب کلاس ">
                     <TextBlock.Style>
                         <Style TargetType="{x:Type TextBlock}">
                             <Setter Property="Visibility" Value="Hidden" />
@@ -37,21 +58,50 @@
                         </Style>
                     </TextBlock.Style>
                 </TextBlock>
-                <DataGrid x:Name="dataGrid" AutoGenerateColumns="False" HorizontalAlignment="Stretch"
-                                      Background="#eceff5" RowHeaderWidth="0" AlternatingRowBackground="#fbfcfe" MaxWidth="{Binding Path=ActualWidth, ElementName=grdedit, Converter={local1:MultiplyConverter Multiplier=.9}}"
-                                      GridLinesVisibility="Horizontal" CanUserReorderColumns="False" TabIndex="2"
-                                      CanUserResizeColumns="False" CanUserSortColumns="True" SelectionMode="Single" SelectionUnit="FullRow"
-                                      CanUserResizeRows="False" IsReadOnly="True" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}"
-                                      HorizontalGridLinesBrush="#dde8ef" CellStyle="{DynamicResource DataGridCellStyle}"
-                                      Margin="0,45,0,5">
+                <DataGrid
+                    x:Name="dataGrid"
+                    MaxWidth="{Binding Path=ActualWidth, ElementName=grdedit, Converter={local1:MultiplyConverter Multiplier=.9}}"
+                    Margin="0,45,0,5"
+                    HorizontalAlignment="Stretch"
+                    AlternatingRowBackground="#fbfcfe"
+                    AutoGenerateColumns="False"
+                    Background="#eceff5"
+                    CanUserReorderColumns="False"
+                    CanUserResizeColumns="False"
+                    CanUserResizeRows="False"
+                    CanUserSortColumns="True"
+                    CellStyle="{DynamicResource DataGridCellStyle}"
+                    ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}"
+                    GridLinesVisibility="Horizontal"
+                    HorizontalGridLinesBrush="#dde8ef"
+                    IsReadOnly="True"
+                    RowHeaderWidth="0"
+                    SelectionMode="Single"
+                    SelectionUnit="FullRow"
+                    TabIndex="2">
                     <DataGrid.Columns>
                         <DataGridTextColumn Binding="{Binding Id}" Visibility="Hidden" />
                         <DataGridTextColumn Binding="{Binding BaseId}" Visibility="Hidden" />
                         <DataGridTextColumn Binding="{Binding StudentId}" Visibility="Hidden" />
-                        <DataGridTextColumn Binding="{Binding Name}" Header="نام" MinWidth="100" Width="*" />
-                        <DataGridTextColumn Binding="{Binding LName}" Header="نام خانوادگی" MinWidth="100" Width="*" />
-                        <DataGridTextColumn Binding="{Binding FName}" Header="نام پدر" MinWidth="100" Width="*" />
-                        <DataGridTextColumn Binding="{Binding Sum}" Header="امتیاز" Width="*" />
+                        <DataGridTextColumn
+                            Width="*"
+                            MinWidth="100"
+                            Binding="{Binding Name}"
+                            Header="نام" />
+                        <DataGridTextColumn
+                            Width="*"
+                            MinWidth="100"
+                            Binding="{Binding LName}"
+                            Header="نام خانوادگی" />
+                        <DataGridTextColumn
+                            Width="*"
+                            MinWidth="100"
+                            Binding="{Binding FName}"
+                            Header="نام پدر" />
+                        <DataGridTextColumn
+                            Width="*"
+                            Binding="{Binding Sum}"
+                            Header="امتیاز" />
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>

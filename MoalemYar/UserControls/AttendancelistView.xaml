@@ -11,7 +11,7 @@
              Style="{StaticResource myUserControl}">
     <controls:TransitioningContentControl>
         <controls:ScrollViewer HorizontalScrollBarVisibility="Auto">
-            <controls:TabControl Name="tabc" IsEnableAnimation="True" IsDraggable="True" IsEnableTabFill="True" Width="800" SelectionChanged="tabc_SelectionChanged">
+            <controls:TabControl Name="tabc" IsEnableAnimation="True" IsDraggable="True" IsEnableTabFill="True" MinWidth="800" SelectionChanged="tabc_SelectionChanged">
                 <controls:TabItem IsSelected="True" Header="ثبت اطلاعات">
                     <Grid KeyboardNavigation.TabNavigation="Cycle">
                         <Grid Name="grdedit">
