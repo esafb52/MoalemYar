@@ -1,111 +1,190 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:controls="clr-namespace:HandyControl.Controls">
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:HandyControl.Controls">
 
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="Button.xaml"></ResourceDictionary>
-        <ResourceDictionary Source="ToggleButton.xaml"></ResourceDictionary>
-        <ResourceDictionary Source="../Basic/Geometries.xaml"></ResourceDictionary>
-        <ResourceDictionary Source="../Basic/Converters.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="Button.xaml" />
+        <ResourceDictionary Source="ToggleButton.xaml" />
+        <ResourceDictionary Source="../Basic/Geometries.xaml" />
+        <ResourceDictionary Source="../Basic/Converters.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <Style x:Key="WindowDefaultStyle" BasedOn="{x:Null}" TargetType="{x:Type Window}">
-        <Setter Property="Background" Value="{DynamicResource BackgroundBrush}"></Setter>
-        <Setter Property="Foreground" Value="{DynamicResource PrimaryTextBrush}"></Setter>
+    <Style
+        x:Key="WindowDefaultStyle"
+        BasedOn="{x:Null}"
+        TargetType="{x:Type Window}">
+        <Setter Property="Background" Value="{DynamicResource BackgroundBrush}" />
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryTextBrush}" />
     </Style>
 
-    <Style x:Key="CustomWindowStyle" BasedOn="{x:Null}" TargetType="controls:WindowBorderless">
-        <Setter Property="Background" Value="White"></Setter>
-        <Setter Property="Foreground" Value="{DynamicResource PrimaryTextBrush}"></Setter>
-        <Setter Property="NoUserAreaBackground" Value="{DynamicResource PrimaryBrush}"></Setter>
-        <Setter Property="NoUserAreaForeground" Value="White"></Setter>
-        <Setter Property="CloseButtonHoverBrush" Value="Red"></Setter>
-        <Setter Property="CloseButtonHoverForeground" Value="White"></Setter>
-        <Setter Property="OtherButtonHoverBrush" Value="{DynamicResource DarkPrimaryBrush}"></Setter>
-        <Setter Property="OtherButtonHoverForeground" Value="White"></Setter>
+    <Style
+        x:Key="CustomWindowStyle"
+        BasedOn="{x:Null}"
+        TargetType="controls:WindowBorderless">
+        <Setter Property="Background" Value="White" />
+        <Setter Property="Foreground" Value="{DynamicResource PrimaryTextBrush}" />
+        <Setter Property="NoUserAreaBackground" Value="{DynamicResource PrimaryBrush}" />
+        <Setter Property="NoUserAreaForeground" Value="White" />
+        <Setter Property="CloseButtonHoverBrush" Value="Red" />
+        <Setter Property="CloseButtonHoverForeground" Value="White" />
+        <Setter Property="OtherButtonHoverBrush" Value="{DynamicResource DarkPrimaryBrush}" />
+        <Setter Property="OtherButtonHoverForeground" Value="White" />
         <Setter Property="WindowChrome.WindowChrome">
             <Setter.Value>
-                <WindowChrome CornerRadius="0" GlassFrameThickness="1" CaptionHeight="{Binding NoUserAreaHeight,RelativeSource={RelativeSource FindAncestor,AncestorType=controls:WindowBorderless}}"/>
+                <WindowChrome
+                    CaptionHeight="{Binding NoUserAreaHeight, RelativeSource={RelativeSource FindAncestor, AncestorType=controls:WindowBorderless}}"
+                    CornerRadius="0"
+                    GlassFrameThickness="1" />
             </Setter.Value>
         </Setter>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="controls:WindowBorderless">
-                    <Border BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}">
+                    <Border
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}">
                         <Grid Margin="{TemplateBinding Padding}">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition/>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition />
                             </Grid.RowDefinitions>
-                            <Grid Visibility="{TemplateBinding IsFullScreen,Converter={StaticResource Boolean2VisibilityReConverter}}" Background="{TemplateBinding NoUserAreaBackground}" Name="GridMenu" TextElement.Foreground="{TemplateBinding NoUserAreaForeground}">
+                            <Grid
+                                Name="GridMenu"
+                                Background="{TemplateBinding NoUserAreaBackground}"
+                                TextElement.Foreground="{TemplateBinding NoUserAreaForeground}"
+                                Visibility="{TemplateBinding IsFullScreen,
+                                                             Converter={StaticResource Boolean2VisibilityReConverter}}">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
-                                <StackPanel WindowChrome.IsHitTestVisibleInChrome="True" UseLayoutRounding="True" VerticalAlignment="Top" Grid.Column="1" HorizontalAlignment="Right" Orientation="Horizontal">
-                                    <Button Foreground="{TemplateBinding OtherButtonForeground}" Command="{Binding Source={x:Static SystemCommands.MinimizeWindowCommand}}" IsTabStop="False" WindowChrome.IsHitTestVisibleInChrome="True" Name="ButtonMin" Height="28" Style="{StaticResource ButtonIconTransparent}" Width="44" controls:IconElement.Geometry="{StaticResource WindowMinGeometry}" Padding="17,0"></Button>
-                                    <Button Foreground="{TemplateBinding OtherButtonForeground}" Command="{Binding Source={x:Static SystemCommands.MaximizeWindowCommand}}" IsTabStop="False" WindowChrome.IsHitTestVisibleInChrome="True" Name="ButtonMax" Height="28" Style="{StaticResource ButtonIconTransparent}" Width="44" controls:IconElement.Geometry="{StaticResource WindowMaxGeometry}" Padding="17,0"></Button>
-                                    <Button Foreground="{TemplateBinding OtherButtonForeground}" Command="{Binding Source={x:Static SystemCommands.RestoreWindowCommand}}" IsTabStop="False" WindowChrome.IsHitTestVisibleInChrome="True" Name="ButtonRestore" Height="28" Style="{StaticResource ButtonIconTransparent}" Width="44" controls:IconElement.Geometry="{StaticResource WindowRestoreGeometry}" Padding="17,0"></Button>
-                                    <Button Foreground="{TemplateBinding CloseButtonForeground}" Command="{Binding Source={x:Static SystemCommands.CloseWindowCommand}}" IsTabStop="False" WindowChrome.IsHitTestVisibleInChrome="True" Name="ButtonClose" Height="28" Style="{StaticResource ButtonIconTransparent}" Width="44" controls:IconElement.Geometry="{StaticResource CloseGeometry}" Padding="9"></Button>
+                                <StackPanel
+                                    Grid.Column="1"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Top"
+                                    Orientation="Horizontal"
+                                    UseLayoutRounding="True"
+                                    WindowChrome.IsHitTestVisibleInChrome="True">
+                                    <Button
+                                        Name="ButtonMin"
+                                        Width="44"
+                                        Height="28"
+                                        Padding="17,0"
+                                        controls:IconElement.Geometry="{StaticResource WindowMinGeometry}"
+                                        Command="{Binding Source={x:Static SystemCommands.MinimizeWindowCommand}}"
+                                        Foreground="{TemplateBinding OtherButtonForeground}"
+                                        IsTabStop="False"
+                                        Style="{StaticResource ButtonIconTransparent}"
+                                        WindowChrome.IsHitTestVisibleInChrome="True" />
+                                    <Button
+                                        Name="ButtonMax"
+                                        Width="44"
+                                        Height="28"
+                                        Padding="17,0"
+                                        controls:IconElement.Geometry="{StaticResource WindowMaxGeometry}"
+                                        Command="{Binding Source={x:Static SystemCommands.MaximizeWindowCommand}}"
+                                        Foreground="{TemplateBinding OtherButtonForeground}"
+                                        IsTabStop="False"
+                                        Style="{StaticResource ButtonIconTransparent}"
+                                        WindowChrome.IsHitTestVisibleInChrome="True" />
+                                    <Button
+                                        Name="ButtonRestore"
+                                        Width="44"
+                                        Height="28"
+                                        Padding="17,0"
+                                        controls:IconElement.Geometry="{StaticResource WindowRestoreGeometry}"
+                                        Command="{Binding Source={x:Static SystemCommands.RestoreWindowCommand}}"
+                                        Foreground="{TemplateBinding OtherButtonForeground}"
+                                        IsTabStop="False"
+                                        Style="{StaticResource ButtonIconTransparent}"
+                                        WindowChrome.IsHitTestVisibleInChrome="True" />
+                                    <Button
+                                        Name="ButtonClose"
+                                        Width="44"
+                                        Height="28"
+                                        Padding="9"
+                                        controls:IconElement.Geometry="{StaticResource CloseGeometry}"
+                                        Command="{Binding Source={x:Static SystemCommands.CloseWindowCommand}}"
+                                        Foreground="{TemplateBinding CloseButtonForeground}"
+                                        IsTabStop="False"
+                                        Style="{StaticResource ButtonIconTransparent}"
+                                        WindowChrome.IsHitTestVisibleInChrome="True" />
                                 </StackPanel>
                                 <Grid Grid.Column="0">
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition />
                                     </Grid.ColumnDefinitions>
-                                    <ContentPresenter Content="{TemplateBinding Icon}" VerticalAlignment="Center"></ContentPresenter>
-                                    <TextBlock Name="Title" Grid.Column="1" Text="{TemplateBinding Title}" Padding="10,0,0,0" VerticalAlignment="Center"></TextBlock>
-                                    <ContentPresenter Grid.Column="2" x:Name="ContentPresenterMain" Content="{TemplateBinding NoUserContent}"/>
+                                    <ContentPresenter VerticalAlignment="Center" Content="{TemplateBinding Icon}" />
+                                    <TextBlock
+                                        Name="Title"
+                                        Grid.Column="1"
+                                        Padding="10,0,0,0"
+                                        VerticalAlignment="Center"
+                                        Text="{TemplateBinding Title}" />
+                                    <ContentPresenter
+                                        x:Name="ContentPresenterMain"
+                                        Grid.Column="2"
+                                        Content="{TemplateBinding NoUserContent}" />
                                 </Grid>
                             </Grid>
-                            <ContentPresenter Grid.Row="1" Content="{TemplateBinding Content}"></ContentPresenter>
-                            <ResizeGrip x:Name="ResizeGrip" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Row="1" IsTabStop="False" Visibility="Collapsed" WindowChrome.ResizeGripDirection="BottomRight" />
+                            <ContentPresenter Grid.Row="1" Content="{TemplateBinding Content}" />
+                            <ResizeGrip
+                                x:Name="ResizeGrip"
+                                Grid.Row="1"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Bottom"
+                                IsTabStop="False"
+                                Visibility="Collapsed"
+                                WindowChrome.ResizeGripDirection="BottomRight" />
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsActive" Value="False">
-                            <Setter Property="Opacity" Value=".8" TargetName="ContentPresenterMain"/>
+                            <Setter TargetName="ContentPresenterMain" Property="Opacity" Value=".8" />
                         </Trigger>
                         <Trigger Property="WindowState" Value="Maximized">
-                            <Setter Property="Padding" Value="8"></Setter>
-                            <Setter Property="Visibility" Value="Collapsed" TargetName="ButtonMax"></Setter>
-                            <Setter Property="Visibility" Value="Visible" TargetName="ButtonRestore"></Setter>
+                            <Setter Property="Padding" Value="8" />
+                            <Setter TargetName="ButtonMax" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="ButtonRestore" Property="Visibility" Value="Visible" />
                         </Trigger>
                         <Trigger Property="WindowState" Value="Normal">
-                            <Setter Property="Visibility" Value="Visible" TargetName="ButtonMax"></Setter>
-                            <Setter Property="Visibility" Value="Collapsed" TargetName="ButtonRestore"></Setter>
+                            <Setter TargetName="ButtonMax" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="ButtonRestore" Property="Visibility" Value="Collapsed" />
                         </Trigger>
                         <Trigger Property="ResizeMode" Value="NoResize">
-                            <Setter Property="Visibility" Value="Collapsed" TargetName="ButtonMin"></Setter>
-                            <Setter Property="Visibility" Value="Collapsed" TargetName="ButtonMax"></Setter>
-                            <Setter Property="Visibility" Value="Collapsed" TargetName="ButtonRestore"></Setter>
+                            <Setter TargetName="ButtonMin" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="ButtonMax" Property="Visibility" Value="Collapsed" />
+                            <Setter TargetName="ButtonRestore" Property="Visibility" Value="Collapsed" />
                         </Trigger>
-                        <Trigger Property="IsMouseOver" Value="True" SourceName="ButtonClose">
-                            <Setter Property="Background" TargetName="ButtonClose" Value="{Binding CloseButtonHoverBrush,RelativeSource={RelativeSource Mode=TemplatedParent}}"/>
-                            <Setter Property="Foreground" TargetName="ButtonClose" Value="{Binding CloseButtonHoverForeground,RelativeSource={RelativeSource Mode=TemplatedParent}}"/>
+                        <Trigger SourceName="ButtonClose" Property="IsMouseOver" Value="True">
+                            <Setter TargetName="ButtonClose" Property="Background" Value="{Binding CloseButtonHoverBrush, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+                            <Setter TargetName="ButtonClose" Property="Foreground" Value="{Binding CloseButtonHoverForeground, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
                         </Trigger>
-                        <Trigger Property="IsMouseOver" Value="True" SourceName="ButtonMax">
-                            <Setter Property="Background" TargetName="ButtonMax" Value="{Binding OtherButtonHoverBrush,RelativeSource={RelativeSource Mode=TemplatedParent}}"/>
-                            <Setter Property="Foreground" TargetName="ButtonMax" Value="{Binding OtherButtonHoverForeground,RelativeSource={RelativeSource Mode=TemplatedParent}}"/>
+                        <Trigger SourceName="ButtonMax" Property="IsMouseOver" Value="True">
+                            <Setter TargetName="ButtonMax" Property="Background" Value="{Binding OtherButtonHoverBrush, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+                            <Setter TargetName="ButtonMax" Property="Foreground" Value="{Binding OtherButtonHoverForeground, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
                         </Trigger>
-                        <Trigger Property="IsMouseOver" Value="True" SourceName="ButtonRestore">
-                            <Setter Property="Background" TargetName="ButtonRestore" Value="{Binding OtherButtonHoverBrush,RelativeSource={RelativeSource Mode=TemplatedParent}}"/>
-                            <Setter Property="Foreground" TargetName="ButtonRestore" Value="{Binding OtherButtonHoverForeground,RelativeSource={RelativeSource Mode=TemplatedParent}}"/>
+                        <Trigger SourceName="ButtonRestore" Property="IsMouseOver" Value="True">
+                            <Setter TargetName="ButtonRestore" Property="Background" Value="{Binding OtherButtonHoverBrush, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+                            <Setter TargetName="ButtonRestore" Property="Foreground" Value="{Binding OtherButtonHoverForeground, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
                         </Trigger>
-                        <Trigger Property="IsMouseOver" Value="True" SourceName="ButtonMin">
-                            <Setter Property="Background" TargetName="ButtonMin" Value="{Binding OtherButtonHoverBrush,RelativeSource={RelativeSource Mode=TemplatedParent}}"/>
-                            <Setter Property="Foreground" TargetName="ButtonMin" Value="{Binding OtherButtonHoverForeground,RelativeSource={RelativeSource Mode=TemplatedParent}}"/>
+                        <Trigger SourceName="ButtonMin" Property="IsMouseOver" Value="True">
+                            <Setter TargetName="ButtonMin" Property="Background" Value="{Binding OtherButtonHoverBrush, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
+                            <Setter TargetName="ButtonMin" Property="Foreground" Value="{Binding OtherButtonHoverForeground, RelativeSource={RelativeSource Mode=TemplatedParent}}" />
                         </Trigger>
                         <Trigger Property="ShowNoUserArea" Value="False">
-                            <Setter Property="Visibility" Value="Collapsed" TargetName="GridMenu"></Setter>
+                            <Setter TargetName="GridMenu" Property="Visibility" Value="Collapsed" />
                         </Trigger>
                         <Trigger Property="ShowTitle" Value="False">
-                            <Setter Property="Visibility" Value="Collapsed" TargetName="Title"></Setter>
+                            <Setter TargetName="Title" Property="Visibility" Value="Collapsed" />
                         </Trigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
-                                <Condition Property="ResizeMode" Value="CanResizeWithGrip"/>
+                                <Condition Property="ResizeMode" Value="CanResizeWithGrip" />
                                 <Condition Property="WindowState" Value="Normal" />
                             </MultiTrigger.Conditions>
                             <Setter TargetName="ResizeGrip" Property="Visibility" Value="Visible" />
@@ -118,7 +197,10 @@
             <Trigger Property="IsFullScreen" Value="True">
                 <Setter Property="WindowChrome.WindowChrome">
                     <Setter.Value>
-                        <WindowChrome CornerRadius="0" GlassFrameThickness="1" CaptionHeight="0"/>
+                        <WindowChrome
+                            CaptionHeight="0"
+                            CornerRadius="0"
+                            GlassFrameThickness="1" />
                     </Setter.Value>
                 </Setter>
             </Trigger>
@@ -127,80 +209,25 @@
 
     <Style TargetType="controls:TransitioningContentControl">
         <Setter Property="IsTabStop" Value="False" />
-        <Setter Property="Focusable" Value="False"/>
+        <Setter Property="Focusable" Value="False" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
         <Setter Property="VerticalContentAlignment" Value="Stretch" />
         <Setter Property="Transition" Value="DefaultTransition" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="controls:TransitioningContentControl">
-                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="2">
-                        <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup x:Name="PresentationStates">
-                                <VisualState x:Name="DefaultTransition">
-                                    <Storyboard>
-                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="PreviousContentPresentationSite" Storyboard.TargetProperty="(UIElement.Opacity)">
-                                            <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1"/>
-                                            <SplineDoubleKeyFrame KeyTime="00:00:00.300" Value="0"/>
-                                        </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimation BeginTime="00:00:00" Duration="00:00:00.500" Storyboard.TargetName="CurrentContentPresentationSite" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" From="50" To="0">
-                                            <DoubleAnimation.EasingFunction>
-                                                <CubicEase EasingMode="EaseOut" />
-                                            </DoubleAnimation.EasingFunction>
-                                        </DoubleAnimation>
-                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="PreviousContentPresentationSite" Storyboard.TargetProperty="(UIElement.Opacity)">
-                                            <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1" />
-                                            <SplineDoubleKeyFrame KeyTime="00:00:00.100" Value="0" />
-                                        </DoubleAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState x:Name="Normal">
-                                    <Storyboard>
-                                        <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="PreviousContentPresentationSite" Storyboard.TargetProperty="(UIElement.Visibility)">
-                                            <DiscreteObjectKeyFrame KeyTime="00:00:00">
-                                                <DiscreteObjectKeyFrame.Value>
-                                                    <Visibility>Collapsed</Visibility>
-                                                </DiscreteObjectKeyFrame.Value>
-                                            </DiscreteObjectKeyFrame>
-                                        </ObjectAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState x:Name="UpTransition">
-                                    <Storyboard>
-                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="CurrentContentPresentationSite" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
-                                            <SplineDoubleKeyFrame KeyTime="00:00:00" Value="30" />
-                                            <SplineDoubleKeyFrame KeyTime="00:00:00.300" Value="0" />
-                                        </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="PreviousContentPresentationSite" Storyboard.TargetProperty="(UIElement.Opacity)">
-                                            <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1" />
-                                            <SplineDoubleKeyFrame KeyTime="00:00:00.300" Value="0" />
-                                        </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="PreviousContentPresentationSite" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
-                                            <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0" />
-                                            <SplineDoubleKeyFrame KeyTime="00:00:00.300" Value="-30" />
-                                        </DoubleAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState x:Name="DownTransition">
-                                    <Storyboard>
-                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="CurrentContentPresentationSite" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
-                                            <SplineDoubleKeyFrame KeyTime="00:00:00" Value="-40" />
-                                            <SplineDoubleKeyFrame KeyTime="00:00:00.300" Value="0" />
-                                        </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="PreviousContentPresentationSite" Storyboard.TargetProperty="(UIElement.Opacity)">
-                                            <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1" />
-                                            <SplineDoubleKeyFrame KeyTime="00:00:00.300" Value="0" />
-                                        </DoubleAnimationUsingKeyFrames>
-                                        <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="PreviousContentPresentationSite" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
-                                            <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0" />
-                                            <SplineDoubleKeyFrame KeyTime="00:00:00.300" Value="40" />
-                                        </DoubleAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
-                            </VisualStateGroup>
-                        </VisualStateManager.VisualStateGroups>
+                    <Border
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="2">
                         <Grid>
-                            <ContentPresenter x:Name="PreviousContentPresentationSite" Content="{x:Null}" ContentTemplate="{TemplateBinding ContentTemplate}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                            <ContentPresenter
+                                x:Name="PreviousContentPresentationSite"
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                Content="{x:Null}"
+                                ContentTemplate="{TemplateBinding ContentTemplate}">
                                 <ContentPresenter.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform />
@@ -210,7 +237,12 @@
                                     </TransformGroup>
                                 </ContentPresenter.RenderTransform>
                             </ContentPresenter>
-                            <ContentPresenter x:Name="CurrentContentPresentationSite" Content="{x:Null}" ContentTemplate="{TemplateBinding ContentTemplate}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                            <ContentPresenter
+                                x:Name="CurrentContentPresentationSite"
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                Content="{x:Null}"
+                                ContentTemplate="{TemplateBinding ContentTemplate}">
                                 <ContentPresenter.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform />
@@ -221,6 +253,103 @@
                                 </ContentPresenter.RenderTransform>
                             </ContentPresenter>
                         </Grid>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="PresentationStates">
+                                <VisualState x:Name="DefaultTransition">
+                                    <Storyboard>
+                                        <DoubleAnimationUsingKeyFrames
+                                            BeginTime="00:00:00"
+                                            Storyboard.TargetName="PreviousContentPresentationSite"
+                                            Storyboard.TargetProperty="(UIElement.Opacity)">
+                                            <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1" />
+                                            <SplineDoubleKeyFrame KeyTime="00:00:00.300" Value="0" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimation
+                                            BeginTime="00:00:00"
+                                            Storyboard.TargetName="CurrentContentPresentationSite"
+                                            Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)"
+                                            From="50"
+                                            To="0"
+                                            Duration="00:00:00.500">
+                                            <DoubleAnimation.EasingFunction>
+                                                <CubicEase EasingMode="EaseOut" />
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                        <DoubleAnimationUsingKeyFrames
+                                            BeginTime="00:00:00"
+                                            Storyboard.TargetName="PreviousContentPresentationSite"
+                                            Storyboard.TargetProperty="(UIElement.Opacity)">
+                                            <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1" />
+                                            <SplineDoubleKeyFrame KeyTime="00:00:00.100" Value="0" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="Normal">
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames
+                                            BeginTime="00:00:00"
+                                            Storyboard.TargetName="PreviousContentPresentationSite"
+                                            Storyboard.TargetProperty="(UIElement.Visibility)">
+                                            <DiscreteObjectKeyFrame KeyTime="00:00:00">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Collapsed</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="UpTransition">
+                                    <Storyboard>
+                                        <DoubleAnimationUsingKeyFrames
+                                            BeginTime="00:00:00"
+                                            Storyboard.TargetName="CurrentContentPresentationSite"
+                                            Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
+                                            <SplineDoubleKeyFrame KeyTime="00:00:00" Value="30" />
+                                            <SplineDoubleKeyFrame KeyTime="00:00:00.300" Value="0" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames
+                                            BeginTime="00:00:00"
+                                            Storyboard.TargetName="PreviousContentPresentationSite"
+                                            Storyboard.TargetProperty="(UIElement.Opacity)">
+                                            <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1" />
+                                            <SplineDoubleKeyFrame KeyTime="00:00:00.300" Value="0" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames
+                                            BeginTime="00:00:00"
+                                            Storyboard.TargetName="PreviousContentPresentationSite"
+                                            Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
+                                            <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0" />
+                                            <SplineDoubleKeyFrame KeyTime="00:00:00.300" Value="-30" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                                <VisualState x:Name="DownTransition">
+                                    <Storyboard>
+                                        <DoubleAnimationUsingKeyFrames
+                                            BeginTime="00:00:00"
+                                            Storyboard.TargetName="CurrentContentPresentationSite"
+                                            Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
+                                            <SplineDoubleKeyFrame KeyTime="00:00:00" Value="-40" />
+                                            <SplineDoubleKeyFrame KeyTime="00:00:00.300" Value="0" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames
+                                            BeginTime="00:00:00"
+                                            Storyboard.TargetName="PreviousContentPresentationSite"
+                                            Storyboard.TargetProperty="(UIElement.Opacity)">
+                                            <SplineDoubleKeyFrame KeyTime="00:00:00" Value="1" />
+                                            <SplineDoubleKeyFrame KeyTime="00:00:00.300" Value="0" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                        <DoubleAnimationUsingKeyFrames
+                                            BeginTime="00:00:00"
+                                            Storyboard.TargetName="PreviousContentPresentationSite"
+                                            Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)">
+                                            <SplineDoubleKeyFrame KeyTime="00:00:00" Value="0" />
+                                            <SplineDoubleKeyFrame KeyTime="00:00:00.300" Value="40" />
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>

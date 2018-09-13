@@ -1,12 +1,14 @@
-﻿<UserControl x:Class="MoalemYar.UserControls.SettingsView"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:MoalemYar.UserControls"
-             xmlns:controls="clr-namespace:HandyControl.Controls;assembly=HandyControl"
-             mc:Ignorable="d" Loaded="UserControl_Loaded"
-             Style="{StaticResource myUserControl}">
+﻿<UserControl
+    x:Class="MoalemYar.UserControls.SettingsView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:HandyControl.Controls;assembly=HandyControl"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:MoalemYar.UserControls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Loaded="UserControl_Loaded"
+    Style="{StaticResource myUserControl}"
+    mc:Ignorable="d">
     <controls:TransitioningContentControl>
         <controls:ScrollViewer HorizontalScrollBarVisibility="Auto">
             <WrapPanel>
@@ -15,24 +17,47 @@
                         <StackPanel Orientation="Horizontal">
                             <StackPanel Orientation="Vertical">
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Margin="10" Style="{StaticResource TextBlockSubTitle}" Text="اجرای خودکار"/>
-                                    <ToggleButton x:Name="swAutoStart" Margin="10" Checked="swAutoStart_Checked" Unchecked="swAutoStart_Checked" Style="{StaticResource ToggleButtonSwitch}" />
+                                    <TextBlock
+                                        Margin="10"
+                                        Style="{StaticResource TextBlockSubTitle}"
+                                        Text="اجرای خودکار" />
+                                    <ToggleButton
+                                        x:Name="swAutoStart"
+                                        Margin="10"
+                                        Checked="swAutoStart_Checked"
+                                        Style="{StaticResource ToggleButtonSwitch}"
+                                        Unchecked="swAutoStart_Checked" />
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Margin="10" Style="{StaticResource TextBlockSubTitle}" Text="ورود با رمز عبور"/>
-                                    <ToggleButton x:Name="swLogin"  Margin="10" Checked="swLogin_Checked" Unchecked="swLogin_Checked" Style="{StaticResource ToggleButtonSwitch}" />
+                                    <TextBlock
+                                        Margin="10"
+                                        Style="{StaticResource TextBlockSubTitle}"
+                                        Text="ورود با رمز عبور" />
+                                    <ToggleButton
+                                        x:Name="swLogin"
+                                        Margin="10"
+                                        Checked="swLogin_Checked"
+                                        Style="{StaticResource ToggleButtonSwitch}"
+                                        Unchecked="swLogin_Checked" />
                                 </StackPanel>
                                 <Grid Margin="10">
-                                    <ComboBox x:Name="cmbServer" ItemsSource="{Binding}"
-                                       SelectionChanged="cmbServer_SelectionChanged"
-                                       VerticalAlignment="Top" HorizontalAlignment="Left" Width="200">
-                                    </ComboBox>
-                                    <TextBlock Text=" انتخاب سرور بخشنامه " IsHitTestVisible="False" HorizontalAlignment="Left" Width="200">
+                                    <ComboBox
+                                        x:Name="cmbServer"
+                                        Width="200"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Top"
+                                        ItemsSource="{Binding}"
+                                        SelectionChanged="cmbServer_SelectionChanged" />
+                                    <TextBlock
+                                        Width="200"
+                                        HorizontalAlignment="Left"
+                                        IsHitTestVisible="False"
+                                        Text=" انتخاب سرور بخشنامه ">
                                         <TextBlock.Style>
                                             <Style TargetType="TextBlock">
                                                 <Setter Property="Visibility" Value="Hidden" />
                                                 <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding ElementName=cmbServer,Path=SelectedItem}" Value="{x:Null}">
+                                                    <DataTrigger Binding="{Binding ElementName=cmbServer, Path=SelectedItem}" Value="{x:Null}">
                                                         <Setter Property="Visibility" Value="Visible" />
                                                     </DataTrigger>
                                                 </Style.Triggers>
@@ -42,33 +67,84 @@
                                 </Grid>
                             </StackPanel>
                             <StackPanel Margin="10" Orientation="Horizontal">
-                                <Button x:Name="btnFactoryReset" Click="btnFactoryReset_Click" HorizontalAlignment="Left
-                                        " VerticalAlignment="Top" Width="140" Style="{StaticResource ButtonDanger}" Height="35">
-                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                                        <Image Height="16" Width="16" Margin="0,0,10,0" Source="/Resources/Reset.png" />
-                                        <TextBlock TextWrapping="NoWrap" Text="بازیابی تنظیمات" FontSize="13" Foreground="#ffffff" />
+                                <Button
+                                    x:Name="btnFactoryReset"
+                                    Width="140"
+                                    Height="35"
+                                    HorizontalAlignment="Left                                         "
+                                    VerticalAlignment="Top"
+                                    Click="btnFactoryReset_Click"
+                                    Style="{StaticResource ButtonDanger}">
+                                    <StackPanel
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Center"
+                                        Orientation="Horizontal">
+                                        <Image
+                                            Width="16"
+                                            Height="16"
+                                            Margin="0,0,10,0"
+                                            Source="/Resources/Reset.png" />
+                                        <TextBlock
+                                            FontSize="13"
+                                            Foreground="#ffffff"
+                                            Text="بازیابی تنظیمات"
+                                            TextWrapping="NoWrap" />
                                     </StackPanel>
                                 </Button>
-                                <Button x:Name="btnDatabaseReset" Margin="10,0" Click="btnDatabaseReset_Click" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Style="{StaticResource ButtonDanger}" Height="35">
-                                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                                        <Image Height="16" Width="16" Margin="0,0,10,0" Source="/Resources/Reset.png" />
-                                        <TextBlock TextWrapping="NoWrap" Text="بازیابی دیتابیس" FontSize="13" Foreground="#ffffff" />
+                                <Button
+                                    x:Name="btnDatabaseReset"
+                                    Width="140"
+                                    Height="35"
+                                    Margin="10,0"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"
+                                    Click="btnDatabaseReset_Click"
+                                    Style="{StaticResource ButtonDanger}">
+                                    <StackPanel
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Center"
+                                        Orientation="Horizontal">
+                                        <Image
+                                            Width="16"
+                                            Height="16"
+                                            Margin="0,0,10,0"
+                                            Source="/Resources/Reset.png" />
+                                        <TextBlock
+                                            FontSize="13"
+                                            Foreground="#ffffff"
+                                            Text="بازیابی دیتابیس"
+                                            TextWrapping="NoWrap" />
                                     </StackPanel>
                                 </Button>
                             </StackPanel>
                             <StackPanel Margin="10" Orientation="Vertical">
-                                <ContentControl Margin="2" Name="cmbChartType" TabIndex="3" Focusable="False" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="233">
+                                <ContentControl
+                                    Name="cmbChartType"
+                                    Width="233"
+                                    Height="30"
+                                    Margin="2"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"
+                                    Focusable="False"
+                                    TabIndex="3">
                                     <ContentControl.ContentTemplate>
                                         <DataTemplate>
                                             <Grid>
-                                                <ComboBox TabIndex="4" x:Name="cmbChart" SelectionChanged="cmbChart_SelectionChanged">
+                                                <ComboBox
+                                                    x:Name="cmbChart"
+                                                    SelectionChanged="cmbChart_SelectionChanged"
+                                                    TabIndex="4">
                                                     <ComboBoxItem Content="ستونی" />
                                                     <ComboBoxItem Content="ستونی نوع 2" />
                                                     <ComboBoxItem Content="خطی" />
                                                     <ComboBoxItem Content="خطی نوع 2" />
                                                     <ComboBoxItem Content="ناحیه" />
                                                 </ComboBox>
-                                                <TextBlock x:Name="tb" Text=" نوع نمودار " IsHitTestVisible="False" Visibility="Hidden" />
+                                                <TextBlock
+                                                    x:Name="tb"
+                                                    IsHitTestVisible="False"
+                                                    Text=" نوع نمودار "
+                                                    Visibility="Hidden" />
                                             </Grid>
                                             <DataTemplate.Triggers>
                                                 <Trigger SourceName="cmbChart" Property="SelectedItem" Value="{x:Null}">
@@ -81,16 +157,31 @@
 
                                 <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
                                 <StackPanel Orientation="Horizontal">
-                                    <ContentControl Margin="2" Name="cmbChartColor" TabIndex="3" Focusable="False" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Width="233">
+                                    <ContentControl
+                                        Name="cmbChartColor"
+                                        Width="233"
+                                        Height="30"
+                                        Margin="2"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Top"
+                                        Focusable="False"
+                                        TabIndex="3">
                                         <ContentControl.ContentTemplate>
                                             <DataTemplate>
                                                 <Grid>
-                                                    <ComboBox TabIndex="4" x:Name="cmbChartColor" SelectionChanged="cmbChartColor_SelectionChanged">
+                                                    <ComboBox
+                                                        x:Name="cmbChartColor"
+                                                        SelectionChanged="cmbChartColor_SelectionChanged"
+                                                        TabIndex="4">
                                                         <ComboBoxItem Content="سبز" />
                                                         <ComboBoxItem Content="بنفش" />
                                                         <ComboBoxItem Content="نارنجی" />
                                                     </ComboBox>
-                                                    <TextBlock x:Name="tb" Text=" رنگ نمودار " IsHitTestVisible="False" Visibility="Hidden" />
+                                                    <TextBlock
+                                                        x:Name="tb"
+                                                        IsHitTestVisible="False"
+                                                        Text=" رنگ نمودار "
+                                                        Visibility="Hidden" />
                                                 </Grid>
                                                 <DataTemplate.Triggers>
                                                     <Trigger SourceName="cmbChartColor" Property="SelectedItem" Value="{x:Null}">
@@ -103,15 +194,24 @@
                                 </StackPanel>
                             </StackPanel>
                         </StackPanel>
-                        <GridSplitter Height="2" Margin="60,45,96,-7" HorizontalAlignment="Stretch" />
+                        <GridSplitter
+                            Height="2"
+                            Margin="60,45,96,-7"
+                            HorizontalAlignment="Stretch" />
                     </Grid>
                     <StackPanel Margin="10" Orientation="Horizontal">
                         <StackPanel Orientation="Vertical">
                             <Grid Margin="2">
-                                <ComboBox x:Name="cmbBase" ItemsSource="{Binding}"
-                                       SelectedValue="{Binding SchoolName}" SelectionChanged="cmbBase_SelectionChanged"
-                                       SelectedValuePath="Id"   TabIndex="4"
-                                       VerticalAlignment="Top" HorizontalAlignment="Left" Width="200">
+                                <ComboBox
+                                    x:Name="cmbBase"
+                                    Width="200"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"
+                                    ItemsSource="{Binding}"
+                                    SelectedValue="{Binding SchoolName}"
+                                    SelectedValuePath="Id"
+                                    SelectionChanged="cmbBase_SelectionChanged"
+                                    TabIndex="4">
                                     <ComboBox.ItemTemplate>
                                         <DataTemplate>
                                             <StackPanel Orientation="Horizontal">
@@ -124,12 +224,16 @@
                                         </DataTemplate>
                                     </ComboBox.ItemTemplate>
                                 </ComboBox>
-                                <TextBlock Text=" انتخاب کلاس " IsHitTestVisible="False" HorizontalAlignment="Left" Width="200">
+                                <TextBlock
+                                    Width="200"
+                                    HorizontalAlignment="Left"
+                                    IsHitTestVisible="False"
+                                    Text=" انتخاب کلاس ">
                                     <TextBlock.Style>
                                         <Style TargetType="TextBlock">
                                             <Setter Property="Visibility" Value="Hidden" />
                                             <Style.Triggers>
-                                                <DataTrigger Binding="{Binding ElementName=cmbBase,Path=SelectedItem}" Value="{x:Null}">
+                                                <DataTrigger Binding="{Binding ElementName=cmbBase, Path=SelectedItem}" Value="{x:Null}">
                                                     <Setter Property="Visibility" Value="Visible" />
                                                 </DataTrigger>
                                             </Style.Triggers>
@@ -138,19 +242,54 @@
                                 </TextBlock>
                             </Grid>
                         </StackPanel>
-                        <StackPanel Orientation="Horizontal" Margin="10,0">
-                            <Button Tag="Backup" Click="btnBackup_Click" HorizontalAlignment="Left" VerticalAlignment="Top" 
-                                    Width="150" Style="{StaticResource ButtonSuccess}" Height="35">
-                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                                    <Image Height="16" Width="16" Margin="0,0,10,0" Source="/Resources/backup.png" />
-                                    <TextBlock TextWrapping="NoWrap" Text="تهیه فایل پشتیبان" FontSize="13" Foreground="#ffffff" />
+                        <StackPanel Margin="10,0" Orientation="Horizontal">
+                            <Button
+                                Width="150"
+                                Height="35"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                Click="btnBackup_Click"
+                                Style="{StaticResource ButtonSuccess}"
+                                Tag="Backup">
+                                <StackPanel
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    Orientation="Horizontal">
+                                    <Image
+                                        Width="16"
+                                        Height="16"
+                                        Margin="0,0,10,0"
+                                        Source="/Resources/backup.png" />
+                                    <TextBlock
+                                        FontSize="13"
+                                        Foreground="#ffffff"
+                                        Text="تهیه فایل پشتیبان"
+                                        TextWrapping="NoWrap" />
                                 </StackPanel>
                             </Button>
-                            <Button Tag="Restore" Click="btnBackup_Click" Margin="10,0" HorizontalAlignment="Left" 
-                                    VerticalAlignment="Top" Width="160" Style="{StaticResource ButtonSuccess}" Height="35">
-                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                                    <Image Height="16" Width="16" Margin="0,0,10,0" Source="/Resources/restore.png" />
-                                    <TextBlock TextWrapping="NoWrap" Text="بازگرداندن پشتیبان" FontSize="13" Foreground="#ffffff" />
+                            <Button
+                                Width="160"
+                                Height="35"
+                                Margin="10,0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                Click="btnBackup_Click"
+                                Style="{StaticResource ButtonSuccess}"
+                                Tag="Restore">
+                                <StackPanel
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    Orientation="Horizontal">
+                                    <Image
+                                        Width="16"
+                                        Height="16"
+                                        Margin="0,0,10,0"
+                                        Source="/Resources/restore.png" />
+                                    <TextBlock
+                                        FontSize="13"
+                                        Foreground="#ffffff"
+                                        Text="بازگرداندن پشتیبان"
+                                        TextWrapping="NoWrap" />
                                 </StackPanel>
                             </Button>
                         </StackPanel>

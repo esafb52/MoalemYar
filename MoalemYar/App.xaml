@@ -1,10 +1,11 @@
-﻿<Application x:Class="MoalemYar.App"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:MoalemYar"
-             xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2"
-             xmlns:sys="clr-namespace:System;assembly=mscorlib"
-             StartupUri="MainWindow.xaml">
+﻿<Application
+    x:Class="MoalemYar.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2"
+    xmlns:local="clr-namespace:MoalemYar"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
 
@@ -31,8 +32,12 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type Button}">
-                            <Border x:Name="border" CornerRadius="2" Background="{TemplateBinding Background}" UseLayoutRounding="{TemplateBinding UseLayoutRounding}">
-                                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" />
+                            <Border
+                                x:Name="border"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="2"
+                                UseLayoutRounding="{TemplateBinding UseLayoutRounding}">
+                                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="Center" />
                             </Border>
                             <ControlTemplate.Triggers>
                                 <Trigger Property="IsMouseOver" Value="true">
@@ -52,8 +57,12 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type Button}">
-                            <Border x:Name="border" CornerRadius="2" Background="{TemplateBinding Background}" UseLayoutRounding="{TemplateBinding UseLayoutRounding}">
-                                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" />
+                            <Border
+                                x:Name="border"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="2"
+                                UseLayoutRounding="{TemplateBinding UseLayoutRounding}">
+                                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="Center" />
                             </Border>
                             <ControlTemplate.Triggers>
                                 <Trigger Property="IsMouseOver" Value="true">
@@ -72,8 +81,12 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type Button}">
-                            <Border x:Name="border" CornerRadius="2" Background="{TemplateBinding Background}" UseLayoutRounding="{TemplateBinding UseLayoutRounding}">
-                                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" />
+                            <Border
+                                x:Name="border"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="2"
+                                UseLayoutRounding="{TemplateBinding UseLayoutRounding}">
+                                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="Center" />
                             </Border>
                             <ControlTemplate.Triggers>
                                 <Trigger Property="IsMouseOver" Value="true">
@@ -92,8 +105,12 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type Button}">
-                            <Border x:Name="border" CornerRadius="2" Background="{TemplateBinding Background}" UseLayoutRounding="{TemplateBinding UseLayoutRounding}">
-                                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" />
+                            <Border
+                                x:Name="border"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="2"
+                                UseLayoutRounding="{TemplateBinding UseLayoutRounding}">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                             </Border>
                             <ControlTemplate.Triggers>
                                 <Trigger Property="IsMouseOver" Value="true">
@@ -113,8 +130,12 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type Button}">
-                            <Border x:Name="border" CornerRadius="2" Background="{TemplateBinding Background}" UseLayoutRounding="{TemplateBinding UseLayoutRounding}">
-                                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" />
+                            <Border
+                                x:Name="border"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="2"
+                                UseLayoutRounding="{TemplateBinding UseLayoutRounding}">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                             </Border>
                             <ControlTemplate.Triggers>
                                 <Trigger Property="IsMouseOver" Value="true">
@@ -134,9 +155,21 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type Button}">
-                            <Border x:Name="border" CornerRadius="2" Background="{TemplateBinding Background}" UseLayoutRounding="{TemplateBinding UseLayoutRounding}">
-                                <StackPanel x:Name="stackPanel" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                                    <Image Source="Icons/Update.png" Width="16" Height="16" Margin="10,0,30,0" />
+                            <Border
+                                x:Name="border"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="2"
+                                UseLayoutRounding="{TemplateBinding UseLayoutRounding}">
+                                <StackPanel
+                                    x:Name="stackPanel"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    Orientation="Horizontal">
+                                    <Image
+                                        Width="16"
+                                        Height="16"
+                                        Margin="10,0,30,0"
+                                        Source="Icons/Update.png" />
                                     <ContentPresenter VerticalAlignment="Center" />
                                 </StackPanel>
                             </Border>
@@ -158,8 +191,15 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type Button}">
-                            <Border x:Name="border" CornerRadius="2" Background="{TemplateBinding Background}" UseLayoutRounding="{TemplateBinding UseLayoutRounding}">
-                                <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,-3,0,0" />
+                            <Border
+                                x:Name="border"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="2"
+                                UseLayoutRounding="{TemplateBinding UseLayoutRounding}">
+                                <ContentPresenter
+                                    Margin="0,-3,0,0"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center" />
                             </Border>
                             <ControlTemplate.Triggers>
                                 <Trigger Property="IsMouseOver" Value="true">
@@ -184,7 +224,14 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type PasswordBox}">
-                            <Border x:Name="border" CornerRadius="0,0,2,2" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" UseLayoutRounding="{TemplateBinding UseLayoutRounding}">
+                            <Border
+                                x:Name="border"
+                                Padding="{TemplateBinding Padding}"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="0,0,2,2"
+                                UseLayoutRounding="{TemplateBinding UseLayoutRounding}">
                                 <ScrollViewer x:Name="PART_ContentHost" />
                             </Border>
                         </ControlTemplate>
@@ -203,7 +250,12 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type DataGridCell}">
-                            <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="True">
+                            <Border
+                                Padding="{TemplateBinding Padding}"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                SnapsToDevicePixels="True">
                                 <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                             </Border>
                         </ControlTemplate>
@@ -239,7 +291,7 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type Thumb}">
-                            <Border Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" />
+                            <Border Padding="{TemplateBinding Padding}" Background="{TemplateBinding Background}" />
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
@@ -258,11 +310,31 @@
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type DataGridColumnHeader}">
                             <Grid>
-                                <Themes:DataGridHeaderBorder BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" IsClickable="{TemplateBinding CanUserSort}" IsPressed="{TemplateBinding IsPressed}" IsHovered="{TemplateBinding IsMouseOver}" Padding="{TemplateBinding Padding}" SortDirection="{TemplateBinding SortDirection}" SeparatorBrush="{TemplateBinding SeparatorBrush}" SeparatorVisibility="{TemplateBinding SeparatorVisibility}">
-                                    <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                                <Themes:DataGridHeaderBorder
+                                    Padding="{TemplateBinding Padding}"
+                                    Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    IsClickable="{TemplateBinding CanUserSort}"
+                                    IsHovered="{TemplateBinding IsMouseOver}"
+                                    IsPressed="{TemplateBinding IsPressed}"
+                                    SeparatorBrush="{TemplateBinding SeparatorBrush}"
+                                    SeparatorVisibility="{TemplateBinding SeparatorVisibility}"
+                                    SortDirection="{TemplateBinding SortDirection}">
+                                    <ContentPresenter
+                                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                        RecognizesAccessKey="True"
+                                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                                 </Themes:DataGridHeaderBorder>
-                                <Thumb x:Name="PART_LeftHeaderGripper" HorizontalAlignment="Left" Style="{StaticResource ColumnHeaderGripperStyle}" />
-                                <Thumb x:Name="PART_RightHeaderGripper" HorizontalAlignment="Right" Style="{StaticResource ColumnHeaderGripperStyle}" />
+                                <Thumb
+                                    x:Name="PART_LeftHeaderGripper"
+                                    HorizontalAlignment="Left"
+                                    Style="{StaticResource ColumnHeaderGripperStyle}" />
+                                <Thumb
+                                    x:Name="PART_RightHeaderGripper"
+                                    HorizontalAlignment="Right"
+                                    Style="{StaticResource ColumnHeaderGripperStyle}" />
                             </Grid>
                         </ControlTemplate>
                     </Setter.Value>
@@ -278,9 +350,9 @@
 
             <Style x:Key="txtPassword" TargetType="{x:Type PasswordBox}">
                 <Setter Property="Padding" Value="4" />
-                <Setter Property="Margin" Value="0 5 0 5" />
+                <Setter Property="Margin" Value="0,5,0,5" />
                 <Setter Property="BorderBrush" Value="{StaticResource WordBlueBrush}" />
-                <Setter Property="BorderThickness" Value="1 1 1 1" />
+                <Setter Property="BorderThickness" Value="1,1,1,1" />
                 <Setter Property="Background" Value="{StaticResource ForegroundLightBrush}" />
                 <Setter Property="Foreground" Value="{StaticResource ForegroundVeryDarkBrush}" />
                 <Setter Property="local:MonitorPasswordProperty.Value" Value="True" />
@@ -291,34 +363,40 @@
 
                             <Grid>
 
-                                <Border x:Name="border"
-                                BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}"
-                                Background="{TemplateBinding Background}"
-                                SnapsToDevicePixels="True">
-                                    <ScrollViewer x:Name="PART_ContentHost" Focusable="False" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden" />
+                                <Border
+                                    x:Name="border"
+                                    Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    SnapsToDevicePixels="True">
+                                    <ScrollViewer
+                                        x:Name="PART_ContentHost"
+                                        Focusable="False"
+                                        HorizontalScrollBarVisibility="Hidden"
+                                        VerticalScrollBarVisibility="Hidden" />
                                 </Border>
 
-                                <TextBlock IsHitTestVisible="False"
-                                   Text="{TemplateBinding Tag}"
-                                   x:Name="placeholder"
-                                   Padding="{TemplateBinding Padding}"
-                                   Visibility="{TemplateBinding local:HasTextProperty.Value, Converter={local:BooleanToVisiblityConverter}}"
-                                   VerticalAlignment="Center"
-                                   HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
-                                   Foreground="{StaticResource ForegroundVeryDarkBrush}">
-                                </TextBlock>
+                                <TextBlock
+                                    x:Name="placeholder"
+                                    Padding="{TemplateBinding Padding}"
+                                    HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                                    VerticalAlignment="Center"
+                                    Foreground="{StaticResource ForegroundVeryDarkBrush}"
+                                    IsHitTestVisible="False"
+                                    Text="{TemplateBinding Tag}"
+                                    Visibility="{TemplateBinding local:HasTextProperty.Value,
+                                                                 Converter={local:BooleanToVisiblityConverter}}" />
                             </Grid>
 
                             <ControlTemplate.Triggers>
                                 <Trigger Property="IsEnabled" Value="False">
-                                    <Setter Property="Opacity" TargetName="border" Value="0.56" />
+                                    <Setter TargetName="border" Property="Opacity" Value="0.56" />
                                 </Trigger>
                                 <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="BorderBrush" TargetName="border" Value="#FF7EB4EA" />
+                                    <Setter TargetName="border" Property="BorderBrush" Value="#FF7EB4EA" />
                                 </Trigger>
                                 <Trigger Property="IsKeyboardFocused" Value="True">
-                                    <Setter Property="BorderBrush" TargetName="border" Value="#FF569DE5" />
+                                    <Setter TargetName="border" Property="BorderBrush" Value="#FF569DE5" />
                                 </Trigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>

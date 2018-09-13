@@ -6,7 +6,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:Region}">
-                    <ContentPresenter ContentSource="{TemplateBinding Content}"/>
+                    <ContentPresenter ContentSource="{TemplateBinding Content}" />
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

@@ -1,23 +1,66 @@
-﻿<UserControl x:Class="MoalemYar.UserControls.AzmonResultView"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:MoalemYar.UserControls"
-             xmlns:controls="clr-namespace:HandyControl.Controls;assembly=HandyControl"
-             mc:Ignorable="d"  Style="{StaticResource myUserControl}" Loaded="UserControl_Loaded">
+﻿<UserControl
+    x:Class="MoalemYar.UserControls.AzmonResultView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:HandyControl.Controls;assembly=HandyControl"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:MoalemYar.UserControls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Loaded="UserControl_Loaded"
+    Style="{StaticResource myUserControl}"
+    mc:Ignorable="d">
     <controls:TransitioningContentControl>
         <controls:ScrollViewer HorizontalScrollBarVisibility="Auto">
             <Grid>
-                <StackPanel Margin="10" HorizontalAlignment="Center" Orientation="Vertical">
-                    <Label Name="txtTrue" HorizontalAlignment="Center" Margin="5,5" Foreground="Green" Style="{StaticResource LabelInfo}" Content="تعداد پاسخ صحیح {0}" />
-                    <Label Name="txtFalse" HorizontalAlignment="Center" Margin="5,5" Foreground="Red" Style="{StaticResource LabelInfo}" Content="تعداد پاسخ غلط {0}" />
-                    <Label Name="txtNon" HorizontalAlignment="Center" Margin="5,5" Foreground="Gray" Style="{StaticResource LabelInfo}" Content="تعداد نزده {0}" />
-                    <Button x:Name="btnBack" Click="btnBack_Click" IsDefault="True" Margin="5,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="190" 
-                            Style="{StaticResource ButtonWarning}" Height="35">
-                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                            <Image Height="16" Width="16" Margin="10,0,30,0" Source="/Resources/Back.png" />
-                            <TextBlock TextWrapping="NoWrap" Text="برگشت به آزمون" FontSize="13" Foreground="#ffffff" />
+                <StackPanel
+                    Margin="10"
+                    HorizontalAlignment="Center"
+                    Orientation="Vertical">
+                    <Label
+                        Name="txtTrue"
+                        Margin="5,5"
+                        HorizontalAlignment="Center"
+                        Content="تعداد پاسخ صحیح {0}"
+                        Foreground="Green"
+                        Style="{StaticResource LabelInfo}" />
+                    <Label
+                        Name="txtFalse"
+                        Margin="5,5"
+                        HorizontalAlignment="Center"
+                        Content="تعداد پاسخ غلط {0}"
+                        Foreground="Red"
+                        Style="{StaticResource LabelInfo}" />
+                    <Label
+                        Name="txtNon"
+                        Margin="5,5"
+                        HorizontalAlignment="Center"
+                        Content="تعداد نزده {0}"
+                        Foreground="Gray"
+                        Style="{StaticResource LabelInfo}" />
+                    <Button
+                        x:Name="btnBack"
+                        Width="190"
+                        Height="35"
+                        Margin="5,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Click="btnBack_Click"
+                        IsDefault="True"
+                        Style="{StaticResource ButtonWarning}">
+                        <StackPanel
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Orientation="Horizontal">
+                            <Image
+                                Width="16"
+                                Height="16"
+                                Margin="10,0,30,0"
+                                Source="/Resources/Back.png" />
+                            <TextBlock
+                                FontSize="13"
+                                Foreground="#ffffff"
+                                Text="برگشت به آزمون"
+                                TextWrapping="NoWrap" />
                         </StackPanel>
                     </Button>
                 </StackPanel>

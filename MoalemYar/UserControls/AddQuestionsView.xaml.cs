@@ -164,7 +164,7 @@ namespace MoalemYar.UserControls
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.main.region.Content = null;
+            MainWindow.main.ClearScreen();
         }
 
         private void tabc_SelectionChanged(object sender, SelectionChangedEventArgs e)

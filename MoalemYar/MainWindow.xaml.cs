@@ -41,7 +41,10 @@ namespace MoalemYar
 
             ShowCredentialDialog();
         }
-
+        public void ClearScreen()
+        {
+            region.Content = null;
+        }
         private void TreeViewItem_Selected(object sender, RoutedEventArgs e)
         {
             var navigationService = NavigationServiceProvider.GetNavigationServiceInstance();

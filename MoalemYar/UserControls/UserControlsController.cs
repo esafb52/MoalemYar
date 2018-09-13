@@ -8,7 +8,6 @@ namespace MoalemYar.UserControls
         {
             ExecuteNavigation();
         }
-
         public void AddSchool()
         {
             ExecuteNavigation();
