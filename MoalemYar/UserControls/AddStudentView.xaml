@@ -156,7 +156,6 @@
                                             x:Name="cmbBase"
                                             Width="200"
                                             HorizontalAlignment="Left"
-                                            VerticalAlignment="Top"
                                             ItemsSource="{Binding}"
                                             SelectedValue="{Binding SchoolName}"
                                             SelectedValuePath="Id"

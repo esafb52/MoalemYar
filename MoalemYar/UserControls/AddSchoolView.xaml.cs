@@ -24,7 +24,6 @@ namespace MoalemYar.UserControls
     public partial class AddSchoolView : UserControl
     {
         internal static AddSchoolView main;
-        private int runOnce = 0;
         private PersianCalendar pc = new PersianCalendar();
         private string strDate;
         private List<DataClass.Tables.School> _initialCollection;
@@ -125,11 +124,7 @@ namespace MoalemYar.UserControls
         {
             if (tabc.SelectedIndex == 1)
             {
-                if (runOnce == 0)
-                {
-                    getSchool();
-                    runOnce = 1;
-                }
+                getSchool();
             }
         }
 
@@ -242,12 +237,6 @@ namespace MoalemYar.UserControls
                 }
             }
         }
-
-        private void txtEditSearch_ButtonClick(object sender, EventArgs e)
-        {
-            getSchool();
-        }
-
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             MainWindow.main.ShowDeleteConfirmNotification(txtSchool.Text, "مدرسه");

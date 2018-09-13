@@ -22,7 +22,6 @@ namespace MoalemYar.UserControls
     public partial class AddUserView : UserControl
     {
         internal static AddUserView main;
-        private int runOnce = 0;
         private List<DataClass.Tables.User> _initialCollection;
 
         public AddUserView()
@@ -107,11 +106,7 @@ namespace MoalemYar.UserControls
         {
             if (tabc.SelectedIndex == 1)
             {
-                if (runOnce == 0)
-                {
-                    getUser();
-                    runOnce = 1;
-                }
+                getUser();
             }
         }
 

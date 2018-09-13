@@ -30,7 +30,6 @@ namespace MoalemYar.UserControls
     public partial class QuestionsListView : UserControl
     {
         private ObservableCollection<string> list = new ObservableCollection<string>();
-        private bool runOnceSchool = true;
         internal static QuestionsListView main;
         private PersianCalendar pc = new PersianCalendar();
         private static string strDate;
@@ -278,12 +277,7 @@ namespace MoalemYar.UserControls
 
         private void tabc_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (runOnceSchool)
-            {
-                getSchool();
-
-                runOnceSchool = false;
-            }
+            getSchool();
         }
 
         private void cmbBase_SelectionChanged(object sender, SelectionChangedEventArgs e)

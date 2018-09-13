@@ -24,7 +24,6 @@ namespace MoalemYar.UserControls
     /// </summary>
     public partial class AttendancelistView : UserControl
     {
-        private bool runOnceSchool = true;
         internal static AttendancelistView main;
         private List<DataClass.DataTransferObjects.StudentsDto> _initialCollection;
         private List<DataClass.Tables.Attendance> _initialCollectionAtendance;
@@ -219,11 +218,7 @@ namespace MoalemYar.UserControls
 
         private void tabc_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (runOnceSchool)
-            {
-                getSchool();
-                runOnceSchool = false;
-            }
+            getSchool();
         }
 
         private void cmbBase_SelectionChanged(object sender, SelectionChangedEventArgs e)

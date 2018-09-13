@@ -29,7 +29,6 @@ namespace MoalemYar.UserControls
     /// </summary>
     public partial class AddStudentView : UserControl
     {
-        private bool runOnceSchool = true;
         private bool isCreateThumbnail = false;
         internal static AddStudentView main;
         private List<DataClass.DataTransferObjects.SchoolsStudentsJointDto> _initialCollection;
@@ -174,11 +173,7 @@ namespace MoalemYar.UserControls
 
         private void tabc_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (runOnceSchool)
-            {
-                getSchool();
-                runOnceSchool = false;
-            }
+            getSchool();
         }
 
         private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
