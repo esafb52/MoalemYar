@@ -14,7 +14,7 @@
     <WarningLevel>4</WarningLevel>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <AssemblyVersion>1.1.4164.0</AssemblyVersion>
+    <AssemblyVersion>1.1.4166.0</AssemblyVersion>
     <TargetFrameworkProfile />
     <ShouldCreateLogs>False</ShouldCreateLogs>
     <AdvancedSettingsExpanded>True</AdvancedSettingsExpanded>
@@ -395,70 +395,13 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\tabIcon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\titleMuenIcon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Home.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Report.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\HomeMove.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Exam.png" />
-    <Resource Include="Resources\ExamMove.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\ReportMove.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Gears.png" />
-    <Resource Include="Resources\GearsMove.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Dashboard.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\School.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Students.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\User.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\Checkmark.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Groups.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Trophy.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Chart.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Verify.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Choose.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Boy.png" />
-    <Resource Include="Resources\Girl.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\Update.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Edit.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Back.png" />
@@ -473,35 +416,7 @@
     <Resource Include="Resources\start.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\more.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\book.png" />
-    <Resource Include="Resources\circular.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\roshd.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\Download.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Developer.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\CSharp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Fork.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Active.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Ask.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\editIcon.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Delete.png" />
@@ -510,37 +425,13 @@
     <Resource Include="Resources\add.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Fingerprint.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\FingerprintMove.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\open.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\cancel.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\PDFDark.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Question.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\Reset.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\EditTab.png" />
-    <Resource Include="Resources\EditTickTab.png" />
-    <Resource Include="Resources\PlusTab.png" />
-    <Resource Include="Resources\QuestionEditTab.png" />
-    <Resource Include="Resources\QuestionTab.png" />
-    <Resource Include="Resources\TickTab.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\LockEditTab.png" />
-    <Resource Include="Resources\LockTab.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\PDF.png" />
