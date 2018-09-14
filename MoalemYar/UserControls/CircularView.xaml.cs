@@ -101,19 +101,26 @@ namespace MoalemYar.UserControls
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             Task.Run(() => CalculateMyOperation());
-            //dynamic selectedItem = lst.SelectedItems[0];
-            //string row = selectedItem.Row;
-            //string title = selectedItem.Title;
-            //if (!System.IO.Directory.Exists(AppVariable.fileNameBakhsh + row + title))
-            //{
-            //    // txtDown.Text = "دانلود";
-            //}
-            //else
-            //{
-            //    // txtDown.Text = "مطالعه";
-            //    //Style style = this.FindResource("ButtonDanger") as Style;
+            try
+            {
+                dynamic selectedItem = lst.SelectedItems[0];
+                string row = selectedItem.Row;
+                string title = selectedItem.Title;
+                if (!System.IO.Directory.Exists(AppVariable.fileNameBakhsh + row + title))
+                {
+                    // txtDown.Text = "دانلود";
+                }
+                else
+                {
+                    // txtDown.Text = "مطالعه";
+                    //Style style = this.FindResource("ButtonDanger") as Style;
 
-            //}
+                }
+            }
+            catch (Exception)
+            {
+
+            }
         }
 
 
@@ -146,80 +153,79 @@ namespace MoalemYar.UserControls
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            //dynamic selectedItem = lst.SelectedItems[0];
-            //string row = selectedItem.Row;
-            //string title = selectedItem.Title;
-            //string Dlink = selectedItem.link;
-            //if (!System.IO.Directory.Exists(AppVariable.fileNameBakhsh + row + title))
-            //{
-            //    //prgDownload.Visibility = Visibility.Visible;
-            //    WebClient wc = new WebClient();
 
-            //    using (WebClient client = new WebClient())
-            //    {
-            //        if (Dlink.Contains("//portal/"))
-            //            Dlink = Dlink.Replace("//portal/", "/portal/");
-            //        Uri ur = new Uri(Dlink);
-            //        //Todo: fix 403 error
-            //        var data = wc.DownloadData(Dlink);
-            //        string fileExt = "";
-            //        if (!String.IsNullOrEmpty(wc.ResponseHeaders["Content-Disposition"]))
-            //        {
-            //            fileExt = System.IO.Path.GetExtension(wc.ResponseHeaders["Content-Disposition"].Substring(wc.ResponseHeaders["Content-Disposition"].IndexOf("filename=") + 9).Replace("\"", ""));
-            //        }
+            try
+            {
+                dynamic selectedItem = lst.SelectedItems[0];
+                string row = selectedItem.Row;
+                string title = selectedItem.Title;
+                string Dlink = selectedItem.link;
 
-            //        client.DownloadProgressChanged += (o, ex) =>
-            //        {
-            //            Dispatcher.Invoke(() =>
-            //            {
-            //                //prgDownload.Value = ex.ProgressPercentage;
-            //            });
-            //        };
+                if (!System.IO.Directory.Exists(AppVariable.fileNameBakhsh + row + title))
+                {
+                    WebClient wc = new WebClient();
 
-            //        string TotPath = AppVariable.fileNameBakhsh + row + title;
-            //        string dPath = string.Empty;
+                    using (WebClient client = new WebClient())
+                    {
+                        if (Dlink.Contains("//portal/"))
+                            Dlink = Dlink.Replace("//portal/", "/portal/");
+                        Uri ur = new Uri(Dlink);
+                        //Todo: fix 403 error
+                        var data = wc.DownloadData(Dlink);
+                        string fileExt = "";
+                        if (!String.IsNullOrEmpty(wc.ResponseHeaders["Content-Disposition"]))
+                        {
+                            fileExt = System.IO.Path.GetExtension(wc.ResponseHeaders["Content-Disposition"].Substring(wc.ResponseHeaders["Content-Disposition"].IndexOf("filename=") + 9).Replace("\"", ""));
+                        }
 
-            //        if (fileExt.Equals(".rar") || fileExt.Equals(".zip"))
-            //        {
-            //            dPath = AppVariable.fileNameBakhsh + @"\" + row + title + fileExt;
-            //        }
-            //        else
-            //        {
-            //            if (!System.IO.Directory.Exists(TotPath))
-            //                System.IO.Directory.CreateDirectory(TotPath);
-            //            dPath = TotPath + @"\" + row + title + fileExt;
-            //        }
+                        string TotPath = AppVariable.fileNameBakhsh + row + title;
+                        string dPath = string.Empty;
 
-            //        client.DownloadFileAsync(ur, dPath);
+                        if (fileExt.Equals(".rar") || fileExt.Equals(".zip"))
+                        {
+                            dPath = AppVariable.fileNameBakhsh + @"\" + row + title + fileExt;
+                        }
+                        else
+                        {
+                            if (!System.IO.Directory.Exists(TotPath))
+                                System.IO.Directory.CreateDirectory(TotPath);
+                            dPath = TotPath + @"\" + row + title + fileExt;
+                        }
 
-            //        client.DownloadFileCompleted += (o, ex) =>
-            //        {
-            //            //txtDown.Text = "مطالعه";
-            //            //Style style = this.FindResource("ButtonDanger") as Style;
+                        client.DownloadFileAsync(ur, dPath);
 
-            //            //prgDownload.Visibility = Visibility.Hidden;
+                        client.DownloadFileCompleted += (o, ex) =>
+                        {
+                            //txtDown.Text = "مطالعه";
+                            //Style style = this.FindResource("ButtonDanger") as Style;
 
-            //            if (fileExt.Equals(".rar") || fileExt.Equals(".zip"))
-            //            {
-            //                UnCompress(AppVariable.fileNameBakhsh + @"\" + row + title + fileExt, AppVariable.fileNameBakhsh + @"\" + row + title, fileExt);
-            //            }
-            //        };
-            //    }
-            //}
-            //else
-            //{
-            //    try
-            //    {
-            //        System.Diagnostics.Process.Start(AppVariable.fileNameBakhsh + row + title);
-            //    }
-            //    catch (Win32Exception)
-            //    {
-            //        System.Diagnostics.Process.Start(AppVariable.fileNameBakhsh + title);
-            //    }
-            //    catch (FileNotFoundException)
-            //    {
-            //    }
-            //}
+                            if (fileExt.Equals(".rar") || fileExt.Equals(".zip"))
+                            {
+                                UnCompress(AppVariable.fileNameBakhsh + @"\" + row + title + fileExt, AppVariable.fileNameBakhsh + @"\" + row + title, fileExt);
+                            }
+                        };
+                    }
+                }
+                else
+                {
+                    try
+                    {
+                        System.Diagnostics.Process.Start(AppVariable.fileNameBakhsh + row + title);
+                    }
+                    catch (Win32Exception)
+                    {
+                        System.Diagnostics.Process.Start(AppVariable.fileNameBakhsh + title);
+                    }
+                    catch (FileNotFoundException)
+                    {
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+
         }
         public void UnCompress(string Open, string Write, string FileExt)
         {
