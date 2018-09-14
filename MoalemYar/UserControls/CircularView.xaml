@@ -86,7 +86,8 @@
                                         <ColumnDefinition Width="550" />
                                         <ColumnDefinition Width="100" />
                                         <ColumnDefinition Width="260" />
-                                        <ColumnDefinition Width="150" />
+                                        <ColumnDefinition Width="100" />
+                                        <ColumnDefinition />
                                     </Grid.ColumnDefinitions>
                                     <Label Grid.Column="0">ردیف</Label>
                                     <Label Grid.Column="1">عنوان</Label>
@@ -106,7 +107,8 @@
                                     <ColumnDefinition Width="550" />
                                     <ColumnDefinition Width="100" />
                                     <ColumnDefinition Width="260" />
-                                    <ColumnDefinition Width="150" />
+                                    <ColumnDefinition Width="100" />
+                                    <ColumnDefinition />
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Grid.Column="0" Text="{Binding Row}" />
                                 <TextBlock Grid.Column="1" Text="{Binding Title}" />
@@ -118,9 +120,43 @@
                                 </StackPanel>
                                 <TextBlock Grid.Column="4" Text="{Binding Date}" />
                                 <TextBlock Text="{Binding link}" Visibility="Hidden" />
+                                <StackPanel Grid.Column="5" Orientation="Vertical">
+                                    <Button
+                                        x:Name="btnSave"
+                                        Width="100"
+                                        Height="30"
+                                        Margin="5,0,0,0"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Top"
+                                        Click="btnSave_Click"
+                                        IsDefault="True"
+                                        Style="{StaticResource ButtonSuccess}">
+                                        <StackPanel
+                                            HorizontalAlignment="Left"
+                                            VerticalAlignment="Center"
+                                            Orientation="Horizontal">
+                                            <Image
+                                                Name="imgDown"
+                                                Width="16"
+                                                Height="16"
+                                                Source="/Resources/download.png" />
+                                            <TextBlock
+                                                Name="txtDown"
+                                                FontSize="14"
+                                                Foreground="#ffffff"
+                                                Text="دانلود"
+                                                TextWrapping="NoWrap" />
+                                        </StackPanel>
+                                    </Button>
+                                </StackPanel>
                             </Grid>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
+                    <ListBox.ItemContainerStyle>
+                        <Style BasedOn="{StaticResource ListBoxItemBaseStyle}" TargetType="ListBoxItem">
+                            <Setter Property="Height" Value="40" />
+                        </Style>
+                    </ListBox.ItemContainerStyle>
                 </ListBox>
             </Grid>
         </controls:ScrollViewer>

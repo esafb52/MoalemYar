@@ -14,7 +14,7 @@
     <WarningLevel>4</WarningLevel>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <AssemblyVersion>2.1.4226.0</AssemblyVersion>
+    <AssemblyVersion>2.1.4239.0</AssemblyVersion>
     <TargetFrameworkProfile />
     <ShouldCreateLogs>False</ShouldCreateLogs>
     <AdvancedSettingsExpanded>True</AdvancedSettingsExpanded>
@@ -206,9 +206,6 @@
     <Compile Include="UserControls\MaterialChart.xaml.cs">
       <DependentUpon>MaterialChart.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\MaterialCircular.xaml.cs">
-      <DependentUpon>MaterialCircular.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UserControls\QuestionsListView.xaml.cs">
       <DependentUpon>QuestionsListView.xaml</DependentUpon>
     </Compile>
@@ -321,10 +318,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\MaterialChart.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UserControls\MaterialCircular.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -8,7 +8,14 @@
 *
 ***********************************************************************************/
 
+using SharpCompress.Archives;
+using SharpCompress.Archives.Rar;
+using SharpCompress.Archives.Zip;
+using SharpCompress.Common;
 using System;
+using System.ComponentModel;
+using System.IO;
+using System.Linq;
 using System.Net;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,7 +27,7 @@ namespace MoalemYar.UserControls
     public partial class CircularView : UserControl
     {
         private bool Limited = false;
-        
+
         public CircularView()
         {
             InitializeComponent();
@@ -34,60 +41,75 @@ namespace MoalemYar.UserControls
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            //try
-            //{
-            //    using (WebClient webClient = new WebClientWithTimeout())
-            //    {
-            //        webClient.Headers.Add("User-Agent: Other");
-            //        var page = webClient.DownloadString(FindElement.Settings.DefaultServer ?? AppVariable.DefaultServer2);
-            //        HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
-            //        doc.LoadHtml(page);
-            //        var query = doc.DocumentNode.SelectNodes("//table[@class='table table-striped table-hover']/tbody/tr")
-            //    .Select(r =>
-            //    {
-            //        var linkNode = r.Descendants("a").Select(node => node.Attributes["href"].Value).ToArray();
-            //        //var linkNode2 = r.SelectSingleNode("th|td");
-            //        return new DelegationLink()
-            //        {
-            //            Row = r.SelectSingleNode(".//td").InnerText,
-            //            link = FindElement.Settings.DefaultServer + linkNode.FirstOrDefault(),
-            //            Category = r.SelectSingleNode(".//td[2]").InnerText,
-            //            Title = r.SelectSingleNode(".//td[3]").InnerText,
-            //            Date = r.SelectSingleNode(".//td[4]").InnerText,
-            //            Type = r.SelectSingleNode(".//td[5]").InnerText,
-            //            SubType = r.SelectSingleNode(".//td[6]").InnerText
-            //        };
-            //    }
-            //    ).ToList();
-            //        var parsedValues = query.Take(Limited ? 20 : query.Count).ToList();
 
-            //        int currentItem = 0;
-            //        foreach (var item in parsedValues)
-            //        {
-            //            currentItem += 1;
-            //            prgUpdate.Value = (((currentItem) / parsedValues.Count) * 100);
-            //            lst.Items.Add(item);
-            //        }
+            try
+            {
+                using (WebClient webClient = new WebClientWithTimeout())
+                {
+                    webClient.Headers.Add("User-Agent: Other");
+                    var page = webClient.DownloadString(FindElement.Settings.DefaultServer ?? AppVariable.DefaultServer2);
+                    HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
+                    doc.LoadHtml(page);
+                    var query = doc.DocumentNode.SelectNodes("//table[@class='table table-striped table-hover']/tbody/tr")
+                .Select(r =>
+                {
+                    var linkNode = r.Descendants("a").Select(node => node.Attributes["href"].Value).ToArray();
+                    //var linkNode2 = r.SelectSingleNode("th|td");
+                    return new DelegationLink()
+                    {
+                        Row = r.SelectSingleNode(".//td").InnerText,
+                        link = FindElement.Settings.DefaultServer + linkNode.FirstOrDefault(),
+                        Category = r.SelectSingleNode(".//td[2]").InnerText,
+                        Title = r.SelectSingleNode(".//td[3]").InnerText,
+                        Date = r.SelectSingleNode(".//td[4]").InnerText,
+                        Type = r.SelectSingleNode(".//td[5]").InnerText,
+                        SubType = r.SelectSingleNode(".//td[6]").InnerText
+                    };
+                }
+                ).ToList();
+                    var parsedValues = query.Take(Limited ? 20 : query.Count).ToList();
+
+                    int currentItem = 0;
+                    foreach (var item in parsedValues)
+                    {
+                        currentItem += 1;
+                        prgUpdate.Value = (((currentItem) / parsedValues.Count) * 100);
+                        lst.Items.Add(item);
+                    }
 
 
-            //        //    await Task.Delay(10);
-            //        //    //Todo: progressbar not update
-            //        //prgUpdate.Value = (((currentIndex) / parsedValues.Count) * 100);
+                    //    await Task.Delay(10);
+                    //    //Todo: progressbar not update
+                    //prgUpdate.Value = (((currentIndex) / parsedValues.Count) * 100);
 
-            //        if (prgUpdate.Value == 100)
-            //            txtSearch.IsEnabled = true;
-            //    }
-            //}
-            //catch (WebException)
-            //{
-            //    MainWindow.main.ShowRecivedCircularNotification(false);
-            //}
+                    if (prgUpdate.Value == 100)
+                        txtSearch.IsEnabled = true;
+                }
+            }
+            catch (WebException)
+            {
+                MainWindow.main.ShowRecivedCircularNotification(false);
+            }
             //    Dispatcher.Invoke<Task>(async () =>
             //{
 
             //}, DispatcherPriority.ContextIdle);
+
+            dynamic selectedItem = lst.SelectedItems[0];
+            string row = selectedItem.Row;
+            string title = selectedItem.Title;
+            if (!System.IO.Directory.Exists(AppVariable.fileNameBakhsh + row + title))
+            {
+                // txtDown.Text = "دانلود";
+            }
+            else
+            {
+                // txtDown.Text = "مطالعه";
+                //Style style = this.FindResource("ButtonDanger") as Style;
+
+            }
         }
-     
+
 
         private void btnStart_Click(object sender, RoutedEventArgs e)
         {
@@ -114,6 +136,125 @@ namespace MoalemYar.UserControls
                 Limited = true;
             else
                 Limited = false;
+        }
+
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            dynamic selectedItem = lst.SelectedItems[0];
+            string row = selectedItem.Row;
+            string title = selectedItem.Title;
+            string Dlink = selectedItem.link;
+            if (!System.IO.Directory.Exists(AppVariable.fileNameBakhsh + row + title))
+            {
+                //prgDownload.Visibility = Visibility.Visible;
+                WebClient wc = new WebClient();
+
+                using (WebClient client = new WebClient())
+                {
+                    if (Dlink.Contains("//portal/"))
+                        Dlink = Dlink.Replace("//portal/", "/portal/");
+                    Uri ur = new Uri(Dlink);
+                    //Todo: fix 403 error
+                    var data = wc.DownloadData(Dlink);
+                    string fileExt = "";
+                    if (!String.IsNullOrEmpty(wc.ResponseHeaders["Content-Disposition"]))
+                    {
+                        fileExt = System.IO.Path.GetExtension(wc.ResponseHeaders["Content-Disposition"].Substring(wc.ResponseHeaders["Content-Disposition"].IndexOf("filename=") + 9).Replace("\"", ""));
+                    }
+
+                    client.DownloadProgressChanged += (o, ex) =>
+                    {
+                        Dispatcher.Invoke(() =>
+                        {
+                            //prgDownload.Value = ex.ProgressPercentage;
+                        });
+                    };
+
+                    string TotPath = AppVariable.fileNameBakhsh + row + title;
+                    string dPath = string.Empty;
+
+                    if (fileExt.Equals(".rar") || fileExt.Equals(".zip"))
+                    {
+                        dPath = AppVariable.fileNameBakhsh + @"\" + row + title + fileExt;
+                    }
+                    else
+                    {
+                        if (!System.IO.Directory.Exists(TotPath))
+                            System.IO.Directory.CreateDirectory(TotPath);
+                        dPath = TotPath + @"\" + row + title + fileExt;
+                    }
+
+                    client.DownloadFileAsync(ur, dPath);
+
+                    client.DownloadFileCompleted += (o, ex) =>
+                    {
+                        //txtDown.Text = "مطالعه";
+                        //Style style = this.FindResource("ButtonDanger") as Style;
+
+                        //prgDownload.Visibility = Visibility.Hidden;
+
+                        if (fileExt.Equals(".rar") || fileExt.Equals(".zip"))
+                        {
+                            UnCompress(AppVariable.fileNameBakhsh + @"\" + row + title + fileExt, AppVariable.fileNameBakhsh + @"\" + row + title, fileExt);
+                        }
+                    };
+                }
+            }
+            else
+            {
+                try
+                {
+                    System.Diagnostics.Process.Start(AppVariable.fileNameBakhsh + row + title);
+                }
+                catch (Win32Exception)
+                {
+                    System.Diagnostics.Process.Start(AppVariable.fileNameBakhsh + title);
+                }
+                catch (FileNotFoundException)
+                {
+                }
+            }
+        }
+        public void UnCompress(string Open, string Write, string FileExt)
+        {
+            try
+            {
+                if (FileExt.Equals(".rar"))
+                {
+                    using (var archive = RarArchive.Open(Open))
+                    {
+                        foreach (var entry in archive.Entries.Where(entry => !entry.IsDirectory))
+                        {
+                            entry.WriteToDirectory(Write, new ExtractionOptions()
+                            {
+                                ExtractFullPath = true,
+                                Overwrite = true
+                            });
+                        }
+                    }
+                }
+                else
+                {
+                    using (var archive = ZipArchive.Open(Open))
+                    {
+                        foreach (var entry in archive.Entries.Where(entry => !entry.IsDirectory))
+                        {
+                            entry.WriteToDirectory(Write, new ExtractionOptions()
+                            {
+                                ExtractFullPath = true,
+                                Overwrite = true
+                            });
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+            }
+            finally
+            {
+                System.IO.File.Delete(Open);
+            };
         }
     }
 }
