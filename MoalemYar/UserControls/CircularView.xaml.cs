@@ -17,8 +17,11 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Threading;
+
 namespace MoalemYar.UserControls
 {
     /// <summary>
@@ -38,10 +41,8 @@ namespace MoalemYar.UserControls
             if (prgUpdate.Value == prgUpdate.Maximum)
                 MainWindow.main.ShowRecivedCircularNotification(true);
         }
-
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        private void CalculateMyOperation()
         {
-
             try
             {
                 using (WebClient webClient = new WebClientWithTimeout())
@@ -54,7 +55,6 @@ namespace MoalemYar.UserControls
                 .Select(r =>
                 {
                     var linkNode = r.Descendants("a").Select(node => node.Attributes["href"].Value).ToArray();
-                    //var linkNode2 = r.SelectSingleNode("th|td");
                     return new DelegationLink()
                     {
                         Row = r.SelectSingleNode(".//td").InnerText,
@@ -67,47 +67,43 @@ namespace MoalemYar.UserControls
                     };
                 }
                 ).ToList();
+
                     var parsedValues = query.Take(Limited ? 20 : query.Count).ToList();
-
-                    int currentItem = 0;
-                    foreach (var item in parsedValues)
+                    foreach (var i in parsedValues)
                     {
-                        currentItem += 1;
-                        prgUpdate.Value = (((currentItem) / parsedValues.Count) * 100);
-                        lst.Items.Add(item);
+                        Dispatcher.BeginInvoke(new Action(() =>
+                        {
+                            lst.Items.Add(i);
+                           // prgUpdate.Value = (((currentProgress) / parsedValues.Count) * 100);
+                            //if (prgUpdate.Value == 100)
+                            //    txtSearch.IsEnabled = true;
+                        }), DispatcherPriority.Background);
                     }
-
-
-                    //    await Task.Delay(10);
-                    //    //Todo: progressbar not update
-                    //prgUpdate.Value = (((currentIndex) / parsedValues.Count) * 100);
-
-                    if (prgUpdate.Value == 100)
-                        txtSearch.IsEnabled = true;
                 }
             }
             catch (WebException)
             {
                 MainWindow.main.ShowRecivedCircularNotification(false);
             }
-            //    Dispatcher.Invoke<Task>(async () =>
+           
+        }
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            //Task.Factory.StartNew(() => CalculateMyOperation());
+            Task.Run(() => CalculateMyOperation());
+            //dynamic selectedItem = lst.SelectedItems[0];
+            //string row = selectedItem.Row;
+            //string title = selectedItem.Title;
+            //if (!System.IO.Directory.Exists(AppVariable.fileNameBakhsh + row + title))
             //{
+            //    // txtDown.Text = "دانلود";
+            //}
+            //else
+            //{
+            //    // txtDown.Text = "مطالعه";
+            //    //Style style = this.FindResource("ButtonDanger") as Style;
 
-            //}, DispatcherPriority.ContextIdle);
-
-            dynamic selectedItem = lst.SelectedItems[0];
-            string row = selectedItem.Row;
-            string title = selectedItem.Title;
-            if (!System.IO.Directory.Exists(AppVariable.fileNameBakhsh + row + title))
-            {
-                // txtDown.Text = "دانلود";
-            }
-            else
-            {
-                // txtDown.Text = "مطالعه";
-                //Style style = this.FindResource("ButtonDanger") as Style;
-
-            }
+            //}
         }
 
 
@@ -140,80 +136,80 @@ namespace MoalemYar.UserControls
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            dynamic selectedItem = lst.SelectedItems[0];
-            string row = selectedItem.Row;
-            string title = selectedItem.Title;
-            string Dlink = selectedItem.link;
-            if (!System.IO.Directory.Exists(AppVariable.fileNameBakhsh + row + title))
-            {
-                //prgDownload.Visibility = Visibility.Visible;
-                WebClient wc = new WebClient();
+            //dynamic selectedItem = lst.SelectedItems[0];
+            //string row = selectedItem.Row;
+            //string title = selectedItem.Title;
+            //string Dlink = selectedItem.link;
+            //if (!System.IO.Directory.Exists(AppVariable.fileNameBakhsh + row + title))
+            //{
+            //    //prgDownload.Visibility = Visibility.Visible;
+            //    WebClient wc = new WebClient();
 
-                using (WebClient client = new WebClient())
-                {
-                    if (Dlink.Contains("//portal/"))
-                        Dlink = Dlink.Replace("//portal/", "/portal/");
-                    Uri ur = new Uri(Dlink);
-                    //Todo: fix 403 error
-                    var data = wc.DownloadData(Dlink);
-                    string fileExt = "";
-                    if (!String.IsNullOrEmpty(wc.ResponseHeaders["Content-Disposition"]))
-                    {
-                        fileExt = System.IO.Path.GetExtension(wc.ResponseHeaders["Content-Disposition"].Substring(wc.ResponseHeaders["Content-Disposition"].IndexOf("filename=") + 9).Replace("\"", ""));
-                    }
+            //    using (WebClient client = new WebClient())
+            //    {
+            //        if (Dlink.Contains("//portal/"))
+            //            Dlink = Dlink.Replace("//portal/", "/portal/");
+            //        Uri ur = new Uri(Dlink);
+            //        //Todo: fix 403 error
+            //        var data = wc.DownloadData(Dlink);
+            //        string fileExt = "";
+            //        if (!String.IsNullOrEmpty(wc.ResponseHeaders["Content-Disposition"]))
+            //        {
+            //            fileExt = System.IO.Path.GetExtension(wc.ResponseHeaders["Content-Disposition"].Substring(wc.ResponseHeaders["Content-Disposition"].IndexOf("filename=") + 9).Replace("\"", ""));
+            //        }
 
-                    client.DownloadProgressChanged += (o, ex) =>
-                    {
-                        Dispatcher.Invoke(() =>
-                        {
-                            //prgDownload.Value = ex.ProgressPercentage;
-                        });
-                    };
+            //        client.DownloadProgressChanged += (o, ex) =>
+            //        {
+            //            Dispatcher.Invoke(() =>
+            //            {
+            //                //prgDownload.Value = ex.ProgressPercentage;
+            //            });
+            //        };
 
-                    string TotPath = AppVariable.fileNameBakhsh + row + title;
-                    string dPath = string.Empty;
+            //        string TotPath = AppVariable.fileNameBakhsh + row + title;
+            //        string dPath = string.Empty;
 
-                    if (fileExt.Equals(".rar") || fileExt.Equals(".zip"))
-                    {
-                        dPath = AppVariable.fileNameBakhsh + @"\" + row + title + fileExt;
-                    }
-                    else
-                    {
-                        if (!System.IO.Directory.Exists(TotPath))
-                            System.IO.Directory.CreateDirectory(TotPath);
-                        dPath = TotPath + @"\" + row + title + fileExt;
-                    }
+            //        if (fileExt.Equals(".rar") || fileExt.Equals(".zip"))
+            //        {
+            //            dPath = AppVariable.fileNameBakhsh + @"\" + row + title + fileExt;
+            //        }
+            //        else
+            //        {
+            //            if (!System.IO.Directory.Exists(TotPath))
+            //                System.IO.Directory.CreateDirectory(TotPath);
+            //            dPath = TotPath + @"\" + row + title + fileExt;
+            //        }
 
-                    client.DownloadFileAsync(ur, dPath);
+            //        client.DownloadFileAsync(ur, dPath);
 
-                    client.DownloadFileCompleted += (o, ex) =>
-                    {
-                        //txtDown.Text = "مطالعه";
-                        //Style style = this.FindResource("ButtonDanger") as Style;
+            //        client.DownloadFileCompleted += (o, ex) =>
+            //        {
+            //            //txtDown.Text = "مطالعه";
+            //            //Style style = this.FindResource("ButtonDanger") as Style;
 
-                        //prgDownload.Visibility = Visibility.Hidden;
+            //            //prgDownload.Visibility = Visibility.Hidden;
 
-                        if (fileExt.Equals(".rar") || fileExt.Equals(".zip"))
-                        {
-                            UnCompress(AppVariable.fileNameBakhsh + @"\" + row + title + fileExt, AppVariable.fileNameBakhsh + @"\" + row + title, fileExt);
-                        }
-                    };
-                }
-            }
-            else
-            {
-                try
-                {
-                    System.Diagnostics.Process.Start(AppVariable.fileNameBakhsh + row + title);
-                }
-                catch (Win32Exception)
-                {
-                    System.Diagnostics.Process.Start(AppVariable.fileNameBakhsh + title);
-                }
-                catch (FileNotFoundException)
-                {
-                }
-            }
+            //            if (fileExt.Equals(".rar") || fileExt.Equals(".zip"))
+            //            {
+            //                UnCompress(AppVariable.fileNameBakhsh + @"\" + row + title + fileExt, AppVariable.fileNameBakhsh + @"\" + row + title, fileExt);
+            //            }
+            //        };
+            //    }
+            //}
+            //else
+            //{
+            //    try
+            //    {
+            //        System.Diagnostics.Process.Start(AppVariable.fileNameBakhsh + row + title);
+            //    }
+            //    catch (Win32Exception)
+            //    {
+            //        System.Diagnostics.Process.Start(AppVariable.fileNameBakhsh + title);
+            //    }
+            //    catch (FileNotFoundException)
+            //    {
+            //    }
+            //}
         }
         public void UnCompress(string Open, string Write, string FileExt)
         {
