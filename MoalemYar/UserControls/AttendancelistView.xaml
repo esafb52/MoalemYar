@@ -349,7 +349,7 @@
                                     TabIndex="2"
                                     TextChanged="txtEditSearch_TextChanged" />
                                 <Grid>
-                                    <ListView
+                                    <ListBox
                                         x:Name="dgv"
                                         Margin="0,5,0,0"
                                         VerticalAlignment="Top"
@@ -359,46 +359,52 @@
                                         SelectionMode="Single"
                                         Style="{StaticResource ListBoxBaseStyle}"
                                         TabIndex="3">
-                                        <ListView.View>
-                                            <GridView>
-                                                <GridViewColumn
-                                                    Width="0"
-                                                    DisplayMemberBinding="{Binding Exist}"
-                                                    Header="وضعیت حضور" />
-                                                <GridViewColumn
-                                                    Width="0"
-                                                    DisplayMemberBinding="{Binding StudentId}"
-                                                    Header="StudentId" />
-                                                <GridViewColumn
-                                                    Width="0"
-                                                    DisplayMemberBinding="{Binding Id}"
-                                                    Header="Id" />
-                                                <GridViewColumn Width="100" Header="وضعیت حضور">
-                                                    <GridViewColumn.CellTemplate>
-                                                        <DataTemplate>
-                                                            <ToggleButton
-                                                                Checked="MetroSwitch_Checked"
-                                                                IsChecked="{Binding Exist}"
-                                                                Style="{StaticResource ToggleButtonSwitch}"
-                                                                Unchecked="MetroSwitch_Unchecked" />
-                                                        </DataTemplate>
-                                                    </GridViewColumn.CellTemplate>
-                                                </GridViewColumn>
-                                                <GridViewColumn Width="200" Header="تاریخ">
-                                                    <GridViewColumn.CellTemplate>
-                                                        <DataTemplate>
-                                                            <PersianCalendarWPF:PersianDatePicker
-                                                                Name="txtDateEdit"
-                                                                HorizontalAlignment="Left"
-                                                                SelectedDate="{Binding Date}"
-                                                                SelectedDateChanged="txtDateEdit_SelectedDateChanged"
-                                                                Text="{Binding Date}" />
-                                                        </DataTemplate>
-                                                    </GridViewColumn.CellTemplate>
-                                                </GridViewColumn>
-                                            </GridView>
-                                        </ListView.View>
-                                    </ListView>
+                                        <ListBox.Template>
+                                            <ControlTemplate>
+                                                <DockPanel LastChildFill="True">
+                                                    <Grid Height="30" DockPanel.Dock="Top">
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="50" />
+                                                            <ColumnDefinition Width="200" />
+                                                            <ColumnDefinition Width="200" />
+                                                            <ColumnDefinition />
+                                                        </Grid.ColumnDefinitions>
+                                                        <Label Grid.Column="0">ردیف</Label>
+                                                        <Label Grid.Column="1">وضعیت حضور</Label>
+                                                        <Label Grid.Column="2">تاریخ</Label>
+                                                    </Grid>
+                                                    <ItemsPresenter />
+                                                </DockPanel>
+                                            </ControlTemplate>
+                                        </ListBox.Template>
+                                        <ListBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <Grid Margin="0,2">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="50" />
+                                                        <ColumnDefinition Width="200" />
+                                                        <ColumnDefinition Width="200" />
+                                                        <ColumnDefinition />
+                                                    </Grid.ColumnDefinitions>
+                                                    <TextBlock Text="{Binding StudentId}" Visibility="Hidden" />
+                                                    <TextBlock Text="{Binding Id}" Visibility="Hidden" />
+                                                    <ToggleButton
+                                                        Grid.Column="1"
+                                                        Checked="MetroSwitch_Checked"
+                                                        IsChecked="{Binding Exist}"
+                                                        Style="{StaticResource ToggleButtonSwitch}"
+                                                        Unchecked="MetroSwitch_Unchecked" />
+                                                    <PersianCalendarWPF:PersianDatePicker
+                                                        Name="txtDateEdit"
+                                                        Grid.Column="2"
+                                                        HorizontalAlignment="Left"
+                                                        SelectedDate="{Binding Date}"
+                                                        SelectedDateChanged="txtDateEdit_SelectedDateChanged"
+                                                        Text="{Binding Date}" />
+                                                </Grid>
+                                            </DataTemplate>
+                                        </ListBox.ItemTemplate>
+                                    </ListBox>
                                 </Grid>
                             </StackPanel>
                         </StackPanel>

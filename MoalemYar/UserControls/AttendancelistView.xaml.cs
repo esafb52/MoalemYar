@@ -223,7 +223,8 @@ namespace MoalemYar.UserControls
 
         private void cmbBase_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            getStudent(Convert.ToInt64(cmbBase.SelectedValue));
+            //getStudent(Convert.ToInt64(cmbBase.SelectedValue));
+            getStudent(Convert.ToInt64(0));
         }
 
         private void swAllPresent_Checked(object sender, RoutedEventArgs e)
