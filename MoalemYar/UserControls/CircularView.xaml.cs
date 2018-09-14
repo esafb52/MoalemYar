@@ -39,7 +39,11 @@ namespace MoalemYar.UserControls
         private void prgUpdate_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             if (prgUpdate.Value == prgUpdate.Maximum)
+            {
+                btnStart.IsEnabled = true;
                 MainWindow.main.ShowRecivedCircularNotification(true);
+                txtSearch.IsEnabled = true;
+            }
         }
         private void CalculateMyOperation()
         {
@@ -67,16 +71,23 @@ namespace MoalemYar.UserControls
                     };
                 }
                 ).ToList();
-
                     var parsedValues = query.Take(Limited ? 20 : query.Count).ToList();
+                    int currentIndex = 0;
+                    Dispatcher.Invoke(() => {
+                        lst.Items.Clear();
+                        btnStart.IsEnabled = false;
+                        prgLoading.Visibility = Visibility.Hidden;
+                        prgUpdate.Visibility = Visibility.Visible;
+                    });
                     foreach (var i in parsedValues)
                     {
                         Dispatcher.BeginInvoke(new Action(() =>
                         {
+                            currentIndex += 1;
                             lst.Items.Add(i);
-                           // prgUpdate.Value = (((currentProgress) / parsedValues.Count) * 100);
-                            //if (prgUpdate.Value == 100)
-                            //    txtSearch.IsEnabled = true;
+
+                            prgUpdate.Value = (Convert.ToDouble(((double)currentIndex / (double)parsedValues.Count).ToString("N2")) * 100);
+
                         }), DispatcherPriority.Background);
                     }
                 }
@@ -89,7 +100,6 @@ namespace MoalemYar.UserControls
         }
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            //Task.Factory.StartNew(() => CalculateMyOperation());
             Task.Run(() => CalculateMyOperation());
             //dynamic selectedItem = lst.SelectedItems[0];
             //string row = selectedItem.Row;

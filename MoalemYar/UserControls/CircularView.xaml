@@ -66,14 +66,19 @@
                     VerticalAlignment="Top"
                     IsEnabled="False"
                     TextChanged="MetroTextBox_TextChanged" />
-
                 <ProgressBar
                     Name="prgUpdate"
                     Margin="20,56,40,0"
                     VerticalAlignment="Top"
                     FlowDirection="LeftToRight"
                     Style="{StaticResource ProgressBarDanger}"
-                    ValueChanged="prgUpdate_ValueChanged" />
+                    ValueChanged="prgUpdate_ValueChanged"
+                    Visibility="Hidden" />
+                <controls:LoadingLine
+                    Name="prgLoading"
+                    Margin="20,56,40,0"
+                    VerticalAlignment="Top"
+                    FlowDirection="LeftToRight" />
                 <ListBox
                     Name="lst"
                     Margin="20,85,20,10"
