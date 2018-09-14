@@ -219,12 +219,14 @@ namespace MoalemYar.UserControls
         private void tabc_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             getSchool();
+
+            //Todo:fix
+            getStudent(Convert.ToInt64(1));
         }
 
         private void cmbBase_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             //getStudent(Convert.ToInt64(cmbBase.SelectedValue));
-            getStudent(Convert.ToInt64(0));
         }
 
         private void swAllPresent_Checked(object sender, RoutedEventArgs e)
@@ -378,8 +380,8 @@ namespace MoalemYar.UserControls
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            cmbBase.SelectedIndex = Convert.ToInt32(FindElement.Settings.DefaultSchool);
-            cmbEditBase.SelectedIndex = Convert.ToInt32(FindElement.Settings.DefaultSchool);
+            //cmbBase.SelectedIndex = Convert.ToInt32(FindElement.Settings.DefaultSchool);
+            //cmbEditBase.SelectedIndex = Convert.ToInt32(FindElement.Settings.DefaultSchool);
         }
     }
 }

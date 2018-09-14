@@ -177,37 +177,29 @@
                                                 Orientation="Vertical"
                                                 ToggleButton.Checked="StackPanel_Checked">
                                                 <ToggleButton
-                                                    Name="chkExc"
-                                                    Margin="0,2"
-                                                    Checked="chkChecked_Checked"
-                                                    Style="{StaticResource ToggleButtonSwitch}"
-                                                    Tag="exc">
-                                                    خیلی خوب
-                                                </ToggleButton>
+                                                        Name="chkExc"
+                                                        Margin="0,2"
+                                                        Checked="chkChecked_Checked"
+                                                        Style="{StaticResource ToggleButtonSwitch}"
+                                                        Tag="exc" />
                                                 <ToggleButton
-                                                    Name="chkGood"
-                                                    Margin="0,2"
-                                                    Checked="chkChecked_Checked"
-                                                    Style="{StaticResource ToggleButtonSwitch}"
-                                                    Tag="good">
-                                                    خوب
-                                                </ToggleButton>
+                                                        Name="chkGood"
+                                                        Margin="0,2"
+                                                        Checked="chkChecked_Checked"
+                                                        Style="{StaticResource ToggleButtonSwitch}"
+                                                        Tag="good" />
                                                 <ToggleButton
-                                                    Name="chkNbad"
-                                                    Margin="0,2"
-                                                    Checked="chkChecked_Checked"
-                                                    Style="{StaticResource ToggleButtonSwitch}"
-                                                    Tag="nbad">
-                                                    قابل قبول
-                                                </ToggleButton>
+                                                        Name="chkNbad"
+                                                        Margin="0,2"
+                                                        Checked="chkChecked_Checked"
+                                                        Style="{StaticResource ToggleButtonSwitch}"
+                                                        Tag="nbad" />
                                                 <ToggleButton
-                                                    Name="chkBad"
-                                                    Margin="0,2"
-                                                    Checked="chkChecked_Checked"
-                                                    Style="{StaticResource ToggleButtonSwitch}"
-                                                    Tag="bad">
-                                                    نیاز به تلاش بیشتر
-                                                </ToggleButton>
+                                                        Name="chkBad"
+                                                        Margin="0,2"
+                                                        Checked="chkChecked_Checked"
+                                                        Style="{StaticResource ToggleButtonSwitch}"
+                                                        Tag="bad" />
                                             </StackPanel>
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>

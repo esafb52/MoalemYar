@@ -521,7 +521,8 @@ namespace MoalemYar.UserControls
                 if (isQuestion.IsChecked == true)
                 {
                     var element = FindElement.FindElementByName<ComboBox>(cmbBook, "cmbBook");
-                    getStudents(Convert.ToInt64(cmbBase.SelectedValue), element.SelectedItem.ToString(), false);
+                    //getStudents(Convert.ToInt64(cmbBase.SelectedValue), element.SelectedItem.ToString(), false);
+                    getStudents(Convert.ToInt64(1), element.SelectedItem.ToString(), false);
                 }
                 else
                 {
