@@ -177,29 +177,29 @@
                                                 Orientation="Vertical"
                                                 ToggleButton.Checked="StackPanel_Checked">
                                                 <ToggleButton
-                                                        Name="chkExc"
-                                                        Margin="0,2"
-                                                        Checked="chkChecked_Checked"
-                                                        Style="{StaticResource ToggleButtonSwitch}"
-                                                        Tag="exc" />
+                                                    Name="chkExc"
+                                                    Margin="0,2"
+                                                    Checked="chkChecked_Checked"
+                                                    Style="{StaticResource ToggleButtonSwitch}"
+                                                    Tag="exc" />
                                                 <ToggleButton
-                                                        Name="chkGood"
-                                                        Margin="0,2"
-                                                        Checked="chkChecked_Checked"
-                                                        Style="{StaticResource ToggleButtonSwitch}"
-                                                        Tag="good" />
+                                                    Name="chkGood"
+                                                    Margin="0,2"
+                                                    Checked="chkChecked_Checked"
+                                                    Style="{StaticResource ToggleButtonSwitch}"
+                                                    Tag="good" />
                                                 <ToggleButton
-                                                        Name="chkNbad"
-                                                        Margin="0,2"
-                                                        Checked="chkChecked_Checked"
-                                                        Style="{StaticResource ToggleButtonSwitch}"
-                                                        Tag="nbad" />
+                                                    Name="chkNbad"
+                                                    Margin="0,2"
+                                                    Checked="chkChecked_Checked"
+                                                    Style="{StaticResource ToggleButtonSwitch}"
+                                                    Tag="nbad" />
                                                 <ToggleButton
-                                                        Name="chkBad"
-                                                        Margin="0,2"
-                                                        Checked="chkChecked_Checked"
-                                                        Style="{StaticResource ToggleButtonSwitch}"
-                                                        Tag="bad" />
+                                                    Name="chkBad"
+                                                    Margin="0,2"
+                                                    Checked="chkChecked_Checked"
+                                                    Style="{StaticResource ToggleButtonSwitch}"
+                                                    Tag="bad" />
                                             </StackPanel>
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
