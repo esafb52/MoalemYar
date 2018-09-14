@@ -67,7 +67,10 @@ namespace MoalemYar.UserControls
 
                 using (WebClient client = new WebClient())
                 {
-                    Uri ur = new Uri(Dlink);
+                    if (Dlink.Contains("//portal/"))
+                        Dlink = Dlink.Replace("//portal/", "/portal/");
+                    Uri ur = new Uri(Dlink);   
+                    //Todo: fix 403 error
                     var data = wc.DownloadData(Dlink);
                     string fileExt = "";
                     if (!String.IsNullOrEmpty(wc.ResponseHeaders["Content-Disposition"]))

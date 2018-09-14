@@ -73,15 +73,16 @@ namespace MoalemYar.UserControls
                 ).ToList();
                     var parsedValues = query.Take(Limited ? 20 : query.Count).ToList();
                     myClass = parsedValues;
-                    prgUpdate.Maximum = parsedValues.Count;
 
+                    int currentIndex = 0;
                     foreach (var item in parsedValues)
                     {
+                        currentIndex += 1;
                         if (!Permission)
                             return;
 
                         await Task.Delay(10);
-                        prgUpdate.Value += 1;
+                        prgUpdate.Value = (((currentIndex) / parsedValues.Count) * 100 );
                         _addUser = new MaterialCircular(item.Row, item.Title, item.Category, item.Type, item.SubType, item.Date, item.link);
                         _currentUser = _addUser;
                         waterfallFlow.Children.Add(_currentUser);

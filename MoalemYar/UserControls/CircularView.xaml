@@ -72,6 +72,7 @@
                     Margin="20,56,40,0"
                     VerticalAlignment="Top"
                     FlowDirection="LeftToRight"
+                    Maximum="100"
                     Style="{StaticResource ProgressBarDanger}"
                     ValueChanged="prgUpdate_ValueChanged" />
                 <WrapPanel
