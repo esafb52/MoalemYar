@@ -97,7 +97,7 @@
                     VerticalAlignment="Top"
                     Click="btnSave_Click"
                     IsDefault="True"
-                    Style="{StaticResource ButtonPrimary}">
+                    Style="{StaticResource ButtonSuccess}">
                     <StackPanel
                         HorizontalAlignment="Left"
                         VerticalAlignment="Center"
@@ -106,7 +106,7 @@
                             Name="imgDown"
                             Width="16"
                             Height="16"
-                            Margin="10,0,30,0"
+                            Margin="-30,0,30,0"
                             Source="/Resources/download.png" />
                         <TextBlock
                             Name="txtDown"

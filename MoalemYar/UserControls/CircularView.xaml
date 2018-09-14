@@ -35,7 +35,7 @@
                                 Name="img"
                                 Width="16"
                                 Height="16"
-                                Margin="10,0,30,0"
+                                Margin="-30,0,30,0"
                                 Source="/Resources/stop.png" />
                             <TextBlock
                                 Name="txtStop"
