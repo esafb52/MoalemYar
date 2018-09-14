@@ -82,7 +82,8 @@ namespace MoalemYar.UserControls
                             return;
 
                         await Task.Delay(10);
-                        prgUpdate.Value = (((currentIndex) / parsedValues.Count) * 100 );
+                        //Todo: progressbar not update
+                        prgUpdate.Value = (((currentIndex) / parsedValues.Count) * 100);
                         _addUser = new MaterialCircular(item.Row, item.Title, item.Category, item.Type, item.SubType, item.Date, item.link);
                         _currentUser = _addUser;
                         waterfallFlow.Children.Add(_currentUser);
@@ -130,15 +131,6 @@ namespace MoalemYar.UserControls
                 UserControl_Loaded(null, null);
             }
         }
-
-        private void MetroSwitch_Checked(object sender, RoutedEventArgs e)
-        {
-            if (swLimit.IsChecked == true)
-                Limited = true;
-            else
-                Limited = false;
-        }
-
         private void MetroTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             Dispatcher.Invoke<Task>(async () =>
@@ -155,6 +147,14 @@ namespace MoalemYar.UserControls
                     waterfallFlow.Children.Add(_currentUser);
                 }
             }, DispatcherPriority.ContextIdle);
+        }
+
+        private void swLimit_Checked(object sender, RoutedEventArgs e)
+        {
+            if (swLimit.IsChecked == true)
+                Limited = true;
+            else
+                Limited = false;
         }
     }
 }

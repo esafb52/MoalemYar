@@ -53,11 +53,11 @@
                     <ToggleButton
                         Name="swLimit"
                         Margin="10"
-                        Checked="MetroSwitch_Checked"
+                        Checked="swLimit_Checked"
                         FlowDirection="LeftToRight"
                         IsChecked="True"
                         Style="{StaticResource ToggleButtonSwitch}"
-                        Unchecked="MetroSwitch_Checked" />
+                        Unchecked="swLimit_Checked" />
                 </StackPanel>
                 <TextBox
                     Name="txtSearch"
