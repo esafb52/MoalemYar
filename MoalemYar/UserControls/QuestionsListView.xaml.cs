@@ -41,9 +41,9 @@ namespace MoalemYar.UserControls
         {
             InitializeComponent();
 
-            this.DataContext = this;
             main = this;
             strDate = pc.GetYear(DateTime.Now).ToString("0000") + "/" + pc.GetMonth(DateTime.Now).ToString("00") + "/" + pc.GetDayOfMonth(DateTime.Now).ToString("00");
+            getSchool();
         }
 
         #region "Async Query"
@@ -121,11 +121,11 @@ namespace MoalemYar.UserControls
             {
                 using (var db = new DataClass.myDbContext())
                 {
-                    var query = db.Schools.Select(x => x);
+                    var query = db.Schools.ToList();
                     if (query.Any())
                     {
-                        cmbBase.ItemsSource = query.ToList();
-                        cmbEditBase.ItemsSource = query.ToList();
+                        cmbBase.ItemsSource = query;
+                        cmbEditBase.ItemsSource = query;
                     }
                 }
             }
@@ -274,11 +274,6 @@ namespace MoalemYar.UserControls
         }
 
         #endregion Func get Query Wait"
-
-        private void tabc_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            getSchool();
-        }
 
         private void cmbBase_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -521,8 +516,7 @@ namespace MoalemYar.UserControls
                 if (isQuestion.IsChecked == true)
                 {
                     var element = FindElement.FindElementByName<ComboBox>(cmbBook, "cmbBook");
-                    //getStudents(Convert.ToInt64(cmbBase.SelectedValue), element.SelectedItem.ToString(), false);
-                    getStudents(Convert.ToInt64(1), element.SelectedItem.ToString(), false);
+                    getStudents(Convert.ToInt64(cmbBase.SelectedValue), element.SelectedItem.ToString(), false);
                 }
                 else
                 {

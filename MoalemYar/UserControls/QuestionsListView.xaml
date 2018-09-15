@@ -18,8 +18,7 @@
                 MinWidth="800"
                 IsDraggable="True"
                 IsEnableAnimation="True"
-                IsEnableTabFill="True"
-                SelectionChanged="tabc_SelectionChanged">
+                IsEnableTabFill="True">
                 <controls:TabItem Header="ثبت اطلاعات" IsSelected="True">
                     <Grid Name="grd" KeyboardNavigation.TabNavigation="Cycle">
                         <StackPanel
