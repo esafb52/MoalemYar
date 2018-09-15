@@ -153,7 +153,6 @@ namespace MoalemYar.UserControls
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-
             try
             {
                 dynamic selectedItem = lst.SelectedItems[0];
@@ -164,19 +163,28 @@ namespace MoalemYar.UserControls
                 if (!System.IO.Directory.Exists(AppVariable.fileNameBakhsh + row + title))
                 {
                     WebClient wc = new WebClient();
-
+                    wc.Headers.Add("User-Agent: Other");
                     using (WebClient client = new WebClient())
                     {
+                        client.Headers.Add("User-Agent: Other");
                         if (Dlink.Contains("//portal/"))
                             Dlink = Dlink.Replace("//portal/", "/portal/");
                         Uri ur = new Uri(Dlink);
-                        //Todo: fix 403 error
                         var data = wc.DownloadData(Dlink);
+
                         string fileExt = "";
                         if (!String.IsNullOrEmpty(wc.ResponseHeaders["Content-Disposition"]))
                         {
                             fileExt = System.IO.Path.GetExtension(wc.ResponseHeaders["Content-Disposition"].Substring(wc.ResponseHeaders["Content-Disposition"].IndexOf("filename=") + 9).Replace("\"", ""));
                         }
+
+                        client.DownloadProgressChanged += (o, ex) =>
+                        {
+                            Dispatcher.Invoke(() =>
+                            {
+                                //Todo: mybe add progressbar
+                            });
+                        };
 
                         string TotPath = AppVariable.fileNameBakhsh + row + title;
                         string dPath = string.Empty;
@@ -196,8 +204,6 @@ namespace MoalemYar.UserControls
 
                         client.DownloadFileCompleted += (o, ex) =>
                         {
-                            //txtDown.Text = "مطالعه";
-                            //Style style = this.FindResource("ButtonDanger") as Style;
 
                             if (fileExt.Equals(".rar") || fileExt.Equals(".zip"))
                             {
@@ -225,7 +231,6 @@ namespace MoalemYar.UserControls
             {
 
             }
-
         }
         public void UnCompress(string Open, string Write, string FileExt)
         {
