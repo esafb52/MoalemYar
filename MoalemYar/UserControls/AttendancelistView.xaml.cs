@@ -36,10 +36,10 @@ namespace MoalemYar.UserControls
         {
             InitializeComponent();
 
-            this.DataContext = this;
             main = this;
             strDate = pc.GetYear(DateTime.Now).ToString("0000") + "/" + pc.GetMonth(DateTime.Now).ToString("00") + "/" + pc.GetDayOfMonth(DateTime.Now).ToString("00");
             txtDate.Content = string.Format("تاریخ امروز : {0} ", strDate);
+            getSchool();
         }
 
         #region "Async Query"
@@ -81,11 +81,11 @@ namespace MoalemYar.UserControls
             {
                 using (var db = new DataClass.myDbContext())
                 {
-                    var query = db.Schools.Select(x => x);
+                    var query = db.Schools.ToList();
                     if (query.Any())
                     {
-                        cmbBase.ItemsSource = query.ToList();
-                        cmbEditBase.ItemsSource = query.ToList();
+                        cmbBase.ItemsSource = query;
+                        cmbEditBase.ItemsSource = query;
                     }
                 }
             }
@@ -216,17 +216,9 @@ namespace MoalemYar.UserControls
 
         #endregion Func get Query Wait"
 
-        private void tabc_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            getSchool();
-
-            //Todo:fix
-            getStudent(Convert.ToInt64(1));
-        }
-
         private void cmbBase_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //getStudent(Convert.ToInt64(cmbBase.SelectedValue));
+            getStudent(Convert.ToInt64(cmbBase.SelectedValue));
         }
 
         private void swAllPresent_Checked(object sender, RoutedEventArgs e)
@@ -380,8 +372,8 @@ namespace MoalemYar.UserControls
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            //cmbBase.SelectedIndex = Convert.ToInt32(FindElement.Settings.DefaultSchool);
-            //cmbEditBase.SelectedIndex = Convert.ToInt32(FindElement.Settings.DefaultSchool);
+            cmbBase.SelectedIndex = Convert.ToInt32(FindElement.Settings.DefaultSchool);
+            cmbEditBase.SelectedIndex = Convert.ToInt32(FindElement.Settings.DefaultSchool);
         }
     }
 }
