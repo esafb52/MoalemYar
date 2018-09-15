@@ -36,8 +36,8 @@ namespace MoalemYar.UserControls
         public AddStudentView()
         {
             InitializeComponent();
-            this.DataContext = this;
             main = this;
+            getSchool();
         }
 
         #region "Async Query"
@@ -73,12 +73,12 @@ namespace MoalemYar.UserControls
             {
                 using (var db = new DataClass.myDbContext())
                 {
-                    var query = db.Schools.Select(x => x);
+                    var query = db.Schools.ToList();
                     if (query.Any())
                     {
-                        cmbBase.ItemsSource = query.ToList();
-                        cmbEditBase.ItemsSource = query.ToList();
-                        cmbBaseEdit.ItemsSource = query.ToList();
+                        cmbBase.ItemsSource = query;
+                        cmbEditBase.ItemsSource = query;
+                        cmbBaseEdit.ItemsSource = query;
                     }
                 }
             }
@@ -170,12 +170,6 @@ namespace MoalemYar.UserControls
         {
             MainWindow.main.ClearScreen();
         }
-
-        private void tabc_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            getSchool();
-        }
-
         private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
