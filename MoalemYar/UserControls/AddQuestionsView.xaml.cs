@@ -25,7 +25,6 @@ namespace MoalemYar.UserControls
     public partial class AddQuestionsView : UserControl
     {
         internal static AddQuestionsView main;
-        private int runOnce = 0;
         private List<DataClass.Tables.AQuestion> _initialCollection;
         private PersianCalendar pc = new PersianCalendar();
         private string strDate;
@@ -36,6 +35,7 @@ namespace MoalemYar.UserControls
             this.DataContext = this;
             main = this;
             strDate = pc.GetYear(DateTime.Now).ToString("0000") + "/" + pc.GetMonth(DateTime.Now).ToString("00") + "/" + pc.GetDayOfMonth(DateTime.Now).ToString("00");
+            getGroup();
         }
 
         #region "Async Query"
@@ -44,8 +44,8 @@ namespace MoalemYar.UserControls
         {
             using (var db = new DataClass.myDbContext())
             {
-                var query = db.AQuestions.Where(x => x.GroupId == GroupId).Select(x => x);
-                return await query.ToListAsync();
+                var query = db.AQuestions.Where(x => x.GroupId == GroupId).ToListAsync();
+                return await query;
             }
         }
 
@@ -94,12 +94,12 @@ namespace MoalemYar.UserControls
             {
                 using (var db = new DataClass.myDbContext())
                 {
-                    var query = db.Groups.Select(x => x);
+                    var query = db.Groups.ToList();
                     if (query.Any())
                     {
-                        cmbGroup.ItemsSource = query.ToList();
-                        cmbBaseEdit.ItemsSource = query.ToList();
-                        cmbGroupEdit.ItemsSource = query.ToList();
+                        cmbGroup.ItemsSource = query;
+                        cmbBaseEdit.ItemsSource = query;
+                        cmbGroupEdit.ItemsSource = query;
                     }
                     else
                     {
@@ -164,16 +164,6 @@ namespace MoalemYar.UserControls
         {
             MainWindow.main.ClearScreen();
         }
-
-        private void tabc_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (runOnce == 0)
-            {
-                getGroup();
-                runOnce = 1;
-            }
-        }
-
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             var elementG = FindElement.FindElementByName<ComboBox>(cmbAddContent, "cmbBase");

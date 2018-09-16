@@ -29,6 +29,7 @@ namespace MoalemYar.UserControls
             InitializeComponent();
             this.DataContext = this;
             main = this;
+            getUser();
         }
 
         #region Query
@@ -39,11 +40,11 @@ namespace MoalemYar.UserControls
             {
                 using (var db = new DataClass.myDbContext())
                 {
-                    var query = db.Users.Select(x => x);
-                    _initialCollection = query.ToList();
+                    var query = db.Users.ToList();
+                    _initialCollection = query;
                     if (query.Any())
                     {
-                        dataGrid.ItemsSource = query.ToList();
+                        dataGrid.ItemsSource = query;
                     }
                     else
                     {
@@ -99,15 +100,6 @@ namespace MoalemYar.UserControls
         {
             MainWindow.main.ClearScreen();
         }
-
-        private void tabc_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (tabc.SelectedIndex == 1)
-            {
-                getUser();
-            }
-        }
-
         private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try

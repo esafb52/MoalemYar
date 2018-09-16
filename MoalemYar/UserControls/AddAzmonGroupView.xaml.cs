@@ -23,7 +23,6 @@ namespace MoalemYar.UserControls
     public partial class AddAzmonGroupView : UserControl
     {
         internal static AddAzmonGroupView main;
-        private int runOnce = 0;
         private List<DataClass.Tables.Group> _initialCollection;
 
         public AddAzmonGroupView()
@@ -31,6 +30,8 @@ namespace MoalemYar.UserControls
             InitializeComponent();
             this.DataContext = this;
             main = this;
+
+            getGroup();
         }
 
         #region "Query"
@@ -60,11 +61,11 @@ namespace MoalemYar.UserControls
             {
                 using (var db = new DataClass.myDbContext())
                 {
-                    var query = db.Groups.Select(x => x);
-                    _initialCollection = query.ToList();
+                    var query = db.Groups.ToList();
+                    _initialCollection = query;
                     if (query.Any())
                     {
-                        dataGrid.ItemsSource = query.ToList();
+                        dataGrid.ItemsSource = query;
                     }
                     else
                     {
@@ -111,19 +112,6 @@ namespace MoalemYar.UserControls
         {
             MainWindow.main.ClearScreen();
         }
-
-        private void tabc_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (tabc.SelectedIndex == 1)
-            {
-                if (runOnce == 0)
-                {
-                    getGroup();
-                    runOnce = 1;
-                }
-            }
-        }
-
         private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try

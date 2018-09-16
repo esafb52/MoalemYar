@@ -66,8 +66,8 @@ namespace MoalemYar.UserControls
         {
             using (var db = new DataClass.myDbContext())
             {
-                var query = db.Attendances.Where(x => x.StudentId == StudentId).OrderByDescending(x => x.Date).Select(x => x);
-                return await query.ToListAsync();
+                var query = db.Attendances.Where(x => x.StudentId == StudentId).OrderByDescending(x => x.Date).ToListAsync();
+                return await query;
             }
         }
 

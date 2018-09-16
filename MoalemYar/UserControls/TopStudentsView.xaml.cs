@@ -41,10 +41,10 @@ namespace MoalemYar.UserControls
             {
                 using (var db = new DataClass.myDbContext())
                 {
-                    var query = db.Schools.Select(x => x);
+                    var query = db.Schools.ToList();
                     if (query.Any())
                     {
-                        cmbBaseEdit.ItemsSource = query.ToList();
+                        cmbBaseEdit.ItemsSource = query;
                     }
                 }
             }

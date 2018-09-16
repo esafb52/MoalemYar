@@ -25,7 +25,6 @@ namespace MoalemYar.UserControls
         public AzmonHistoryView()
         {
             InitializeComponent();
-            DataContext = this;
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)

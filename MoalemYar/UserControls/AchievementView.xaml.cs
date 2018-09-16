@@ -31,10 +31,10 @@ namespace MoalemYar.UserControls
             {
                 using (var db = new DataClass.myDbContext())
                 {
-                    var query = db.Schools.Select(x => x);
+                    var query = db.Schools.ToList();
                     if (query.Any())
                     {
-                        cmbEditBase.ItemsSource = query.ToList();
+                        cmbEditBase.ItemsSource = query;
                     }
                 }
             }
@@ -71,9 +71,9 @@ namespace MoalemYar.UserControls
             {
                 using (var db = new DataClass.myDbContext())
                 {
-                    var query = db.Scores.Where(x => x.StudentId == StudentId).Select(x => x);
+                    var query = db.Scores.Where(x => x.StudentId == StudentId).ToList();
                     if (query.Any())
-                        _initialCollection = query.ToList();
+                        _initialCollection = query;
                     else
                         _initialCollection = null;
                 }

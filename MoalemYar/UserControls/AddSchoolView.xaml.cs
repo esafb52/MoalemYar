@@ -35,6 +35,7 @@ namespace MoalemYar.UserControls
             main = this;
 
             GenerateEducateYear();
+            getSchool();
         }
 
         #region Query"
@@ -45,11 +46,11 @@ namespace MoalemYar.UserControls
             {
                 using (var db = new DataClass.myDbContext())
                 {
-                    var query = db.Schools.Select(x => x);
-                    _initialCollection = query.ToList();
+                    var query = db.Schools.ToList();
+                    _initialCollection = query;
                     if (query.Any())
                     {
-                        dataGrid.ItemsSource = query.ToList();
+                        dataGrid.ItemsSource = query;
                     }
                     else
                     {
@@ -116,14 +117,6 @@ namespace MoalemYar.UserControls
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
             MainWindow.main.ClearScreen();
-        }
-
-        private void tabc_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (tabc.SelectedIndex == 1)
-            {
-                getSchool();
-            }
         }
 
         private void btnEditSave_Click(object sender, RoutedEventArgs e)
