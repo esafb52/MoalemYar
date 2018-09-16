@@ -1,12 +1,8 @@
-﻿using LiveCharts;
-using LiveCharts.Wpf;
+﻿using LiveCharts.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
-using System.Windows.Media.Effects;
 
 namespace MoalemYar.UserControls
 {
@@ -153,6 +149,7 @@ namespace MoalemYar.UserControls
                 }
 
                 #region Create Chart Grid with Shadow
+
                 //Grid grid;
                 //grid = new Grid
                 //{
@@ -189,7 +186,6 @@ namespace MoalemYar.UserControls
                 //    Orientation = Orientation.Vertical
                 //};
 
-
                 //var txtBook = new TextBlock()
                 //{
                 //    FontSize = 18,
@@ -199,7 +195,6 @@ namespace MoalemYar.UserControls
 
                 //var txtName = new TextBlock()
                 //{
-
                 //    FontSize = 18,
                 //    TextAlignment = TextAlignment.Center,
                 //    Text = "Name"
@@ -232,7 +227,6 @@ namespace MoalemYar.UserControls
 
                 //var txtAverageDouble = new TextBlock()
                 //{
-
                 //    FontSize = 30,
                 //    Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#303030")),
                 //    TextAlignment = TextAlignment.Center,
@@ -261,7 +255,7 @@ namespace MoalemYar.UserControls
                 //grid.Children.Add(stackFill);
                 //waterfallFlow.Children.Add(grid);
 
-                #endregion
+                #endregion Create Chart Grid with Shadow
             }
             catch (ArgumentNullException) { }
             catch (NullReferenceException)

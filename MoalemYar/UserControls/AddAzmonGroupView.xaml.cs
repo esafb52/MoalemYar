@@ -112,6 +112,7 @@ namespace MoalemYar.UserControls
         {
             MainWindow.main.ClearScreen();
         }
+
         private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try

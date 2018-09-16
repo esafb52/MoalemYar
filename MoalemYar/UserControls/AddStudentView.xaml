@@ -296,7 +296,6 @@
                                         </StackPanel>
                                     </Button>
 
-
                                     <Button
                                         x:Name="btnEditCancel"
                                         Grid.Row="0"

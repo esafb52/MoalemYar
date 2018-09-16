@@ -154,7 +154,6 @@ namespace MoalemYar.UserControls
                 db.AQuestions.Add(aQuestion);
 
                 db.SaveChanges();
-
             }
         }
 
@@ -164,6 +163,7 @@ namespace MoalemYar.UserControls
         {
             MainWindow.main.ClearScreen();
         }
+
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             var elementG = FindElement.FindElementByName<ComboBox>(cmbAddContent, "cmbBase");

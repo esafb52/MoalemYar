@@ -27,6 +27,7 @@ namespace MoalemYar.UserControls
             InitializeComponent();
             getInitialData();
         }
+
         public void getInitialData()
         {
             try
@@ -40,12 +41,12 @@ namespace MoalemYar.UserControls
                     var query3 = db.Students.ToList();
                     txtStCount.Text = query3.Count().ToString();
                 }
-
             }
             catch (Exception)
             {
             }
         }
+
         public void getTopStudent(long BaseId)
         {
             using (var db = new DataClass.myDbContext())

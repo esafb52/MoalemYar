@@ -14,7 +14,6 @@ using System.Globalization;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 
 namespace MoalemYar.UserControls
 {
@@ -108,7 +107,6 @@ namespace MoalemYar.UserControls
                 db.Schools.Add(School);
 
                 db.SaveChanges();
-
             }
         }
 
@@ -228,6 +226,7 @@ namespace MoalemYar.UserControls
                 }
             }
         }
+
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             MainWindow.main.ShowDeleteConfirmNotification(txtSchool.Text, "مدرسه");

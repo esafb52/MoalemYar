@@ -45,6 +45,7 @@ namespace MoalemYar.UserControls
                 txtSearch.IsEnabled = true;
             }
         }
+
         private void CalculateMyOperation()
         {
             try
@@ -73,7 +74,8 @@ namespace MoalemYar.UserControls
                 ).ToList();
                     var parsedValues = query.Take(Limited ? 20 : query.Count).ToList();
                     int currentIndex = 0;
-                    Dispatcher.Invoke(() => {
+                    Dispatcher.Invoke(() =>
+                    {
                         lst.Items.Clear();
                         btnStart.IsEnabled = false;
                         prgLoading.Visibility = Visibility.Hidden;
@@ -87,7 +89,6 @@ namespace MoalemYar.UserControls
                             lst.Items.Add(i);
 
                             prgUpdate.Value = (Convert.ToDouble(((double)currentIndex / (double)parsedValues.Count).ToString("N2")) * 100);
-
                         }), DispatcherPriority.Background);
                     }
                 }
@@ -96,8 +97,8 @@ namespace MoalemYar.UserControls
             {
                 MainWindow.main.ShowRecivedCircularNotification(false);
             }
-           
         }
+
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             Task.Run(() => CalculateMyOperation());
@@ -114,20 +115,18 @@ namespace MoalemYar.UserControls
                 {
                     // txtDown.Text = "مطالعه";
                     //Style style = this.FindResource("ButtonDanger") as Style;
-
                 }
             }
             catch (Exception)
             {
-
             }
         }
-
 
         private void btnStart_Click(object sender, RoutedEventArgs e)
         {
             UserControl_Loaded(null, null);
         }
+
         private void MetroTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             //Dispatcher.Invoke<Task>(async () =>
@@ -204,7 +203,6 @@ namespace MoalemYar.UserControls
 
                         client.DownloadFileCompleted += (o, ex) =>
                         {
-
                             if (fileExt.Equals(".rar") || fileExt.Equals(".zip"))
                             {
                                 UnCompress(AppVariable.fileNameBakhsh + @"\" + row + title + fileExt, AppVariable.fileNameBakhsh + @"\" + row + title, fileExt);
@@ -229,9 +227,9 @@ namespace MoalemYar.UserControls
             }
             catch (Exception)
             {
-
             }
         }
+
         public void UnCompress(string Open, string Write, string FileExt)
         {
             try

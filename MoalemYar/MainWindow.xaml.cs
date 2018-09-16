@@ -14,7 +14,6 @@ using MoalemYar.UserControls;
 using MVVMC;
 using Ookii.Dialogs.Wpf;
 using System;
-using System.Globalization;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -37,10 +36,12 @@ namespace MoalemYar
 
             ShowCredentialDialog();
         }
+
         public void ClearScreen()
         {
             region.Content = null;
         }
+
         private void TreeViewItem_Selected(object sender, RoutedEventArgs e)
         {
             var navigationService = NavigationServiceProvider.GetNavigationServiceInstance();

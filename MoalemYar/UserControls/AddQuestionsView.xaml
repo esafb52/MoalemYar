@@ -613,7 +613,6 @@
                         </Grid>
                     </controls:TabItem>
                 </controls:TabControl>
-
             </WrapPanel>
         </controls:ScrollViewer>
     </controls:TransitioningContentControl>
