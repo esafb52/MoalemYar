@@ -23,7 +23,6 @@
                 <Setter Property="FontSize" Value="14" />
                 <Setter Property="FlowDirection" Value="RightToLeft" />
             </Style>
-
             <Style x:Key="PasswordBox" TargetType="{x:Type PasswordBox}">
                 <Setter Property="FontSize" Value="14" />
                 <Setter Property="Background" Value="#f0f1f5" />

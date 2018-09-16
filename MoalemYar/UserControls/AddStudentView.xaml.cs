@@ -124,7 +124,6 @@ namespace MoalemYar.UserControls
             {
                 var query = DeleteStudentAsync(id);
                 query.Wait();
-                MainWindow.main.getexHint();
                 MainWindow.main.ShowDeletedNotification(true, txtName.Text, "دانش آموز");
             }
         }
@@ -160,7 +159,6 @@ namespace MoalemYar.UserControls
                 db.Students.Add(Student);
 
                 db.SaveChanges();
-                MainWindow.main.getexHint();
             }
         }
 

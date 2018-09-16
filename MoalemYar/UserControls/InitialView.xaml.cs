@@ -22,20 +22,30 @@ namespace MoalemYar.UserControls
     /// </summary>
     public partial class InitialView : UserControl
     {
-        private bool runFirst = false;
-
         public InitialView()
         {
             InitializeComponent();
-
-            DataContext = this;
-
-            //Todo: Fix
-            //txtStCount.Text = MainWindow.main.exAddOrUpdateStudent.Hint;
-            //txtUCount.Text = MainWindow.main.exAddOrUpdateUser.Hint;
-            //txtScCount.Text = MainWindow.main.exAddOrUpdateSchool.Hint;
+            getInitialData();
         }
+        public void getInitialData()
+        {
+            try
+            {
+                using (var db = new DataClass.myDbContext())
+                {
+                    var query = db.Schools.ToList();
+                    txtScCount.Text = query.Count().ToString();
+                    var query2 = db.Users.ToList();
+                    txtUCount.Text = query2.Count().ToString();
+                    var query3 = db.Students.ToList();
+                    txtStCount.Text = query3.Count().ToString();
+                }
 
+            }
+            catch (Exception)
+            {
+            }
+        }
         public void getTopStudent(long BaseId)
         {
             using (var db = new DataClass.myDbContext())
@@ -108,12 +118,8 @@ namespace MoalemYar.UserControls
 
         private void UserControl_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            if (!runFirst)
-            {
-                getSchool();
-                cmbEditBase.SelectedIndex = Convert.ToInt32(FindElement.Settings.DefaultSchool);
-                runFirst = true;
-            }
+            getSchool();
+            cmbEditBase.SelectedIndex = Convert.ToInt32(FindElement.Settings.DefaultSchool);
             using (var db = new DataClass.myDbContext())
             {
                 long baseId = Convert.ToInt64(cmbEditBase.SelectedValue);

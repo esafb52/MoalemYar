@@ -65,7 +65,6 @@ namespace MoalemYar.UserControls
                 db.Users.Remove(DeleteUser);
                 db.SaveChanges();
             }
-            MainWindow.main.getexHint();
         }
 
         private void updateUser(long id, string Username, string Password)
@@ -92,7 +91,6 @@ namespace MoalemYar.UserControls
 
                 db.SaveChanges();
             }
-            MainWindow.main.getexHint();
         }
 
         #endregion Query

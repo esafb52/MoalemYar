@@ -82,7 +82,6 @@ namespace MoalemYar.UserControls
         {
             var query = DeleteGroupAsync(id);
             query.Wait();
-            MainWindow.main.getexHint();
         }
 
         private void updateGroup(long id, string GroupName)
@@ -103,7 +102,6 @@ namespace MoalemYar.UserControls
                 group.GroupName = GroupName;
                 db.Groups.Add(group);
                 db.SaveChanges();
-                MainWindow.main.getexHint();
             }
         }
 

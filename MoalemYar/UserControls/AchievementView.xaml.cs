@@ -1,8 +1,12 @@
-﻿using LiveCharts.Wpf;
+﻿using LiveCharts;
+using LiveCharts.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Media.Effects;
 
 namespace MoalemYar.UserControls
 {
@@ -147,6 +151,117 @@ namespace MoalemYar.UserControls
                     _currentUser = _addUser;
                     waterfallFlow.Children.Add(_currentUser);
                 }
+
+                #region Create Chart Grid with Shadow
+                //Grid grid;
+                //grid = new Grid
+                //{
+                //    Width = 300,
+                //    Height = 330,
+                //    Effect = new DropShadowEffect
+                //    {
+                //        BlurRadius = 15,
+                //        Direction = -90,
+                //        Opacity = .2,
+                //        RenderingBias = RenderingBias.Quality,
+                //        ShadowDepth = 1
+                //    },
+                //};
+
+                //var border = new Border()
+                //{
+                //    Background = new SolidColorBrush(Colors.White),
+                //    CornerRadius = new CornerRadius(5)
+                //};
+                //var border2 = new Border()
+                //{
+                //    Background = new SolidColorBrush(Colors.White)
+                //};
+                //Grid.SetRowSpan(border, 4);
+                //Grid.SetRowSpan(border2, 3);
+
+                //grid.Children.Add(border);
+                //grid.Children.Add(border2);
+                /////////////////////////////////
+
+                //var stackFill = new StackPanel
+                //{
+                //    Orientation = Orientation.Vertical
+                //};
+
+
+                //var txtBook = new TextBlock()
+                //{
+                //    FontSize = 18,
+                //    TextAlignment = TextAlignment.Center,
+                //    Text ="Book"
+                //};
+
+                //var txtName = new TextBlock()
+                //{
+
+                //    FontSize = 18,
+                //    TextAlignment = TextAlignment.Center,
+                //    Text = "Name"
+                //};
+
+                //var chart = new CartesianChart
+                //{
+                //    Margin = new Thickness(10, 0, 10, 20),
+                //    DataTooltip = null,
+                //    Hoverable = false,
+
+                //};
+
+                //var stack = new StackPanel
+                //{
+                //    Margin = new Thickness(20, 0, 20, 0),
+                //    VerticalAlignment = VerticalAlignment.Center
+                //};
+                //var txt = new TextBlock()
+                //{
+                //    Opacity = .4,
+                //    FontSize = 13,
+                //    Text = "میانگین نمرات این درس برابر است با:"
+                //};
+
+                //var stack2 = new StackPanel
+                //{
+                //    Orientation = Orientation.Horizontal
+                //};
+
+                //var txtAverageDouble = new TextBlock()
+                //{
+
+                //    FontSize = 30,
+                //    Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#303030")),
+                //    TextAlignment = TextAlignment.Center,
+                //    Text = "20.45"
+                //};
+                //var txtAverage = new TextBlock()
+                //{
+                //    VerticalAlignment = VerticalAlignment.Bottom,
+                //    Margin = new Thickness(8, 6, 8, 6),
+                //    FontSize = 16,
+                //    Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#303030")),
+                //    Text = "نیاز به تلاش بیشتر"
+                //};
+
+                //stack2.Children.Add(txtAverageDouble);
+                //stack2.Children.Add(txtAverage);
+
+                //stack.Children.Add(txt);
+                //stack.Children.Add(stack2);
+
+                //stackFill.Children.Add(txtBook);
+                //stackFill.Children.Add(txtName);
+                //stackFill.Children.Add(chart);
+                //stackFill.Children.Add(stack);
+
+                //grid.Children.Add(stackFill);
+                //waterfallFlow.Children.Add(grid);
+
+                #endregion
             }
             catch (ArgumentNullException) { }
             catch (NullReferenceException)

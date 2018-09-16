@@ -125,38 +125,6 @@ namespace MoalemYar
             }
         }
 
-        private void WindowBorderless_Loaded(object sender, RoutedEventArgs e)
-        {
-            getexHint();
-        }
-
-        public void getexHint()
-        {
-            //Todo: must find a better way
-            //try
-            //{
-            //    using (var db = new DataClass.myDbContext())
-            //    {
-            //        var query = db.Schools.Select(x => x);
-            //        exAddOrUpdateSchool.Hint = query.Count().ToString();
-
-            //        var query2 = db.Users.Select(x => x);
-            //        exAddOrUpdateUser.Hint = query2.Count().ToString();
-
-            //        var query3 = db.Students.Select(x => x);
-            //        exAddOrUpdateStudent.Hint = query3.Count().ToString();
-            //        _sch = query.Count();
-            //        _stu = query3.Count();
-            //        _usr = query2.Count();
-            //    }
-
-            //    exAttendancelist.Hint = pc.GetYear(DateTime.Now).ToString("0000") + "/" + pc.GetMonth(DateTime.Now).ToString("00") + "/" + pc.GetDayOfMonth(DateTime.Now).ToString("00");
-            //}
-            //catch (Exception)
-            //{
-            //}
-        }
-
         private void ShowCredentialDialog()
         {
             try

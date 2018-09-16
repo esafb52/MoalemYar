@@ -77,7 +77,6 @@ namespace MoalemYar.UserControls
                     var DeleteSchool = db.Schools.Find(id);
                     db.Schools.Remove(DeleteSchool);
                     db.SaveChanges();
-                    MainWindow.main.getexHint();
                     MainWindow.main.ShowDeletedNotification(true, txtSchool.Text, "مدرسه");
                 }
             }
@@ -109,7 +108,6 @@ namespace MoalemYar.UserControls
 
                 db.SaveChanges();
 
-                MainWindow.main.getexHint();
             }
         }
 

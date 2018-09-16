@@ -117,7 +117,6 @@ namespace MoalemYar.UserControls
         {
             var query = DeleteAQuestionsAsync(id);
             query.Wait();
-            MainWindow.main.getexHint();
         }
 
         private void updateAQuestions(long id, long GroupId, string Class, string QuestionText, string Case1, string Case2, string Case3, string Case4, int Answer, string Date)
@@ -156,7 +155,6 @@ namespace MoalemYar.UserControls
 
                 db.SaveChanges();
 
-                MainWindow.main.getexHint();
             }
         }
 
