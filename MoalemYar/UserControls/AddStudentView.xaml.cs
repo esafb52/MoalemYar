@@ -354,5 +354,10 @@ namespace MoalemYar.UserControls
         {
             getStudent(Convert.ToInt64(cmbBaseEdit.SelectedValue));
         }
+
+        private void cmbGender_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            imgStudent.Source = new BitmapImage(new Uri("pack://application:,,,/MoalemYar;component/Resources/Choose.png", UriKind.Absolute));
+        }
     }
 }

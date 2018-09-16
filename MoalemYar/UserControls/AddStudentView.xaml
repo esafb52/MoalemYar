@@ -132,7 +132,10 @@
                                         <ContentControl.ContentTemplate>
                                             <DataTemplate>
                                                 <Grid>
-                                                    <ComboBox x:Name="cmbGender" TabIndex="4">
+                                                    <ComboBox
+                                                        x:Name="cmbGender"
+                                                        SelectionChanged="cmbGender_SelectionChanged"
+                                                        TabIndex="4">
                                                         <ComboBoxItem Content="پسر" />
                                                         <ComboBoxItem Content="دختر" />
                                                     </ComboBox>
@@ -195,8 +198,7 @@
                                             x:Name="imgStudent"
                                             Width="200"
                                             Height="200"
-                                            VerticalAlignment="Top"
-                                            Source="/Resources/Choose.png" />
+                                            VerticalAlignment="Top" />
                                         <Button
                                             x:Name="btnChoose"
                                             Width="200"
