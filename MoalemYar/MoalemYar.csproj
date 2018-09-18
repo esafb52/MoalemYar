@@ -14,7 +14,7 @@
     <WarningLevel>4</WarningLevel>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <AssemblyVersion>2.1.4426.0</AssemblyVersion>
+    <AssemblyVersion>2.1.4425.0</AssemblyVersion>
     <TargetFrameworkProfile />
     <ShouldCreateLogs>False</ShouldCreateLogs>
     <AdvancedSettingsExpanded>True</AdvancedSettingsExpanded>
@@ -446,4 +446,23 @@
     <Resource Include="Resources\restore.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EmbedReferencedAssemblies" AfterTargets="ResolveAssemblyReferences">
+    <ItemGroup>
+      <AssembliesToEmbed Include="@(ReferenceCopyLocalPaths)" />
+      <EmbeddedResource Include="@(AssembliesToEmbed)" Condition="$([System.Text.RegularExpressions.Regex]::IsMatch('%(AssembliesToEmbed.Filename)', ^((?!HandyControl|Entity|System.Data.SQLite|Code).)*$)) And '%(AssembliesToEmbed.Extension)' == '.dll'">
+        <LogicalName>%(AssembliesToEmbed.DestinationSubDirectory)%(AssembliesToEmbed.Filename)%(AssembliesToEmbed.Extension)</LogicalName>
+      </EmbeddedResource>
+    </ItemGroup>
+    <Message Importance="high" Text="Embedding: @(AssembliesToEmbed->'%(DestinationSubDirectory)%(Filename)%(Extension)', ', ')" />
+  </Target>
+  <Target Name="DeleteAllReferenceCopyLocalPaths" AfterTargets="Build">
+    <Delete Files="@(ReferenceCopyLocalPaths->'$(OutDir)%(DestinationSubDirectory)%(Filename)%(Extension)')" Condition="$([System.Text.RegularExpressions.Regex]::IsMatch('%(Filename)', ^((?!HandyControl|Entity|System.Data.SQLite|Code).)*$)) Or '%(Extension)' == '.xml'" />
+  </Target>
+  <Import Project="..\packages\System.Data.SQLite.Core.1.0.108.0\build\net451\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.108.0\build\net451\System.Data.SQLite.Core.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\System.Data.SQLite.Core.1.0.108.0\build\net451\System.Data.SQLite.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\System.Data.SQLite.Core.1.0.108.0\build\net451\System.Data.SQLite.Core.targets'))" />
+  </Target>
 </Project>
