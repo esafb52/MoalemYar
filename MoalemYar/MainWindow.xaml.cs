@@ -119,6 +119,12 @@ namespace MoalemYar
                 case "groupAzmon":
                     navigationService.GetController<UserControls.UserControlsController>().AddAzmonGroup();
                     break;
+                case "backup":
+                    AppVariable.takeBackup();
+                    break;
+                case "restore":
+                    AppVariable.dbRestore();
+                    break;
             }
         }
 

@@ -11,7 +11,6 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Data.Entity;
-using System.Data.SQLite;
 using System.IO;
 using System.Linq;
 using System.Windows;
@@ -1459,61 +1458,12 @@ namespace MoalemYar.UserControls
             switch (btnTag.Tag)
             {
                 case "Backup":
-                    takeBackup();
+                    AppVariable.takeBackup();
                     break;
 
                 case "Restore":
-                    dbRestore();
+                    AppVariable.dbRestore();
                     break;
-            }
-        }
-
-        private void dbRestore()
-        {
-            try
-            {
-                var openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-
-                openFileDialog1.Filter = "Backup files (*.db)|*.db";
-                openFileDialog1.FilterIndex = 1;
-                openFileDialog1.RestoreDirectory = true;
-
-                if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                {
-                    System.IO.File.Copy(openFileDialog1.FileName, AppVariable.fileName + @"\data.db", true);
-                    MainWindow.main.ShowBackupNotification(true, "بازگردانی اطلاعات ");
-                }
-            }
-            catch (Exception)
-            {
-                MainWindow.main.ShowBackupNotification(false, "بازگردانی اطلاعات ");
-            }
-        }
-
-        private void takeBackup()
-        {
-            try
-            {
-                var saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-                saveFileDialog1.Filter = "DataBase Backup|*.db";
-                saveFileDialog1.Title = "Save an Backup File";
-                saveFileDialog1.FileName = "data" + DateTime.Now.ToShortDateString().Replace("/", "-");
-                saveFileDialog1.ShowDialog();
-                if (saveFileDialog1.FileName != "")
-                {
-                    using (var source = new SQLiteConnection(@"Data Source=|DataDirectory|\data.db; Version=3;"))
-                    using (var destination = new SQLiteConnection("Data Source=" + saveFileDialog1.FileName + "; Version=3;"))
-                    {
-                        source.Open();
-                        destination.Open();
-                        source.BackupDatabase(destination, "main", "main", -1, null, 0);
-                    }
-                }
-                MainWindow.main.ShowBackupNotification(true, "پشتیبان گیری از اطلاعات ");
-            }
-            catch (Exception)
-            {
-                MainWindow.main.ShowBackupNotification(false, "پشتیبان گیری از اطلاعات ");
             }
         }
     }

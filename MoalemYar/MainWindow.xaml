@@ -34,7 +34,17 @@
                 FontFamily="{StaticResource TeacherYar.Fonts.IRANSans}"
                 WindowChrome.IsHitTestVisibleInChrome="True">
                 <MenuItem Foreground="White" Header="منو">
-                    <MenuItem Header="خروج" />
+                    <MenuItem Header="پشتیبان گیری">
+                        <MenuItem
+                            Click="MenuItem_Click"
+                            Header="پشتیبان گیری اطلاعات"
+                            Tag="backup" />
+                        <MenuItem
+                            Click="MenuItem_Click"
+                            Header="بازیابی اطلاعات"
+                            Tag="restore" />
+                    </MenuItem>
+                    <MenuItem Command="SystemCommands.CloseWindowCommand" Header="خروج" />
                 </MenuItem>
                 <MenuItem Foreground="White" Header="ویرایش">
                     <MenuItem Command="ApplicationCommands.Copy" Header="کپی" />

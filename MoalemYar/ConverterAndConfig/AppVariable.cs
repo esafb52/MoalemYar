@@ -10,6 +10,7 @@
 
 using Microsoft.Win32;
 using System;
+using System.Data.SQLite;
 using System.Diagnostics;
 using System.Reflection;
 using System.Windows.Media;
@@ -109,5 +110,54 @@ namespace MoalemYar
                     throw new ArgumentOutOfRangeException(nameof(value), value, "Value not recognized");
             }
         }
+        #region Backup Database
+        public static void takeBackup()
+        {
+            try
+            {
+                var saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+                saveFileDialog1.Filter = "DataBase Backup|*.db";
+                saveFileDialog1.Title = "Save an Backup File";
+                saveFileDialog1.FileName = "data" + DateTime.Now.ToShortDateString().Replace("/", "-");
+                saveFileDialog1.ShowDialog();
+                if (saveFileDialog1.FileName != "")
+                {
+                    using (var source = new SQLiteConnection(@"Data Source=|DataDirectory|\data.db; Version=3;"))
+                    using (var destination = new SQLiteConnection("Data Source=" + saveFileDialog1.FileName + "; Version=3;"))
+                    {
+                        source.Open();
+                        destination.Open();
+                        source.BackupDatabase(destination, "main", "main", -1, null, 0);
+                    }
+                }
+                MainWindow.main.ShowBackupNotification(true, "پشتیبان گیری از اطلاعات ");
+            }
+            catch (Exception)
+            {
+                MainWindow.main.ShowBackupNotification(false, "پشتیبان گیری از اطلاعات ");
+            }
+        }
+        public static void dbRestore()
+        {
+            try
+            {
+                var openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+
+                openFileDialog1.Filter = "Backup files (*.db)|*.db";
+                openFileDialog1.FilterIndex = 1;
+                openFileDialog1.RestoreDirectory = true;
+
+                if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    System.IO.File.Copy(openFileDialog1.FileName, AppVariable.fileName + @"\data.db", true);
+                    MainWindow.main.ShowBackupNotification(true, "بازگردانی اطلاعات ");
+                }
+            }
+            catch (Exception)
+            {
+                MainWindow.main.ShowBackupNotification(false, "بازگردانی اطلاعات ");
+            }
+        }
+        #endregion
     }
 }
