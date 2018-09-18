@@ -97,37 +97,9 @@ namespace MoalemYar
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
-            var navigationService = NavigationServiceProvider.GetNavigationServiceInstance();
             var selectedItem = sender as MenuItem;
             switch (selectedItem.Tag)
             {
-                case "Azmon":
-                    navigationService.GetController<UserControls.UserControlsController>().Azmon();
-                    break;
-
-                case "makeAzmon":
-                    navigationService.GetController<UserControls.UserControlsController>().StartAzmon();
-                    break;
-
-                case "quesAzmon":
-                    navigationService.GetController<UserControls.UserControlsController>().AddQuestions();
-                    break;
-
-                case "resultAzmon":
-                    navigationService.GetController<UserControls.UserControlsController>().AzmonHistory();
-                    break;
-
-                case "settingView":
-                    navigationService.GetController<UserControls.UserControlsController>().Settings();
-                    break;
-
-                case "aboutView":
-                    navigationService.GetController<UserControls.UserControlsController>().About();
-                    break;
-
-                case "groupAzmon":
-                    navigationService.GetController<UserControls.UserControlsController>().AddAzmonGroup();
-                    break;
                 case "backup":
                     AppVariable.takeBackup();
                     break;

@@ -79,39 +79,24 @@
                     <MenuItem Command="ApplicationCommands.Cut" Header="برش" />
                 </MenuItem>
                 <MenuItem Foreground="White" Header="آزمون">
-                    <MenuItem
-                        Click="MenuItem_Click"
-                        Header="آزمون"
-                        Tag="Azmon" />
+                    <MenuItem Command="{mvvmc:NavigateCommand ControllerID='UserControls', Action='Azmon'}" Header="آزمون" />
                     <Separator />
-                    <MenuItem
-                        Click="MenuItem_Click"
-                        Header="آزمون آنلاین"
-                        Tag="makeAzmon" />
+                    <MenuItem Command="{mvvmc:NavigateCommand ControllerID='UserControls', Action='StartAzmon'}" Header="آزمون آنلاین" />
                     <Separator />
-                    <MenuItem
-                        Click="MenuItem_Click"
-                        Header="گروه بندی سوالات"
-                        Tag="groupAzmon" />
-                    <MenuItem
-                        Click="MenuItem_Click"
-                        Header="ساخت سوال"
-                        Tag="quesAzmon" />
-                    <MenuItem
-                        Click="MenuItem_Click"
-                        Header="نتایج گذشته"
-                        Tag="resultAzmon" />
+                    <MenuItem Command="{mvvmc:NavigateCommand ControllerID='UserControls', Action='AddAzmonGroup'}" Header="گروه بندی سوالات" />
+                    <MenuItem Command="{mvvmc:NavigateCommand ControllerID='UserControls', Action='AddQuestions'}" Header="ساخت سوال" />
+                    <MenuItem Command="{mvvmc:NavigateCommand ControllerID='UserControls', Action='AzmonHistory'}" Header="نتایج گذشته" />
                 </MenuItem>
                 <MenuItem
-                    Click="MenuItem_Click"
+                    Command="{mvvmc:NavigateCommand ControllerID='UserControls',
+                                                    Action='Settings'}"
                     Foreground="White"
-                    Header="تنظیمات"
-                    Tag="settingView" />
+                    Header="تنظیمات" />
                 <MenuItem
-                    Click="MenuItem_Click"
+                    Command="{mvvmc:NavigateCommand ControllerID='UserControls',
+                                                    Action='About'}"
                     Foreground="White"
-                    Header="درباره"
-                    Tag="aboutView" />
+                    Header="درباره" />
             </Menu>
         </StackPanel>
     </controls:WindowBorderless.NoUserContent>
