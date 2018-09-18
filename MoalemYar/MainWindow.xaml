@@ -27,8 +27,8 @@
     UseLayoutRounding="True"
     mc:Ignorable="d">
     <Window.Resources>
-        <RoutedUICommand x:Key="backupCommand" Text="Text" />
-        <RoutedUICommand x:Key="restoreCommand" Text="Another Text" />
+        <RoutedUICommand x:Key="backupCommand" Text="backupCommand" />
+        <RoutedUICommand x:Key="restoreCommand" Text="restoreCommand" />
     </Window.Resources>
 
     <Window.CommandBindings>
