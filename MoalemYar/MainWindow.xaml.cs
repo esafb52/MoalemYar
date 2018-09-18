@@ -94,21 +94,6 @@ namespace MoalemYar
                     break;
             }
         }
-
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
-        {
-            var selectedItem = sender as MenuItem;
-            switch (selectedItem.Tag)
-            {
-                case "backup":
-                    AppVariable.takeBackup();
-                    break;
-                case "restore":
-                    AppVariable.dbRestore();
-                    break;
-            }
-        }
-
         private void ShowCredentialDialog()
         {
             try

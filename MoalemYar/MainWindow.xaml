@@ -56,13 +56,11 @@
                 <MenuItem Foreground="White" Header="منو">
                     <MenuItem Header="پشتیبان گیری">
                         <MenuItem
-                            Click="MenuItem_Click"
                             Command="{StaticResource backupCommand}"
                             Header="پشتیبان گیری اطلاعات"
                             InputGestureText="Ctrl+B"
                             Tag="backup" />
                         <MenuItem
-                            Click="MenuItem_Click"
                             Command="{StaticResource restoreCommand}"
                             Header="بازیابی اطلاعات"
                             InputGestureText="Ctrl+R"
