@@ -26,6 +26,26 @@
     TextOptions.TextRenderingMode="Auto"
     UseLayoutRounding="True"
     mc:Ignorable="d">
+    <Window.Resources>
+        <RoutedUICommand x:Key="backupCommand" Text="Text" />
+        <RoutedUICommand x:Key="restoreCommand" Text="Another Text" />
+    </Window.Resources>
+
+    <Window.CommandBindings>
+        <CommandBinding Command="{StaticResource backupCommand}" Executed="MenuItemShortCutCommandBackup" />
+        <CommandBinding Command="{StaticResource restoreCommand}" Executed="MenuItemShortCutCommandRestore" />
+    </Window.CommandBindings>
+
+    <Window.InputBindings>
+        <KeyBinding
+            Key="B"
+            Command="{StaticResource backupCommand}"
+            Modifiers="Ctrl" />
+        <KeyBinding
+            Key="R"
+            Command="{StaticResource restoreCommand}"
+            Modifiers="Ctrl" />
+    </Window.InputBindings>
     <controls:WindowBorderless.NoUserContent>
         <StackPanel FlowDirection="RightToLeft" Orientation="Horizontal">
             <Menu
@@ -37,14 +57,21 @@
                     <MenuItem Header="پشتیبان گیری">
                         <MenuItem
                             Click="MenuItem_Click"
+                            Command="{StaticResource backupCommand}"
                             Header="پشتیبان گیری اطلاعات"
+                            InputGestureText="Ctrl+B"
                             Tag="backup" />
                         <MenuItem
                             Click="MenuItem_Click"
+                            Command="{StaticResource restoreCommand}"
                             Header="بازیابی اطلاعات"
+                            InputGestureText="Ctrl+R"
                             Tag="restore" />
                     </MenuItem>
-                    <MenuItem Command="SystemCommands.CloseWindowCommand" Header="خروج" />
+                    <MenuItem
+                        Command="SystemCommands.CloseWindowCommand"
+                        Header="خروج"
+                        InputGestureText="Alt+F4" />
                 </MenuItem>
                 <MenuItem Foreground="White" Header="ویرایش">
                     <MenuItem Command="ApplicationCommands.Copy" Header="کپی" />

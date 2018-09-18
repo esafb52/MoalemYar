@@ -17,6 +17,7 @@ using System;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace MoalemYar
 {
@@ -40,6 +41,14 @@ namespace MoalemYar
         public void ClearScreen()
         {
             region.Content = null;
+        }
+        public void MenuItemShortCutCommandBackup(Object sender, ExecutedRoutedEventArgs e)
+        {
+            AppVariable.takeBackup();
+        }
+        public void MenuItemShortCutCommandRestore(Object sender, ExecutedRoutedEventArgs e)
+        {
+            AppVariable.dbRestore();
         }
 
         private void TreeViewItem_Selected(object sender, RoutedEventArgs e)

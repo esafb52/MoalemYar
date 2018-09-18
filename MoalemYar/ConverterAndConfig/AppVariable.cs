@@ -119,8 +119,7 @@ namespace MoalemYar
                 saveFileDialog1.Filter = "DataBase Backup|*.db";
                 saveFileDialog1.Title = "Save an Backup File";
                 saveFileDialog1.FileName = "data" + DateTime.Now.ToShortDateString().Replace("/", "-");
-                saveFileDialog1.ShowDialog();
-                if (saveFileDialog1.FileName != "")
+                if (saveFileDialog1.ShowDialog() != System.Windows.Forms.DialogResult.Cancel && saveFileDialog1.FileName != "")
                 {
                     using (var source = new SQLiteConnection(@"Data Source=|DataDirectory|\data.db; Version=3;"))
                     using (var destination = new SQLiteConnection("Data Source=" + saveFileDialog1.FileName + "; Version=3;"))
@@ -129,8 +128,8 @@ namespace MoalemYar
                         destination.Open();
                         source.BackupDatabase(destination, "main", "main", -1, null, 0);
                     }
+                    MainWindow.main.ShowBackupNotification(true, "پشتیبان گیری از اطلاعات ");
                 }
-                MainWindow.main.ShowBackupNotification(true, "پشتیبان گیری از اطلاعات ");
             }
             catch (Exception)
             {
