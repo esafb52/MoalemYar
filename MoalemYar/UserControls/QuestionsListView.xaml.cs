@@ -350,8 +350,6 @@ namespace MoalemYar.UserControls
 
             if (MyTextBlock.Text == "ثبت نشده")
             {
-                MyTextBlock.Foreground = new SolidColorBrush(Colors.Green);
-                MyTextBlock.Text = "ثبت شده";
                 if (isQuestion.IsChecked == true)
                     addQuestion((long)selectedItem.BaseId, (long)selectedItem.Id, element.SelectedItem.ToString());
 
@@ -375,6 +373,8 @@ namespace MoalemYar.UserControls
                         break;
                 }
                 addScore((long)selectedItem.Id, element.SelectedItem.ToString(), strDate, newStatus, (txtDesc.Text == string.Empty ? "بدون توضیحات" : txtDesc.Text));
+                MyTextBlock.Foreground = new SolidColorBrush(Colors.Green);
+                MyTextBlock.Text = newStatus + " ثبت شده ";
             }
 
             var DeleteQuestion = _initialCollection.Where(x => x.Id == (long)selectedItem.Id).FirstOrDefault();
@@ -383,22 +383,6 @@ namespace MoalemYar.UserControls
             if (!_initialCollection.Any())
             {
                 deleteQuestion((long)cmbBase.SelectedValue, element.SelectedItem.ToString());
-            }
-        }
-
-        private void StackPanel_Checked(object sender, RoutedEventArgs e)
-        {
-            var cb = e.OriginalSource as ToggleButton;
-            if (cb.IsChecked == false)
-            {
-                return;
-            }
-            foreach (var item in ((StackPanel)sender).Children)
-            {
-                if (item != cb)
-                {
-                    ((ToggleButton)item).IsChecked = false;
-                }
             }
         }
 
