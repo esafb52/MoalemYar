@@ -43,6 +43,26 @@
             Key="R"
             Command="{StaticResource restoreCommand}"
             Modifiers="Ctrl" />
+        <KeyBinding
+            Key="S"
+            Command="{mvvmc:NavigateCommand ControllerID='UserControls',
+                                            Action='Settings'}"
+            Modifiers="Ctrl" />
+        <KeyBinding
+            Key="A"
+            Command="{mvvmc:NavigateCommand ControllerID='UserControls',
+                                            Action='About'}"
+            Modifiers="Ctrl" />
+        <KeyBinding
+            Key="I"
+            Command="{mvvmc:NavigateCommand ControllerID='UserControls',
+                                            Action='Initial'}"
+            Modifiers="Ctrl" />
+        <KeyBinding
+            Key="Q"
+            Command="{mvvmc:NavigateCommand ControllerID='UserControls',
+                                            Action='Circular'}"
+            Modifiers="Ctrl" />
     </Window.InputBindings>
     <controls:WindowBorderless.NoUserContent>
         <StackPanel FlowDirection="RightToLeft" Orientation="Horizontal">
@@ -87,12 +107,14 @@
                     Command="{mvvmc:NavigateCommand ControllerID='UserControls',
                                                     Action='Settings'}"
                     Foreground="White"
-                    Header="تنظیمات" />
+                    Header="تنظیمات"
+                    InputGestureText="Ctrl+S" />
                 <MenuItem
                     Command="{mvvmc:NavigateCommand ControllerID='UserControls',
                                                     Action='About'}"
                     Foreground="White"
-                    Header="درباره" />
+                    Header="درباره"
+                    InputGestureText="Ctrl+A" />
             </Menu>
         </StackPanel>
     </controls:WindowBorderless.NoUserContent>
