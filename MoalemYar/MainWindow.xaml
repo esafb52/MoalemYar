@@ -12,7 +12,6 @@
     Title="معلم یار"
     MinWidth="1300"
     MinHeight="700"
-    BorderBrush="#262e2f"
     BorderThickness="1"
     FontFamily="{StaticResource TeacherYar.Fonts.IRANSans}"
     FontSize="14"
