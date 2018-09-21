@@ -14,7 +14,10 @@
         <controls:ScrollViewer HorizontalScrollBarVisibility="Auto">
             <WrapPanel>
                 <StackPanel Orientation="Vertical">
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel
+                        Margin="50,0"
+                        HorizontalAlignment="Center"
+                        Orientation="Horizontal">
                         <Grid
                             Width="270"
                             Height="125"
@@ -158,8 +161,10 @@
                             </StackPanel>
                         </Grid>
                     </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-
+                    <StackPanel
+                        Margin="50,0"
+                        HorizontalAlignment="Center"
+                        Orientation="Horizontal">
                         <Grid Width="270" Margin="10">
                             <Grid.Effect>
                                 <DropShadowEffect
@@ -172,7 +177,6 @@
                             <Grid.OpacityMask>
                                 <VisualBrush Visual="{Binding ElementName=brdprg}" />
                             </Grid.OpacityMask>
-
                             <Border
                                 x:Name="brdprg"
                                 Background="White"
@@ -266,12 +270,12 @@
                                     <lvc:ColumnSeries />
                                 </lvc:CartesianChart.Series>
                             </lvc:CartesianChart>
-                            <StackPanel
+                            <TextBlock
                                 Grid.Row="3"
                                 Margin="20,0,20,0"
-                                VerticalAlignment="Center">
-                                <TextBlock FontSize="13" Opacity=".4"><Run Text="وضعیت دانش آموزان کلاس بصورت کلی" /></TextBlock>
-                            </StackPanel>
+                                VerticalAlignment="Center"
+                                FontSize="13"
+                                Opacity=".4"><Run Text="وضعیت دانش آموزان کلاس بصورت کلی" /></TextBlock>
                         </Grid>
                         <Grid Width="270" Margin="10">
                             <Grid.Effect>
@@ -285,46 +289,39 @@
                             <Grid.OpacityMask>
                                 <VisualBrush Visual="{Binding ElementName=brdcl}" />
                             </Grid.OpacityMask>
-
                             <Border
                                 x:Name="brdcl"
                                 Background="White"
                                 CornerRadius="5">
-
-                                <StackPanel
-                                    Margin="10,10,10,10"
-                                    VerticalAlignment="Bottom"
-                                    Orientation="Vertical">
-                                    <PersianCalendarWPF:PersianCalendar />
-                                </StackPanel>
+                                <PersianCalendarWPF:PersianCalendar Margin="10" />
                             </Border>
-                        </Grid>
-                        <Grid Margin="10,0,0,5" Visibility="Hidden">
-                            <ComboBox
-                                x:Name="cmbEditBase"
-                                Width="190"
-                                Height="30"
-                                HorizontalAlignment="Left"
-                                VerticalAlignment="Top"
-                                SelectedValue="{Binding SchoolName}"
-                                SelectedValuePath="Id"
-                                SelectionChanged="cmbEditBase_SelectionChanged"
-                                TabIndex="0">
-                                <ComboBox.ItemTemplate>
-                                    <DataTemplate>
-                                        <StackPanel Orientation="Horizontal">
-                                            <TextBlock Text="{Binding SchoolName}" />
-                                            <TextBlock Text=" - " />
-                                            <TextBlock Text="{Binding Base}" />
-                                            <TextBlock Text=" - " />
-                                            <TextBlock Text="{Binding Year}" />
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </ComboBox.ItemTemplate>
-                            </ComboBox>
                         </Grid>
                     </StackPanel>
                 </StackPanel>
+                <Grid Visibility="Collapsed">
+                    <ComboBox
+                        x:Name="cmbEditBase"
+                        Width="190"
+                        Height="30"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        SelectedValue="{Binding SchoolName}"
+                        SelectedValuePath="Id"
+                        SelectionChanged="cmbEditBase_SelectionChanged"
+                        TabIndex="0">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding SchoolName}" />
+                                    <TextBlock Text=" - " />
+                                    <TextBlock Text="{Binding Base}" />
+                                    <TextBlock Text=" - " />
+                                    <TextBlock Text="{Binding Year}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                </Grid>
             </WrapPanel>
         </controls:ScrollViewer>
     </controls:TransitioningContentControl>

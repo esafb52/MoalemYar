@@ -10,10 +10,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:mvvmc="clr-namespace:MVVMC;assembly=MVVMC"
     Title="معلم یار"
-    Width="800"
-    Height="450"
     MinWidth="1300"
-    MinHeight="600"
+    MinHeight="700"
     BorderBrush="#262e2f"
     BorderThickness="1"
     FontFamily="{StaticResource TeacherYar.Fonts.IRANSans}"
@@ -25,6 +23,7 @@
     TextOptions.TextHintingMode="Auto"
     TextOptions.TextRenderingMode="Auto"
     UseLayoutRounding="True"
+    WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
     <Window.Resources>
         <RoutedUICommand x:Key="backupCommand" Text="backupCommand" />
