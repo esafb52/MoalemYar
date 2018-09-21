@@ -815,7 +815,6 @@ namespace MoalemYar.UserControls
             FindElement.Settings.DefaultServer = url[cmbServer.SelectedIndex].ToString();
         }
 
-        //Todo: Update Servers
         private void loadServers()
         {
             string[] city = new string[]{
