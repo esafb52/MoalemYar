@@ -102,24 +102,6 @@ namespace MoalemYar.UserControls
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             Task.Run(() => CalculateMyOperation());
-            try
-            {
-                dynamic selectedItem = lst.SelectedItems[0];
-                string row = selectedItem.Row;
-                string title = selectedItem.Title;
-                if (!System.IO.Directory.Exists(AppVariable.fileNameBakhsh + row + title))
-                {
-                    // txtDown.Text = "دانلود";
-                }
-                else
-                {
-                    // txtDown.Text = "مطالعه";
-                    //Style style = this.FindResource("ButtonDanger") as Style;
-                }
-            }
-            catch (Exception)
-            {
-            }
         }
 
         private void btnStart_Click(object sender, RoutedEventArgs e)
@@ -161,6 +143,9 @@ namespace MoalemYar.UserControls
 
                 if (!System.IO.Directory.Exists(AppVariable.fileNameBakhsh + row + title))
                 {
+                    prgLoading.Visibility = Visibility.Visible;
+                    prgUpdate.Visibility = Visibility.Hidden;
+
                     WebClient wc = new WebClient();
                     wc.Headers.Add("User-Agent: Other");
                     using (WebClient client = new WebClient())
@@ -177,13 +162,13 @@ namespace MoalemYar.UserControls
                             fileExt = System.IO.Path.GetExtension(wc.ResponseHeaders["Content-Disposition"].Substring(wc.ResponseHeaders["Content-Disposition"].IndexOf("filename=") + 9).Replace("\"", ""));
                         }
 
-                        client.DownloadProgressChanged += (o, ex) =>
-                        {
-                            Dispatcher.Invoke(() =>
-                            {
-                                //Todo: mybe add progressbar
-                            });
-                        };
+                        //client.DownloadProgressChanged += (o, ex) =>
+                        //{
+                        //    Dispatcher.Invoke(() =>
+                        //    {
+                        //        //Todo: mybe add progressbar
+                        //    });
+                        //};
 
                         string TotPath = AppVariable.fileNameBakhsh + row + title;
                         string dPath = string.Empty;
@@ -203,9 +188,24 @@ namespace MoalemYar.UserControls
 
                         client.DownloadFileCompleted += (o, ex) =>
                         {
+                            prgLoading.Visibility = Visibility.Hidden;
+                            prgUpdate.Visibility = Visibility.Visible;
+
                             if (fileExt.Equals(".rar") || fileExt.Equals(".zip"))
                             {
                                 UnCompress(AppVariable.fileNameBakhsh + @"\" + row + title + fileExt, AppVariable.fileNameBakhsh + @"\" + row + title, fileExt);
+                            }
+
+                            try
+                            {
+                                System.Diagnostics.Process.Start(AppVariable.fileNameBakhsh + row + title);
+                            }
+                            catch (Win32Exception)
+                            {
+                                System.Diagnostics.Process.Start(AppVariable.fileNameBakhsh + title);
+                            }
+                            catch (FileNotFoundException)
+                            {
                             }
                         };
                     }
@@ -270,6 +270,11 @@ namespace MoalemYar.UserControls
             {
                 System.IO.File.Delete(Open);
             };
+        }
+
+        private void lst_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            btnSave_Click(null, null);
         }
     }
 }
