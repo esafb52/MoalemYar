@@ -95,7 +95,7 @@
                                     Orientation="Vertical">
                                     <controls:InfoTextBox
                                         x:Name="txtAddName"
-                                        Height="30"
+                                        Height="35"
                                         Margin="2"
                                         VerticalAlignment="Top"
                                         FlowDirection="RightToLeft"
@@ -104,7 +104,7 @@
                                         TabIndex="0" />
                                     <controls:InfoTextBox
                                         x:Name="txtAddLName"
-                                        Height="30"
+                                        Height="35"
                                         Margin="2"
                                         VerticalAlignment="Top"
                                         FlowDirection="RightToLeft"
@@ -113,7 +113,7 @@
                                         TabIndex="1" />
                                     <controls:InfoTextBox
                                         x:Name="txtAddFName"
-                                        Height="30"
+                                        Height="35"
                                         Margin="2"
                                         VerticalAlignment="Top"
                                         FlowDirection="RightToLeft"
@@ -455,7 +455,7 @@
                                             Orientation="Vertical">
                                             <controls:InfoTextBox
                                                 x:Name="txtName"
-                                                Height="30"
+                                                Height="35"
                                                 Margin="2"
                                                 VerticalAlignment="Top"
                                                 FlowDirection="RightToLeft"
@@ -464,7 +464,7 @@
                                                 TabIndex="0" />
                                             <controls:InfoTextBox
                                                 x:Name="txtLName"
-                                                Height="30"
+                                                Height="35"
                                                 Margin="2"
                                                 VerticalAlignment="Top"
                                                 FlowDirection="RightToLeft"
@@ -473,7 +473,7 @@
                                                 TabIndex="1" />
                                             <controls:InfoTextBox
                                                 x:Name="txtFName"
-                                                Height="30"
+                                                Height="35"
                                                 Margin="2"
                                                 VerticalAlignment="Top"
                                                 FlowDirection="RightToLeft"

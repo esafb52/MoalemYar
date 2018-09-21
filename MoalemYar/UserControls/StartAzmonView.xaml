@@ -143,7 +143,7 @@
                         </Grid>
                         <controls:InfoTextBox
                             Name="txtTedad"
-                            Height="30"
+                            Height="35"
                             VerticalAlignment="Top"
                             MaxLength="3"
                             PlaceHolder="تعداد سوالات"
@@ -179,7 +179,7 @@
                         </StackPanel>
                         <controls:InfoTextBox
                             x:Name="txtTime"
-                            Height="30"
+                            Height="35"
                             Margin="5,0"
                             VerticalAlignment="Top"
                             IsEnabled="{Binding ElementName=swLimit, Path=IsChecked}"

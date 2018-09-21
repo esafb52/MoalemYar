@@ -158,7 +158,7 @@
                                     </ContentControl>
                                     <controls:InfoTextBox
                                         Name="txtQuestionText"
-                                        Height="30"
+                                        Height="35"
                                         Margin="2"
                                         FlowDirection="RightToLeft"
                                         MaxLength="20"
@@ -166,7 +166,7 @@
                                         TabIndex="0" />
                                     <controls:InfoTextBox
                                         Name="txtCase1"
-                                        Height="30"
+                                        Height="35"
                                         Margin="2"
                                         FlowDirection="RightToLeft"
                                         MaxLength="20"
@@ -174,7 +174,7 @@
                                         TabIndex="0" />
                                     <controls:InfoTextBox
                                         Name="txtCase2"
-                                        Height="30"
+                                        Height="35"
                                         Margin="2"
                                         FlowDirection="RightToLeft"
                                         MaxLength="20"
@@ -182,7 +182,7 @@
                                         TabIndex="0" />
                                     <controls:InfoTextBox
                                         Name="txtCase3"
-                                        Height="30"
+                                        Height="35"
                                         Margin="2"
                                         FlowDirection="RightToLeft"
                                         MaxLength="20"
@@ -190,7 +190,7 @@
                                         TabIndex="0" />
                                     <controls:InfoTextBox
                                         Name="txtCase4"
-                                        Height="30"
+                                        Height="35"
                                         Margin="2"
                                         FlowDirection="RightToLeft"
                                         MaxLength="20"
@@ -462,7 +462,7 @@
                                                 Orientation="Vertical">
                                                 <controls:InfoTextBox
                                                     Name="txtEditQuestionText"
-                                                    Height="30"
+                                                    Height="35"
                                                     Margin="2"
                                                     FlowDirection="RightToLeft"
                                                     MaxLength="20"
@@ -470,7 +470,7 @@
                                                     TabIndex="0" />
                                                 <controls:InfoTextBox
                                                     Name="txtEditCase1"
-                                                    Height="30"
+                                                    Height="35"
                                                     Margin="2"
                                                     FlowDirection="RightToLeft"
                                                     MaxLength="20"
@@ -478,7 +478,7 @@
                                                     TabIndex="0" />
                                                 <controls:InfoTextBox
                                                     Name="txtEditCase2"
-                                                    Height="30"
+                                                    Height="35"
                                                     Margin="2"
                                                     FlowDirection="RightToLeft"
                                                     MaxLength="20"
@@ -486,7 +486,7 @@
                                                     TabIndex="0" />
                                                 <controls:InfoTextBox
                                                     Name="txtEditCase3"
-                                                    Height="30"
+                                                    Height="35"
                                                     Margin="2"
                                                     FlowDirection="RightToLeft"
                                                     MaxLength="20"
@@ -494,7 +494,7 @@
                                                     TabIndex="0" />
                                                 <controls:InfoTextBox
                                                     Name="txtEditCase4"
-                                                    Height="30"
+                                                    Height="35"
                                                     Margin="2"
                                                     FlowDirection="RightToLeft"
                                                     MaxLength="20"

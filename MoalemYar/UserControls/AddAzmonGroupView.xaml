@@ -84,16 +84,14 @@
                                     Margin="60,45,96,-7"
                                     HorizontalAlignment="Stretch" />
                             </Grid>
-                            <StackPanel Margin="10" Orientation="Vertical">
-                                <controls:InfoTextBox
-                                    Name="txtAddGroup"
-                                    Height="30"
-                                    Margin="2,2,1.8,2"
-                                    FlowDirection="RightToLeft"
-                                    MaxLength="20"
-                                    PlaceHolder="نام گروه"
-                                    TabIndex="0" />
-                            </StackPanel>
+                            <controls:InfoTextBox
+                                Name="txtAddGroup"
+                                Height="35"
+                                Margin="10"
+                                FlowDirection="RightToLeft"
+                                MaxLength="20"
+                                PlaceHolder="نام گروه"
+                                TabIndex="0" />
                         </StackPanel>
                     </Grid>
                 </controls:TabItem>
@@ -252,7 +250,7 @@
                                         Orientation="Vertical">
                                         <controls:InfoTextBox
                                             Name="txtGroup"
-                                            Height="30"
+                                            Height="35"
                                             Margin="2"
                                             VerticalAlignment="Top"
                                             FlowDirection="RightToLeft"

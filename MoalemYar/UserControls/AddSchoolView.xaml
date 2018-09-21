@@ -87,7 +87,7 @@
                             <StackPanel Margin="0,5,0,0" Orientation="Vertical">
                                 <controls:InfoTextBox
                                     Name="txtAddYear"
-                                    Height="30"
+                                    Height="35"
                                     Margin="2"
                                     FlowDirection="RightToLeft"
                                     MaxLength="5"
@@ -95,7 +95,7 @@
                                     TabIndex="0" />
                                 <controls:InfoTextBox
                                     Name="txtAddSchool"
-                                    Height="30"
+                                    Height="35"
                                     Margin="2"
                                     FlowDirection="RightToLeft"
                                     MaxLength="20"
@@ -103,7 +103,7 @@
                                     TabIndex="1" />
                                 <controls:InfoTextBox
                                     Name="txtAddAdmin"
-                                    Height="30"
+                                    Height="35"
                                     Margin="2"
                                     FlowDirection="RightToLeft"
                                     MaxLength="20"
@@ -316,7 +316,7 @@
                                     Orientation="Vertical">
                                     <controls:InfoTextBox
                                         Name="txtYear"
-                                        Height="30"
+                                        Height="35"
                                         Margin="2"
                                         VerticalAlignment="Top"
                                         FlowDirection="RightToLeft"
@@ -324,7 +324,7 @@
                                         PlaceHolder="سال تحصیلی" />
                                     <controls:InfoTextBox
                                         Name="txtSchool"
-                                        Height="30"
+                                        Height="35"
                                         Margin="2"
                                         VerticalAlignment="Top"
                                         FlowDirection="RightToLeft"
@@ -332,7 +332,7 @@
                                         PlaceHolder="نام مدرسه" />
                                     <controls:InfoTextBox
                                         Name="txtAdmin"
-                                        Height="30"
+                                        Height="35"
                                         Margin="2"
                                         VerticalAlignment="Top"
                                         FlowDirection="RightToLeft"
