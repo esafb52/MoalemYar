@@ -15,37 +15,16 @@
             <WrapPanel>
                 <StackPanel Orientation="Vertical">
                     <StackPanel
-                        Margin="50,0"
+                        Margin="50,10,50,0"
                         HorizontalAlignment="Center"
                         Orientation="Horizontal">
-                        <Grid
+                        <Border
                             Width="270"
                             Height="125"
-                            Margin="10">
-                            <Grid.Effect>
-                                <DropShadowEffect
-                                    BlurRadius="15"
-                                    Direction="-90"
-                                    Opacity=".2"
-                                    RenderingBias="Quality"
-                                    ShadowDepth="1" />
-                            </Grid.Effect>
-                            <Grid.OpacityMask>
-                                <VisualBrush Visual="{Binding ElementName=Border2}" />
-                            </Grid.OpacityMask>
-
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition />
-                            </Grid.RowDefinitions>
-                            <Border
-                                x:Name="Border2"
-                                Grid.Row="0"
-                                Grid.RowSpan="3"
-                                Background="White"
-                                CornerRadius="5" />
-
+                            Margin="10"
+                            Background="White"
+                            CornerRadius="5"
+                            Effect="{StaticResource EffectShadow3}">
                             <StackPanel
                                 Grid.Row="2"
                                 Height="58"
@@ -65,34 +44,14 @@
                                         Foreground="#303030"><Run Text="نفر" /></TextBlock>
                                 </StackPanel>
                             </StackPanel>
-                        </Grid>
-                        <Grid
+                        </Border>
+                        <Border
                             Width="300"
                             Height="125"
-                            Margin="10">
-                            <Grid.Effect>
-                                <DropShadowEffect
-                                    BlurRadius="15"
-                                    Direction="-90"
-                                    Opacity=".2"
-                                    RenderingBias="Quality"
-                                    ShadowDepth="1" />
-                            </Grid.Effect>
-                            <Grid.OpacityMask>
-                                <VisualBrush Visual="{Binding ElementName=Border}" />
-                            </Grid.OpacityMask>
-
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition />
-                            </Grid.RowDefinitions>
-                            <Border
-                                x:Name="Border"
-                                Grid.Row="0"
-                                Grid.RowSpan="3"
-                                Background="White"
-                                CornerRadius="5" />
+                            Margin="10"
+                            Background="White"
+                            CornerRadius="5"
+                            Effect="{StaticResource EffectShadow3}">
                             <StackPanel
                                 Grid.Row="2"
                                 Height="58"
@@ -112,34 +71,14 @@
                                         Foreground="#303030"><Run Text="کلاس" /></TextBlock>
                                 </StackPanel>
                             </StackPanel>
-                        </Grid>
-                        <Grid
+                        </Border>
+                        <Border
                             Width="270"
                             Height="125"
-                            Margin="10">
-                            <Grid.Effect>
-                                <DropShadowEffect
-                                    BlurRadius="15"
-                                    Direction="-90"
-                                    Opacity=".2"
-                                    RenderingBias="Quality"
-                                    ShadowDepth="1" />
-                            </Grid.Effect>
-                            <Grid.OpacityMask>
-                                <VisualBrush Visual="{Binding ElementName=Border3}" />
-                            </Grid.OpacityMask>
-
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition />
-                            </Grid.RowDefinitions>
-                            <Border
-                                x:Name="Border3"
-                                Grid.Row="0"
-                                Grid.RowSpan="3"
-                                Background="White"
-                                CornerRadius="5" />
+                            Margin="10"
+                            Background="White"
+                            CornerRadius="5"
+                            Effect="{StaticResource EffectShadow3}">
                             <StackPanel
                                 Grid.Row="2"
                                 Height="58"
@@ -159,143 +98,109 @@
                                         Foreground="#303030"><Run Text="نفر" /></TextBlock>
                                 </StackPanel>
                             </StackPanel>
-                        </Grid>
+                        </Border>
                     </StackPanel>
                     <StackPanel
                         Margin="50,0"
                         HorizontalAlignment="Center"
                         Orientation="Horizontal">
-                        <Grid Width="270" Margin="10">
-                            <Grid.Effect>
-                                <DropShadowEffect
-                                    BlurRadius="15"
-                                    Direction="-90"
-                                    Opacity=".2"
-                                    RenderingBias="Quality"
-                                    ShadowDepth="1" />
-                            </Grid.Effect>
-                            <Grid.OpacityMask>
-                                <VisualBrush Visual="{Binding ElementName=brdprg}" />
-                            </Grid.OpacityMask>
-                            <Border
-                                x:Name="brdprg"
-                                Background="White"
-                                CornerRadius="5">
-
-                                <StackPanel
-                                    Name="stkDash"
-                                    Margin="10,10,10,10"
-                                    VerticalAlignment="Bottom"
-                                    Orientation="Vertical">
-                                    <TextBlock
-                                        Margin="0,5"
-                                        FontSize="15"
-                                        FontWeight="Bold"
-                                        Opacity=".4"><Run Text="دانش آموزان برتر" /></TextBlock>
-                                </StackPanel>
-                            </Border>
-                        </Grid>
-                        <Grid
+                        <Border
+                            Width="270"
+                            Height="350"
+                            Margin="10"
+                            Background="White"
+                            CornerRadius="5"
+                            Effect="{StaticResource EffectShadow3}">
+                            <StackPanel
+                                Name="stkDash"
+                                Margin="10,10,10,10"
+                                VerticalAlignment="Bottom"
+                                Orientation="Vertical">
+                                <TextBlock
+                                    Margin="0,5"
+                                    FontSize="15"
+                                    FontWeight="Bold"
+                                    Opacity=".4"><Run Text="دانش آموزان برتر" /></TextBlock>
+                            </StackPanel>
+                        </Border>
+                        <Border
                             Width="300"
                             Height="350"
-                            Margin="10">
-                            <Grid.Resources>
-                                <Style TargetType="{x:Type lvc:ColumnSeries}">
-                                    <Setter Property="StrokeThickness" Value="5" />
-                                    <Setter Property="Stroke" Value="White" />
-                                    <Setter Property="Fill" Value="Transparent" />
-                                    <Setter Property="MaxColumnWidth" Value="5" />
-                                    <Setter Property="PointGeometry" Value="{x:Null}" />
-                                    <Setter Property="DataLabels" Value="True" />
-                                </Style>
-                                <Style TargetType="{x:Type lvc:Axis}">
-                                    <Setter Property="FontSize" Value="12" />
-                                    <Setter Property="Foreground" Value="#64FFFFFF" />
-                                    <Style.Triggers>
-                                        <Trigger Property="AxisOrientation" Value="Y">
-                                            <Setter Property="IsMerged" Value="False" />
-                                        </Trigger>
-                                        <Trigger Property="AxisOrientation" Value="X">
-                                            <Setter Property="LabelsRotation" Value="40" />
-                                        </Trigger>
-                                    </Style.Triggers>
-                                </Style>
-                                <Style TargetType="{x:Type lvc:Separator}">
-                                    <Setter Property="StrokeThickness" Value="1" />
-                                    <Setter Property="Stroke" Value="#4BFFFFFF" />
-                                    <Style.Triggers>
-                                        <Trigger Property="AxisOrientation" Value="X">
-                                            <Setter Property="IsEnabled" Value="False" />
-                                            <Setter Property="Step" Value="1" />
-                                        </Trigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </Grid.Resources>
-                            <Grid.Effect>
-                                <DropShadowEffect
-                                    BlurRadius="15"
-                                    Direction="-90"
-                                    Opacity=".2"
-                                    RenderingBias="Quality"
-                                    ShadowDepth="1" />
-                            </Grid.Effect>
-                            <Grid.OpacityMask>
-                                <VisualBrush Visual="{Binding ElementName=Borderc}" />
-                            </Grid.OpacityMask>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height=".50*" />
-                                <RowDefinition Height=".5*" />
-                            </Grid.RowDefinitions>
-                            <Border
-                                x:Name="Borderc"
-                                Grid.Row="0"
-                                Grid.RowSpan="4"
-                                Background="White"
-                                CornerRadius="5" />
-                            <Border
-                                Grid.Row="0"
-                                Grid.RowSpan="4"
-                                Margin="5,5,5,115"
-                                Background="#7DBD8D" />
-                            <lvc:CartesianChart
-                                x:Name="AchievementChart"
-                                Grid.Row="2"
-                                Grid.RowSpan="2"
-                                Margin="10,10,10,135"
-                                DataTooltip="{x:Null}"
-                                Hoverable="False">
-                                <lvc:CartesianChart.Series>
-                                    <lvc:ColumnSeries />
-                                </lvc:CartesianChart.Series>
-                            </lvc:CartesianChart>
-                            <TextBlock
-                                Grid.Row="3"
-                                Margin="20,0,20,0"
-                                VerticalAlignment="Center"
-                                FontSize="13"
-                                Opacity=".4"><Run Text="وضعیت دانش آموزان کلاس بصورت کلی" /></TextBlock>
-                        </Grid>
-                        <Grid Width="270" Margin="10">
-                            <Grid.Effect>
-                                <DropShadowEffect
-                                    BlurRadius="15"
-                                    Direction="-90"
-                                    Opacity=".2"
-                                    RenderingBias="Quality"
-                                    ShadowDepth="1" />
-                            </Grid.Effect>
-                            <Grid.OpacityMask>
-                                <VisualBrush Visual="{Binding ElementName=brdcl}" />
-                            </Grid.OpacityMask>
-                            <Border
-                                x:Name="brdcl"
-                                Background="White"
-                                CornerRadius="5">
-                                <PersianCalendarWPF:PersianCalendar Margin="10" />
-                            </Border>
-                        </Grid>
+                            Margin="10"
+                            Background="White"
+                            CornerRadius="5"
+                            Effect="{StaticResource EffectShadow3}">
+                            <Grid>
+                                <Grid.Resources>
+                                    <Style TargetType="{x:Type lvc:ColumnSeries}">
+                                        <Setter Property="StrokeThickness" Value="5" />
+                                        <Setter Property="Stroke" Value="White" />
+                                        <Setter Property="Fill" Value="Transparent" />
+                                        <Setter Property="MaxColumnWidth" Value="5" />
+                                        <Setter Property="PointGeometry" Value="{x:Null}" />
+                                        <Setter Property="DataLabels" Value="True" />
+                                    </Style>
+                                    <Style TargetType="{x:Type lvc:Axis}">
+                                        <Setter Property="FontSize" Value="12" />
+                                        <Setter Property="Foreground" Value="#64FFFFFF" />
+                                        <Style.Triggers>
+                                            <Trigger Property="AxisOrientation" Value="Y">
+                                                <Setter Property="IsMerged" Value="False" />
+                                            </Trigger>
+                                            <Trigger Property="AxisOrientation" Value="X">
+                                                <Setter Property="LabelsRotation" Value="40" />
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                    <Style TargetType="{x:Type lvc:Separator}">
+                                        <Setter Property="StrokeThickness" Value="1" />
+                                        <Setter Property="Stroke" Value="#4BFFFFFF" />
+                                        <Style.Triggers>
+                                            <Trigger Property="AxisOrientation" Value="X">
+                                                <Setter Property="IsEnabled" Value="False" />
+                                                <Setter Property="Step" Value="1" />
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Grid.Resources>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height=".50*" />
+                                    <RowDefinition Height=".5*" />
+                                </Grid.RowDefinitions>
+                                <Border
+                                    Grid.Row="0"
+                                    Grid.RowSpan="4"
+                                    Margin="5,5,5,115"
+                                    Background="#7DBD8D" />
+                                <lvc:CartesianChart
+                                    x:Name="AchievementChart"
+                                    Grid.Row="2"
+                                    Grid.RowSpan="2"
+                                    Margin="10,10,10,135"
+                                    DataTooltip="{x:Null}"
+                                    Hoverable="False">
+                                    <lvc:CartesianChart.Series>
+                                        <lvc:ColumnSeries />
+                                    </lvc:CartesianChart.Series>
+                                </lvc:CartesianChart>
+                                <TextBlock
+                                    Grid.Row="3"
+                                    Margin="20,0,20,0"
+                                    VerticalAlignment="Center"
+                                    FontSize="13"
+                                    Opacity=".4"><Run Text="وضعیت دانش آموزان کلاس بصورت کلی" /></TextBlock>
+                            </Grid>
+                        </Border>
+                        <Border
+                            Width="270"
+                            Margin="10"
+                            Background="White"
+                            CornerRadius="5"
+                            Effect="{StaticResource EffectShadow3}">
+                            <PersianCalendarWPF:PersianCalendar Margin="10" />
+                        </Border>
                     </StackPanel>
                 </StackPanel>
                 <Grid Visibility="Collapsed">
