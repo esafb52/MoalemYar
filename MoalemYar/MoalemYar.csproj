@@ -14,7 +14,7 @@
     <WarningLevel>4</WarningLevel>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <AssemblyVersion>2.1.4499.0</AssemblyVersion>
+    <AssemblyVersion>2.1.4535.0</AssemblyVersion>
     <TargetFrameworkProfile />
     <ShouldCreateLogs>False</ShouldCreateLogs>
     <AdvancedSettingsExpanded>True</AdvancedSettingsExpanded>
@@ -209,9 +209,6 @@
     <Compile Include="ViewModel\QuestionsListViewModel.cs" />
     <Compile Include="ViewModel\TopStudentsViewModel.cs" />
     <Compile Include="UserControls\UserControlsController.cs" />
-    <Compile Include="UserControls\MaterialChart.xaml.cs">
-      <DependentUpon>MaterialChart.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UserControls\QuestionsListView.xaml.cs">
       <DependentUpon>QuestionsListView.xaml</DependentUpon>
     </Compile>
@@ -320,10 +317,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\InitialView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UserControls\MaterialChart.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

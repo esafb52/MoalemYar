@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2"
     xmlns:local="clr-namespace:MoalemYar"
+    xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
     xmlns:sys="clr-namespace:System;assembly=mscorlib"
     StartupUri="MainWindow.xaml">
     <Application.Resources>
@@ -215,6 +216,37 @@
                     </Setter.Value>
                 </Setter>
             </Style>
+            <Style x:Key="columnSeries" TargetType="lvc:ColumnSeries">
+                <Setter Property="StrokeThickness" Value="5" />
+                <Setter Property="Stroke" Value="White" />
+                <Setter Property="Fill" Value="Transparent" />
+                <Setter Property="MaxColumnWidth" Value="5" />
+                <Setter Property="PointGeometry" Value="{x:Null}" />
+                <Setter Property="DataLabels" Value="True" />
+            </Style>
+            <Style x:Key="axis" TargetType="lvc:Axis">
+                <Setter Property="FontSize" Value="12" />
+                <Setter Property="Foreground" Value="#64FFFFFF" />
+                <Style.Triggers>
+                    <Trigger Property="AxisOrientation" Value="Y">
+                        <Setter Property="IsMerged" Value="False" />
+                    </Trigger>
+                    <Trigger Property="AxisOrientation" Value="X">
+                        <Setter Property="LabelsRotation" Value="40" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+            <Style x:Key="seperator" TargetType="lvc:Separator">
+                <Setter Property="StrokeThickness" Value="1" />
+                <Setter Property="Stroke" Value="#4BFFFFFF" />
+                <Style.Triggers>
+                    <Trigger Property="AxisOrientation" Value="X">
+                        <Setter Property="IsEnabled" Value="False" />
+                        <Setter Property="Step" Value="1" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

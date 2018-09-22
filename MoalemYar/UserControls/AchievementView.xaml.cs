@@ -1,8 +1,12 @@
-﻿using LiveCharts.Wpf;
+﻿using LiveCharts;
+using LiveCharts.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Media.Effects;
 
 namespace MoalemYar.UserControls
 {
@@ -137,130 +141,178 @@ namespace MoalemYar.UserControls
                          g.Key.Book
                      }).ToList();
 
-                MaterialChart _addUser;
-                Control _currentUser;
-
                 //generate chart based on count of books
                 foreach (var item in bookCount)
                 {
-                    _addUser = new MaterialChart(item.Book, selectedItem.Name + " " + selectedItem.LName, getDateArray(item.Book), getScoreArray(item.Book), getAverage(item.Book), getAverageStatus(item.Book), series, AppVariable.GetBrush(FindElement.Settings.ChartColor ?? AppVariable.CHART_GREEN));
-                    _currentUser = _addUser;
-                    waterfallFlow.Children.Add(_currentUser);
+                    GenerateMaterialChart(item.Book, selectedItem.Name + " " + selectedItem.LName, getDateArray(item.Book), getScoreArray(item.Book), getAverage(item.Book), getAverageStatus(item.Book), series);
                 }
 
-                #region Create Chart Grid with Shadow
-
-                //Grid grid;
-                //grid = new Grid
-                //{
-                //    Width = 300,
-                //    Height = 330,
-                //    Effect = new DropShadowEffect
-                //    {
-                //        BlurRadius = 15,
-                //        Direction = -90,
-                //        Opacity = .2,
-                //        RenderingBias = RenderingBias.Quality,
-                //        ShadowDepth = 1
-                //    },
-                //};
-
-                //var border = new Border()
-                //{
-                //    Background = new SolidColorBrush(Colors.White),
-                //    CornerRadius = new CornerRadius(5)
-                //};
-                //var border2 = new Border()
-                //{
-                //    Background = new SolidColorBrush(Colors.White)
-                //};
-                //Grid.SetRowSpan(border, 4);
-                //Grid.SetRowSpan(border2, 3);
-
-                //grid.Children.Add(border);
-                //grid.Children.Add(border2);
-                /////////////////////////////////
-
-                //var stackFill = new StackPanel
-                //{
-                //    Orientation = Orientation.Vertical
-                //};
-
-                //var txtBook = new TextBlock()
-                //{
-                //    FontSize = 18,
-                //    TextAlignment = TextAlignment.Center,
-                //    Text ="Book"
-                //};
-
-                //var txtName = new TextBlock()
-                //{
-                //    FontSize = 18,
-                //    TextAlignment = TextAlignment.Center,
-                //    Text = "Name"
-                //};
-
-                //var chart = new CartesianChart
-                //{
-                //    Margin = new Thickness(10, 0, 10, 20),
-                //    DataTooltip = null,
-                //    Hoverable = false,
-
-                //};
-
-                //var stack = new StackPanel
-                //{
-                //    Margin = new Thickness(20, 0, 20, 0),
-                //    VerticalAlignment = VerticalAlignment.Center
-                //};
-                //var txt = new TextBlock()
-                //{
-                //    Opacity = .4,
-                //    FontSize = 13,
-                //    Text = "میانگین نمرات این درس برابر است با:"
-                //};
-
-                //var stack2 = new StackPanel
-                //{
-                //    Orientation = Orientation.Horizontal
-                //};
-
-                //var txtAverageDouble = new TextBlock()
-                //{
-                //    FontSize = 30,
-                //    Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#303030")),
-                //    TextAlignment = TextAlignment.Center,
-                //    Text = "20.45"
-                //};
-                //var txtAverage = new TextBlock()
-                //{
-                //    VerticalAlignment = VerticalAlignment.Bottom,
-                //    Margin = new Thickness(8, 6, 8, 6),
-                //    FontSize = 16,
-                //    Foreground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#303030")),
-                //    Text = "نیاز به تلاش بیشتر"
-                //};
-
-                //stack2.Children.Add(txtAverageDouble);
-                //stack2.Children.Add(txtAverage);
-
-                //stack.Children.Add(txt);
-                //stack.Children.Add(stack2);
-
-                //stackFill.Children.Add(txtBook);
-                //stackFill.Children.Add(txtName);
-                //stackFill.Children.Add(chart);
-                //stackFill.Children.Add(stack);
-
-                //grid.Children.Add(stackFill);
-                //waterfallFlow.Children.Add(grid);
-
-                #endregion Create Chart Grid with Shadow
             }
             catch (ArgumentNullException) { }
             catch (NullReferenceException)
             {
             }
+        }
+        private void GenerateMaterialChart(string Book, string Name, string[] Label, double[] values, string Average, string AverageStatus, Series series)
+        {
+            Effect effect = this.FindResource("EffectShadow3") as Effect;
+            Border mainborder = new Border
+            {
+                Margin = new Thickness(0, 0, 30, 30),
+                Width = 300,
+                Height= 330,
+                Background = new SolidColorBrush(Colors.White),
+                CornerRadius = new CornerRadius(5),
+                Effect = effect
+            };
+            Grid grid = new Grid();
+            var row1 = new RowDefinition();
+            row1.Height = new GridLength(0, GridUnitType.Auto);
+
+            var row2 = new RowDefinition();
+            row2.Height = new GridLength(0, GridUnitType.Auto);
+
+            var row3 = new RowDefinition();
+            row3.Height = new GridLength(.50, GridUnitType.Star);
+
+            var row4 = new RowDefinition();
+            row4.Height = new GridLength(.5, GridUnitType.Star);
+
+            grid.RowDefinitions.Add(row1);
+            grid.RowDefinitions.Add(row2);
+            grid.RowDefinitions.Add(row3);
+            grid.RowDefinitions.Add(row4);
+
+            Border bord = new Border
+            {
+                Background = AppVariable.GetBrush(FindElement.Settings.ChartColor ?? AppVariable.CHART_GREEN),
+                CornerRadius = new CornerRadius(5)
+            };
+            Grid.SetRow(bord, 0);
+            Grid.SetRowSpan(bord, 3);
+            grid.Children.Add(bord);
+
+            TextBlock txtBook = new TextBlock
+            {
+                Padding = new Thickness(10, 10, 0, 5),
+                FontSize = 18,
+                Foreground = new SolidColorBrush(Colors.White),
+                TextAlignment = TextAlignment.Center,
+                Text = Book
+            };
+            Grid.SetRow(txtBook, 0);
+            grid.Children.Add(txtBook);
+
+            TextBlock txtName = new TextBlock
+            {
+                Padding = new Thickness(0, 0, 0, 20),
+                FontSize = 18,
+                Foreground = AppVariable.GetBrush("#59FFFFFF"),
+                TextAlignment = TextAlignment.Center,
+                Text = Name
+            };
+            Grid.SetRow(txtName, 1);
+            grid.Children.Add(txtName);
+
+            CartesianChart cChart = new CartesianChart
+            {
+                Margin = new Thickness(10, 0, 10, 20),
+                DataTooltip = null,
+                Hoverable = false
+            };
+            Grid.SetRow(cChart, 2);
+
+            if (series.GetType() == typeof(ColumnSeries))
+            {
+                cChart.Series.Add(new ColumnSeries
+                {
+                    Style = TryFindResource("columnSeries") as Style,
+                    Values = new ChartValues<double>(values),
+                    StrokeDashArray = new System.Windows.Media.DoubleCollection(20)
+                });
+            }
+            else if (series.GetType() == typeof(LineSeries))
+            {
+                cChart.Series.Add(new LineSeries
+                {
+                    Values = new ChartValues<double>(values),
+                    StrokeDashArray = new System.Windows.Media.DoubleCollection(20)
+                });
+            }
+            else if (series.GetType() == typeof(StackedAreaSeries))
+            {
+                cChart.Series.Add(new StackedAreaSeries
+                {
+                    Values = new ChartValues<double>(values),
+                    StrokeDashArray = new System.Windows.Media.DoubleCollection(20)
+                });
+            }
+            else if (series.GetType() == typeof(StackedColumnSeries))
+            {
+                cChart.Series.Add(new StackedColumnSeries
+                {
+                    Values = new ChartValues<double>(values),
+                    StrokeDashArray = new System.Windows.Media.DoubleCollection(20)
+                });
+            }
+            else if (series.GetType() == typeof(StepLineSeries))
+            {
+                cChart.Series.Add(new StepLineSeries
+                {
+                    Values = new ChartValues<double>(values),
+                    StrokeDashArray = new System.Windows.Media.DoubleCollection(20)
+                });
+            }
+            cChart.AxisX.Add(new Axis
+            {
+                Style = TryFindResource("axis") as Style,
+                Labels = Label,
+                Separator = new LiveCharts.Wpf.Separator { Style = TryFindResource("seperator") as Style }
+            });
+            grid.Children.Add(cChart);
+
+            StackPanel stk = new StackPanel
+            {
+                Margin = new Thickness(20, 0, 20, 0),
+                VerticalAlignment = VerticalAlignment.Center
+            };
+            Grid.SetRow(stk, 3);
+
+            TextBlock txt = new TextBlock
+            {
+                FontSize = 13,
+                Opacity = .4,
+                Text = " میانگین نمرات این درس برابر است با:"
+            };
+            stk.Children.Add(txt);
+
+            StackPanel stkH = new StackPanel
+            {
+                Orientation = Orientation.Horizontal,
+            };
+            TextBlock txtAverageDouble = new TextBlock
+            {
+                FontSize = 30,
+                Foreground = AppVariable.GetBrush("#303030"),
+                Text = Average
+            };
+            stkH.Children.Add(txtAverageDouble);
+
+            TextBlock txtAverage = new TextBlock
+            {
+                FontSize = 16,
+                VerticalAlignment = VerticalAlignment.Bottom,
+                Margin = new Thickness(8, 6, 8, 6),
+                Foreground = AppVariable.GetBrush("#303030"),
+                Text = AverageStatus
+            };
+            stkH.Children.Add(txtAverage);
+            Grid.SetRow(stk, 3);
+            stk.Children.Add(stkH);
+            grid.Children.Add(stk);
+
+            mainborder.Child = grid;
+            waterfallFlow.Children.Add(mainborder);
         }
 
         //get Score Average to string
