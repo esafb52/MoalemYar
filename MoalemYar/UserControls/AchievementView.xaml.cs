@@ -97,30 +97,6 @@ namespace MoalemYar.UserControls
                 dynamic selectedItem = dataGrid.SelectedItems[0];
 
                 waterfallFlow.Children.Clear();
-                Series series = new ColumnSeries();
-
-                switch (FindElement.Settings.ChartType ?? 0)
-                {
-                    case 0:
-                        series = new ColumnSeries { };
-                        break;
-
-                    case 1:
-                        series = new StackedColumnSeries { };
-                        break;
-
-                    case 2:
-                        series = new LineSeries { };
-                        break;
-
-                    case 3:
-                        series = new StepLineSeries { };
-                        break;
-
-                    case 4:
-                        series = new StackedAreaSeries { };
-                        break;
-                }
 
                 getStudentScore(selectedItem.Id); // get Student scores
 
@@ -144,7 +120,7 @@ namespace MoalemYar.UserControls
                 //generate chart based on count of books
                 foreach (var item in bookCount)
                 {
-                    GenerateMaterialChart(item.Book, selectedItem.Name + " " + selectedItem.LName, getDateArray(item.Book), getScoreArray(item.Book), getAverage(item.Book), getAverageStatus(item.Book), series);
+                    GenerateMaterialChart(item.Book, selectedItem.Name + " " + selectedItem.LName, getDataList(item.Book), getAverage(item.Book), getAverageStatus(item.Book));
                 }
 
             }
@@ -153,7 +129,7 @@ namespace MoalemYar.UserControls
             {
             }
         }
-        private void GenerateMaterialChart(string Book, string Name, string[] Label, double[] values, string Average, string AverageStatus, Series series)
+        private void GenerateMaterialChart(string Book, string Name, List<myTemplate> templates, string Average, string AverageStatus)
         {
             Effect effect = this.FindResource("EffectShadow3") as Effect;
             Border mainborder = new Border
@@ -214,61 +190,23 @@ namespace MoalemYar.UserControls
             Grid.SetRow(txtName, 1);
             grid.Children.Add(txtName);
 
-            CartesianChart cChart = new CartesianChart
-            {
-                Margin = new Thickness(10, 0, 10, 20),
-                DataTooltip = null,
-                Hoverable = false
-            };
+            CartesianChart cChart = new CartesianChart();
             Grid.SetRow(cChart, 2);
+            ColumnSeries col = new ColumnSeries() { DataLabels=true, Values = new ChartValues<int>(),LabelPoint = point=>point.Y.ToString() };
 
-            if (series.GetType() == typeof(ColumnSeries))
+            Axis axisX = new Axis() { Separator = new LiveCharts.Wpf.Separator() { Step=1, IsEnabled=false }, Labels = new List<string>() };
+            Axis axisY = new Axis() { LabelFormatter = value=>value.ToString(), Separator = new LiveCharts.Wpf.Separator() };
+            
+           
+            foreach (var item in templates)
             {
-                cChart.Series.Add(new ColumnSeries
-                {
-                    Style = TryFindResource("columnSeries") as Style,
-                    Values = new ChartValues<double>(values),
-                    StrokeDashArray = new System.Windows.Media.DoubleCollection(20)
-                });
+                col.Values.Add(item.Scores);
+                axisX.Labels.Add(item.Date);
             }
-            else if (series.GetType() == typeof(LineSeries))
-            {
-                cChart.Series.Add(new LineSeries
-                {
-                    Values = new ChartValues<double>(values),
-                    StrokeDashArray = new System.Windows.Media.DoubleCollection(20)
-                });
-            }
-            else if (series.GetType() == typeof(StackedAreaSeries))
-            {
-                cChart.Series.Add(new StackedAreaSeries
-                {
-                    Values = new ChartValues<double>(values),
-                    StrokeDashArray = new System.Windows.Media.DoubleCollection(20)
-                });
-            }
-            else if (series.GetType() == typeof(StackedColumnSeries))
-            {
-                cChart.Series.Add(new StackedColumnSeries
-                {
-                    Values = new ChartValues<double>(values),
-                    StrokeDashArray = new System.Windows.Media.DoubleCollection(20)
-                });
-            }
-            else if (series.GetType() == typeof(StepLineSeries))
-            {
-                cChart.Series.Add(new StepLineSeries
-                {
-                    Values = new ChartValues<double>(values),
-                    StrokeDashArray = new System.Windows.Media.DoubleCollection(20)
-                });
-            }
-            cChart.AxisX.Add(new Axis
-            {
-                Style = TryFindResource("axis") as Style,
-                Labels = Label,
-                Separator = new LiveCharts.Wpf.Separator { Style = TryFindResource("seperator") as Style }
-            });
+
+            cChart.AxisX.Add(axisX);
+            cChart.AxisY.Add(axisY);
+            cChart.Series.Add(col);
             grid.Children.Add(cChart);
 
             StackPanel stk = new StackPanel
@@ -400,10 +338,32 @@ namespace MoalemYar.UserControls
                            }).Where(x => x.Book == Book).ToArray();
             return score.Select(x => Convert.ToDouble(x.Sum)).ToArray();
         }
-
+        private List<myTemplate> getDataList(string Book)
+        {
+            var score = _initialCollection.GroupBy(x => new { x.Book, x.Date, x.StudentId })
+                           .Select(x => new
+                           {
+                               x.Key.StudentId,
+                               x.Key.Book,
+                               x.Key.Date,
+                               Sum = x.Sum(y => AppVariable.EnumToNumber(y.Scores))
+                           }).Where(x => x.Book == Book).ToArray();
+            return score.Select(x=> new myTemplate { Book = x.Book, Date=x.Date, Scores = x.Sum, StudentId=x.StudentId }).ToList();
+        }
         private void UserControl_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
             cmbEditBase.SelectedIndex = Convert.ToInt32(FindElement.Settings.DefaultSchool);
+        }
+        class myTemplate
+        {
+            public long StudentId { get; set; }
+
+            public string Book { get; set; }
+
+            public string Date { get; set; }
+
+            public int Scores { get; set; }
+
         }
     }
 }

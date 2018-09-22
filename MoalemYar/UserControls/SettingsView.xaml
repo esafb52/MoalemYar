@@ -119,7 +119,7 @@
                             </StackPanel>
                             <StackPanel Margin="10" Orientation="Vertical">
                                 <ContentControl
-                                    Name="cmbChartType"
+                                    Name="cmbChartColor"
                                     Width="233"
                                     Height="30"
                                     Margin="2"
@@ -131,67 +131,27 @@
                                         <DataTemplate>
                                             <Grid>
                                                 <ComboBox
-                                                    x:Name="cmbChart"
-                                                    SelectionChanged="cmbChart_SelectionChanged"
+                                                    x:Name="cmbChartColor"
+                                                    SelectionChanged="cmbChartColor_SelectionChanged"
                                                     TabIndex="4">
-                                                    <ComboBoxItem Content="ستونی" />
-                                                    <ComboBoxItem Content="ستونی نوع 2" />
-                                                    <ComboBoxItem Content="خطی" />
-                                                    <ComboBoxItem Content="خطی نوع 2" />
-                                                    <ComboBoxItem Content="ناحیه" />
+                                                    <ComboBoxItem Content="سبز" />
+                                                    <ComboBoxItem Content="بنفش" />
+                                                    <ComboBoxItem Content="نارنجی" />
                                                 </ComboBox>
                                                 <TextBlock
                                                     x:Name="tb"
                                                     IsHitTestVisible="False"
-                                                    Text=" نوع نمودار "
+                                                    Text=" رنگ نمودار "
                                                     Visibility="Hidden" />
                                             </Grid>
                                             <DataTemplate.Triggers>
-                                                <Trigger SourceName="cmbChart" Property="SelectedItem" Value="{x:Null}">
+                                                <Trigger SourceName="cmbChartColor" Property="SelectedItem" Value="{x:Null}">
                                                     <Setter TargetName="tb" Property="Visibility" Value="Visible" />
                                                 </Trigger>
                                             </DataTemplate.Triggers>
                                         </DataTemplate>
                                     </ContentControl.ContentTemplate>
                                 </ContentControl>
-
-                                <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" />
-                                <StackPanel Orientation="Horizontal">
-                                    <ContentControl
-                                        Name="cmbChartColor"
-                                        Width="233"
-                                        Height="30"
-                                        Margin="2"
-                                        HorizontalAlignment="Left"
-                                        VerticalAlignment="Top"
-                                        Focusable="False"
-                                        TabIndex="3">
-                                        <ContentControl.ContentTemplate>
-                                            <DataTemplate>
-                                                <Grid>
-                                                    <ComboBox
-                                                        x:Name="cmbChartColor"
-                                                        SelectionChanged="cmbChartColor_SelectionChanged"
-                                                        TabIndex="4">
-                                                        <ComboBoxItem Content="سبز" />
-                                                        <ComboBoxItem Content="بنفش" />
-                                                        <ComboBoxItem Content="نارنجی" />
-                                                    </ComboBox>
-                                                    <TextBlock
-                                                        x:Name="tb"
-                                                        IsHitTestVisible="False"
-                                                        Text=" رنگ نمودار "
-                                                        Visibility="Hidden" />
-                                                </Grid>
-                                                <DataTemplate.Triggers>
-                                                    <Trigger SourceName="cmbChartColor" Property="SelectedItem" Value="{x:Null}">
-                                                        <Setter TargetName="tb" Property="Visibility" Value="Visible" />
-                                                    </Trigger>
-                                                </DataTemplate.Triggers>
-                                            </DataTemplate>
-                                        </ContentControl.ContentTemplate>
-                                    </ContentControl>
-                                </StackPanel>
                             </StackPanel>
                         </StackPanel>
                         <GridSplitter

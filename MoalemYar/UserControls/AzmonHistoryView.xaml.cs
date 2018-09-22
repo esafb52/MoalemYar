@@ -101,70 +101,12 @@ namespace MoalemYar.UserControls
 
                     Series series = new ColumnSeries();
 
-                    switch (FindElement.Settings.ChartType ?? 0)
+                    AchievementChart.Series.Add(new ColumnSeries
                     {
-                        case 0:
-                            series = new ColumnSeries { };
-                            break;
-
-                        case 1:
-                            series = new StackedColumnSeries { };
-                            break;
-
-                        case 2:
-                            series = new LineSeries { };
-                            break;
-
-                        case 3:
-                            series = new StepLineSeries { };
-                            break;
-
-                        case 4:
-                            series = new StackedAreaSeries { };
-                            break;
-                    }
-
-                    if (series.GetType() == typeof(ColumnSeries))
-                    {
-                        AchievementChart.Series.Add(new ColumnSeries
-                        {
-                            Values = new ChartValues<double>(values),
-                            StrokeDashArray = new System.Windows.Media.DoubleCollection(20)
-                        });
-                    }
-                    else if (series.GetType() == typeof(LineSeries))
-                    {
-                        AchievementChart.Series.Add(new LineSeries
-                        {
-                            Values = new ChartValues<double>(values),
-                            StrokeDashArray = new System.Windows.Media.DoubleCollection(20)
-                        });
-                    }
-                    else if (series.GetType() == typeof(StackedAreaSeries))
-                    {
-                        AchievementChart.Series.Add(new StackedAreaSeries
-                        {
-                            Values = new ChartValues<double>(values),
-                            StrokeDashArray = new System.Windows.Media.DoubleCollection(20)
-                        });
-                    }
-                    else if (series.GetType() == typeof(StackedColumnSeries))
-                    {
-                        AchievementChart.Series.Add(new StackedColumnSeries
-                        {
-                            Values = new ChartValues<double>(values),
-                            StrokeDashArray = new System.Windows.Media.DoubleCollection(20)
-                        });
-                    }
-                    else if (series.GetType() == typeof(StepLineSeries))
-                    {
-                        AchievementChart.Series.Add(new StepLineSeries
-                        {
-                            Values = new ChartValues<double>(values),
-                            StrokeDashArray = new System.Windows.Media.DoubleCollection(20)
-                        });
-                    }
-
+                        Values = new ChartValues<double>(values),
+                        StrokeDashArray = new System.Windows.Media.DoubleCollection(20)
+                    });
+                  
                     AchievementChart.AxisX.Add(new Axis
                     {
                         Labels = new string[] { "پاسخ صحیح", "پاسخ غلط", "بدون پاسخ" },
