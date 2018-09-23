@@ -62,7 +62,7 @@ namespace MoalemYar.DataClass
 
             public string Book { get; set; }
 
-            public string Date { get; set; }
+            public string Caption { get; set; }
 
             public int Scores { get; set; }
 

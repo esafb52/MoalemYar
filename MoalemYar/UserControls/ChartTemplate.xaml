@@ -20,7 +20,7 @@
                     <chart:ClusteredColumnChart.Series>
                         <chart:ChartSeries
                             Name="chart"
-                            DisplayMember="Date"
+                            DisplayMember="Caption"
                             ItemsSource="{Binding}"
                             ValueMember="Scores" />
                     </chart:ClusteredColumnChart.Series>

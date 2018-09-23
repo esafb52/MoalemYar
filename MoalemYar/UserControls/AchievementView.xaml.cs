@@ -192,7 +192,7 @@ namespace MoalemYar.UserControls
                                x.Key.Date,
                                Sum = x.Sum(y => AppVariable.EnumToNumber(y.Scores))
                            }).Where(x => x.Book == Book).ToArray();
-            return score.Select(x=> new DataClass.DataTransferObjects.myChartTemplate { Book = x.Book, Date=x.Date, Scores = x.Sum, StudentId=x.StudentId }).ToList();
+            return score.Select(x=> new DataClass.DataTransferObjects.myChartTemplate { Book = x.Book, Caption = x.Date, Scores = x.Sum, StudentId=x.StudentId }).ToList();
         }
         private void UserControl_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {

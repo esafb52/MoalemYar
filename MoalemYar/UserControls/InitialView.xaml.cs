@@ -8,9 +8,8 @@
 *
 ***********************************************************************************/
 
-using LiveCharts;
-using LiveCharts.Wpf;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -22,6 +21,8 @@ namespace MoalemYar.UserControls
     /// </summary>
     public partial class InitialView : UserControl
     {
+        List<DataClass.DataTransferObjects.myChartTemplate> list = new List<DataClass.DataTransferObjects.myChartTemplate>();
+
         public InitialView()
         {
             InitializeComponent();
@@ -130,20 +131,18 @@ namespace MoalemYar.UserControls
                    v => v.Id,
                    (c, v) => new DataClass.DataTransferObjects.StudentsScoresDto { Id = c.Id, BaseId = v.BaseId, StudentId = v.Id, Name = v.Name, LName = v.LName, FName = v.FName, Scores = c.Scores }
                ).Where(y => y.BaseId == baseId).ToList();
-                var x = query.Where(y => y.Scores == "نیاز به تلاش بیشتر").ToList();
-                var xx = query.Where(y => y.Scores == "قابل قبول").ToList();
-                var xxx = query.Where(y => y.Scores == "خوب").ToList();
-                var xxxx = query.Where(y => y.Scores == "خیلی خوب").ToList();
-                AchievementChart.Series.Add(new LineSeries
-                {
-                    Values = new ChartValues<double>(new double[] { xxxx.Count, xxx.Count, xx.Count, x.Count }),
-                    StrokeDashArray = new System.Windows.Media.DoubleCollection(20)
-                });
-                AchievementChart.AxisX.Add(new Axis
-                {
-                    Labels = new string[] { "خیلی خوب", "خوب", "قابل قبول", "نیاز به تلاش بیشتر" },
-                    Separator = new LiveCharts.Wpf.Separator { }
-                });
+
+                var niazBeTalash = query.Where(y => y.Scores == "نیاز به تلاش بیشتر").ToList();
+                var ghabelGhabol = query.Where(y => y.Scores == "قابل قبول").ToList();
+                var khob = query.Where(y => y.Scores == "خوب").ToList();
+                var kheyliKhob = query.Where(y => y.Scores == "خیلی خوب").ToList();
+
+                list.Add(new DataClass.DataTransferObjects.myChartTemplate { Caption = "نیاز", Scores = niazBeTalash.Count });
+                list.Add(new DataClass.DataTransferObjects.myChartTemplate { Caption = "قابل قبول", Scores = ghabelGhabol.Count });
+                list.Add(new DataClass.DataTransferObjects.myChartTemplate { Caption = "خوب", Scores = khob.Count });
+                list.Add(new DataClass.DataTransferObjects.myChartTemplate { Caption = "خیلی خوب", Scores = kheyliKhob.Count });
+
+                chart.ItemsSource = list;
             }
         }
     }
