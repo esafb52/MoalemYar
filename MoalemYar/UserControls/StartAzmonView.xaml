@@ -255,6 +255,7 @@
                                             x:Name="swCase1"
                                             Margin="5,0"
                                             HorizontalAlignment="Left"
+                                            Checked="swCase1_Checked"
                                             FlowDirection="LeftToRight"
                                             Style="{StaticResource ToggleButtonSwitch}" />
                                         <TextBlock Name="txtFirst" />
@@ -264,6 +265,7 @@
                                             x:Name="swCase2"
                                             Margin="5,5"
                                             HorizontalAlignment="Left"
+                                            Checked="swCase2_Checked"
                                             FlowDirection="LeftToRight"
                                             Style="{StaticResource ToggleButtonSwitch}" />
                                         <TextBlock Name="txtSec" />
@@ -273,6 +275,7 @@
                                             x:Name="swCase3"
                                             Margin="5,0"
                                             HorizontalAlignment="Left"
+                                            Checked="swCase3_Checked"
                                             FlowDirection="LeftToRight"
                                             Style="{StaticResource ToggleButtonSwitch}" />
                                         <TextBlock Name="txtThird" />
@@ -282,6 +285,7 @@
                                             x:Name="swCase4"
                                             Margin="5,5"
                                             HorizontalAlignment="Left"
+                                            Checked="swCase4_Checked"
                                             FlowDirection="LeftToRight"
                                             Style="{StaticResource ToggleButtonSwitch}" />
                                         <TextBlock Name="txtForth" />

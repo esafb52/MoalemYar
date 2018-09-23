@@ -422,6 +422,34 @@ namespace MoalemYar.UserControls
                 isGuid = false;
         }
 
+        private void swCase1_Checked(object sender, RoutedEventArgs e)
+        {
+            swCase2.IsChecked = false;
+            swCase3.IsChecked = false;
+            swCase4.IsChecked = false;
+        }
+
+        private void swCase2_Checked(object sender, RoutedEventArgs e)
+        {
+            swCase1.IsChecked = false;
+            swCase3.IsChecked = false;
+            swCase4.IsChecked = false;
+        }
+
+        private void swCase3_Checked(object sender, RoutedEventArgs e)
+        {
+            swCase1.IsChecked = false;
+            swCase2.IsChecked = false;
+            swCase4.IsChecked = false;
+        }
+
+        private void swCase4_Checked(object sender, RoutedEventArgs e)
+        {
+            swCase1.IsChecked = false;
+            swCase2.IsChecked = false;
+            swCase3.IsChecked = false;
+        }
+
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             cmbEditBase.SelectedIndex = Convert.ToInt32(FindElement.Settings.DefaultSchool);
