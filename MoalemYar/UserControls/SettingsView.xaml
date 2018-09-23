@@ -6,7 +6,6 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:MoalemYar.UserControls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Loaded="UserControl_Loaded"
     Style="{StaticResource myUserControl}"
     mc:Ignorable="d">
     <controls:TransitioningContentControl>
@@ -116,42 +115,6 @@
                                             TextWrapping="NoWrap" />
                                     </StackPanel>
                                 </Button>
-                            </StackPanel>
-                            <StackPanel Margin="10" Orientation="Vertical">
-                                <ContentControl
-                                    Name="cmbChartColor"
-                                    Width="233"
-                                    Height="30"
-                                    Margin="2"
-                                    HorizontalAlignment="Left"
-                                    VerticalAlignment="Top"
-                                    Focusable="False"
-                                    TabIndex="3">
-                                    <ContentControl.ContentTemplate>
-                                        <DataTemplate>
-                                            <Grid>
-                                                <ComboBox
-                                                    x:Name="cmbChartColor"
-                                                    SelectionChanged="cmbChartColor_SelectionChanged"
-                                                    TabIndex="4">
-                                                    <ComboBoxItem Content="سبز" />
-                                                    <ComboBoxItem Content="بنفش" />
-                                                    <ComboBoxItem Content="نارنجی" />
-                                                </ComboBox>
-                                                <TextBlock
-                                                    x:Name="tb"
-                                                    IsHitTestVisible="False"
-                                                    Text=" رنگ نمودار "
-                                                    Visibility="Hidden" />
-                                            </Grid>
-                                            <DataTemplate.Triggers>
-                                                <Trigger SourceName="cmbChartColor" Property="SelectedItem" Value="{x:Null}">
-                                                    <Setter TargetName="tb" Property="Visibility" Value="Visible" />
-                                                </Trigger>
-                                            </DataTemplate.Triggers>
-                                        </DataTemplate>
-                                    </ContentControl.ContentTemplate>
-                                </ContentControl>
                             </StackPanel>
                         </StackPanel>
                         <GridSplitter

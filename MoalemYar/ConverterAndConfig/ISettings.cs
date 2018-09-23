@@ -18,8 +18,6 @@ public class ISettings : JsonSettings
 
     public virtual bool CredentialLogin { get; set; }
     public virtual bool Autorun { get; set; }
-    public virtual string ChartColor { get; set; }
-    public virtual int? ChartColorIndex { get; set; }
     public virtual int? DefaultSchool { get; set; }
     public virtual string DefaultServer { get; set; }
 

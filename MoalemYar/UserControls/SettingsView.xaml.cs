@@ -145,32 +145,6 @@ namespace MoalemYar.UserControls
             MainWindow.main.ResetDataConfirmNotification("دیتابیس برنامه");
         }
 
-        private void cmbChartColor_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var element = sender as ComboBox;
-            FindElement.Settings.ChartColorIndex = element.SelectedIndex;
-            switch (element.SelectedIndex)
-            {
-                case 0:
-                    FindElement.Settings.ChartColor = AppVariable.CHART_GREEN;
-                    break;
-
-                case 1:
-                    FindElement.Settings.ChartColor = AppVariable.CHART_PURPLE;
-                    break;
-
-                case 2:
-                    FindElement.Settings.ChartColor = AppVariable.CHART_ORANGE;
-                    break;
-            }
-        }
-
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
-        {
-            var elementColor = FindElement.FindElementByName<ComboBox>(cmbChartColor, "cmbChartColor");
-            elementColor.SelectedIndex = FindElement.Settings.ChartColorIndex ?? -1;
-        }
-
         private void cmbBase_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             FindElement.Settings.DefaultSchool = cmbBase.SelectedIndex;

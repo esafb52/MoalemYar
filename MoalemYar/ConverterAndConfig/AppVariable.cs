@@ -43,23 +43,13 @@ namespace MoalemYar
 
         #endregion App Details
 
-        #region Chart
-
-        public const string CHART_PURPLE = "#CE2156";
-        public const string CHART_ORANGE = "#EB5A13";
-        public const string CHART_GREEN = "#7DBD8D";
-
-        #endregion Chart
-
         #region Colors
 
-        public const string CYAN = "#00BCD4";
         public const string GREEN = "#4CAF50";
         public const string BGBLACK = "#333";
         public const string ORANGE = "#E0A030";
         public const string RED = "#F44336";
         public const string BLUE = "#1751C3";
-        public const string DEFAULT_BORDER_BRUSH = "#6D819A";
 
         #endregion Colors
 
