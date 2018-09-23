@@ -250,30 +250,42 @@
                                         Style="{StaticResource LabelInfo}" />
                                 </StackPanel>
                                 <StackPanel Orientation="Vertical" ToggleButton.Checked="StackPanel_Checked">
-                                    <ToggleButton
-                                        x:Name="swCase1"
-                                        Margin="5,0"
-                                        HorizontalAlignment="Left"
-                                        FlowDirection="LeftToRight"
-                                        Style="{StaticResource ToggleButtonSwitch}" />
-                                    <ToggleButton
-                                        x:Name="swCase2"
-                                        Margin="5,5"
-                                        HorizontalAlignment="Left"
-                                        FlowDirection="LeftToRight"
-                                        Style="{StaticResource ToggleButtonSwitch}" />
-                                    <ToggleButton
-                                        x:Name="swCase3"
-                                        Margin="5,0"
-                                        HorizontalAlignment="Left"
-                                        FlowDirection="LeftToRight"
-                                        Style="{StaticResource ToggleButtonSwitch}" />
-                                    <ToggleButton
-                                        x:Name="swCase4"
-                                        Margin="5,5"
-                                        HorizontalAlignment="Left"
-                                        FlowDirection="LeftToRight"
-                                        Style="{StaticResource ToggleButtonSwitch}" />
+                                    <StackPanel Orientation="Horizontal">
+                                        <ToggleButton
+                                            x:Name="swCase1"
+                                            Margin="5,0"
+                                            HorizontalAlignment="Left"
+                                            FlowDirection="LeftToRight"
+                                            Style="{StaticResource ToggleButtonSwitch}" />
+                                        <TextBlock Name="txtFirst" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <ToggleButton
+                                            x:Name="swCase2"
+                                            Margin="5,5"
+                                            HorizontalAlignment="Left"
+                                            FlowDirection="LeftToRight"
+                                            Style="{StaticResource ToggleButtonSwitch}" />
+                                        <TextBlock Name="txtSec" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <ToggleButton
+                                            x:Name="swCase3"
+                                            Margin="5,0"
+                                            HorizontalAlignment="Left"
+                                            FlowDirection="LeftToRight"
+                                            Style="{StaticResource ToggleButtonSwitch}" />
+                                        <TextBlock Name="txtThird" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <ToggleButton
+                                            x:Name="swCase4"
+                                            Margin="5,5"
+                                            HorizontalAlignment="Left"
+                                            FlowDirection="LeftToRight"
+                                            Style="{StaticResource ToggleButtonSwitch}" />
+                                        <TextBlock Name="txtForth" />
+                                    </StackPanel>
                                 </StackPanel>
                             </StackPanel>
                         </Grid>

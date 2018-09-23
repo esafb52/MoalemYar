@@ -161,10 +161,10 @@ namespace MoalemYar.UserControls
                         lblQNumber.Content = Convert.ToString(QN + 1);
 
                         lblQtext.Content = result[QN].QuestionText;
-                        swCase1.Content = result[QN].Case1;
-                        swCase2.Content = result[QN].Case2;
-                        swCase3.Content = result[QN].Case3;
-                        swCase4.Content = result[QN].Case4;
+                        txtFirst.Text = result[QN].Case1;
+                        txtSec.Text = result[QN].Case2;
+                        txtThird.Text = result[QN].Case3;
+                        txtForth.Text = result[QN].Case4;
                         btnNext.IsEnabled = true;
                         btnPrev.IsEnabled = false;
                         btnStart.IsEnabled = false;
@@ -313,10 +313,10 @@ namespace MoalemYar.UserControls
             {
                 QN++;
                 lblQtext.Content = result[QN].QuestionText;
-                swCase1.Content = result[QN].Case1;
-                swCase2.Content = result[QN].Case2;
-                swCase3.Content = result[QN].Case3;
-                swCase4.Content = result[QN].Case4;
+                txtFirst.Text = result[QN].Case1;
+                txtSec.Text = result[QN].Case2;
+                txtThird.Text = result[QN].Case3;
+                txtForth.Text = result[QN].Case4;
                 lblQNumber.Content = Convert.ToString(Convert.ToInt32(lblQNumber.Content) + 1);
             }
 
@@ -380,10 +380,10 @@ namespace MoalemYar.UserControls
             {
                 QN--;
                 lblQtext.Content = result[QN].QuestionText.ToString();
-                swCase1.Content = result[QN].Case1.ToString();
-                swCase2.Content = result[QN].Case2.ToString();
-                swCase3.Content = result[QN].Case3.ToString();
-                swCase4.Content = result[QN].Case4.ToString();
+                txtFirst.Text = result[QN].Case1.ToString();
+                txtSec.Text = result[QN].Case2.ToString();
+                txtThird.Text = result[QN].Case3.ToString();
+                txtForth.Text = result[QN].Case4.ToString();
                 lblQNumber.Content = Convert.ToString(Convert.ToInt32(lblQNumber.Content) - 1);
             }
 

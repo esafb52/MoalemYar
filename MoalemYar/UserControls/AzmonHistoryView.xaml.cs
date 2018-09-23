@@ -7,10 +7,8 @@
 *	Written by Mahdi Hosseini <Mahdidvb72@gmail.com>,  2018, 6, 2, 07:58 ب.ظ
 *
 ***********************************************************************************/
-
-using LiveCharts;
-using LiveCharts.Wpf;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -22,6 +20,7 @@ namespace MoalemYar.UserControls
     /// </summary>
     public partial class AzmonHistoryView : UserControl
     {
+        List<DataClass.DataTransferObjects.myChartTemplate> list = new List<DataClass.DataTransferObjects.myChartTemplate>();
         public AzmonHistoryView()
         {
             InitializeComponent();
@@ -99,21 +98,13 @@ namespace MoalemYar.UserControls
                     var data = db.AHistories.Where(x => x.UserId == uId && x.DatePass == dPass && x.GroupName.Equals(gpName)).Select(x => x).OrderByDescending(x => x.DatePass).ToList();
                     values = new double[] { data.FirstOrDefault().TrueItem, data.FirstOrDefault().FalseItem, data.FirstOrDefault().NoneItem };
 
-                    Series series = new ColumnSeries();
+                    list.Add(new DataClass.DataTransferObjects.myChartTemplate { Caption = "پاسخ صحیح", Scores=data.FirstOrDefault().TrueItem });
+                    list.Add(new DataClass.DataTransferObjects.myChartTemplate { Caption = "پاسخ غلط", Scores=data.FirstOrDefault().FalseItem });
+                    list.Add(new DataClass.DataTransferObjects.myChartTemplate { Caption = "بدون پاسخ", Scores=data.FirstOrDefault().NoneItem });
 
-                    AchievementChart.Series.Add(new ColumnSeries
-                    {
-                        Values = new ChartValues<double>(values),
-                        StrokeDashArray = new System.Windows.Media.DoubleCollection(20)
-                    });
-                  
-                    AchievementChart.AxisX.Add(new Axis
-                    {
-                        Labels = new string[] { "پاسخ صحیح", "پاسخ غلط", "بدون پاسخ" },
-                        Separator = new LiveCharts.Wpf.Separator { }
-                    });
-                    txtName.Text = dPass;
-                    txtBook.Text = gpName;
+                    chartColumn.ChartTitle = gpName;
+                    chartColumn.ChartSubTitle = dPass;
+                    chart.ItemsSource = list;
                 }
             }
             catch (Exception)
