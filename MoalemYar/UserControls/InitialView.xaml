@@ -133,7 +133,8 @@
                             <chart:ClusteredColumnChart
                                 Background="White"
                                 ChartSubTitle="مجموع نمرات کل کلاس در دروس مختلف"
-                                ChartTitle="وضعیت کلاس">
+                                ChartTitle="وضعیت کلاس"
+                                Palette="{StaticResource CustomPalette}">
                                 <chart:ClusteredColumnChart.Series>
                                     <chart:ChartSeries
                                         Name="chart"

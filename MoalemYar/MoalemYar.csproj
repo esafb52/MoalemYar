@@ -14,7 +14,7 @@
     <WarningLevel>4</WarningLevel>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <AssemblyVersion>2.1.4605.0</AssemblyVersion>
+    <AssemblyVersion>2.1.4633.0</AssemblyVersion>
     <TargetFrameworkProfile />
     <ShouldCreateLogs>False</ShouldCreateLogs>
     <AdvancedSettingsExpanded>True</AdvancedSettingsExpanded>
@@ -366,10 +366,6 @@
     </None>
     <None Include="Resources\History.md" />
     <Resource Include="Resources\Fonts\IranSans\IRANSans.ttf" />
-    <Resource Include="Resources\Fonts\IranSans\IRANSans_Bold.ttf" />
-    <Resource Include="Resources\Fonts\IranSans\IRANSans_Light.ttf" />
-    <Resource Include="Resources\Fonts\IranSans\IRANSans_Medium.ttf" />
-    <Resource Include="Resources\Fonts\IranSans\IRANSans_UltraLight.ttf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

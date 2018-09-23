@@ -195,7 +195,8 @@
                         <chart:ClusteredColumnChart
                             Name="chartColumn"
                             Margin="2"
-                            Background="White">
+                            Background="White"
+                            Palette="{StaticResource CustomPalette}">
                             <chart:ClusteredColumnChart.Series>
                                 <chart:ChartSeries
                                     Name="chart"
