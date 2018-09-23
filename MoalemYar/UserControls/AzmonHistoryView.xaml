@@ -187,10 +187,12 @@
                         Name="gpChart"
                         Width="300"
                         Height="330"
+                        Margin="10"
+                        Background="{Binding ElementName=chart, Path=Background}"
                         CornerRadius="5"
                         Effect="{StaticResource EffectShadow3}"
                         Visibility="Hidden">
-                        <chart:ClusteredColumnChart Name="chartColumn">
+                        <chart:ClusteredColumnChart Name="chartColumn" Margin="2">
                             <chart:ClusteredColumnChart.Series>
                                 <chart:ChartSeries
                                     Name="chart"

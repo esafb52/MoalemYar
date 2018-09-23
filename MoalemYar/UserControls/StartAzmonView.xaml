@@ -249,7 +249,7 @@
                                         Content="متن سوال"
                                         Style="{StaticResource LabelInfo}" />
                                 </StackPanel>
-                                <StackPanel Orientation="Vertical" ToggleButton.Checked="StackPanel_Checked">
+                                <StackPanel Orientation="Vertical">
                                     <StackPanel Orientation="Horizontal">
                                         <ToggleButton
                                             x:Name="swCase1"

@@ -95,8 +95,6 @@
                     <MenuItem Command="ApplicationCommands.Cut" Header="برش" />
                 </MenuItem>
                 <MenuItem Foreground="White" Header="آزمون">
-                    <MenuItem Command="{mvvmc:NavigateCommand ControllerID='UserControls', Action='Azmon'}" Header="آزمون" />
-                    <Separator />
                     <MenuItem Command="{mvvmc:NavigateCommand ControllerID='UserControls', Action='StartAzmon'}" Header="آزمون آنلاین" />
                     <Separator />
                     <MenuItem Command="{mvvmc:NavigateCommand ControllerID='UserControls', Action='AddAzmonGroup'}" Header="گروه بندی سوالات" />
