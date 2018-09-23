@@ -1,12 +1,7 @@
-﻿using LiveCharts;
-using LiveCharts.Wpf;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
-using System.Windows.Media.Effects;
 
 namespace MoalemYar.UserControls
 {
@@ -120,7 +115,7 @@ namespace MoalemYar.UserControls
                 //generate chart based on count of books
                 foreach (var item in bookCount)
                 {
-                    GenerateMaterialChart(item.Book, selectedItem.Name + " " + selectedItem.LName, getDataList(item.Book), getAverage(item.Book), getAverageStatus(item.Book));
+                    waterfallFlow.Children.Add(new ChartTemplate(item.Book, selectedItem.Name + " " + selectedItem.LName, getDataList(item.Book), getAverage(item.Book), getAverageStatus(item.Book)));
                 }
 
             }
@@ -129,130 +124,6 @@ namespace MoalemYar.UserControls
             {
             }
         }
-        private void GenerateMaterialChart(string Book, string Name, List<myTemplate> templates, string Average, string AverageStatus)
-        {
-            Effect effect = this.FindResource("EffectShadow3") as Effect;
-            Border mainborder = new Border
-            {
-                Margin = new Thickness(0, 0, 30, 30),
-                Width = 300,
-                Height= 330,
-                Background = new SolidColorBrush(Colors.White),
-                CornerRadius = new CornerRadius(5),
-                Effect = effect
-            };
-            Grid grid = new Grid();
-            var row1 = new RowDefinition();
-            row1.Height = new GridLength(0, GridUnitType.Auto);
-
-            var row2 = new RowDefinition();
-            row2.Height = new GridLength(0, GridUnitType.Auto);
-
-            var row3 = new RowDefinition();
-            row3.Height = new GridLength(.50, GridUnitType.Star);
-
-            var row4 = new RowDefinition();
-            row4.Height = new GridLength(.5, GridUnitType.Star);
-
-            grid.RowDefinitions.Add(row1);
-            grid.RowDefinitions.Add(row2);
-            grid.RowDefinitions.Add(row3);
-            grid.RowDefinitions.Add(row4);
-
-            Border bord = new Border
-            {
-                Background = AppVariable.GetBrush(FindElement.Settings.ChartColor ?? AppVariable.CHART_GREEN),
-                CornerRadius = new CornerRadius(5)
-            };
-            Grid.SetRow(bord, 0);
-            Grid.SetRowSpan(bord, 3);
-            grid.Children.Add(bord);
-
-            TextBlock txtBook = new TextBlock
-            {
-                Padding = new Thickness(10, 10, 0, 5),
-                FontSize = 18,
-                Foreground = new SolidColorBrush(Colors.White),
-                TextAlignment = TextAlignment.Center,
-                Text = Book
-            };
-            Grid.SetRow(txtBook, 0);
-            grid.Children.Add(txtBook);
-
-            TextBlock txtName = new TextBlock
-            {
-                Padding = new Thickness(0, 0, 0, 20),
-                FontSize = 18,
-                Foreground = AppVariable.GetBrush("#59FFFFFF"),
-                TextAlignment = TextAlignment.Center,
-                Text = Name
-            };
-            Grid.SetRow(txtName, 1);
-            grid.Children.Add(txtName);
-
-            CartesianChart cChart = new CartesianChart();
-            Grid.SetRow(cChart, 2);
-            ColumnSeries col = new ColumnSeries() { DataLabels=true, Values = new ChartValues<int>(),LabelPoint = point=>point.Y.ToString() };
-
-            Axis axisX = new Axis() { Separator = new LiveCharts.Wpf.Separator() { Step=1, IsEnabled=false }, Labels = new List<string>() };
-            Axis axisY = new Axis() { LabelFormatter = value=>value.ToString(), Separator = new LiveCharts.Wpf.Separator() };
-            
-           
-            foreach (var item in templates)
-            {
-                col.Values.Add(item.Scores);
-                axisX.Labels.Add(item.Date);
-            }
-
-            cChart.AxisX.Add(axisX);
-            cChart.AxisY.Add(axisY);
-            cChart.Series.Add(col);
-            grid.Children.Add(cChart);
-
-            StackPanel stk = new StackPanel
-            {
-                Margin = new Thickness(20, 0, 20, 0),
-                VerticalAlignment = VerticalAlignment.Center
-            };
-            Grid.SetRow(stk, 3);
-
-            TextBlock txt = new TextBlock
-            {
-                FontSize = 13,
-                Opacity = .4,
-                Text = " میانگین نمرات این درس برابر است با:"
-            };
-            stk.Children.Add(txt);
-
-            StackPanel stkH = new StackPanel
-            {
-                Orientation = Orientation.Horizontal,
-            };
-            TextBlock txtAverageDouble = new TextBlock
-            {
-                FontSize = 30,
-                Foreground = AppVariable.GetBrush("#303030"),
-                Text = Average
-            };
-            stkH.Children.Add(txtAverageDouble);
-
-            TextBlock txtAverage = new TextBlock
-            {
-                FontSize = 16,
-                VerticalAlignment = VerticalAlignment.Bottom,
-                Margin = new Thickness(8, 6, 8, 6),
-                Foreground = AppVariable.GetBrush("#303030"),
-                Text = AverageStatus
-            };
-            stkH.Children.Add(txtAverage);
-            Grid.SetRow(stk, 3);
-            stk.Children.Add(stkH);
-            grid.Children.Add(stk);
-
-            mainborder.Child = grid;
-            waterfallFlow.Children.Add(mainborder);
-        }
-
         //get Score Average to string
         private string getAverage(string Book)
         {
@@ -310,9 +181,8 @@ namespace MoalemYar.UserControls
 
             return status;
         }
-
-        //get Dates to string[]
-        private string[] getDateArray(string Book)
+        
+        private List<DataClass.DataTransferObjects.myChartTemplate> getDataList(string Book)
         {
             var score = _initialCollection.GroupBy(x => new { x.Book, x.Date, x.StudentId })
                            .Select(x => new
@@ -322,48 +192,12 @@ namespace MoalemYar.UserControls
                                x.Key.Date,
                                Sum = x.Sum(y => AppVariable.EnumToNumber(y.Scores))
                            }).Where(x => x.Book == Book).ToArray();
-            return score.Select(x => x.Date).ToArray();
-        }
-
-        //get Scores to double[]
-        private double[] getScoreArray(string Book)
-        {
-            var score = _initialCollection.GroupBy(x => new { x.Book, x.Date, x.StudentId })
-                           .Select(x => new
-                           {
-                               x.Key.StudentId,
-                               x.Key.Book,
-                               x.Key.Date,
-                               Sum = x.Sum(y => AppVariable.EnumToNumber(y.Scores))
-                           }).Where(x => x.Book == Book).ToArray();
-            return score.Select(x => Convert.ToDouble(x.Sum)).ToArray();
-        }
-        private List<myTemplate> getDataList(string Book)
-        {
-            var score = _initialCollection.GroupBy(x => new { x.Book, x.Date, x.StudentId })
-                           .Select(x => new
-                           {
-                               x.Key.StudentId,
-                               x.Key.Book,
-                               x.Key.Date,
-                               Sum = x.Sum(y => AppVariable.EnumToNumber(y.Scores))
-                           }).Where(x => x.Book == Book).ToArray();
-            return score.Select(x=> new myTemplate { Book = x.Book, Date=x.Date, Scores = x.Sum, StudentId=x.StudentId }).ToList();
+            return score.Select(x=> new DataClass.DataTransferObjects.myChartTemplate { Book = x.Book, Date=x.Date, Scores = x.Sum, StudentId=x.StudentId }).ToList();
         }
         private void UserControl_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
             cmbEditBase.SelectedIndex = Convert.ToInt32(FindElement.Settings.DefaultSchool);
         }
-        class myTemplate
-        {
-            public long StudentId { get; set; }
-
-            public string Book { get; set; }
-
-            public string Date { get; set; }
-
-            public int Scores { get; set; }
-
-        }
+       
     }
 }

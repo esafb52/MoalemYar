@@ -55,5 +55,17 @@ namespace MoalemYar.DataClass
             public string FName { get; set; }
             public string Scores { get; set; }
         }
+
+        public class myChartTemplate
+        {
+            public long StudentId { get; set; }
+
+            public string Book { get; set; }
+
+            public string Date { get; set; }
+
+            public int Scores { get; set; }
+
+        }
     }
 }
