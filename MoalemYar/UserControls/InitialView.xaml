@@ -130,7 +130,10 @@
                             Background="{Binding ElementName=chart, Path=Background}"
                             CornerRadius="5"
                             Effect="{StaticResource EffectShadow3}">
-                            <chart:ClusteredColumnChart ChartSubTitle="مجموع نمرات کل کلاس در دروس مختلف" ChartTitle="وضعیت کلاس">
+                            <chart:ClusteredColumnChart
+                                Background="White"
+                                ChartSubTitle="مجموع نمرات کل کلاس در دروس مختلف"
+                                ChartTitle="وضعیت کلاس">
                                 <chart:ClusteredColumnChart.Series>
                                     <chart:ChartSeries
                                         Name="chart"

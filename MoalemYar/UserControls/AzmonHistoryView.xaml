@@ -192,7 +192,10 @@
                         CornerRadius="5"
                         Effect="{StaticResource EffectShadow3}"
                         Visibility="Hidden">
-                        <chart:ClusteredColumnChart Name="chartColumn" Margin="2">
+                        <chart:ClusteredColumnChart
+                            Name="chartColumn"
+                            Margin="2"
+                            Background="White">
                             <chart:ClusteredColumnChart.Series>
                                 <chart:ChartSeries
                                     Name="chart"

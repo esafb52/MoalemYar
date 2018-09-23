@@ -16,7 +16,7 @@
             CornerRadius="5"
             Effect="{StaticResource EffectShadow3}">
             <Grid>
-                <chart:ClusteredColumnChart Name="chartColumn">
+                <chart:ClusteredColumnChart Name="chartColumn" Background="White">
                     <chart:ClusteredColumnChart.Series>
                         <chart:ChartSeries
                             Name="chart"
