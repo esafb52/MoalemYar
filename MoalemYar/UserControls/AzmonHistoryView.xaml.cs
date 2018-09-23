@@ -26,7 +26,7 @@ namespace MoalemYar.UserControls
             InitializeComponent();
         }
 
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        private void loadData()
         {
             try
             {
@@ -42,8 +42,10 @@ namespace MoalemYar.UserControls
             catch (Exception)
             {
             }
-
-            cmbEditBase.SelectedIndex = Convert.ToInt32(FindElement.Settings.DefaultSchool);
+        }
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            loadData();
         }
 
         private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
