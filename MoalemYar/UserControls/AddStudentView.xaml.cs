@@ -32,7 +32,7 @@ namespace MoalemYar.UserControls
         private bool isCreateThumbnail = false;
         internal static AddStudentView main;
         private List<DataClass.DataTransferObjects.SchoolsStudentsJointDto> _initialCollection;
-
+        uint thumbSize;
         public AddStudentView()
         {
             InitializeComponent();
@@ -291,7 +291,7 @@ namespace MoalemYar.UserControls
             //Create Thumbnail from image
 
             byte[] resultBytes = new ThumbnailCreator().CreateThumbnailBytes(
-                thumbnailSize: 450,
+                thumbnailSize: thumbSize,
                     imageBytes: memStream.ToArray(),
                     imageFormat: Format.Jpeg
             );
@@ -333,8 +333,22 @@ namespace MoalemYar.UserControls
             VistaOpenFileDialog dialog = new VistaOpenFileDialog();
             var imageExtensions = string.Join(";", ImageCodecInfo.GetImageDecoders().Select(ici => ici.FilenameExtension));
             dialog.Filter = string.Format("تصاویر|{0}|تمام فایل ها|*.*", imageExtensions);
+
             if ((bool)dialog.ShowDialog())
+            {
+                System.Drawing.Image img = System.Drawing.Image.FromFile(dialog.FileName);
+                if (img.Height > 450)
+                {
+                    thumbSize = 450;
+                }
+                else
+                {
+                    uint mines = Convert.ToUInt32(450 - img.Height);
+                    uint fixedValue = 450 - mines - 10;
+                    thumbSize = fixedValue;
+                }
                 imgStudent.Source = new BitmapImage(new Uri(dialog.FileName));
+            }
         }
 
         private void btnEditChoose_Click(object sender, RoutedEventArgs e)
@@ -344,6 +358,18 @@ namespace MoalemYar.UserControls
             dialog.Filter = string.Format("تصاویر|{0}|تمام فایل ها|*.*", imageExtensions);
             if ((bool)dialog.ShowDialog())
             {
+                System.Drawing.Image img = System.Drawing.Image.FromFile(dialog.FileName);
+                if (img.Height > 450)
+                {
+                    thumbSize = 450;
+                }
+                else
+                {
+                    uint mines = Convert.ToUInt32(450 - img.Height);
+                    uint fixedValue = 450 - mines - 10;
+                    thumbSize = fixedValue;
+                }
+                
                 imgEditStudent.Source = new BitmapImage(new Uri(dialog.FileName));
                 isCreateThumbnail = true;
             }
