@@ -100,7 +100,9 @@ namespace MoalemYar
                     throw new ArgumentOutOfRangeException(nameof(value), value, "Value not recognized");
             }
         }
+
         #region Backup Database
+
         public static void takeBackup()
         {
             try
@@ -126,6 +128,7 @@ namespace MoalemYar
                 MainWindow.main.ShowBackupNotification(false, "پشتیبان گیری از اطلاعات ");
             }
         }
+
         public static void dbRestore()
         {
             try
@@ -147,6 +150,7 @@ namespace MoalemYar
                 MainWindow.main.ShowBackupNotification(false, "بازگردانی اطلاعات ");
             }
         }
-        #endregion
+
+        #endregion Backup Database
     }
 }

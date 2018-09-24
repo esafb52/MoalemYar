@@ -7,6 +7,7 @@
 *	Written by Mahdi Hosseini <Mahdidvb72@gmail.com>,  2018, 6, 2, 07:58 ب.ظ
 *
 ***********************************************************************************/
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +21,8 @@ namespace MoalemYar.UserControls
     /// </summary>
     public partial class AzmonHistoryView : UserControl
     {
-        List<DataClass.DataTransferObjects.myChartTemplate> list = new List<DataClass.DataTransferObjects.myChartTemplate>();
+        private List<DataClass.DataTransferObjects.myChartTemplate> list = new List<DataClass.DataTransferObjects.myChartTemplate>();
+
         public AzmonHistoryView()
         {
             InitializeComponent();
@@ -43,6 +45,7 @@ namespace MoalemYar.UserControls
             {
             }
         }
+
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             loadData();
@@ -100,9 +103,9 @@ namespace MoalemYar.UserControls
                     var data = db.AHistories.Where(x => x.UserId == uId && x.DatePass == dPass && x.GroupName.Equals(gpName)).Select(x => x).OrderByDescending(x => x.DatePass).ToList();
                     values = new double[] { data.FirstOrDefault().TrueItem, data.FirstOrDefault().FalseItem, data.FirstOrDefault().NoneItem };
 
-                    list.Add(new DataClass.DataTransferObjects.myChartTemplate { Caption = "پاسخ صحیح", Scores=data.FirstOrDefault().TrueItem });
-                    list.Add(new DataClass.DataTransferObjects.myChartTemplate { Caption = "پاسخ غلط", Scores=data.FirstOrDefault().FalseItem });
-                    list.Add(new DataClass.DataTransferObjects.myChartTemplate { Caption = "بدون پاسخ", Scores=data.FirstOrDefault().NoneItem });
+                    list.Add(new DataClass.DataTransferObjects.myChartTemplate { Caption = "پاسخ صحیح", Scores = data.FirstOrDefault().TrueItem });
+                    list.Add(new DataClass.DataTransferObjects.myChartTemplate { Caption = "پاسخ غلط", Scores = data.FirstOrDefault().FalseItem });
+                    list.Add(new DataClass.DataTransferObjects.myChartTemplate { Caption = "بدون پاسخ", Scores = data.FirstOrDefault().NoneItem });
 
                     chartColumn.ChartTitle = gpName;
                     chartColumn.ChartSubTitle = dPass;

@@ -117,13 +117,13 @@ namespace MoalemYar.UserControls
                 {
                     waterfallFlow.Children.Add(new ChartTemplate(item.Book, selectedItem.Name + " " + selectedItem.LName, getDataList(item.Book), getAverage(item.Book), getAverageStatus(item.Book)));
                 }
-
             }
             catch (ArgumentNullException) { }
             catch (NullReferenceException)
             {
             }
         }
+
         //get Score Average to string
         private string getAverage(string Book)
         {
@@ -181,7 +181,7 @@ namespace MoalemYar.UserControls
 
             return status;
         }
-        
+
         private List<DataClass.DataTransferObjects.myChartTemplate> getDataList(string Book)
         {
             var score = _initialCollection.GroupBy(x => new { x.Book, x.Date, x.StudentId })
@@ -192,12 +192,12 @@ namespace MoalemYar.UserControls
                                x.Key.Date,
                                Sum = x.Sum(y => AppVariable.EnumToNumber(y.Scores))
                            }).Where(x => x.Book == Book).ToArray();
-            return score.Select(x=> new DataClass.DataTransferObjects.myChartTemplate { Book = x.Book, Caption = x.Date, Scores = x.Sum, StudentId=x.StudentId }).ToList();
+            return score.Select(x => new DataClass.DataTransferObjects.myChartTemplate { Book = x.Book, Caption = x.Date, Scores = x.Sum, StudentId = x.StudentId }).ToList();
         }
+
         private void UserControl_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
             cmbEditBase.SelectedIndex = Convert.ToInt32(FindElement.Settings.DefaultSchool);
         }
-       
     }
 }

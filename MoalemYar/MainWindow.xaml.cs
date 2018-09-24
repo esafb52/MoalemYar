@@ -42,10 +42,12 @@ namespace MoalemYar
         {
             region.Content = null;
         }
+
         public void MenuItemShortCutCommandBackup(Object sender, ExecutedRoutedEventArgs e)
         {
             AppVariable.takeBackup();
         }
+
         public void MenuItemShortCutCommandRestore(Object sender, ExecutedRoutedEventArgs e)
         {
             AppVariable.dbRestore();
@@ -94,6 +96,7 @@ namespace MoalemYar
                     break;
             }
         }
+
         private void ShowCredentialDialog()
         {
             try

@@ -53,7 +53,6 @@ namespace MoalemYar.DataClass
             public string Caption { get; set; }
 
             public int Scores { get; set; }
-
         }
     }
 }

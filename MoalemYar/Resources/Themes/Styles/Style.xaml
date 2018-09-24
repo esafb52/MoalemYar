@@ -6,5 +6,4 @@
         <ResourceDictionary Source="TreeViewItem.xaml" />
         <ResourceDictionary Source="Label.xaml" />
     </ResourceDictionary.MergedDictionaries>
-
 </ResourceDictionary>

@@ -26,5 +26,4 @@
     </DrawingBrush>
 
     <SolidColorBrush x:Key="MainBackgroundBrush" Color="{StaticResource MainBackgroundColor}" />
-
 </ResourceDictionary>

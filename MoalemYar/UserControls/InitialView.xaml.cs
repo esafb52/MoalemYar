@@ -21,7 +21,7 @@ namespace MoalemYar.UserControls
     /// </summary>
     public partial class InitialView : UserControl
     {
-        List<DataClass.DataTransferObjects.myChartTemplate> list = new List<DataClass.DataTransferObjects.myChartTemplate>();
+        private List<DataClass.DataTransferObjects.myChartTemplate> list = new List<DataClass.DataTransferObjects.myChartTemplate>();
 
         public InitialView()
         {
