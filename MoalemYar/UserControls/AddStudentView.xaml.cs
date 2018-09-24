@@ -32,7 +32,7 @@ namespace MoalemYar.UserControls
         private bool isCreateThumbnail = false;
         internal static AddStudentView main;
         private List<DataClass.DataTransferObjects.SchoolsStudentsJointDto> _initialCollection;
-        uint thumbSize;
+        uint thumbSize = 450;
         public AddStudentView()
         {
             InitializeComponent();
