@@ -71,6 +71,21 @@ namespace MoalemYar.UserControls
             }
         }
 
+        public async static Task<List<DataClass.DataTransferObjects.StudentAttendanceListDto>> GetAttendanceListAsync(long BaseId, string Date)
+        {
+            using (var db = new DataClass.myDbContext())
+            {
+                var query = db.Students.Join(
+                  db.Attendances,
+                  c => c.Id,
+                  v => v.StudentId,
+                  (c, v) => new DataClass.DataTransferObjects.StudentAttendanceListDto { BaseId = c.BaseId, Name = c.Name, LName = c.LName, FName = c.FName, Id = c.Id, AttendanceId = v.Id, Date = v.Date, Exist = v.Exist }
+              ).OrderBy(x => x.LName).Where(x => x.BaseId == BaseId && x.Date == Date);
+
+                return await query.ToListAsync();
+            }
+        }
+
         #endregion "Async Query"
 
         #region Func get Query Wait"
@@ -86,6 +101,7 @@ namespace MoalemYar.UserControls
                     {
                         cmbBase.ItemsSource = query;
                         cmbEditBase.ItemsSource = query;
+                        cmbBaseList.ItemsSource = query;
                     }
                 }
             }
@@ -178,6 +194,30 @@ namespace MoalemYar.UserControls
                 {
                     dgv.ItemsSource = null;
                     MainWindow.main.ShowNoDataNotification("Attendance");
+                }
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+        private void getStudentAttendanceList(long BaseId, string Date)
+        {
+            try
+            {
+                var query = GetAttendanceListAsync(BaseId, Date);
+                query.Wait();
+
+                List<DataClass.DataTransferObjects.StudentAttendanceListDto> data = query.Result;
+
+                if (data.Any())
+                {
+                    this.dataGridList.ItemsSource = data;
+                }
+                else
+                {
+                    this.dataGridList.ItemsSource = null;
+                    MainWindow.main.ShowNoDataNotification("Student");
                 }
             }
             catch (Exception)
@@ -374,6 +414,12 @@ namespace MoalemYar.UserControls
         {
             cmbBase.SelectedIndex = Convert.ToInt32(FindElement.Settings.DefaultSchool);
             cmbEditBase.SelectedIndex = Convert.ToInt32(FindElement.Settings.DefaultSchool);
+            cmbBaseList.SelectedIndex = Convert.ToInt32(FindElement.Settings.DefaultSchool);
+        }
+
+        private void txtDateList_SelectedDateChanged(object sender, RoutedEventArgs e)
+        {
+            getStudentAttendanceList(Convert.ToInt64(cmbBaseList.SelectedValue), txtDateList.SelectedDate.ToString());
         }
     }
 }
