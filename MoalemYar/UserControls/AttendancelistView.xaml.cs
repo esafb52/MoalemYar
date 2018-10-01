@@ -265,12 +265,25 @@ namespace MoalemYar.UserControls
         {
             if (dataGrid.Items.Count != 0)
             {
-                for (int i = 0; i < _initialCollection.Count; i++)
+                using (var db = new DataClass.myDbContext())
                 {
-                    dataGrid.SelectedIndex = i;
-                    dynamic selectedItem = dataGrid.SelectedItems[0];
-                    addAttendance((long)selectedItem.Id, true, strDate);
-                    UpdateList(Convert.ToInt64(selectedItem.Id), 10);
+                    for (int i = 0; i < _initialCollection.Count; i++)
+                    {
+                        dataGrid.SelectedIndex = i;
+                        dynamic selectedItem = dataGrid.SelectedItems[0];
+
+                        //Add to Attendance
+                        var Attendance = new DataClass.Tables.Attendance();
+                        Attendance.StudentId = (long)selectedItem.Id;
+                        Attendance.Exist = true;
+                        Attendance.Date = strDate;
+                        db.Attendances.Add(Attendance);
+                        db.SaveChanges();
+
+                        //remove items from list
+                        UpdateList(Convert.ToInt64(selectedItem.Id), 10);
+
+                    }
                 }
             }
         }
