@@ -225,12 +225,13 @@
                             </TextBlock>
                             <PersianCalendarWPF:PersianDatePicker
                                 Name="txtDateList"
+                                Height="30"
                                 Margin="210,10,0,0"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top"
                                 SelectedDate="{Binding Date}"
                                 SelectedDateChanged="txtDateList_SelectedDateChanged"
-                                Text="{Binding Date}" Height="30">
+                                Text="{Binding Date}">
                                 <PersianCalendarWPF:PersianDatePicker.Style>
                                     <Style TargetType="PersianCalendarWPF:PersianDatePicker">
                                         <Setter Property="IsEnabled" Value="True" />
@@ -286,20 +287,11 @@
                                             Header="وضعیت">
                                             <DataGridTemplateColumn.CellTemplate>
                                                 <DataTemplate>
-                                                    <StackPanel
+                                                    <ToggleButton
                                                         Margin="5"
                                                         HorizontalAlignment="Right"
-                                                        Orientation="Vertical">
-                                                        <StackPanel Orientation="Horizontal">
-                                                            <ToggleButton
-                                                                Grid.Row="0"
-                                                                Grid.Column="1"
-                                                                Margin="5"
-                                                                HorizontalAlignment="Right"
-                                                                IsChecked="{Binding Exist}"
-                                                                Style="{StaticResource ToggleButtonSwitch}" />
-                                                        </StackPanel>
-                                                    </StackPanel>
+                                                        IsChecked="{Binding Exist}"
+                                                        Style="{StaticResource ToggleButtonSwitch}" />
                                                 </DataTemplate>
                                             </DataGridTemplateColumn.CellTemplate>
                                         </DataGridTemplateColumn>
