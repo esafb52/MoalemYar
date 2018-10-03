@@ -461,15 +461,17 @@
                                         </TextBlock>
                                     </Grid>
                                 </StackPanel>
-                                <TextBox
+                                <controls:WatermarkTextBox
                                     x:Name="txtEditSearch"
+                                    Height="35"
                                     Margin="0,5,0,0"
                                     HorizontalAlignment="Stretch"
                                     VerticalAlignment="Top"
                                     FlowDirection="RightToLeft"
                                     MaxLength="40"
                                     TabIndex="2"
-                                    TextChanged="txtEditSearch_TextChanged" />
+                                    TextChanged="txtEditSearch_TextChanged"
+                                    Watermark="جستجو..." />
                                 <Grid>
                                     <ListBox
                                         x:Name="dgv"

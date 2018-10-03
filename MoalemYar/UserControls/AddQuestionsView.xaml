@@ -156,46 +156,46 @@
                                             </DataTemplate>
                                         </ContentControl.ContentTemplate>
                                     </ContentControl>
-                                    <controls:InfoTextBox
+                                    <controls:WatermarkTextBox
                                         Name="txtQuestionText"
                                         Height="35"
                                         Margin="2"
                                         FlowDirection="RightToLeft"
                                         MaxLength="20"
-                                        PlaceHolder="متن سوال"
-                                        TabIndex="0" />
-                                    <controls:InfoTextBox
+                                        TabIndex="0"
+                                        Watermark="متن سوال" />
+                                    <controls:WatermarkTextBox
                                         Name="txtCase1"
                                         Height="35"
                                         Margin="2"
                                         FlowDirection="RightToLeft"
                                         MaxLength="20"
-                                        PlaceHolder="گزینه 1"
-                                        TabIndex="0" />
-                                    <controls:InfoTextBox
+                                        TabIndex="0"
+                                        Watermark="گزینه 1" />
+                                    <controls:WatermarkTextBox
                                         Name="txtCase2"
                                         Height="35"
                                         Margin="2"
                                         FlowDirection="RightToLeft"
                                         MaxLength="20"
-                                        PlaceHolder="گزینه 2"
-                                        TabIndex="0" />
-                                    <controls:InfoTextBox
+                                        TabIndex="0"
+                                        Watermark="گزینه 2" />
+                                    <controls:WatermarkTextBox
                                         Name="txtCase3"
                                         Height="35"
                                         Margin="2"
                                         FlowDirection="RightToLeft"
                                         MaxLength="20"
-                                        PlaceHolder="گزینه 3"
-                                        TabIndex="0" />
-                                    <controls:InfoTextBox
+                                        TabIndex="0"
+                                        Watermark="گزینه 3" />
+                                    <controls:WatermarkTextBox
                                         Name="txtCase4"
                                         Height="35"
                                         Margin="2"
                                         FlowDirection="RightToLeft"
                                         MaxLength="20"
-                                        PlaceHolder="گزینه 4"
-                                        TabIndex="0" />
+                                        TabIndex="0"
+                                        Watermark="گزینه 4" />
                                     <ContentControl
                                         Name="cmbContentAnswer"
                                         Width="231"
@@ -383,15 +383,17 @@
                                             Grid.Column="0"
                                             Margin="0,35,10,5">
                                             <StackPanel Orientation="Vertical">
-                                                <TextBox
+                                                <controls:WatermarkTextBox
                                                     x:Name="txtEditSearch"
+                                                    Height="35"
                                                     MaxWidth="{Binding Path=ActualWidth, ElementName=grdedit, Converter={local1:MultiplyConverter Multiplier=.9}}"
                                                     HorizontalAlignment="Stretch"
                                                     VerticalAlignment="Top"
                                                     FlowDirection="RightToLeft"
                                                     MaxLength="40"
                                                     TabIndex="1"
-                                                    TextChanged="txtEditSearch_TextChanged" />
+                                                    TextChanged="txtEditSearch_TextChanged"
+                                                    Watermark="جستجو..." />
                                                 <DataGrid
                                                     x:Name="dataGrid"
                                                     MaxWidth="{Binding Path=ActualWidth, ElementName=grdedit, Converter={local1:MultiplyConverter Multiplier=.9}}"
@@ -460,46 +462,46 @@
                                                 Name="editStack"
                                                 IsEnabled="False"
                                                 Orientation="Vertical">
-                                                <controls:InfoTextBox
+                                                <controls:WatermarkTextBox
                                                     Name="txtEditQuestionText"
                                                     Height="35"
                                                     Margin="2"
                                                     FlowDirection="RightToLeft"
                                                     MaxLength="20"
-                                                    PlaceHolder="متن سوال"
-                                                    TabIndex="0" />
-                                                <controls:InfoTextBox
+                                                    TabIndex="0"
+                                                    Watermark="متن سوال" />
+                                                <controls:WatermarkTextBox
                                                     Name="txtEditCase1"
                                                     Height="35"
                                                     Margin="2"
                                                     FlowDirection="RightToLeft"
                                                     MaxLength="20"
-                                                    PlaceHolder="گزینه 1"
-                                                    TabIndex="0" />
-                                                <controls:InfoTextBox
+                                                    TabIndex="0"
+                                                    Watermark="گزینه 1" />
+                                                <controls:WatermarkTextBox
                                                     Name="txtEditCase2"
                                                     Height="35"
                                                     Margin="2"
                                                     FlowDirection="RightToLeft"
                                                     MaxLength="20"
-                                                    PlaceHolder="گزینه 2"
-                                                    TabIndex="0" />
-                                                <controls:InfoTextBox
+                                                    TabIndex="0"
+                                                    Watermark="گزینه 2" />
+                                                <controls:WatermarkTextBox
                                                     Name="txtEditCase3"
                                                     Height="35"
                                                     Margin="2"
                                                     FlowDirection="RightToLeft"
                                                     MaxLength="20"
-                                                    PlaceHolder="گزینه 3"
-                                                    TabIndex="0" />
-                                                <controls:InfoTextBox
+                                                    TabIndex="0"
+                                                    Watermark="گزینه 3" />
+                                                <controls:WatermarkTextBox
                                                     Name="txtEditCase4"
                                                     Height="35"
                                                     Margin="2"
                                                     FlowDirection="RightToLeft"
                                                     MaxLength="20"
-                                                    PlaceHolder="گزینه 4"
-                                                    TabIndex="0" />
+                                                    TabIndex="0"
+                                                    Watermark="گزینه 4" />
                                                 <StackPanel Margin="2" Orientation="Horizontal">
                                                     <Grid Margin="2">
                                                         <ComboBox

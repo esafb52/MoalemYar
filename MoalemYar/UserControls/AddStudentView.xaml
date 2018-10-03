@@ -93,33 +93,33 @@
                                     Grid.Column="0"
                                     Margin="0,5,0,0"
                                     Orientation="Vertical">
-                                    <controls:InfoTextBox
+                                    <controls:WatermarkTextBox
                                         x:Name="txtAddName"
                                         Height="35"
                                         Margin="2"
                                         VerticalAlignment="Top"
                                         FlowDirection="RightToLeft"
                                         MaxLength="20"
-                                        PlaceHolder="نام"
-                                        TabIndex="0" />
-                                    <controls:InfoTextBox
+                                        TabIndex="0"
+                                        Watermark="نام" />
+                                    <controls:WatermarkTextBox
                                         x:Name="txtAddLName"
                                         Height="35"
                                         Margin="2"
                                         VerticalAlignment="Top"
                                         FlowDirection="RightToLeft"
                                         MaxLength="20"
-                                        PlaceHolder="نام خانوادگی"
-                                        TabIndex="1" />
-                                    <controls:InfoTextBox
+                                        TabIndex="1"
+                                        Watermark="نام خانوادگی" />
+                                    <controls:WatermarkTextBox
                                         x:Name="txtAddFName"
                                         Height="35"
                                         Margin="2"
                                         VerticalAlignment="Top"
                                         FlowDirection="RightToLeft"
                                         MaxLength="20"
-                                        PlaceHolder="نام پدر"
-                                        TabIndex="2" />
+                                        TabIndex="2"
+                                        Watermark="نام پدر" />
                                     <ContentControl
                                         x:Name="cmbAddContentGender"
                                         Width="200"
@@ -387,15 +387,17 @@
                                         Grid.Column="0"
                                         Margin="0,35,10,5">
                                         <StackPanel Orientation="Vertical">
-                                            <TextBox
+                                            <controls:WatermarkTextBox
                                                 x:Name="txtEditSearch"
+                                                Height="35"
                                                 MaxWidth="{Binding Path=ActualWidth, ElementName=grdedit, Converter={local1:MultiplyConverter Multiplier=.9}}"
                                                 HorizontalAlignment="Stretch"
                                                 VerticalAlignment="Top"
                                                 FlowDirection="RightToLeft"
                                                 MaxLength="40"
                                                 TabIndex="1"
-                                                TextChanged="txtEditSearch_TextChanged" />
+                                                TextChanged="txtEditSearch_TextChanged"
+                                                Watermark="جستجو..." />
                                             <DataGrid
                                                 x:Name="dataGrid"
                                                 MaxWidth="{Binding Path=ActualWidth, ElementName=grdedit, Converter={local1:MultiplyConverter Multiplier=.9}}"
@@ -453,33 +455,33 @@
                                             Name="editStack"
                                             IsEnabled="False"
                                             Orientation="Vertical">
-                                            <controls:InfoTextBox
+                                            <controls:WatermarkTextBox
                                                 x:Name="txtName"
                                                 Height="35"
                                                 Margin="2"
                                                 VerticalAlignment="Top"
                                                 FlowDirection="RightToLeft"
                                                 MaxLength="20"
-                                                PlaceHolder="نام"
-                                                TabIndex="0" />
-                                            <controls:InfoTextBox
+                                                TabIndex="0"
+                                                Watermark="نام" />
+                                            <controls:WatermarkTextBox
                                                 x:Name="txtLName"
                                                 Height="35"
                                                 Margin="2"
                                                 VerticalAlignment="Top"
                                                 FlowDirection="RightToLeft"
                                                 MaxLength="20"
-                                                PlaceHolder="نام خانوادگی"
-                                                TabIndex="1" />
-                                            <controls:InfoTextBox
+                                                TabIndex="1"
+                                                Watermark="نام خانوادگی" />
+                                            <controls:WatermarkTextBox
                                                 x:Name="txtFName"
                                                 Height="35"
                                                 Margin="2"
                                                 VerticalAlignment="Top"
                                                 FlowDirection="RightToLeft"
                                                 MaxLength="20"
-                                                PlaceHolder="نام پدر"
-                                                TabIndex="2" />
+                                                TabIndex="2"
+                                                Watermark="نام پدر" />
                                             <StackPanel Margin="2" Orientation="Horizontal">
                                                 <ContentControl
                                                     x:Name="cmbContentGender"

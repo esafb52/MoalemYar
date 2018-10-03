@@ -141,14 +141,14 @@
                                 </TextBlock.Style>
                             </TextBlock>
                         </Grid>
-                        <controls:InfoTextBox
+                        <controls:WatermarkTextBox
                             Name="txtTedad"
                             Height="35"
                             VerticalAlignment="Top"
                             MaxLength="3"
-                            PlaceHolder="تعداد سوالات"
                             PreviewTextInput="txtTedad_PreviewTextInput"
-                            Text="0" />
+                            Text="0"
+                            Watermark="تعداد سوالات" />
                         <StackPanel Orientation="Vertical">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock
@@ -177,16 +177,16 @@
                                     Unchecked="swRandom_Checked" />
                             </StackPanel>
                         </StackPanel>
-                        <controls:InfoTextBox
+                        <controls:WatermarkTextBox
                             x:Name="txtTime"
                             Height="35"
                             Margin="5,0"
                             VerticalAlignment="Top"
                             IsEnabled="{Binding ElementName=swLimit, Path=IsChecked}"
                             MaxLength="3"
-                            PlaceHolder="زمان هر سوال"
                             PreviewTextInput="txtTedad_PreviewTextInput"
-                            Text="25" />
+                            Text="25"
+                            Watermark="زمان هر سوال" />
                         <Button
                             x:Name="btnStart"
                             Width="140"

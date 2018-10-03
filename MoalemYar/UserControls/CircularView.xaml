@@ -59,13 +59,14 @@
                         Style="{StaticResource ToggleButtonSwitch}"
                         Unchecked="swLimit_Checked" />
                 </StackPanel>
-                <TextBox
+                <controls:WatermarkTextBox
                     Name="txtSearch"
                     Height="30"
                     Margin="391,10,40,0"
                     VerticalAlignment="Top"
                     IsEnabled="False"
-                    TextChanged="MetroTextBox_TextChanged" />
+                    TextChanged="txtSearch_TextChanged"
+                    Watermark="جستجو..." />
                 <ProgressBar
                     Name="prgUpdate"
                     Margin="20,56,40,0"

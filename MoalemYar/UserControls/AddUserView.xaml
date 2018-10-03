@@ -85,14 +85,14 @@
                                     HorizontalAlignment="Stretch" />
                             </Grid>
                             <StackPanel Margin="0,5,0,0" Orientation="Vertical">
-                                <controls:InfoTextBox
+                                <controls:WatermarkTextBox
                                     Name="txtAddUsername"
                                     Height="35"
                                     Margin="2"
                                     FlowDirection="RightToLeft"
                                     MaxLength="20"
-                                    PlaceHolder="نام کاربری"
-                                    TabIndex="0" />
+                                    TabIndex="0"
+                                    Watermark="نام کاربری" />
                                 <PasswordBox
                                     Name="txtAddPassword"
                                     Margin="2"
@@ -221,13 +221,15 @@
                                     </Grid.ColumnDefinitions>
                                     <Grid Name="grdedit" Grid.Column="0">
                                         <StackPanel Orientation="Vertical">
-                                            <TextBox
+                                            <controls:WatermarkTextBox
                                                 Name="txtEditSearch"
+                                                Height="35"
                                                 MaxWidth="{Binding Path=ActualWidth, ElementName=grdedit, Converter={local1:MultiplyConverter Multiplier=.9}}"
                                                 HorizontalAlignment="Stretch"
                                                 FlowDirection="RightToLeft"
                                                 MaxLength="40"
-                                                TextChanged="txtEditSearch_TextChanged" />
+                                                TextChanged="txtEditSearch_TextChanged"
+                                                Watermark="جستجو..." />
                                             <DataGrid
                                                 x:Name="dataGrid"
                                                 MaxWidth="{Binding Path=ActualWidth, ElementName=grdedit, Converter={local1:MultiplyConverter Multiplier=.9}}"
@@ -270,30 +272,30 @@
                                         Margin="5,0,0,0"
                                         IsEnabled="False"
                                         Orientation="Vertical">
-                                        <controls:InfoTextBox
+                                        <controls:WatermarkTextBox
                                             Name="txtUsername"
                                             Height="35"
                                             Margin="2"
                                             VerticalAlignment="Top"
                                             FlowDirection="RightToLeft"
                                             MaxLength="20"
-                                            PlaceHolder="نام کاربری" />
-                                        <controls:InfoTextBox
+                                            Watermark="نام کاربری" />
+                                        <controls:WatermarkTextBox
                                             Name="txtPassword"
                                             Height="35"
                                             Margin="2"
                                             VerticalAlignment="Top"
                                             FlowDirection="RightToLeft"
                                             MaxLength="20"
-                                            PlaceHolder="رمز عبور" />
-                                        <controls:InfoTextBox
+                                            Watermark="رمز عبور" />
+                                        <controls:WatermarkTextBox
                                             Name="txtPasswordAg"
                                             Height="35"
                                             Margin="2"
                                             VerticalAlignment="Top"
                                             FlowDirection="RightToLeft"
                                             MaxLength="20"
-                                            PlaceHolder="تکرار رمز عبور" />
+                                            Watermark="تکرار رمز عبور" />
                                     </StackPanel>
                                 </Grid>
                             </StackPanel>

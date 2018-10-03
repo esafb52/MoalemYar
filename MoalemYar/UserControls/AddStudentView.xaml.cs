@@ -244,13 +244,13 @@ namespace MoalemYar.UserControls
 
         private void txtEditSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
-            //if (dataGrid.ItemsSource != null)
-            //{
-            //    if (txtEditSearch.Text != string.Empty)
-            //        dataGrid.ItemsSource = _initialCollection.Where(x => x.Name.Contains(txtEditSearch.Text) || x.LName.Contains(txtEditSearch.Text) || x.FName.Contains(txtEditSearch.Text) || x.Gender.Contains(txtEditSearch.Text)).Select(x => x);
-            //    else
-            //        dataGrid.ItemsSource = _initialCollection.Select(x => x);
-            //}
+            if (dataGrid.ItemsSource != null)
+            {
+                if (txtEditSearch.Text != string.Empty)
+                    dataGrid.ItemsSource = _initialCollection.Where(x => x.Name.Contains(txtEditSearch.Text) || x.LName.Contains(txtEditSearch.Text) || x.FName.Contains(txtEditSearch.Text) || x.Gender.Contains(txtEditSearch.Text)).Select(x => x);
+                else
+                    dataGrid.ItemsSource = _initialCollection.Select(x => x);
+            }
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)

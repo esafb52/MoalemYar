@@ -30,6 +30,7 @@ namespace MoalemYar.UserControls
     public partial class CircularView : UserControl
     {
         private bool Limited = false;
+        System.Collections.Generic.List<DelegationLink> myClass;
 
         public CircularView()
         {
@@ -73,6 +74,7 @@ namespace MoalemYar.UserControls
                 }
                 ).ToList();
                     var parsedValues = query.Take(Limited ? 20 : query.Count).ToList();
+                    myClass = parsedValues;
                     int currentIndex = 0;
                     Dispatcher.Invoke(() =>
                     {
@@ -107,21 +109,6 @@ namespace MoalemYar.UserControls
         private void btnStart_Click(object sender, RoutedEventArgs e)
         {
             UserControl_Loaded(null, null);
-        }
-
-        private void MetroTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            //Dispatcher.Invoke<Task>(async () =>
-            //{
-            //    var parsedValues = myClass.Where(x => x.Title.Contains(txtSearch.Text) || x.Date.Contains(txtSearch.Text));
-            //    foreach (var item in parsedValues)
-            //    {
-            //        await Task.Delay(10);
-            //        _addUser = new MaterialCircular(item.Row, item.Title, item.Category, item.Type, item.SubType, item.Date, item.link);
-            //        _currentUser = _addUser;
-            //        waterfallFlow.Children.Add(_currentUser);
-            //    }
-            //}, DispatcherPriority.ContextIdle);
         }
 
         private void swLimit_Checked(object sender, RoutedEventArgs e)
@@ -275,6 +262,16 @@ namespace MoalemYar.UserControls
         private void lst_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             btnSave_Click(null, null);
+        }
+
+        private void txtSearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            lst.Items.Clear();
+            var parsedValues = myClass.Where(x => x.Title.Contains(txtSearch.Text) || x.Date.Contains(txtSearch.Text));
+            foreach (var item in parsedValues)
+            {
+                lst.Items.Add(item);
+            }
         }
     }
 }

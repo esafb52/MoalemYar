@@ -213,13 +213,13 @@ namespace MoalemYar.UserControls
 
         private void txtEditSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
-            //if (dataGrid.ItemsSource != null)
-            //{
-            //    if (txtEditSearch.Text != string.Empty)
-            //        dataGrid.ItemsSource = _initialCollection.Where(x => x.QuestionText.Contains(txtEditSearch.Text) || x.Date.Contains(txtEditSearch.Text));
-            //    else
-            //        dataGrid.ItemsSource = _initialCollection.Select(x => x);
-            //}
+            if (dataGrid.ItemsSource != null)
+            {
+                if (txtEditSearch.Text != string.Empty)
+                    dataGrid.ItemsSource = _initialCollection.Where(x => x.QuestionText.Contains(txtEditSearch.Text) || x.Date.Contains(txtEditSearch.Text));
+                else
+                    dataGrid.ItemsSource = _initialCollection.Select(x => x);
+            }
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
