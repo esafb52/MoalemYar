@@ -61,6 +61,15 @@ namespace HandyControl.Properties.Langs {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 上午.
+        /// </summary>
+        public static string Am {
+            get {
+                return ResourceManager.GetString("Am", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 取消.
         /// </summary>
         public static string Cancel {
@@ -192,6 +201,15 @@ namespace HandyControl.Properties.Langs {
         public static string Interval5m {
             get {
                 return ResourceManager.GetString("Interval5m", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 下午.
+        /// </summary>
+        public static string Pm {
+            get {
+                return ResourceManager.GetString("Pm", resourceCulture);
             }
         }
         
