@@ -461,7 +461,7 @@
                                         </TextBlock>
                                     </Grid>
                                 </StackPanel>
-                                <controls:WatermarkTextBox
+                                <TextBox
                                     x:Name="txtEditSearch"
                                     Height="35"
                                     Margin="0,5,0,0"
@@ -471,7 +471,7 @@
                                     MaxLength="40"
                                     TabIndex="2"
                                     TextChanged="txtEditSearch_TextChanged"
-                                    Watermark="جستجو..." />
+                                    Style="{StaticResource TextBoxExtend}" controls:InfoElement.Placeholder="جستجو..." />
                                 <Grid>
                                     <ListBox
                                         x:Name="dgv"

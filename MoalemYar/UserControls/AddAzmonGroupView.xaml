@@ -84,14 +84,14 @@
                                     Margin="60,45,96,-7"
                                     HorizontalAlignment="Stretch" />
                             </Grid>
-                            <controls:WatermarkTextBox
+                            <TextBox
                                 Name="txtAddGroup"
                                 Height="35"
                                 Margin="10"
                                 FlowDirection="RightToLeft"
                                 MaxLength="20"
                                 TabIndex="0"
-                                Watermark="نام گروه" />
+                                Style="{StaticResource TextBoxExtend}" controls:InfoElement.Placeholder="نام گروه" />
                         </StackPanel>
                     </Grid>
                 </controls:TabItem>
@@ -202,7 +202,7 @@
                                     </Grid.ColumnDefinitions>
                                     <Grid Name="grdedit" Grid.Column="0">
                                         <StackPanel Orientation="Vertical">
-                                            <controls:WatermarkTextBox
+                                            <TextBox
                                                 Name="txtEditSearch"
                                                 Height="35"
                                                 MaxWidth="{Binding Path=ActualWidth, ElementName=grdedit, Converter={local1:MultiplyConverter Multiplier=.9}}"
@@ -210,7 +210,7 @@
                                                 FlowDirection="RightToLeft"
                                                 MaxLength="40"
                                                 TextChanged="txtEditSearch_TextChanged"
-                                                Watermark="جستجو..." />
+                                                Style="{StaticResource TextBoxExtend}" controls:InfoElement.Placeholder="جستجو..." />
                                             <DataGrid
                                                 x:Name="dataGrid"
                                                 MaxWidth="{Binding Path=ActualWidth, ElementName=grdedit, Converter={local1:MultiplyConverter Multiplier=.9}}"
@@ -249,14 +249,14 @@
                                         Margin="5,0,0,0"
                                         IsEnabled="False"
                                         Orientation="Vertical">
-                                        <controls:WatermarkTextBox
+                                        <TextBox
                                             Name="txtGroup"
                                             Height="35"
                                             Margin="2"
                                             VerticalAlignment="Top"
                                             FlowDirection="RightToLeft"
                                             MaxLength="20"
-                                            Watermark="نام گروه" />
+                                            Style="{StaticResource TextBoxExtend}" controls:InfoElement.Placeholder="نام گروه" />
                                     </StackPanel>
                                 </Grid>
                             </StackPanel>

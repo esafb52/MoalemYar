@@ -85,30 +85,30 @@
                         </Grid>
                         <WrapPanel Margin="10">
                             <StackPanel Margin="0,5,0,0" Orientation="Vertical">
-                                <controls:WatermarkTextBox
+                                <TextBox
                                     Name="txtAddYear"
                                     Height="35"
                                     Margin="2"
                                     FlowDirection="RightToLeft"
                                     MaxLength="5"
                                     TabIndex="0"
-                                    Watermark="سال تحصیلی" />
-                                <controls:WatermarkTextBox
+                                    Style="{StaticResource TextBoxExtend}" controls:InfoElement.Placeholder="سال تحصیلی" />
+                                <TextBox
                                     Name="txtAddSchool"
                                     Height="35"
                                     Margin="2"
                                     FlowDirection="RightToLeft"
                                     MaxLength="20"
                                     TabIndex="1"
-                                    Watermark="نام مدرسه" />
-                                <controls:WatermarkTextBox
+                                    Style="{StaticResource TextBoxExtend}" controls:InfoElement.Placeholder="نام مدرسه" />
+                                <TextBox
                                     Name="txtAddAdmin"
                                     Height="35"
                                     Margin="2"
                                     FlowDirection="RightToLeft"
                                     MaxLength="20"
                                     TabIndex="2"
-                                    Watermark="نام مدیر" />
+                                    Style="{StaticResource TextBoxExtend}" controls:InfoElement.Placeholder="نام مدیر" />
                                 <ContentControl
                                     Name="cmbAddContent"
                                     Width="233"
@@ -254,7 +254,7 @@
                                 </Grid.ColumnDefinitions>
                                 <Grid Name="grdedit" Grid.Column="0">
                                     <StackPanel Orientation="Vertical">
-                                        <controls:WatermarkTextBox
+                                        <TextBox
                                             Name="txtEditSearch"
                                             Height="35"
                                             MaxWidth="{Binding Path=ActualWidth, ElementName=grdedit, Converter={local1:MultiplyConverter Multiplier=.9}}"
@@ -262,7 +262,7 @@
                                             FlowDirection="RightToLeft"
                                             MaxLength="40"
                                             TextChanged="txtEditSearch_TextChanged"
-                                            Watermark="جستجو..." />
+                                            Style="{StaticResource TextBoxExtend}" controls:InfoElement.Placeholder="جستجو..." />
                                         <DataGrid
                                             x:Name="dataGrid"
                                             MaxWidth="{Binding Path=ActualWidth, ElementName=grdedit, Converter={local1:MultiplyConverter Multiplier=.9}}"
@@ -315,30 +315,30 @@
                                     Margin="5,0,0,0"
                                     IsEnabled="False"
                                     Orientation="Vertical">
-                                    <controls:WatermarkTextBox
+                                    <TextBox
                                         Name="txtYear"
                                         Height="35"
                                         Margin="2"
                                         VerticalAlignment="Top"
                                         FlowDirection="RightToLeft"
                                         MaxLength="5"
-                                        Watermark="سال تحصیلی" />
-                                    <controls:WatermarkTextBox
+                                        Style="{StaticResource TextBoxExtend}" controls:InfoElement.Placeholder="سال تحصیلی" />
+                                    <TextBox
                                         Name="txtSchool"
                                         Height="35"
                                         Margin="2"
                                         VerticalAlignment="Top"
                                         FlowDirection="RightToLeft"
                                         MaxLength="20"
-                                        Watermark="نام مدرسه" />
-                                    <controls:WatermarkTextBox
+                                        Style="{StaticResource TextBoxExtend}" controls:InfoElement.Placeholder="نام مدرسه" />
+                                    <TextBox
                                         Name="txtAdmin"
                                         Height="35"
                                         Margin="2"
                                         VerticalAlignment="Top"
                                         FlowDirection="RightToLeft"
                                         MaxLength="20"
-                                        Watermark="نام مدیر" />
+                                        Style="{StaticResource TextBoxExtend}" controls:InfoElement.Placeholder="نام مدیر" />
                                     <ContentControl
                                         Name="cmbContent"
                                         Width="188"

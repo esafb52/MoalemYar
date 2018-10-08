@@ -85,14 +85,14 @@
                                     HorizontalAlignment="Stretch" />
                             </Grid>
                             <StackPanel Margin="0,5,0,0" Orientation="Vertical">
-                                <controls:WatermarkTextBox
+                                <TextBox
                                     Name="txtAddUsername"
                                     Height="35"
                                     Margin="2"
                                     FlowDirection="RightToLeft"
                                     MaxLength="20"
                                     TabIndex="0"
-                                    Watermark="نام کاربری" />
+                                    Style="{StaticResource TextBoxExtend}" controls:InfoElement.Placeholder="نام کاربری" />
                                 <PasswordBox
                                     Name="txtAddPassword"
                                     Margin="2"
@@ -221,7 +221,7 @@
                                     </Grid.ColumnDefinitions>
                                     <Grid Name="grdedit" Grid.Column="0">
                                         <StackPanel Orientation="Vertical">
-                                            <controls:WatermarkTextBox
+                                            <TextBox
                                                 Name="txtEditSearch"
                                                 Height="35"
                                                 MaxWidth="{Binding Path=ActualWidth, ElementName=grdedit, Converter={local1:MultiplyConverter Multiplier=.9}}"
@@ -229,7 +229,7 @@
                                                 FlowDirection="RightToLeft"
                                                 MaxLength="40"
                                                 TextChanged="txtEditSearch_TextChanged"
-                                                Watermark="جستجو..." />
+                                                Style="{StaticResource TextBoxExtend}" controls:InfoElement.Placeholder="جستجو..." />
                                             <DataGrid
                                                 x:Name="dataGrid"
                                                 MaxWidth="{Binding Path=ActualWidth, ElementName=grdedit, Converter={local1:MultiplyConverter Multiplier=.9}}"
@@ -272,30 +272,30 @@
                                         Margin="5,0,0,0"
                                         IsEnabled="False"
                                         Orientation="Vertical">
-                                        <controls:WatermarkTextBox
+                                        <TextBox
                                             Name="txtUsername"
                                             Height="35"
                                             Margin="2"
                                             VerticalAlignment="Top"
                                             FlowDirection="RightToLeft"
                                             MaxLength="20"
-                                            Watermark="نام کاربری" />
-                                        <controls:WatermarkTextBox
+                                            Style="{StaticResource TextBoxExtend}" controls:InfoElement.Placeholder="نام کاربری" />
+                                        <TextBox
                                             Name="txtPassword"
                                             Height="35"
                                             Margin="2"
                                             VerticalAlignment="Top"
                                             FlowDirection="RightToLeft"
                                             MaxLength="20"
-                                            Watermark="رمز عبور" />
-                                        <controls:WatermarkTextBox
+                                            Style="{StaticResource TextBoxExtend}" controls:InfoElement.Placeholder="رمز عبور" />
+                                        <TextBox
                                             Name="txtPasswordAg"
                                             Height="35"
                                             Margin="2"
                                             VerticalAlignment="Top"
                                             FlowDirection="RightToLeft"
                                             MaxLength="20"
-                                            Watermark="تکرار رمز عبور" />
+                                            Style="{StaticResource TextBoxExtend}" controls:InfoElement.Placeholder="تکرار رمز عبور" />
                                     </StackPanel>
                                 </Grid>
                             </StackPanel>
