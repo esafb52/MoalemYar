@@ -108,41 +108,21 @@
                                             </DataTemplate>
                                         </ComboBox.ItemTemplate>
                                     </ComboBox>
-
-                                    <ContentControl
-                                        Name="cmbAddContent"
+                                    <ComboBox
+                                        Name="cmbBase"
                                         Width="231"
-                                        Height="30"
                                         Margin="2"
                                         HorizontalAlignment="Left"
-                                        VerticalAlignment="Top"
-                                        Focusable="False"
-                                        TabIndex="3">
-                                        <ContentControl.ContentTemplate>
-                                            <DataTemplate>
-                                                <Grid>
-                                                    <ComboBox x:Name="cmbBase" TabIndex="4">
-                                                        <ComboBoxItem Content="اول" />
-                                                        <ComboBoxItem Content="دوم" />
-                                                        <ComboBoxItem Content="سوم" />
-                                                        <ComboBoxItem Content="چهارم" />
-                                                        <ComboBoxItem Content="پنجم" />
-                                                        <ComboBoxItem Content="ششم" />
-                                                    </ComboBox>
-                                                    <TextBlock
-                                                        x:Name="tb"
-                                                        IsHitTestVisible="False"
-                                                        Text=" انتخاب پایه "
-                                                        Visibility="Hidden" />
-                                                </Grid>
-                                                <DataTemplate.Triggers>
-                                                    <Trigger SourceName="cmbBase" Property="SelectedItem" Value="{x:Null}">
-                                                        <Setter TargetName="tb" Property="Visibility" Value="Visible" />
-                                                    </Trigger>
-                                                </DataTemplate.Triggers>
-                                            </DataTemplate>
-                                        </ContentControl.ContentTemplate>
-                                    </ContentControl>
+                                        controls:InfoElement.Placeholder="انتخاب پایه"
+                                        FlowDirection="RightToLeft"
+                                        Style="{StaticResource ComboBoxExtend}">
+                                        <ComboBoxItem Content="اول" />
+                                        <ComboBoxItem Content="دوم" />
+                                        <ComboBoxItem Content="سوم" />
+                                        <ComboBoxItem Content="چهارم" />
+                                        <ComboBoxItem Content="پنجم" />
+                                        <ComboBoxItem Content="ششم" />
+                                    </ComboBox>
                                     <TextBox
                                         Name="txtQuestionText"
                                         Margin="2"
@@ -188,38 +168,19 @@
                                         MaxLength="20"
                                         Style="{StaticResource TextBoxExtend}"
                                         TabIndex="0" />
-                                    <ContentControl
-                                        Name="cmbContentAnswer"
+                                    <ComboBox
+                                        Name="cmbEditBase"
                                         Width="231"
-                                        Height="30"
                                         Margin="2"
                                         HorizontalAlignment="Left"
-                                        VerticalAlignment="Top"
-                                        Focusable="False"
-                                        TabIndex="3">
-                                        <ContentControl.ContentTemplate>
-                                            <DataTemplate>
-                                                <Grid>
-                                                    <ComboBox x:Name="cmbBase" TabIndex="4">
-                                                        <ComboBoxItem Content="1" />
-                                                        <ComboBoxItem Content="2" />
-                                                        <ComboBoxItem Content="3" />
-                                                        <ComboBoxItem Content="4" />
-                                                    </ComboBox>
-                                                    <TextBlock
-                                                        x:Name="tb"
-                                                        IsHitTestVisible="False"
-                                                        Text=" گزینه صحیح  "
-                                                        Visibility="Hidden" />
-                                                </Grid>
-                                                <DataTemplate.Triggers>
-                                                    <Trigger SourceName="cmbBase" Property="SelectedItem" Value="{x:Null}">
-                                                        <Setter TargetName="tb" Property="Visibility" Value="Visible" />
-                                                    </Trigger>
-                                                </DataTemplate.Triggers>
-                                            </DataTemplate>
-                                        </ContentControl.ContentTemplate>
-                                    </ContentControl>
+                                        controls:InfoElement.Placeholder="گزینه صحیح"
+                                        FlowDirection="RightToLeft"
+                                        Style="{StaticResource ComboBoxExtend}">
+                                        <ComboBoxItem Content="1" />
+                                        <ComboBoxItem Content="2" />
+                                        <ComboBoxItem Content="3" />
+                                        <ComboBoxItem Content="4" />
+                                    </ComboBox>
                                 </StackPanel>
                             </StackPanel>
                         </Grid>
@@ -497,72 +458,35 @@
                                                             </DataTemplate>
                                                         </ComboBox.ItemTemplate>
                                                     </ComboBox>
-
-                                                    <ContentControl
-                                                        Name="cmbAddEditContent"
-                                                        Width="150"
-                                                        Height="30"
+                                                    <ComboBox
+                                                        Name="cmbBaseEditData"
+                                                        Width="200"
                                                         Margin="2"
                                                         HorizontalAlignment="Left"
-                                                        VerticalAlignment="Top"
-                                                        Focusable="False">
-                                                        <ContentControl.ContentTemplate>
-                                                            <DataTemplate>
-                                                                <Grid>
-                                                                    <ComboBox x:Name="cmbBase" TabIndex="4">
-                                                                        <ComboBoxItem Content="اول" />
-                                                                        <ComboBoxItem Content="دوم" />
-                                                                        <ComboBoxItem Content="سوم" />
-                                                                        <ComboBoxItem Content="چهارم" />
-                                                                        <ComboBoxItem Content="پنجم" />
-                                                                        <ComboBoxItem Content="ششم" />
-                                                                    </ComboBox>
-                                                                    <TextBlock
-                                                                        x:Name="tb"
-                                                                        IsHitTestVisible="False"
-                                                                        Text=" انتخاب پایه "
-                                                                        Visibility="Hidden" />
-                                                                </Grid>
-                                                                <DataTemplate.Triggers>
-                                                                    <Trigger SourceName="cmbBase" Property="SelectedItem" Value="{x:Null}">
-                                                                        <Setter TargetName="tb" Property="Visibility" Value="Visible" />
-                                                                    </Trigger>
-                                                                </DataTemplate.Triggers>
-                                                            </DataTemplate>
-                                                        </ContentControl.ContentTemplate>
-                                                    </ContentControl>
+                                                        controls:InfoElement.Placeholder="پایه"
+                                                        FlowDirection="RightToLeft"
+                                                        Style="{StaticResource ComboBoxExtend}">
+                                                        <ComboBoxItem Content="اول" />
+                                                        <ComboBoxItem Content="دوم" />
+                                                        <ComboBoxItem Content="سوم" />
+                                                        <ComboBoxItem Content="چهارم" />
+                                                        <ComboBoxItem Content="پنجم" />
+                                                        <ComboBoxItem Content="ششم" />
+                                                    </ComboBox>
                                                 </StackPanel>
-                                                <ContentControl
-                                                    Name="cmbEditAnswer"
-                                                    Width="150"
-                                                    Height="30"
-                                                    Margin="5,0,0,0"
+                                                <ComboBox
+                                                    Name="cmbEditAnswersData"
+                                                    Width="200"
+                                                    Margin="2"
                                                     HorizontalAlignment="Left"
-                                                    VerticalAlignment="Top"
-                                                    Focusable="False">
-                                                    <ContentControl.ContentTemplate>
-                                                        <DataTemplate>
-                                                            <Grid>
-                                                                <ComboBox x:Name="cmbEditAnswers" TabIndex="4">
-                                                                    <ComboBoxItem Content="1" />
-                                                                    <ComboBoxItem Content="2" />
-                                                                    <ComboBoxItem Content="3" />
-                                                                    <ComboBoxItem Content="4" />
-                                                                </ComboBox>
-                                                                <TextBlock
-                                                                    x:Name="tb"
-                                                                    IsHitTestVisible="False"
-                                                                    Text=" گزینه صحیح  "
-                                                                    Visibility="Hidden" />
-                                                            </Grid>
-                                                            <DataTemplate.Triggers>
-                                                                <Trigger SourceName="cmbEditAnswers" Property="SelectedItem" Value="{x:Null}">
-                                                                    <Setter TargetName="tb" Property="Visibility" Value="Visible" />
-                                                                </Trigger>
-                                                            </DataTemplate.Triggers>
-                                                        </DataTemplate>
-                                                    </ContentControl.ContentTemplate>
-                                                </ContentControl>
+                                                    controls:InfoElement.Placeholder="گزینه صحیح"
+                                                    FlowDirection="RightToLeft"
+                                                    Style="{StaticResource ComboBoxExtend}">
+                                                    <ComboBoxItem Content="1" />
+                                                    <ComboBoxItem Content="2" />
+                                                    <ComboBoxItem Content="3" />
+                                                    <ComboBoxItem Content="4" />
+                                                </ComboBox>
                                                 <PersianCalendarWPF:PersianDatePicker
                                                     x:Name="txtDateEdit"
                                                     Margin="5,5,0,0"

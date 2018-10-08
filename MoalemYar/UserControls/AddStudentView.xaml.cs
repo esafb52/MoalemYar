@@ -199,7 +199,7 @@ namespace MoalemYar.UserControls
             dynamic selectedItem = dataGrid.SelectedItems[0];
             long id = selectedItem.Id;
 
-            updateStudent(id, Convert.ToInt64(cmbEditBase.SelectedValue), txtName.Text, txtLName.Text, txtFName.Text, getComboValue(), (isCreateThumbnail ? CreateThumbnail(imgEditStudent.Source as BitmapImage) : getImageByte(imgEditStudent.Source as BitmapImage)));
+            updateStudent(id, Convert.ToInt64(cmbEditBase.SelectedValue), txtName.Text, txtLName.Text, txtFName.Text, cmbGender.Text, (isCreateThumbnail ? CreateThumbnail(imgEditStudent.Source as BitmapImage) : getImageByte(imgEditStudent.Source as BitmapImage)));
             isCreateThumbnail = false;
 
             MainWindow.main.ShowUpdateDataNotification(true, txtName.Text, "دانش آموز");
@@ -217,27 +217,22 @@ namespace MoalemYar.UserControls
             editStack.IsEnabled = false;
         }
 
-        private string getComboValue()
-        {
-            var element = FindElement.FindElementByName<ComboBox>(cmbContentGender, "cmbGender");
-            return element.Text;
-        }
+        
 
         private void setComboValue(string index)
         {
-            var element = FindElement.FindElementByName<ComboBox>(cmbContentGender, "cmbGender");
             switch (index)
             {
                 case "پسر":
-                    element.SelectedIndex = 0;
+                    cmbGender.SelectedIndex = 0;
                     break;
 
                 case "دختر":
-                    element.SelectedIndex = 1;
+                    cmbGender.SelectedIndex = 1;
                     break;
 
                 case null:
-                    element.SelectedIndex = -1;
+                    cmbGender.SelectedIndex = -1;
                     break;
             }
         }
@@ -255,9 +250,7 @@ namespace MoalemYar.UserControls
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            var elementG = FindElement.FindElementByName<ComboBox>(cmbAddContentGender, "cmbGender");
-
-            if (txtAddName.Text == string.Empty || txtAddLName.Text == string.Empty || txtAddFName.Text == string.Empty || elementG.SelectedIndex == -1 || cmbBase.SelectedIndex == -1)
+            if (txtAddName.Text == string.Empty || txtAddLName.Text == string.Empty || txtAddFName.Text == string.Empty || cmbAddGender.SelectedIndex == -1 || cmbBase.SelectedIndex == -1)
             {
                 MainWindow.main.ShowFillAllDataNotification();
             }
@@ -265,7 +258,7 @@ namespace MoalemYar.UserControls
             {
                 try
                 {
-                    addStudent(Convert.ToInt64(cmbBase.SelectedValue), txtAddName.Text, txtAddLName.Text, txtAddFName.Text, elementG.Text, CreateThumbnail(imgStudent.Source as BitmapImage));
+                    addStudent(Convert.ToInt64(cmbBase.SelectedValue), txtAddName.Text, txtAddLName.Text, txtAddFName.Text, cmbAddGender.Text, CreateThumbnail(imgStudent.Source as BitmapImage));
                     MainWindow.main.ShowAddDataNotification(true, txtAddName.Text, "دانش آموز");
                     txtAddName.Text = string.Empty;
                     txtAddLName.Text = string.Empty;

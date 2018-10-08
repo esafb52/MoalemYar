@@ -277,15 +277,14 @@ namespace MoalemYar.UserControls
 
         private void cmbBase_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            fillComboBook(cmbBook, cmbBase, "cmbBook");
+            fillComboBook(cmbBase, cmbBook);
         }
 
-        private void fillComboBook(FrameworkElement frameworkElement, ComboBox combo, string cmb)
+        private void fillComboBook(ComboBox Schoolcombo, ComboBox SourceCombo)
         {
             try
             {
-                var element = FindElement.FindElementByName<ComboBox>(frameworkElement, cmb);
-                dynamic selectedItem = combo.SelectedItem;
+                dynamic selectedItem = Schoolcombo.SelectedItem;
 
                 if (selectedItem.Base.Contains("اول"))
                 {
@@ -326,7 +325,7 @@ namespace MoalemYar.UserControls
                     list.Add("کار و فناوری");
                     list.Add("تفکر");
                 }
-                element.ItemsSource = list;
+                SourceCombo.ItemsSource = list;
             }
             catch (NullReferenceException) { }
             catch (RuntimeBinderException) { }
@@ -401,10 +400,7 @@ namespace MoalemYar.UserControls
                 dynamic selectedItem = dataGridEdit.SelectedItems[0];
                 long id = selectedItem.Id;
 
-                var element = FindElement.FindElementByName<ComboBox>(cmbContentScore, "cmbScore");
-                var element2 = FindElement.FindElementByName<ComboBox>(cmbBookEdit, "cmbBookEdit");
-
-                updateScore(id, Convert.ToInt64(cmbEditStudent.SelectedValue), element.Text, txtDateEdit.SelectedDate.ToString(), element2.Text, txtDescEdit.Text);
+                updateScore(id, Convert.ToInt64(cmbEditStudent.SelectedValue), cmbScore.Text, txtDateEdit.SelectedDate.ToString(), cmbBookEdit.Text, txtDescEdit.Text);
                 MainWindow.main.ShowUpdateDataNotification(true, selectedItemName.Name + " " + selectedItemName.LName, "نمره");
                 getScores(Convert.ToInt64(cmbEditStudent.SelectedValue));
             }
@@ -456,7 +452,7 @@ namespace MoalemYar.UserControls
         private void cmbEditStudent_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             getScores(Convert.ToInt64(cmbEditStudent.SelectedValue));
-            fillComboBook(cmbBookEdit, cmbEditBase, "cmbBookEdit");
+            fillComboBook(cmbEditBase, cmbBookEdit);
         }
 
         private void dataGridEdit_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -467,10 +463,8 @@ namespace MoalemYar.UserControls
                 dynamic selectedItem = dataGridEdit.SelectedItems[0];
                 txtDateEdit.SelectedDate = new PersianCalendarWPF.PersianDate(Convert.ToInt32(selectedItem.Date.Substring(0, 4)), Convert.ToInt32(selectedItem.Date.Substring(5, 2)), Convert.ToInt32(selectedItem.Date.Substring(8, 2)));
                 txtDescEdit.Text = selectedItem.Desc;
-                var element = FindElement.FindElementByName<ComboBox>(cmbContentScore, "cmbScore");
-                var element2 = FindElement.FindElementByName<ComboBox>(cmbBookEdit, "cmbBookEdit");
-                element.Text = selectedItem.Scores;
-                element2.Text = selectedItem.Book;
+                cmbScore.Text = selectedItem.Scores;
+                cmbBookEdit.Text = selectedItem.Book;
             }
             catch (Exception)
             {
@@ -499,14 +493,12 @@ namespace MoalemYar.UserControls
             {
                 if (isQuestion.IsChecked == true)
                 {
-                    var element = FindElement.FindElementByName<ComboBox>(cmbBook, "cmbBook");
-                    getStudents(Convert.ToInt64(cmbBase.SelectedValue), element.SelectedItem.ToString(), false);
+                    getStudents(Convert.ToInt64(cmbBase.SelectedValue), cmbBook.SelectedItem.ToString(), false);
                 }
                 else
                 {
-                    var element = FindElement.FindElementByName<ComboBox>(cmbBook, "cmbBook");
-                    txtDesc.Text = "امتحان / فعالیت " + element.SelectedItem;
-                    getStudents(Convert.ToInt64(cmbBase.SelectedValue), element.SelectedItem.ToString(), true);
+                    txtDesc.Text = "امتحان / فعالیت " + cmbBook.SelectedItem;
+                    getStudents(Convert.ToInt64(cmbBase.SelectedValue), cmbBook.SelectedItem.ToString(), true);
                 }
             }
             catch (Exception)

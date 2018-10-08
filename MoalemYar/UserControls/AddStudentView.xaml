@@ -123,39 +123,17 @@
                                         MaxLength="20"
                                         Style="{StaticResource TextBoxExtend}"
                                         TabIndex="2" />
-                                    <ContentControl
-                                        x:Name="cmbAddContentGender"
-                                        Width="200"
-                                        Height="30"
-                                        Margin="2"
-                                        HorizontalAlignment="Left"
-                                        VerticalAlignment="Top"
-                                        Focusable="False"
-                                        TabIndex="3">
-                                        <ContentControl.ContentTemplate>
-                                            <DataTemplate>
-                                                <Grid>
-                                                    <ComboBox
-                                                        x:Name="cmbGender"
-                                                        SelectionChanged="cmbGender_SelectionChanged"
-                                                        TabIndex="4">
-                                                        <ComboBoxItem Content="پسر" />
-                                                        <ComboBoxItem Content="دختر" />
-                                                    </ComboBox>
-                                                    <TextBlock
-                                                        x:Name="tb"
-                                                        IsHitTestVisible="False"
-                                                        Text=" جنسیت "
-                                                        Visibility="Hidden" />
-                                                </Grid>
-                                                <DataTemplate.Triggers>
-                                                    <Trigger SourceName="cmbGender" Property="SelectedItem" Value="{x:Null}">
-                                                        <Setter TargetName="tb" Property="Visibility" Value="Visible" />
-                                                    </Trigger>
-                                                </DataTemplate.Triggers>
-                                            </DataTemplate>
-                                        </ContentControl.ContentTemplate>
-                                    </ContentControl>
+                                    <ComboBox
+                                                    Name="cmbAddGender"
+                                                    Width="200"
+                                                    Margin="2"
+                                                    HorizontalAlignment="Left"
+                                                    controls:InfoElement.Placeholder="جنسیت"
+                                                    FlowDirection="RightToLeft"
+                                                    Style="{StaticResource ComboBoxExtend}">
+                                        <ComboBoxItem Content="پسر" />
+                                        <ComboBoxItem Content="دختر" />
+                                    </ComboBox>
                                     <ComboBox
                                         x:Name="cmbBase"
                                         Width="200"
@@ -454,35 +432,17 @@
                                                 Style="{StaticResource TextBoxExtend}"
                                                 TabIndex="2" />
                                             <StackPanel Margin="2" Orientation="Horizontal">
-                                                <ContentControl
-                                                    x:Name="cmbContentGender"
+                                                <ComboBox
+                                                    Name="cmbGender"
                                                     Width="180"
-                                                    Height="30"
+                                                    Margin="2"
                                                     HorizontalAlignment="Left"
-                                                    VerticalAlignment="Top"
-                                                    Focusable="False"
-                                                    TabIndex="3">
-                                                    <ContentControl.ContentTemplate>
-                                                        <DataTemplate>
-                                                            <Grid>
-                                                                <ComboBox x:Name="cmbGender" TabIndex="4">
-                                                                    <ComboBoxItem Content="پسر" />
-                                                                    <ComboBoxItem Content="دختر" />
-                                                                </ComboBox>
-                                                                <TextBlock
-                                                                    x:Name="tb"
-                                                                    IsHitTestVisible="False"
-                                                                    Text=" جنسیت "
-                                                                    Visibility="Hidden" />
-                                                            </Grid>
-                                                            <DataTemplate.Triggers>
-                                                                <Trigger SourceName="cmbGender" Property="SelectedItem" Value="{x:Null}">
-                                                                    <Setter TargetName="tb" Property="Visibility" Value="Visible" />
-                                                                </Trigger>
-                                                            </DataTemplate.Triggers>
-                                                        </DataTemplate>
-                                                    </ContentControl.ContentTemplate>
-                                                </ContentControl>
+                                                    controls:InfoElement.Placeholder="جنسیت"
+                                                    FlowDirection="RightToLeft"
+                                                    Style="{StaticResource ComboBoxExtend}">
+                                                    <ComboBoxItem Content="پسر" />
+                                                    <ComboBoxItem Content="دختر" />
+                                                </ComboBox>
                                                 <ComboBox
                                                     x:Name="cmbEditBase"
                                                     Width="180"

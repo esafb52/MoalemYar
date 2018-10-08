@@ -123,7 +123,7 @@ namespace MoalemYar.UserControls
             {
                 dynamic selectedItem = dataGrid.SelectedItems[0];
                 long id = selectedItem.Id;
-                updateSchool(id, txtSchool.Text, getComboValue(), txtAdmin.Text, txtYear.Text);
+                updateSchool(id, txtSchool.Text, cmbEditBase.Text, txtAdmin.Text, txtYear.Text);
                 MainWindow.main.ShowUpdateDataNotification(true, txtSchool.Text, "مدرسه");
                 editGrid.IsEnabled = false;
                 getSchool();
@@ -143,43 +143,36 @@ namespace MoalemYar.UserControls
             editGrid.IsEnabled = false;
         }
 
-        private string getComboValue()
-        {
-            var element = FindElement.FindElementByName<ComboBox>(cmbContent, "cmbBase");
-            return element.Text;
-        }
-
         private void setComboValue(string index)
         {
-            var element = FindElement.FindElementByName<ComboBox>(cmbContent, "cmbBase");
             switch (index)
             {
                 case "اول":
-                    element.SelectedIndex = 0;
+                    cmbEditBase.SelectedIndex = 0;
                     break;
 
                 case "دوم":
-                    element.SelectedIndex = 1;
+                    cmbEditBase.SelectedIndex = 1;
                     break;
 
                 case "سوم":
-                    element.SelectedIndex = 2;
+                    cmbEditBase.SelectedIndex = 2;
                     break;
 
                 case "چهارم":
-                    element.SelectedIndex = 3;
+                    cmbEditBase.SelectedIndex = 3;
                     break;
 
                 case "پنجم":
-                    element.SelectedIndex = 4;
+                    cmbEditBase.SelectedIndex = 4;
                     break;
 
                 case "ششم":
-                    element.SelectedIndex = 5;
+                    cmbEditBase.SelectedIndex = 5;
                     break;
 
                 case null:
-                    element.SelectedIndex = -1;
+                    cmbEditBase.SelectedIndex = -1;
                     break;
             }
         }
@@ -205,8 +198,7 @@ namespace MoalemYar.UserControls
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            var element = FindElement.FindElementByName<ComboBox>(cmbAddContent, "cmbBase");
-            if (txtAddSchool.Text == string.Empty || txtAddAdmin.Text == string.Empty || txtAddYear.Text == string.Empty || element.SelectedIndex == -1)
+            if (txtAddSchool.Text == string.Empty || txtAddAdmin.Text == string.Empty || txtAddYear.Text == string.Empty || cmbBase.SelectedIndex == -1)
             {
                 MainWindow.main.ShowFillAllDataNotification();
             }
@@ -214,7 +206,7 @@ namespace MoalemYar.UserControls
             {
                 try
                 {
-                    addSchool(txtAddSchool.Text, element.Text, txtAddAdmin.Text, txtAddYear.Text);
+                    addSchool(txtAddSchool.Text, cmbBase.Text, txtAddAdmin.Text, txtAddYear.Text);
                     MainWindow.main.ShowAddDataNotification(true, txtAddSchool.Text, "مدرسه");
                     txtAddAdmin.Text = string.Empty;
                     txtAddSchool.Text = string.Empty;

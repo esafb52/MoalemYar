@@ -124,7 +124,7 @@
                     </Setter.Value>
                 </Setter>
             </Style>
-            
+
             <chart:ResourceDictionaryCollection x:Key="CustomPalette">
                 <ResourceDictionary>
                     <SolidColorBrush x:Key="Brush1" Color="#FF6685A2" />

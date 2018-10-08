@@ -166,10 +166,8 @@ namespace MoalemYar.UserControls
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            var elementG = FindElement.FindElementByName<ComboBox>(cmbAddContent, "cmbBase");
-            var element = FindElement.FindElementByName<ComboBox>(cmbContentAnswer, "cmbBase");
             int answ = 0;
-            if (txtQuestionText.Text == string.Empty || txtCase1.Text == string.Empty || txtCase2.Text == string.Empty || txtCase3.Text == string.Empty || txtCase4.Text == string.Empty || elementG.SelectedIndex == -1 || cmbGroup.SelectedIndex == -1 || element.SelectedIndex == -1)
+            if (txtQuestionText.Text == string.Empty || txtCase1.Text == string.Empty || txtCase2.Text == string.Empty || txtCase3.Text == string.Empty || txtCase4.Text == string.Empty || cmbBase.SelectedIndex == -1 || cmbGroup.SelectedIndex == -1 || cmbEditBase.SelectedIndex == -1)
             {
                 MainWindow.main.ShowFillAllDataNotification();
             }
@@ -177,7 +175,7 @@ namespace MoalemYar.UserControls
             {
                 try
                 {
-                    switch (element.SelectedIndex)
+                    switch (cmbEditBase.SelectedIndex)
                     {
                         case 0:
                             answ = 1;
@@ -195,7 +193,7 @@ namespace MoalemYar.UserControls
                             answ = 4;
                             break;
                     }
-                    addAQuestions(Convert.ToInt64(cmbGroup.SelectedValue), elementG.Text, txtQuestionText.Text, txtCase1.Text, txtCase2.Text, txtCase3.Text, txtCase4.Text, answ, strDate);
+                    addAQuestions(Convert.ToInt64(cmbGroup.SelectedValue), cmbBase.Text, txtQuestionText.Text, txtCase1.Text, txtCase2.Text, txtCase3.Text, txtCase4.Text, answ, strDate);
                     MainWindow.main.ShowAddDataNotification(true, "", "سوال");
                     txtCase1.Text = string.Empty;
                     txtCase2.Text = string.Empty;
@@ -243,77 +241,62 @@ namespace MoalemYar.UserControls
                 MainWindow.main.ShowDeletedNotification(false, "", "سوال");
             }
         }
-
-        private string getComboValue()
-        {
-            var element = FindElement.FindElementByName<ComboBox>(cmbAddEditContent, "cmbBase");
-            return element.Text;
-        }
-
-        private string getComboValue2()
-        {
-            var element = FindElement.FindElementByName<ComboBox>(cmbEditAnswer, "cmbEditAnswers");
-            return element.Text;
-        }
-
         private void setComboValue(string index)
         {
-            var element = FindElement.FindElementByName<ComboBox>(cmbAddEditContent, "cmbBase");
             switch (index)
             {
                 case "اول":
-                    element.SelectedIndex = 0;
+                    cmbBaseEditData.SelectedIndex = 0;
                     break;
 
                 case "دوم":
-                    element.SelectedIndex = 1;
+                    cmbBaseEditData.SelectedIndex = 1;
                     break;
 
                 case "سوم":
-                    element.SelectedIndex = 2;
+                    cmbBaseEditData.SelectedIndex = 2;
                     break;
 
                 case "چهارم":
-                    element.SelectedIndex = 3;
+                    cmbBaseEditData.SelectedIndex = 3;
                     break;
 
                 case "پنجم":
-                    element.SelectedIndex = 4;
+                    cmbBaseEditData.SelectedIndex = 4;
                     break;
 
                 case "ششم":
-                    element.SelectedIndex = 5;
+                    cmbBaseEditData.SelectedIndex = 5;
                     break;
 
                 case null:
-                    element.SelectedIndex = -1;
+                    cmbBaseEditData.SelectedIndex = -1;
                     break;
             }
         }
 
         private void setComboValue2(string index)
         {
-            var element = FindElement.FindElementByName<ComboBox>(cmbEditAnswer, "cmbEditAnswers");
             switch (index)
             {
                 case "1":
-                    element.SelectedIndex = 0;
+                    cmbEditAnswersData.SelectedIndex = 0;
                     break;
 
                 case "2":
-                    element.SelectedIndex = 1;
+                    cmbEditAnswersData.SelectedIndex = 1;
                     break;
 
                 case "3":
-                    element.SelectedIndex = 2;
+                    cmbEditAnswersData.SelectedIndex = 2;
                     break;
 
                 case "4":
-                    element.SelectedIndex = 3;
+                    cmbEditAnswersData.SelectedIndex = 3;
                     break;
 
                 case null:
-                    element.SelectedIndex = -1;
+                    cmbEditAnswersData.SelectedIndex = -1;
                     break;
             }
         }
@@ -350,7 +333,7 @@ namespace MoalemYar.UserControls
             {
                 dynamic selectedItem = dataGrid.SelectedItems[0];
                 long id = selectedItem.Id;
-                updateAQuestions(id, Convert.ToInt64(cmbGroupEdit.SelectedValue), getComboValue(), txtEditQuestionText.Text, txtEditCase1.Text, txtEditCase2.Text, txtEditCase3.Text, txtEditCase4.Text, Convert.ToInt32(getComboValue2()), txtDateEdit.SelectedDate.ToString());
+                updateAQuestions(id, Convert.ToInt64(cmbGroupEdit.SelectedValue), cmbBaseEditData.Text, txtEditQuestionText.Text, txtEditCase1.Text, txtEditCase2.Text, txtEditCase3.Text, txtEditCase4.Text, Convert.ToInt32(cmbEditAnswersData.Text), txtDateEdit.SelectedDate.ToString());
                 MainWindow.main.ShowUpdateDataNotification(true, "", "سوال");
                 editStack.IsEnabled = false;
                 getAQuestions(Convert.ToInt64(cmbBaseEdit.SelectedValue));

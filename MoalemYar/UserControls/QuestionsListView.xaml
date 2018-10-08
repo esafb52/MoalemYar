@@ -76,37 +76,15 @@
                                 </DataTemplate>
                             </ComboBox.ItemTemplate>
                         </ComboBox>
-                        <ContentControl
-                            x:Name="cmbBook"
-                            Width="200"
-                            Height="30"
-                            Margin="216,50,0,0"
+                        <ComboBox
+                            Name="cmbBook"
+                            Width="190"
+                            Margin="210,0,0,0"
                             HorizontalAlignment="Left"
-                            VerticalAlignment="Top"
-                            Focusable="False"
-                            IsEnabled="False">
-                            <ContentControl.ContentTemplate>
-                                <DataTemplate>
-                                    <Grid>
-                                        <ComboBox
-                                            x:Name="cmbBook"
-                                            SelectionChanged="cmbBook_SelectionChanged"
-                                            TabIndex="1" />
-                                        <TextBlock
-                                            x:Name="tb"
-                                            IsHitTestVisible="False"
-                                            Text=" انتخاب درس "
-                                            Visibility="Hidden" />
-                                    </Grid>
-                                    <DataTemplate.Triggers>
-                                        <Trigger SourceName="cmbBook" Property="SelectedItem" Value="{x:Null}">
-                                            <Setter TargetName="tb" Property="Visibility" Value="Visible" />
-                                        </Trigger>
-                                    </DataTemplate.Triggers>
-                                </DataTemplate>
-                            </ContentControl.ContentTemplate>
-                        </ContentControl>
-
+                            controls:InfoElement.Placeholder="انتخاب درس"
+                            FlowDirection="RightToLeft"
+                            SelectionChanged="cmbBook_SelectionChanged"
+                            Style="{StaticResource ComboBoxExtend}" />
                         <DataGrid
                             x:Name="dataGrid"
                             MaxWidth="{Binding Path=ActualWidth, ElementName=grd, Converter={local1:MultiplyConverter Multiplier=.9}}"
@@ -449,66 +427,25 @@
                                         Style="{StaticResource TextBoxExtend}"
                                         TabIndex="5"
                                         TextWrapping="Wrap" />
-                                    <ContentControl
-                                        x:Name="cmbContentScore"
+                                    <ComboBox
+                                        Name="cmbScore"
                                         Width="200"
-                                        Height="30"
-                                        MaxWidth="200"
-                                        Margin="2"
-                                        HorizontalAlignment="Left"
-                                        VerticalAlignment="Top"
-                                        Focusable="False">
-                                        <ContentControl.ContentTemplate>
-                                            <DataTemplate>
-                                                <Grid>
-                                                    <ComboBox x:Name="cmbScore" TabIndex="6">
-                                                        <ComboBoxItem Content="خیلی خوب" />
-                                                        <ComboBoxItem Content="خوب" />
-                                                        <ComboBoxItem Content="قابل قبول" />
-                                                        <ComboBoxItem Content="نیاز به تلاش بیشتر" />
-                                                    </ComboBox>
-                                                    <TextBlock
-                                                        x:Name="tb"
-                                                        IsHitTestVisible="False"
-                                                        Text=" نمره "
-                                                        Visibility="Hidden" />
-                                                </Grid>
-                                                <DataTemplate.Triggers>
-                                                    <Trigger SourceName="cmbScore" Property="SelectedItem" Value="{x:Null}">
-                                                        <Setter TargetName="tb" Property="Visibility" Value="Visible" />
-                                                    </Trigger>
-                                                </DataTemplate.Triggers>
-                                            </DataTemplate>
-                                        </ContentControl.ContentTemplate>
-                                    </ContentControl>
-                                    <ContentControl
-                                        x:Name="cmbBookEdit"
-                                        Grid.ColumnSpan="2"
+                                        Margin="0,0,180,0"
+                                        controls:InfoElement.Placeholder="نمره"
+                                        FlowDirection="RightToLeft"
+                                        Style="{StaticResource ComboBoxExtend}">
+                                        <ComboBoxItem Content="خیلی خوب" />
+                                        <ComboBoxItem Content="خوب" />
+                                        <ComboBoxItem Content="قابل قبول" />
+                                        <ComboBoxItem Content="نیاز به تلاش بیشتر" />
+                                    </ComboBox>
+                                    <ComboBox
+                                        Name="cmbBookEdit"
                                         Width="200"
-                                        Height="30"
-                                        MaxWidth="200"
-                                        Margin="2"
-                                        HorizontalAlignment="Left"
-                                        VerticalAlignment="Top"
-                                        Focusable="False">
-                                        <ContentControl.ContentTemplate>
-                                            <DataTemplate>
-                                                <Grid>
-                                                    <ComboBox x:Name="cmbBookEdit" TabIndex="7" />
-                                                    <TextBlock
-                                                        x:Name="tb"
-                                                        IsHitTestVisible="False"
-                                                        Text=" انتخاب درس "
-                                                        Visibility="Hidden" />
-                                                </Grid>
-                                                <DataTemplate.Triggers>
-                                                    <Trigger SourceName="cmbBookEdit" Property="SelectedItem" Value="{x:Null}">
-                                                        <Setter TargetName="tb" Property="Visibility" Value="Visible" />
-                                                    </Trigger>
-                                                </DataTemplate.Triggers>
-                                            </DataTemplate>
-                                        </ContentControl.ContentTemplate>
-                                    </ContentControl>
+                                        Margin="0,0,180,0"
+                                        controls:InfoElement.Placeholder="درس"
+                                        FlowDirection="RightToLeft"
+                                        Style="{StaticResource ComboBoxExtend}" />
                                 </StackPanel>
                             </Grid>
                         </Grid>
