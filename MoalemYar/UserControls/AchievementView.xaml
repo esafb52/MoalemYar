@@ -17,49 +17,31 @@
                     Margin="10,10,10,0"
                     VerticalAlignment="Top"
                     Orientation="Horizontal">
-                    <Grid>
-                        <ComboBox
-                            x:Name="cmbEditBase"
-                            Width="195"
-                            Height="30"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Top"
-                            ItemsSource="{Binding}"
-                            SelectedValue="{Binding SchoolName}"
-                            SelectedValuePath="Id"
-                            SelectionChanged="cmbEditBase_SelectionChanged"
-                            TabIndex="0">
-                            <ComboBox.ItemTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="{Binding SchoolName}" />
-                                        <TextBlock Text=" - " />
-                                        <TextBlock Text="{Binding Base}" />
-                                        <TextBlock Text=" - " />
-                                        <TextBlock Text="{Binding Year}" />
-                                    </StackPanel>
-                                </DataTemplate>
-                            </ComboBox.ItemTemplate>
-                        </ComboBox>
-                        <TextBlock
-                            Width="195"
-                            Height="30"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Top"
-                            IsHitTestVisible="False"
-                            Text=" انتخاب کلاس ">
-                            <TextBlock.Style>
-                                <Style TargetType="{x:Type TextBlock}">
-                                    <Setter Property="Visibility" Value="Hidden" />
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Binding SelectedItem, ElementName=cmbEditBase}" Value="{x:Null}">
-                                            <Setter Property="Visibility" Value="Visible" />
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </TextBlock.Style>
-                        </TextBlock>
-                    </Grid>
+                    <ComboBox
+                        x:Name="cmbEditBase"
+                        Width="195"
+                        Height="30"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        controls:InfoElement.Placeholder="انتخاب کلاس"
+                        ItemsSource="{Binding}"
+                        SelectedValue="{Binding SchoolName}"
+                        SelectedValuePath="Id"
+                        SelectionChanged="cmbEditBase_SelectionChanged"
+                        Style="{StaticResource ComboBoxExtend}"
+                        TabIndex="0">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding SchoolName}" />
+                                    <TextBlock Text=" - " />
+                                    <TextBlock Text="{Binding Base}" />
+                                    <TextBlock Text=" - " />
+                                    <TextBlock Text="{Binding Year}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
                 </StackPanel>
                 <DataGrid
                     x:Name="dataGrid"

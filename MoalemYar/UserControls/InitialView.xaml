@@ -162,9 +162,11 @@
                         Height="30"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Top"
+                        controls:InfoElement.Placeholder="انتخاب کلاس"
                         SelectedValue="{Binding SchoolName}"
                         SelectedValuePath="Id"
                         SelectionChanged="cmbEditBase_SelectionChanged"
+                        Style="{StaticResource ComboBoxExtend}"
                         TabIndex="0">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>

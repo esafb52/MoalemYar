@@ -39,31 +39,17 @@
                                         Style="{StaticResource ToggleButtonSwitch}"
                                         Unchecked="swLogin_Checked" />
                                 </StackPanel>
-                                <Grid Margin="10">
-                                    <ComboBox
-                                        x:Name="cmbServer"
-                                        Width="200"
-                                        HorizontalAlignment="Left"
-                                        VerticalAlignment="Top"
-                                        ItemsSource="{Binding}"
-                                        SelectionChanged="cmbServer_SelectionChanged" />
-                                    <TextBlock
-                                        Width="200"
-                                        HorizontalAlignment="Left"
-                                        IsHitTestVisible="False"
-                                        Text=" انتخاب سرور بخشنامه ">
-                                        <TextBlock.Style>
-                                            <Style TargetType="TextBlock">
-                                                <Setter Property="Visibility" Value="Hidden" />
-                                                <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding ElementName=cmbServer, Path=SelectedItem}" Value="{x:Null}">
-                                                        <Setter Property="Visibility" Value="Visible" />
-                                                    </DataTrigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </TextBlock.Style>
-                                    </TextBlock>
-                                </Grid>
+
+                                <ComboBox
+                                    x:Name="cmbServer"
+                                    Width="200"
+                                    Margin="10"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"
+                                    controls:InfoElement.Placeholder="انتخاب سرور بخشنامه"
+                                    ItemsSource="{Binding}"
+                                    SelectionChanged="cmbServer_SelectionChanged"
+                                    Style="{StaticResource ComboBoxExtend}" />
                             </StackPanel>
                             <StackPanel Margin="10" Orientation="Horizontal">
                                 <Button
@@ -124,46 +110,32 @@
                     </Grid>
                     <StackPanel Margin="10" Orientation="Horizontal">
                         <StackPanel Orientation="Vertical">
-                            <Grid Margin="2">
-                                <ComboBox
-                                    x:Name="cmbBase"
-                                    Width="200"
-                                    HorizontalAlignment="Left"
-                                    VerticalAlignment="Top"
-                                    ItemsSource="{Binding}"
-                                    SelectedValue="{Binding SchoolName}"
-                                    SelectedValuePath="Id"
-                                    SelectionChanged="cmbBase_SelectionChanged"
-                                    TabIndex="4">
-                                    <ComboBox.ItemTemplate>
-                                        <DataTemplate>
-                                            <StackPanel Orientation="Horizontal">
-                                                <TextBlock Text="{Binding SchoolName}" />
-                                                <TextBlock Text=" - " />
-                                                <TextBlock Text="{Binding Base}" />
-                                                <TextBlock Text=" - " />
-                                                <TextBlock Text="{Binding Year}" />
-                                            </StackPanel>
-                                        </DataTemplate>
-                                    </ComboBox.ItemTemplate>
-                                </ComboBox>
-                                <TextBlock
-                                    Width="200"
-                                    HorizontalAlignment="Left"
-                                    IsHitTestVisible="False"
-                                    Text=" انتخاب کلاس ">
-                                    <TextBlock.Style>
-                                        <Style TargetType="TextBlock">
-                                            <Setter Property="Visibility" Value="Hidden" />
-                                            <Style.Triggers>
-                                                <DataTrigger Binding="{Binding ElementName=cmbBase, Path=SelectedItem}" Value="{x:Null}">
-                                                    <Setter Property="Visibility" Value="Visible" />
-                                                </DataTrigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </TextBlock.Style>
-                                </TextBlock>
-                            </Grid>
+
+                            <ComboBox
+                                x:Name="cmbBase"
+                                Width="200"
+                                Margin="2"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                controls:InfoElement.Placeholder="انتخاب کلاس پیشفرض"
+                                ItemsSource="{Binding}"
+                                SelectedValue="{Binding SchoolName}"
+                                SelectedValuePath="Id"
+                                SelectionChanged="cmbBase_SelectionChanged"
+                                Style="{StaticResource ComboBoxExtend}"
+                                TabIndex="4">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding SchoolName}" />
+                                            <TextBlock Text=" - " />
+                                            <TextBlock Text="{Binding Base}" />
+                                            <TextBlock Text=" - " />
+                                            <TextBlock Text="{Binding Year}" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
                         </StackPanel>
                         <StackPanel Margin="10,0" Orientation="Horizontal">
                             <Button

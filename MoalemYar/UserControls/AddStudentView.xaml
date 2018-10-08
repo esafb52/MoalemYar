@@ -98,28 +98,31 @@
                                         Height="35"
                                         Margin="2"
                                         VerticalAlignment="Top"
+                                        controls:InfoElement.Placeholder="نام"
                                         FlowDirection="RightToLeft"
                                         MaxLength="20"
-                                        TabIndex="0"
-                                       Style="{StaticResource TextBoxExtend}" controls:InfoElement.Placeholder="نام" />
+                                        Style="{StaticResource TextBoxExtend}"
+                                        TabIndex="0" />
                                     <TextBox
                                         x:Name="txtAddLName"
                                         Height="35"
                                         Margin="2"
                                         VerticalAlignment="Top"
+                                        controls:InfoElement.Placeholder="نام خانوادگی"
                                         FlowDirection="RightToLeft"
                                         MaxLength="20"
-                                        TabIndex="1"
-                                       Style="{StaticResource TextBoxExtend}" controls:InfoElement.Placeholder="نام خانوادگی" />
+                                        Style="{StaticResource TextBoxExtend}"
+                                        TabIndex="1" />
                                     <TextBox
                                         x:Name="txtAddFName"
                                         Height="35"
                                         Margin="2"
                                         VerticalAlignment="Top"
+                                        controls:InfoElement.Placeholder="نام پدر"
                                         FlowDirection="RightToLeft"
                                         MaxLength="20"
-                                        TabIndex="2"
-                                        Style="{StaticResource TextBoxExtend}" controls:InfoElement.Placeholder="نام پدر" />
+                                        Style="{StaticResource TextBoxExtend}"
+                                        TabIndex="2" />
                                     <ContentControl
                                         x:Name="cmbAddContentGender"
                                         Width="200"
@@ -153,44 +156,30 @@
                                             </DataTemplate>
                                         </ContentControl.ContentTemplate>
                                     </ContentControl>
-                                    <Grid Margin="2">
-                                        <ComboBox
-                                            x:Name="cmbBase"
-                                            Width="200"
-                                            HorizontalAlignment="Left"
-                                            ItemsSource="{Binding}"
-                                            SelectedValue="{Binding SchoolName}"
-                                            SelectedValuePath="Id"
-                                            TabIndex="4">
-                                            <ComboBox.ItemTemplate>
-                                                <DataTemplate>
-                                                    <StackPanel Orientation="Horizontal">
-                                                        <TextBlock Text="{Binding SchoolName}" />
-                                                        <TextBlock Text=" - " />
-                                                        <TextBlock Text="{Binding Base}" />
-                                                        <TextBlock Text=" - " />
-                                                        <TextBlock Text="{Binding Year}" />
-                                                    </StackPanel>
-                                                </DataTemplate>
-                                            </ComboBox.ItemTemplate>
-                                        </ComboBox>
-                                        <TextBlock
-                                            Width="200"
-                                            HorizontalAlignment="Left"
-                                            IsHitTestVisible="False"
-                                            Text=" انتخاب کلاس ">
-                                            <TextBlock.Style>
-                                                <Style TargetType="TextBlock">
-                                                    <Setter Property="Visibility" Value="Hidden" />
-                                                    <Style.Triggers>
-                                                        <DataTrigger Binding="{Binding ElementName=cmbBase, Path=SelectedItem}" Value="{x:Null}">
-                                                            <Setter Property="Visibility" Value="Visible" />
-                                                        </DataTrigger>
-                                                    </Style.Triggers>
-                                                </Style>
-                                            </TextBlock.Style>
-                                        </TextBlock>
-                                    </Grid>
+                                    <ComboBox
+                                        x:Name="cmbBase"
+                                        Width="200"
+                                        Margin="2"
+                                        HorizontalAlignment="Left"
+                                        controls:InfoElement.Placeholder="انتخاب کلاس"
+                                        ItemsSource="{Binding}"
+                                        SelectedValue="{Binding SchoolName}"
+                                        SelectedValuePath="Id"
+                                        Style="{StaticResource ComboBoxExtend}"
+                                        TabIndex="4">
+                                        <ComboBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="{Binding SchoolName}" />
+                                                    <TextBlock Text=" - " />
+                                                    <TextBlock Text="{Binding Base}" />
+                                                    <TextBlock Text=" - " />
+                                                    <TextBlock Text="{Binding Year}" />
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </ComboBox.ItemTemplate>
+                                    </ComboBox>
+
                                 </StackPanel>
                                 <Grid Grid.Column="1">
                                     <StackPanel HorizontalAlignment="Left" Orientation="Vertical">
@@ -345,10 +334,12 @@
                                         Margin="10,0"
                                         HorizontalAlignment="Left"
                                         VerticalAlignment="Top"
+                                        controls:InfoElement.Placeholder="انتخاب کلاس"
                                         FlowDirection="RightToLeft"
                                         SelectedValue="{Binding SchoolName}"
                                         SelectedValuePath="Id"
                                         SelectionChanged="cmbBaseEdit_SelectionChanged"
+                                        Style="{StaticResource ComboBoxExtend}"
                                         TabIndex="0">
                                         <ComboBox.ItemTemplate>
                                             <DataTemplate>
@@ -362,26 +353,6 @@
                                             </DataTemplate>
                                         </ComboBox.ItemTemplate>
                                     </ComboBox>
-                                    <TextBlock
-                                        Width="190"
-                                        Height="30"
-                                        Margin="10,0"
-                                        HorizontalAlignment="Left"
-                                        VerticalAlignment="Top"
-                                        FlowDirection="RightToLeft"
-                                        IsHitTestVisible="False"
-                                        Text=" انتخاب کلاس ">
-                                        <TextBlock.Style>
-                                            <Style TargetType="{x:Type TextBlock}">
-                                                <Setter Property="Visibility" Value="Hidden" />
-                                                <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding SelectedItem, ElementName=cmbBaseEdit}" Value="{x:Null}">
-                                                        <Setter Property="Visibility" Value="Visible" />
-                                                    </DataTrigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </TextBlock.Style>
-                                    </TextBlock>
                                     <Grid
                                         Name="grdedit"
                                         Grid.Column="0"
@@ -393,11 +364,12 @@
                                                 MaxWidth="{Binding Path=ActualWidth, ElementName=grdedit, Converter={local1:MultiplyConverter Multiplier=.9}}"
                                                 HorizontalAlignment="Stretch"
                                                 VerticalAlignment="Top"
+                                                controls:InfoElement.Placeholder="جستجو..."
                                                 FlowDirection="RightToLeft"
                                                 MaxLength="40"
+                                                Style="{StaticResource TextBoxExtend}"
                                                 TabIndex="1"
-                                                TextChanged="txtEditSearch_TextChanged"
-                                                Style="{StaticResource TextBoxExtend}" controls:InfoElement.Placeholder="جستجو..." />
+                                                TextChanged="txtEditSearch_TextChanged" />
                                             <DataGrid
                                                 x:Name="dataGrid"
                                                 MaxWidth="{Binding Path=ActualWidth, ElementName=grdedit, Converter={local1:MultiplyConverter Multiplier=.9}}"
@@ -460,28 +432,31 @@
                                                 Height="35"
                                                 Margin="2"
                                                 VerticalAlignment="Top"
+                                                controls:InfoElement.Placeholder="نام"
                                                 FlowDirection="RightToLeft"
                                                 MaxLength="20"
-                                                TabIndex="0"
-                                                Style="{StaticResource TextBoxExtend}" controls:InfoElement.Placeholder="نام" />
+                                                Style="{StaticResource TextBoxExtend}"
+                                                TabIndex="0" />
                                             <TextBox
                                                 x:Name="txtLName"
                                                 Height="35"
                                                 Margin="2"
                                                 VerticalAlignment="Top"
+                                                controls:InfoElement.Placeholder="نام خانوادگی"
                                                 FlowDirection="RightToLeft"
                                                 MaxLength="20"
-                                                TabIndex="1"
-                                             Style="{StaticResource TextBoxExtend}" controls:InfoElement.Placeholder="نام خانوادگی" />
+                                                Style="{StaticResource TextBoxExtend}"
+                                                TabIndex="1" />
                                             <TextBox
                                                 x:Name="txtFName"
                                                 Height="35"
                                                 Margin="2"
                                                 VerticalAlignment="Top"
+                                                controls:InfoElement.Placeholder="نام پدر"
                                                 FlowDirection="RightToLeft"
                                                 MaxLength="20"
-                                                TabIndex="2"
-                                              Style="{StaticResource TextBoxExtend}" controls:InfoElement.Placeholder="نام پدر" />
+                                                Style="{StaticResource TextBoxExtend}"
+                                                TabIndex="2" />
                                             <StackPanel Margin="2" Orientation="Horizontal">
                                                 <ContentControl
                                                     x:Name="cmbContentGender"

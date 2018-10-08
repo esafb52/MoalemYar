@@ -50,50 +50,32 @@
                                 Style="{StaticResource ToggleButtonSwitch}"
                                 Unchecked="isQuestion_Checked" />
                         </StackPanel>
-                        <Grid Margin="0,40,0,0">
-                            <ComboBox
-                                x:Name="cmbBase"
-                                Width="190"
-                                Height="30"
-                                Margin="10,10,0,0"
-                                HorizontalAlignment="Left"
-                                VerticalAlignment="Top"
-                                SelectedValue="{Binding SchoolName}"
-                                SelectedValuePath="Id"
-                                SelectionChanged="cmbBase_SelectionChanged"
-                                TabIndex="0">
-                                <ComboBox.ItemTemplate>
-                                    <DataTemplate>
-                                        <StackPanel Orientation="Horizontal">
-                                            <TextBlock Text="{Binding SchoolName}" />
-                                            <TextBlock Text=" - " />
-                                            <TextBlock Text="{Binding Base}" />
-                                            <TextBlock Text=" - " />
-                                            <TextBlock Text="{Binding Year}" />
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </ComboBox.ItemTemplate>
-                            </ComboBox>
-                            <TextBlock
-                                Width="190"
-                                Height="30"
-                                Margin="10,10,0,0"
-                                HorizontalAlignment="Left"
-                                VerticalAlignment="Top"
-                                IsHitTestVisible="False"
-                                Text=" انتخاب کلاس ">
-                                <TextBlock.Style>
-                                    <Style TargetType="TextBlock">
-                                        <Setter Property="Visibility" Value="Hidden" />
-                                        <Style.Triggers>
-                                            <DataTrigger Binding="{Binding ElementName=cmbBase, Path=SelectedItem}" Value="{x:Null}">
-                                                <Setter Property="Visibility" Value="Visible" />
-                                            </DataTrigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </TextBlock.Style>
-                            </TextBlock>
-                        </Grid>
+                        <Grid Margin="0,40,0,0" />
+                        <ComboBox
+                            x:Name="cmbBase"
+                            Width="190"
+                            Height="30"
+                            Margin="10,50,0,0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            controls:InfoElement.Placeholder="انتخاب کلاس"
+                            SelectedValue="{Binding SchoolName}"
+                            SelectedValuePath="Id"
+                            SelectionChanged="cmbBase_SelectionChanged"
+                            Style="{StaticResource ComboBoxExtend}"
+                            TabIndex="0">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding SchoolName}" />
+                                        <TextBlock Text=" - " />
+                                        <TextBlock Text="{Binding Base}" />
+                                        <TextBlock Text=" - " />
+                                        <TextBlock Text="{Binding Year}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
                         <ContentControl
                             x:Name="cmbBook"
                             Width="200"
@@ -330,92 +312,59 @@
                                 Margin="10,70,0,0">
                                 <StackPanel Margin="0,10,0,0" Orientation="Vertical">
                                     <StackPanel HorizontalAlignment="Stretch" Orientation="Horizontal">
-                                        <Grid>
-                                            <ComboBox
-                                                x:Name="cmbEditBase"
-                                                Width="195"
-                                                Height="30"
-                                                HorizontalAlignment="Left"
-                                                VerticalAlignment="Top"
-                                                SelectedValue="{Binding SchoolName}"
-                                                SelectedValuePath="Id"
-                                                SelectionChanged="cmbEditBase_SelectionChanged"
-                                                TabIndex="0">
-                                                <ComboBox.ItemTemplate>
-                                                    <DataTemplate>
-                                                        <StackPanel Orientation="Horizontal">
-                                                            <TextBlock Text="{Binding SchoolName}" />
-                                                            <TextBlock Text=" - " />
-                                                            <TextBlock Text="{Binding Base}" />
-                                                            <TextBlock Text=" - " />
-                                                            <TextBlock Text="{Binding Year}" />
-                                                        </StackPanel>
-                                                    </DataTemplate>
-                                                </ComboBox.ItemTemplate>
-                                            </ComboBox>
-                                            <TextBlock
-                                                Width="195"
-                                                Height="30"
-                                                HorizontalAlignment="Left"
-                                                VerticalAlignment="Top"
-                                                IsHitTestVisible="False"
-                                                Text=" انتخاب کلاس ">
-                                                <TextBlock.Style>
-                                                    <Style TargetType="{x:Type TextBlock}">
-                                                        <Setter Property="Visibility" Value="Hidden" />
-                                                        <Style.Triggers>
-                                                            <DataTrigger Binding="{Binding SelectedItem, ElementName=cmbEditBase}" Value="{x:Null}">
-                                                                <Setter Property="Visibility" Value="Visible" />
-                                                            </DataTrigger>
-                                                        </Style.Triggers>
-                                                    </Style>
-                                                </TextBlock.Style>
-                                            </TextBlock>
-                                        </Grid>
-                                        <Grid Margin="10,0,0,0">
-                                            <ComboBox
-                                                x:Name="cmbEditStudent"
-                                                Width="190"
-                                                Height="30"
-                                                HorizontalAlignment="Left"
-                                                VerticalAlignment="Top"
-                                                SelectedValue="{Binding LName}"
-                                                SelectedValuePath="Id"
-                                                SelectionChanged="cmbEditStudent_SelectionChanged"
-                                                TabIndex="1">
-                                                <ComboBox.ItemTemplate>
-                                                    <DataTemplate>
-                                                        <StackPanel Orientation="Horizontal">
-                                                            <TextBlock Text="{Binding Name}" />
-                                                            <TextBlock Text=" " />
-                                                            <TextBlock Text="{Binding LName}" />
-                                                            <TextBlock Text=" - " />
-                                                            <TextBlock Text="نام پدر(" />
-                                                            <TextBlock Text="{Binding FName}" />
-                                                            <TextBlock Text=")" />
-                                                        </StackPanel>
-                                                    </DataTemplate>
-                                                </ComboBox.ItemTemplate>
-                                            </ComboBox>
-                                            <TextBlock
-                                                Width="190"
-                                                Height="30"
-                                                HorizontalAlignment="Left"
-                                                VerticalAlignment="Top"
-                                                IsHitTestVisible="False"
-                                                Text=" انتخاب دانش آموز ">
-                                                <TextBlock.Style>
-                                                    <Style TargetType="{x:Type TextBlock}">
-                                                        <Setter Property="Visibility" Value="Hidden" />
-                                                        <Style.Triggers>
-                                                            <DataTrigger Binding="{Binding SelectedItem, ElementName=cmbEditStudent}" Value="{x:Null}">
-                                                                <Setter Property="Visibility" Value="Visible" />
-                                                            </DataTrigger>
-                                                        </Style.Triggers>
-                                                    </Style>
-                                                </TextBlock.Style>
-                                            </TextBlock>
-                                        </Grid>
+
+                                        <ComboBox
+                                            x:Name="cmbEditBase"
+                                            Width="195"
+                                            Height="30"
+                                            HorizontalAlignment="Left"
+                                            VerticalAlignment="Top"
+                                            controls:InfoElement.Placeholder="انتخاب کلاس"
+                                            SelectedValue="{Binding SchoolName}"
+                                            SelectedValuePath="Id"
+                                            SelectionChanged="cmbEditBase_SelectionChanged"
+                                            Style="{StaticResource ComboBoxExtend}"
+                                            TabIndex="0">
+                                            <ComboBox.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBlock Text="{Binding SchoolName}" />
+                                                        <TextBlock Text=" - " />
+                                                        <TextBlock Text="{Binding Base}" />
+                                                        <TextBlock Text=" - " />
+                                                        <TextBlock Text="{Binding Year}" />
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </ComboBox.ItemTemplate>
+                                        </ComboBox>
+                                        <ComboBox
+                                            x:Name="cmbEditStudent"
+                                            Width="190"
+                                            Height="30"
+                                            Margin="10,0,0,0"
+                                            HorizontalAlignment="Left"
+                                            VerticalAlignment="Top"
+                                            controls:InfoElement.Placeholder="انتخاب دانش آموز"
+                                            SelectedValue="{Binding LName}"
+                                            SelectedValuePath="Id"
+                                            SelectionChanged="cmbEditStudent_SelectionChanged"
+                                            Style="{StaticResource ComboBoxExtend}"
+                                            TabIndex="1">
+                                            <ComboBox.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBlock Text="{Binding Name}" />
+                                                        <TextBlock Text=" " />
+                                                        <TextBlock Text="{Binding LName}" />
+                                                        <TextBlock Text=" - " />
+                                                        <TextBlock Text="نام پدر(" />
+                                                        <TextBlock Text="{Binding FName}" />
+                                                        <TextBlock Text=")" />
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </ComboBox.ItemTemplate>
+                                        </ComboBox>
+
                                     </StackPanel>
                                     <TextBox
                                         x:Name="txtEditSearch"

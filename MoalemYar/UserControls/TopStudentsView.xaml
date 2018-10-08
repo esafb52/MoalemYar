@@ -21,10 +21,12 @@
                     Margin="10,10,0,0"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
+                    controls:InfoElement.Placeholder="انتخاب کلاس"
                     FlowDirection="RightToLeft"
                     SelectedValue="{Binding SchoolName}"
                     SelectedValuePath="Id"
                     SelectionChanged="cmbBaseEdit_SelectionChanged"
+                    Style="{StaticResource ComboBoxExtend}"
                     TabIndex="0">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
@@ -38,26 +40,6 @@
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                 </ComboBox>
-                <TextBlock
-                    Width="190"
-                    Height="30"
-                    Margin="10,10,0,0"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
-                    FlowDirection="RightToLeft"
-                    IsHitTestVisible="False"
-                    Text=" انتخاب کلاس ">
-                    <TextBlock.Style>
-                        <Style TargetType="{x:Type TextBlock}">
-                            <Setter Property="Visibility" Value="Hidden" />
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding SelectedItem, ElementName=cmbBaseEdit}" Value="{x:Null}">
-                                    <Setter Property="Visibility" Value="Visible" />
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </TextBlock.Style>
-                </TextBlock>
                 <DataGrid
                     x:Name="dataGrid"
                     MaxWidth="{Binding Path=ActualWidth, ElementName=grdedit, Converter={local1:MultiplyConverter Multiplier=.9}}"
