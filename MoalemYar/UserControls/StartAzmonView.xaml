@@ -97,13 +97,11 @@
                         </ComboBox>
                         <TextBox
                             Name="txtTedad"
-                            Height="35"
                             VerticalAlignment="Top"
                             controls:InfoElement.Placeholder="تعداد سوالات"
                             MaxLength="3"
                             PreviewTextInput="txtTedad_PreviewTextInput"
-                            Style="{StaticResource TextBoxExtend}"
-                            Text="0" />
+                            Style="{StaticResource TextBoxExtend}" />
                         <StackPanel Orientation="Vertical">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock

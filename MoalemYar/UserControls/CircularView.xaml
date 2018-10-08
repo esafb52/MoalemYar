@@ -61,12 +61,12 @@
                 </StackPanel>
                 <TextBox
                     Name="txtSearch"
-                    Height="30"
                     Margin="391,10,40,0"
                     VerticalAlignment="Top"
+                    controls:InfoElement.Placeholder="جستجو..."
                     IsEnabled="False"
-                    TextChanged="txtSearch_TextChanged"
-                    Style="{StaticResource TextBoxExtend}" controls:InfoElement.Placeholder="جستجو..." />
+                    Style="{StaticResource TextBoxExtend}"
+                    TextChanged="txtSearch_TextChanged" />
                 <ProgressBar
                     Name="prgUpdate"
                     Margin="20,56,40,0"

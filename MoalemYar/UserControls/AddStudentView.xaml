@@ -95,8 +95,8 @@
                                     Orientation="Vertical">
                                     <TextBox
                                         x:Name="txtAddName"
-                                        Height="35"
                                         Margin="2"
+                                        HorizontalAlignment="Left"
                                         VerticalAlignment="Top"
                                         controls:InfoElement.Placeholder="نام"
                                         FlowDirection="RightToLeft"
@@ -105,8 +105,8 @@
                                         TabIndex="0" />
                                     <TextBox
                                         x:Name="txtAddLName"
-                                        Height="35"
                                         Margin="2"
+                                        HorizontalAlignment="Left"
                                         VerticalAlignment="Top"
                                         controls:InfoElement.Placeholder="نام خانوادگی"
                                         FlowDirection="RightToLeft"
@@ -115,8 +115,8 @@
                                         TabIndex="1" />
                                     <TextBox
                                         x:Name="txtAddFName"
-                                        Height="35"
                                         Margin="2"
+                                        HorizontalAlignment="Left"
                                         VerticalAlignment="Top"
                                         controls:InfoElement.Placeholder="نام پدر"
                                         FlowDirection="RightToLeft"
@@ -360,7 +360,6 @@
                                         <StackPanel Orientation="Vertical">
                                             <TextBox
                                                 x:Name="txtEditSearch"
-                                                Height="35"
                                                 MaxWidth="{Binding Path=ActualWidth, ElementName=grdedit, Converter={local1:MultiplyConverter Multiplier=.9}}"
                                                 HorizontalAlignment="Stretch"
                                                 VerticalAlignment="Top"
@@ -429,7 +428,6 @@
                                             Orientation="Vertical">
                                             <TextBox
                                                 x:Name="txtName"
-                                                Height="35"
                                                 Margin="2"
                                                 VerticalAlignment="Top"
                                                 controls:InfoElement.Placeholder="نام"
@@ -439,7 +437,6 @@
                                                 TabIndex="0" />
                                             <TextBox
                                                 x:Name="txtLName"
-                                                Height="35"
                                                 Margin="2"
                                                 VerticalAlignment="Top"
                                                 controls:InfoElement.Placeholder="نام خانوادگی"
@@ -449,7 +446,6 @@
                                                 TabIndex="1" />
                                             <TextBox
                                                 x:Name="txtFName"
-                                                Height="35"
                                                 Margin="2"
                                                 VerticalAlignment="Top"
                                                 controls:InfoElement.Placeholder="نام پدر"

@@ -145,8 +145,8 @@
                                     </ContentControl>
                                     <TextBox
                                         Name="txtQuestionText"
-                                        Height="35"
                                         Margin="2"
+                                        HorizontalAlignment="Left"
                                         controls:InfoElement.Placeholder="متن سوال"
                                         FlowDirection="RightToLeft"
                                         MaxLength="20"
@@ -154,8 +154,8 @@
                                         TabIndex="0" />
                                     <TextBox
                                         Name="txtCase1"
-                                        Height="35"
                                         Margin="2"
+                                        HorizontalAlignment="Left"
                                         controls:InfoElement.Placeholder="گزینه 1"
                                         FlowDirection="RightToLeft"
                                         MaxLength="20"
@@ -163,8 +163,8 @@
                                         TabIndex="0" />
                                     <TextBox
                                         Name="txtCase2"
-                                        Height="35"
                                         Margin="2"
+                                        HorizontalAlignment="Left"
                                         controls:InfoElement.Placeholder="گزینه 2"
                                         FlowDirection="RightToLeft"
                                         MaxLength="20"
@@ -172,8 +172,8 @@
                                         TabIndex="0" />
                                     <TextBox
                                         Name="txtCase3"
-                                        Height="35"
                                         Margin="2"
+                                        HorizontalAlignment="Left"
                                         controls:InfoElement.Placeholder="گزینه 3"
                                         FlowDirection="RightToLeft"
                                         MaxLength="20"
@@ -181,8 +181,8 @@
                                         TabIndex="0" />
                                     <TextBox
                                         Name="txtCase4"
-                                        Height="35"
                                         Margin="2"
+                                        HorizontalAlignment="Left"
                                         controls:InfoElement.Placeholder="گزینه 4"
                                         FlowDirection="RightToLeft"
                                         MaxLength="20"
@@ -359,7 +359,6 @@
                                             <StackPanel Orientation="Vertical">
                                                 <TextBox
                                                     x:Name="txtEditSearch"
-                                                    Height="35"
                                                     MaxWidth="{Binding Path=ActualWidth, ElementName=grdedit, Converter={local1:MultiplyConverter Multiplier=.9}}"
                                                     HorizontalAlignment="Stretch"
                                                     VerticalAlignment="Top"
@@ -439,7 +438,6 @@
                                                 Orientation="Vertical">
                                                 <TextBox
                                                     Name="txtEditQuestionText"
-                                                    Height="35"
                                                     Margin="2"
                                                     controls:InfoElement.Placeholder="متن سوال"
                                                     FlowDirection="RightToLeft"
@@ -448,7 +446,6 @@
                                                     TabIndex="0" />
                                                 <TextBox
                                                     Name="txtEditCase1"
-                                                    Height="35"
                                                     Margin="2"
                                                     controls:InfoElement.Placeholder="گزینه 1"
                                                     FlowDirection="RightToLeft"
@@ -457,7 +454,6 @@
                                                     TabIndex="0" />
                                                 <TextBox
                                                     Name="txtEditCase2"
-                                                    Height="35"
                                                     Margin="2"
                                                     controls:InfoElement.Placeholder="گزینه 2"
                                                     FlowDirection="RightToLeft"
@@ -466,7 +462,6 @@
                                                     TabIndex="0" />
                                                 <TextBox
                                                     Name="txtEditCase3"
-                                                    Height="35"
                                                     Margin="2"
                                                     controls:InfoElement.Placeholder="گزینه 3"
                                                     FlowDirection="RightToLeft"
@@ -475,7 +470,6 @@
                                                     TabIndex="0" />
                                                 <TextBox
                                                     Name="txtEditCase4"
-                                                    Height="35"
                                                     Margin="2"
                                                     controls:InfoElement.Placeholder="گزینه 4"
                                                     FlowDirection="RightToLeft"

@@ -87,28 +87,28 @@
                             <StackPanel Margin="0,5,0,0" Orientation="Vertical">
                                 <TextBox
                                     Name="txtAddYear"
-                                    Height="35"
                                     Margin="2"
+                                    controls:InfoElement.Placeholder="سال تحصیلی"
                                     FlowDirection="RightToLeft"
                                     MaxLength="5"
-                                    TabIndex="0"
-                                    Style="{StaticResource TextBoxExtend}" controls:InfoElement.Placeholder="سال تحصیلی" />
+                                    Style="{StaticResource TextBoxExtend}"
+                                    TabIndex="0" />
                                 <TextBox
                                     Name="txtAddSchool"
-                                    Height="35"
                                     Margin="2"
+                                    controls:InfoElement.Placeholder="نام مدرسه"
                                     FlowDirection="RightToLeft"
                                     MaxLength="20"
-                                    TabIndex="1"
-                                    Style="{StaticResource TextBoxExtend}" controls:InfoElement.Placeholder="نام مدرسه" />
+                                    Style="{StaticResource TextBoxExtend}"
+                                    TabIndex="1" />
                                 <TextBox
                                     Name="txtAddAdmin"
-                                    Height="35"
                                     Margin="2"
+                                    controls:InfoElement.Placeholder="نام مدیر"
                                     FlowDirection="RightToLeft"
                                     MaxLength="20"
-                                    TabIndex="2"
-                                    Style="{StaticResource TextBoxExtend}" controls:InfoElement.Placeholder="نام مدیر" />
+                                    Style="{StaticResource TextBoxExtend}"
+                                    TabIndex="2" />
                                 <ContentControl
                                     Name="cmbAddContent"
                                     Width="233"
@@ -256,13 +256,13 @@
                                     <StackPanel Orientation="Vertical">
                                         <TextBox
                                             Name="txtEditSearch"
-                                            Height="35"
                                             MaxWidth="{Binding Path=ActualWidth, ElementName=grdedit, Converter={local1:MultiplyConverter Multiplier=.9}}"
                                             HorizontalAlignment="Stretch"
+                                            controls:InfoElement.Placeholder="جستجو..."
                                             FlowDirection="RightToLeft"
                                             MaxLength="40"
-                                            TextChanged="txtEditSearch_TextChanged"
-                                            Style="{StaticResource TextBoxExtend}" controls:InfoElement.Placeholder="جستجو..." />
+                                            Style="{StaticResource TextBoxExtend}"
+                                            TextChanged="txtEditSearch_TextChanged" />
                                         <DataGrid
                                             x:Name="dataGrid"
                                             MaxWidth="{Binding Path=ActualWidth, ElementName=grdedit, Converter={local1:MultiplyConverter Multiplier=.9}}"
@@ -317,28 +317,28 @@
                                     Orientation="Vertical">
                                     <TextBox
                                         Name="txtYear"
-                                        Height="35"
                                         Margin="2"
                                         VerticalAlignment="Top"
+                                        controls:InfoElement.Placeholder="سال تحصیلی"
                                         FlowDirection="RightToLeft"
                                         MaxLength="5"
-                                        Style="{StaticResource TextBoxExtend}" controls:InfoElement.Placeholder="سال تحصیلی" />
+                                        Style="{StaticResource TextBoxExtend}" />
                                     <TextBox
                                         Name="txtSchool"
-                                        Height="35"
                                         Margin="2"
                                         VerticalAlignment="Top"
+                                        controls:InfoElement.Placeholder="نام مدرسه"
                                         FlowDirection="RightToLeft"
                                         MaxLength="20"
-                                        Style="{StaticResource TextBoxExtend}" controls:InfoElement.Placeholder="نام مدرسه" />
+                                        Style="{StaticResource TextBoxExtend}" />
                                     <TextBox
                                         Name="txtAdmin"
-                                        Height="35"
                                         Margin="2"
                                         VerticalAlignment="Top"
+                                        controls:InfoElement.Placeholder="نام مدیر"
                                         FlowDirection="RightToLeft"
                                         MaxLength="20"
-                                        Style="{StaticResource TextBoxExtend}" controls:InfoElement.Placeholder="نام مدیر" />
+                                        Style="{StaticResource TextBoxExtend}" />
                                     <ContentControl
                                         Name="cmbContent"
                                         Width="188"
