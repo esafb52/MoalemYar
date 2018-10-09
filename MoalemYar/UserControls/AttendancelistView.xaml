@@ -32,7 +32,7 @@
                                 SelectedValue="{Binding SchoolName}"
                                 SelectedValuePath="Id"
                                 SelectionChanged="cmbBase_SelectionChanged"
-                                Style="{StaticResource ComboBoxExtend}">
+                                Style="{StaticResource ComboBoxExtend}" controls:InfoElement.ContentHeight="35">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal">
@@ -171,7 +171,7 @@
                                     ItemsSource="{Binding}"
                                     SelectedValue="{Binding SchoolName}"
                                     SelectedValuePath="Id"
-                                    Style="{StaticResource ComboBoxExtend}">
+                                    Style="{StaticResource ComboBoxExtend}" controls:InfoElement.ContentHeight="35">
                                     <ComboBox.ItemTemplate>
                                         <DataTemplate>
                                             <StackPanel Orientation="Horizontal">
@@ -344,7 +344,7 @@
                                         SelectedValue="{Binding SchoolName}"
                                         SelectedValuePath="Id"
                                         SelectionChanged="cmbEditBase_SelectionChanged"
-                                        Style="{StaticResource ComboBoxExtend}"
+                                        Style="{StaticResource ComboBoxExtend}" controls:InfoElement.ContentHeight="35"
                                         TabIndex="0">
                                         <ComboBox.ItemTemplate>
                                             <DataTemplate>
@@ -367,7 +367,7 @@
                                         SelectedValue="{Binding LName}"
                                         SelectedValuePath="Id"
                                         SelectionChanged="cmbEditStudent_SelectionChanged"
-                                        Style="{StaticResource ComboBoxExtend}"
+                                        Style="{StaticResource ComboBoxExtend}" controls:InfoElement.ContentHeight="35"
                                         TabIndex="1">
                                         <ComboBox.ItemTemplate>
                                             <DataTemplate>
@@ -392,7 +392,7 @@
                                     controls:InfoElement.Placeholder="جستجو..."
                                     FlowDirection="RightToLeft"
                                     MaxLength="40"
-                                    Style="{StaticResource TextBoxExtend}"
+                                    Style="{StaticResource TextBoxExtend}" controls:InfoElement.ContentHeight="35"
                                     TabIndex="2"
                                     TextChanged="txtEditSearch_TextChanged" />
                                 <Grid>

@@ -28,7 +28,7 @@
                         SelectedValue="{Binding SchoolName}"
                         SelectedValuePath="Id"
                         SelectionChanged="cmbEditBase_SelectionChanged"
-                        Style="{StaticResource ComboBoxExtend}"
+                        Style="{StaticResource ComboBoxExtend}" controls:InfoElement.ContentHeight="35"
                         TabIndex="0">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
@@ -52,7 +52,7 @@
                         SelectedValue="{Binding GroupName}"
                         SelectedValuePath="Id"
                         SelectionChanged="cmbGroups_SelectionChanged"
-                        Style="{StaticResource ComboBoxExtend}"
+                        Style="{StaticResource ComboBoxExtend}" controls:InfoElement.ContentHeight="35"
                         TabIndex="0">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
@@ -72,7 +72,7 @@
                         SelectedValue="{Binding DatePass}"
                         SelectedValuePath="Id"
                         SelectionChanged="cmbAzmon_SelectionChanged"
-                        Style="{StaticResource ComboBoxExtend}"
+                        Style="{StaticResource ComboBoxExtend}" controls:InfoElement.ContentHeight="35"
                         TabIndex="0">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>

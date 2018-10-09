@@ -62,7 +62,7 @@
                     VerticalAlignment="Top"
                     controls:InfoElement.Placeholder="جستجو..."
                     IsEnabled="False"
-                    Style="{StaticResource TextBoxExtend}"
+                    Style="{StaticResource TextBoxExtend}" controls:InfoElement.ContentHeight="35"
                     TextChanged="txtSearch_TextChanged" />
                 <ProgressBar
                     Name="prgUpdate"

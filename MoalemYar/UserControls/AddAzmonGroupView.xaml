@@ -91,7 +91,7 @@
                                 controls:InfoElement.Placeholder="نام گروه"
                                 FlowDirection="RightToLeft"
                                 MaxLength="20"
-                                Style="{StaticResource TextBoxExtend}"
+                                Style="{StaticResource TextBoxExtend}" controls:InfoElement.ContentHeight="35"
                                 TabIndex="0" />
                         </StackPanel>
                     </Grid>
@@ -210,7 +210,7 @@
                                                 controls:InfoElement.Placeholder="جستجو..."
                                                 FlowDirection="RightToLeft"
                                                 MaxLength="40"
-                                                Style="{StaticResource TextBoxExtend}"
+                                                Style="{StaticResource TextBoxExtend}" controls:InfoElement.ContentHeight="35"
                                                 TextChanged="txtEditSearch_TextChanged" />
                                             <DataGrid
                                                 x:Name="dataGrid"
@@ -258,7 +258,7 @@
                                             controls:InfoElement.Placeholder="نام گروه"
                                             FlowDirection="RightToLeft"
                                             MaxLength="20"
-                                            Style="{StaticResource TextBoxExtend}" />
+                                            Style="{StaticResource TextBoxExtend}" controls:InfoElement.ContentHeight="35" />
                                     </StackPanel>
                                 </Grid>
                             </StackPanel>

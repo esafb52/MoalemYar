@@ -23,7 +23,7 @@
                     SelectedValue="{Binding SchoolName}"
                     SelectedValuePath="Id"
                     SelectionChanged="cmbBaseEdit_SelectionChanged"
-                    Style="{StaticResource ComboBoxExtend}"
+                    Style="{StaticResource ComboBoxExtend}" controls:InfoElement.ContentHeight="35"
                     TabIndex="0">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>

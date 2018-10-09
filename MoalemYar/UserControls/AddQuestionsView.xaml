@@ -93,6 +93,7 @@
                                         Margin="2"
                                         HorizontalAlignment="Left"
                                         VerticalAlignment="Top"
+                                        controls:InfoElement.ContentHeight="35"
                                         controls:InfoElement.Placeholder="انتخاب کلاس"
                                         ItemsSource="{Binding}"
                                         SelectedValue="{Binding GroupName}"
@@ -111,6 +112,7 @@
                                         Name="cmbBase"
                                         Margin="2"
                                         HorizontalAlignment="Left"
+                                        controls:InfoElement.ContentHeight="35"
                                         controls:InfoElement.Placeholder="انتخاب پایه"
                                         FlowDirection="RightToLeft"
                                         Style="{StaticResource ComboBoxExtend}">
@@ -128,7 +130,7 @@
                                         controls:InfoElement.Placeholder="متن سوال"
                                         FlowDirection="RightToLeft"
                                         MaxLength="20"
-                                        Style="{StaticResource TextBoxExtend}"
+                                        Style="{StaticResource TextBoxExtend}" controls:InfoElement.ContentHeight="35"
                                         TabIndex="0" />
                                     <TextBox
                                         Name="txtCase1"
@@ -137,7 +139,7 @@
                                         controls:InfoElement.Placeholder="گزینه 1"
                                         FlowDirection="RightToLeft"
                                         MaxLength="20"
-                                        Style="{StaticResource TextBoxExtend}"
+                                        Style="{StaticResource TextBoxExtend}" controls:InfoElement.ContentHeight="35"
                                         TabIndex="0" />
                                     <TextBox
                                         Name="txtCase2"
@@ -146,7 +148,7 @@
                                         controls:InfoElement.Placeholder="گزینه 2"
                                         FlowDirection="RightToLeft"
                                         MaxLength="20"
-                                        Style="{StaticResource TextBoxExtend}"
+                                        Style="{StaticResource TextBoxExtend}" controls:InfoElement.ContentHeight="35"
                                         TabIndex="0" />
                                     <TextBox
                                         Name="txtCase3"
@@ -155,7 +157,7 @@
                                         controls:InfoElement.Placeholder="گزینه 3"
                                         FlowDirection="RightToLeft"
                                         MaxLength="20"
-                                        Style="{StaticResource TextBoxExtend}"
+                                        Style="{StaticResource TextBoxExtend}" controls:InfoElement.ContentHeight="35"
                                         TabIndex="0" />
                                     <TextBox
                                         Name="txtCase4"
@@ -164,12 +166,13 @@
                                         controls:InfoElement.Placeholder="گزینه 4"
                                         FlowDirection="RightToLeft"
                                         MaxLength="20"
-                                        Style="{StaticResource TextBoxExtend}"
+                                        Style="{StaticResource TextBoxExtend}" controls:InfoElement.ContentHeight="35"
                                         TabIndex="0" />
                                     <ComboBox
                                         Name="cmbEditBase"
                                         Margin="2"
                                         HorizontalAlignment="Left"
+                                        controls:InfoElement.ContentHeight="35"
                                         controls:InfoElement.Placeholder="گزینه صحیح"
                                         FlowDirection="RightToLeft"
                                         Style="{StaticResource ComboBoxExtend}">
@@ -293,6 +296,7 @@
                                             Margin="10,0"
                                             HorizontalAlignment="Left"
                                             VerticalAlignment="Top"
+                                            controls:InfoElement.ContentHeight="35"
                                             controls:InfoElement.Placeholder="انتخاب کلاس"
                                             FlowDirection="RightToLeft"
                                             SelectedValue="{Binding GroupName}"
@@ -321,7 +325,7 @@
                                                     controls:InfoElement.Placeholder="جستجو..."
                                                     FlowDirection="RightToLeft"
                                                     MaxLength="40"
-                                                    Style="{StaticResource TextBoxExtend}"
+                                                    Style="{StaticResource TextBoxExtend}" controls:InfoElement.ContentHeight="35"
                                                     TabIndex="1"
                                                     TextChanged="txtEditSearch_TextChanged" />
                                                 <DataGrid
@@ -399,7 +403,7 @@
                                                     controls:InfoElement.Placeholder="متن سوال"
                                                     FlowDirection="RightToLeft"
                                                     MaxLength="20"
-                                                    Style="{StaticResource TextBoxExtend}"
+                                                    Style="{StaticResource TextBoxExtend}" controls:InfoElement.ContentHeight="35"
                                                     TabIndex="0" />
                                                 <TextBox
                                                     Name="txtEditCase1"
@@ -408,7 +412,7 @@
                                                     controls:InfoElement.Placeholder="گزینه 1"
                                                     FlowDirection="RightToLeft"
                                                     MaxLength="20"
-                                                    Style="{StaticResource TextBoxExtend}"
+                                                    Style="{StaticResource TextBoxExtend}" controls:InfoElement.ContentHeight="35"
                                                     TabIndex="0" />
                                                 <TextBox
                                                     Name="txtEditCase2"
@@ -417,7 +421,7 @@
                                                     controls:InfoElement.Placeholder="گزینه 2"
                                                     FlowDirection="RightToLeft"
                                                     MaxLength="20"
-                                                    Style="{StaticResource TextBoxExtend}"
+                                                    Style="{StaticResource TextBoxExtend}" controls:InfoElement.ContentHeight="35"
                                                     TabIndex="0" />
                                                 <TextBox
                                                     Name="txtEditCase3"
@@ -426,7 +430,7 @@
                                                     controls:InfoElement.Placeholder="گزینه 3"
                                                     FlowDirection="RightToLeft"
                                                     MaxLength="20"
-                                                    Style="{StaticResource TextBoxExtend}"
+                                                    Style="{StaticResource TextBoxExtend}" controls:InfoElement.ContentHeight="35"
                                                     TabIndex="0" />
                                                 <TextBox
                                                     Name="txtEditCase4"
@@ -435,13 +439,14 @@
                                                     controls:InfoElement.Placeholder="گزینه 4"
                                                     FlowDirection="RightToLeft"
                                                     MaxLength="20"
-                                                    Style="{StaticResource TextBoxExtend}"
+                                                    Style="{StaticResource TextBoxExtend}" controls:InfoElement.ContentHeight="35"
                                                     TabIndex="0" />
                                                 <ComboBox
                                                     x:Name="cmbGroupEdit"
                                                     Margin="2"
                                                     HorizontalAlignment="Left"
                                                     VerticalAlignment="Top"
+                                                    controls:InfoElement.ContentHeight="35"
                                                     controls:InfoElement.Placeholder="انتخاب گروه"
                                                     ItemsSource="{Binding}"
                                                     SelectedValue="{Binding GroupName}"
@@ -460,6 +465,7 @@
                                                     Name="cmbBaseEditData"
                                                     Margin="2"
                                                     HorizontalAlignment="Left"
+                                                    controls:InfoElement.ContentHeight="35"
                                                     controls:InfoElement.Placeholder="پایه"
                                                     FlowDirection="RightToLeft"
                                                     Style="{StaticResource ComboBoxExtend}">
@@ -474,6 +480,7 @@
                                                     Name="cmbEditAnswersData"
                                                     Margin="2"
                                                     HorizontalAlignment="Left"
+                                                    controls:InfoElement.ContentHeight="35"
                                                     controls:InfoElement.Placeholder="گزینه صحیح"
                                                     FlowDirection="RightToLeft"
                                                     Style="{StaticResource ComboBoxExtend}">

@@ -59,7 +59,7 @@
                                 SelectedValue="{Binding SchoolName}"
                                 SelectedValuePath="Id"
                                 SelectionChanged="cmbBase_SelectionChanged"
-                                Style="{StaticResource ComboBoxExtend}"
+                                Style="{StaticResource ComboBoxExtend}" controls:InfoElement.ContentHeight="35"
                                 TabIndex="0">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>
@@ -80,14 +80,14 @@
                                 controls:InfoElement.Placeholder="انتخاب درس"
                                 FlowDirection="RightToLeft"
                                 SelectionChanged="cmbBook_SelectionChanged"
-                                Style="{StaticResource ComboBoxExtend}" />
+                                Style="{StaticResource ComboBoxExtend}" controls:InfoElement.ContentHeight="35" />
                             <TextBox
                                 Name="txtDesc"
                                 MaxHeight="158"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top"
                                 controls:InfoElement.Placeholder="توضیحات"
-                                Style="{StaticResource TextBoxExtend}"
+                                Style="{StaticResource TextBoxExtend}" controls:InfoElement.ContentHeight="35"
                                 TabIndex="2"
                                 TextWrapping="Wrap" />
                         </StackPanel>
@@ -294,7 +294,7 @@
                                             SelectedValue="{Binding SchoolName}"
                                             SelectedValuePath="Id"
                                             SelectionChanged="cmbEditBase_SelectionChanged"
-                                            Style="{StaticResource ComboBoxExtend}"
+                                            Style="{StaticResource ComboBoxExtend}" controls:InfoElement.ContentHeight="35"
                                             TabIndex="0">
                                             <ComboBox.ItemTemplate>
                                                 <DataTemplate>
@@ -317,7 +317,7 @@
                                             SelectedValue="{Binding LName}"
                                             SelectedValuePath="Id"
                                             SelectionChanged="cmbEditStudent_SelectionChanged"
-                                            Style="{StaticResource ComboBoxExtend}"
+                                            Style="{StaticResource ComboBoxExtend}" controls:InfoElement.ContentHeight="35"
                                             TabIndex="1">
                                             <ComboBox.ItemTemplate>
                                                 <DataTemplate>
@@ -344,7 +344,7 @@
                                         controls:InfoElement.Placeholder="جستجو..."
                                         FlowDirection="RightToLeft"
                                         MaxLength="40"
-                                        Style="{StaticResource TextBoxExtend}"
+                                        Style="{StaticResource TextBoxExtend}" controls:InfoElement.ContentHeight="35"
                                         TabIndex="2"
                                         TextChanged="txtEditSearch_TextChanged" />
                                     <DataGrid
@@ -413,7 +413,7 @@
                                         Margin="2,5,0,5"
                                         HorizontalAlignment="Left"
                                         controls:InfoElement.Placeholder="توضیحات"
-                                        Style="{StaticResource TextBoxExtend}"
+                                        Style="{StaticResource TextBoxExtend}" controls:InfoElement.ContentHeight="35"
                                         TabIndex="5"
                                         TextWrapping="Wrap" />
                                     <ComboBox
@@ -421,7 +421,7 @@
                                         HorizontalAlignment="Left"
                                         controls:InfoElement.Placeholder="نمره"
                                         FlowDirection="RightToLeft"
-                                        Style="{StaticResource ComboBoxExtend}">
+                                        Style="{StaticResource ComboBoxExtend}" controls:InfoElement.ContentHeight="35">
                                         <ComboBoxItem Content="خیلی خوب" />
                                         <ComboBoxItem Content="خوب" />
                                         <ComboBoxItem Content="قابل قبول" />
@@ -432,7 +432,7 @@
                                         HorizontalAlignment="Left"
                                         controls:InfoElement.Placeholder="درس"
                                         FlowDirection="RightToLeft"
-                                        Style="{StaticResource ComboBoxExtend}" />
+                                        Style="{StaticResource ComboBoxExtend}" controls:InfoElement.ContentHeight="35" />
                                 </StackPanel>
                             </Grid>
                         </Grid>

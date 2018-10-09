@@ -28,7 +28,7 @@
                                 SelectedValue="{Binding SchoolName}"
                                 SelectedValuePath="Id"
                                 SelectionChanged="cmbEditBase_SelectionChanged"
-                                Style="{StaticResource ComboBoxExtend}"
+                                Style="{StaticResource ComboBoxExtend}" controls:InfoElement.ContentHeight="35"
                                 TabIndex="0">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>
@@ -51,7 +51,7 @@
                                 SelectedValue="{Binding LName}"
                                 SelectedValuePath="Id"
                                 SelectionChanged="cmbEditStudent_SelectionChanged"
-                                Style="{StaticResource ComboBoxExtend}"
+                                Style="{StaticResource ComboBoxExtend}" controls:InfoElement.ContentHeight="35"
                                 TabIndex="1">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>
@@ -79,7 +79,7 @@
                             ItemsSource="{Binding}"
                             SelectedValue="{Binding GroupName}"
                             SelectedValuePath="Id"
-                            Style="{StaticResource ComboBoxExtend}">
+                            Style="{StaticResource ComboBoxExtend}" controls:InfoElement.ContentHeight="35">
                             <ComboBox.ItemTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal">
@@ -94,7 +94,7 @@
                             controls:InfoElement.Placeholder="تعداد سوالات"
                             MaxLength="3"
                             PreviewTextInput="txtTedad_PreviewTextInput"
-                            Style="{StaticResource TextBoxExtend}" />
+                            Style="{StaticResource TextBoxExtend}" controls:InfoElement.ContentHeight="35" />
                         <StackPanel Orientation="Vertical">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock
@@ -132,7 +132,7 @@
                             IsEnabled="{Binding ElementName=swLimit, Path=IsChecked}"
                             MaxLength="3"
                             PreviewTextInput="txtTedad_PreviewTextInput"
-                            Style="{StaticResource TextBoxExtend}"
+                            Style="{StaticResource TextBoxExtend}" controls:InfoElement.ContentHeight="35"
                             Text="25" />
                         <Button
                             x:Name="btnStart"

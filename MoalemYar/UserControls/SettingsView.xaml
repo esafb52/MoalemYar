@@ -50,7 +50,7 @@
                                     controls:InfoElement.Placeholder="انتخاب سرور بخشنامه"
                                     ItemsSource="{Binding}"
                                     SelectionChanged="cmbServer_SelectionChanged"
-                                    Style="{StaticResource ComboBoxExtend}" />
+                                    Style="{StaticResource ComboBoxExtend}" controls:InfoElement.ContentHeight="35" />
                             </StackPanel>
                             <StackPanel Margin="10" Orientation="Horizontal">
                                 <Button
@@ -121,7 +121,7 @@
                                 SelectedValue="{Binding SchoolName}"
                                 SelectedValuePath="Id"
                                 SelectionChanged="cmbBase_SelectionChanged"
-                                Style="{StaticResource ComboBoxExtend}"
+                                Style="{StaticResource ComboBoxExtend}" controls:InfoElement.ContentHeight="35"
                                 TabIndex="4">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>

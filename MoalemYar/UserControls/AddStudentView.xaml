@@ -101,7 +101,7 @@
                                         controls:InfoElement.Placeholder="نام"
                                         FlowDirection="RightToLeft"
                                         MaxLength="20"
-                                        Style="{StaticResource TextBoxExtend}"
+                                        Style="{StaticResource TextBoxExtend}" controls:InfoElement.ContentHeight="35"
                                         TabIndex="0" />
                                     <TextBox
                                         x:Name="txtAddLName"
@@ -111,7 +111,7 @@
                                         controls:InfoElement.Placeholder="نام خانوادگی"
                                         FlowDirection="RightToLeft"
                                         MaxLength="20"
-                                        Style="{StaticResource TextBoxExtend}"
+                                        Style="{StaticResource TextBoxExtend}" controls:InfoElement.ContentHeight="35"
                                         TabIndex="1" />
                                     <TextBox
                                         x:Name="txtAddFName"
@@ -121,7 +121,7 @@
                                         controls:InfoElement.Placeholder="نام پدر"
                                         FlowDirection="RightToLeft"
                                         MaxLength="20"
-                                        Style="{StaticResource TextBoxExtend}"
+                                        Style="{StaticResource TextBoxExtend}" controls:InfoElement.ContentHeight="35"
                                         TabIndex="2" />
                                     <ComboBox
                                         Name="cmbAddGender"
@@ -129,7 +129,7 @@
                                         HorizontalAlignment="Left"
                                         controls:InfoElement.Placeholder="جنسیت"
                                         FlowDirection="RightToLeft"
-                                        Style="{StaticResource ComboBoxExtend}">
+                                        Style="{StaticResource ComboBoxExtend}" controls:InfoElement.ContentHeight="35">
                                         <ComboBoxItem Content="پسر" />
                                         <ComboBoxItem Content="دختر" />
                                     </ComboBox>
@@ -141,7 +141,7 @@
                                         ItemsSource="{Binding}"
                                         SelectedValue="{Binding SchoolName}"
                                         SelectedValuePath="Id"
-                                        Style="{StaticResource ComboBoxExtend}"
+                                        Style="{StaticResource ComboBoxExtend}" controls:InfoElement.ContentHeight="35"
                                         TabIndex="4">
                                         <ComboBox.ItemTemplate>
                                             <DataTemplate>
@@ -314,7 +314,7 @@
                                         SelectedValue="{Binding SchoolName}"
                                         SelectedValuePath="Id"
                                         SelectionChanged="cmbBaseEdit_SelectionChanged"
-                                        Style="{StaticResource ComboBoxExtend}"
+                                        Style="{StaticResource ComboBoxExtend}" controls:InfoElement.ContentHeight="35"
                                         TabIndex="0">
                                         <ComboBox.ItemTemplate>
                                             <DataTemplate>
@@ -341,7 +341,7 @@
                                                 controls:InfoElement.Placeholder="جستجو..."
                                                 FlowDirection="RightToLeft"
                                                 MaxLength="40"
-                                                Style="{StaticResource TextBoxExtend}"
+                                                Style="{StaticResource TextBoxExtend}" controls:InfoElement.ContentHeight="35"
                                                 TabIndex="1"
                                                 TextChanged="txtEditSearch_TextChanged" />
                                             <DataGrid
@@ -409,7 +409,7 @@
                                                 controls:InfoElement.Placeholder="نام"
                                                 FlowDirection="RightToLeft"
                                                 MaxLength="20"
-                                                Style="{StaticResource TextBoxExtend}"
+                                                Style="{StaticResource TextBoxExtend}" controls:InfoElement.ContentHeight="35"
                                                 TabIndex="0" />
                                             <TextBox
                                                 x:Name="txtLName"
@@ -419,7 +419,7 @@
                                                 controls:InfoElement.Placeholder="نام خانوادگی"
                                                 FlowDirection="RightToLeft"
                                                 MaxLength="20"
-                                                Style="{StaticResource TextBoxExtend}"
+                                                Style="{StaticResource TextBoxExtend}" controls:InfoElement.ContentHeight="35"
                                                 TabIndex="1" />
                                             <TextBox
                                                 x:Name="txtFName"
@@ -429,7 +429,7 @@
                                                 controls:InfoElement.Placeholder="نام پدر"
                                                 FlowDirection="RightToLeft"
                                                 MaxLength="20"
-                                                Style="{StaticResource TextBoxExtend}"
+                                                Style="{StaticResource TextBoxExtend}" controls:InfoElement.ContentHeight="35"
                                                 TabIndex="2" />
                                             <ComboBox
                                                 Name="cmbGender"
@@ -437,7 +437,7 @@
                                                 HorizontalAlignment="Left"
                                                 controls:InfoElement.Placeholder="جنسیت"
                                                 FlowDirection="RightToLeft"
-                                                Style="{StaticResource ComboBoxExtend}">
+                                                Style="{StaticResource ComboBoxExtend}" controls:InfoElement.ContentHeight="35">
                                                 <ComboBoxItem Content="پسر" />
                                                 <ComboBoxItem Content="دختر" />
                                             </ComboBox>

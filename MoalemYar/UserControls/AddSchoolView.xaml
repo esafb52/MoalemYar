@@ -91,7 +91,7 @@
                                     controls:InfoElement.Placeholder="سال تحصیلی"
                                     FlowDirection="RightToLeft"
                                     MaxLength="5"
-                                    Style="{StaticResource TextBoxExtend}"
+                                    Style="{StaticResource TextBoxExtend}" controls:InfoElement.ContentHeight="35"
                                     TabIndex="0" />
                                 <TextBox
                                     Name="txtAddSchool"
@@ -99,7 +99,7 @@
                                     controls:InfoElement.Placeholder="نام مدرسه"
                                     FlowDirection="RightToLeft"
                                     MaxLength="20"
-                                    Style="{StaticResource TextBoxExtend}"
+                                    Style="{StaticResource TextBoxExtend}" controls:InfoElement.ContentHeight="35"
                                     TabIndex="1" />
                                 <TextBox
                                     Name="txtAddAdmin"
@@ -107,13 +107,13 @@
                                     controls:InfoElement.Placeholder="نام مدیر"
                                     FlowDirection="RightToLeft"
                                     MaxLength="20"
-                                    Style="{StaticResource TextBoxExtend}"
+                                    Style="{StaticResource TextBoxExtend}" controls:InfoElement.ContentHeight="35"
                                     TabIndex="2" />
                                 <ComboBox
                                     Name="cmbBase"
                                     controls:InfoElement.Placeholder="انتخاب پایه"
                                     FlowDirection="RightToLeft"
-                                    Style="{StaticResource ComboBoxExtend}">
+                                    Style="{StaticResource ComboBoxExtend}" controls:InfoElement.ContentHeight="35">
                                     <ComboBoxItem Content="اول" />
                                     <ComboBoxItem Content="دوم" />
                                     <ComboBoxItem Content="سوم" />
@@ -238,7 +238,7 @@
                                             controls:InfoElement.Placeholder="جستجو..."
                                             FlowDirection="RightToLeft"
                                             MaxLength="40"
-                                            Style="{StaticResource TextBoxExtend}"
+                                            Style="{StaticResource TextBoxExtend}" controls:InfoElement.ContentHeight="35"
                                             TextChanged="txtEditSearch_TextChanged" />
                                         <DataGrid
                                             x:Name="dataGrid"
@@ -300,7 +300,7 @@
                                         controls:InfoElement.Placeholder="سال تحصیلی"
                                         FlowDirection="RightToLeft"
                                         MaxLength="5"
-                                        Style="{StaticResource TextBoxExtend}" />
+                                        Style="{StaticResource TextBoxExtend}" controls:InfoElement.ContentHeight="35" />
                                     <TextBox
                                         Name="txtSchool"
                                         Margin="2"
@@ -309,7 +309,7 @@
                                         controls:InfoElement.Placeholder="نام مدرسه"
                                         FlowDirection="RightToLeft"
                                         MaxLength="20"
-                                        Style="{StaticResource TextBoxExtend}" />
+                                        Style="{StaticResource TextBoxExtend}" controls:InfoElement.ContentHeight="35" />
                                     <TextBox
                                         Name="txtAdmin"
                                         Margin="2"
@@ -318,13 +318,13 @@
                                         controls:InfoElement.Placeholder="نام مدیر"
                                         FlowDirection="RightToLeft"
                                         MaxLength="20"
-                                        Style="{StaticResource TextBoxExtend}" />
+                                        Style="{StaticResource TextBoxExtend}" controls:InfoElement.ContentHeight="35" />
                                     <ComboBox
                                         Name="cmbEditBase"
                                         HorizontalAlignment="Left"
                                         controls:InfoElement.Placeholder="انتخاب پایه"
                                         FlowDirection="RightToLeft"
-                                        Style="{StaticResource ComboBoxExtend}">
+                                        Style="{StaticResource ComboBoxExtend}" controls:InfoElement.ContentHeight="35">
                                         <ComboBoxItem Content="اول" />
                                         <ComboBoxItem Content="دوم" />
                                         <ComboBoxItem Content="سوم" />

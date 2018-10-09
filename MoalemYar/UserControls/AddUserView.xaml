@@ -92,7 +92,7 @@
                                     controls:InfoElement.Placeholder="نام کاربری"
                                     FlowDirection="RightToLeft"
                                     MaxLength="20"
-                                    Style="{StaticResource TextBoxExtend}"
+                                    Style="{StaticResource TextBoxExtend}" controls:InfoElement.ContentHeight="35"
                                     TabIndex="0" />
                                 <PasswordBox
                                     Name="txtAddPassword"
@@ -233,7 +233,7 @@
                                                 controls:InfoElement.Placeholder="جستجو..."
                                                 FlowDirection="RightToLeft"
                                                 MaxLength="40"
-                                                Style="{StaticResource TextBoxExtend}"
+                                                Style="{StaticResource TextBoxExtend}" controls:InfoElement.ContentHeight="35"
                                                 TextChanged="txtEditSearch_TextChanged" />
                                             <DataGrid
                                                 x:Name="dataGrid"
@@ -285,7 +285,7 @@
                                             controls:InfoElement.Placeholder="نام کاربری"
                                             FlowDirection="RightToLeft"
                                             MaxLength="20"
-                                            Style="{StaticResource TextBoxExtend}" />
+                                            Style="{StaticResource TextBoxExtend}" controls:InfoElement.ContentHeight="35" />
                                         <TextBox
                                             Name="txtPassword"
                                             Margin="2"
@@ -294,7 +294,7 @@
                                             controls:InfoElement.Placeholder="رمز عبور"
                                             FlowDirection="RightToLeft"
                                             MaxLength="20"
-                                            Style="{StaticResource TextBoxExtend}" />
+                                            Style="{StaticResource TextBoxExtend}" controls:InfoElement.ContentHeight="35" />
                                         <TextBox
                                             Name="txtPasswordAg"
                                             Margin="2"
@@ -303,7 +303,7 @@
                                             controls:InfoElement.Placeholder="تکرار رمز عبور"
                                             FlowDirection="RightToLeft"
                                             MaxLength="20"
-                                            Style="{StaticResource TextBoxExtend}" />
+                                            Style="{StaticResource TextBoxExtend}" controls:InfoElement.ContentHeight="35" />
                                     </StackPanel>
                                 </Grid>
                             </StackPanel>
