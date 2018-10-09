@@ -24,9 +24,7 @@
                         <Grid Name="grdedit">
                             <ComboBox
                                 x:Name="cmbBase"
-                                Width="190"
-                                Height="30"
-                                Margin="10,10,0,0"
+                                Margin="10"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top"
                                 controls:InfoElement.Placeholder="انتخاب کلاس"
@@ -164,50 +162,49 @@
                 <controls:TabItem Header="لیست اطلاعات" IsSelected="True">
                     <Grid KeyboardNavigation.TabNavigation="Cycle">
                         <Grid Name="grdList">
-                            <ComboBox
-                                x:Name="cmbBaseList"
-                                Width="190"
-                                Height="30"
-                                Margin="10,10,0,0"
-                                HorizontalAlignment="Left"
-                                VerticalAlignment="Top"
-                                controls:InfoElement.Placeholder="انتخاب کلاس"
-                                ItemsSource="{Binding}"
-                                SelectedValue="{Binding SchoolName}"
-                                SelectedValuePath="Id"
-                                Style="{StaticResource ComboBoxExtend}">
-                                <ComboBox.ItemTemplate>
-                                    <DataTemplate>
-                                        <StackPanel Orientation="Horizontal">
-                                            <TextBlock Text="{Binding SchoolName}" />
-                                            <TextBlock Text=" - " />
-                                            <TextBlock Text="{Binding Base}" />
-                                            <TextBlock Text=" - " />
-                                            <TextBlock Text="{Binding Year}" />
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </ComboBox.ItemTemplate>
-                            </ComboBox>
-                            <PersianCalendarWPF:PersianDatePicker
-                                Name="txtDateList"
-                                Height="30"
-                                Margin="210,10,0,0"
-                                HorizontalAlignment="Left"
-                                VerticalAlignment="Top"
-                                SelectedDate="{Binding Date}"
-                                SelectedDateChanged="txtDateList_SelectedDateChanged"
-                                Text="{Binding Date}">
-                                <PersianCalendarWPF:PersianDatePicker.Style>
-                                    <Style TargetType="PersianCalendarWPF:PersianDatePicker">
-                                        <Setter Property="IsEnabled" Value="True" />
-                                        <Style.Triggers>
-                                            <DataTrigger Binding="{Binding ElementName=cmbBaseList, Path=SelectedItem}" Value="{x:Null}">
-                                                <Setter Property="IsEnabled" Value="False" />
-                                            </DataTrigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </PersianCalendarWPF:PersianDatePicker.Style>
-                            </PersianCalendarWPF:PersianDatePicker>
+                            <StackPanel Margin="10" Orientation="Horizontal">
+                                <ComboBox
+                                    x:Name="cmbBaseList"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"
+                                    controls:InfoElement.Placeholder="انتخاب کلاس"
+                                    ItemsSource="{Binding}"
+                                    SelectedValue="{Binding SchoolName}"
+                                    SelectedValuePath="Id"
+                                    Style="{StaticResource ComboBoxExtend}">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="{Binding SchoolName}" />
+                                                <TextBlock Text=" - " />
+                                                <TextBlock Text="{Binding Base}" />
+                                                <TextBlock Text=" - " />
+                                                <TextBlock Text="{Binding Year}" />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
+                                <PersianCalendarWPF:PersianDatePicker
+                                    Name="txtDateList"
+                                    Height="30"
+                                    Margin="10,0"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"
+                                    SelectedDate="{Binding Date}"
+                                    SelectedDateChanged="txtDateList_SelectedDateChanged"
+                                    Text="{Binding Date}">
+                                    <PersianCalendarWPF:PersianDatePicker.Style>
+                                        <Style TargetType="PersianCalendarWPF:PersianDatePicker">
+                                            <Setter Property="IsEnabled" Value="True" />
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding ElementName=cmbBaseList, Path=SelectedItem}" Value="{x:Null}">
+                                                    <Setter Property="IsEnabled" Value="False" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </PersianCalendarWPF:PersianDatePicker.Style>
+                                </PersianCalendarWPF:PersianDatePicker>
+                            </StackPanel>
                             <StackPanel Margin="0,45,10.4,0.4" Orientation="Vertical">
                                 <DataGrid
                                     x:Name="dataGridList"
@@ -340,8 +337,6 @@
                                 <StackPanel Orientation="Horizontal">
                                     <ComboBox
                                         x:Name="cmbEditBase"
-                                        Width="195"
-                                        Height="30"
                                         HorizontalAlignment="Left"
                                         VerticalAlignment="Top"
                                         controls:InfoElement.Placeholder="انتخاب کلاس"
@@ -365,8 +360,6 @@
                                     </ComboBox>
                                     <ComboBox
                                         x:Name="cmbEditStudent"
-                                        Width="190"
-                                        Height="30"
                                         Margin="10,0,0,0"
                                         HorizontalAlignment="Left"
                                         VerticalAlignment="Top"

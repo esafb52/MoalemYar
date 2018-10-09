@@ -124,19 +124,17 @@
                                         Style="{StaticResource TextBoxExtend}"
                                         TabIndex="2" />
                                     <ComboBox
-                                                    Name="cmbAddGender"
-                                                    Width="200"
-                                                    Margin="2"
-                                                    HorizontalAlignment="Left"
-                                                    controls:InfoElement.Placeholder="جنسیت"
-                                                    FlowDirection="RightToLeft"
-                                                    Style="{StaticResource ComboBoxExtend}">
+                                        Name="cmbAddGender"
+                                        Margin="2"
+                                        HorizontalAlignment="Left"
+                                        controls:InfoElement.Placeholder="جنسیت"
+                                        FlowDirection="RightToLeft"
+                                        Style="{StaticResource ComboBoxExtend}">
                                         <ComboBoxItem Content="پسر" />
                                         <ComboBoxItem Content="دختر" />
                                     </ComboBox>
                                     <ComboBox
                                         x:Name="cmbBase"
-                                        Width="200"
                                         Margin="2"
                                         HorizontalAlignment="Left"
                                         controls:InfoElement.Placeholder="انتخاب کلاس"
@@ -161,11 +159,6 @@
                                 </StackPanel>
                                 <Grid Grid.Column="1">
                                     <StackPanel HorizontalAlignment="Left" Orientation="Vertical">
-                                        <Image
-                                            x:Name="imgStudent"
-                                            Width="200"
-                                            Height="200"
-                                            VerticalAlignment="Top" />
                                         <Button
                                             x:Name="btnChoose"
                                             Width="200"
@@ -192,6 +185,12 @@
                                                     TextWrapping="NoWrap" />
                                             </StackPanel>
                                         </Button>
+                                        <Image
+                                            x:Name="imgStudent"
+                                            Width="200"
+                                            Height="200"
+                                            VerticalAlignment="Top" />
+
                                     </StackPanel>
                                 </Grid>
                             </Grid>
@@ -307,8 +306,6 @@
                                     <ComboBox
                                         x:Name="cmbBaseEdit"
                                         Grid.Column="0"
-                                        Width="190"
-                                        Height="30"
                                         Margin="10,0"
                                         HorizontalAlignment="Left"
                                         VerticalAlignment="Top"
@@ -407,6 +404,7 @@
                                             <TextBox
                                                 x:Name="txtName"
                                                 Margin="2"
+                                                HorizontalAlignment="Left"
                                                 VerticalAlignment="Top"
                                                 controls:InfoElement.Placeholder="نام"
                                                 FlowDirection="RightToLeft"
@@ -416,6 +414,7 @@
                                             <TextBox
                                                 x:Name="txtLName"
                                                 Margin="2"
+                                                HorizontalAlignment="Left"
                                                 VerticalAlignment="Top"
                                                 controls:InfoElement.Placeholder="نام خانوادگی"
                                                 FlowDirection="RightToLeft"
@@ -425,74 +424,70 @@
                                             <TextBox
                                                 x:Name="txtFName"
                                                 Margin="2"
+                                                HorizontalAlignment="Left"
                                                 VerticalAlignment="Top"
                                                 controls:InfoElement.Placeholder="نام پدر"
                                                 FlowDirection="RightToLeft"
                                                 MaxLength="20"
                                                 Style="{StaticResource TextBoxExtend}"
                                                 TabIndex="2" />
-                                            <StackPanel Margin="2" Orientation="Horizontal">
-                                                <ComboBox
-                                                    Name="cmbGender"
-                                                    Width="180"
-                                                    Margin="2"
-                                                    HorizontalAlignment="Left"
-                                                    controls:InfoElement.Placeholder="جنسیت"
-                                                    FlowDirection="RightToLeft"
-                                                    Style="{StaticResource ComboBoxExtend}">
-                                                    <ComboBoxItem Content="پسر" />
-                                                    <ComboBoxItem Content="دختر" />
-                                                </ComboBox>
-                                                <ComboBox
-                                                    x:Name="cmbEditBase"
-                                                    Width="180"
-                                                    Height="30"
-                                                    Margin="10,0,0,0"
-                                                    HorizontalAlignment="Left"
-                                                    VerticalAlignment="Top"
-                                                    DisplayMemberPath="SchoolName"
-                                                    SelectedValue="{Binding SchoolName}"
-                                                    SelectedValuePath="Id"
-                                                    TabIndex="4">
-                                                    <ComboBox.Template>
-                                                        <ControlTemplate TargetType="ComboBox">
-                                                            <Grid>
-                                                                <ComboBox
-                                                                    x:Name="cb"
-                                                                    Height="30"
-                                                                    DataContext="{Binding RelativeSource={RelativeSource TemplatedParent}}"
-                                                                    DisplayMemberPath="SchoolName"
-                                                                    ItemsSource="{Binding ItemsSource, RelativeSource={RelativeSource TemplatedParent}}"
-                                                                    SelectedValue="{Binding SelectedValue, RelativeSource={RelativeSource TemplatedParent}}"
-                                                                    SelectedValuePath="Id">
-                                                                    <ComboBox.ItemTemplate>
-                                                                        <DataTemplate>
-                                                                            <StackPanel Orientation="Horizontal">
-                                                                                <TextBlock Text="{Binding SchoolName}" />
-                                                                                <TextBlock Text=" - " />
-                                                                                <TextBlock Text="{Binding Base}" />
-                                                                                <TextBlock Text=" - " />
-                                                                                <TextBlock Text="{Binding Year}" />
-                                                                            </StackPanel>
-                                                                        </DataTemplate>
-                                                                    </ComboBox.ItemTemplate>
-                                                                </ComboBox>
-                                                                <TextBlock
-                                                                    x:Name="tb"
-                                                                    Margin="3,3,0,0"
-                                                                    IsHitTestVisible="False"
-                                                                    Text="کلاس"
-                                                                    Visibility="Hidden" />
-                                                            </Grid>
-                                                            <ControlTemplate.Triggers>
-                                                                <Trigger SourceName="cb" Property="SelectedItem" Value="{x:Null}">
-                                                                    <Setter TargetName="tb" Property="Visibility" Value="Visible" />
-                                                                </Trigger>
-                                                            </ControlTemplate.Triggers>
-                                                        </ControlTemplate>
-                                                    </ComboBox.Template>
-                                                </ComboBox>
-                                            </StackPanel>
+                                            <ComboBox
+                                                Name="cmbGender"
+                                                Margin="2"
+                                                HorizontalAlignment="Left"
+                                                controls:InfoElement.Placeholder="جنسیت"
+                                                FlowDirection="RightToLeft"
+                                                Style="{StaticResource ComboBoxExtend}">
+                                                <ComboBoxItem Content="پسر" />
+                                                <ComboBoxItem Content="دختر" />
+                                            </ComboBox>
+                                            <ComboBox
+                                                x:Name="cmbEditBase"
+                                                Margin="2"
+                                                HorizontalAlignment="Left"
+                                                VerticalAlignment="Top"
+                                                DisplayMemberPath="SchoolName"
+                                                SelectedValue="{Binding SchoolName}"
+                                                SelectedValuePath="Id"
+                                                TabIndex="4">
+                                                <ComboBox.Template>
+                                                    <ControlTemplate TargetType="ComboBox">
+                                                        <Grid>
+                                                            <ComboBox
+                                                                x:Name="cb"
+                                                                Height="30"
+                                                                DataContext="{Binding RelativeSource={RelativeSource TemplatedParent}}"
+                                                                DisplayMemberPath="SchoolName"
+                                                                ItemsSource="{Binding ItemsSource, RelativeSource={RelativeSource TemplatedParent}}"
+                                                                SelectedValue="{Binding SelectedValue, RelativeSource={RelativeSource TemplatedParent}}"
+                                                                SelectedValuePath="Id">
+                                                                <ComboBox.ItemTemplate>
+                                                                    <DataTemplate>
+                                                                        <StackPanel Orientation="Horizontal">
+                                                                            <TextBlock Text="{Binding SchoolName}" />
+                                                                            <TextBlock Text=" - " />
+                                                                            <TextBlock Text="{Binding Base}" />
+                                                                            <TextBlock Text=" - " />
+                                                                            <TextBlock Text="{Binding Year}" />
+                                                                        </StackPanel>
+                                                                    </DataTemplate>
+                                                                </ComboBox.ItemTemplate>
+                                                            </ComboBox>
+                                                            <TextBlock
+                                                                x:Name="tb"
+                                                                Margin="3,3,0,0"
+                                                                IsHitTestVisible="False"
+                                                                Text="کلاس"
+                                                                Visibility="Hidden" />
+                                                        </Grid>
+                                                        <ControlTemplate.Triggers>
+                                                            <Trigger SourceName="cb" Property="SelectedItem" Value="{x:Null}">
+                                                                <Setter TargetName="tb" Property="Visibility" Value="Visible" />
+                                                            </Trigger>
+                                                        </ControlTemplate.Triggers>
+                                                    </ControlTemplate>
+                                                </ComboBox.Template>
+                                            </ComboBox>
                                             <StackPanel HorizontalAlignment="Left" Orientation="Vertical">
                                                 <Image
                                                     x:Name="imgEditStudent"

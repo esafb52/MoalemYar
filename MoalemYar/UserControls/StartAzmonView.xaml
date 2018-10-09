@@ -22,9 +22,6 @@
 
                             <ComboBox
                                 x:Name="cmbEditBase"
-                                Width="190"
-                                Height="30"
-                                Margin="10,0,0,5"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top"
                                 controls:InfoElement.Placeholder="انتخاب کلاس"
@@ -47,9 +44,7 @@
                             </ComboBox>
                             <ComboBox
                                 x:Name="cmbEditStudent"
-                                Width="190"
-                                Height="30"
-                                Margin="10,0,0,0"
+                                Margin="0,10"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top"
                                 controls:InfoElement.Placeholder="انتخاب دانش آموز"
@@ -77,8 +72,6 @@
 
                         <ComboBox
                             x:Name="cmbGroup"
-                            Width="190"
-                            Height="30"
                             Margin="5,0"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"

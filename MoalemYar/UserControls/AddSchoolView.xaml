@@ -295,6 +295,7 @@
                                     <TextBox
                                         Name="txtYear"
                                         Margin="2"
+                                        HorizontalAlignment="Left"
                                         VerticalAlignment="Top"
                                         controls:InfoElement.Placeholder="سال تحصیلی"
                                         FlowDirection="RightToLeft"
@@ -303,6 +304,7 @@
                                     <TextBox
                                         Name="txtSchool"
                                         Margin="2"
+                                        HorizontalAlignment="Left"
                                         VerticalAlignment="Top"
                                         controls:InfoElement.Placeholder="نام مدرسه"
                                         FlowDirection="RightToLeft"
@@ -311,6 +313,7 @@
                                     <TextBox
                                         Name="txtAdmin"
                                         Margin="2"
+                                        HorizontalAlignment="Left"
                                         VerticalAlignment="Top"
                                         controls:InfoElement.Placeholder="نام مدیر"
                                         FlowDirection="RightToLeft"
@@ -318,6 +321,7 @@
                                         Style="{StaticResource TextBoxExtend}" />
                                     <ComboBox
                                         Name="cmbEditBase"
+                                        HorizontalAlignment="Left"
                                         controls:InfoElement.Placeholder="انتخاب پایه"
                                         FlowDirection="RightToLeft"
                                         Style="{StaticResource ComboBoxExtend}">

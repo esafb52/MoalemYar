@@ -16,33 +16,34 @@
                         <StackPanel Orientation="Horizontal">
                             <StackPanel Orientation="Vertical">
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock
-                                        Margin="10"
-                                        Style="{StaticResource TextBlockSubTitle}"
-                                        Text="اجرای خودکار" />
                                     <ToggleButton
                                         x:Name="swAutoStart"
                                         Margin="10"
                                         Checked="swAutoStart_Checked"
                                         Style="{StaticResource ToggleButtonSwitch}"
                                         Unchecked="swAutoStart_Checked" />
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal">
                                     <TextBlock
                                         Margin="10"
                                         Style="{StaticResource TextBlockSubTitle}"
-                                        Text="ورود با رمز عبور" />
+                                        Text="اجرای خودکار" />
+
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
                                     <ToggleButton
                                         x:Name="swLogin"
                                         Margin="10"
                                         Checked="swLogin_Checked"
                                         Style="{StaticResource ToggleButtonSwitch}"
                                         Unchecked="swLogin_Checked" />
+                                    <TextBlock
+                                        Margin="10"
+                                        Style="{StaticResource TextBlockSubTitle}"
+                                        Text="ورود با رمز عبور" />
+
                                 </StackPanel>
 
                                 <ComboBox
                                     x:Name="cmbServer"
-                                    Width="200"
                                     Margin="10"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Top"
@@ -110,10 +111,8 @@
                     </Grid>
                     <StackPanel Margin="10" Orientation="Horizontal">
                         <StackPanel Orientation="Vertical">
-
                             <ComboBox
                                 x:Name="cmbBase"
-                                Width="200"
                                 Margin="2"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top"

@@ -90,7 +90,6 @@
 
                                     <ComboBox
                                         x:Name="cmbGroup"
-                                        Width="231"
                                         Margin="2"
                                         HorizontalAlignment="Left"
                                         VerticalAlignment="Top"
@@ -110,7 +109,6 @@
                                     </ComboBox>
                                     <ComboBox
                                         Name="cmbBase"
-                                        Width="231"
                                         Margin="2"
                                         HorizontalAlignment="Left"
                                         controls:InfoElement.Placeholder="انتخاب پایه"
@@ -170,7 +168,6 @@
                                         TabIndex="0" />
                                     <ComboBox
                                         Name="cmbEditBase"
-                                        Width="231"
                                         Margin="2"
                                         HorizontalAlignment="Left"
                                         controls:InfoElement.Placeholder="گزینه صحیح"
@@ -293,8 +290,6 @@
                                         <ComboBox
                                             x:Name="cmbBaseEdit"
                                             Grid.Column="0"
-                                            Width="190"
-                                            Height="30"
                                             Margin="10,0"
                                             HorizontalAlignment="Left"
                                             VerticalAlignment="Top"
@@ -400,6 +395,7 @@
                                                 <TextBox
                                                     Name="txtEditQuestionText"
                                                     Margin="2"
+                                                    HorizontalAlignment="Left"
                                                     controls:InfoElement.Placeholder="متن سوال"
                                                     FlowDirection="RightToLeft"
                                                     MaxLength="20"
@@ -408,6 +404,7 @@
                                                 <TextBox
                                                     Name="txtEditCase1"
                                                     Margin="2"
+                                                    HorizontalAlignment="Left"
                                                     controls:InfoElement.Placeholder="گزینه 1"
                                                     FlowDirection="RightToLeft"
                                                     MaxLength="20"
@@ -416,6 +413,7 @@
                                                 <TextBox
                                                     Name="txtEditCase2"
                                                     Margin="2"
+                                                    HorizontalAlignment="Left"
                                                     controls:InfoElement.Placeholder="گزینه 2"
                                                     FlowDirection="RightToLeft"
                                                     MaxLength="20"
@@ -424,6 +422,7 @@
                                                 <TextBox
                                                     Name="txtEditCase3"
                                                     Margin="2"
+                                                    HorizontalAlignment="Left"
                                                     controls:InfoElement.Placeholder="گزینه 3"
                                                     FlowDirection="RightToLeft"
                                                     MaxLength="20"
@@ -432,15 +431,14 @@
                                                 <TextBox
                                                     Name="txtEditCase4"
                                                     Margin="2"
+                                                    HorizontalAlignment="Left"
                                                     controls:InfoElement.Placeholder="گزینه 4"
                                                     FlowDirection="RightToLeft"
                                                     MaxLength="20"
                                                     Style="{StaticResource TextBoxExtend}"
                                                     TabIndex="0" />
-                                                <StackPanel Margin="2" Orientation="Horizontal">
-                                                    <ComboBox
+                                                <ComboBox
                                                         x:Name="cmbGroupEdit"
-                                                        Width="150"
                                                         Margin="2"
                                                         HorizontalAlignment="Left"
                                                         VerticalAlignment="Top"
@@ -450,33 +448,30 @@
                                                         SelectedValuePath="Id"
                                                         Style="{StaticResource ComboBoxExtend}"
                                                         TabIndex="4">
-                                                        <ComboBox.ItemTemplate>
-                                                            <DataTemplate>
-                                                                <StackPanel Orientation="Horizontal">
-                                                                    <TextBlock Text="{Binding GroupName}" />
-                                                                </StackPanel>
-                                                            </DataTemplate>
-                                                        </ComboBox.ItemTemplate>
-                                                    </ComboBox>
-                                                    <ComboBox
+                                                    <ComboBox.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <StackPanel Orientation="Horizontal">
+                                                                <TextBlock Text="{Binding GroupName}" />
+                                                            </StackPanel>
+                                                        </DataTemplate>
+                                                    </ComboBox.ItemTemplate>
+                                                </ComboBox>
+                                                <ComboBox
                                                         Name="cmbBaseEditData"
-                                                        Width="200"
                                                         Margin="2"
                                                         HorizontalAlignment="Left"
                                                         controls:InfoElement.Placeholder="پایه"
                                                         FlowDirection="RightToLeft"
                                                         Style="{StaticResource ComboBoxExtend}">
-                                                        <ComboBoxItem Content="اول" />
-                                                        <ComboBoxItem Content="دوم" />
-                                                        <ComboBoxItem Content="سوم" />
-                                                        <ComboBoxItem Content="چهارم" />
-                                                        <ComboBoxItem Content="پنجم" />
-                                                        <ComboBoxItem Content="ششم" />
-                                                    </ComboBox>
-                                                </StackPanel>
+                                                    <ComboBoxItem Content="اول" />
+                                                    <ComboBoxItem Content="دوم" />
+                                                    <ComboBoxItem Content="سوم" />
+                                                    <ComboBoxItem Content="چهارم" />
+                                                    <ComboBoxItem Content="پنجم" />
+                                                    <ComboBoxItem Content="ششم" />
+                                                </ComboBox>
                                                 <ComboBox
                                                     Name="cmbEditAnswersData"
-                                                    Width="200"
                                                     Margin="2"
                                                     HorizontalAlignment="Left"
                                                     controls:InfoElement.Placeholder="گزینه صحیح"

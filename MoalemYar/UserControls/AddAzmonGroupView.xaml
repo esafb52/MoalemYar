@@ -253,6 +253,7 @@
                                         <TextBox
                                             Name="txtGroup"
                                             Margin="2"
+                                            HorizontalAlignment="Left"
                                             VerticalAlignment="Top"
                                             controls:InfoElement.Placeholder="نام گروه"
                                             FlowDirection="RightToLeft"

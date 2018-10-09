@@ -14,7 +14,7 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
-                <RowDefinition />
+                <RowDefinition Height="{Binding Path=(controls:InfoElement.ContentHeight), RelativeSource={RelativeSource TemplatedParent}}" />
             </Grid.RowDefinitions>
             <StackPanel
                 Margin="7,4"
@@ -30,7 +30,6 @@
             <Border
                 x:Name="templateRoot"
                 Grid.Row="1"
-                Height="30"
                 Background="{TemplateBinding Background}"
                 BorderBrush="{DynamicResource BorderBrush}"
                 BorderThickness="{TemplateBinding BorderThickness}"
@@ -57,6 +56,8 @@
                         x:Name="PART_TextBox"
                         Grid.Row="0"
                         Grid.Column="0"
+                        Margin="0,0,0,1"
+                        Padding="5,6"
                         HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                         VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                         Focusable="{TemplateBinding Focusable}"
@@ -79,14 +80,14 @@
             </Trigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
-                    <Condition Property="IsMouseOver" Value="true" />
+                    <Condition SourceName="templateRoot" Property="IsMouseOver" Value="true" />
                     <Condition SourceName="PART_Popup" Property="IsOpen" Value="false" />
                 </MultiTrigger.Conditions>
                 <Setter TargetName="templateRoot" Property="BorderBrush" Value="{DynamicResource PrimaryTextBrush}" />
             </MultiTrigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
-                    <Condition Property="IsMouseOver" Value="true" />
+                    <Condition SourceName="templateRoot" Property="IsMouseOver" Value="true" />
                     <Condition SourceName="PART_Popup" Property="IsOpen" Value="true" />
                 </MultiTrigger.Conditions>
                 <Setter TargetName="templateRoot" Property="BorderBrush" Value="{DynamicResource PrimaryBrush}" />
@@ -101,14 +102,14 @@
     </ControlTemplate>
 
     <ControlTemplate x:Key="DatePickerExtendLeftTemplate" TargetType="DatePicker">
-        <Grid>
+        <Grid Height="{Binding Path=(controls:InfoElement.ContentHeight), RelativeSource={RelativeSource TemplatedParent}}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="{Binding Path=(controls:InfoElement.TitleWidth), RelativeSource={RelativeSource TemplatedParent}}" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <StackPanel
-                Margin="0,4,6,4"
-                VerticalAlignment="Center"
+                Margin="0,7,6,8"
+                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                 Orientation="Horizontal"
                 Visibility="{Binding Path=(controls:InfoElement.Title), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource String2VisibilityConverter}}">
                 <TextBlock Text="{Binding Path=(controls:InfoElement.Title), RelativeSource={RelativeSource TemplatedParent}}" />
@@ -121,7 +122,6 @@
             <Border
                 x:Name="templateRoot"
                 Grid.Column="1"
-                Height="30"
                 Background="{TemplateBinding Background}"
                 BorderBrush="{DynamicResource BorderBrush}"
                 BorderThickness="{TemplateBinding BorderThickness}"
@@ -148,6 +148,8 @@
                         x:Name="PART_TextBox"
                         Grid.Row="0"
                         Grid.Column="0"
+                        Margin="0,0,0,1"
+                        Padding="5,6"
                         HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                         VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                         Focusable="{TemplateBinding Focusable}"
@@ -170,14 +172,14 @@
             </Trigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
-                    <Condition Property="IsMouseOver" Value="true" />
+                    <Condition SourceName="templateRoot" Property="IsMouseOver" Value="true" />
                     <Condition SourceName="PART_Popup" Property="IsOpen" Value="false" />
                 </MultiTrigger.Conditions>
                 <Setter TargetName="templateRoot" Property="BorderBrush" Value="{DynamicResource PrimaryTextBrush}" />
             </MultiTrigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
-                    <Condition Property="IsMouseOver" Value="true" />
+                    <Condition SourceName="templateRoot" Property="IsMouseOver" Value="true" />
                     <Condition SourceName="PART_Popup" Property="IsOpen" Value="true" />
                 </MultiTrigger.Conditions>
                 <Setter TargetName="templateRoot" Property="BorderBrush" Value="{DynamicResource PrimaryBrush}" />

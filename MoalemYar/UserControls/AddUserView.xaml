@@ -280,6 +280,7 @@
                                         <TextBox
                                             Name="txtUsername"
                                             Margin="2"
+                                            HorizontalAlignment="Left"
                                             VerticalAlignment="Top"
                                             controls:InfoElement.Placeholder="نام کاربری"
                                             FlowDirection="RightToLeft"
@@ -288,6 +289,7 @@
                                         <TextBox
                                             Name="txtPassword"
                                             Margin="2"
+                                            HorizontalAlignment="Left"
                                             VerticalAlignment="Top"
                                             controls:InfoElement.Placeholder="رمز عبور"
                                             FlowDirection="RightToLeft"
@@ -296,6 +298,7 @@
                                         <TextBox
                                             Name="txtPasswordAg"
                                             Margin="2"
+                                            HorizontalAlignment="Left"
                                             VerticalAlignment="Top"
                                             controls:InfoElement.Placeholder="تکرار رمز عبور"
                                             FlowDirection="RightToLeft"

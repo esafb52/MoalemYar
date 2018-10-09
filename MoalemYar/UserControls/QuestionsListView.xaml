@@ -50,41 +50,47 @@
                                 Style="{StaticResource ToggleButtonSwitch}"
                                 Unchecked="isQuestion_Checked" />
                         </StackPanel>
-                        <Grid Margin="0,40,0,0" />
-                        <ComboBox
-                            x:Name="cmbBase"
-                            Width="190"
-                            Height="30"
-                            Margin="10,50,0,0"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Top"
-                            controls:InfoElement.Placeholder="انتخاب کلاس"
-                            SelectedValue="{Binding SchoolName}"
-                            SelectedValuePath="Id"
-                            SelectionChanged="cmbBase_SelectionChanged"
-                            Style="{StaticResource ComboBoxExtend}"
-                            TabIndex="0">
-                            <ComboBox.ItemTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="{Binding SchoolName}" />
-                                        <TextBlock Text=" - " />
-                                        <TextBlock Text="{Binding Base}" />
-                                        <TextBlock Text=" - " />
-                                        <TextBlock Text="{Binding Year}" />
-                                    </StackPanel>
-                                </DataTemplate>
-                            </ComboBox.ItemTemplate>
-                        </ComboBox>
-                        <ComboBox
-                            Name="cmbBook"
-                            Width="190"
-                            Margin="210,0,0,0"
-                            HorizontalAlignment="Left"
-                            controls:InfoElement.Placeholder="انتخاب درس"
-                            FlowDirection="RightToLeft"
-                            SelectionChanged="cmbBook_SelectionChanged"
-                            Style="{StaticResource ComboBoxExtend}" />
+                        <StackPanel Margin="10,50" Orientation="Horizontal">
+                            <ComboBox
+                                x:Name="cmbBase"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                controls:InfoElement.Placeholder="انتخاب کلاس"
+                                SelectedValue="{Binding SchoolName}"
+                                SelectedValuePath="Id"
+                                SelectionChanged="cmbBase_SelectionChanged"
+                                Style="{StaticResource ComboBoxExtend}"
+                                TabIndex="0">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding SchoolName}" />
+                                            <TextBlock Text=" - " />
+                                            <TextBlock Text="{Binding Base}" />
+                                            <TextBlock Text=" - " />
+                                            <TextBlock Text="{Binding Year}" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                            <ComboBox
+                                Name="cmbBook"
+                                Margin="10,0"
+                                HorizontalAlignment="Left"
+                                controls:InfoElement.Placeholder="انتخاب درس"
+                                FlowDirection="RightToLeft"
+                                SelectionChanged="cmbBook_SelectionChanged"
+                                Style="{StaticResource ComboBoxExtend}" />
+                            <TextBox
+                                Name="txtDesc"
+                                MaxHeight="158"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                controls:InfoElement.Placeholder="توضیحات"
+                                Style="{StaticResource TextBoxExtend}"
+                                TabIndex="2"
+                                TextWrapping="Wrap" />
+                        </StackPanel>
                         <DataGrid
                             x:Name="dataGrid"
                             MaxWidth="{Binding Path=ActualWidth, ElementName=grd, Converter={local1:MultiplyConverter Multiplier=.9}}"
@@ -194,18 +200,7 @@
                                 </DataGridTemplateColumn>
                             </DataGrid.Columns>
                         </DataGrid>
-                        <TextBox
-                            Name="txtDesc"
-                            Width="{Binding Path=ActualWidth, ElementName=dataGrid, Converter={local1:MultiplyConverter Multiplier=.5}}"
-                            Height="70"
-                            MaxHeight="158"
-                            Margin="421,10,0,0"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Top"
-                            controls:InfoElement.Placeholder="توضیحات"
-                            Style="{StaticResource TextBoxExtend}"
-                            TabIndex="2"
-                            TextWrapping="Wrap" />
+
                     </Grid>
                 </controls:TabItem>
                 <controls:TabItem Header="ویرایش اطلاعات" IsSelected="True">
@@ -293,8 +288,6 @@
 
                                         <ComboBox
                                             x:Name="cmbEditBase"
-                                            Width="195"
-                                            Height="30"
                                             HorizontalAlignment="Left"
                                             VerticalAlignment="Top"
                                             controls:InfoElement.Placeholder="انتخاب کلاس"
@@ -317,8 +310,6 @@
                                         </ComboBox>
                                         <ComboBox
                                             x:Name="cmbEditStudent"
-                                            Width="190"
-                                            Height="30"
                                             Margin="10,0,0,0"
                                             HorizontalAlignment="Left"
                                             VerticalAlignment="Top"
@@ -417,8 +408,6 @@
                                         TabIndex="4" />
                                     <TextBox
                                         x:Name="txtDescEdit"
-                                        Width="245"
-                                        Height="115"
                                         MaxWidth="270"
                                         MaxHeight="200"
                                         Margin="2,5,0,5"
@@ -429,8 +418,7 @@
                                         TextWrapping="Wrap" />
                                     <ComboBox
                                         Name="cmbScore"
-                                        Width="200"
-                                        Margin="0,0,180,0"
+                                        HorizontalAlignment="Left"
                                         controls:InfoElement.Placeholder="نمره"
                                         FlowDirection="RightToLeft"
                                         Style="{StaticResource ComboBoxExtend}">
@@ -441,8 +429,7 @@
                                     </ComboBox>
                                     <ComboBox
                                         Name="cmbBookEdit"
-                                        Width="200"
-                                        Margin="0,0,180,0"
+                                        HorizontalAlignment="Left"
                                         controls:InfoElement.Placeholder="درس"
                                         FlowDirection="RightToLeft"
                                         Style="{StaticResource ComboBoxExtend}" />

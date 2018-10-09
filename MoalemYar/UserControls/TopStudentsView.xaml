@@ -15,10 +15,7 @@
             <Grid Name="grdedit" MinWidth="800">
                 <ComboBox
                     x:Name="cmbBaseEdit"
-                    Grid.Column="0"
-                    Width="190"
-                    Height="30"
-                    Margin="10,10,0,0"
+                    Margin="10"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
                     controls:InfoElement.Placeholder="انتخاب کلاس"

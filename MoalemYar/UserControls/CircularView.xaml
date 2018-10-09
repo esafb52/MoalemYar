@@ -4,9 +4,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls="clr-namespace:HandyControl.Controls;assembly=HandyControl"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
-    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-    xmlns:local="clr-namespace:MoalemYar.UserControls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Loaded="UserControl_Loaded"
     Style="{StaticResource myUserControl}"
@@ -61,7 +58,7 @@
                 </StackPanel>
                 <TextBox
                     Name="txtSearch"
-                    Margin="391,10,40,0"
+                    Margin="10"
                     VerticalAlignment="Top"
                     controls:InfoElement.Placeholder="جستجو..."
                     IsEnabled="False"

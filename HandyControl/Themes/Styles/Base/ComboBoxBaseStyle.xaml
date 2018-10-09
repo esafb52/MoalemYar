@@ -54,6 +54,59 @@
         </Setter>
     </Style>
 
+    <Style x:Key="ComboBoxWatermarkToggleButton" TargetType="ToggleButton">
+        <Setter Property="OverridesDefaultStyle" Value="true" />
+        <Setter Property="IsTabStop" Value="false" />
+        <Setter Property="Focusable" Value="false" />
+        <Setter Property="ClickMode" Value="Press" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    <Grid>
+                        <Border
+                            x:Name="templateRoot"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="{Binding Path=(controls:BorderElement.CornerRadius), RelativeSource={RelativeSource TemplatedParent}}"
+                            SnapsToDevicePixels="true">
+                            <Border
+                                x:Name="splitBorder"
+                                Width="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}"
+                                Margin="0,0,6,0"
+                                HorizontalAlignment="Right"
+                                BorderBrush="Transparent"
+                                BorderThickness="1"
+                                SnapsToDevicePixels="true">
+                                <Path
+                                    x:Name="arrow"
+                                    Margin="0"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Data="{StaticResource DownGeometry}"
+                                    Fill="{TemplateBinding BorderBrush}"
+                                    RenderTransformOrigin="0.5,0.5"
+                                    Stretch="Uniform" />
+                            </Border>
+                        </Border>
+                        <TextBlock
+                            Margin="8,7,8,8"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="{Binding VerticalContentAlignment, RelativeSource={RelativeSource FindAncestor, AncestorType=ComboBox}}"
+                            Style="{StaticResource TextBlockDefaultThiLight}"
+                            Text="{Binding Path=(controls:InfoElement.Placeholder), RelativeSource={RelativeSource FindAncestor, AncestorType=ComboBox}}"
+                            Visibility="{Binding Text, RelativeSource={RelativeSource FindAncestor, AncestorType=ComboBox}, Converter={StaticResource String2VisibilityReConverter}}" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="arrow" Property="Data" Value="{StaticResource UpGeometry}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <ControlTemplate x:Key="ComboBoxTemplate" TargetType="ComboBox">
         <Grid x:Name="templateRoot" SnapsToDevicePixels="true">
             <Grid.ColumnDefinitions>
@@ -110,7 +163,7 @@
             <ContentPresenter
                 x:Name="contentPresenter"
                 Grid.Column="0"
-                Margin="{TemplateBinding Padding}"
+                Margin="8,8,2,7"
                 HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                 VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                 Content="{TemplateBinding SelectionBoxItem}"
@@ -159,7 +212,7 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
-                <RowDefinition />
+                <RowDefinition Height="{Binding Path=(controls:InfoElement.ContentHeight), RelativeSource={RelativeSource TemplatedParent}}" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
@@ -170,24 +223,13 @@
                 Margin="7,4"
                 Orientation="Horizontal"
                 Visibility="{Binding Path=(controls:InfoElement.Title), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource String2VisibilityConverter}}">
-                <TextBlock Margin="2,0,0,0" Text="{Binding Path=(controls:InfoElement.Title), RelativeSource={RelativeSource TemplatedParent}}" />
+                <TextBlock Margin="1,0,0,0" Text="{Binding Path=(controls:InfoElement.Title), RelativeSource={RelativeSource TemplatedParent}}" />
                 <ContentPresenter
                     Margin="4,0,0,0"
                     Content="{Binding Path=(controls:InfoElement.Symbol), RelativeSource={RelativeSource TemplatedParent}}"
                     TextElement.Foreground="{DynamicResource DangerBrush}"
                     Visibility="{Binding Path=(controls:InfoElement.Necessary), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource Boolean2VisibilityConverter}}" />
             </StackPanel>
-            <TextBlock
-                Grid.Row="1"
-                Grid.Column="0"
-                Grid.ColumnSpan="2"
-                Margin="1,0"
-                Padding="{TemplateBinding Padding}"
-                HorizontalAlignment="Stretch"
-                Style="{StaticResource TextBlockDefaultThiLight}"
-                Text="{Binding Path=(controls:InfoElement.Placeholder), RelativeSource={RelativeSource TemplatedParent}}"
-                Visibility="{TemplateBinding Text,
-                                             Converter={StaticResource String2VisibilityReConverter}}" />
             <Popup
                 x:Name="PART_Popup"
                 Grid.Row="1"
@@ -233,17 +275,16 @@
                 Grid.Row="1"
                 Grid.Column="0"
                 Grid.ColumnSpan="2"
-                Height="30"
-                Background="Transparent"
+                Background="{TemplateBinding Background}"
                 BorderBrush="{TemplateBinding BorderBrush}"
                 BorderThickness="{TemplateBinding BorderThickness}"
                 IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
-                Style="{StaticResource ComboBoxToggleButton}" />
+                Style="{StaticResource ComboBoxWatermarkToggleButton}" />
             <ContentPresenter
                 x:Name="contentPresenter"
                 Grid.Row="1"
                 Grid.Column="0"
-                Margin="{TemplateBinding Padding}"
+                Margin="8,8,2,7"
                 HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                 VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                 Content="{TemplateBinding SelectionBoxItem}"
@@ -289,15 +330,18 @@
     </ControlTemplate>
 
     <ControlTemplate x:Key="ComboBoxLeftTemplate" TargetType="ComboBox">
-        <Grid x:Name="templateRoot" SnapsToDevicePixels="true">
+        <Grid
+            x:Name="templateRoot"
+            Height="{Binding Path=(controls:InfoElement.ContentHeight), RelativeSource={RelativeSource TemplatedParent}}"
+            SnapsToDevicePixels="true">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="{Binding Path=(controls:InfoElement.TitleWidth), RelativeSource={RelativeSource TemplatedParent}}" />
                 <ColumnDefinition />
                 <ColumnDefinition Width="30" />
             </Grid.ColumnDefinitions>
             <StackPanel
-                Margin="0,4,6,4"
-                VerticalAlignment="Center"
+                Margin="0,7,6,8"
+                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                 Orientation="Horizontal"
                 Visibility="{Binding Path=(controls:InfoElement.Title), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource String2VisibilityConverter}}">
                 <TextBlock Text="{Binding Path=(controls:InfoElement.Title), RelativeSource={RelativeSource TemplatedParent}}" />
@@ -307,15 +351,6 @@
                     TextElement.Foreground="{DynamicResource DangerBrush}"
                     Visibility="{Binding Path=(controls:InfoElement.Necessary), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource Boolean2VisibilityConverter}}" />
             </StackPanel>
-            <TextBlock
-                Grid.Column="1"
-                Margin="1,0"
-                Padding="{TemplateBinding Padding}"
-                HorizontalAlignment="Stretch"
-                Style="{StaticResource TextBlockDefaultThiLight}"
-                Text="{Binding Path=(controls:InfoElement.Placeholder), RelativeSource={RelativeSource TemplatedParent}}"
-                Visibility="{TemplateBinding Text,
-                                             Converter={StaticResource String2VisibilityReConverter}}" />
             <Popup
                 x:Name="PART_Popup"
                 Grid.Column="1"
@@ -359,16 +394,15 @@
                 x:Name="toggleButton"
                 Grid.Column="1"
                 Grid.ColumnSpan="2"
-                Height="30"
-                Background="Transparent"
+                Background="{TemplateBinding Background}"
                 BorderBrush="{TemplateBinding BorderBrush}"
                 BorderThickness="{TemplateBinding BorderThickness}"
                 IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
-                Style="{StaticResource ComboBoxToggleButton}" />
+                Style="{StaticResource ComboBoxWatermarkToggleButton}" />
             <ContentPresenter
                 x:Name="contentPresenter"
                 Grid.Column="1"
-                Margin="{TemplateBinding Padding}"
+                Margin="8,8,2,7"
                 HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                 VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                 Content="{TemplateBinding SelectionBoxItem}"
@@ -418,6 +452,7 @@
         <Setter Property="AllowDrop" Value="true" />
         <Setter Property="MinWidth" Value="0" />
         <Setter Property="MinHeight" Value="0" />
+        <Setter Property="Padding" Value="0,6" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst" />
         <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
@@ -426,6 +461,7 @@
                 <ControlTemplate TargetType="TextBox">
                     <ScrollViewer
                         x:Name="PART_ContentHost"
+                        Margin="0,0,0,1"
                         Padding="{TemplateBinding Padding}"
                         Background="Transparent"
                         Focusable="false"
@@ -492,12 +528,13 @@
                 x:Name="border"
                 Grid.Column="0"
                 Margin="4,1"
-                Background="{TemplateBinding Background}">
+                Background="Transparent">
                 <TextBox
                     x:Name="PART_EditableTextBox"
                     Margin="3,0"
                     HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                     VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                    Background="Transparent"
                     IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource TemplatedParent}}"
                     Style="{StaticResource ComboBoxEditableTextBox}" />
             </Border>
@@ -548,7 +585,7 @@
         <Grid x:Name="templateRoot" SnapsToDevicePixels="true">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
-                <RowDefinition />
+                <RowDefinition Height="{Binding Path=(controls:InfoElement.ContentHeight), RelativeSource={RelativeSource TemplatedParent}}" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
@@ -559,23 +596,13 @@
                 Margin="7,4"
                 Orientation="Horizontal"
                 Visibility="{Binding Path=(controls:InfoElement.Title), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource String2VisibilityConverter}}">
-                <TextBlock Margin="2,0,0,0" Text="{Binding Path=(controls:InfoElement.Title), RelativeSource={RelativeSource TemplatedParent}}" />
+                <TextBlock Margin="1,0,0,0" Text="{Binding Path=(controls:InfoElement.Title), RelativeSource={RelativeSource TemplatedParent}}" />
                 <ContentPresenter
                     Margin="4,0,0,0"
                     Content="{Binding Path=(controls:InfoElement.Symbol), RelativeSource={RelativeSource TemplatedParent}}"
                     TextElement.Foreground="{DynamicResource DangerBrush}"
                     Visibility="{Binding Path=(controls:InfoElement.Necessary), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource Boolean2VisibilityConverter}}" />
             </StackPanel>
-            <TextBlock
-                Grid.Row="1"
-                Grid.Column="0"
-                Grid.ColumnSpan="2"
-                Padding="{TemplateBinding Padding}"
-                HorizontalAlignment="Stretch"
-                Style="{StaticResource TextBlockDefaultThiLight}"
-                Text="{Binding Path=(controls:InfoElement.Placeholder), RelativeSource={RelativeSource TemplatedParent}}"
-                Visibility="{TemplateBinding Text,
-                                             Converter={StaticResource String2VisibilityReConverter}}" />
             <Popup
                 x:Name="PART_Popup"
                 Grid.Row="1"
@@ -620,12 +647,21 @@
                 Grid.Row="1"
                 Grid.Column="0"
                 Grid.ColumnSpan="2"
-                Height="30"
-                Background="Transparent"
+                Background="{TemplateBinding Background}"
                 BorderBrush="{TemplateBinding BorderBrush}"
                 BorderThickness="{TemplateBinding BorderThickness}"
                 IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
                 Style="{StaticResource ComboBoxToggleButton}" />
+            <TextBlock
+                Grid.Row="1"
+                Grid.Column="0"
+                Margin="8,7,8,8"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                Style="{StaticResource TextBlockDefaultThiLight}"
+                Text="{Binding Path=(controls:InfoElement.Placeholder), RelativeSource={RelativeSource TemplatedParent}}"
+                Visibility="{TemplateBinding Text,
+                                             Converter={StaticResource String2VisibilityReConverter}}" />
             <Border
                 x:Name="border"
                 Grid.Row="1"
@@ -634,9 +670,10 @@
                 Background="Transparent">
                 <TextBox
                     x:Name="PART_EditableTextBox"
-                    Margin="3,0"
+                    Padding="2,6,2,7"
                     HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                     VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                    Background="Transparent"
                     IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource TemplatedParent}}"
                     Style="{StaticResource ComboBoxEditableTextBox}" />
             </Border>
@@ -684,15 +721,18 @@
     </ControlTemplate>
 
     <ControlTemplate x:Key="ComboBoxEditableLeftTemplate" TargetType="ComboBox">
-        <Grid x:Name="templateRoot" SnapsToDevicePixels="true">
+        <Grid
+            x:Name="templateRoot"
+            Height="{Binding Path=(controls:InfoElement.ContentHeight), RelativeSource={RelativeSource TemplatedParent}}"
+            SnapsToDevicePixels="true">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="{Binding Path=(controls:InfoElement.TitleWidth), RelativeSource={RelativeSource TemplatedParent}}" />
                 <ColumnDefinition />
                 <ColumnDefinition Width="30" />
             </Grid.ColumnDefinitions>
             <StackPanel
-                Margin="0,4,6,4"
-                VerticalAlignment="Center"
+                Margin="0,7,6,8"
+                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                 Orientation="Horizontal"
                 Visibility="{Binding Path=(controls:InfoElement.Title), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource String2VisibilityConverter}}">
                 <TextBlock Text="{Binding Path=(controls:InfoElement.Title), RelativeSource={RelativeSource TemplatedParent}}" />
@@ -702,14 +742,6 @@
                     TextElement.Foreground="{DynamicResource DangerBrush}"
                     Visibility="{Binding Path=(controls:InfoElement.Necessary), RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource Boolean2VisibilityConverter}}" />
             </StackPanel>
-            <TextBlock
-                Grid.Column="1"
-                Padding="{TemplateBinding Padding}"
-                HorizontalAlignment="Stretch"
-                Style="{StaticResource TextBlockDefaultThiLight}"
-                Text="{Binding Path=(controls:InfoElement.Placeholder), RelativeSource={RelativeSource TemplatedParent}}"
-                Visibility="{TemplateBinding Text,
-                                             Converter={StaticResource String2VisibilityReConverter}}" />
             <Popup
                 x:Name="PART_Popup"
                 Grid.Column="1"
@@ -752,12 +784,20 @@
                 x:Name="toggleButton"
                 Grid.Column="1"
                 Grid.ColumnSpan="2"
-                Height="30"
-                Background="Transparent"
+                Background="{TemplateBinding Background}"
                 BorderBrush="{TemplateBinding BorderBrush}"
                 BorderThickness="{TemplateBinding BorderThickness}"
                 IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
                 Style="{StaticResource ComboBoxToggleButton}" />
+            <TextBlock
+                Grid.Column="1"
+                Margin="8,7,8,8"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                Style="{StaticResource TextBlockDefaultThiLight}"
+                Text="{Binding Path=(controls:InfoElement.Placeholder), RelativeSource={RelativeSource TemplatedParent}}"
+                Visibility="{TemplateBinding Text,
+                                             Converter={StaticResource String2VisibilityReConverter}}" />
             <Border
                 x:Name="border"
                 Grid.Column="1"
@@ -765,9 +805,10 @@
                 Background="Transparent">
                 <TextBox
                     x:Name="PART_EditableTextBox"
-                    Margin="3,0"
+                    Padding="2,6,2,7"
                     HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                     VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                    Background="Transparent"
                     IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource TemplatedParent}}"
                     Style="{StaticResource ComboBoxEditableTextBox}" />
             </Border>
@@ -894,6 +935,7 @@
         <Setter Property="Height" Value="{x:Static system:Double.NaN}" />
         <Setter Property="Template" Value="{StaticResource ComboBoxTopTemplate}" />
         <Setter Property="controls:InfoElement.Symbol" Value="●" />
+        <Setter Property="controls:InfoElement.ContentHeight" Value="30.0" />
         <Style.Triggers>
             <MultiTrigger>
                 <MultiTrigger.Conditions>

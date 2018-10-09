@@ -17,14 +17,11 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="DatePickerTextBox">
-                    <Grid
-                        x:Name="WatermarkContent"
-                        Margin="6,0"
-                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                    <Grid x:Name="WatermarkContent">
                         <Border x:Name="ContentElement" />
                         <ContentControl
-                            Margin="1,0"
+                            Margin="7,6"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                             Content="{Binding Path=(controls:InfoElement.Placeholder), RelativeSource={RelativeSource FindAncestor, AncestorType=DatePicker}}"
                             Focusable="False"
                             IsHitTestVisible="False"
@@ -52,6 +49,7 @@
         <Setter Property="BorderBrush" Value="{DynamicResource BorderBrush}" />
         <Setter Property="Width" Value="240" />
         <Setter Property="Height" Value="30" />
+        <Setter Property="Padding" Value="6" />
         <Setter Property="BorderThickness" Value="1" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="Template">
@@ -84,6 +82,8 @@
                                 x:Name="PART_TextBox"
                                 Grid.Row="0"
                                 Grid.Column="0"
+                                Margin="0,0,0,1"
+                                Padding="5,6"
                                 HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                                 VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                 Focusable="{TemplateBinding Focusable}"

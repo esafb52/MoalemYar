@@ -11,18 +11,16 @@
         <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst" />
         <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="Padding" Value="6" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="controls:WatermarkTextBox">
-                    <Grid
-                        x:Name="WatermarkContent"
-                        Margin="6,0"
-                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                    <Grid x:Name="WatermarkContent">
                         <Border x:Name="ContentElement" />
                         <Border x:Name="watermark_decorator">
                             <ContentControl
                                 x:Name="PART_Watermark"
-                                Margin="1,0"
+                                Margin="7,6"
                                 Padding="0"
                                 Focusable="False"
                                 IsHitTestVisible="False"
@@ -69,7 +67,9 @@
                         SnapsToDevicePixels="True">
                         <ScrollViewer
                             x:Name="PART_ContentHost"
+                            Margin="0,0,0,1"
                             Padding="{TemplateBinding Padding}"
+                            VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                             Focusable="false"
                             HorizontalScrollBarVisibility="Hidden"
                             VerticalScrollBarVisibility="Hidden" />

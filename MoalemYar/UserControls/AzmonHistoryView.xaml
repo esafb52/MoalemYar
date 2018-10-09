@@ -21,8 +21,6 @@
 
                     <ComboBox
                         x:Name="cmbEditBase"
-                        Width="195"
-                        Height="30"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Top"
                         controls:InfoElement.Placeholder="انتخاب کلاس"
@@ -46,8 +44,6 @@
                     </ComboBox>
                     <ComboBox
                         x:Name="cmbGroups"
-                        Width="195"
-                        Height="30"
                         Margin="10,0"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Top"
@@ -68,8 +64,6 @@
                     </ComboBox>
                     <ComboBox
                         x:Name="cmbAzmon"
-                        Width="195"
-                        Height="30"
                         Margin="10,0"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Top"

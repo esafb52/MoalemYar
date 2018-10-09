@@ -19,8 +19,6 @@
                     Orientation="Horizontal">
                     <ComboBox
                         x:Name="cmbEditBase"
-                        Width="195"
-                        Height="30"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Top"
                         controls:InfoElement.Placeholder="انتخاب کلاس"
