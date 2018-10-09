@@ -88,10 +88,11 @@
                                 Name="txtAddGroup"
                                 Margin="10"
                                 HorizontalAlignment="Left"
+                                controls:InfoElement.ContentHeight="35"
                                 controls:InfoElement.Placeholder="نام گروه"
                                 FlowDirection="RightToLeft"
                                 MaxLength="20"
-                                Style="{StaticResource TextBoxExtend}" controls:InfoElement.ContentHeight="35"
+                                Style="{StaticResource TextBoxExtend}"
                                 TabIndex="0" />
                         </StackPanel>
                     </Grid>
@@ -207,10 +208,11 @@
                                                 Name="txtEditSearch"
                                                 MaxWidth="{Binding Path=ActualWidth, ElementName=grdedit, Converter={local1:MultiplyConverter Multiplier=.9}}"
                                                 HorizontalAlignment="Stretch"
+                                                controls:InfoElement.ContentHeight="35"
                                                 controls:InfoElement.Placeholder="جستجو..."
                                                 FlowDirection="RightToLeft"
                                                 MaxLength="40"
-                                                Style="{StaticResource TextBoxExtend}" controls:InfoElement.ContentHeight="35"
+                                                Style="{StaticResource TextBoxExtend}"
                                                 TextChanged="txtEditSearch_TextChanged" />
                                             <DataGrid
                                                 x:Name="dataGrid"
@@ -255,10 +257,11 @@
                                             Margin="2"
                                             HorizontalAlignment="Left"
                                             VerticalAlignment="Top"
+                                            controls:InfoElement.ContentHeight="35"
                                             controls:InfoElement.Placeholder="نام گروه"
                                             FlowDirection="RightToLeft"
                                             MaxLength="20"
-                                            Style="{StaticResource TextBoxExtend}" controls:InfoElement.ContentHeight="35" />
+                                            Style="{StaticResource TextBoxExtend}" />
                                     </StackPanel>
                                 </Grid>
                             </StackPanel>

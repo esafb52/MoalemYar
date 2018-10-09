@@ -47,10 +47,11 @@
                                     Margin="10"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Top"
+                                    controls:InfoElement.ContentHeight="35"
                                     controls:InfoElement.Placeholder="انتخاب سرور بخشنامه"
                                     ItemsSource="{Binding}"
                                     SelectionChanged="cmbServer_SelectionChanged"
-                                    Style="{StaticResource ComboBoxExtend}" controls:InfoElement.ContentHeight="35" />
+                                    Style="{StaticResource ComboBoxExtend}" />
                             </StackPanel>
                             <StackPanel Margin="10" Orientation="Horizontal">
                                 <Button
@@ -116,12 +117,13 @@
                                 Margin="2"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top"
+                                controls:InfoElement.ContentHeight="35"
                                 controls:InfoElement.Placeholder="انتخاب کلاس پیشفرض"
                                 ItemsSource="{Binding}"
                                 SelectedValue="{Binding SchoolName}"
                                 SelectedValuePath="Id"
                                 SelectionChanged="cmbBase_SelectionChanged"
-                                Style="{StaticResource ComboBoxExtend}" controls:InfoElement.ContentHeight="35"
+                                Style="{StaticResource ComboBoxExtend}"
                                 TabIndex="4">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>

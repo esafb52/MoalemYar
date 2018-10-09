@@ -18,12 +18,13 @@
                     Margin="10"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
+                    controls:InfoElement.ContentHeight="35"
                     controls:InfoElement.Placeholder="انتخاب کلاس"
                     FlowDirection="RightToLeft"
                     SelectedValue="{Binding SchoolName}"
                     SelectedValuePath="Id"
                     SelectionChanged="cmbBaseEdit_SelectionChanged"
-                    Style="{StaticResource ComboBoxExtend}" controls:InfoElement.ContentHeight="35"
+                    Style="{StaticResource ComboBoxExtend}"
                     TabIndex="0">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
@@ -40,7 +41,7 @@
                 <DataGrid
                     x:Name="dataGrid"
                     MaxWidth="{Binding Path=ActualWidth, ElementName=grdedit, Converter={local1:MultiplyConverter Multiplier=.9}}"
-                    Margin="0,45,0,5"
+                    Margin="0,55,0,5"
                     HorizontalAlignment="Stretch"
                     AlternatingRowBackground="#fbfcfe"
                     AutoGenerateColumns="False"

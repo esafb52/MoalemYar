@@ -88,32 +88,36 @@
                                 <TextBox
                                     Name="txtAddYear"
                                     Margin="2"
+                                    controls:InfoElement.ContentHeight="35"
                                     controls:InfoElement.Placeholder="سال تحصیلی"
                                     FlowDirection="RightToLeft"
                                     MaxLength="5"
-                                    Style="{StaticResource TextBoxExtend}" controls:InfoElement.ContentHeight="35"
+                                    Style="{StaticResource TextBoxExtend}"
                                     TabIndex="0" />
                                 <TextBox
                                     Name="txtAddSchool"
                                     Margin="2"
+                                    controls:InfoElement.ContentHeight="35"
                                     controls:InfoElement.Placeholder="نام مدرسه"
                                     FlowDirection="RightToLeft"
                                     MaxLength="20"
-                                    Style="{StaticResource TextBoxExtend}" controls:InfoElement.ContentHeight="35"
+                                    Style="{StaticResource TextBoxExtend}"
                                     TabIndex="1" />
                                 <TextBox
                                     Name="txtAddAdmin"
                                     Margin="2"
+                                    controls:InfoElement.ContentHeight="35"
                                     controls:InfoElement.Placeholder="نام مدیر"
                                     FlowDirection="RightToLeft"
                                     MaxLength="20"
-                                    Style="{StaticResource TextBoxExtend}" controls:InfoElement.ContentHeight="35"
+                                    Style="{StaticResource TextBoxExtend}"
                                     TabIndex="2" />
                                 <ComboBox
                                     Name="cmbBase"
+                                    controls:InfoElement.ContentHeight="35"
                                     controls:InfoElement.Placeholder="انتخاب پایه"
                                     FlowDirection="RightToLeft"
-                                    Style="{StaticResource ComboBoxExtend}" controls:InfoElement.ContentHeight="35">
+                                    Style="{StaticResource ComboBoxExtend}">
                                     <ComboBoxItem Content="اول" />
                                     <ComboBoxItem Content="دوم" />
                                     <ComboBoxItem Content="سوم" />
@@ -235,10 +239,11 @@
                                             Name="txtEditSearch"
                                             MaxWidth="{Binding Path=ActualWidth, ElementName=grdedit, Converter={local1:MultiplyConverter Multiplier=.9}}"
                                             HorizontalAlignment="Stretch"
+                                            controls:InfoElement.ContentHeight="35"
                                             controls:InfoElement.Placeholder="جستجو..."
                                             FlowDirection="RightToLeft"
                                             MaxLength="40"
-                                            Style="{StaticResource TextBoxExtend}" controls:InfoElement.ContentHeight="35"
+                                            Style="{StaticResource TextBoxExtend}"
                                             TextChanged="txtEditSearch_TextChanged" />
                                         <DataGrid
                                             x:Name="dataGrid"
@@ -297,34 +302,38 @@
                                         Margin="2"
                                         HorizontalAlignment="Left"
                                         VerticalAlignment="Top"
+                                        controls:InfoElement.ContentHeight="35"
                                         controls:InfoElement.Placeholder="سال تحصیلی"
                                         FlowDirection="RightToLeft"
                                         MaxLength="5"
-                                        Style="{StaticResource TextBoxExtend}" controls:InfoElement.ContentHeight="35" />
+                                        Style="{StaticResource TextBoxExtend}" />
                                     <TextBox
                                         Name="txtSchool"
                                         Margin="2"
                                         HorizontalAlignment="Left"
                                         VerticalAlignment="Top"
+                                        controls:InfoElement.ContentHeight="35"
                                         controls:InfoElement.Placeholder="نام مدرسه"
                                         FlowDirection="RightToLeft"
                                         MaxLength="20"
-                                        Style="{StaticResource TextBoxExtend}" controls:InfoElement.ContentHeight="35" />
+                                        Style="{StaticResource TextBoxExtend}" />
                                     <TextBox
                                         Name="txtAdmin"
                                         Margin="2"
                                         HorizontalAlignment="Left"
                                         VerticalAlignment="Top"
+                                        controls:InfoElement.ContentHeight="35"
                                         controls:InfoElement.Placeholder="نام مدیر"
                                         FlowDirection="RightToLeft"
                                         MaxLength="20"
-                                        Style="{StaticResource TextBoxExtend}" controls:InfoElement.ContentHeight="35" />
+                                        Style="{StaticResource TextBoxExtend}" />
                                     <ComboBox
                                         Name="cmbEditBase"
                                         HorizontalAlignment="Left"
+                                        controls:InfoElement.ContentHeight="35"
                                         controls:InfoElement.Placeholder="انتخاب پایه"
                                         FlowDirection="RightToLeft"
-                                        Style="{StaticResource ComboBoxExtend}" controls:InfoElement.ContentHeight="35">
+                                        Style="{StaticResource ComboBoxExtend}">
                                         <ComboBoxItem Content="اول" />
                                         <ComboBoxItem Content="دوم" />
                                         <ComboBoxItem Content="سوم" />

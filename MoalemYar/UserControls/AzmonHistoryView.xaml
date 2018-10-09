@@ -23,12 +23,13 @@
                         x:Name="cmbEditBase"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Top"
+                        controls:InfoElement.ContentHeight="35"
                         controls:InfoElement.Placeholder="انتخاب کلاس"
                         ItemsSource="{Binding}"
                         SelectedValue="{Binding SchoolName}"
                         SelectedValuePath="Id"
                         SelectionChanged="cmbEditBase_SelectionChanged"
-                        Style="{StaticResource ComboBoxExtend}" controls:InfoElement.ContentHeight="35"
+                        Style="{StaticResource ComboBoxExtend}"
                         TabIndex="0">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
@@ -47,12 +48,13 @@
                         Margin="10,0"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Top"
+                        controls:InfoElement.ContentHeight="35"
                         controls:InfoElement.Placeholder="انتخاب گروه"
                         ItemsSource="{Binding}"
                         SelectedValue="{Binding GroupName}"
                         SelectedValuePath="Id"
                         SelectionChanged="cmbGroups_SelectionChanged"
-                        Style="{StaticResource ComboBoxExtend}" controls:InfoElement.ContentHeight="35"
+                        Style="{StaticResource ComboBoxExtend}"
                         TabIndex="0">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
@@ -67,12 +69,13 @@
                         Margin="10,0"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Top"
+                        controls:InfoElement.ContentHeight="35"
                         controls:InfoElement.Placeholder="انتخاب آزمون"
                         ItemsSource="{Binding}"
                         SelectedValue="{Binding DatePass}"
                         SelectedValuePath="Id"
                         SelectionChanged="cmbAzmon_SelectionChanged"
-                        Style="{StaticResource ComboBoxExtend}" controls:InfoElement.ContentHeight="35"
+                        Style="{StaticResource ComboBoxExtend}"
                         TabIndex="0">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>

@@ -13,20 +13,20 @@
         <controls:ScrollViewer HorizontalScrollBarVisibility="Auto">
             <Grid>
                 <StackPanel
-                    Height="33"
-                    Margin="10,10,10,0"
+                    Margin="10"
                     VerticalAlignment="Top"
                     Orientation="Horizontal">
                     <ComboBox
                         x:Name="cmbEditBase"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Top"
+                        controls:InfoElement.ContentHeight="35"
                         controls:InfoElement.Placeholder="انتخاب کلاس"
                         ItemsSource="{Binding}"
                         SelectedValue="{Binding SchoolName}"
                         SelectedValuePath="Id"
                         SelectionChanged="cmbEditBase_SelectionChanged"
-                        Style="{StaticResource ComboBoxExtend}" controls:InfoElement.ContentHeight="35"
+                        Style="{StaticResource ComboBoxExtend}"
                         TabIndex="0">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
@@ -44,7 +44,7 @@
                 <DataGrid
                     x:Name="dataGrid"
                     Width="311"
-                    Margin="10,48,0,5"
+                    Margin="10,55,0,5"
                     HorizontalAlignment="Left"
                     AlternatingRowBackground="#fbfcfe"
                     AutoGenerateColumns="False"

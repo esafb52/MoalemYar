@@ -27,12 +27,13 @@
                                 Margin="10"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top"
+                                controls:InfoElement.ContentHeight="35"
                                 controls:InfoElement.Placeholder="انتخاب کلاس"
                                 ItemsSource="{Binding}"
                                 SelectedValue="{Binding SchoolName}"
                                 SelectedValuePath="Id"
                                 SelectionChanged="cmbBase_SelectionChanged"
-                                Style="{StaticResource ComboBoxExtend}" controls:InfoElement.ContentHeight="35">
+                                Style="{StaticResource ComboBoxExtend}">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal">
@@ -167,11 +168,12 @@
                                     x:Name="cmbBaseList"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Top"
+                                    controls:InfoElement.ContentHeight="35"
                                     controls:InfoElement.Placeholder="انتخاب کلاس"
                                     ItemsSource="{Binding}"
                                     SelectedValue="{Binding SchoolName}"
                                     SelectedValuePath="Id"
-                                    Style="{StaticResource ComboBoxExtend}" controls:InfoElement.ContentHeight="35">
+                                    Style="{StaticResource ComboBoxExtend}">
                                     <ComboBox.ItemTemplate>
                                         <DataTemplate>
                                             <StackPanel Orientation="Horizontal">
@@ -339,12 +341,13 @@
                                         x:Name="cmbEditBase"
                                         HorizontalAlignment="Left"
                                         VerticalAlignment="Top"
+                                        controls:InfoElement.ContentHeight="35"
                                         controls:InfoElement.Placeholder="انتخاب کلاس"
                                         ItemsSource="{Binding}"
                                         SelectedValue="{Binding SchoolName}"
                                         SelectedValuePath="Id"
                                         SelectionChanged="cmbEditBase_SelectionChanged"
-                                        Style="{StaticResource ComboBoxExtend}" controls:InfoElement.ContentHeight="35"
+                                        Style="{StaticResource ComboBoxExtend}"
                                         TabIndex="0">
                                         <ComboBox.ItemTemplate>
                                             <DataTemplate>
@@ -363,11 +366,12 @@
                                         Margin="10,0,0,0"
                                         HorizontalAlignment="Left"
                                         VerticalAlignment="Top"
+                                        controls:InfoElement.ContentHeight="35"
                                         controls:InfoElement.Placeholder="انتخاب دانش آموز"
                                         SelectedValue="{Binding LName}"
                                         SelectedValuePath="Id"
                                         SelectionChanged="cmbEditStudent_SelectionChanged"
-                                        Style="{StaticResource ComboBoxExtend}" controls:InfoElement.ContentHeight="35"
+                                        Style="{StaticResource ComboBoxExtend}"
                                         TabIndex="1">
                                         <ComboBox.ItemTemplate>
                                             <DataTemplate>
@@ -389,10 +393,11 @@
                                     Margin="0,5,0,0"
                                     HorizontalAlignment="Stretch"
                                     VerticalAlignment="Top"
+                                    controls:InfoElement.ContentHeight="35"
                                     controls:InfoElement.Placeholder="جستجو..."
                                     FlowDirection="RightToLeft"
                                     MaxLength="40"
-                                    Style="{StaticResource TextBoxExtend}" controls:InfoElement.ContentHeight="35"
+                                    Style="{StaticResource TextBoxExtend}"
                                     TabIndex="2"
                                     TextChanged="txtEditSearch_TextChanged" />
                                 <Grid>

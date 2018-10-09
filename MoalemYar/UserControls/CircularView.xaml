@@ -60,9 +60,10 @@
                     Name="txtSearch"
                     Margin="10"
                     VerticalAlignment="Top"
+                    controls:InfoElement.ContentHeight="35"
                     controls:InfoElement.Placeholder="جستجو..."
                     IsEnabled="False"
-                    Style="{StaticResource TextBoxExtend}" controls:InfoElement.ContentHeight="35"
+                    Style="{StaticResource TextBoxExtend}"
                     TextChanged="txtSearch_TextChanged" />
                 <ProgressBar
                     Name="prgUpdate"
