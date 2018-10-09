@@ -438,16 +438,16 @@
                                                     Style="{StaticResource TextBoxExtend}"
                                                     TabIndex="0" />
                                                 <ComboBox
-                                                        x:Name="cmbGroupEdit"
-                                                        Margin="2"
-                                                        HorizontalAlignment="Left"
-                                                        VerticalAlignment="Top"
-                                                        controls:InfoElement.Placeholder="انتخاب گروه"
-                                                        ItemsSource="{Binding}"
-                                                        SelectedValue="{Binding GroupName}"
-                                                        SelectedValuePath="Id"
-                                                        Style="{StaticResource ComboBoxExtend}"
-                                                        TabIndex="4">
+                                                    x:Name="cmbGroupEdit"
+                                                    Margin="2"
+                                                    HorizontalAlignment="Left"
+                                                    VerticalAlignment="Top"
+                                                    controls:InfoElement.Placeholder="انتخاب گروه"
+                                                    ItemsSource="{Binding}"
+                                                    SelectedValue="{Binding GroupName}"
+                                                    SelectedValuePath="Id"
+                                                    Style="{StaticResource ComboBoxExtend}"
+                                                    TabIndex="4">
                                                     <ComboBox.ItemTemplate>
                                                         <DataTemplate>
                                                             <StackPanel Orientation="Horizontal">
@@ -457,12 +457,12 @@
                                                     </ComboBox.ItemTemplate>
                                                 </ComboBox>
                                                 <ComboBox
-                                                        Name="cmbBaseEditData"
-                                                        Margin="2"
-                                                        HorizontalAlignment="Left"
-                                                        controls:InfoElement.Placeholder="پایه"
-                                                        FlowDirection="RightToLeft"
-                                                        Style="{StaticResource ComboBoxExtend}">
+                                                    Name="cmbBaseEditData"
+                                                    Margin="2"
+                                                    HorizontalAlignment="Left"
+                                                    controls:InfoElement.Placeholder="پایه"
+                                                    FlowDirection="RightToLeft"
+                                                    Style="{StaticResource ComboBoxExtend}">
                                                     <ComboBoxItem Content="اول" />
                                                     <ComboBoxItem Content="دوم" />
                                                     <ComboBoxItem Content="سوم" />
