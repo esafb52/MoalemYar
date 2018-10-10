@@ -22,17 +22,8 @@ namespace MoalemYar
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            //Todo: remove this
 
-            #region This is for Change Database Location we change DataDirectory to Other Location
-
-#if DEBUG
-            AppDomain.CurrentDomain.SetData("DataDirectory", Environment.CurrentDirectory);
-#else
             AppDomain.CurrentDomain.SetData("DataDirectory", AppVariable.fileName + @"\");
-#endif
-
-            #endregion This is for Change Database Location we change DataDirectory to Other Location
 
             #region Load Embedded Assembly
 
