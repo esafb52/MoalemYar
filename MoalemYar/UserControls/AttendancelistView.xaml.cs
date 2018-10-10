@@ -428,6 +428,7 @@ namespace MoalemYar.UserControls
             cmbBase.SelectedIndex = Convert.ToInt32(FindElement.Settings.DefaultSchool);
             cmbEditBase.SelectedIndex = Convert.ToInt32(FindElement.Settings.DefaultSchool);
             cmbBaseList.SelectedIndex = Convert.ToInt32(FindElement.Settings.DefaultSchool);
+            getStudentAttendanceList(Convert.ToInt64(cmbBaseList.SelectedValue), txtDateList.SelectedDate.ToString());
         }
 
         private void txtDateList_SelectedDateChanged(object sender, RoutedEventArgs e)
