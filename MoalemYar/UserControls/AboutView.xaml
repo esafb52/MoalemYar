@@ -127,7 +127,9 @@
                         Name="txtHistory"
                         Width="800"
                         Margin="10,10"
+                        controls:InfoElement.ContentHeight="300"
                         IsReadOnly="True"
+                        Style="{StaticResource TextBoxExtend}"
                         TextWrapping="WrapWithOverflow" />
                 </StackPanel>
             </WrapPanel>
