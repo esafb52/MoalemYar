@@ -339,9 +339,9 @@ namespace MoalemYar.UserControls
             if (dgv.ItemsSource != null)
             {
                 if (txtEditSearch.Text != string.Empty)
-                    dgv.ItemsSource = _initialCollectionAtendance.Where(x => x.Date.Contains(txtEditSearch.Text)).Select(x => x);
+                    dgv.ItemsSource = _initialCollectionAtendance.Where(x => x.Date.Contains(txtEditSearch.Text)).ToList();
                 else
-                    dgv.ItemsSource = _initialCollectionAtendance.Select(x => x);
+                    dgv.ItemsSource = _initialCollectionAtendance.ToList();
             }
         }
 
