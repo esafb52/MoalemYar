@@ -251,11 +251,26 @@
                                             Header="وضعیت">
                                             <DataGridTemplateColumn.CellTemplate>
                                                 <DataTemplate>
-                                                    <ToggleButton
-                                                        Margin="5"
-                                                        HorizontalAlignment="Right"
-                                                        IsChecked="{Binding Exist}"
-                                                        Style="{StaticResource ToggleButtonSwitch}" />
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBlock>
+                                                            <TextBlock.Style>
+                                                                <Style TargetType="{x:Type TextBlock}">
+                                                                    <Setter Property="Text" Value="حاضر" />
+                                                                    <Style.Triggers>
+                                                                        <DataTrigger Binding="{Binding Exist}" Value="False">
+                                                                            <Setter Property="Text" Value="غایب" />
+                                                                        </DataTrigger>
+                                                                    </Style.Triggers>
+                                                                </Style>
+                                                            </TextBlock.Style>
+                                                        </TextBlock>
+                                                        <ToggleButton
+                                                            Margin="5"
+                                                            HorizontalAlignment="Right"
+                                                            IsChecked="{Binding Exist}"
+                                                            Style="{StaticResource ToggleButtonSwitch}" />
+                                                    </StackPanel>
+
                                                 </DataTemplate>
                                             </DataGridTemplateColumn.CellTemplate>
                                         </DataGridTemplateColumn>
@@ -440,6 +455,18 @@
                                                     </Grid.ColumnDefinitions>
                                                     <TextBlock Text="{Binding StudentId}" Visibility="Hidden" />
                                                     <TextBlock Text="{Binding Id}" Visibility="Hidden" />
+                                                    <TextBlock Grid.Column="1">
+                                                        <TextBlock.Style>
+                                                            <Style TargetType="{x:Type TextBlock}">
+                                                                <Setter Property="Text" Value="حاضر" />
+                                                                <Style.Triggers>
+                                                                    <DataTrigger Binding="{Binding Exist}" Value="False">
+                                                                        <Setter Property="Text" Value="غایب" />
+                                                                    </DataTrigger>
+                                                                </Style.Triggers>
+                                                            </Style>
+                                                        </TextBlock.Style>
+                                                    </TextBlock>
                                                     <ToggleButton
                                                         Grid.Column="1"
                                                         Checked="MetroSwitch_Checked"
