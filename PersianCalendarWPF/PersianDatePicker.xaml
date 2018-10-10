@@ -94,7 +94,9 @@
     <Grid>
         <TextBox
             Name="dateTextBox"
-            Margin="2,2,25,2"
+            Width="Auto"
+            Height="Auto"
+            Margin="3,0,22.6,1.4"
             Padding="2,0,2,0"
             VerticalContentAlignment="Center"
             AcceptsReturn="False"
