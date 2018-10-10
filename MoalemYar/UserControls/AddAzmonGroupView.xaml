@@ -206,8 +206,8 @@
                                         <StackPanel Orientation="Vertical">
                                             <TextBox
                                                 Name="txtEditSearch"
-                                                MaxWidth="{Binding Path=ActualWidth, ElementName=grdedit, Converter={local1:MultiplyConverter Multiplier=.9}}"
-                                                HorizontalAlignment="Stretch"
+                                                Margin="10,0"
+                                                HorizontalAlignment="Left"
                                                 controls:InfoElement.ContentHeight="35"
                                                 controls:InfoElement.Placeholder="جستجو..."
                                                 FlowDirection="RightToLeft"
