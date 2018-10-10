@@ -192,9 +192,7 @@
                                     Margin="10,0"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Top"
-                                    SelectedDate="{Binding Date}"
-                                    SelectedDateChanged="txtDateList_SelectedDateChanged"
-                                    Text="{Binding Date}">
+                                    SelectedDateChanged="txtDateList_SelectedDateChanged">
                                     <PersianCalendarWPF:PersianDatePicker.Style>
                                         <Style TargetType="PersianCalendarWPF:PersianDatePicker">
                                             <Setter Property="IsEnabled" Value="True" />

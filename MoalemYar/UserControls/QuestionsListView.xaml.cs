@@ -32,7 +32,6 @@ namespace MoalemYar.UserControls
         private ObservableCollection<string> list = new ObservableCollection<string>();
         internal static QuestionsListView main;
         private PersianCalendar pc = new PersianCalendar();
-        private static string strDate;
         private List<DataClass.DataTransferObjects.SchoolsStudentsJointDto> _initialCollectionStudent;
         private List<DataClass.DataTransferObjects.StudentsDto> _initialCollection;
         private List<DataClass.Tables.Score> _initialCollectionScore;
@@ -42,7 +41,6 @@ namespace MoalemYar.UserControls
             InitializeComponent();
 
             main = this;
-            strDate = pc.GetYear(DateTime.Now).ToString("0000") + "/" + pc.GetMonth(DateTime.Now).ToString("00") + "/" + pc.GetDayOfMonth(DateTime.Now).ToString("00");
             getSchool();
         }
 
@@ -371,7 +369,7 @@ namespace MoalemYar.UserControls
                         newStatus = "نیاز به تلاش بیشتر";
                         break;
                 }
-                addScore((long)selectedItem.Id, element.SelectedItem.ToString(), strDate, newStatus, (txtDesc.Text == string.Empty ? "بدون توضیحات" : txtDesc.Text));
+                addScore((long)selectedItem.Id, element.SelectedItem.ToString(), txtDate.SelectedDate.ToString(), newStatus, (txtDesc.Text == string.Empty ? "بدون توضیحات" : txtDesc.Text));
                 MyTextBlock.Foreground = new SolidColorBrush(Colors.Green);
                 MyTextBlock.Text = newStatus + " ثبت شده ";
             }
