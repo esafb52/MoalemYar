@@ -14,7 +14,7 @@
     <WarningLevel>4</WarningLevel>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <AssemblyVersion>2.1.4788.0</AssemblyVersion>
+    <AssemblyVersion>2.1.4800.0</AssemblyVersion>
     <TargetFrameworkProfile />
     <ShouldCreateLogs>False</ShouldCreateLogs>
     <AdvancedSettingsExpanded>True</AdvancedSettingsExpanded>
@@ -163,6 +163,7 @@
     <Compile Include="UserControls\ChartTemplate.xaml.cs">
       <DependentUpon>ChartTemplate.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ConverterAndConfig\DataGridBehavior.cs" />
     <Compile Include="ViewModel\AchievementViewModel.cs" />
     <Compile Include="UserControls\AddAzmonGroupView.xaml.cs">
       <DependentUpon>AddAzmonGroupView.xaml</DependentUpon>

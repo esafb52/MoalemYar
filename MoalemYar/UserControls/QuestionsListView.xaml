@@ -105,6 +105,7 @@
                             MaxWidth="{Binding Path=ActualWidth, ElementName=grd, Converter={local1:MultiplyConverter Multiplier=.9}}"
                             Margin="10,90,20,10"
                             HorizontalAlignment="Stretch"
+                            RowHeaderWidth="0"
                             AlternatingRowBackground="#fbfcfe"
                             AutoGenerateColumns="False"
                             Background="#eceff5"
@@ -117,7 +118,7 @@
                             GridLinesVisibility="Horizontal"
                             HorizontalGridLinesBrush="#dde8ef"
                             IsReadOnly="True"
-                            RowHeaderWidth="0"
+                            
                             SelectionMode="Single"
                             SelectionUnit="FullRow"
                             TabIndex="3">
