@@ -77,18 +77,18 @@
                             <ComboBox
                                 Name="cmbBook"
                                 Margin="10,0"
-                                VerticalAlignment="Top"
                                 HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
                                 controls:InfoElement.ContentHeight="35"
                                 controls:InfoElement.Placeholder="انتخاب درس"
                                 FlowDirection="RightToLeft"
                                 SelectionChanged="cmbBook_SelectionChanged"
                                 Style="{StaticResource ComboBoxExtend}" />
                             <PersianCalendarWPF:PersianDatePicker
-                                VerticalAlignment="Top"
                                 Name="txtDate"
                                 Height="30"
-                                Margin="0,0,10,0" />
+                                Margin="0,0,10,0"
+                                VerticalAlignment="Top" />
                             <TextBox
                                 Name="txtDesc"
                                 MaxHeight="158"
@@ -105,7 +105,6 @@
                             MaxWidth="{Binding Path=ActualWidth, ElementName=grd, Converter={local1:MultiplyConverter Multiplier=.9}}"
                             Margin="10,90,20,10"
                             HorizontalAlignment="Stretch"
-                            RowHeaderWidth="0"
                             AlternatingRowBackground="#fbfcfe"
                             AutoGenerateColumns="False"
                             Background="#eceff5"
@@ -118,7 +117,7 @@
                             GridLinesVisibility="Horizontal"
                             HorizontalGridLinesBrush="#dde8ef"
                             IsReadOnly="True"
-                            
+                            RowHeaderWidth="0"
                             SelectionMode="Single"
                             SelectionUnit="FullRow"
                             TabIndex="3">

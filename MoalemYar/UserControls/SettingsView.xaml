@@ -41,7 +41,8 @@
                                         Text="ورود با رمز عبور" />
 
                                 </StackPanel>
-
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
                                 <ComboBox
                                     x:Name="cmbServer"
                                     Margin="10"
@@ -52,95 +53,42 @@
                                     ItemsSource="{Binding}"
                                     SelectionChanged="cmbServer_SelectionChanged"
                                     Style="{StaticResource ComboBoxExtend}" />
-                            </StackPanel>
-                            <StackPanel Margin="10" Orientation="Horizontal">
-                                <Button
-                                    x:Name="btnFactoryReset"
-                                    Width="140"
-                                    Height="35"
-                                    HorizontalAlignment="Left                                         "
-                                    VerticalAlignment="Top"
-                                    Click="btnFactoryReset_Click"
-                                    Style="{StaticResource ButtonDanger}">
-                                    <StackPanel
-                                        HorizontalAlignment="Left"
-                                        VerticalAlignment="Center"
-                                        Orientation="Horizontal">
-                                        <Image
-                                            Width="16"
-                                            Height="16"
-                                            Margin="0,0,10,0"
-                                            Source="/Resources/Reset.png" />
-                                        <TextBlock
-                                            FontSize="13"
-                                            Foreground="#ffffff"
-                                            Text="بازیابی تنظیمات"
-                                            TextWrapping="NoWrap" />
-                                    </StackPanel>
-                                </Button>
-                                <Button
-                                    x:Name="btnDatabaseReset"
-                                    Width="140"
-                                    Height="35"
-                                    Margin="10,0"
+                                <ComboBox
+                                    x:Name="cmbBase"
+                                    Margin="10,10"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Top"
-                                    Click="btnDatabaseReset_Click"
-                                    Style="{StaticResource ButtonDanger}">
-                                    <StackPanel
-                                        HorizontalAlignment="Left"
-                                        VerticalAlignment="Center"
-                                        Orientation="Horizontal">
-                                        <Image
-                                            Width="16"
-                                            Height="16"
-                                            Margin="0,0,10,0"
-                                            Source="/Resources/Reset.png" />
-                                        <TextBlock
-                                            FontSize="13"
-                                            Foreground="#ffffff"
-                                            Text="بازیابی دیتابیس"
-                                            TextWrapping="NoWrap" />
-                                    </StackPanel>
-                                </Button>
+                                    controls:InfoElement.ContentHeight="35"
+                                    controls:InfoElement.Placeholder="انتخاب کلاس پیشفرض"
+                                    ItemsSource="{Binding}"
+                                    SelectedValue="{Binding SchoolName}"
+                                    SelectedValuePath="Id"
+                                    SelectionChanged="cmbBase_SelectionChanged"
+                                    Style="{StaticResource ComboBoxExtend}"
+                                    TabIndex="4">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="{Binding SchoolName}" />
+                                                <TextBlock Text=" - " />
+                                                <TextBlock Text="{Binding Base}" />
+                                                <TextBlock Text=" - " />
+                                                <TextBlock Text="{Binding Year}" />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
                             </StackPanel>
                         </StackPanel>
                         <GridSplitter
                             Height="2"
-                            Margin="60,45,96,-7"
+                            Margin="62,100,93.6,0"
                             HorizontalAlignment="Stretch" />
                     </Grid>
-                    <StackPanel Margin="10" Orientation="Horizontal">
-                        <StackPanel Orientation="Vertical">
-                            <ComboBox
-                                x:Name="cmbBase"
-                                Margin="2"
-                                HorizontalAlignment="Left"
-                                VerticalAlignment="Top"
-                                controls:InfoElement.ContentHeight="35"
-                                controls:InfoElement.Placeholder="انتخاب کلاس پیشفرض"
-                                ItemsSource="{Binding}"
-                                SelectedValue="{Binding SchoolName}"
-                                SelectedValuePath="Id"
-                                SelectionChanged="cmbBase_SelectionChanged"
-                                Style="{StaticResource ComboBoxExtend}"
-                                TabIndex="4">
-                                <ComboBox.ItemTemplate>
-                                    <DataTemplate>
-                                        <StackPanel Orientation="Horizontal">
-                                            <TextBlock Text="{Binding SchoolName}" />
-                                            <TextBlock Text=" - " />
-                                            <TextBlock Text="{Binding Base}" />
-                                            <TextBlock Text=" - " />
-                                            <TextBlock Text="{Binding Year}" />
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </ComboBox.ItemTemplate>
-                            </ComboBox>
-                        </StackPanel>
+                    <StackPanel Margin="0,20" HorizontalAlignment="Center">
                         <StackPanel Margin="10,0" Orientation="Horizontal">
                             <Button
-                                Width="150"
+                                Width="160"
                                 Height="35"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top"
@@ -185,6 +133,60 @@
                                         FontSize="13"
                                         Foreground="#ffffff"
                                         Text="بازگرداندن پشتیبان"
+                                        TextWrapping="NoWrap" />
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+                        <StackPanel
+                            Margin="10,10"
+                            VerticalAlignment="Top"
+                            Orientation="Horizontal">
+                            <Button
+                                x:Name="btnFactoryReset"
+                                Width="160"
+                                Height="35"
+                                HorizontalAlignment="Left                                         "
+                                VerticalAlignment="Top"
+                                Click="btnFactoryReset_Click"
+                                Style="{StaticResource ButtonDanger}">
+                                <StackPanel
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    Orientation="Horizontal">
+                                    <Image
+                                        Width="16"
+                                        Height="16"
+                                        Margin="0,0,10,0"
+                                        Source="/Resources/Reset.png" />
+                                    <TextBlock
+                                        FontSize="13"
+                                        Foreground="#ffffff"
+                                        Text="ریست تنظیمات"
+                                        TextWrapping="NoWrap" />
+                                </StackPanel>
+                            </Button>
+                            <Button
+                                x:Name="btnDatabaseReset"
+                                Width="160"
+                                Height="35"
+                                Margin="10,0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                Click="btnDatabaseReset_Click"
+                                Style="{StaticResource ButtonDanger}">
+                                <StackPanel
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    Orientation="Horizontal">
+                                    <Image
+                                        Width="16"
+                                        Height="16"
+                                        Margin="0,0,10,0"
+                                        Source="/Resources/Reset.png" />
+                                    <TextBlock
+                                        FontSize="13"
+                                        Foreground="#ffffff"
+                                        Text="ریست دیتابیس"
                                         TextWrapping="NoWrap" />
                                 </StackPanel>
                             </Button>

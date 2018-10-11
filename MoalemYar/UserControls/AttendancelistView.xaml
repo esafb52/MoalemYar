@@ -211,7 +211,6 @@
                                     MaxWidth="{Binding Path=ActualWidth, ElementName=grdList, Converter={local1:MultiplyConverter Multiplier=.9}}"
                                     Margin="0,10"
                                     HorizontalAlignment="Stretch"
-                                    RowHeaderWidth="0"
                                     AlternatingRowBackground="#fbfcfe"
                                     AutoGenerateColumns="False"
                                     Background="#eceff5"
@@ -224,6 +223,7 @@
                                     GridLinesVisibility="Horizontal"
                                     HorizontalGridLinesBrush="#dde8ef"
                                     IsReadOnly="True"
+                                    RowHeaderWidth="0"
                                     SelectionMode="Single"
                                     SelectionUnit="FullRow">
                                     <DataGrid.Columns>
