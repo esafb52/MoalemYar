@@ -109,7 +109,8 @@ namespace MoalemYar
                     FontSize = 14,
                     Title = "ورود به نرم افزار",
                     WindowStartupLocation = WindowStartupLocation.CenterScreen,
-                    HorizontalContentAlignment = HorizontalAlignment.Center
+                    HorizontalContentAlignment = HorizontalAlignment.Center,
+                    ShowInTaskbar=true
                 };
                 popupLogin.Closing += (s, e) => {
 
