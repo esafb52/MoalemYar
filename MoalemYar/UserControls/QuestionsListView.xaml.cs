@@ -35,7 +35,6 @@ namespace MoalemYar.UserControls
         private List<DataClass.DataTransferObjects.SchoolsStudentsJointDto> _initialCollectionStudent;
         private List<DataClass.DataTransferObjects.StudentsDto> _initialCollection;
         private List<DataClass.Tables.Score> _initialCollectionScore;
-
         public QuestionsListView()
         {
             InitializeComponent();
@@ -333,12 +332,8 @@ namespace MoalemYar.UserControls
         {
             var row = dataGrid.ContainerFromElement(sender as DependencyObject);
             var MyTextBlock = FindElement.FindVisualChildByName<TextBlock>(row, "txtStatus");
-            var MyCHK1 = FindElement.FindVisualChildByName<ToggleButton>(row, "chkExc");
-            var MyCHK2 = FindElement.FindVisualChildByName<ToggleButton>(row, "chkGood");
-            var MyCHK3 = FindElement.FindVisualChildByName<ToggleButton>(row, "chkNbad");
-            var MyCHK4 = FindElement.FindVisualChildByName<ToggleButton>(row, "chkBad");
-
-            MyCHK1.IsEnabled = MyCHK2.IsEnabled = MyCHK3.IsEnabled = MyCHK4.IsEnabled = false;
+            var stackToggle = FindElement.FindVisualChildByName<StackPanel>(row, "stackToggle");
+            stackToggle.IsEnabled = false;
 
             dynamic selectedItem = dataGrid.SelectedItems[0];
             var selectedChk = sender as ToggleButton;

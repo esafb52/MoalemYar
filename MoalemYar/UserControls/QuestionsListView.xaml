@@ -146,12 +146,12 @@
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
                                             <StackPanel
+                                                Name="stackToggle"
                                                 Margin="5"
                                                 HorizontalAlignment="Right"
                                                 Orientation="Vertical">
                                                 <StackPanel Orientation="Horizontal">
                                                     <ToggleButton
-                                                        Name="chkExc"
                                                         Margin="0,2"
                                                         Checked="chkChecked_Checked"
                                                         Style="{StaticResource ToggleButtonSwitch}"
@@ -160,7 +160,6 @@
                                                 </StackPanel>
                                                 <StackPanel Orientation="Horizontal">
                                                     <ToggleButton
-                                                        Name="chkGood"
                                                         Margin="0,2"
                                                         Checked="chkChecked_Checked"
                                                         Style="{StaticResource ToggleButtonSwitch}"
@@ -169,7 +168,6 @@
                                                 </StackPanel>
                                                 <StackPanel Orientation="Horizontal">
                                                     <ToggleButton
-                                                        Name="chkNbad"
                                                         Margin="0,2"
                                                         Checked="chkChecked_Checked"
                                                         Style="{StaticResource ToggleButtonSwitch}"
@@ -178,7 +176,6 @@
                                                 </StackPanel>
                                                 <StackPanel Orientation="Horizontal">
                                                     <ToggleButton
-                                                        Name="chkBad"
                                                         Margin="0,2"
                                                         Checked="chkChecked_Checked"
                                                         Style="{StaticResource ToggleButtonSwitch}"
