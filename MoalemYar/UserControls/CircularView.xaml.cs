@@ -140,62 +140,62 @@ namespace MoalemYar.UserControls
                         client.Headers.Add("User-Agent: Other");
                         if (Dlink.Contains("//portal/"))
                             Dlink = Dlink.Replace("//portal/", "/portal/");
-                        Uri ur = new Uri(Dlink);
-                        var data = wc.DownloadData(Dlink);
+                    Uri ur = new Uri(Dlink);
+                    var data = wc.DownloadData(Dlink);
 
-                        string fileExt = "";
-                        if (!String.IsNullOrEmpty(wc.ResponseHeaders["Content-Disposition"]))
-                        {
-                            fileExt = System.IO.Path.GetExtension(wc.ResponseHeaders["Content-Disposition"].Substring(wc.ResponseHeaders["Content-Disposition"].IndexOf("filename=") + 9).Replace("\"", ""));
-                        }
+                    string fileExt = "";
+                    if (!String.IsNullOrEmpty(wc.ResponseHeaders["Content-Disposition"]))
+                    {
+                        fileExt = System.IO.Path.GetExtension(wc.ResponseHeaders["Content-Disposition"].Substring(wc.ResponseHeaders["Content-Disposition"].IndexOf("filename=") + 9).Replace("\"", ""));
+                    }
 
-                        //client.DownloadProgressChanged += (o, ex) =>
-                        //{
-                        //    Dispatcher.Invoke(() =>
-                        //    {
-                        //        //Todo: mybe add progressbar
-                        //    });
-                        //};
+                    //client.DownloadProgressChanged += (o, ex) =>
+                    //{
+                    //    Dispatcher.Invoke(() =>
+                    //    {
+                    //        //Todo: mybe add progressbar
+                    //    });
+                    //};
 
-                        string TotPath = AppVariable.fileNameBakhsh + row + title;
-                        string dPath = string.Empty;
+                    string TotPath = AppVariable.fileNameBakhsh + row + title;
+                    string dPath = string.Empty;
+
+                    if (fileExt.Equals(".rar") || fileExt.Equals(".zip"))
+                    {
+                        dPath = AppVariable.fileNameBakhsh + @"\" + row + title + fileExt;
+                    }
+                    else
+                    {
+                        if (!System.IO.Directory.Exists(TotPath))
+                            System.IO.Directory.CreateDirectory(TotPath);
+                        dPath = TotPath + @"\" + row + title + fileExt;
+                    }
+
+                    client.DownloadFileAsync(ur, dPath);
+
+                    client.DownloadFileCompleted += (o, ex) =>
+                    {
+                        prgLoading.Visibility = Visibility.Hidden;
+                        prgUpdate.Visibility = Visibility.Visible;
 
                         if (fileExt.Equals(".rar") || fileExt.Equals(".zip"))
                         {
-                            dPath = AppVariable.fileNameBakhsh + @"\" + row + title + fileExt;
-                        }
-                        else
-                        {
-                            if (!System.IO.Directory.Exists(TotPath))
-                                System.IO.Directory.CreateDirectory(TotPath);
-                            dPath = TotPath + @"\" + row + title + fileExt;
+                            UnCompress(AppVariable.fileNameBakhsh + @"\" + row + title + fileExt, AppVariable.fileNameBakhsh + @"\" + row + title, fileExt);
                         }
 
-                        client.DownloadFileAsync(ur, dPath);
-
-                        client.DownloadFileCompleted += (o, ex) =>
+                        try
                         {
-                            prgLoading.Visibility = Visibility.Hidden;
-                            prgUpdate.Visibility = Visibility.Visible;
-
-                            if (fileExt.Equals(".rar") || fileExt.Equals(".zip"))
-                            {
-                                UnCompress(AppVariable.fileNameBakhsh + @"\" + row + title + fileExt, AppVariable.fileNameBakhsh + @"\" + row + title, fileExt);
-                            }
-
-                            try
-                            {
-                                System.Diagnostics.Process.Start(AppVariable.fileNameBakhsh + row + title);
-                            }
-                            catch (Win32Exception)
-                            {
-                                System.Diagnostics.Process.Start(AppVariable.fileNameBakhsh + title);
-                            }
-                            catch (FileNotFoundException)
-                            {
-                            }
-                        };
-                    }
+                            System.Diagnostics.Process.Start(AppVariable.fileNameBakhsh + row + title);
+                        }
+                        catch (Win32Exception)
+                        {
+                            System.Diagnostics.Process.Start(AppVariable.fileNameBakhsh + title);
+                        }
+                        catch (FileNotFoundException)
+                        {
+                        }
+                    };
+                }
                 }
                 else
                 {
@@ -211,11 +211,11 @@ namespace MoalemYar.UserControls
                     {
                     }
                 }
-            }
+        }
             catch (Exception)
             {
             }
-        }
+}
 
         public void UnCompress(string Open, string Write, string FileExt)
         {
