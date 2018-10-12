@@ -22,7 +22,6 @@ namespace MoalemYar
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-
             AppDomain.CurrentDomain.SetData("DataDirectory", AppVariable.fileName + @"\");
 
             #region Load Embedded Assembly

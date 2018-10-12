@@ -3,5 +3,4 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="Basic/Brushes.xaml" />
     </ResourceDictionary.MergedDictionaries>
-
 </ResourceDictionary>

@@ -69,7 +69,6 @@
                                     </DataTemplate>
                                 </ComboBox.ItemTemplate>
                             </ComboBox>
-
                         </StackPanel>
 
                         <ComboBox

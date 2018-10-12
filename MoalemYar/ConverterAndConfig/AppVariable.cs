@@ -13,7 +13,6 @@ using System;
 using System.Data.SQLite;
 using System.Diagnostics;
 using System.Reflection;
-using System.Windows.Media;
 
 namespace MoalemYar
 {

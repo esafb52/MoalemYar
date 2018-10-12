@@ -110,10 +110,10 @@ namespace MoalemYar
                     Title = "ورود به نرم افزار",
                     WindowStartupLocation = WindowStartupLocation.CenterScreen,
                     HorizontalContentAlignment = HorizontalAlignment.Center,
-                    ShowInTaskbar=true
+                    ShowInTaskbar = true
                 };
-                popupLogin.Closing += (s, e) => {
-
+                popupLogin.Closing += (s, e) =>
+                {
                     e.Cancel = isLogin;
 
                     if (e.Cancel = isLogin)
@@ -123,8 +123,8 @@ namespace MoalemYar
                 {
                     FlowDirection = FlowDirection.RightToLeft
                 };
-                TextBox txtUsername = new TextBox() {TabIndex=0, Style = TryFindResource("TextBoxExtend") as Style, Margin = new System.Windows.Thickness(10) };
-                PasswordBox txtPassword = new PasswordBox() { TabIndex=1, Style = TryFindResource("PasswordBoxExtend") as Style, Margin = new System.Windows.Thickness(10) };
+                TextBox txtUsername = new TextBox() { TabIndex = 0, Style = TryFindResource("TextBoxExtend") as Style, Margin = new System.Windows.Thickness(10) };
+                PasswordBox txtPassword = new PasswordBox() { TabIndex = 1, Style = TryFindResource("PasswordBoxExtend") as Style, Margin = new System.Windows.Thickness(10) };
 
                 InfoElement.SetContentHeight(txtUsername, 35);
                 InfoElement.SetContentHeight(txtPassword, 35);
@@ -136,15 +136,14 @@ namespace MoalemYar
                 InfoElement.SetPlaceholder(txtPassword, "رمز عبور ");
 
                 Style buttonStyle = TryFindResource("ButtonPrimary") as Style;
-                Button btnCancel = new Button { TabIndex=3, IsCancel = true, Margin = new System.Windows.Thickness(10, 0, 10, 0), Style = buttonStyle, Content = "انصراف", Width = 100, HorizontalContentAlignment = HorizontalAlignment.Center };
-                Button btnLogin = new Button { TabIndex=2, IsDefault = true, Margin = new System.Windows.Thickness(10, 0, 10, 0), Style = buttonStyle, Content = "ورود", Width = 100, HorizontalContentAlignment = HorizontalAlignment.Center };
+                Button btnCancel = new Button { TabIndex = 3, IsCancel = true, Margin = new System.Windows.Thickness(10, 0, 10, 0), Style = buttonStyle, Content = "انصراف", Width = 100, HorizontalContentAlignment = HorizontalAlignment.Center };
+                Button btnLogin = new Button { TabIndex = 2, IsDefault = true, Margin = new System.Windows.Thickness(10, 0, 10, 0), Style = buttonStyle, Content = "ورود", Width = 100, HorizontalContentAlignment = HorizontalAlignment.Center };
 
                 btnCancel.Click += (s, e) => { Environment.Exit(0); };
-                btnLogin.Click += (s, e) => {
-
+                btnLogin.Click += (s, e) =>
+                {
                     try
                     {
-
                         using (var db = new DataClass.myDbContext())
                         {
                             var usr = db.Users.Where(x => x.Username == txtUsername.Text && x.Password == txtPassword.Password);
@@ -164,7 +163,6 @@ namespace MoalemYar
                     catch (InvalidOperationException)
                     {
                     }
-
                 };
 
                 StackPanel btnStack = new StackPanel { Orientation = Orientation.Horizontal, Margin = new Thickness(10), HorizontalAlignment = HorizontalAlignment.Center };
@@ -179,7 +177,6 @@ namespace MoalemYar
                 popupLogin.Child = mainStack;
 
                 popupLogin.ShowDialog();
-
             }
         }
 

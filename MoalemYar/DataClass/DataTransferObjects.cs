@@ -54,6 +54,7 @@ namespace MoalemYar.DataClass
 
             public int Scores { get; set; }
         }
+
         public class StudentAttendanceListDto
         {
             public long Id { get; set; }

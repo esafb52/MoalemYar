@@ -282,7 +282,6 @@ namespace MoalemYar.UserControls
 
                         //remove items from list
                         UpdateList(Convert.ToInt64(selectedItem.Id), 10);
-
                     }
                 }
             }

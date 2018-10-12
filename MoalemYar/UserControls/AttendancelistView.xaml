@@ -268,7 +268,6 @@
                                                             IsChecked="{Binding Exist}"
                                                             Style="{StaticResource ToggleButtonSwitch}" />
                                                     </StackPanel>
-
                                                 </DataTemplate>
                                             </DataGridTemplateColumn.CellTemplate>
                                         </DataGridTemplateColumn>

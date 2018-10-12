@@ -26,7 +26,6 @@
                                         Margin="10"
                                         Style="{StaticResource TextBlockSubTitle}"
                                         Text="اجرای خودکار" />
-
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
                                     <ToggleButton
@@ -39,7 +38,6 @@
                                         Margin="10"
                                         Style="{StaticResource TextBlockSubTitle}"
                                         Text="ورود با رمز عبور" />
-
                                 </StackPanel>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">

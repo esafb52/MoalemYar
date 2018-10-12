@@ -160,7 +160,6 @@
                                             </DataTemplate>
                                         </ComboBox.ItemTemplate>
                                     </ComboBox>
-
                                 </StackPanel>
                                 <Grid Grid.Column="1">
                                     <StackPanel HorizontalAlignment="Left" Orientation="Vertical">
@@ -195,7 +194,6 @@
                                             Width="200"
                                             Height="200"
                                             VerticalAlignment="Top" />
-
                                     </StackPanel>
                                 </Grid>
                             </Grid>

@@ -209,7 +209,6 @@
                                 </DataGridTemplateColumn>
                             </DataGrid.Columns>
                         </DataGrid>
-
                     </Grid>
                 </controls:TabItem>
                 <controls:TabItem Header="ویرایش اطلاعات" IsSelected="True">
@@ -344,7 +343,6 @@
                                                 </DataTemplate>
                                             </ComboBox.ItemTemplate>
                                         </ComboBox>
-
                                     </StackPanel>
                                     <TextBox
                                         x:Name="txtEditSearch"

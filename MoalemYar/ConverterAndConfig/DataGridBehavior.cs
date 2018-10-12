@@ -1,13 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
-using System.Windows.Input;
 using System.Windows.Media;
 
 namespace MoalemYar.UserControls
@@ -21,10 +16,12 @@ namespace MoalemYar.UserControls
                                                 typeof(bool),
                                                 typeof(DataGridBehavior),
                                                 new FrameworkPropertyMetadata(false, OnDisplayRowNumberChanged));
+
         public static bool GetDisplayRowNumber(DependencyObject target)
         {
             return (bool)target.GetValue(DisplayRowNumberProperty);
         }
+
         public static void SetDisplayRowNumber(DependencyObject target, bool value)
         {
             target.SetValue(DisplayRowNumberProperty, value);
@@ -43,7 +40,7 @@ namespace MoalemYar.UserControls
                         dataGrid.LoadingRow -= loadedRowHandler;
                         return;
                     }
-                    ea.Row.Header = ea.Row.GetIndex()+1;
+                    ea.Row.Header = ea.Row.GetIndex() + 1;
                 };
                 dataGrid.LoadingRow += loadedRowHandler;
 
@@ -62,7 +59,7 @@ namespace MoalemYar.UserControls
             }
         }
 
-        #endregion // DisplayRowNumber
+        #endregion DisplayRowNumber
 
         #region Get Visuals
 
@@ -90,6 +87,6 @@ namespace MoalemYar.UserControls
             }
         }
 
-        #endregion // Get Visuals
+        #endregion Get Visuals
     }
 }

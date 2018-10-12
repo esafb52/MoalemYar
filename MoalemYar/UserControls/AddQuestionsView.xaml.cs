@@ -241,6 +241,7 @@ namespace MoalemYar.UserControls
                 MainWindow.main.ShowDeletedNotification(false, "", "سوال");
             }
         }
+
         private void setComboValue(string index)
         {
             switch (index)

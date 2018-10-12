@@ -31,7 +31,8 @@ namespace MoalemYar.UserControls
         private bool isCreateThumbnail = false;
         internal static AddStudentView main;
         private List<DataClass.DataTransferObjects.SchoolsStudentsJointDto> _initialCollection;
-        uint thumbSize = 450;
+        private uint thumbSize = 450;
+
         public AddStudentView()
         {
             InitializeComponent();
@@ -216,8 +217,6 @@ namespace MoalemYar.UserControls
             editStack.IsEnabled = false;
         }
 
-        
-
         private void setComboValue(string index)
         {
             switch (index)
@@ -361,7 +360,7 @@ namespace MoalemYar.UserControls
                     uint fixedValue = 450 - mines - 10;
                     thumbSize = fixedValue;
                 }
-                
+
                 imgEditStudent.Source = new BitmapImage(new Uri(dialog.FileName));
                 isCreateThumbnail = true;
             }
