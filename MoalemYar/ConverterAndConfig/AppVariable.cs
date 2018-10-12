@@ -57,13 +57,6 @@ namespace MoalemYar
         public static double NotificationAnimOutDur = 0.5;
         public static int NotificationDelay = 2;
 
-        public static System.Windows.Media.Brush GetBrush(string ColorString)
-        {
-            var color = (System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString(ColorString);
-            var brush = new SolidColorBrush(color);
-            return brush;
-        }
-
         public static void RegisterInStartup(bool isChecked)
         {
             var productName = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).ProductName;
