@@ -8,7 +8,6 @@
 *
 ***********************************************************************************/
 
-using Ookii.Dialogs.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -323,7 +322,7 @@ namespace MoalemYar.UserControls
 
         private void btnChoose_Click(object sender, RoutedEventArgs e)
         {
-            VistaOpenFileDialog dialog = new VistaOpenFileDialog();
+            var dialog = new Microsoft.Win32.OpenFileDialog();
             var imageExtensions = string.Join(";", ImageCodecInfo.GetImageDecoders().Select(ici => ici.FilenameExtension));
             dialog.Filter = string.Format("تصاویر|{0}|تمام فایل ها|*.*", imageExtensions);
 
@@ -346,7 +345,7 @@ namespace MoalemYar.UserControls
 
         private void btnEditChoose_Click(object sender, RoutedEventArgs e)
         {
-            VistaOpenFileDialog dialog = new VistaOpenFileDialog();
+            var dialog = new Microsoft.Win32.OpenFileDialog();
             var imageExtensions = string.Join(";", ImageCodecInfo.GetImageDecoders().Select(ici => ici.FilenameExtension));
             dialog.Filter = string.Format("تصاویر|{0}|تمام فایل ها|*.*", imageExtensions);
             if ((bool)dialog.ShowDialog())

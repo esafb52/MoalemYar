@@ -12,12 +12,12 @@ using Enterwell.Clients.Wpf.Notifications;
 using HandyControl.Controls;
 using MoalemYar.UserControls;
 using MVVMC;
-using Ookii.Dialogs.Wpf;
 using System;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace MoalemYar
 {
@@ -99,55 +99,86 @@ namespace MoalemYar
 
         private void ShowCredentialDialog()
         {
-            try
+            var isLogin = FindElement.Settings.CredentialLogin;
+            if (isLogin)
             {
-                var isLogin = FindElement.Settings.CredentialLogin;
-                if (isLogin)
+                PopupWindow popupLogin = new PopupWindow()
                 {
-                    using (CredentialDialog dialog = new CredentialDialog())
-                    {
-                        dialog.WindowTitle = "ورود به نرم افزار";
-                        dialog.MainInstruction = "لطفا نام کاربری و رمز عبور خود را وارد کنید";
-                        //dialog.Content = "";
-                        dialog.ShowSaveCheckBox = true;
-                        dialog.ShowUIForSavedCredentials = true;
-                        // The target is the key under which the credentials will be stored.
-                        dialog.Target = "Mahdi72_MoalemYar_www.127.0.0.1.com";
+                    MinWidth = 400,
+                    FontFamily = TryFindResource("TeacherYar.Fonts.IRANSans") as FontFamily,
+                    FontSize = 14,
+                    Title = "ورود به نرم افزار",
+                    WindowStartupLocation = WindowStartupLocation.CenterScreen,
+                    HorizontalContentAlignment = HorizontalAlignment.Center
+                };
+                popupLogin.Closing += (s, e) => {
 
-                        try
+                    e.Cancel = isLogin;
+
+                    if (e.Cancel = isLogin)
+                        Environment.Exit(0);
+                };
+                StackPanel mainStack = new StackPanel()
+                {
+                    FlowDirection = FlowDirection.RightToLeft
+                };
+                TextBox txtUsername = new TextBox() {TabIndex=0, Style = TryFindResource("TextBoxExtend") as Style, Margin = new System.Windows.Thickness(10) };
+                PasswordBox txtPassword = new PasswordBox() { TabIndex=1, Style = TryFindResource("PasswordBoxExtend") as Style, Margin = new System.Windows.Thickness(10) };
+
+                InfoElement.SetContentHeight(txtUsername, 35);
+                InfoElement.SetContentHeight(txtPassword, 35);
+
+                InfoElement.SetTitle(txtUsername, "نام کاربری و رمز عبور خود را وارد کنید");
+                InfoElement.SetTitleAlignment(txtUsername, HandyControl.Data.Enum.TitleAlignment.Top);
+
+                InfoElement.SetPlaceholder(txtUsername, "نام کاربری");
+                InfoElement.SetPlaceholder(txtPassword, "رمز عبور ");
+
+                Style buttonStyle = TryFindResource("ButtonPrimary") as Style;
+                Button btnCancel = new Button { TabIndex=3, IsCancel = true, Margin = new System.Windows.Thickness(10, 0, 10, 0), Style = buttonStyle, Content = "انصراف", Width = 100, HorizontalContentAlignment = HorizontalAlignment.Center };
+                Button btnLogin = new Button { TabIndex=2, IsDefault = true, Margin = new System.Windows.Thickness(10, 0, 10, 0), Style = buttonStyle, Content = "ورود", Width = 100, HorizontalContentAlignment = HorizontalAlignment.Center };
+
+                btnCancel.Click += (s, e) => { Environment.Exit(0); };
+                btnLogin.Click += (s, e) => {
+
+                    try
+                    {
+
+                        using (var db = new DataClass.myDbContext())
                         {
-                            while (isLogin)
+                            var usr = db.Users.Where(x => x.Username == txtUsername.Text && x.Password == txtPassword.Password);
+                            if (usr.Any())
                             {
-                                if (dialog.ShowDialog(this))
-                                {
-                                    using (var db = new DataClass.myDbContext())
-                                    {
-                                        var usr = db.Users.Where(x => x.Username == dialog.Credentials.UserName && x.Password == dialog.Credentials.Password);
-                                        if (usr.Any())
-                                        {
-                                            dialog.ConfirmCredentials(true);
-                                            isLogin = false;
-                                        }
-                                        else
-                                        {
-                                            dialog.Content = "مشخصات اشتباه است دوباره امتحان کنید";
-                                        }
-                                    }
-                                }
-                                else
-                                {
-                                    Environment.Exit(0);
-                                }
+                                isLogin = false;
+                                popupLogin.Close();
+                            }
+                            else
+                            {
+                                txtPassword.Focus();
+                                txtPassword.Password = string.Empty;
+                                InfoElement.SetPlaceholder(txtPassword, "مشخصات اشتباه است دوباره امتحان کنید");
                             }
                         }
-                        catch (InvalidOperationException)
-                        {
-                        }
                     }
-                }
-            }
-            catch (Exception)
-            {
+                    catch (InvalidOperationException)
+                    {
+                    }
+
+                };
+
+                StackPanel btnStack = new StackPanel { Orientation = Orientation.Horizontal, Margin = new Thickness(10), HorizontalAlignment = HorizontalAlignment.Center };
+
+                btnStack.Children.Add(btnLogin);
+                btnStack.Children.Add(btnCancel);
+
+                mainStack.Children.Add(txtUsername);
+                mainStack.Children.Add(txtPassword);
+                mainStack.Children.Add(btnStack);
+
+                popupLogin.Child = mainStack;
+
+                popupLogin.ShowDialog();
+
             }
         }
 
