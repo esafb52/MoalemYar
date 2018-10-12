@@ -341,14 +341,13 @@ namespace MoalemYar.UserControls
             MyCHK1.IsEnabled = MyCHK2.IsEnabled = MyCHK3.IsEnabled = MyCHK4.IsEnabled = false;
 
             dynamic selectedItem = dataGrid.SelectedItems[0];
-            var element = FindElement.FindElementByName<ComboBox>(cmbBook, "cmbBook");
             var selectedChk = sender as ToggleButton;
             string newStatus = string.Empty;
 
             if (MyTextBlock.Text == "ثبت نشده")
             {
                 if (isQuestion.IsChecked == true)
-                    addQuestion((long)selectedItem.BaseId, (long)selectedItem.Id, element.SelectedItem.ToString());
+                    addQuestion((long)selectedItem.BaseId, (long)selectedItem.Id, cmbBook.SelectedItem.ToString());
 
                 switch ((selectedChk).Tag.ToString())
                 {
@@ -369,7 +368,7 @@ namespace MoalemYar.UserControls
                         newStatus = "نیاز به تلاش بیشتر";
                         break;
                 }
-                addScore((long)selectedItem.Id, element.SelectedItem.ToString(), txtDate.SelectedDate.ToString(), newStatus, (txtDesc.Text == string.Empty ? "بدون توضیحات" : txtDesc.Text));
+                addScore((long)selectedItem.Id, cmbBook.SelectedItem.ToString(), txtDate.SelectedDate.ToString(), newStatus, (txtDesc.Text == string.Empty ? "بدون توضیحات" : txtDesc.Text));
                 MyTextBlock.Foreground = new SolidColorBrush(Colors.Green);
                 MyTextBlock.Text = newStatus + " ثبت شده ";
             }
@@ -379,7 +378,7 @@ namespace MoalemYar.UserControls
 
             if (!_initialCollection.Any())
             {
-                deleteQuestion((long)cmbBase.SelectedValue, element.SelectedItem.ToString());
+                deleteQuestion((long)cmbBase.SelectedValue, cmbBook.SelectedItem.ToString());
             }
         }
 
