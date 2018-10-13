@@ -80,7 +80,7 @@ namespace MoalemYar.UserControls
                 else
                 {
                     dataGrid.ItemsSource = null;
-                    MainWindow.main.ShowNoDataNotification("AQuestions");
+                    MainWindow.main.showNotification(NotificationKEY: AppVariable.No_Data_KEY, param: "AQuestions");
                 }
             }
             catch (Exception)
@@ -104,7 +104,7 @@ namespace MoalemYar.UserControls
                     else
                     {
                         dataGrid.ItemsSource = null;
-                        MainWindow.main.ShowNoDataNotification("Group");
+                        MainWindow.main.showNotification(NotificationKEY: AppVariable.No_Data_KEY, param: "Group");
                     }
                 }
             }
@@ -169,7 +169,7 @@ namespace MoalemYar.UserControls
             int answ = 0;
             if (txtQuestionText.Text == string.Empty || txtCase1.Text == string.Empty || txtCase2.Text == string.Empty || txtCase3.Text == string.Empty || txtCase4.Text == string.Empty || cmbBase.SelectedIndex == -1 || cmbGroup.SelectedIndex == -1 || cmbEditBase.SelectedIndex == -1)
             {
-                MainWindow.main.ShowFillAllDataNotification();
+                MainWindow.main.showNotification(NotificationKEY: AppVariable.Fill_All_Data_KEY);
             }
             else
             {
@@ -194,7 +194,7 @@ namespace MoalemYar.UserControls
                             break;
                     }
                     addAQuestions(Convert.ToInt64(cmbGroup.SelectedValue), cmbBase.Text, txtQuestionText.Text, txtCase1.Text, txtCase2.Text, txtCase3.Text, txtCase4.Text, answ, strDate);
-                    MainWindow.main.ShowAddDataNotification(true, "", "سوال");
+                    MainWindow.main.showNotification(AppVariable.Add_Data_KEY, true, "", "سوال");
                     txtCase1.Text = string.Empty;
                     txtCase2.Text = string.Empty;
                     txtCase3.Text = string.Empty;
@@ -204,7 +204,7 @@ namespace MoalemYar.UserControls
                 }
                 catch (Exception)
                 {
-                    MainWindow.main.ShowAddDataNotification(false, "", "سوال");
+                    MainWindow.main.showNotification(AppVariable.Add_Data_KEY, false, "", "سوال");
                 }
             }
         }
@@ -222,7 +222,7 @@ namespace MoalemYar.UserControls
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.main.ShowDeleteConfirmNotification("", "سوال");
+            MainWindow.main.showNotification(NotificationKEY: AppVariable.Delete_Confirm_KEY, param: new[] { string.Empty, "سوال" });
         }
 
         public void deleteGroup()
@@ -232,13 +232,13 @@ namespace MoalemYar.UserControls
                 dynamic selectedItem = dataGrid.SelectedItems[0];
                 long id = selectedItem.Id;
                 deleteAQuestions(id);
-                MainWindow.main.ShowDeletedNotification(true, "", "سوال");
+                MainWindow.main.showNotification(AppVariable.Deleted_KEY, true, "", "سوال");
                 editStack.IsEnabled = false;
                 getAQuestions(Convert.ToInt64(cmbBaseEdit.SelectedValue));
             }
             catch (Exception)
             {
-                MainWindow.main.ShowDeletedNotification(false, "", "سوال");
+                MainWindow.main.showNotification(AppVariable.Deleted_KEY, false, "", "سوال");
             }
         }
 
@@ -335,7 +335,7 @@ namespace MoalemYar.UserControls
                 dynamic selectedItem = dataGrid.SelectedItems[0];
                 long id = selectedItem.Id;
                 updateAQuestions(id, Convert.ToInt64(cmbGroupEdit.SelectedValue), cmbBaseEditData.Text, txtEditQuestionText.Text, txtEditCase1.Text, txtEditCase2.Text, txtEditCase3.Text, txtEditCase4.Text, Convert.ToInt32(cmbEditAnswersData.Text), txtDateEdit.SelectedDate.ToString());
-                MainWindow.main.ShowUpdateDataNotification(true, "", "سوال");
+                MainWindow.main.showNotification(AppVariable.Update_Data_KEY, true, string.Empty, "سوال");
                 editStack.IsEnabled = false;
                 getAQuestions(Convert.ToInt64(cmbBaseEdit.SelectedValue));
             }

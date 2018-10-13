@@ -91,7 +91,7 @@ namespace MoalemYar.UserControls
                 else
                 {
                     cmbEditStudent.ItemsSource = null;
-                    MainWindow.main.ShowNoDataNotification("Student");
+                    MainWindow.main.showNotification(NotificationKEY: AppVariable.No_Data_KEY, param: "Student");
                 }
             }
             catch (Exception)
@@ -113,7 +113,7 @@ namespace MoalemYar.UserControls
                     else
                     {
                         cmbGroup.ItemsSource = null;
-                        MainWindow.main.ShowNoDataNotification("Group");
+                        MainWindow.main.showNotification(NotificationKEY: AppVariable.No_Data_KEY, param: "Group");
                     }
                 }
             }
@@ -136,7 +136,7 @@ namespace MoalemYar.UserControls
         {
             if (string.IsNullOrWhiteSpace(txtTedad.Text) || txtTedad.Text == "0" || txtTedad.Text == "تعداد سوالات" || cmbGroup.SelectedIndex == -1 || cmbEditStudent.SelectedIndex == -1)
             {
-                MainWindow.main.ShowFillAllDataNotification();
+                MainWindow.main.showNotification(NotificationKEY: AppVariable.Fill_All_Data_KEY);
                 return;
             }
             else
@@ -152,7 +152,7 @@ namespace MoalemYar.UserControls
                         result = db.AQuestions.Where(x => x.GroupId == id && x.Class == classText).Take(Convert.ToInt32(txtTedad.Text)).ToList();
 
                     if (result.Count < Convert.ToInt32(txtTedad.Text))
-                        MainWindow.main.ShowAzmonNotification();
+                        MainWindow.main.showNotification(NotificationKEY: AppVariable.Azmon_KEY);
                     else
                     {
                         QN = 0;

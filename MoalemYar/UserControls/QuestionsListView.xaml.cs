@@ -148,7 +148,7 @@ namespace MoalemYar.UserControls
                 else
                 {
                     cmbEditStudent.ItemsSource = null;
-                    MainWindow.main.ShowNoDataNotification("Student");
+                    MainWindow.main.showNotification(NotificationKEY: AppVariable.No_Data_KEY, param: "Student");
                 }
             }
             catch (Exception)
@@ -172,7 +172,7 @@ namespace MoalemYar.UserControls
                     {
                         stEdit.IsEnabled = false;
                         dataGridEdit.ItemsSource = null;
-                        MainWindow.main.ShowNoDataNotification("Score");
+                        MainWindow.main.showNotification(NotificationKEY: AppVariable.No_Data_KEY, param: "Score");
                     }
                 }
             }
@@ -194,7 +194,7 @@ namespace MoalemYar.UserControls
             else
             {
                 dataGrid.ItemsSource = null;
-                MainWindow.main.ShowNoDataNotification("Question");
+                MainWindow.main.showNotification(NotificationKEY: AppVariable.No_Data_KEY, param: "Question");
             }
         }
 
@@ -393,12 +393,12 @@ namespace MoalemYar.UserControls
                 long id = selectedItem.Id;
 
                 updateScore(id, Convert.ToInt64(cmbEditStudent.SelectedValue), cmbScore.Text, txtDateEdit.SelectedDate.ToString(), cmbBookEdit.Text, txtDescEdit.Text);
-                MainWindow.main.ShowUpdateDataNotification(true, selectedItemName.Name + " " + selectedItemName.LName, "نمره");
+                MainWindow.main.showNotification(AppVariable.Update_Data_KEY, true, selectedItemName.Name + " " + selectedItemName.LName, "نمره");
                 getScores(Convert.ToInt64(cmbEditStudent.SelectedValue));
             }
             catch (Exception)
             {
-                MainWindow.main.ShowUpdateDataNotification(false, selectedItemName.Name + " " + selectedItemName.LName, "نمره");
+                MainWindow.main.showNotification(AppVariable.Update_Data_KEY, false, selectedItemName.Name + " " + selectedItemName.LName, "نمره");
             }
         }
 
@@ -421,7 +421,8 @@ namespace MoalemYar.UserControls
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             dynamic selectedItem = cmbEditStudent.SelectedItem;
-            MainWindow.main.ShowDeleteConfirmNotification(selectedItem.Name + " " + selectedItem.LName, "نمره");
+            string par0 = Convert.ToString(selectedItem.Name + " " + selectedItem.LName);
+            MainWindow.main.showNotification(NotificationKEY: AppVariable.Delete_Confirm_KEY, param: new[] { par0, "نمره" });
         }
 
         public void deleteScore()
@@ -432,12 +433,12 @@ namespace MoalemYar.UserControls
                 dynamic selectedItem = dataGridEdit.SelectedItems[0];
                 long id = selectedItem.Id;
                 deleteScore(id);
-                MainWindow.main.ShowDeletedNotification(true, selectedItemName.Name + " " + selectedItemName.LName, "نمره");
+                MainWindow.main.showNotification(AppVariable.Deleted_KEY, true, selectedItemName.Name + " " + selectedItemName.LName, "نمره");
                 getScores(Convert.ToInt64(cmbEditStudent.SelectedValue));
             }
             catch (Exception)
             {
-                MainWindow.main.ShowDeletedNotification(false, selectedItemName.Name + " " + selectedItemName.LName, "نمره");
+                MainWindow.main.showNotification(AppVariable.Deleted_KEY, false, selectedItemName.Name + " " + selectedItemName.LName, "نمره");
             }
         }
 

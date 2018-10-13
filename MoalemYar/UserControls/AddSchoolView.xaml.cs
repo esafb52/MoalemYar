@@ -54,7 +54,7 @@ namespace MoalemYar.UserControls
                     else
                     {
                         dataGrid.ItemsSource = null;
-                        MainWindow.main.ShowNoDataNotification("School");
+                        MainWindow.main.showNotification(NotificationKEY: AppVariable.No_Data_KEY, param: "School");
                     }
                 }
             }
@@ -70,14 +70,14 @@ namespace MoalemYar.UserControls
                 var checkQuery = db.Students.Where(x => x.BaseId == id).Any();
                 if (checkQuery)
                 {
-                    MainWindow.main.ShowDeleteExistNotification("مدرسه", "دانش آموزان");
+                    MainWindow.main.showNotification(NotificationKEY: AppVariable.Delete_Exist_KEY, param: new[] { "مدرسه", "دانش آموزان" });
                 }
                 else
                 {
                     var DeleteSchool = db.Schools.Find(id);
                     db.Schools.Remove(DeleteSchool);
                     db.SaveChanges();
-                    MainWindow.main.ShowDeletedNotification(true, txtSchool.Text, "مدرسه");
+                    MainWindow.main.showNotification(AppVariable.Deleted_KEY, true, txtSchool.Text, "مدرسه");
                 }
             }
         }
@@ -124,13 +124,13 @@ namespace MoalemYar.UserControls
                 dynamic selectedItem = dataGrid.SelectedItems[0];
                 long id = selectedItem.Id;
                 updateSchool(id, txtSchool.Text, cmbEditBase.Text, txtAdmin.Text, txtYear.Text);
-                MainWindow.main.ShowUpdateDataNotification(true, txtSchool.Text, "مدرسه");
+                MainWindow.main.showNotification(AppVariable.Update_Data_KEY, true, txtSchool.Text, "مدرسه");
                 editGrid.IsEnabled = false;
                 getSchool();
             }
             catch (Exception)
             {
-                MainWindow.main.ShowUpdateDataNotification(false, txtSchool.Text, "مدرسه");
+                MainWindow.main.showNotification(AppVariable.Update_Data_KEY, false, txtSchool.Text, "مدرسه");
             }
         }
 
@@ -200,28 +200,28 @@ namespace MoalemYar.UserControls
         {
             if (txtAddSchool.Text == string.Empty || txtAddAdmin.Text == string.Empty || txtAddYear.Text == string.Empty || cmbBase.SelectedIndex == -1)
             {
-                MainWindow.main.ShowFillAllDataNotification();
+                MainWindow.main.showNotification(NotificationKEY: AppVariable.Fill_All_Data_KEY);
             }
             else
             {
                 try
                 {
                     addSchool(txtAddSchool.Text, cmbBase.Text, txtAddAdmin.Text, txtAddYear.Text);
-                    MainWindow.main.ShowAddDataNotification(true, txtAddSchool.Text, "مدرسه");
+                    MainWindow.main.showNotification(AppVariable.Add_Data_KEY, true, txtAddSchool.Text, "مدرسه");
                     txtAddAdmin.Text = string.Empty;
                     txtAddSchool.Text = string.Empty;
                     txtAddSchool.Focus();
                 }
                 catch (Exception)
                 {
-                    MainWindow.main.ShowAddDataNotification(false, txtAddSchool.Text, "مدرسه");
+                    MainWindow.main.showNotification(AppVariable.Add_Data_KEY, false, txtAddSchool.Text, "مدرسه");
                 }
             }
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.main.ShowDeleteConfirmNotification(txtSchool.Text, "مدرسه");
+            MainWindow.main.showNotification(NotificationKEY: AppVariable.Delete_Confirm_KEY, param:new[] { txtSchool.Text, "مدرسه" });
         }
 
         public void deleteSchool()
@@ -236,7 +236,7 @@ namespace MoalemYar.UserControls
             }
             catch (Exception)
             {
-                MainWindow.main.ShowDeletedNotification(false, txtSchool.Text, "مدرسه");
+                MainWindow.main.showNotification(AppVariable.Deleted_KEY, false, txtSchool.Text, "مدرسه");
             }
         }
 

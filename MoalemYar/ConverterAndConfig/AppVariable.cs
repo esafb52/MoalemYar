@@ -42,6 +42,25 @@ namespace MoalemYar
 
         #endregion App Details
 
+        #region Notification KEY
+
+        public static string Delete_Confirm_KEY = "DeleteConfirm";
+        public static string Reset_Data_Confirm_KEY = "ResetDataConfirm";
+        public static string Data_Reset_Deleted_KEY = "DataResetDeleted";
+        public static string Same_Password_KEY = "SamePassword";
+        public static string Delete_Exist_KEY = "DeleteExist";
+        public static string Azmon_KEY = "Azmon";
+        public static string Fill_All_Data_KEY = "FillAllData";
+        public static string No_Data_KEY = "NoData";
+        public static string Backup_KEY = "Backup";
+        public static string Recived_Circular_KEY = "RecivedCircular";
+        public static string Update_Data_KEY = "UpdateData";
+        public static string Deleted_KEY = "Deleted";
+        public static string Add_Data_KEY = "AddData";
+        public static string Update_KEY = "Update";
+
+        #endregion
+
         #region Colors
 
         public const string GREEN = "#4CAF50";
@@ -112,12 +131,12 @@ namespace MoalemYar
                         destination.Open();
                         source.BackupDatabase(destination, "main", "main", -1, null, 0);
                     }
-                    MainWindow.main.ShowBackupNotification(true, "پشتیبان گیری از اطلاعات ");
+                    MainWindow.main.showNotification(Backup_KEY, true, "پشتیبان گیری از اطلاعات ");
                 }
             }
             catch (Exception)
             {
-                MainWindow.main.ShowBackupNotification(false, "پشتیبان گیری از اطلاعات ");
+                MainWindow.main.showNotification(Backup_KEY, false, "پشتیبان گیری از اطلاعات ");
             }
         }
 
@@ -134,12 +153,12 @@ namespace MoalemYar
                 if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
                     System.IO.File.Copy(openFileDialog1.FileName, AppVariable.fileName + @"\data.db", true);
-                    MainWindow.main.ShowBackupNotification(true, "بازگردانی اطلاعات ");
+                    MainWindow.main.showNotification(Backup_KEY, true, "بازگردانی اطلاعات ");
                 }
             }
             catch (Exception)
             {
-                MainWindow.main.ShowBackupNotification(false, "بازگردانی اطلاعات ");
+                MainWindow.main.showNotification(Backup_KEY, false, "بازگردانی اطلاعات ");
             }
         }
 

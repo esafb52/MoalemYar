@@ -51,7 +51,7 @@ namespace MoalemYar.UserControls
                     }
                     else
                     {
-                        MainWindow.main.ShowNoDataNotification(null);
+                        MainWindow.main.showNotification(NotificationKEY: AppVariable.No_Data_KEY, param: string.Empty);
                     }
                 }
             }

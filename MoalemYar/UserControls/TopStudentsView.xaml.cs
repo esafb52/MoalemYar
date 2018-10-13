@@ -79,7 +79,7 @@ namespace MoalemYar.UserControls
                 else
                 {
                     dataGrid.ItemsSource = null;
-                    MainWindow.main.ShowNoDataNotification("TopStudent");
+                    MainWindow.main.showNotification(NotificationKEY: AppVariable.No_Data_KEY, param: "TopStudent");
                 }
             }
             catch (Exception)
