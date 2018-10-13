@@ -130,7 +130,7 @@ namespace MoalemYar.UserControls
                 {
                     this.dataGrid.ItemsSource = null;
                     swAllPresent.IsEnabled = false;
-                    MainWindow.main.ShowNoDataNotification("Student");
+                    MainWindow.main.ShowNoDataNotification("Question");
                 }
             }
             catch (Exception)
