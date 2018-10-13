@@ -235,7 +235,7 @@ namespace MoalemYar
                    }
                })
                .Dismiss().WithButton("بیخیال", button => { })
-                .Animates(true)
+               .Animates(false)
                .AnimationInDuration(AppVariable.NotificationAnimInDur)
                .AnimationOutDuration(AppVariable.NotificationAnimOutDur)
                .Dismiss().WithDelay(TimeSpan.FromSeconds(AppVariable.NotificationDelay));
@@ -253,7 +253,7 @@ namespace MoalemYar
                                .HasBadge("اطلاعیه")
                                .HasMessage($"{BackupOrRestore} با موفقیت انجام شد")
                                .Dismiss().WithButton("باشه", button => { })
-                               .Animates(true)
+                               .Animates(false)
                                .AnimationInDuration(AppVariable.NotificationAnimInDur)
                                .AnimationOutDuration(AppVariable.NotificationAnimOutDur)
                                .Dismiss().WithDelay(TimeSpan.FromSeconds(AppVariable.NotificationDelay));
@@ -268,7 +268,7 @@ namespace MoalemYar
                                .HasBadge("هشدار")
                                .HasMessage($"{BackupOrRestore} با مشکل مواجه شد")
                                .Dismiss().WithButton("باشه", button => { })
-                               .Animates(true)
+                               .Animates(false)
                                .AnimationInDuration(AppVariable.NotificationAnimInDur)
                                .AnimationOutDuration(AppVariable.NotificationAnimOutDur)
                                .Dismiss().WithDelay(TimeSpan.FromSeconds(AppVariable.NotificationDelay));
@@ -285,7 +285,7 @@ namespace MoalemYar
                .HasBadge("هشدار")
                .HasMessage("لطفا تمام فیلدها را پر کنید")
                .Dismiss().WithButton("باشه", button => { })
-               .Animates(true)
+               .Animates(false)
                .AnimationInDuration(AppVariable.NotificationAnimInDur)
                .AnimationOutDuration(AppVariable.NotificationAnimOutDur)
                .Dismiss().WithDelay(TimeSpan.FromSeconds(AppVariable.NotificationDelay));
@@ -301,7 +301,7 @@ namespace MoalemYar
                .HasBadge("هشدار")
                .HasMessage("تعداد سوالات وارد شده بیشتر از سوالات موجود است")
                .Dismiss().WithButton("باشه", button => { })
-               .Animates(true)
+               .Animates(false)
                .AnimationInDuration(AppVariable.NotificationAnimInDur)
                .AnimationOutDuration(AppVariable.NotificationAnimOutDur)
                .Dismiss().WithDelay(TimeSpan.FromSeconds(AppVariable.NotificationDelay));
@@ -319,7 +319,7 @@ namespace MoalemYar
                                .HasBadge("اطلاعیه")
                                .HasMessage("تمامی بخشنامه ها با موفقیت دریافت شد")
                                .Dismiss().WithButton("باشه", button => { })
-                               .Animates(true)
+                               .Animates(false)
                                .AnimationInDuration(AppVariable.NotificationAnimInDur)
                                .AnimationOutDuration(AppVariable.NotificationAnimOutDur)
                                .Dismiss().WithDelay(TimeSpan.FromSeconds(AppVariable.NotificationDelay));
@@ -334,7 +334,7 @@ namespace MoalemYar
                                .HasBadge("هشدار")
                                .HasMessage("درحال حاظر سرور در دسترس نیست! لطفا در صورت فعال بودن، VPN خود را غیرفعال کنید")
                                .Dismiss().WithButton("باشه", button => { })
-                               .Animates(true)
+                               .Animates(false)
                                .AnimationInDuration(AppVariable.NotificationAnimInDur)
                                .AnimationOutDuration(AppVariable.NotificationAnimOutDur)
                                .Dismiss().WithDelay(TimeSpan.FromSeconds(AppVariable.NotificationDelay));
@@ -351,7 +351,7 @@ namespace MoalemYar
                .HasBadge("هشدار")
                .HasMessage(string.Format("نمی توان این {0} را حذف کرد، ابتدا {1} این {0} را حذف کنید", Type, Type2))
                .Dismiss().WithButton("باشه", button => { })
-               .Animates(true)
+               .Animates(false)
                .AnimationInDuration(AppVariable.NotificationAnimInDur)
                .AnimationOutDuration(AppVariable.NotificationAnimOutDur)
                .Dismiss().WithDelay(TimeSpan.FromSeconds(AppVariable.NotificationDelay));
@@ -367,7 +367,7 @@ namespace MoalemYar
                .HasBadge("هشدار")
                .HasMessage("رمز های عبور باید یکسان باشند")
                .Dismiss().WithButton("باشه", button => { })
-               .Animates(true)
+               .Animates(false)
                .AnimationInDuration(AppVariable.NotificationAnimInDur)
                .AnimationOutDuration(AppVariable.NotificationAnimOutDur)
                .Dismiss().WithDelay(TimeSpan.FromSeconds(AppVariable.NotificationDelay));
@@ -385,7 +385,7 @@ namespace MoalemYar
                .HasBadge("اطلاعیه")
                .HasMessage(string.Format("{1} {0} با موفقیت ویرایش شد", Name, Type))
                .Dismiss().WithButton("باشه", button => { })
-               .Animates(true)
+               .Animates(false)
                .AnimationInDuration(AppVariable.NotificationAnimInDur)
                .AnimationOutDuration(AppVariable.NotificationAnimOutDur)
                .Dismiss().WithDelay(TimeSpan.FromSeconds(AppVariable.NotificationDelay));
@@ -400,7 +400,7 @@ namespace MoalemYar
                .HasBadge("هشدار")
                .HasMessage(string.Format("ویرایش {1} {0} با خطا مواجه شد", Name, Type))
                .Dismiss().WithButton("دوباره امتحان کنید", button => { })
-               .Animates(true)
+               .Animates(false)
                .AnimationInDuration(AppVariable.NotificationAnimInDur)
                .AnimationOutDuration(AppVariable.NotificationAnimOutDur)
                .Dismiss().WithDelay(TimeSpan.FromSeconds(AppVariable.NotificationDelay));
@@ -419,7 +419,7 @@ namespace MoalemYar
                    .HasBadge("اطلاعیه")
                    .HasMessage(string.Format("{1} {0} با موفقیت حذف شد", Name, Type))
                    .Dismiss().WithButton("باشه", button => { })
-                   .Animates(true)
+                   .Animates(false)
                .AnimationInDuration(AppVariable.NotificationAnimInDur)
                .AnimationOutDuration(AppVariable.NotificationAnimOutDur)
                .Dismiss().WithDelay(TimeSpan.FromSeconds(AppVariable.NotificationDelay));
@@ -434,7 +434,7 @@ namespace MoalemYar
                    .HasBadge("هشدار")
                    .HasMessage(string.Format("حذف {1} {0} با خطا مواجه شد", Name, Type))
                    .Dismiss().WithButton("دوباره امتحان کنید", button => { })
-                   .Animates(true)
+                   .Animates(false)
                .AnimationInDuration(AppVariable.NotificationAnimInDur)
                .AnimationOutDuration(AppVariable.NotificationAnimOutDur)
                .Dismiss().WithDelay(TimeSpan.FromSeconds(AppVariable.NotificationDelay));
@@ -453,7 +453,7 @@ namespace MoalemYar
                .HasBadge("اطلاعیه")
                .HasMessage(string.Format("{1} {0} با موفقیت ثبت شد", Name, Type))
                .Dismiss().WithButton("باشه", button => { })
-               .Animates(true)
+               .Animates(false)
                .AnimationInDuration(AppVariable.NotificationAnimInDur)
                .AnimationOutDuration(AppVariable.NotificationAnimOutDur)
                .Dismiss().WithDelay(TimeSpan.FromSeconds(AppVariable.NotificationDelay));
@@ -468,7 +468,7 @@ namespace MoalemYar
                .HasBadge("هشدار")
                .HasMessage(string.Format("ثبت {1} {0} با خطا مواجه شد", Name, Type))
                .Dismiss().WithButton("دوباره امتحان کنید", button => { })
-               .Animates(true)
+               .Animates(false)
                .AnimationInDuration(AppVariable.NotificationAnimInDur)
                .AnimationOutDuration(AppVariable.NotificationAnimOutDur)
                .Dismiss().WithDelay(TimeSpan.FromSeconds(AppVariable.NotificationDelay));
@@ -490,7 +490,7 @@ namespace MoalemYar
                         System.Windows.Forms.Application.Restart();
                     })
                  .Dismiss().WithButton("بیخیال", button => { })
-                 .Animates(true)
+                 .Animates(false)
                .AnimationInDuration(AppVariable.NotificationAnimInDur)
                .AnimationOutDuration(AppVariable.NotificationAnimOutDur)
                .Dismiss().WithDelay(TimeSpan.FromSeconds(AppVariable.NotificationDelay));
@@ -512,7 +512,7 @@ namespace MoalemYar
                      else
                          SettingsView.main.resetDatabase();
                  })
-                 .Animates(true)
+                 .Animates(false)
                .AnimationInDuration(AppVariable.NotificationAnimInDur)
                .AnimationOutDuration(AppVariable.NotificationAnimOutDur)
                  .Dismiss().WithButton("خیر", button => { });
@@ -534,7 +534,7 @@ namespace MoalemYar
                         System.Diagnostics.Process.Start(URL);
                     })
                     .Dismiss().WithButton("بیخیال", button => { })
-                    .Animates(true)
+                    .Animates(false)
                .AnimationInDuration(AppVariable.NotificationAnimInDur)
                .AnimationOutDuration(AppVariable.NotificationAnimOutDur)
                .Dismiss().WithDelay(TimeSpan.FromSeconds(AppVariable.NotificationDelay));
@@ -549,7 +549,7 @@ namespace MoalemYar
                    .HasBadge("هشدار")
                    .HasHeader(string.Format("شما از آخرین نسخه {0} استفاده می کنید", AppVariable.getAppVersion))
                    .Dismiss().WithDelay(TimeSpan.FromSeconds(3))
-                   .Animates(true)
+                   .Animates(false)
                .AnimationInDuration(AppVariable.NotificationAnimInDur)
                .AnimationOutDuration(AppVariable.NotificationAnimOutDur)
                    .Dismiss().WithButton("تایید", button => { });
@@ -599,7 +599,7 @@ namespace MoalemYar
                              break;
                      }
                  })
-                 .Animates(true)
+                 .Animates(false)
                .AnimationInDuration(AppVariable.NotificationAnimInDur)
                .AnimationOutDuration(AppVariable.NotificationAnimOutDur)
                  .Dismiss().WithButton("خیر", button => { });
