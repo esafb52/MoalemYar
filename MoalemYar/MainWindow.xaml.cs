@@ -605,7 +605,6 @@ namespace MoalemYar
                  .Dismiss().WithButton("خیر", button => { });
             builder.Queue();
         }
-
         #endregion "Notification"
     }
 }
