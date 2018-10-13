@@ -110,7 +110,9 @@ namespace MoalemYar
                     Title = "ورود به نرم افزار",
                     WindowStartupLocation = WindowStartupLocation.CenterScreen,
                     HorizontalContentAlignment = HorizontalAlignment.Center,
-                    ShowInTaskbar = true
+                    ShowInTaskbar = true,
+                    BorderThickness = new Thickness(1),
+                    BorderBrush = TryFindResource("PrimaryBrush") as Brush
                 };
                 popupLogin.Closing += (s, e) =>
                 {
