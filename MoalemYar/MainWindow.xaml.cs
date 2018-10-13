@@ -14,6 +14,7 @@ using MoalemYar.UserControls;
 using MVVMC;
 using System;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -183,429 +184,297 @@ namespace MoalemYar
         }
 
         #region "Notification"
-
-        public void ShowNoDataNotification(string Type)
+        public void showNotification(string NotificationKEY, bool isAvailableOrSuccess = false, params string[] param)
         {
-            var navigationService = NavigationServiceProvider.GetNavigationServiceInstance();
-            var builder = this.Manager
-               .CreateMessage()
-               .Accent(AppVariable.RED)
-               .Background(AppVariable.BGBLACK)
-               .HasBadge("هشدار")
-               .HasMessage("اطلاعاتی در پایگاه داده یافت نشد")
-               .Dismiss().WithButton("ثبت اطلاعات جدید", button =>
-               {
-                   switch (Type)
-                   {
-                       case "School":
-                           AddSchoolView.main.tabc.SelectedIndex = 0;
-                           break;
-
-                       case "User":
-                           AddUserView.main.tabc.SelectedIndex = 0;
-                           break;
-
-                       case "Student":
-                           AddStudentView.main.tabc.SelectedIndex = 0;
-                           break;
-
-                       case "Attendance":
-                           AttendancelistView.main.tabc.SelectedIndex = 0;
-                           break;
-
-                       case "Question":
-                           navigationService.GetController<UserControls.UserControlsController>().AddStudent();
-                           break;
-
-                       case "Score":
-                           QuestionsListView.main.tabc.SelectedIndex = 0;
-                           break;
-
-                       case "TopStudent":
-                           navigationService.GetController<UserControls.UserControlsController>().Questionslist();
-                           break;
-
-                       case "Group":
-                           AddAzmonGroupView.main.tabc.SelectedIndex = 0;
-                           break;
-
-                       case "AQuestions":
-                           AddQuestionsView.main.tabc.SelectedIndex = 0;
-                           break;
-                   }
-               })
-               .Dismiss().WithButton("بیخیال", button => { })
-               .Animates(false)
-               .AnimationInDuration(AppVariable.NotificationAnimInDur)
-               .AnimationOutDuration(AppVariable.NotificationAnimOutDur)
-               .Dismiss().WithDelay(TimeSpan.FromSeconds(AppVariable.NotificationDelay));
-            builder.Queue();
-        }
-
-        public void ShowBackupNotification(bool isSuccess, string BackupOrRestore)
-        {
-            if (isSuccess)
+            var builder = NotificationMessageBuilder.CreateMessage();
+            builder.Manager = this.Manager;
+            builder.Message = this.Manager.Factory.GetMessage();
+            builder.Background(AppVariable.BGBLACK);
+            
+            //Delete Confirm
+            if (NotificationKEY.Equals(AppVariable.Delete_Confirm_KEY))
             {
-                var builder = this.Manager
-                                .CreateMessage()
-                               .Accent(AppVariable.GREEN)
-                               .Background(AppVariable.BGBLACK)
-                               .HasBadge("اطلاعیه")
-                               .HasMessage($"{BackupOrRestore} با موفقیت انجام شد")
-                               .Dismiss().WithButton("باشه", button => { })
-                               .Animates(false)
-                               .AnimationInDuration(AppVariable.NotificationAnimInDur)
-                               .AnimationOutDuration(AppVariable.NotificationAnimOutDur)
-                               .Dismiss().WithDelay(TimeSpan.FromSeconds(AppVariable.NotificationDelay));
-                builder.Queue();
-            }
-            else
-            {
-                var builder = this.Manager
-                                .CreateMessage()
-                               .Accent(AppVariable.RED)
-                               .Background(AppVariable.BGBLACK)
-                               .HasBadge("هشدار")
-                               .HasMessage($"{BackupOrRestore} با مشکل مواجه شد")
-                               .Dismiss().WithButton("باشه", button => { })
-                               .Animates(false)
-                               .AnimationInDuration(AppVariable.NotificationAnimInDur)
-                               .AnimationOutDuration(AppVariable.NotificationAnimOutDur)
-                               .Dismiss().WithDelay(TimeSpan.FromSeconds(AppVariable.NotificationDelay));
-                builder.Queue();
-            }
-        }
-
-        public void ShowFillAllDataNotification()
-        {
-            var builder = this.Manager
-                .CreateMessage()
-               .Accent(AppVariable.RED)
-               .Background(AppVariable.BGBLACK)
-               .HasBadge("هشدار")
-               .HasMessage("لطفا تمام فیلدها را پر کنید")
-               .Dismiss().WithButton("باشه", button => { })
-               .Animates(false)
-               .AnimationInDuration(AppVariable.NotificationAnimInDur)
-               .AnimationOutDuration(AppVariable.NotificationAnimOutDur)
-               .Dismiss().WithDelay(TimeSpan.FromSeconds(AppVariable.NotificationDelay));
-            builder.Queue();
-        }
-
-        public void ShowAzmonNotification()
-        {
-            var builder = this.Manager
-                .CreateMessage()
-               .Accent(AppVariable.RED)
-               .Background(AppVariable.BGBLACK)
-               .HasBadge("هشدار")
-               .HasMessage("تعداد سوالات وارد شده بیشتر از سوالات موجود است")
-               .Dismiss().WithButton("باشه", button => { })
-               .Animates(false)
-               .AnimationInDuration(AppVariable.NotificationAnimInDur)
-               .AnimationOutDuration(AppVariable.NotificationAnimOutDur)
-               .Dismiss().WithDelay(TimeSpan.FromSeconds(AppVariable.NotificationDelay));
-            builder.Queue();
-        }
-
-        public void ShowRecivedCircularNotification(bool isSuccess)
-        {
-            if (isSuccess)
-            {
-                var builder = this.Manager
-                                .CreateMessage()
-                               .Accent(AppVariable.GREEN)
-                               .Background(AppVariable.BGBLACK)
-                               .HasBadge("اطلاعیه")
-                               .HasMessage("تمامی بخشنامه ها با موفقیت دریافت شد")
-                               .Dismiss().WithButton("باشه", button => { })
-                               .Animates(false)
-                               .AnimationInDuration(AppVariable.NotificationAnimInDur)
-                               .AnimationOutDuration(AppVariable.NotificationAnimOutDur)
-                               .Dismiss().WithDelay(TimeSpan.FromSeconds(AppVariable.NotificationDelay));
-                builder.Queue();
-            }
-            else
-            {
-                var builder = this.Manager
-                                .CreateMessage()
-                               .Accent(AppVariable.RED)
-                               .Background(AppVariable.BGBLACK)
-                               .HasBadge("هشدار")
-                               .HasMessage("درحال حاظر سرور در دسترس نیست! لطفا در صورت فعال بودن، VPN خود را غیرفعال کنید")
-                               .Dismiss().WithButton("باشه", button => { })
-                               .Animates(false)
-                               .AnimationInDuration(AppVariable.NotificationAnimInDur)
-                               .AnimationOutDuration(AppVariable.NotificationAnimOutDur)
-                               .Dismiss().WithDelay(TimeSpan.FromSeconds(AppVariable.NotificationDelay));
-                builder.Queue();
-            }
-        }
-
-        public void ShowDeleteExistNotification(string Type, string Type2)
-        {
-            var builder = this.Manager
-                .CreateMessage()
-               .Accent(AppVariable.RED)
-               .Background(AppVariable.BGBLACK)
-               .HasBadge("هشدار")
-               .HasMessage(string.Format("نمی توان این {0} را حذف کرد، ابتدا {1} این {0} را حذف کنید", Type, Type2))
-               .Dismiss().WithButton("باشه", button => { })
-               .Animates(false)
-               .AnimationInDuration(AppVariable.NotificationAnimInDur)
-               .AnimationOutDuration(AppVariable.NotificationAnimOutDur)
-               .Dismiss().WithDelay(TimeSpan.FromSeconds(AppVariable.NotificationDelay));
-            builder.Queue();
-        }
-
-        public void ShowSamePasswordNotification()
-        {
-            var builder = this.Manager
-                .CreateMessage()
-               .Accent(AppVariable.RED)
-               .Background(AppVariable.BGBLACK)
-               .HasBadge("هشدار")
-               .HasMessage("رمز های عبور باید یکسان باشند")
-               .Dismiss().WithButton("باشه", button => { })
-               .Animates(false)
-               .AnimationInDuration(AppVariable.NotificationAnimInDur)
-               .AnimationOutDuration(AppVariable.NotificationAnimOutDur)
-               .Dismiss().WithDelay(TimeSpan.FromSeconds(AppVariable.NotificationDelay));
-            builder.Queue();
-        }
-
-        public void ShowUpdateDataNotification(bool isUpdateSuccess, string Name, string Type)
-        {
-            if (isUpdateSuccess)
-            {
-                var builder = this.Manager
-                .CreateMessage()
-               .Accent(AppVariable.ORANGE)
-               .Background(AppVariable.BGBLACK)
-               .HasBadge("اطلاعیه")
-               .HasMessage(string.Format("{1} {0} با موفقیت ویرایش شد", Name, Type))
-               .Dismiss().WithButton("باشه", button => { })
-               .Animates(false)
-               .AnimationInDuration(AppVariable.NotificationAnimInDur)
-               .AnimationOutDuration(AppVariable.NotificationAnimOutDur)
-               .Dismiss().WithDelay(TimeSpan.FromSeconds(AppVariable.NotificationDelay));
-                builder.Queue();
-            }
-            else
-            {
-                var builder = this.Manager
-                .CreateMessage()
-               .Accent(AppVariable.RED)
-               .Background(AppVariable.BGBLACK)
-               .HasBadge("هشدار")
-               .HasMessage(string.Format("ویرایش {1} {0} با خطا مواجه شد", Name, Type))
-               .Dismiss().WithButton("دوباره امتحان کنید", button => { })
-               .Animates(false)
-               .AnimationInDuration(AppVariable.NotificationAnimInDur)
-               .AnimationOutDuration(AppVariable.NotificationAnimOutDur)
-               .Dismiss().WithDelay(TimeSpan.FromSeconds(AppVariable.NotificationDelay));
-                builder.Queue();
-            }
-        }
-
-        public void ShowDeletedNotification(bool isDeleteSuccess, string Name, string Type)
-        {
-            if (isDeleteSuccess)
-            {
-                var builder = this.Manager
-                   .CreateMessage()
-                   .Accent(AppVariable.BLUE)
-                   .Background(AppVariable.BGBLACK)
-                   .HasBadge("اطلاعیه")
-                   .HasMessage(string.Format("{1} {0} با موفقیت حذف شد", Name, Type))
-                   .Dismiss().WithButton("باشه", button => { })
-                   .Animates(false)
-               .AnimationInDuration(AppVariable.NotificationAnimInDur)
-               .AnimationOutDuration(AppVariable.NotificationAnimOutDur)
-               .Dismiss().WithDelay(TimeSpan.FromSeconds(AppVariable.NotificationDelay));
-                builder.Queue();
-            }
-            else
-            {
-                var builder = this.Manager
-                    .CreateMessage()
-                   .Accent(AppVariable.RED)
-                   .Background(AppVariable.BGBLACK)
-                   .HasBadge("هشدار")
-                   .HasMessage(string.Format("حذف {1} {0} با خطا مواجه شد", Name, Type))
-                   .Dismiss().WithButton("دوباره امتحان کنید", button => { })
-                   .Animates(false)
-               .AnimationInDuration(AppVariable.NotificationAnimInDur)
-               .AnimationOutDuration(AppVariable.NotificationAnimOutDur)
-               .Dismiss().WithDelay(TimeSpan.FromSeconds(AppVariable.NotificationDelay));
-                builder.Queue();
-            }
-        }
-
-        public void ShowAddDataNotification(bool isAddSuccess, string Name, string Type)
-        {
-            if (isAddSuccess)
-            {
-                var builder = this.Manager
-               .CreateMessage()
-               .Accent(AppVariable.GREEN)
-               .Background(AppVariable.BGBLACK)
-               .HasBadge("اطلاعیه")
-               .HasMessage(string.Format("{1} {0} با موفقیت ثبت شد", Name, Type))
-               .Dismiss().WithButton("باشه", button => { })
-               .Animates(false)
-               .AnimationInDuration(AppVariable.NotificationAnimInDur)
-               .AnimationOutDuration(AppVariable.NotificationAnimOutDur)
-               .Dismiss().WithDelay(TimeSpan.FromSeconds(AppVariable.NotificationDelay));
-                builder.Queue();
-            }
-            else
-            {
-                var builder = this.Manager
-               .CreateMessage()
-               .Accent(AppVariable.RED)
-               .Background(AppVariable.BGBLACK)
-               .HasBadge("هشدار")
-               .HasMessage(string.Format("ثبت {1} {0} با خطا مواجه شد", Name, Type))
-               .Dismiss().WithButton("دوباره امتحان کنید", button => { })
-               .Animates(false)
-               .AnimationInDuration(AppVariable.NotificationAnimInDur)
-               .AnimationOutDuration(AppVariable.NotificationAnimOutDur)
-               .Dismiss().WithDelay(TimeSpan.FromSeconds(AppVariable.NotificationDelay));
-                builder.Queue();
-            }
-        }
-
-        public void DataResetDeletedNotification(string Type)
-        {
-            var builder = this.Manager
-                   .CreateMessage()
-                   .Accent(AppVariable.GREEN)
-                   .Background(AppVariable.BGBLACK)
-                   .HasBadge("اطلاعیه")
-                   .HasMessage(string.Format("{0} به حالت پیشفرض تغییر یافت، برنامه را دوباره راه اندازی کنید", Type))
-                    .WithButton("راه اندازی", button =>
+                builder.HasBadge("هشدار");
+                builder.Accent(AppVariable.RED);
+                builder.HasHeader($"آیا برای حذف {param[1]} {param[0]} اطمینان دارید؟");
+                builder.Dismiss().WithButton("بله", button => {
+                    switch (param[1])
                     {
-                        Application.Current.Shutdown();
-                        System.Windows.Forms.Application.Restart();
-                    })
-                 .Dismiss().WithButton("بیخیال", button => { })
-                 .Animates(false)
-               .AnimationInDuration(AppVariable.NotificationAnimInDur)
-               .AnimationOutDuration(AppVariable.NotificationAnimOutDur)
-               .Dismiss().WithDelay(TimeSpan.FromSeconds(AppVariable.NotificationDelay));
-            builder.Queue();
-        }
+                        case "مدرسه":
+                            AddSchoolView.main.deleteSchool();
+                            break;
 
-        public void ResetDataConfirmNotification(string Type)
-        {
-            var builder = this.Manager
-                  .CreateMessage()
-                 .Accent(AppVariable.RED)
-                 .Background(AppVariable.BGBLACK)
-                 .HasBadge("هشدار")
-                 .HasHeader(string.Format("آیا برای بازیابی {0} اطمینان دارید؟", Type))
-                 .Dismiss().WithButton("بله", button =>
+                        case "دانش آموز":
+                            AddStudentView.main.deleteStudent();
+                            break;
+
+                        case "کاربر":
+                            AddUserView.main.deleteUser();
+                            break;
+
+                        case "حضورغیاب":
+                            AttendancelistView.main.deleteAttendance();
+                            break;
+
+                        case "نمره":
+                            QuestionsListView.main.deleteScore();
+                            break;
+
+                        case "گروه":
+                            AddAzmonGroupView.main.deleteGroup();
+                            break;
+
+                        case "سوال":
+                            AddQuestionsView.main.deleteGroup();
+                            break;
+                    }
+                });
+                builder.Dismiss().WithButton("خیر", button => { });
+            }
+            //Reset Data Confirm
+            else if (NotificationKEY.Equals(AppVariable.Reset_Data_Confirm_KEY))
+            {
+                builder.HasBadge("هشدار");
+                builder.Accent(AppVariable.RED);
+                builder.HasHeader($"آیا برای بازیابی {param[0]} اطمینان دارید؟");
+                builder.Dismiss().WithButton("بله", button =>
                  {
-                     if (Type == "تنظیمات برنامه")
+                     if (param[0] == "تنظیمات برنامه")
                          SettingsView.main.resetConfig();
                      else
                          SettingsView.main.resetDatabase();
-                 })
-                 .Animates(false)
-               .AnimationInDuration(AppVariable.NotificationAnimInDur)
-               .AnimationOutDuration(AppVariable.NotificationAnimOutDur)
-                 .Dismiss().WithButton("خیر", button => { });
-            builder.Queue();
-        }
+                 });
+                builder.Dismiss().WithButton("خیر", button => { });
+            }
 
-        public void ShowUpdateNotification(bool isAvailable, string Version, string URL)
-        {
-            if (isAvailable)
+            //Reset Data Deleted
+            else if (NotificationKEY.Equals(AppVariable.Data_Reset_Deleted_KEY))
             {
-                var builder = this.Manager
-                   .CreateMessage()
-                    .Accent(AppVariable.GREEN)
-                    .Background(AppVariable.BGBLACK)
-                    .HasBadge("اطلاعیه")
-                    .HasHeader(string.Format("نسخه جدید {0} پیدا شد،همین حالا به آخرین نسخه بروزرسانی کنید", Version))
-                    .WithButton("ارتقا", button =>
+                builder.Accent(AppVariable.GREEN);
+                builder.HasBadge("اطلاعیه");
+                builder.HasMessage($"{param[0]} به حالت پیشفرض تغییر یافت، برنامه را دوباره راه اندازی کنید");
+                builder.WithButton("راه اندازی", button =>
+                {
+                    Application.Current.Shutdown();
+                    System.Windows.Forms.Application.Restart();
+                });
+            }
+
+            //Password Same
+            else if (NotificationKEY.Equals(AppVariable.Same_Password_KEY))
+            {
+                builder.Accent(AppVariable.RED);
+                builder.HasBadge("هشدار");
+                builder.HasMessage("رمز های عبور باید یکسان باشند");
+                builder.Dismiss().WithButton("باشه", button => { });
+            }
+
+            //Delete Exist
+            else if (NotificationKEY.Equals(AppVariable.Delete_Exist_KEY))
+            {
+                builder.Accent(AppVariable.RED);
+                builder.HasBadge("هشدار");
+                builder.HasMessage($"نمی توان این {param[0]} را حذف کرد، ابتدا {param[1]} این {param[0]} را حذف کنید");
+                builder.Dismiss().WithButton("باشه", button => { });
+            }
+
+            //Azmon
+            else if (NotificationKEY.Equals(AppVariable.Azmon_KEY))
+            {
+                builder.Accent(AppVariable.RED);
+                builder.HasBadge("هشدار");
+                builder.HasMessage("تعداد سوالات وارد شده بیشتر از سوالات موجود است");
+                builder.Dismiss().WithButton("باشه", button => { });
+            }
+
+            //Fill All Data
+            else if (NotificationKEY.Equals(AppVariable.Fill_All_Data_KEY))
+            {
+                builder.Accent(AppVariable.RED);
+                builder.HasBadge("هشدار");
+                builder.HasMessage("لطفا تمام فیلدها را پر کنید");
+                builder.Dismiss().WithButton("باشه", button => { });
+            }
+
+            //No Data
+            else if (NotificationKEY.Equals(AppVariable.No_Data_KEY))
+            {
+                var navigationService = NavigationServiceProvider.GetNavigationServiceInstance();
+
+                builder.Accent(AppVariable.RED);
+                builder.HasBadge("هشدار");
+                builder.HasMessage("اطلاعاتی در پایگاه داده یافت نشد");
+                builder.Dismiss().WithButton("ثبت اطلاعات جدید", button =>
+                {
+                    switch (param[0
+])
                     {
-                        System.Diagnostics.Process.Start(URL);
-                    })
-                    .Dismiss().WithButton("بیخیال", button => { })
-                    .Animates(false)
-               .AnimationInDuration(AppVariable.NotificationAnimInDur)
-               .AnimationOutDuration(AppVariable.NotificationAnimOutDur)
-               .Dismiss().WithDelay(TimeSpan.FromSeconds(AppVariable.NotificationDelay));
-                builder.Queue();
+                        case "School":
+                            AddSchoolView.main.tabc.SelectedIndex = 0;
+                            break;
+
+                        case "User":
+                            AddUserView.main.tabc.SelectedIndex = 0;
+                            break;
+
+                        case "Student":
+                            AddStudentView.main.tabc.SelectedIndex = 0;
+                            break;
+
+                        case "Attendance":
+                            AttendancelistView.main.tabc.SelectedIndex = 0;
+                            break;
+
+                        case "Question":
+                            navigationService.GetController<UserControls.UserControlsController>().AddStudent();
+                            break;
+
+                        case "Score":
+                            QuestionsListView.main.tabc.SelectedIndex = 0;
+                            break;
+
+                        case "TopStudent":
+                            navigationService.GetController<UserControls.UserControlsController>().Questionslist();
+                            break;
+
+                        case "Group":
+                            AddAzmonGroupView.main.tabc.SelectedIndex = 0;
+                            break;
+
+                        case "AQuestions":
+                            AddQuestionsView.main.tabc.SelectedIndex = 0;
+                            break;
+                    }
+                });
+                builder.Dismiss().WithButton("بیخیال", button => { });
             }
-            else
+
+            //Backup
+            else if (NotificationKEY.Equals(AppVariable.Backup_KEY))
             {
-                var builder = this.Manager
-                  .CreateMessage()
-                   .Accent(AppVariable.RED)
-                   .Background(AppVariable.BGBLACK)
-                   .HasBadge("هشدار")
-                   .HasHeader(string.Format("شما از آخرین نسخه {0} استفاده می کنید", AppVariable.getAppVersion))
-                   .Dismiss().WithDelay(TimeSpan.FromSeconds(3))
-                   .Animates(false)
-               .AnimationInDuration(AppVariable.NotificationAnimInDur)
-               .AnimationOutDuration(AppVariable.NotificationAnimOutDur)
-                   .Dismiss().WithButton("تایید", button => { });
-
-                builder.Queue();
+                if (isAvailableOrSuccess)
+                {
+                    builder.Accent(AppVariable.GREEN);
+                    builder.HasBadge("اطلاعیه");
+                    builder.HasMessage($"{param[0]} با موفقیت انجام شد");
+                    builder.Dismiss().WithButton("باشه", button => { });
+                }
+                else
+                {
+                    builder.Accent(AppVariable.RED);
+                    builder.HasBadge("هشدار");
+                    builder.HasMessage($"{param[0]} با مشکل مواجه شد");
+                    builder.Dismiss().WithButton("باشه", button => { });
+                }
             }
-        }
 
-        public void ShowDeleteConfirmNotification(string Name, string Type)
-        {
-            var builder = this.Manager
-                  .CreateMessage()
-                 .Accent(AppVariable.RED)
-                 .Background(AppVariable.BGBLACK)
-                 .HasBadge("هشدار")
-                 .HasHeader(string.Format("آیا برای حذف {1} {0} اطمینان دارید؟", Name, Type))
-                 .Dismiss().WithButton("بله", button =>
-                 {
-                     switch (Type)
-                     {
-                         case "مدرسه":
-                             AddSchoolView.main.deleteSchool();
-                             break;
+            //Circular
+            else if (NotificationKEY.Equals(AppVariable.Recived_Circular_KEY))
+            {
+                if (isAvailableOrSuccess)
+                {
+                    builder.Accent(AppVariable.GREEN);
+                    builder.HasBadge("اطلاعیه");
+                    builder.HasMessage("تمامی بخشنامه ها با موفقیت دریافت شد");
+                    builder.Dismiss().WithButton("باشه", button => { });
+                }
+                else
+                {
+                    builder.Accent(AppVariable.RED);
+                    builder.HasBadge("هشدار");
+                    builder.HasMessage("درحال حاظر سرور در دسترس نیست! لطفا در صورت فعال بودن، VPN خود را غیرفعال کنید");
+                    builder.Dismiss().WithButton("باشه", button => { });
+                }
+            }
 
-                         case "دانش آموز":
-                             AddStudentView.main.deleteStudent();
-                             break;
+            //Update Data
+            else if (NotificationKEY.Equals(AppVariable.Update_Data_KEY))
+            {
+                if (isAvailableOrSuccess)
+                {
 
-                         case "کاربر":
-                             AddUserView.main.deleteUser();
-                             break;
+                    builder.Accent(AppVariable.ORANGE);
+                    builder.HasBadge("اطلاعیه");
+                    builder.HasMessage($"{param[1]} {param[0]} با موفقیت ویرایش شد");
+                    builder.Dismiss().WithButton("باشه", button => { });
+                }
+                else
+                {
+                    builder.Accent(AppVariable.RED);
+                    builder.HasBadge("هشدار");
+                    builder.HasMessage($"ویرایش {param[1]} {param[0]} با خطا مواجه شد");
+                    builder.Dismiss().WithButton("دوباره امتحان کنید", button => { });
+                }
+            }
 
-                         case "حضورغیاب":
-                             AttendancelistView.main.deleteAttendance();
-                             break;
+            //Deleted
+            else if (NotificationKEY.Equals(AppVariable.Deleted_KEY))
+            {
+                if (isAvailableOrSuccess)
+                {
+                    builder.Accent(AppVariable.BLUE);
+                    builder.HasBadge("اطلاعیه");
+                    builder.HasMessage($"{param[1]} {param[0]} با موفقیت حذف شد");
+                    builder.Dismiss().WithButton("باشه", button => { });
+                }
+                else
+                {
+                    builder.Accent(AppVariable.RED);
+                    builder.HasBadge("هشدار");
+                    builder.HasMessage($"حذف {param[1]} {param[0]} با خطا مواجه شد");
+                    builder.Dismiss().WithButton("دوباره امتحان کنید", button => { });
+                }
+            }
 
-                         case "نمره":
-                             QuestionsListView.main.deleteScore();
-                             break;
+            //Add Data
+            else if (NotificationKEY.Equals(AppVariable.Add_Data_KEY))
+            {
+                if (isAvailableOrSuccess)
+                {
+                    builder.Accent(AppVariable.GREEN);
+                    builder.HasBadge("اطلاعیه");
+                    builder.HasMessage($"{param[1]} {param[0]} با موفقیت ثبت شد");
+                    builder.Dismiss().WithButton("باشه", button => { });
+                }
+                else
+                {
+                    builder.Accent(AppVariable.RED);
+                    builder.HasBadge("هشدار");
+                    builder.HasMessage($"ثبت {param[1]} {param[0]} با خطا مواجه شد");
+                    builder.Dismiss().WithButton("دوباره امتحان کنید", button => { });
+                }
+            }
 
-                         case "گروه":
-                             AddAzmonGroupView.main.deleteGroup();
-                             break;
+            //Update
+            else if (NotificationKEY.Equals(AppVariable.Update_KEY))
+            {
+                if (isAvailableOrSuccess)
+                {
+                    builder.Accent(AppVariable.GREEN);
+                    builder.HasBadge("اطلاعیه");
+                    builder.HasHeader($"نسخه جدید {param[0]} پیدا شد،همین حالا به آخرین نسخه بروزرسانی کنید");
+                    builder.WithButton("ارتقا", button =>
+                    {
+                        System.Diagnostics.Process.Start(param[1]);
+                    });
+                    builder.Dismiss().WithButton("بیخیال", button => { });
+                }
+                else
+                {
+                    builder.Accent(AppVariable.RED);
+                    builder.HasBadge("هشدار");
+                    builder.HasHeader($"شما از آخرین نسخه {AppVariable.getAppVersion} استفاده می کنید");
+                    builder.Dismiss().WithDelay(TimeSpan.FromSeconds(3));
+                    builder.Dismiss().WithButton("تایید", button => { });
+                }
+            }
 
-                         case "سوال":
-                             AddQuestionsView.main.deleteGroup();
-                             break;
-                     }
-                 })
-                 .Animates(false)
-               .AnimationInDuration(AppVariable.NotificationAnimInDur)
-               .AnimationOutDuration(AppVariable.NotificationAnimOutDur)
-                 .Dismiss().WithButton("خیر", button => { });
+            builder.Animates(true);
+            builder.AnimationInDuration(AppVariable.NotificationAnimInDur);
+            builder.AnimationOutDuration(AppVariable.NotificationAnimOutDur);
+            
             builder.Queue();
         }
-
         #endregion "Notification"
     }
 }

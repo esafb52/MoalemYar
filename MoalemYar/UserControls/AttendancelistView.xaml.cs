@@ -130,7 +130,7 @@ namespace MoalemYar.UserControls
                 {
                     this.dataGrid.ItemsSource = null;
                     swAllPresent.IsEnabled = false;
-                    MainWindow.main.ShowNoDataNotification("Question");
+                    MainWindow.main.showNotification(NotificationKEY: AppVariable.No_Data_KEY, param: "Question");
                 }
             }
             catch (Exception)
@@ -151,7 +151,7 @@ namespace MoalemYar.UserControls
                 }
                 else
                 {
-                    MainWindow.main.ShowNoDataNotification("Student");
+                    MainWindow.main.showNotification(NotificationKEY: AppVariable.No_Data_KEY, param: "Student");
                 }
             }
             catch (Exception)
@@ -193,7 +193,7 @@ namespace MoalemYar.UserControls
                 else
                 {
                     dgv.ItemsSource = null;
-                    MainWindow.main.ShowNoDataNotification("Attendance");
+                    MainWindow.main.showNotification(NotificationKEY: AppVariable.No_Data_KEY, param: "Attendance");
                 }
             }
             catch (Exception)
@@ -217,7 +217,7 @@ namespace MoalemYar.UserControls
                 else
                 {
                     this.dataGridList.ItemsSource = null;
-                    MainWindow.main.ShowNoDataNotification("Student");
+                    MainWindow.main.showNotification(NotificationKEY: AppVariable.No_Data_KEY, param: "Student");
                 }
             }
             catch (Exception)
@@ -349,8 +349,8 @@ namespace MoalemYar.UserControls
             try
             {
                 dynamic selectedItem = cmbEditStudent.SelectedItem;
-
-                MainWindow.main.ShowDeleteConfirmNotification(selectedItem.Name + " " + selectedItem.LName, "حضورغیاب");
+                string par0 = Convert.ToString(selectedItem.Name + " " + selectedItem.LName);
+                MainWindow.main.showNotification(NotificationKEY: AppVariable.Delete_Confirm_KEY, param: new[] { par0, "حضورغیاب" });
             }
             catch (Exception)
             {
@@ -367,12 +367,12 @@ namespace MoalemYar.UserControls
                 long studentId = selectedItem.StudentId;
 
                 deleteAttendance(studentId, id);
-                MainWindow.main.ShowDeletedNotification(true, selectedItemCmb.Name + " " + selectedItemCmb.LName, "حضورغیاب");
+                MainWindow.main.showNotification(AppVariable.Deleted_KEY, true, selectedItemCmb.Name + " " + selectedItemCmb.LName, "حضورغیاب");
                 getAttendance(Convert.ToInt64(cmbEditStudent.SelectedValue));
             }
             catch (Exception)
             {
-                MainWindow.main.ShowDeletedNotification(false, selectedItemCmb.Name + " " + selectedItemCmb.LName, "حضورغیاب");
+                MainWindow.main.showNotification(AppVariable.Deleted_KEY, false, selectedItemCmb.Name + " " + selectedItemCmb.LName, "حضورغیاب");
             }
         }
 
@@ -401,12 +401,12 @@ namespace MoalemYar.UserControls
                 long id = selectedItem.Id;
                 long studentId = selectedItem.StudentId;
                 updateAttendance(id, studentId, isPresentEdit, changedDate);
-                MainWindow.main.ShowUpdateDataNotification(true, selectedItemCmb.Name + " " + selectedItemCmb.LName, "حضورغیاب");
+                MainWindow.main.showNotification(AppVariable.Update_Data_KEY, true, selectedItemCmb.Name + " " + selectedItemCmb.LName, "حضورغیاب");
                 getAttendance(Convert.ToInt64(cmbEditStudent.SelectedValue));
             }
             catch (Exception)
             {
-                MainWindow.main.ShowUpdateDataNotification(false, selectedItemCmb.Name + " " + selectedItemCmb.LName, "حضورغیاب");
+                MainWindow.main.showNotification(AppVariable.Update_Data_KEY, false, selectedItemCmb.Name + " " + selectedItemCmb.LName, "حضورغیاب");
             }
         }
 

@@ -70,7 +70,7 @@ namespace MoalemYar.UserControls
                     else
                     {
                         dataGrid.ItemsSource = null;
-                        MainWindow.main.ShowNoDataNotification("Group");
+                        MainWindow.main.showNotification(NotificationKEY: AppVariable.No_Data_KEY, param: "Group");
                     }
                 }
             }
@@ -133,13 +133,13 @@ namespace MoalemYar.UserControls
                 dynamic selectedItem = dataGrid.SelectedItems[0];
                 long id = selectedItem.Id;
                 updateGroup(id, txtGroup.Text);
-                MainWindow.main.ShowUpdateDataNotification(true, txtGroup.Text, "گروه");
+                MainWindow.main.showNotification(AppVariable.Update_Data_KEY, true, txtGroup.Text, "گروه");
                 editGrid.IsEnabled = false;
                 getGroup();
             }
             catch (Exception)
             {
-                MainWindow.main.ShowUpdateDataNotification(false, txtGroup.Text, "گروه");
+                MainWindow.main.showNotification(AppVariable.Update_Data_KEY, false, txtGroup.Text, "گروه");
             }
         }
 
@@ -164,27 +164,27 @@ namespace MoalemYar.UserControls
         {
             if (txtAddGroup.Text == string.Empty)
             {
-                MainWindow.main.ShowFillAllDataNotification();
+                MainWindow.main.showNotification(NotificationKEY: AppVariable.Fill_All_Data_KEY);
             }
             else
             {
                 try
                 {
                     addGroup(txtAddGroup.Text);
-                    MainWindow.main.ShowAddDataNotification(true, txtAddGroup.Text, "گروه");
+                    MainWindow.main.showNotification(AppVariable.Add_Data_KEY, true, txtAddGroup.Text, "گروه");
                     txtAddGroup.Text = string.Empty;
                     txtAddGroup.Focus();
                 }
                 catch (Exception)
                 {
-                    MainWindow.main.ShowAddDataNotification(false, txtAddGroup.Text, "گروه");
+                    MainWindow.main.showNotification(AppVariable.Add_Data_KEY, false, txtAddGroup.Text, "گروه");
                 }
             }
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.main.ShowDeleteConfirmNotification(txtGroup.Text, "گروه");
+            MainWindow.main.showNotification(NotificationKEY: AppVariable.Delete_Confirm_KEY, param: new[] { txtGroup.Text, "گروه" });
         }
 
         public void deleteGroup()
@@ -194,13 +194,13 @@ namespace MoalemYar.UserControls
                 dynamic selectedItem = dataGrid.SelectedItems[0];
                 long id = selectedItem.Id;
                 deleteGroup(id);
-                MainWindow.main.ShowDeletedNotification(true, txtGroup.Text, "گروه");
+                MainWindow.main.showNotification(AppVariable.Deleted_KEY, true, txtGroup.Text, "گروه");
                 editGrid.IsEnabled = false;
                 getGroup();
             }
             catch (Exception)
             {
-                MainWindow.main.ShowDeletedNotification(false, txtGroup.Text, "گروه");
+                MainWindow.main.showNotification(AppVariable.Deleted_KEY, false, txtGroup.Text, "گروه");
             }
         }
     }
