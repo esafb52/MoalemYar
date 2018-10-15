@@ -112,8 +112,7 @@ namespace MoalemYar
                     WindowStartupLocation = WindowStartupLocation.CenterScreen,
                     HorizontalContentAlignment = HorizontalAlignment.Center,
                     ShowInTaskbar = true,
-                    BorderThickness = new Thickness(1),
-                    BorderBrush = TryFindResource("PrimaryBrush") as Brush
+                    AllowsTransparency = true
                 };
                 popupLogin.Closing += (s, e) =>
                 {
