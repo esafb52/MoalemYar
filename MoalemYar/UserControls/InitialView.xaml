@@ -8,6 +8,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:MoalemYar.UserControls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mvvmc="clr-namespace:MVVMC;assembly=MVVMC"
     Loaded="UserControl_Loaded"
     Style="{StaticResource myUserControl}">
     <controls:TransitioningContentControl>
@@ -24,7 +25,7 @@
                             Margin="10"
                             Background="White"
                             CornerRadius="5"
-                            Effect="{StaticResource EffectShadow3}">
+                            Cursor="Hand">
                             <StackPanel
                                 Grid.Row="2"
                                 Height="58"
@@ -44,6 +45,19 @@
                                         Foreground="#303030"><Run Text="نفر" /></TextBlock>
                                 </StackPanel>
                             </StackPanel>
+                            <Border.Style>
+                                <Style>
+                                    <Setter Property="Border.Effect" Value="{StaticResource EffectShadow3}" />
+                                    <Style.Triggers>
+                                        <Trigger Property="Border.IsMouseOver" Value="True">
+                                            <Setter Property="Border.Effect" Value="{StaticResource EffectShadow4}" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                            <Border.InputBindings>
+                                <MouseBinding Command="{mvvmc:NavigateCommand ControllerID='UserControls', Action='AddStudent'}" MouseAction="LeftClick" />
+                            </Border.InputBindings>
                         </Border>
                         <Border
                             Width="300"
@@ -51,7 +65,7 @@
                             Margin="10"
                             Background="White"
                             CornerRadius="5"
-                            Effect="{StaticResource EffectShadow3}">
+                            Cursor="Hand">
                             <StackPanel
                                 Grid.Row="2"
                                 Height="58"
@@ -71,6 +85,19 @@
                                         Foreground="#303030"><Run Text="کلاس" /></TextBlock>
                                 </StackPanel>
                             </StackPanel>
+                            <Border.Style>
+                                <Style>
+                                    <Setter Property="Border.Effect" Value="{StaticResource EffectShadow3}" />
+                                    <Style.Triggers>
+                                        <Trigger Property="Border.IsMouseOver" Value="True">
+                                            <Setter Property="Border.Effect" Value="{StaticResource EffectShadow4}" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                            <Border.InputBindings>
+                                <MouseBinding Command="{mvvmc:NavigateCommand ControllerID='UserControls', Action='AddSchool'}" MouseAction="LeftClick" />
+                            </Border.InputBindings>
                         </Border>
                         <Border
                             Width="270"
@@ -78,7 +105,7 @@
                             Margin="10"
                             Background="White"
                             CornerRadius="5"
-                            Effect="{StaticResource EffectShadow3}">
+                            Cursor="Hand">
                             <StackPanel
                                 Grid.Row="2"
                                 Height="58"
@@ -98,6 +125,19 @@
                                         Foreground="#303030"><Run Text="نفر" /></TextBlock>
                                 </StackPanel>
                             </StackPanel>
+                            <Border.Style>
+                                <Style>
+                                    <Setter Property="Border.Effect" Value="{StaticResource EffectShadow3}" />
+                                    <Style.Triggers>
+                                        <Trigger Property="Border.IsMouseOver" Value="True">
+                                            <Setter Property="Border.Effect" Value="{StaticResource EffectShadow4}" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                            <Border.InputBindings>
+                                <MouseBinding Command="{mvvmc:NavigateCommand ControllerID='UserControls', Action='AddUser'}" MouseAction="LeftClick" />
+                            </Border.InputBindings>
                         </Border>
                     </StackPanel>
                     <StackPanel
