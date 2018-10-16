@@ -189,7 +189,12 @@ namespace MoalemYar
             builder.Manager = this.Manager;
             builder.Message = this.Manager.Factory.GetMessage();
             builder.Background(AppVariable.BGBLACK);
-            
+
+            builder.Animates(false);
+            builder.Dismiss().WithDelay(TimeSpan.FromSeconds(AppVariable.NotificationDelay));
+            builder.AnimationInDuration(AppVariable.NotificationAnimInDur);
+            builder.AnimationOutDuration(AppVariable.NotificationAnimOutDur);
+
             //Delete Confirm
             if (NotificationKEY.Equals(AppVariable.Delete_Confirm_KEY))
             {
@@ -467,11 +472,7 @@ namespace MoalemYar
                     builder.Dismiss().WithButton("تایید", button => { });
                 }
             }
-
-            builder.Animates(true);
-            builder.AnimationInDuration(AppVariable.NotificationAnimInDur);
-            builder.AnimationOutDuration(AppVariable.NotificationAnimOutDur);
-            
+           
             builder.Queue();
         }
         #endregion "Notification"
