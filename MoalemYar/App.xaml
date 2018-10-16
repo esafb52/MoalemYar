@@ -20,7 +20,6 @@
                 <Setter Property="TextOptions.TextRenderingMode" Value="Auto" />
                 <Setter Property="TextOptions.TextHintingMode" Value="Auto" />
                 <Setter Property="FontFamily" Value="{StaticResource TeacherYar.Fonts.IRANSans}" />
-                <Setter Property="FontSize" Value="13" />
                 <Setter Property="FlowDirection" Value="RightToLeft" />
             </Style>
             <Style x:Key="DataGridCellStyle" TargetType="{x:Type DataGridCell}">

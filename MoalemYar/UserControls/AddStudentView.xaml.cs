@@ -248,7 +248,7 @@ namespace MoalemYar.UserControls
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            if (txtAddName.Text == string.Empty || txtAddLName.Text == string.Empty || cmbAddGender.SelectedIndex == -1 || cmbBase.SelectedIndex == -1)
+            if (txtAddName.Text == string.Empty || txtAddLName.Text == string.Empty || txtAddFName.Text == string.Empty || cmbAddGender.SelectedIndex == -1 || cmbBase.SelectedIndex == -1)
             {
                 MainWindow.main.showNotification(NotificationKEY: AppVariable.Fill_All_Data_KEY);
             }
