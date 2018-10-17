@@ -217,7 +217,6 @@ namespace MoalemYar.UserControls
                 else
                 {
                     this.dataGridList.ItemsSource = null;
-                    MainWindow.main.showNotification(NotificationKEY: AppVariable.No_Data_KEY, param: "Student");
                 }
             }
             catch (Exception)
