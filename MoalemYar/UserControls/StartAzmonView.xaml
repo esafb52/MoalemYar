@@ -70,34 +70,38 @@
                                 </ComboBox.ItemTemplate>
                             </ComboBox>
                         </StackPanel>
+                        <StackPanel Orientation="Vertical">
+                            <ComboBox
+                                x:Name="cmbGroup"
+                                Margin="5,0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                controls:InfoElement.ContentHeight="35"
+                                controls:InfoElement.Placeholder="انتخاب گروه"
+                                ItemsSource="{Binding}"
+                                SelectedValue="{Binding GroupName}"
+                                SelectedValuePath="Id"
+                                Style="{StaticResource ComboBoxExtend}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding GroupName}" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                            <TextBox
+                                Name="txtTedad"
+                                Margin="0,10"
+                                VerticalAlignment="Top"
+                                controls:InfoElement.ContentHeight="35"
+                                controls:InfoElement.Placeholder="تعداد سوالات"
+                                MaxLength="3"
+                                PreviewTextInput="txtTedad_PreviewTextInput"
+                                Style="{StaticResource TextBoxExtend}" />
+                        </StackPanel>
 
-                        <ComboBox
-                            x:Name="cmbGroup"
-                            Margin="5,0"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Top"
-                            controls:InfoElement.ContentHeight="35"
-                            controls:InfoElement.Placeholder="انتخاب گروه"
-                            ItemsSource="{Binding}"
-                            SelectedValue="{Binding GroupName}"
-                            SelectedValuePath="Id"
-                            Style="{StaticResource ComboBoxExtend}">
-                            <ComboBox.ItemTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="{Binding GroupName}" />
-                                    </StackPanel>
-                                </DataTemplate>
-                            </ComboBox.ItemTemplate>
-                        </ComboBox>
-                        <TextBox
-                            Name="txtTedad"
-                            VerticalAlignment="Top"
-                            controls:InfoElement.ContentHeight="35"
-                            controls:InfoElement.Placeholder="تعداد سوالات"
-                            MaxLength="3"
-                            PreviewTextInput="txtTedad_PreviewTextInput"
-                            Style="{StaticResource TextBoxExtend}" />
+
                         <StackPanel Orientation="Vertical">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock
@@ -128,9 +132,11 @@
                         </StackPanel>
                         <TextBox
                             x:Name="txtTime"
+                            Width="50"
                             Height="35"
-                            Margin="5,0"
+                            Margin="5,25"
                             VerticalAlignment="Top"
+                            HorizontalContentAlignment="Center"
                             controls:InfoElement.ContentHeight="35"
                             controls:InfoElement.Placeholder="زمان هر سوال"
                             IsEnabled="{Binding ElementName=swLimit, Path=IsChecked}"
@@ -142,7 +148,7 @@
                             x:Name="btnStart"
                             Width="140"
                             Height="35"
-                            Margin="5,0"
+                            Margin="5,25"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
                             Click="btnStart_Click"
@@ -155,7 +161,7 @@
                                 <Image
                                     Width="16"
                                     Height="16"
-                                    Margin="10,0,30,0"
+                                    Margin="-30,0,30,0"
                                     Source="/Resources/start.png" />
                                 <TextBlock
                                     FontSize="13"
