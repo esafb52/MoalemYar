@@ -254,8 +254,7 @@
                                         Margin="5,5"
                                         HorizontalAlignment="Left"
                                         VerticalAlignment="Top"
-                                        Click="btnDelete_Click"
-                                        Style="{StaticResource ButtonDanger}">
+                                        Click="btnDelete_Click">
                                         <StackPanel
                                             HorizontalAlignment="Left"
                                             VerticalAlignment="Center"
@@ -271,6 +270,15 @@
                                                 Text="حذف"
                                                 TextWrapping="NoWrap" />
                                         </StackPanel>
+                                        <Button.Style>
+                                            <Style BasedOn="{StaticResource ButtonDanger}" TargetType="Button">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding SelectedItems.Count, ElementName=dataGridEdit}" Value="0">
+                                                        <Setter Property="IsEnabled" Value="False" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Button.Style>
                                     </Button>
                                 </StackPanel>
                                 <GridSplitter

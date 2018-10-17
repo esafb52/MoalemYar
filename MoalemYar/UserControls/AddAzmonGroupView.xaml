@@ -144,7 +144,7 @@
                                         HorizontalAlignment="Left"
                                         VerticalAlignment="Top"
                                         Click="btnDelete_Click"
-                                        Style="{StaticResource ButtonDanger}">
+                                        >
                                         <StackPanel
                                             HorizontalAlignment="Left"
                                             VerticalAlignment="Center"
@@ -160,6 +160,15 @@
                                                 Text="حذف"
                                                 TextWrapping="NoWrap" />
                                         </StackPanel>
+                                        <Button.Style>
+                                            <Style BasedOn="{StaticResource ButtonDanger}" TargetType="Button">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding SelectedItems.Count, ElementName=dataGrid}" Value="0">
+                                                        <Setter Property="IsEnabled" Value="False" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Button.Style>
                                     </Button>
                                     <Button
                                         x:Name="btnEditCancel"
