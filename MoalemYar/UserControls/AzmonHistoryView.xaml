@@ -14,7 +14,7 @@
         <controls:ScrollViewer HorizontalScrollBarVisibility="Auto">
             <Grid>
                 <StackPanel
-                    Height="33"
+                    Height="38"
                     Margin="10,10,10,0"
                     VerticalAlignment="Top"
                     Orientation="Horizontal">
