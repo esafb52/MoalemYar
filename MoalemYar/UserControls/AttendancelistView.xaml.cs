@@ -130,7 +130,6 @@ namespace MoalemYar.UserControls
                 {
                     this.dataGrid.ItemsSource = null;
                     swAllPresent.IsEnabled = false;
-                    MainWindow.main.showNotification(NotificationKEY: AppVariable.No_Data_KEY, param: "Question");
                 }
             }
             catch (Exception)
