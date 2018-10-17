@@ -218,9 +218,11 @@ namespace MoalemYar.UserControls
 
         private void btnEditCancel_Click(object sender, RoutedEventArgs e)
         {
+            dataGrid.UnselectAll();
             txtName.Text = string.Empty;
             txtLName.Text = string.Empty;
             txtFName.Text = string.Empty;
+            imgEditStudent.Source = null;
             setComboValue(null);
             cmbEditBase.SelectedIndex = -1;
             editStack.IsEnabled = false;

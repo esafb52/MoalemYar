@@ -141,6 +141,7 @@ namespace MoalemYar.UserControls
             txtYear.Text = string.Empty;
             setComboValue(null);
             editGrid.IsEnabled = false;
+            dataGrid.UnselectAll();
         }
 
         private void setComboValue(string index)

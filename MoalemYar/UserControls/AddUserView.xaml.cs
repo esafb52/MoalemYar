@@ -142,6 +142,7 @@ namespace MoalemYar.UserControls
 
         private void btnEditCancel_Click(object sender, RoutedEventArgs e)
         {
+            dataGrid.UnselectAll();
             txtUsername.Text = string.Empty;
             txtPassword.Text = string.Empty;
             txtPasswordAg.Text = string.Empty;

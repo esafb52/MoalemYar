@@ -147,6 +147,7 @@ namespace MoalemYar.UserControls
         {
             txtGroup.Text = string.Empty;
             editGrid.IsEnabled = false;
+            dataGrid.UnselectAll();
         }
 
         private void txtEditSearch_TextChanged(object sender, TextChangedEventArgs e)

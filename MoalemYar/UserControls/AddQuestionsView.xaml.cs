@@ -356,6 +356,7 @@ namespace MoalemYar.UserControls
             setComboValue2(null);
             cmbGroupEdit.SelectedIndex = -1;
             editStack.IsEnabled = false;
+            dataGrid.UnselectAll();
         }
     }
 }
