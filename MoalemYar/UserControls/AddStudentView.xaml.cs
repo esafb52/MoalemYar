@@ -196,15 +196,24 @@ namespace MoalemYar.UserControls
 
         private void btnEditSave_Click(object sender, RoutedEventArgs e)
         {
-            dynamic selectedItem = dataGrid.SelectedItems[0];
-            long id = selectedItem.Id;
+            try
+            {
+                dynamic selectedItem = dataGrid.SelectedItems[0];
+                long id = selectedItem.Id;
 
-            updateStudent(id, Convert.ToInt64(cmbEditBase.SelectedValue), txtName.Text, txtLName.Text, txtFName.Text, cmbGender.Text, (isCreateThumbnail ? CreateThumbnail(imgEditStudent.Source as BitmapImage) : getImageByte(imgEditStudent.Source as BitmapImage)));
-            isCreateThumbnail = false;
+                updateStudent(id, Convert.ToInt64(cmbEditBase.SelectedValue), txtName.Text, txtLName.Text, txtFName.Text, cmbGender.Text, (isCreateThumbnail ? CreateThumbnail(imgEditStudent.Source as BitmapImage) : getImageByte(imgEditStudent.Source as BitmapImage)));
+                isCreateThumbnail = false;
 
-            MainWindow.main.showNotification(AppVariable.Update_Data_KEY, true, txtName.Text, "دانش آموز");
-            editStack.IsEnabled = false;
-            getStudent(Convert.ToInt64(cmbBaseEdit.SelectedValue));
+                MainWindow.main.showNotification(AppVariable.Update_Data_KEY, true, txtName.Text, "دانش آموز");
+                editStack.IsEnabled = false;
+                getStudent(Convert.ToInt64(cmbBaseEdit.SelectedValue));
+            }
+            catch (Exception)
+            {
+
+                MainWindow.main.showNotification(AppVariable.Update_Data_KEY, false, txtName.Text, "دانش آموز");
+            }
+
         }
 
         private void btnEditCancel_Click(object sender, RoutedEventArgs e)

@@ -138,9 +138,9 @@ namespace MoalemYar.UserControls
                 var kheyliKhob = query.Where(y => y.Scores == "خیلی خوب").ToList();
 
                 list.Add(new DataClass.DataTransferObjects.myChartTemplate { Caption = "نیاز", Scores = niazBeTalash.Count });
-                list.Add(new DataClass.DataTransferObjects.myChartTemplate { Caption = "قابل قبول", Scores = ghabelGhabol.Count });
-                list.Add(new DataClass.DataTransferObjects.myChartTemplate { Caption = "خوب", Scores = khob.Count });
-                list.Add(new DataClass.DataTransferObjects.myChartTemplate { Caption = "خیلی خوب", Scores = kheyliKhob.Count });
+                list.Add(new DataClass.DataTransferObjects.myChartTemplate { Caption = "ق ق", Scores = ghabelGhabol.Count });
+                list.Add(new DataClass.DataTransferObjects.myChartTemplate { Caption = "خ", Scores = khob.Count });
+                list.Add(new DataClass.DataTransferObjects.myChartTemplate { Caption = "خ خ", Scores = kheyliKhob.Count });
 
                 chart.ItemsSource = list;
             }

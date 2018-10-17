@@ -387,6 +387,7 @@ namespace MoalemYar.UserControls
         private void btnEditSave_Click(object sender, RoutedEventArgs e)
         {
             dynamic selectedItemName = cmbEditStudent.SelectedItem;
+
             try
             {
                 dynamic selectedItem = dataGridEdit.SelectedItems[0];

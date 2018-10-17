@@ -341,6 +341,7 @@ namespace MoalemYar.UserControls
             }
             catch (Exception)
             {
+                MainWindow.main.showNotification(AppVariable.Update_Data_KEY, false, string.Empty, "سوال");
             }
         }
 
