@@ -59,15 +59,12 @@ namespace MoalemYar.UserControls
         private void LoadSettings()
         {
             loadServers();
-            if (FindElement.Settings.CredentialLogin)
-                swLogin.IsChecked = true;
-            else
-                swLogin.IsChecked = false;
-
-            if (FindElement.Settings.Autorun)
-                swAutoStart.IsChecked = true;
-            else
-                swAutoStart.IsChecked = false;
+            
+            swLogin.IsChecked = FindElement.Settings.CredentialLogin;
+            
+            swAutoStart.IsChecked = FindElement.Settings.Autorun;
+            
+            swMax.IsChecked = FindElement.Settings.IsMaximize;
         }
 
         private void swLogin_Checked(object sender, RoutedEventArgs e)
@@ -1430,6 +1427,11 @@ namespace MoalemYar.UserControls
                     AppVariable.dbRestore();
                     break;
             }
+        }
+
+        private void swMax_Checked(object sender, RoutedEventArgs e)
+        {
+            FindElement.Settings.IsMaximize = Convert.ToBoolean(swMax.IsChecked);
         }
     }
 }

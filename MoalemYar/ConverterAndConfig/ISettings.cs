@@ -18,6 +18,7 @@ public class ISettings : JsonSettings
 
     public virtual bool CredentialLogin { get; set; } = false;
     public virtual bool Autorun { get; set; } = false;
+    public virtual bool IsMaximize { get; set; } = false;
     public virtual int? DefaultSchool { get; set; } = 0;
     public virtual string DefaultServer { get; set; } = "http://5743.zanjan.medu.ir";
 

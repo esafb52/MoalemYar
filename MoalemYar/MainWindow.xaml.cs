@@ -36,6 +36,7 @@ namespace MoalemYar
             DataContext = this;
             main = this;
 
+            loadSettings();
             ShowCredentialDialog();
         }
 
@@ -97,7 +98,13 @@ namespace MoalemYar
                     break;
             }
         }
-
+        private void loadSettings()
+        {
+            if (FindElement.Settings.IsMaximize)
+                this.WindowState = WindowState.Maximized;
+            else
+                this.WindowState = WindowState.Normal;
+        }
         private void ShowCredentialDialog()
         {
             var isLogin = FindElement.Settings.CredentialLogin;

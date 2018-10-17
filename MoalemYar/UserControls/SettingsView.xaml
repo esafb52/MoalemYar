@@ -39,6 +39,18 @@
                                         Style="{StaticResource TextBlockSubTitle}"
                                         Text="ورود با رمز عبور" />
                                 </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <ToggleButton
+                                        x:Name="swMax"
+                                        Margin="10"
+                                        Checked="swMax_Checked"
+                                        Style="{StaticResource ToggleButtonSwitch}"
+                                        Unchecked="swMax_Checked" />
+                                    <TextBlock
+                                        Margin="10"
+                                        Style="{StaticResource TextBlockSubTitle}"
+                                        Text="حالت تمام صفحه" />
+                                </StackPanel>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <ComboBox
@@ -80,7 +92,7 @@
                         </StackPanel>
                         <GridSplitter
                             Height="2"
-                            Margin="62,100,93.6,0"
+                            Margin="62,132,93.6,0.4"
                             HorizontalAlignment="Stretch" />
                     </Grid>
                     <StackPanel Margin="0,20" HorizontalAlignment="Center">
