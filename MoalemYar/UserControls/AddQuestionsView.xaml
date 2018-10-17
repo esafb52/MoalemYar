@@ -130,7 +130,6 @@
                                         controls:InfoElement.ContentHeight="35"
                                         controls:InfoElement.Placeholder="متن سوال"
                                         FlowDirection="RightToLeft"
-                                        MaxLength="20"
                                         Style="{StaticResource TextBoxExtend}"
                                         TabIndex="0" />
                                     <TextBox
@@ -140,7 +139,6 @@
                                         controls:InfoElement.ContentHeight="35"
                                         controls:InfoElement.Placeholder="گزینه 1"
                                         FlowDirection="RightToLeft"
-                                        MaxLength="20"
                                         Style="{StaticResource TextBoxExtend}"
                                         TabIndex="0" />
                                     <TextBox
@@ -150,7 +148,6 @@
                                         controls:InfoElement.ContentHeight="35"
                                         controls:InfoElement.Placeholder="گزینه 2"
                                         FlowDirection="RightToLeft"
-                                        MaxLength="20"
                                         Style="{StaticResource TextBoxExtend}"
                                         TabIndex="0" />
                                     <TextBox
@@ -160,7 +157,6 @@
                                         controls:InfoElement.ContentHeight="35"
                                         controls:InfoElement.Placeholder="گزینه 3"
                                         FlowDirection="RightToLeft"
-                                        MaxLength="20"
                                         Style="{StaticResource TextBoxExtend}"
                                         TabIndex="0" />
                                     <TextBox
@@ -170,7 +166,6 @@
                                         controls:InfoElement.ContentHeight="35"
                                         controls:InfoElement.Placeholder="گزینه 4"
                                         FlowDirection="RightToLeft"
-                                        MaxLength="20"
                                         Style="{StaticResource TextBoxExtend}"
                                         TabIndex="0" />
                                     <ComboBox
@@ -208,8 +203,7 @@
                                             HorizontalAlignment="Left"
                                             VerticalAlignment="Top"
                                             Click="btnEditSave_Click"
-                                            IsDefault="True"
-                                            >
+                                            IsDefault="True">
                                             <StackPanel
                                                 HorizontalAlignment="Left"
                                                 VerticalAlignment="Center"
@@ -426,7 +420,6 @@
                                                     controls:InfoElement.ContentHeight="35"
                                                     controls:InfoElement.Placeholder="متن سوال"
                                                     FlowDirection="RightToLeft"
-                                                    MaxLength="20"
                                                     Style="{StaticResource TextBoxExtend}"
                                                     TabIndex="0" />
                                                 <TextBox
@@ -436,7 +429,6 @@
                                                     controls:InfoElement.ContentHeight="35"
                                                     controls:InfoElement.Placeholder="گزینه 1"
                                                     FlowDirection="RightToLeft"
-                                                    MaxLength="20"
                                                     Style="{StaticResource TextBoxExtend}"
                                                     TabIndex="0" />
                                                 <TextBox
@@ -446,7 +438,6 @@
                                                     controls:InfoElement.ContentHeight="35"
                                                     controls:InfoElement.Placeholder="گزینه 2"
                                                     FlowDirection="RightToLeft"
-                                                    MaxLength="20"
                                                     Style="{StaticResource TextBoxExtend}"
                                                     TabIndex="0" />
                                                 <TextBox
@@ -456,7 +447,6 @@
                                                     controls:InfoElement.ContentHeight="35"
                                                     controls:InfoElement.Placeholder="گزینه 3"
                                                     FlowDirection="RightToLeft"
-                                                    MaxLength="20"
                                                     Style="{StaticResource TextBoxExtend}"
                                                     TabIndex="0" />
                                                 <TextBox
@@ -466,7 +456,6 @@
                                                     controls:InfoElement.ContentHeight="35"
                                                     controls:InfoElement.Placeholder="گزینه 4"
                                                     FlowDirection="RightToLeft"
-                                                    MaxLength="20"
                                                     Style="{StaticResource TextBoxExtend}"
                                                     TabIndex="0" />
                                                 <ComboBox

@@ -424,7 +424,6 @@
                                     controls:InfoElement.ContentHeight="35"
                                     controls:InfoElement.Placeholder="جستجو..."
                                     FlowDirection="RightToLeft"
-                                    MaxLength="40"
                                     Style="{StaticResource TextBoxExtend}"
                                     TabIndex="2"
                                     TextChanged="txtEditSearch_TextChanged" />

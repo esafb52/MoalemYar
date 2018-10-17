@@ -91,7 +91,6 @@
                                 controls:InfoElement.ContentHeight="35"
                                 controls:InfoElement.Placeholder="نام گروه"
                                 FlowDirection="RightToLeft"
-                                MaxLength="20"
                                 Style="{StaticResource TextBoxExtend}"
                                 TabIndex="0" />
                         </StackPanel>
@@ -276,7 +275,6 @@
                                             controls:InfoElement.ContentHeight="35"
                                             controls:InfoElement.Placeholder="نام گروه"
                                             FlowDirection="RightToLeft"
-                                            MaxLength="20"
                                             Style="{StaticResource TextBoxExtend}" />
                                     </StackPanel>
                                 </Grid>

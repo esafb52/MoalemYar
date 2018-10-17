@@ -100,7 +100,7 @@
                                     controls:InfoElement.ContentHeight="35"
                                     controls:InfoElement.Placeholder="نام مدرسه"
                                     FlowDirection="RightToLeft"
-                                    MaxLength="20"
+                                    MaxLength="40"
                                     Style="{StaticResource TextBoxExtend}"
                                     TabIndex="1" />
                                 <TextBox
@@ -109,7 +109,7 @@
                                     controls:InfoElement.ContentHeight="35"
                                     controls:InfoElement.Placeholder="نام مدیر"
                                     FlowDirection="RightToLeft"
-                                    MaxLength="20"
+                                    MaxLength="40"
                                     Style="{StaticResource TextBoxExtend}"
                                     TabIndex="2" />
                                 <ComboBox
@@ -331,7 +331,7 @@
                                         controls:InfoElement.ContentHeight="35"
                                         controls:InfoElement.Placeholder="نام مدرسه"
                                         FlowDirection="RightToLeft"
-                                        MaxLength="20"
+                                        MaxLength="40"
                                         Style="{StaticResource TextBoxExtend}" />
                                     <TextBox
                                         Name="txtAdmin"
@@ -341,7 +341,7 @@
                                         controls:InfoElement.ContentHeight="35"
                                         controls:InfoElement.Placeholder="نام مدیر"
                                         FlowDirection="RightToLeft"
-                                        MaxLength="20"
+                                        MaxLength="40"
                                         Style="{StaticResource TextBoxExtend}" />
                                     <ComboBox
                                         Name="cmbEditBase"
