@@ -137,8 +137,7 @@
                                         HorizontalAlignment="Left"
                                         VerticalAlignment="Top"
                                         Click="btnEditSave_Click"
-                                        IsDefault="True"
-                                        Style="{StaticResource ButtonSuccess}">
+                                        IsDefault="True">
                                         <StackPanel
                                             HorizontalAlignment="Left"
                                             VerticalAlignment="Center"
@@ -154,6 +153,15 @@
                                                 Text="ذخیره"
                                                 TextWrapping="NoWrap" />
                                         </StackPanel>
+                                        <Button.Style>
+                                            <Style BasedOn="{StaticResource ButtonSuccess}" TargetType="Button">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding SelectedItems.Count, ElementName=dataGrid}" Value="0">
+                                                        <Setter Property="IsEnabled" Value="False" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Button.Style>
                                     </Button>
                                     <Button
                                         x:Name="btnDelete"
