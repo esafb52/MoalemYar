@@ -8,8 +8,12 @@
 *
 ***********************************************************************************/
 
+using LiveCharts;
+using LiveCharts.Configurations;
+using LiveCharts.Helpers;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -22,6 +26,9 @@ namespace MoalemYar.UserControls
     public partial class InitialView : UserControl
     {
         private List<DataClass.DataTransferObjects.myChartTemplate> list = new List<DataClass.DataTransferObjects.myChartTemplate>();
+        public ChartValues<DataClass.DataTransferObjects.myChartTemplate> Results { get; set; }
+        public ObservableCollection<string> Labels { get; set; }
+        public object Mapper { get; set; }
 
         public InitialView()
         {
@@ -137,12 +144,21 @@ namespace MoalemYar.UserControls
                 var khob = query.Where(y => y.Scores == "خوب").ToList();
                 var kheyliKhob = query.Where(y => y.Scores == "خیلی خوب").ToList();
 
-                list.Add(new DataClass.DataTransferObjects.myChartTemplate { Caption = "نیاز", Scores = niazBeTalash.Count });
-                list.Add(new DataClass.DataTransferObjects.myChartTemplate { Caption = "قابل", Scores = ghabelGhabol.Count });
+                list.Add(new DataClass.DataTransferObjects.myChartTemplate { Caption = "نیاز به تلاش", Scores = niazBeTalash.Count });
+                list.Add(new DataClass.DataTransferObjects.myChartTemplate { Caption = "قابل قبول", Scores = ghabelGhabol.Count });
                 list.Add(new DataClass.DataTransferObjects.myChartTemplate { Caption = "خوب", Scores = khob.Count });
-                list.Add(new DataClass.DataTransferObjects.myChartTemplate { Caption = "خخ", Scores = kheyliKhob.Count });
+                list.Add(new DataClass.DataTransferObjects.myChartTemplate { Caption = "خیلی خوب", Scores = kheyliKhob.Count });
 
-                chart.ItemsSource = list;
+                Mapper = Mappers.Xy<DataClass.DataTransferObjects.myChartTemplate>()
+                    .X((myData, index) => index)
+                    .Y(myData => myData.Scores);
+
+                //lets take the first 15 records by default;
+                var records = list.OrderBy(x => x.Scores).ToArray();
+
+                Results = records.AsChartValues();
+                Labels = new ObservableCollection<string>(records.Select(x => x.Caption));
+                DataContext = this;
             }
         }
     }

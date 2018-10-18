@@ -1,7 +1,14 @@
-﻿using System;
+﻿using LiveCharts;
+using LiveCharts.Configurations;
+using LiveCharts.Helpers;
+using LiveCharts.Wpf;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Media.Effects;
 
 namespace MoalemYar.UserControls
 {
@@ -11,6 +18,8 @@ namespace MoalemYar.UserControls
     public partial class AchievementView : UserControl
     {
         private List<DataClass.Tables.Score> _initialCollection;
+        public ChartValues<DataClass.DataTransferObjects.myChartTemplate> Results { get; set; }
+        public ObservableCollection<string> Labels { get; set; }
 
         public AchievementView()
         {
@@ -115,7 +124,42 @@ namespace MoalemYar.UserControls
                 //generate chart based on count of books
                 foreach (var item in bookCount)
                 {
-                    waterfallFlow.Children.Add(new ChartTemplate(item.Book, selectedItem.Name + " " + selectedItem.LName, getDataList(item.Book), getAverage(item.Book), getAverageStatus(item.Book)));
+                    Mapper = Mappers.Xy<DataClass.DataTransferObjects.myChartTemplate>()
+                        .X((myData, index) => index)
+                        .Y(myData => myData.Scores);
+              
+                    var records = getDataList(item.Book).OrderBy(x => x.Scores).ToArray();
+
+                    Results = records.AsChartValues();
+
+                    Labels = new ObservableCollection<string>(records.Select(x => x.Caption));
+
+                    var chart = new CartesianChart();
+
+                    var series = new SeriesCollection
+                    {
+                       new ColumnSeries{
+                           Title = item.Book + Environment.NewLine + getAverageStatus(item.Book) + Environment.NewLine + "میانگین: " + getAverage(item.Book),
+                           Configuration = Mapper, Values = Results, DataLabels = true, FontFamily = TryFindResource("TeacherYar.Fonts.IRANSans") as FontFamily
+                       }
+                    };
+
+                    chart.Series = series;
+                    chart.LegendLocation = LegendLocation.Top;
+                    chart.AxisX.Add(new Axis { FontFamily = TryFindResource("TeacherYar.Fonts.IRANSans") as FontFamily,
+                        Labels = Labels, LabelsRotation = -20, Separator = new LiveCharts.Wpf.Separator { Step = 1 } });
+                    chart.AxisY.Add(new Axis { FontFamily = TryFindResource("TeacherYar.Fonts.IRANSans") as FontFamily });
+
+                    var mainBorder = new Border();
+                    mainBorder.Width = 300;
+                    mainBorder.Height = 320;
+                    mainBorder.Effect = TryFindResource("EffectShadow3") as Effect;
+                    mainBorder.CornerRadius = new System.Windows.CornerRadius(5);
+                    mainBorder.Margin = new System.Windows.Thickness(10);
+                    mainBorder.Background = System.Windows.Media.Brushes.White;
+                    mainBorder.Child=chart;
+
+                    waterfallFlow.Children.Add(mainBorder);
                 }
             }
             catch (ArgumentNullException) { }
@@ -124,6 +168,7 @@ namespace MoalemYar.UserControls
             }
         }
 
+        public object Mapper { get; set; }
         //get Score Average to string
         private string getAverage(string Book)
         {

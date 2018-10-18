@@ -8,8 +8,12 @@
 *
 ***********************************************************************************/
 
+using LiveCharts;
+using LiveCharts.Configurations;
+using LiveCharts.Helpers;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -22,7 +26,9 @@ namespace MoalemYar.UserControls
     public partial class AzmonHistoryView : UserControl
     {
         private List<DataClass.DataTransferObjects.myChartTemplate> list = new List<DataClass.DataTransferObjects.myChartTemplate>();
-
+        public ChartValues<DataClass.DataTransferObjects.myChartTemplate> Results { get; set; }
+        public ObservableCollection<string> Labels { get; set; }
+        public object Mapper { get; set; }
         public AzmonHistoryView()
         {
             InitializeComponent();
@@ -107,9 +113,16 @@ namespace MoalemYar.UserControls
                     list.Add(new DataClass.DataTransferObjects.myChartTemplate { Caption = "پاسخ غلط", Scores = data.FirstOrDefault().FalseItem });
                     list.Add(new DataClass.DataTransferObjects.myChartTemplate { Caption = "بدون پاسخ", Scores = data.FirstOrDefault().NoneItem });
 
-                    chartColumn.ChartTitle = gpName;
-                    chartColumn.ChartSubTitle = dPass;
-                    chart.ItemsSource = list;
+                    Mapper = Mappers.Xy<DataClass.DataTransferObjects.myChartTemplate>()
+                    .X((myData, index) => index)
+                    .Y(myData => myData.Scores);
+
+                    //lets take the first 15 records by default;
+                    var records = list.OrderBy(x => x.Scores).ToArray();
+
+                    Results = records.AsChartValues();
+                    Labels = new ObservableCollection<string>(records.Select(x => x.Caption));
+                    DataContext = this;
                 }
             }
             catch (Exception)

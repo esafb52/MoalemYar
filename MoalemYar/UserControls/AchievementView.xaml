@@ -12,7 +12,12 @@
     <controls:TransitioningContentControl>
         <controls:ScrollViewer HorizontalScrollBarVisibility="Auto">
             <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
                 <StackPanel
+                    Grid.Column="0"
                     Margin="10"
                     VerticalAlignment="Top"
                     Orientation="Horizontal">
@@ -43,6 +48,7 @@
                 </StackPanel>
                 <DataGrid
                     x:Name="dataGrid"
+                    Grid.Column="0"
                     Width="311"
                     Margin="10,55,0,5"
                     HorizontalAlignment="Left"
@@ -84,8 +90,9 @@
                 </DataGrid>
                 <WrapPanel
                     Name="waterfallFlow"
+                    Grid.Column="1"
                     Width="1000"
-                    Margin="340,48,0,0" />
+                    Margin="0.2,55,-0.2,-0.4" />
             </Grid>
         </controls:ScrollViewer>
     </controls:TransitioningContentControl>
