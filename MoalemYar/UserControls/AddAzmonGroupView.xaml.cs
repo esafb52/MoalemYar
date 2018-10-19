@@ -40,11 +40,12 @@ namespace MoalemYar.UserControls
         {
             using (var db = new DataClass.myDbContext())
             {
+                var DeleteQuestion = await db.AQuestions.FindAsync(id);
+                if(!db.AQuestions.Any())
+                    db.AQuestions.Remove(DeleteQuestion);
+
                 var DeleteGroup = await db.Groups.FindAsync(id);
                 db.Groups.Remove(DeleteGroup);
-
-                var DeleteQuestion = await db.AQuestions.FindAsync(id);
-                db.AQuestions.Remove(DeleteQuestion);
 
                 await db.SaveChangesAsync();
                 return "Group Deleted Successfully";
@@ -175,6 +176,7 @@ namespace MoalemYar.UserControls
                     MainWindow.main.showNotification(AppVariable.Add_Data_KEY, true, txtAddGroup.Text, "گروه");
                     txtAddGroup.Text = string.Empty;
                     txtAddGroup.Focus();
+                    getGroup();
                 }
                 catch (Exception)
                 {

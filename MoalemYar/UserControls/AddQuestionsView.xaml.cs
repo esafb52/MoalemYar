@@ -201,6 +201,8 @@ namespace MoalemYar.UserControls
                     txtCase4.Text = string.Empty;
                     txtQuestionText.Text = string.Empty;
                     txtQuestionText.Focus();
+                    if (cmbBaseEdit.SelectedIndex > -1)
+                        cmbBaseEdit_SelectionChanged(null, null);
                 }
                 catch (Exception)
                 {
