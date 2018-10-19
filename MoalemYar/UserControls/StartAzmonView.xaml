@@ -22,6 +22,7 @@
 
                             <ComboBox
                                 x:Name="cmbEditBase"
+                                Width="240"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top"
                                 controls:InfoElement.ContentHeight="35"
@@ -29,7 +30,7 @@
                                 SelectedValue="{Binding SchoolName}"
                                 SelectedValuePath="Id"
                                 SelectionChanged="cmbEditBase_SelectionChanged"
-                                Style="{StaticResource ComboBoxExtend}" Width="240"
+                                Style="{StaticResource ComboBoxExtend}"
                                 TabIndex="0">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>
@@ -45,6 +46,7 @@
                             </ComboBox>
                             <ComboBox
                                 x:Name="cmbEditStudent"
+                                Width="240"
                                 Margin="0,10"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top"
@@ -53,7 +55,7 @@
                                 SelectedValue="{Binding LName}"
                                 SelectedValuePath="Id"
                                 SelectionChanged="cmbEditStudent_SelectionChanged"
-                                Style="{StaticResource ComboBoxExtend}" Width="240"
+                                Style="{StaticResource ComboBoxExtend}"
                                 TabIndex="1">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>
@@ -73,6 +75,7 @@
                         <StackPanel Orientation="Vertical">
                             <ComboBox
                                 x:Name="cmbGroup"
+                                Width="240"
                                 Margin="5,0"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top"
@@ -81,7 +84,7 @@
                                 ItemsSource="{Binding}"
                                 SelectedValue="{Binding GroupName}"
                                 SelectedValuePath="Id"
-                                Style="{StaticResource ComboBoxExtend}" Width="240">
+                                Style="{StaticResource ComboBoxExtend}">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal">
@@ -90,16 +93,14 @@
                                     </DataTemplate>
                                 </ComboBox.ItemTemplate>
                             </ComboBox>
-                            <TextBox
+                            <controls:NumericUpDown
                                 Name="txtTedad"
-                                Width="80"
+                                Width="234"
                                 Margin="0,10"
                                 VerticalAlignment="Top"
-                                controls:InfoElement.ContentHeight="35"
-                                controls:InfoElement.Placeholder="تعداد سوالات"
-                                MaxLength="3"
-                                PreviewTextInput="txtTedad_PreviewTextInput"
-                                Style="{StaticResource TextBoxExtend}" />
+                                controls:InfoElement.Title="تعداد سوالات"
+                                controls:InfoElement.TitleAlignment="Left"
+                                Style="{StaticResource NumericUpDownExtend}" />
                         </StackPanel>
 
 
@@ -131,46 +132,42 @@
                                     Unchecked="swRandom_Checked" />
                             </StackPanel>
                         </StackPanel>
-                        <TextBox
-                            x:Name="txtTime"
-                            Width="50"
-                            Height="35"
-                            Margin="5,25"
-                            VerticalAlignment="Top"
-                            HorizontalContentAlignment="Center"
-                            controls:InfoElement.ContentHeight="35"
-                            controls:InfoElement.Placeholder="زمان هر سوال"
-                            IsEnabled="{Binding ElementName=swLimit, Path=IsChecked}"
-                            MaxLength="3"
-                            PreviewTextInput="txtTedad_PreviewTextInput"
-                            Style="{StaticResource TextBoxExtend}"
-                            Text="25" />
-                        <Button
-                            x:Name="btnStart"
-                            Width="140"
-                            Height="35"
-                            Margin="5,25"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Top"
-                            Click="btnStart_Click"
-                            IsDefault="True"
-                            Style="{StaticResource ButtonSuccess}">
-                            <StackPanel
+                        <StackPanel>
+                            <controls:NumericUpDown
+                                x:Name="txtTime"
+                                Margin="0,0,0,5"
+                                controls:InfoElement.ContentHeight="35"
+                                controls:InfoElement.Title="زمان هر سوال"
+                                controls:InfoElement.TitleAlignment="Left"
+                                IsEnabled="{Binding ElementName=swLimit, Path=IsChecked}"
+                                Style="{StaticResource NumericUpDownExtend}"
+                                Value="20" />
+                            <Button
+                                x:Name="btnStart"
+                                Width="140"
+                                Height="35"
                                 HorizontalAlignment="Left"
-                                VerticalAlignment="Center"
-                                Orientation="Horizontal">
-                                <Image
-                                    Width="16"
-                                    Height="16"
-                                    Margin="-30,0,30,0"
-                                    Source="/Resources/start.png" />
-                                <TextBlock
-                                    FontSize="13"
-                                    Foreground="#ffffff"
-                                    Text="شروع"
-                                    TextWrapping="NoWrap" />
-                            </StackPanel>
-                        </Button>
+                                VerticalAlignment="Top"
+                                Click="btnStart_Click"
+                                IsDefault="True"
+                                Style="{StaticResource ButtonSuccess}">
+                                <StackPanel
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    Orientation="Horizontal">
+                                    <Image
+                                        Width="16"
+                                        Height="16"
+                                        Margin="-30,0,30,0"
+                                        Source="/Resources/start.png" />
+                                    <TextBlock
+                                        FontSize="13"
+                                        Foreground="#ffffff"
+                                        Text="شروع"
+                                        TextWrapping="NoWrap" />
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
                     </StackPanel>
                 </GroupBox>
 

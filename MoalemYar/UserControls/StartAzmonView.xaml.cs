@@ -124,17 +124,9 @@ namespace MoalemYar.UserControls
 
         #endregion Async Query
 
-        private void txtTedad_PreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            if ((e.Text) == null || !(e.Text).All(char.IsDigit))
-            {
-                e.Handled = true;
-            }
-        }
-
         private void btnStart_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtTedad.Text) || txtTedad.Text == "0" || txtTedad.Text == "تعداد سوالات" || cmbGroup.SelectedIndex == -1 || cmbEditStudent.SelectedIndex == -1)
+            if (txtTedad.Value == 0 || cmbGroup.SelectedIndex == -1 || cmbEditStudent.SelectedIndex == -1)
             {
                 MainWindow.main.showNotification(NotificationKEY: AppVariable.Fill_All_Data_KEY);
                 return;
@@ -147,11 +139,11 @@ namespace MoalemYar.UserControls
                     var classText = uClass;
 
                     if (isGuid)
-                        result = db.AQuestions.Where(x => x.GroupId == id && x.Class == classText).OrderBy(x => Guid.NewGuid()).Take(Convert.ToInt32(txtTedad.Text)).ToList();
+                        result = db.AQuestions.Where(x => x.GroupId == id && x.Class == classText).OrderBy(x => Guid.NewGuid()).Take(Convert.ToInt32(txtTedad.Value)).ToList();
                     else
-                        result = db.AQuestions.Where(x => x.GroupId == id && x.Class == classText).Take(Convert.ToInt32(txtTedad.Text)).ToList();
+                        result = db.AQuestions.Where(x => x.GroupId == id && x.Class == classText).Take(Convert.ToInt32(txtTedad.Value)).ToList();
 
-                    if (result.Count < Convert.ToInt32(txtTedad.Text))
+                    if (result.Count < Convert.ToInt32(txtTedad.Value))
                         MainWindow.main.showNotification(NotificationKEY: AppVariable.Azmon_KEY);
                     else
                     {
@@ -185,7 +177,7 @@ namespace MoalemYar.UserControls
 
                         if (swLimit.IsChecked == true)
                         {
-                            lblTime.Content = Convert.ToString(Convert.ToInt32(txtTime.Text) * (Convert.ToInt32(txtTedad.Text)));
+                            lblTime.Content = Convert.ToString(Convert.ToInt32(txtTime.Value) * (Convert.ToInt32(txtTedad.Value)));
                             dispatcherTimer.Start();
                         }
                         else

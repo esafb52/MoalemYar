@@ -55,6 +55,7 @@
                             <StackPanel Orientation="Horizontal">
                                 <ComboBox
                                     x:Name="cmbServer"
+                                    Width="240"
                                     Margin="10"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Top"
@@ -62,9 +63,10 @@
                                     controls:InfoElement.Placeholder="انتخاب سرور بخشنامه"
                                     ItemsSource="{Binding}"
                                     SelectionChanged="cmbServer_SelectionChanged"
-                                    Style="{StaticResource ComboBoxExtend}" Width="240" />
+                                    Style="{StaticResource ComboBoxExtend}" />
                                 <ComboBox
                                     x:Name="cmbBase"
+                                    Width="240"
                                     Margin="10,10"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Top"
@@ -74,7 +76,7 @@
                                     SelectedValue="{Binding SchoolName}"
                                     SelectedValuePath="Id"
                                     SelectionChanged="cmbBase_SelectionChanged"
-                                    Style="{StaticResource ComboBoxExtend}" Width="240"
+                                    Style="{StaticResource ComboBoxExtend}"
                                     TabIndex="4">
                                     <ComboBox.ItemTemplate>
                                         <DataTemplate>
