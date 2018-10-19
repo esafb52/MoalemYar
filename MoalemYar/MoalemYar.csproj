@@ -14,7 +14,7 @@
     <WarningLevel>4</WarningLevel>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <AssemblyVersion>2.1.5117.0</AssemblyVersion>
+    <AssemblyVersion>2.1.5122.0</AssemblyVersion>
     <TargetFrameworkProfile />
     <ShouldCreateLogs>False</ShouldCreateLogs>
     <AdvancedSettingsExpanded>True</AdvancedSettingsExpanded>
@@ -151,6 +151,8 @@
     <Compile Include="ConverterAndConfig\ISettings.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ConverterAndConfig\MultiplyConverter.cs" />
+    <Compile Include="Tools\AssemblyHelper.cs" />
+    <Compile Include="Tools\Converter\StringRepeatConverter.cs" />
     <Compile Include="UserControls\AboutView.xaml.cs">
       <DependentUpon>AboutView.xaml</DependentUpon>
     </Compile>
@@ -242,6 +244,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Resources\Themes\Basic\Converters.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Resources\Themes\Basic\Geometries.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -250,15 +256,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Resources\Themes\Styles\Button.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Resources\Themes\Styles\Label.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Resources\Themes\Styles\Style.xaml">
+    <Page Include="Resources\Themes\Styles\ListBoxItem.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Resources\Themes\Styles\TreeViewItem.xaml">
+    <Page Include="Resources\Themes\Styles\Style.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
