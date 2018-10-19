@@ -384,12 +384,6 @@ namespace MoalemYar.UserControls
             isPresentEdit = false;
         }
 
-        private void txtDateEdit_SelectedDateChanged(object sender, RoutedEventArgs e)
-        {
-            var mytxtDate = sender as PersianCalendarWPF.PersianDatePicker;
-            changedDate = mytxtDate.Text.ToString();
-        }
-
         private void btnEditSave_Click(object sender, RoutedEventArgs e)
         {
             dynamic selectedItemCmb = cmbEditStudent.SelectedItem;
@@ -398,7 +392,7 @@ namespace MoalemYar.UserControls
                 dynamic selectedItem = dgv.SelectedItems[0];
                 long id = selectedItem.Id;
                 long studentId = selectedItem.StudentId;
-                updateAttendance(id, studentId, isPresentEdit, changedDate);
+                updateAttendance(id, studentId, isPresentEdit, txtDateEdit.SelectedDate.ToString());
                 MainWindow.main.showNotification(AppVariable.Update_Data_KEY, true, selectedItemCmb.Name + " " + selectedItemCmb.LName, "حضورغیاب");
                 getAttendance(Convert.ToInt64(cmbEditStudent.SelectedValue));
             }
@@ -413,7 +407,8 @@ namespace MoalemYar.UserControls
             try
             {
                 dynamic selectedItem = dgv.SelectedItems[0];
-                changedDate = selectedItem.Date;
+                txtDateEdit.SelectedDate = new PersianCalendarWPF.PersianDate(Convert.ToInt32(selectedItem.Date.Substring(0, 4)), Convert.ToInt32(selectedItem.Date.Substring(5, 2)), Convert.ToInt32(selectedItem.Date.Substring(8, 2)));
+                tglExistEdit.IsChecked = selectedItem.Exist;
             }
             catch (Exception)
             {
