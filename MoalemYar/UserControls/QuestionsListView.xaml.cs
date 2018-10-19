@@ -486,8 +486,9 @@ namespace MoalemYar.UserControls
                 if (isQuestion.IsChecked == true)
                 {
                     getStudents(Convert.ToInt64(cmbBase.SelectedValue), cmbBook.SelectedItem.ToString(), false);
+                    txtDesc.Text = "پرسش از درس " + cmbBook.SelectedItem;
                 }
-                else
+                else if (isExam.IsChecked == true)
                 {
                     txtDesc.Text = "امتحان / فعالیت " + cmbBook.SelectedItem;
                     getStudents(Convert.ToInt64(cmbBase.SelectedValue), cmbBook.SelectedItem.ToString(), true);
