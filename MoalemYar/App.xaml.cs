@@ -22,11 +22,7 @@ namespace MoalemYar
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            #region This is for Change Database Location we change DataDirectory to Other Location
-
             AppDomain.CurrentDomain.SetData("DataDirectory", AppVariable.fileName + @"\");
-
-            #endregion This is for Change Database Location we change DataDirectory to Other Location
 
             #region Load Embedded Assembly
 

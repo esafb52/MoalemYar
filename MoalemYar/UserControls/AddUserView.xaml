@@ -1,119 +1,337 @@
-﻿<UserControl x:Class="MoalemYar.UserControls.AddUserView"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:MoalemYar.UserControls"
-             xmlns:Metro="clr-namespace:Arthas.Controls.Metro;assembly=Arthas"
-             xmlns:local1="clr-namespace:MoalemYar"
-             mc:Ignorable="d"
-             Style="{StaticResource myUserControl}"
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <Metro:MetroTabControl Focusable="False" x:Name="tabc" IsTabStop="True" TabIndex="-1" SelectionChanged="tabc_SelectionChanged">
-            <Metro:MetroTabItem Header="ثبت اطلاعات" Icon="/Resources/LockTab.png">
-                <Grid KeyboardNavigation.TabNavigation="Cycle">
-                    <StackPanel Orientation="Vertical" Margin="5,5,5,0">
-                        <Grid HorizontalAlignment="Stretch" Margin="5,5,5,0">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="auto" />
-                                <RowDefinition Height="auto" />
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="auto" />
-                                <ColumnDefinition Width="auto" />
-                            </Grid.ColumnDefinitions>
-                            <Button x:Name="btnSave" IsDefault="True" Click="btnSave_Click" Grid.Column="0" Grid.Row="0" Margin="10,5,5,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Style="{StaticResource WorkButtonGreen}" Height="35">
-                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                                    <Image Height="16" Width="16" Margin="10,0,30,0" Source="/Resources/add.png" />
-                                    <TextBlock TextWrapping="NoWrap" Text="ذخیره" FontSize="13" Foreground="#ffffff" />
+﻿<UserControl
+    x:Class="MoalemYar.UserControls.AddUserView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:HandyControl.Controls;assembly=HandyControl"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:MoalemYar.UserControls"
+    xmlns:local1="clr-namespace:MoalemYar"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Style="{StaticResource myUserControl}"
+    mc:Ignorable="d">
+    <controls:TransitioningContentControl>
+        <controls:ScrollViewer HorizontalScrollBarVisibility="Auto">
+            <controls:TabControl
+                Name="tabc"
+                MinWidth="800"
+                IsDraggable="True"
+                IsEnableAnimation="True"
+                IsEnableTabFill="True">
+                <controls:TabItem Header="ثبت اطلاعات" IsSelected="True">
+                    <Grid KeyboardNavigation.TabNavigation="Cycle">
+                        <StackPanel Margin="5,5,5,0" Orientation="Vertical">
+                            <Grid Margin="5,5,5,0" HorizontalAlignment="Stretch">
+                                <StackPanel Orientation="Horizontal">
+                                    <Button
+                                        x:Name="btnSave"
+                                        Width="140"
+                                        Height="35"
+                                        Margin="10,5"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Top"
+                                        Click="btnSave_Click"
+                                        IsDefault="True"
+                                        Style="{StaticResource ButtonSuccess}">
+                                        <StackPanel
+                                            HorizontalAlignment="Left"
+                                            VerticalAlignment="Center"
+                                            Orientation="Horizontal">
+                                            <Image
+                                                Width="16"
+                                                Height="16"
+                                                Margin="-30,0,30,0"
+                                                Source="/Resources/add.png" />
+                                            <TextBlock
+                                                FontSize="13"
+                                                Foreground="#ffffff"
+                                                Text="ذخیره"
+                                                TextWrapping="NoWrap" />
+                                        </StackPanel>
+                                    </Button>
+                                    <Button
+                                        x:Name="btnCancel"
+                                        Width="140"
+                                        Height="35"
+                                        Margin="10,5"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Top"
+                                        Click="btnCancel_Click"
+                                        IsCancel="True"
+                                        Style="{StaticResource ButtonInfo}">
+                                        <StackPanel
+                                            HorizontalAlignment="Left"
+                                            VerticalAlignment="Center"
+                                            Orientation="Horizontal">
+                                            <Image
+                                                Width="16"
+                                                Height="16"
+                                                Margin="-30,0,30,0"
+                                                Source="/Resources/cancel.png" />
+                                            <TextBlock
+                                                FontSize="13"
+                                                Foreground="#ffffff"
+                                                Text="انصراف"
+                                                TextWrapping="NoWrap" />
+                                        </StackPanel>
+                                    </Button>
                                 </StackPanel>
-                            </Button>
-                            <Button x:Name="btnCancel" IsCancel="True" Click="btnCancel_Click" Grid.Column="1" Grid.Row="0" Margin="10,5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Style="{StaticResource CancelButton}" Height="35">
-                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                                    <Image Height="16" Width="16" Margin="-30,0,30,0" Source="/Resources/cancel.png" />
-                                    <TextBlock TextWrapping="NoWrap" Text="انصراف" FontSize="13" Foreground="#ffffff" />
-                                </StackPanel>
-                            </Button>
-                        </Grid>
-                        <Grid Margin="0,5,0,0">
-                            <Metro:MetroBorder HorizontalAlignment="Stretch" BorderThickness="1" BorderBrush="{Binding BorderColor}" />
-                        </Grid>
-                        <Metro:MetroWaterfallFlow ListWidth="350" VerticalAlignment="Top" Height="55" Grid.Row="1">
+                                <GridSplitter
+                                    Height="2"
+                                    Margin="60,45,96,-7"
+                                    HorizontalAlignment="Stretch" />
+                            </Grid>
                             <StackPanel Margin="0,5,0,0" Orientation="Vertical">
-                                <Metro:MetroTextBox MaxLength="20" Margin="2" Name="txtAddUsername" TabIndex="0" InputHint="نام کاربری" Height="30" PopupHint="نام کاربری باید بصورت لاتین باشد" MetroPopupBackgroundState="DarkRed" />
-                                <PasswordBox Style="{StaticResource txtPassword}" MaxLength="20" Margin="2" Name="txtAddPassword" Tag="رمز عبور" TabIndex="1" />
-                                <PasswordBox Style="{StaticResource txtPassword}" MaxLength="20" Margin="2" Name="txtAddPasswordAg" TabIndex="2" Tag="تکرار رمز عبور"/>
+                                <TextBox
+                                    Name="txtAddUsername"
+                                    Width="240"
+                                    Margin="2"
+                                    HorizontalAlignment="Left"
+                                    controls:InfoElement.ContentHeight="35"
+                                    controls:InfoElement.Placeholder="نام کاربری"
+                                    FlowDirection="RightToLeft"
+                                    MaxLength="20"
+                                    Style="{StaticResource TextBoxExtend}"
+                                    TabIndex="0" />
+                                <PasswordBox
+                                    Name="txtAddPassword"
+                                    Width="240"
+                                    Margin="2"
+                                    HorizontalAlignment="Left"
+                                    controls:InfoElement.ContentHeight="35"
+                                    controls:InfoElement.Placeholder="رمز عبور"
+                                    MaxLength="20"
+                                    Style="{StaticResource PasswordBoxExtend}"
+                                    TabIndex="1"
+                                    Tag="رمز عبور" />
+                                <PasswordBox
+                                    Name="txtAddPasswordAg"
+                                    Width="240"
+                                    Margin="2"
+                                    HorizontalAlignment="Left"
+                                    controls:InfoElement.ContentHeight="35"
+                                    controls:InfoElement.Placeholder="تکرار رمز عبور"
+                                    MaxLength="20"
+                                    Style="{StaticResource PasswordBoxExtend}"
+                                    TabIndex="2"
+                                    Tag="تکرار رمز عبور" />
                             </StackPanel>
-                        </Metro:MetroWaterfallFlow>
-                    </StackPanel>
-                </Grid>
-            </Metro:MetroTabItem>
-            <Metro:MetroTabItem Header="ویرایش اطلاعات" Icon="/Resources/LockEditTab.png">
-                <Grid KeyboardNavigation.TabNavigation="Cycle">
-                    <StackPanel Orientation="Vertical" Margin="5,5,5,0">
-                        <StackPanel Orientation="Horizontal" Height="50" VerticalAlignment="Top">
-                            <Button x:Name="btnEditSave" IsDefault="True" Click="btnEditSave_Click" Grid.Column="0" Grid.Row="0" Margin="10,5,5,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Style="{StaticResource WorkButtonGreen}" Height="35">
-                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                                    <Image Height="16" Width="16" Margin="10,0,30,0" Source="/Resources/update.png" />
-                                    <TextBlock TextWrapping="NoWrap" Text="ذخیره" FontSize="13" Foreground="#ffffff" />
-                                </StackPanel>
-                            </Button>
-                            <Button x:Name="btnDelete" Click="btnDelete_Click" Grid.Column="1"  Grid.ColumnSpan="2" Grid.Row="1" Margin="5,5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Style="{StaticResource WorkButtonRed}" Height="35">
-                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                                    <Image Height="16" Width="16" Margin="10,0,30,0" Source="/Resources/Delete.png" />
-                                    <TextBlock TextWrapping="NoWrap" Text="حذف" FontSize="13" Foreground="#ffffff" />
-                                </StackPanel>
-                            </Button>
-                            <Button x:Name="btnEditCancel" IsCancel="True" Click="btnEditCancel_Click" Grid.Column="1" Grid.Row="0" Margin="5,5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="140" Style="{StaticResource CancelButton}" Height="35">
-                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left">
-                                    <Image Height="16" Width="16" Margin="-30,0,30,0" Source="/Resources/cancel.png" RenderTransformOrigin="-1.688,0.625" />
-                                    <TextBlock TextWrapping="NoWrap" Text="انصراف" FontSize="13" Foreground="#ffffff" />
-                                </StackPanel>
-                            </Button>
                         </StackPanel>
-                        <Grid Margin="0,5,0,0">
-                            <Metro:MetroBorder HorizontalAlignment="Stretch" BorderThickness="1" BorderBrush="{Binding BorderColor}" />
-                        </Grid>
-                        <StackPanel Orientation="Vertical" Margin="0,10,0,0">
+                    </Grid>
+                </controls:TabItem>
+                <controls:TabItem Header="ویرایش اطلاعات" IsSelected="True">
+                    <Grid KeyboardNavigation.TabNavigation="Cycle">
+                        <StackPanel Margin="5,5,5,0" Orientation="Vertical">
                             <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="2*" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-                                <Grid Name="grdedit" Grid.Column="0">
-                                    <StackPanel Orientation="Vertical">
-                                        <Metro:MetroTextBox MaxLength="40" Name="txtEditSearch" ButtonTitle="بروزرسانی لیست" HorizontalAlignment="Stretch" MaxWidth="{Binding Path=ActualWidth, ElementName=grdedit, Converter={local1:MultiplyConverter Multiplier=.9}}" ButtonClick="txtEditSearch_ButtonClick"  FlowDirection="RightToLeft" InputHint="جستجو..." PopupHint="جستجو بصورت خودکار انجام می شود" MetroPopupBackgroundState="Red2" Icon="../Resources/editIcon.png" TextChanged="txtEditSearch_TextChanged" />
-                                        <DataGrid x:Name="dataGrid" AutoGenerateColumns="False" HorizontalAlignment="Stretch"
-                                      Background="#eceff5" RowHeaderWidth="0" AlternatingRowBackground="#fbfcfe"
-                                      GridLinesVisibility="Horizontal" CanUserReorderColumns="False" MaxWidth="{Binding Path=ActualWidth, ElementName=grdedit, Converter={local1:MultiplyConverter Multiplier=.9}}"
-                                      CanUserResizeColumns="False" CanUserSortColumns="True" SelectionMode="Single" SelectionUnit="FullRow"
-                                      CanUserResizeRows="False" IsReadOnly="True" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}"
-                                      HorizontalGridLinesBrush="#dde8ef" CellStyle="{DynamicResource DataGridCellStyle}"
-                                      Margin="0,5" SelectionChanged="dataGrid_SelectionChanged">
-                                            <DataGrid.Columns>
-                                                <DataGridTextColumn Binding="{Binding Id}" Visibility="Hidden" />
-                                                <DataGridTextColumn Binding="{Binding Username}" Header="نام کاربری" MinWidth="100" Width="*" />
-                                                <DataGridTextColumn Binding="{Binding Password}" Header="رمز عبور" Width="*" />
-                                            </DataGrid.Columns>
-                                            <DataGrid.ContextMenu>
-                                                <Metro:MetroContextMenu>
-                                                    <Metro:MetroMenuItem Icon="/Resources/delete.png" Header="حذف" Click="btnDelete_Click" />
-                                                </Metro:MetroContextMenu>
-                                            </DataGrid.ContextMenu>
-                                        </DataGrid>
+                                <StackPanel
+                                    Height="50"
+                                    VerticalAlignment="Top"
+                                    Orientation="Horizontal">
+                                    <Button
+                                        x:Name="btnEditSave"
+                                        Grid.Row="0"
+                                        Grid.Column="0"
+                                        Width="140"
+                                        Height="35"
+                                        Margin="10,5"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Top"
+                                        Click="btnEditSave_Click"
+                                        IsDefault="True">
+                                        <StackPanel
+                                            HorizontalAlignment="Left"
+                                            VerticalAlignment="Center"
+                                            Orientation="Horizontal">
+                                            <Image
+                                                Width="16"
+                                                Height="16"
+                                                Margin="-30,0,30,0"
+                                                Source="/Resources/update.png" />
+                                            <TextBlock
+                                                FontSize="13"
+                                                Foreground="#ffffff"
+                                                Text="ذخیره"
+                                                TextWrapping="NoWrap" />
+                                        </StackPanel>
+                                        <Button.Style>
+                                            <Style BasedOn="{StaticResource ButtonSuccess}" TargetType="Button">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding SelectedItems.Count, ElementName=dataGrid}" Value="0">
+                                                        <Setter Property="IsEnabled" Value="False" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Button.Style>
+                                    </Button>
+                                    <Button
+                                        x:Name="btnDelete"
+                                        Grid.Row="1"
+                                        Grid.Column="1"
+                                        Grid.ColumnSpan="2"
+                                        Width="140"
+                                        Height="35"
+                                        Margin="5,5"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Top"
+                                        Click="btnDelete_Click">
+                                        <StackPanel
+                                            HorizontalAlignment="Left"
+                                            VerticalAlignment="Center"
+                                            Orientation="Horizontal">
+                                            <Image
+                                                Width="16"
+                                                Height="16"
+                                                Margin="-30,0,30,0"
+                                                Source="/Resources/Delete.png" />
+                                            <TextBlock
+                                                FontSize="13"
+                                                Foreground="#ffffff"
+                                                Text="حذف"
+                                                TextWrapping="NoWrap" />
+                                        </StackPanel>
+                                        <Button.Style>
+                                            <Style BasedOn="{StaticResource ButtonDanger}" TargetType="Button">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding SelectedItems.Count, ElementName=dataGrid}" Value="0">
+                                                        <Setter Property="IsEnabled" Value="False" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Button.Style>
+                                    </Button>
+
+                                    <Button
+                                        x:Name="btnEditCancel"
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        Width="140"
+                                        Height="35"
+                                        Margin="10,5"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Top"
+                                        Click="btnEditCancel_Click"
+                                        IsCancel="True"
+                                        Style="{StaticResource ButtonInfo}">
+                                        <StackPanel
+                                            HorizontalAlignment="Left"
+                                            VerticalAlignment="Center"
+                                            Orientation="Horizontal">
+                                            <Image
+                                                Width="16"
+                                                Height="16"
+                                                Margin="-30,0,30,0"
+                                                RenderTransformOrigin="-1.688,0.625"
+                                                Source="/Resources/cancel.png" />
+                                            <TextBlock
+                                                FontSize="13"
+                                                Foreground="#ffffff"
+                                                Text="انصراف"
+                                                TextWrapping="NoWrap" />
+                                        </StackPanel>
+                                    </Button>
+                                </StackPanel>
+
+                                <GridSplitter
+                                    Height="2"
+                                    Margin="60,45,96,-7"
+                                    HorizontalAlignment="Stretch" />
+                            </Grid>
+
+                            <StackPanel Margin="0,10,0,0" Orientation="Vertical">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid Name="grdedit" Grid.Column="0">
+                                        <StackPanel Orientation="Vertical">
+                                            <TextBox
+                                                Name="txtEditSearch"
+                                                Width="{Binding Path=ActualWidth, ElementName=dataGrid, Converter={local1:MultiplyConverter Multiplier=.99}}"
+                                                Margin="0,5"
+                                                controls:InfoElement.ContentHeight="35"
+                                                controls:InfoElement.Placeholder="جستجو..."
+                                                FlowDirection="RightToLeft"
+                                                Style="{StaticResource TextBoxExtend}"
+                                                TextChanged="txtEditSearch_TextChanged" />
+                                            <DataGrid
+                                                x:Name="dataGrid"
+                                                Margin="10,0"
+                                                local:DataGridBehavior.DisplayRowNumber="True"
+                                                AutoGenerateColumns="False"
+                                                HeadersVisibility="All"
+                                                IsReadOnly="True"
+                                                RowHeaderWidth="60"
+                                                SelectionChanged="dataGrid_SelectionChanged"
+                                                SelectionMode="Single">
+                                                <DataGrid.Columns>
+                                                    <DataGridTextColumn Binding="{Binding Id}" Visibility="Hidden" />
+                                                    <DataGridTextColumn
+                                                        Width="1*"
+                                                        MinWidth="100"
+                                                        Binding="{Binding Username}"
+                                                        Header="نام کاربری" />
+                                                    <DataGridTextColumn
+                                                        Width="1*"
+                                                        MinWidth="200"
+                                                        Binding="{Binding Password}"
+                                                        Header="رمز عبور" />
+                                                </DataGrid.Columns>
+                                            </DataGrid>
+                                        </StackPanel>
+                                    </Grid>
+                                    <StackPanel
+                                        Grid.Column="1"
+                                        Margin="5,0,10,20"
+                                        Orientation="Vertical">
+                                        <TextBox
+                                            Name="txtUsername"
+                                            Width="240"
+                                            Margin="2"
+                                            HorizontalAlignment="Left"
+                                            VerticalAlignment="Top"
+                                            controls:InfoElement.ContentHeight="35"
+                                            controls:InfoElement.Placeholder="نام کاربری"
+                                            FlowDirection="RightToLeft"
+                                            MaxLength="20"
+                                            Style="{StaticResource TextBoxExtend}" />
+                                        <TextBox
+                                            Name="txtPassword"
+                                            Width="240"
+                                            Margin="2"
+                                            HorizontalAlignment="Left"
+                                            VerticalAlignment="Top"
+                                            controls:InfoElement.ContentHeight="35"
+                                            controls:InfoElement.Placeholder="رمز عبور"
+                                            FlowDirection="RightToLeft"
+                                            MaxLength="20"
+                                            Style="{StaticResource TextBoxExtend}" />
+                                        <TextBox
+                                            Name="txtPasswordAg"
+                                            Width="240"
+                                            Margin="2"
+                                            HorizontalAlignment="Left"
+                                            VerticalAlignment="Top"
+                                            controls:InfoElement.ContentHeight="35"
+                                            controls:InfoElement.Placeholder="تکرار رمز عبور"
+                                            FlowDirection="RightToLeft"
+                                            MaxLength="20"
+                                            Style="{StaticResource TextBoxExtend}" />
+                                        <StackPanel.Style>
+                                            <Style TargetType="StackPanel">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding SelectedItems.Count, ElementName=dataGrid}" Value="0">
+                                                        <Setter Property="IsEnabled" Value="False" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </StackPanel.Style>
                                     </StackPanel>
                                 </Grid>
-                                <StackPanel IsEnabled="False" Orientation="Vertical" Grid.Column="1" Name="editGrid" Margin="5,0,0,0">
-                                    <Metro:MetroTextBox MaxLength="20" Name="txtUsername" Margin="2" InputHint="نام کاربری" Height="30" PopupHint="نام کاربری باید بصورت لاتین باشد" MetroPopupBackgroundState="DarkRed" VerticalAlignment="Top" />
-                                    <Metro:MetroTextBox MaxLength="20" Name="txtPassword" Margin="2" InputHint="رمز عبور" PopupHint="رمز عبور می تواند ترکیبی از حروف و اعداد باشد" MetroPopupBackgroundState="DarkRed" Height="30" VerticalAlignment="Top" />
-                                    <Metro:MetroTextBox MaxLength="20" Name="txtPasswordAg" Margin="2" InputHint="تکرار رمز عبور" Height="30" PopupHint="رمز عبور خود را تکرار کنید" MetroPopupBackgroundState="DarkRed" VerticalAlignment="Top" />
-                                </StackPanel>
-                            </Grid>
+                            </StackPanel>
                         </StackPanel>
-                    </StackPanel>
-                </Grid>
-            </Metro:MetroTabItem>
-        </Metro:MetroTabControl>
-    </Grid>
+                    </Grid>
+                </controls:TabItem>
+            </controls:TabControl>
+        </controls:ScrollViewer>
+    </controls:TransitioningContentControl>
 </UserControl>

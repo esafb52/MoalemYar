@@ -9,12 +9,14 @@
 ***********************************************************************************/
 
 using LiveCharts;
-using LiveCharts.Wpf;
+using LiveCharts.Configurations;
+using LiveCharts.Helpers;
 using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 
 namespace MoalemYar.UserControls
 {
@@ -23,16 +25,17 @@ namespace MoalemYar.UserControls
     /// </summary>
     public partial class AzmonHistoryView : UserControl
     {
-        public Brush BorderColor { get; set; }
+        private List<DataClass.DataTransferObjects.myChartTemplate> list = new List<DataClass.DataTransferObjects.myChartTemplate>();
+        public ChartValues<DataClass.DataTransferObjects.myChartTemplate> Results { get; set; }
+        public ObservableCollection<string> Labels { get; set; }
+        public object Mapper { get; set; }
 
         public AzmonHistoryView()
         {
             InitializeComponent();
-            DataContext = this;
-            BorderColor = AppVariable.GetBrush(FindElement.Settings.ChartColor ?? AppVariable.CHART_GREEN);
         }
 
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        private void loadData()
         {
             try
             {
@@ -48,8 +51,11 @@ namespace MoalemYar.UserControls
             catch (Exception)
             {
             }
+        }
 
-            cmbEditBase.SelectedIndex = Convert.ToInt32(FindElement.Settings.DefaultSchool);
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            loadData();
         }
 
         private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -63,7 +69,7 @@ namespace MoalemYar.UserControls
             {
                 long id = Convert.ToInt64(cmbEditBase.SelectedValue);
                 var qUser = db.Students.Where(x => x.BaseId == id).ToList();
-                dataGrid.ItemsSource = qUser.Any() ? qUser : null;
+                dataGrid.ItemsSource = qUser.OrderBy(x => x.LName).Any() ? qUser : null;
             }
         }
 
@@ -104,79 +110,20 @@ namespace MoalemYar.UserControls
                     var data = db.AHistories.Where(x => x.UserId == uId && x.DatePass == dPass && x.GroupName.Equals(gpName)).Select(x => x).OrderByDescending(x => x.DatePass).ToList();
                     values = new double[] { data.FirstOrDefault().TrueItem, data.FirstOrDefault().FalseItem, data.FirstOrDefault().NoneItem };
 
-                    Series series = new ColumnSeries();
+                    list.Add(new DataClass.DataTransferObjects.myChartTemplate { Caption = "پاسخ صحیح", Scores = data.FirstOrDefault().TrueItem });
+                    list.Add(new DataClass.DataTransferObjects.myChartTemplate { Caption = "پاسخ غلط", Scores = data.FirstOrDefault().FalseItem });
+                    list.Add(new DataClass.DataTransferObjects.myChartTemplate { Caption = "بدون پاسخ", Scores = data.FirstOrDefault().NoneItem });
 
-                    switch (FindElement.Settings.ChartType ?? 0)
-                    {
-                        case 0:
-                            series = new ColumnSeries { };
-                            break;
+                    Mapper = Mappers.Xy<DataClass.DataTransferObjects.myChartTemplate>()
+                    .X((myData, index) => index)
+                    .Y(myData => myData.Scores);
 
-                        case 1:
-                            series = new StackedColumnSeries { };
-                            break;
+                    //lets take the first 15 records by default;
+                    var records = list.OrderBy(x => x.Scores).ToArray();
 
-                        case 2:
-                            series = new LineSeries { };
-                            break;
-
-                        case 3:
-                            series = new StepLineSeries { };
-                            break;
-
-                        case 4:
-                            series = new StackedAreaSeries { };
-                            break;
-                    }
-
-                    if (series.GetType() == typeof(ColumnSeries))
-                    {
-                        AchievementChart.Series.Add(new ColumnSeries
-                        {
-                            Values = new ChartValues<double>(values),
-                            StrokeDashArray = new System.Windows.Media.DoubleCollection(20)
-                        });
-                    }
-                    else if (series.GetType() == typeof(LineSeries))
-                    {
-                        AchievementChart.Series.Add(new LineSeries
-                        {
-                            Values = new ChartValues<double>(values),
-                            StrokeDashArray = new System.Windows.Media.DoubleCollection(20)
-                        });
-                    }
-                    else if (series.GetType() == typeof(StackedAreaSeries))
-                    {
-                        AchievementChart.Series.Add(new StackedAreaSeries
-                        {
-                            Values = new ChartValues<double>(values),
-                            StrokeDashArray = new System.Windows.Media.DoubleCollection(20)
-                        });
-                    }
-                    else if (series.GetType() == typeof(StackedColumnSeries))
-                    {
-                        AchievementChart.Series.Add(new StackedColumnSeries
-                        {
-                            Values = new ChartValues<double>(values),
-                            StrokeDashArray = new System.Windows.Media.DoubleCollection(20)
-                        });
-                    }
-                    else if (series.GetType() == typeof(StepLineSeries))
-                    {
-                        AchievementChart.Series.Add(new StepLineSeries
-                        {
-                            Values = new ChartValues<double>(values),
-                            StrokeDashArray = new System.Windows.Media.DoubleCollection(20)
-                        });
-                    }
-
-                    AchievementChart.AxisX.Add(new Axis
-                    {
-                        Labels = new string[] { "پاسخ صحیح", "پاسخ غلط", "بدون پاسخ" },
-                        Separator = new LiveCharts.Wpf.Separator { }
-                    });
-                    txtName.Text = dPass;
-                    txtBook.Text = gpName;
+                    Results = records.AsChartValues();
+                    Labels = new ObservableCollection<string>(records.Select(x => x.Caption));
+                    DataContext = this;
                 }
             }
             catch (Exception)

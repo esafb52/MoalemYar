@@ -14,7 +14,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 
 namespace MoalemYar.UserControls
 {
@@ -23,9 +22,7 @@ namespace MoalemYar.UserControls
     /// </summary>
     public partial class AddAzmonGroupView : UserControl
     {
-        public Brush BorderColor { get; set; }
         internal static AddAzmonGroupView main;
-        private int runOnce = 0;
         private List<DataClass.Tables.Group> _initialCollection;
 
         public AddAzmonGroupView()
@@ -33,7 +30,8 @@ namespace MoalemYar.UserControls
             InitializeComponent();
             this.DataContext = this;
             main = this;
-            BorderColor = AppVariable.GetBrush(MainWindow.main.BorderBrush.ToString());
+
+            getGroup();
         }
 
         #region "Query"
@@ -42,11 +40,12 @@ namespace MoalemYar.UserControls
         {
             using (var db = new DataClass.myDbContext())
             {
+                var DeleteQuestion = await db.AQuestions.FindAsync(id);
+                if (!db.AQuestions.Any())
+                    db.AQuestions.Remove(DeleteQuestion);
+
                 var DeleteGroup = await db.Groups.FindAsync(id);
                 db.Groups.Remove(DeleteGroup);
-
-                var DeleteQuestion = await db.AQuestions.FindAsync(id);
-                db.AQuestions.Remove(DeleteQuestion);
 
                 await db.SaveChangesAsync();
                 return "Group Deleted Successfully";
@@ -63,16 +62,16 @@ namespace MoalemYar.UserControls
             {
                 using (var db = new DataClass.myDbContext())
                 {
-                    var query = db.Groups.Select(x => x);
-                    _initialCollection = query.ToList();
+                    var query = db.Groups.ToList();
+                    _initialCollection = query;
                     if (query.Any())
                     {
-                        dataGrid.ItemsSource = query.ToList();
+                        dataGrid.ItemsSource = query;
                     }
                     else
                     {
                         dataGrid.ItemsSource = null;
-                        MainWindow.main.ShowNoDataNotification("Group");
+                        MainWindow.main.showNotification(NotificationKEY: AppVariable.No_Data_KEY, param: "Group");
                     }
                 }
             }
@@ -85,7 +84,6 @@ namespace MoalemYar.UserControls
         {
             var query = DeleteGroupAsync(id);
             query.Wait();
-            MainWindow.main.getexHint();
         }
 
         private void updateGroup(long id, string GroupName)
@@ -106,7 +104,6 @@ namespace MoalemYar.UserControls
                 group.GroupName = GroupName;
                 db.Groups.Add(group);
                 db.SaveChanges();
-                MainWindow.main.getexHint();
             }
         }
 
@@ -114,19 +111,7 @@ namespace MoalemYar.UserControls
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
-            AzmonView.main.exContent.Content = null;
-        }
-
-        private void tabc_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (tabc.SelectedIndex == 1)
-            {
-                if (runOnce == 0)
-                {
-                    getGroup();
-                    runOnce = 1;
-                }
-            }
+            MainWindow.main.ClearScreen();
         }
 
         private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -135,7 +120,6 @@ namespace MoalemYar.UserControls
             {
                 dynamic selectedItem = dataGrid.SelectedItems[0];
                 txtGroup.Text = selectedItem.GroupName;
-                editGrid.IsEnabled = true;
             }
             catch (Exception)
             {
@@ -149,20 +133,19 @@ namespace MoalemYar.UserControls
                 dynamic selectedItem = dataGrid.SelectedItems[0];
                 long id = selectedItem.Id;
                 updateGroup(id, txtGroup.Text);
-                MainWindow.main.ShowUpdateDataNotification(true, txtGroup.Text, "گروه");
-                editGrid.IsEnabled = false;
+                MainWindow.main.showNotification(AppVariable.Update_Data_KEY, true, txtGroup.Text, "گروه");
                 getGroup();
             }
             catch (Exception)
             {
-                MainWindow.main.ShowUpdateDataNotification(false, txtGroup.Text, "گروه");
+                MainWindow.main.showNotification(AppVariable.Update_Data_KEY, false, txtGroup.Text, "گروه");
             }
         }
 
         private void btnEditCancel_Click(object sender, RoutedEventArgs e)
         {
             txtGroup.Text = string.Empty;
-            editGrid.IsEnabled = false;
+            dataGrid.UnselectAll();
         }
 
         private void txtEditSearch_TextChanged(object sender, TextChangedEventArgs e)
@@ -180,33 +163,28 @@ namespace MoalemYar.UserControls
         {
             if (txtAddGroup.Text == string.Empty)
             {
-                MainWindow.main.ShowFillAllDataNotification();
+                MainWindow.main.showNotification(NotificationKEY: AppVariable.Fill_All_Data_KEY);
             }
             else
             {
                 try
                 {
                     addGroup(txtAddGroup.Text);
-                    MainWindow.main.ShowAddDataNotification(true, txtAddGroup.Text, "گروه");
+                    MainWindow.main.showNotification(AppVariable.Add_Data_KEY, true, txtAddGroup.Text, "گروه");
                     txtAddGroup.Text = string.Empty;
                     txtAddGroup.Focus();
-                    AzmonView.main.getHint();
+                    getGroup();
                 }
                 catch (Exception)
                 {
-                    MainWindow.main.ShowAddDataNotification(false, txtAddGroup.Text, "گروه");
+                    MainWindow.main.showNotification(AppVariable.Add_Data_KEY, false, txtAddGroup.Text, "گروه");
                 }
             }
         }
 
-        private void txtEditSearch_ButtonClick(object sender, EventArgs e)
-        {
-            getGroup();
-        }
-
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.main.ShowDeleteConfirmNotification(txtGroup.Text, "گروه");
+            MainWindow.main.showNotification(NotificationKEY: AppVariable.Delete_Confirm_KEY, param: new[] { txtGroup.Text, "گروه" });
         }
 
         public void deleteGroup()
@@ -216,14 +194,12 @@ namespace MoalemYar.UserControls
                 dynamic selectedItem = dataGrid.SelectedItems[0];
                 long id = selectedItem.Id;
                 deleteGroup(id);
-                MainWindow.main.ShowDeletedNotification(true, txtGroup.Text, "گروه");
-                editGrid.IsEnabled = false;
+                MainWindow.main.showNotification(AppVariable.Deleted_KEY, true, txtGroup.Text, "گروه");
                 getGroup();
-                AzmonView.main.getHint();
             }
             catch (Exception)
             {
-                MainWindow.main.ShowDeletedNotification(false, txtGroup.Text, "گروه");
+                MainWindow.main.showNotification(AppVariable.Deleted_KEY, false, txtGroup.Text, "گروه");
             }
         }
     }

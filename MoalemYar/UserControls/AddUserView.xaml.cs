@@ -13,7 +13,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 
 namespace MoalemYar.UserControls
 {
@@ -22,9 +21,7 @@ namespace MoalemYar.UserControls
     /// </summary>
     public partial class AddUserView : UserControl
     {
-        public Brush BorderColor { get; set; }
         internal static AddUserView main;
-        private int runOnce = 0;
         private List<DataClass.Tables.User> _initialCollection;
 
         public AddUserView()
@@ -32,7 +29,7 @@ namespace MoalemYar.UserControls
             InitializeComponent();
             this.DataContext = this;
             main = this;
-            BorderColor = AppVariable.GetBrush(MainWindow.main.BorderBrush.ToString());
+            getUser();
         }
 
         #region Query
@@ -43,16 +40,16 @@ namespace MoalemYar.UserControls
             {
                 using (var db = new DataClass.myDbContext())
                 {
-                    var query = db.Users.Select(x => x);
-                    _initialCollection = query.ToList();
+                    var query = db.Users.ToList();
+                    _initialCollection = query;
                     if (query.Any())
                     {
-                        dataGrid.ItemsSource = query.ToList();
+                        dataGrid.ItemsSource = query;
                     }
                     else
                     {
                         dataGrid.ItemsSource = null;
-                        MainWindow.main.ShowNoDataNotification("User");
+                        MainWindow.main.showNotification(NotificationKEY: AppVariable.No_Data_KEY, param: "User");
                     }
                 }
             }
@@ -69,7 +66,6 @@ namespace MoalemYar.UserControls
                 db.Users.Remove(DeleteUser);
                 db.SaveChanges();
             }
-            MainWindow.main.getexHint();
         }
 
         private void updateUser(long id, string Username, string Password)
@@ -96,26 +92,13 @@ namespace MoalemYar.UserControls
 
                 db.SaveChanges();
             }
-            MainWindow.main.getexHint();
         }
 
         #endregion Query
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.main.region.Content = null;
-        }
-
-        private void tabc_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (tabc.SelectedIndex == 1)
-            {
-                if (runOnce == 0)
-                {
-                    getUser();
-                    runOnce = 1;
-                }
-            }
+            MainWindow.main.ClearScreen();
         }
 
         private void dataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -126,7 +109,6 @@ namespace MoalemYar.UserControls
                 txtUsername.Text = selectedItem.Username;
                 txtPassword.Text = selectedItem.Password;
                 txtPasswordAg.Text = selectedItem.Password;
-                editGrid.IsEnabled = true;
             }
             catch (Exception)
             {
@@ -139,30 +121,29 @@ namespace MoalemYar.UserControls
             {
                 if (txtPassword.Text != txtPasswordAg.Text)
                 {
-                    MainWindow.main.ShowSamePasswordNotification();
+                    MainWindow.main.showNotification(NotificationKEY: AppVariable.Same_Password_KEY);
                 }
                 else
                 {
                     dynamic selectedItem = dataGrid.SelectedItems[0];
                     long id = selectedItem.Id;
                     updateUser(id, txtUsername.Text.ToLower(), txtPassword.Text.ToLower());
-                    MainWindow.main.ShowUpdateDataNotification(true, txtUsername.Text, "نام کاربری");
-                    editGrid.IsEnabled = false;
+                    MainWindow.main.showNotification(AppVariable.Update_Data_KEY, true, txtUsername.Text, "نام کاربری");
                     getUser();
                 }
             }
             catch (Exception)
             {
-                MainWindow.main.ShowUpdateDataNotification(false, txtUsername.Text, "نام کاربری");
+                MainWindow.main.showNotification(AppVariable.Update_Data_KEY, false, txtUsername.Text, "نام کاربری");
             }
         }
 
         private void btnEditCancel_Click(object sender, RoutedEventArgs e)
         {
+            dataGrid.UnselectAll();
             txtUsername.Text = string.Empty;
             txtPassword.Text = string.Empty;
             txtPasswordAg.Text = string.Empty;
-            editGrid.IsEnabled = false;
         }
 
         private void txtEditSearch_TextChanged(object sender, TextChangedEventArgs e)
@@ -180,38 +161,34 @@ namespace MoalemYar.UserControls
         {
             if (txtAddUsername.Text == string.Empty || txtAddPassword.Password == string.Empty || txtAddPasswordAg.Password == string.Empty)
             {
-                MainWindow.main.ShowFillAllDataNotification();
+                MainWindow.main.showNotification(NotificationKEY: AppVariable.Fill_All_Data_KEY);
             }
             else if (txtAddPassword.Password != txtAddPasswordAg.Password)
             {
-                MainWindow.main.ShowSamePasswordNotification();
+                MainWindow.main.showNotification(NotificationKEY: AppVariable.Same_Password_KEY);
             }
             else
             {
                 try
                 {
                     addUser(txtAddUsername.Text.ToLower(), txtAddPassword.Password.ToLower());
-                    MainWindow.main.ShowAddDataNotification(true, txtAddUsername.Text, "نام کاربری");
+                    MainWindow.main.showNotification(AppVariable.Add_Data_KEY, true, txtAddUsername.Text, "نام کاربری");
                     txtAddUsername.Text = string.Empty;
                     txtAddPassword.Password = string.Empty;
                     txtAddPasswordAg.Password = string.Empty;
                     txtAddPassword.Focus();
+                    getUser();
                 }
                 catch (Exception)
                 {
-                    MainWindow.main.ShowAddDataNotification(false, txtAddUsername.Text, "نام کاربری");
+                    MainWindow.main.showNotification(AppVariable.Add_Data_KEY, false, txtAddUsername.Text, "نام کاربری");
                 }
             }
         }
 
-        private void txtEditSearch_ButtonClick(object sender, EventArgs e)
-        {
-            getUser();
-        }
-
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.main.ShowDeleteConfirmNotification(txtUsername.Text, "کاربر");
+            MainWindow.main.showNotification(NotificationKEY: AppVariable.Delete_Confirm_KEY, param: new[] { txtUsername.Text, "کاربر" });
         }
 
         public void deleteUser()
@@ -221,13 +198,12 @@ namespace MoalemYar.UserControls
                 dynamic selectedItem = dataGrid.SelectedItems[0];
                 long id = selectedItem.Id;
                 deleteUser(id);
-                MainWindow.main.ShowDeletedNotification(true, txtUsername.Text, "نام کاربری");
-                editGrid.IsEnabled = false;
+                MainWindow.main.showNotification(AppVariable.Deleted_KEY, true, txtUsername.Text, "نام کاربری");
                 getUser();
             }
             catch (Exception)
             {
-                MainWindow.main.ShowDeletedNotification(false, txtUsername.Text, "نام کاربری");
+                MainWindow.main.showNotification(AppVariable.Deleted_KEY, false, txtUsername.Text, "نام کاربری");
             }
         }
     }

@@ -24,7 +24,6 @@ namespace MoalemYar.UserControls
     /// </summary>
     public partial class AttendancelistView : UserControl
     {
-        private bool runOnceSchool = true;
         internal static AttendancelistView main;
         private List<DataClass.DataTransferObjects.StudentsDto> _initialCollection;
         private List<DataClass.Tables.Attendance> _initialCollectionAtendance;
@@ -32,17 +31,15 @@ namespace MoalemYar.UserControls
         private static string strDate;
         private bool isPresentEdit = true;
         private string changedDate = string.Empty;
-        public System.Windows.Media.Brush BorderColor { get; set; }
 
         public AttendancelistView()
         {
             InitializeComponent();
 
-            this.DataContext = this;
             main = this;
             strDate = pc.GetYear(DateTime.Now).ToString("0000") + "/" + pc.GetMonth(DateTime.Now).ToString("00") + "/" + pc.GetDayOfMonth(DateTime.Now).ToString("00");
-            txtDate.Text = string.Format("تاریخ امروز : {0} ", strDate);
-            BorderColor = AppVariable.GetBrush(MainWindow.main.BorderBrush.ToString());
+            txtDate.Content = string.Format("تاریخ امروز : {0} ", strDate);
+            getSchool();
         }
 
         #region "Async Query"
@@ -69,7 +66,22 @@ namespace MoalemYar.UserControls
         {
             using (var db = new DataClass.myDbContext())
             {
-                var query = db.Attendances.Where(x => x.StudentId == StudentId).OrderByDescending(x => x.Date).Select(x => x);
+                var query = db.Attendances.Where(x => x.StudentId == StudentId).OrderByDescending(x => x.Date).ToListAsync();
+                return await query;
+            }
+        }
+
+        public async static Task<List<DataClass.DataTransferObjects.StudentAttendanceListDto>> GetAttendanceListAsync(long BaseId, string Date)
+        {
+            using (var db = new DataClass.myDbContext())
+            {
+                var query = db.Students.Join(
+                  db.Attendances,
+                  c => c.Id,
+                  v => v.StudentId,
+                  (c, v) => new DataClass.DataTransferObjects.StudentAttendanceListDto { BaseId = c.BaseId, Name = c.Name, LName = c.LName, FName = c.FName, Id = c.Id, AttendanceId = v.Id, Date = v.Date, Exist = v.Exist }
+              ).OrderBy(x => x.LName).Where(x => x.BaseId == BaseId && x.Date == Date);
+
                 return await query.ToListAsync();
             }
         }
@@ -84,11 +96,12 @@ namespace MoalemYar.UserControls
             {
                 using (var db = new DataClass.myDbContext())
                 {
-                    var query = db.Schools.Select(x => x);
+                    var query = db.Schools.ToList();
                     if (query.Any())
                     {
-                        cmbBase.ItemsSource = query.ToList();
-                        cmbEditBase.ItemsSource = query.ToList();
+                        cmbBase.ItemsSource = query;
+                        cmbEditBase.ItemsSource = query;
+                        cmbBaseList.ItemsSource = query;
                     }
                 }
             }
@@ -110,14 +123,13 @@ namespace MoalemYar.UserControls
 
                 if (data.Any())
                 {
-                    this.dataGrid.ItemsSource = data;
+                    this.dataGrid.ItemsSource = data.OrderBy(x => x.LName);
                     swAllPresent.IsEnabled = true;
                 }
                 else
                 {
                     this.dataGrid.ItemsSource = null;
                     swAllPresent.IsEnabled = false;
-                    MainWindow.main.ShowNoDataNotification("Student");
                 }
             }
             catch (Exception)
@@ -138,7 +150,7 @@ namespace MoalemYar.UserControls
                 }
                 else
                 {
-                    MainWindow.main.ShowNoDataNotification("Student");
+                    MainWindow.main.showNotification(NotificationKEY: AppVariable.No_Data_KEY, param: "Student");
                 }
             }
             catch (Exception)
@@ -175,12 +187,35 @@ namespace MoalemYar.UserControls
                 _initialCollectionAtendance = data;
                 if (data.Any())
                 {
-                    dgv.ItemsSource = data;
+                    dgv.ItemsSource = data.OrderByDescending(x => x.Date);
                 }
                 else
                 {
                     dgv.ItemsSource = null;
-                    MainWindow.main.ShowNoDataNotification("Attendance");
+                    MainWindow.main.showNotification(NotificationKEY: AppVariable.No_Data_KEY, param: "Attendance");
+                }
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+        private void getStudentAttendanceList(long BaseId, string Date)
+        {
+            try
+            {
+                var query = GetAttendanceListAsync(BaseId, Date);
+                query.Wait();
+
+                List<DataClass.DataTransferObjects.StudentAttendanceListDto> data = query.Result;
+
+                if (data.Any())
+                {
+                    this.dataGridList.ItemsSource = data.OrderBy(x => x.LName);
+                }
+                else
+                {
+                    this.dataGridList.ItemsSource = null;
                 }
             }
             catch (Exception)
@@ -219,15 +254,6 @@ namespace MoalemYar.UserControls
 
         #endregion Func get Query Wait"
 
-        private void tabc_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (runOnceSchool)
-            {
-                getSchool();
-                runOnceSchool = false;
-            }
-        }
-
         private void cmbBase_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             getStudent(Convert.ToInt64(cmbBase.SelectedValue));
@@ -237,12 +263,24 @@ namespace MoalemYar.UserControls
         {
             if (dataGrid.Items.Count != 0)
             {
-                for (int i = 0; i < _initialCollection.Count; i++)
+                using (var db = new DataClass.myDbContext())
                 {
-                    dataGrid.SelectedIndex = i;
-                    dynamic selectedItem = dataGrid.SelectedItems[0];
-                    addAttendance((long)selectedItem.Id, true, strDate);
-                    UpdateList(Convert.ToInt64(selectedItem.Id), 10);
+                    for (int i = 0; i < _initialCollection.Count; i++)
+                    {
+                        dataGrid.SelectedIndex = i;
+                        dynamic selectedItem = dataGrid.SelectedItems[0];
+
+                        //Add to Attendance
+                        var Attendance = new DataClass.Tables.Attendance();
+                        Attendance.StudentId = (long)selectedItem.Id;
+                        Attendance.Exist = true;
+                        Attendance.Date = strDate;
+                        db.Attendances.Add(Attendance);
+                        db.SaveChanges();
+
+                        //remove items from list
+                        UpdateList(Convert.ToInt64(selectedItem.Id), 10);
+                    }
                 }
             }
         }
@@ -298,15 +336,10 @@ namespace MoalemYar.UserControls
             if (dgv.ItemsSource != null)
             {
                 if (txtEditSearch.Text != string.Empty)
-                    dgv.ItemsSource = _initialCollectionAtendance.Where(x => x.Date.Contains(txtEditSearch.Text)).Select(x => x);
+                    dgv.ItemsSource = _initialCollectionAtendance.Where(x => x.Date.Contains(txtEditSearch.Text)).ToList();
                 else
-                    dgv.ItemsSource = _initialCollectionAtendance.Select(x => x);
+                    dgv.ItemsSource = _initialCollectionAtendance.ToList();
             }
-        }
-
-        private void txtEditSearch_ButtonClick(object sender, EventArgs e)
-        {
-            getAttendance(Convert.ToInt64(cmbEditStudent.SelectedValue));
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
@@ -314,8 +347,8 @@ namespace MoalemYar.UserControls
             try
             {
                 dynamic selectedItem = cmbEditStudent.SelectedItem;
-
-                MainWindow.main.ShowDeleteConfirmNotification(selectedItem.Name + " " + selectedItem.LName, "حضورغیاب");
+                string par0 = Convert.ToString(selectedItem.Name + " " + selectedItem.LName);
+                MainWindow.main.showNotification(NotificationKEY: AppVariable.Delete_Confirm_KEY, param: new[] { par0, "حضورغیاب" });
             }
             catch (Exception)
             {
@@ -332,12 +365,12 @@ namespace MoalemYar.UserControls
                 long studentId = selectedItem.StudentId;
 
                 deleteAttendance(studentId, id);
-                MainWindow.main.ShowDeletedNotification(true, selectedItemCmb.Name + " " + selectedItemCmb.LName, "حضورغیاب");
+                MainWindow.main.showNotification(AppVariable.Deleted_KEY, true, selectedItemCmb.Name + " " + selectedItemCmb.LName, "حضورغیاب");
                 getAttendance(Convert.ToInt64(cmbEditStudent.SelectedValue));
             }
             catch (Exception)
             {
-                MainWindow.main.ShowDeletedNotification(false, selectedItemCmb.Name + " " + selectedItemCmb.LName, "حضورغیاب");
+                MainWindow.main.showNotification(AppVariable.Deleted_KEY, false, selectedItemCmb.Name + " " + selectedItemCmb.LName, "حضورغیاب");
             }
         }
 
@@ -351,12 +384,6 @@ namespace MoalemYar.UserControls
             isPresentEdit = false;
         }
 
-        private void txtDateEdit_SelectedDateChanged(object sender, RoutedEventArgs e)
-        {
-            var mytxtDate = sender as PersianCalendarWPF.PersianDatePicker;
-            changedDate = mytxtDate.Text.ToString();
-        }
-
         private void btnEditSave_Click(object sender, RoutedEventArgs e)
         {
             dynamic selectedItemCmb = cmbEditStudent.SelectedItem;
@@ -365,13 +392,13 @@ namespace MoalemYar.UserControls
                 dynamic selectedItem = dgv.SelectedItems[0];
                 long id = selectedItem.Id;
                 long studentId = selectedItem.StudentId;
-                updateAttendance(id, studentId, isPresentEdit, changedDate);
-                MainWindow.main.ShowUpdateDataNotification(true, selectedItemCmb.Name + " " + selectedItemCmb.LName, "حضورغیاب");
+                updateAttendance(id, studentId, isPresentEdit, txtDateEdit.SelectedDate.ToString());
+                MainWindow.main.showNotification(AppVariable.Update_Data_KEY, true, selectedItemCmb.Name + " " + selectedItemCmb.LName, "حضورغیاب");
                 getAttendance(Convert.ToInt64(cmbEditStudent.SelectedValue));
             }
             catch (Exception)
             {
-                MainWindow.main.ShowUpdateDataNotification(false, selectedItemCmb.Name + " " + selectedItemCmb.LName, "حضورغیاب");
+                MainWindow.main.showNotification(AppVariable.Update_Data_KEY, false, selectedItemCmb.Name + " " + selectedItemCmb.LName, "حضورغیاب");
             }
         }
 
@@ -380,7 +407,8 @@ namespace MoalemYar.UserControls
             try
             {
                 dynamic selectedItem = dgv.SelectedItems[0];
-                changedDate = selectedItem.Date;
+                txtDateEdit.SelectedDate = new PersianCalendarWPF.PersianDate(Convert.ToInt32(selectedItem.Date.Substring(0, 4)), Convert.ToInt32(selectedItem.Date.Substring(5, 2)), Convert.ToInt32(selectedItem.Date.Substring(8, 2)));
+                tglExistEdit.IsChecked = selectedItem.Exist;
             }
             catch (Exception)
             {
@@ -391,6 +419,13 @@ namespace MoalemYar.UserControls
         {
             cmbBase.SelectedIndex = Convert.ToInt32(FindElement.Settings.DefaultSchool);
             cmbEditBase.SelectedIndex = Convert.ToInt32(FindElement.Settings.DefaultSchool);
+            cmbBaseList.SelectedIndex = Convert.ToInt32(FindElement.Settings.DefaultSchool);
+            getStudentAttendanceList(Convert.ToInt64(cmbBaseList.SelectedValue), txtDateList.SelectedDate.ToString());
+        }
+
+        private void txtDateList_SelectedDateChanged(object sender, RoutedEventArgs e)
+        {
+            getStudentAttendanceList(Convert.ToInt64(cmbBaseList.SelectedValue), txtDateList.SelectedDate.ToString());
         }
     }
 }

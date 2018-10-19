@@ -16,16 +16,11 @@ public class ISettings : JsonSettings
 
     #region Property
 
-    public virtual bool CredentialLogin { get; set; }
-    public virtual bool Autorun { get; set; }
-    public virtual bool? HamburgerMenu { get; set; }
-    public virtual string SkinCode { get; set; }
-    public virtual string VersionCode { get; set; }
-    public virtual int? ChartType { get; set; }
-    public virtual string ChartColor { get; set; }
-    public virtual int? ChartColorIndex { get; set; }
-    public virtual int? DefaultSchool { get; set; }
-    public virtual string DefaultServer { get; set; }
+    public virtual bool CredentialLogin { get; set; } = false;
+    public virtual bool Autorun { get; set; } = false;
+    public virtual bool IsMaximize { get; set; } = false;
+    public virtual int? DefaultSchool { get; set; } = 0;
+    public virtual string DefaultServer { get; set; } = "http://5743.zanjan.medu.ir";
 
     #endregion Property
 

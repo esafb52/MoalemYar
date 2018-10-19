@@ -8,13 +8,18 @@
 *
 ***********************************************************************************/
 
+using SharpCompress.Archives;
+using SharpCompress.Archives.Rar;
+using SharpCompress.Archives.Zip;
+using SharpCompress.Common;
 using System;
+using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 
 namespace MoalemYar.UserControls
@@ -24,9 +29,9 @@ namespace MoalemYar.UserControls
     /// </summary>
     public partial class CircularView : UserControl
     {
-        System.Collections.Generic.List<DelegationLink> myClass;
-        bool Permission = true;
-        bool Limited = false;
+        private bool Limited = false;
+        private System.Collections.Generic.List<DelegationLink> myClass;
+
         public CircularView()
         {
             InitializeComponent();
@@ -35,17 +40,15 @@ namespace MoalemYar.UserControls
         private void prgUpdate_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             if (prgUpdate.Value == prgUpdate.Maximum)
-                MainWindow.main.ShowRecivedCircularNotification(true);
+            {
+                btnStart.IsEnabled = true;
+                MainWindow.main.showNotification(AppVariable.Recived_Circular_KEY, true);
+                txtSearch.IsEnabled = true;
+            }
         }
 
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        private void CalculateMyOperation()
         {
-            
-            Dispatcher.Invoke<Task>(async () =>
-        {
-            waterfallFlow.Children.Clear();
-            MaterialCircular _addUser;
-            Control _currentUser;
             try
             {
                 using (WebClient webClient = new WebClientWithTimeout())
@@ -58,7 +61,6 @@ namespace MoalemYar.UserControls
                 .Select(r =>
                 {
                     var linkNode = r.Descendants("a").Select(node => node.Attributes["href"].Value).ToArray();
-                    var linkNode2 = r.SelectSingleNode("th|td");
                     return new DelegationLink()
                     {
                         Row = r.SelectSingleNode(".//td").InnerText,
@@ -73,66 +75,43 @@ namespace MoalemYar.UserControls
                 ).ToList();
                     var parsedValues = query.Take(Limited ? 20 : query.Count).ToList();
                     myClass = parsedValues;
-                    prgUpdate.Maximum = parsedValues.Count;
-
-                    foreach (var item in parsedValues)
+                    int currentIndex = 0;
+                    Dispatcher.Invoke(() =>
                     {
-                        if (!Permission)
-                            return;
-
-                        await Task.Delay(10);
-                        prgUpdate.Value += 1;
-                        prgUpdate.Hint = string.Format("{0}%", ((prgUpdate.Value * 100) / parsedValues.Count).ToString("0"));
-                        _addUser = new MaterialCircular(item.Row, item.Title, item.Category, item.Type, item.SubType, item.Date, item.link);
-                        _currentUser = _addUser;
-                        waterfallFlow.Children.Add(_currentUser);
-                        waterfallFlow.Refresh();
-                    }
-                    if (prgUpdate.Hint == "100%")
+                        lst.Items.Clear();
+                        btnStart.IsEnabled = false;
+                        prgLoading.Visibility = Visibility.Hidden;
+                        prgUpdate.Visibility = Visibility.Visible;
+                    });
+                    foreach (var i in parsedValues)
                     {
-                        Permission = false;
-                        txtStop.Text = "دریافت";
-                        Style style = this.FindResource("WorkButtonGreen") as Style;
-                        btnStop.Style = style;
-                        img.Source = new BitmapImage(new Uri("pack://application:,,,/MoalemYar;component/Resources/start.png", UriKind.Absolute));
-                        txtSearch.IsEnabled = true;
+                        Dispatcher.BeginInvoke(new Action(() =>
+                        {
+                            currentIndex += 1;
+                            lst.Items.Add(i);
+
+                            prgUpdate.Value = (Convert.ToDouble(((double)currentIndex / (double)parsedValues.Count).ToString("N2")) * 100);
+                        }), DispatcherPriority.Background);
                     }
                 }
             }
             catch (WebException)
             {
-                MainWindow.main.ShowRecivedCircularNotification(false);
+                MainWindow.main.showNotification(AppVariable.Recived_Circular_KEY, true);
             }
-        }, DispatcherPriority.ContextIdle);
         }
 
-        private void UserControl_Unloaded(object sender, RoutedEventArgs e)
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            Permission = false;
+            Task.Run(() => CalculateMyOperation());
         }
 
-        private void btnStop_Click(object sender, RoutedEventArgs e)
+        private void btnStart_Click(object sender, RoutedEventArgs e)
         {
-            if(Permission)
-            {
-                Permission = false;
-                txtStop.Text = "دریافت";
-                Style style = this.FindResource("WorkButtonGreen") as Style;
-                btnStop.Style = style;
-                img.Source = new BitmapImage(new Uri("pack://application:,,,/MoalemYar;component/Resources/start.png", UriKind.Absolute));
-            }
-            else
-            {
-                Permission = true;
-                txtStop.Text = "توقف";
-                Style style = this.FindResource("WorkButton") as Style;
-                btnStop.Style = style;
-                img.Source = new BitmapImage(new Uri("pack://application:,,,/MoalemYar;component/Resources/stop.png", UriKind.Absolute));
-                UserControl_Loaded(null, null);
-            }
+            UserControl_Loaded(null, null);
         }
 
-        private void MetroSwitch_Checked(object sender, RoutedEventArgs e)
+        private void swLimit_Checked(object sender, RoutedEventArgs e)
         {
             if (swLimit.IsChecked == true)
                 Limited = true;
@@ -140,24 +119,159 @@ namespace MoalemYar.UserControls
                 Limited = false;
         }
 
-        private void MetroTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            Dispatcher.Invoke<Task>(async () =>
+            try
             {
-                waterfallFlow.Children.Clear();
-                MaterialCircular _addUser;
-                Control _currentUser;
-                var parsedValues = myClass.Where(x=>x.Title.Contains(txtSearch.Text) || x.Date.Contains(txtSearch.Text));
-                foreach (var item in parsedValues)
+                dynamic selectedItem = lst.SelectedItems[0];
+                string row = selectedItem.Row;
+                string title = selectedItem.Title;
+                string Dlink = selectedItem.link;
+
+                if (!System.IO.Directory.Exists(AppVariable.fileNameBakhsh + row + title))
                 {
-                    
-                    await Task.Delay(10);                   
-                    _addUser = new MaterialCircular(item.Row, item.Title, item.Category, item.Type, item.SubType, item.Date, item.link);
-                    _currentUser = _addUser;
-                    waterfallFlow.Children.Add(_currentUser);
-                    waterfallFlow.Refresh();
+                    prgLoading.Visibility = Visibility.Visible;
+                    prgUpdate.Visibility = Visibility.Hidden;
+
+                    WebClient wc = new WebClient();
+                    wc.Headers.Add("User-Agent: Other");
+                    using (WebClient client = new WebClient())
+                    {
+                        client.Headers.Add("User-Agent: Other");
+                        if (Dlink.Contains("//portal/"))
+                            Dlink = Dlink.Replace("//portal/", "/portal/");
+                        Uri ur = new Uri(Dlink);
+                        var data = wc.DownloadData(Dlink);
+
+                        string fileExt = "";
+                        if (!String.IsNullOrEmpty(wc.ResponseHeaders["Content-Disposition"]))
+                        {
+                            fileExt = System.IO.Path.GetExtension(wc.ResponseHeaders["Content-Disposition"].Substring(wc.ResponseHeaders["Content-Disposition"].IndexOf("filename=") + 9).Replace("\"", ""));
+                        }
+
+                        //client.DownloadProgressChanged += (o, ex) =>
+                        //{
+                        //    Dispatcher.Invoke(() =>
+                        //    {
+                        //        //Todo: mybe add progressbar
+                        //    });
+                        //};
+
+                        string TotPath = AppVariable.fileNameBakhsh + row + title;
+                        string dPath = string.Empty;
+
+                        if (fileExt.Equals(".rar") || fileExt.Equals(".zip"))
+                        {
+                            dPath = AppVariable.fileNameBakhsh + @"\" + row + title + fileExt;
+                        }
+                        else
+                        {
+                            if (!System.IO.Directory.Exists(TotPath))
+                                System.IO.Directory.CreateDirectory(TotPath);
+                            dPath = TotPath + @"\" + row + title + fileExt;
+                        }
+
+                        client.DownloadFileAsync(ur, dPath);
+
+                        client.DownloadFileCompleted += (o, ex) =>
+                        {
+                            prgLoading.Visibility = Visibility.Hidden;
+                            prgUpdate.Visibility = Visibility.Visible;
+
+                            if (fileExt.Equals(".rar") || fileExt.Equals(".zip"))
+                            {
+                                UnCompress(AppVariable.fileNameBakhsh + @"\" + row + title + fileExt, AppVariable.fileNameBakhsh + @"\" + row + title, fileExt);
+                            }
+
+                            try
+                            {
+                                System.Diagnostics.Process.Start(AppVariable.fileNameBakhsh + row + title);
+                            }
+                            catch (Win32Exception)
+                            {
+                                System.Diagnostics.Process.Start(AppVariable.fileNameBakhsh + title);
+                            }
+                            catch (FileNotFoundException)
+                            {
+                            }
+                        };
+                    }
                 }
-            }, DispatcherPriority.ContextIdle);
+                else
+                {
+                    try
+                    {
+                        System.Diagnostics.Process.Start(AppVariable.fileNameBakhsh + row + title);
+                    }
+                    catch (Win32Exception)
+                    {
+                        System.Diagnostics.Process.Start(AppVariable.fileNameBakhsh + title);
+                    }
+                    catch (FileNotFoundException)
+                    {
+                    }
+                }
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+        public void UnCompress(string Open, string Write, string FileExt)
+        {
+            try
+            {
+                if (FileExt.Equals(".rar"))
+                {
+                    using (var archive = RarArchive.Open(Open))
+                    {
+                        foreach (var entry in archive.Entries.Where(entry => !entry.IsDirectory))
+                        {
+                            entry.WriteToDirectory(Write, new ExtractionOptions()
+                            {
+                                ExtractFullPath = true,
+                                Overwrite = true
+                            });
+                        }
+                    }
+                }
+                else
+                {
+                    using (var archive = ZipArchive.Open(Open))
+                    {
+                        foreach (var entry in archive.Entries.Where(entry => !entry.IsDirectory))
+                        {
+                            entry.WriteToDirectory(Write, new ExtractionOptions()
+                            {
+                                ExtractFullPath = true,
+                                Overwrite = true
+                            });
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+            }
+            finally
+            {
+                System.IO.File.Delete(Open);
+            };
+        }
+
+        private void lst_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            btnSave_Click(null, null);
+        }
+
+        private void txtSearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            lst.Items.Clear();
+            var parsedValues = myClass.Where(x => x.Title.Contains(txtSearch.Text) || x.Date.Contains(txtSearch.Text));
+            foreach (var item in parsedValues)
+            {
+                lst.Items.Add(item);
+            }
         }
     }
 }

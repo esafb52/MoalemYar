@@ -1,9 +1,4 @@
 ﻿using MVVMC;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MoalemYar.UserControls
 {
@@ -18,40 +13,73 @@ namespace MoalemYar.UserControls
         {
             ExecuteNavigation();
         }
+
         public void AddStudent()
         {
             ExecuteNavigation();
         }
+
         public void AddUser()
         {
             ExecuteNavigation();
         }
+
         public void Attendancelist()
         {
             ExecuteNavigation();
         }
+
         public void Questionslist()
         {
             ExecuteNavigation();
         }
+
         public void TopStudents()
         {
             ExecuteNavigation();
         }
+
         public void Achievement()
         {
             ExecuteNavigation();
         }
+
         public void Circular()
         {
             ExecuteNavigation();
         }
-        public void Books()
+
+        public void About()
         {
             ExecuteNavigation();
         }
 
-        public void Magazine()
+        public void Settings()
+        {
+            ExecuteNavigation();
+        }
+
+        public void AzmonHistory()
+        {
+            ExecuteNavigation();
+        }
+
+        public void AddQuestions()
+        {
+            ExecuteNavigation();
+        }
+
+        public void StartAzmon()
+        {
+            ExecuteNavigation();
+        }
+
+        public void AddAzmonGroup()
+        {
+            ExecuteNavigation();
+        }
+
+        public void Azmon()
         {
             ExecuteNavigation();
         }

@@ -19,6 +19,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 
 namespace MoalemYar.UserControls
@@ -29,24 +30,18 @@ namespace MoalemYar.UserControls
     public partial class QuestionsListView : UserControl
     {
         private ObservableCollection<string> list = new ObservableCollection<string>();
-        private bool runOnceSchool = true;
         internal static QuestionsListView main;
         private PersianCalendar pc = new PersianCalendar();
-        private static string strDate;
         private List<DataClass.DataTransferObjects.SchoolsStudentsJointDto> _initialCollectionStudent;
         private List<DataClass.DataTransferObjects.StudentsDto> _initialCollection;
         private List<DataClass.Tables.Score> _initialCollectionScore;
-
-        public System.Windows.Media.Brush BorderColor { get; set; }
 
         public QuestionsListView()
         {
             InitializeComponent();
 
-            this.DataContext = this;
             main = this;
-            strDate = pc.GetYear(DateTime.Now).ToString("0000") + "/" + pc.GetMonth(DateTime.Now).ToString("00") + "/" + pc.GetDayOfMonth(DateTime.Now).ToString("00");
-            BorderColor = AppVariable.GetBrush(MainWindow.main.BorderBrush.ToString());
+            getSchool();
         }
 
         #region "Async Query"
@@ -124,11 +119,11 @@ namespace MoalemYar.UserControls
             {
                 using (var db = new DataClass.myDbContext())
                 {
-                    var query = db.Schools.Select(x => x);
+                    var query = db.Schools.ToList();
                     if (query.Any())
                     {
-                        cmbBase.ItemsSource = query.ToList();
-                        cmbEditBase.ItemsSource = query.ToList();
+                        cmbBase.ItemsSource = query;
+                        cmbEditBase.ItemsSource = query;
                     }
                 }
             }
@@ -154,7 +149,7 @@ namespace MoalemYar.UserControls
                 else
                 {
                     cmbEditStudent.ItemsSource = null;
-                    MainWindow.main.ShowNoDataNotification("Student");
+                    MainWindow.main.showNotification(NotificationKEY: AppVariable.No_Data_KEY, param: "Student");
                 }
             }
             catch (Exception)
@@ -176,9 +171,8 @@ namespace MoalemYar.UserControls
                     }
                     else
                     {
-                        stEdit.IsEnabled = false;
                         dataGridEdit.ItemsSource = null;
-                        MainWindow.main.ShowNoDataNotification("Score");
+                        MainWindow.main.showNotification(NotificationKEY: AppVariable.No_Data_KEY, param: "Score");
                     }
                 }
             }
@@ -195,12 +189,12 @@ namespace MoalemYar.UserControls
             _initialCollection = data;
             if (data.Any())
             {
-                dataGrid.ItemsSource = data;
+                dataGrid.ItemsSource = data.OrderBy(x => x.LName);
             }
             else
             {
                 dataGrid.ItemsSource = null;
-                MainWindow.main.ShowNoDataNotification("Question");
+                MainWindow.main.showNotification(NotificationKEY: AppVariable.No_Data_KEY, param: "Question");
             }
         }
 
@@ -278,27 +272,16 @@ namespace MoalemYar.UserControls
 
         #endregion Func get Query Wait"
 
-        private void tabc_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (runOnceSchool)
-            {
-                getSchool();
-
-                runOnceSchool = false;
-            }
-        }
-
         private void cmbBase_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            fillComboBook(cmbBook, cmbBase, "cmbBook");
+            fillComboBook(cmbBase, cmbBook);
         }
 
-        private void fillComboBook(FrameworkElement frameworkElement, ComboBox combo, string cmb)
+        private void fillComboBook(ComboBox Schoolcombo, ComboBox SourceCombo)
         {
             try
             {
-                var element = FindElement.FindElementByName<ComboBox>(frameworkElement, cmb);
-                dynamic selectedItem = combo.SelectedItem;
+                dynamic selectedItem = Schoolcombo.SelectedItem;
 
                 if (selectedItem.Base.Contains("اول"))
                 {
@@ -339,7 +322,7 @@ namespace MoalemYar.UserControls
                     list.Add("کار و فناوری");
                     list.Add("تفکر");
                 }
-                element.ItemsSource = list;
+                SourceCombo.ItemsSource = list;
             }
             catch (NullReferenceException) { }
             catch (RuntimeBinderException) { }
@@ -347,71 +330,50 @@ namespace MoalemYar.UserControls
 
         private void chkChecked_Checked(object sender, RoutedEventArgs e)
         {
-            
             var row = dataGrid.ContainerFromElement(sender as DependencyObject);
-            Arthas.Controls.Metro.MetroTextBlock MyTextBlock = FindElement.FindVisualChildByName<Arthas.Controls.Metro.MetroTextBlock>(row, "txtStatus");
-            Arthas.Controls.Metro.MetroSwitch MyCHK1 = FindElement.FindVisualChildByName<Arthas.Controls.Metro.MetroSwitch>(row, "chkExc");
-            Arthas.Controls.Metro.MetroSwitch MyCHK2 = FindElement.FindVisualChildByName<Arthas.Controls.Metro.MetroSwitch>(row, "chkGood");
-            Arthas.Controls.Metro.MetroSwitch MyCHK3 = FindElement.FindVisualChildByName<Arthas.Controls.Metro.MetroSwitch>(row, "chkNbad");
-            Arthas.Controls.Metro.MetroSwitch MyCHK4 = FindElement.FindVisualChildByName<Arthas.Controls.Metro.MetroSwitch>(row, "chkBad");
-
-            MyCHK1.IsEnabled = MyCHK2.IsEnabled = MyCHK3.IsEnabled = MyCHK4.IsEnabled = false;
+            var MyTextBlock = FindElement.FindVisualChildByName<TextBlock>(row, "txtStatus");
+            var stackToggle = FindElement.FindVisualChildByName<StackPanel>(row, "stackToggle");
+            stackToggle.IsEnabled = false;
 
             dynamic selectedItem = dataGrid.SelectedItems[0];
-            var element = FindElement.FindElementByName<ComboBox>(cmbBook, "cmbBook");
-            var selectedChk = sender as Arthas.Controls.Metro.MetroSwitch;
+            var selectedChk = sender as ToggleButton;
             string newStatus = string.Empty;
 
             if (MyTextBlock.Text == "ثبت نشده")
             {
-                MyTextBlock.Foreground = new SolidColorBrush(Colors.Green);
-                MyTextBlock.Text = "ثبت شده";
                 if (isQuestion.IsChecked == true)
-                    addQuestion((long)selectedItem.BaseId, (long)selectedItem.Id, element.SelectedItem.ToString());
+                    addQuestion((long)selectedItem.BaseId, (long)selectedItem.Id, cmbBook.SelectedItem.ToString());
 
                 switch ((selectedChk).Tag.ToString())
                 {
                     case "exc":
                         newStatus = "خیلی خوب";
                         break;
+
                     case "good":
-                        
+
                         newStatus = "خوب";
                         break;
+
                     case "nbad":
                         newStatus = "قابل قبول";
                         break;
+
                     case "bad":
                         newStatus = "نیاز به تلاش بیشتر";
                         break;
                 }
-                addScore((long)selectedItem.Id, element.SelectedItem.ToString(), strDate, newStatus, (txtDesc.Text == string.Empty ? "بدون توضیحات" : txtDesc.Text));
+                addScore((long)selectedItem.Id, cmbBook.SelectedItem.ToString(), txtDate.SelectedDate.ToString(), newStatus, (txtDesc.Text == string.Empty ? "بدون توضیحات" : txtDesc.Text));
+                MyTextBlock.Foreground = new SolidColorBrush(Colors.Green);
+                MyTextBlock.Text = newStatus + " ثبت شده ";
             }
-            
-            
 
             var DeleteQuestion = _initialCollection.Where(x => x.Id == (long)selectedItem.Id).FirstOrDefault();
             _initialCollection.Remove(DeleteQuestion);
 
             if (!_initialCollection.Any())
             {
-                deleteQuestion((long)cmbBase.SelectedValue, element.SelectedItem.ToString());
-            }
-        }
-
-        private void StackPanel_Checked(object sender, RoutedEventArgs e)
-        {
-            Arthas.Controls.Metro.MetroSwitch cb = e.OriginalSource as Arthas.Controls.Metro.MetroSwitch;
-            if (cb.IsChecked == false)
-            {
-                return;
-            }
-            foreach (var item in ((StackPanel)sender).Children)
-            {
-                if (item != cb)
-                {
-                    ((Arthas.Controls.Metro.MetroSwitch)item).IsChecked = false;
-                }
+                deleteQuestion((long)cmbBase.SelectedValue, cmbBook.SelectedItem.ToString());
             }
         }
 
@@ -425,21 +387,19 @@ namespace MoalemYar.UserControls
         private void btnEditSave_Click(object sender, RoutedEventArgs e)
         {
             dynamic selectedItemName = cmbEditStudent.SelectedItem;
+
             try
             {
                 dynamic selectedItem = dataGridEdit.SelectedItems[0];
                 long id = selectedItem.Id;
 
-                var element = FindElement.FindElementByName<ComboBox>(cmbContentScore, "cmbScore");
-                var element2 = FindElement.FindElementByName<ComboBox>(cmbBookEdit, "cmbBookEdit");
-
-                updateScore(id, Convert.ToInt64(cmbEditStudent.SelectedValue), element.Text, txtDateEdit.SelectedDate.ToString(), element2.Text, txtDescEdit.Text);
-                MainWindow.main.ShowUpdateDataNotification(true, selectedItemName.Name + " " + selectedItemName.LName, "نمره");
+                updateScore(id, Convert.ToInt64(cmbEditStudent.SelectedValue), cmbScore.Text, txtDateEdit.SelectedDate.ToString(), cmbBookEdit.Text, txtDescEdit.Text);
+                MainWindow.main.showNotification(AppVariable.Update_Data_KEY, true, selectedItemName.Name + " " + selectedItemName.LName, "نمره");
                 getScores(Convert.ToInt64(cmbEditStudent.SelectedValue));
             }
             catch (Exception)
             {
-                MainWindow.main.ShowUpdateDataNotification(false, selectedItemName.Name + " " + selectedItemName.LName, "نمره");
+                MainWindow.main.showNotification(AppVariable.Update_Data_KEY, false, selectedItemName.Name + " " + selectedItemName.LName, "نمره");
             }
         }
 
@@ -462,7 +422,8 @@ namespace MoalemYar.UserControls
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             dynamic selectedItem = cmbEditStudent.SelectedItem;
-            MainWindow.main.ShowDeleteConfirmNotification(selectedItem.Name + " " + selectedItem.LName, "نمره");
+            string par0 = Convert.ToString(selectedItem.Name + " " + selectedItem.LName);
+            MainWindow.main.showNotification(NotificationKEY: AppVariable.Delete_Confirm_KEY, param: new[] { par0, "نمره" });
         }
 
         public void deleteScore()
@@ -473,33 +434,30 @@ namespace MoalemYar.UserControls
                 dynamic selectedItem = dataGridEdit.SelectedItems[0];
                 long id = selectedItem.Id;
                 deleteScore(id);
-                MainWindow.main.ShowDeletedNotification(true, selectedItemName.Name + " " + selectedItemName.LName, "نمره");
+                MainWindow.main.showNotification(AppVariable.Deleted_KEY, true, selectedItemName.Name + " " + selectedItemName.LName, "نمره");
                 getScores(Convert.ToInt64(cmbEditStudent.SelectedValue));
             }
             catch (Exception)
             {
-                MainWindow.main.ShowDeletedNotification(false, selectedItemName.Name + " " + selectedItemName.LName, "نمره");
+                MainWindow.main.showNotification(AppVariable.Deleted_KEY, false, selectedItemName.Name + " " + selectedItemName.LName, "نمره");
             }
         }
 
         private void cmbEditStudent_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             getScores(Convert.ToInt64(cmbEditStudent.SelectedValue));
-            fillComboBook(cmbBookEdit, cmbEditBase, "cmbBookEdit");
+            fillComboBook(cmbEditBase, cmbBookEdit);
         }
 
         private void dataGridEdit_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
             {
-                stEdit.IsEnabled = true;
                 dynamic selectedItem = dataGridEdit.SelectedItems[0];
                 txtDateEdit.SelectedDate = new PersianCalendarWPF.PersianDate(Convert.ToInt32(selectedItem.Date.Substring(0, 4)), Convert.ToInt32(selectedItem.Date.Substring(5, 2)), Convert.ToInt32(selectedItem.Date.Substring(8, 2)));
                 txtDescEdit.Text = selectedItem.Desc;
-                var element = FindElement.FindElementByName<ComboBox>(cmbContentScore, "cmbScore");
-                var element2 = FindElement.FindElementByName<ComboBox>(cmbBookEdit, "cmbBookEdit");
-                element.Text = selectedItem.Scores;
-                element2.Text = selectedItem.Book;
+                cmbScore.Text = selectedItem.Scores;
+                cmbBookEdit.Text = selectedItem.Book;
             }
             catch (Exception)
             {
@@ -528,14 +486,13 @@ namespace MoalemYar.UserControls
             {
                 if (isQuestion.IsChecked == true)
                 {
-                    var element = FindElement.FindElementByName<ComboBox>(cmbBook, "cmbBook");
-                    getStudents(Convert.ToInt64(cmbBase.SelectedValue), element.SelectedItem.ToString(), false);
+                    getStudents(Convert.ToInt64(cmbBase.SelectedValue), cmbBook.SelectedItem.ToString(), false);
+                    txtDesc.Text = "پرسش از درس " + cmbBook.SelectedItem;
                 }
-                else
+                else if (isExam.IsChecked == true)
                 {
-                    var element = FindElement.FindElementByName<ComboBox>(cmbBook, "cmbBook");
-                    txtDesc.Text = "امتحان / فعالیت " + element.SelectedItem;
-                    getStudents(Convert.ToInt64(cmbBase.SelectedValue), element.SelectedItem.ToString(), true);
+                    txtDesc.Text = "امتحان / فعالیت " + cmbBook.SelectedItem;
+                    getStudents(Convert.ToInt64(cmbBase.SelectedValue), cmbBook.SelectedItem.ToString(), true);
                 }
             }
             catch (Exception)

@@ -9,12 +9,14 @@
 ***********************************************************************************/
 
 using LiveCharts;
-using LiveCharts.Wpf;
+using LiveCharts.Configurations;
+using LiveCharts.Helpers;
 using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 
 namespace MoalemYar.UserControls
 {
@@ -23,16 +25,34 @@ namespace MoalemYar.UserControls
     /// </summary>
     public partial class InitialView : UserControl
     {
-        bool runFirst = false;
+        private List<DataClass.DataTransferObjects.myChartTemplate> list = new List<DataClass.DataTransferObjects.myChartTemplate>();
+        public ChartValues<DataClass.DataTransferObjects.myChartTemplate> Results { get; set; }
+        public ObservableCollection<string> Labels { get; set; }
+        public object Mapper { get; set; }
+
         public InitialView()
         {
             InitializeComponent();
+            getInitialData();
+        }
 
-            DataContext = this;
-            
-            txtStCount.Text = MainWindow.main.exAddOrUpdateStudent.Hint;
-            txtUCount.Text = MainWindow.main.exAddOrUpdateUser.Hint;
-            txtScCount.Text = MainWindow.main.exAddOrUpdateSchool.Hint;
+        public void getInitialData()
+        {
+            try
+            {
+                using (var db = new DataClass.myDbContext())
+                {
+                    var query = db.Schools.ToList();
+                    txtScCount.Text = query.Count().ToString();
+                    var query2 = db.Users.ToList();
+                    txtUCount.Text = query2.Count().ToString();
+                    var query3 = db.Students.ToList();
+                    txtStCount.Text = query3.Count().ToString();
+                }
+            }
+            catch (Exception)
+            {
+            }
         }
 
         public void getTopStudent(long BaseId)
@@ -46,7 +66,6 @@ namespace MoalemYar.UserControls
                   (c, v) => new DataClass.DataTransferObjects.StudentsScoresDto { Id = c.Id, BaseId = v.BaseId, StudentId = v.Id, Name = v.Name, LName = v.LName, FName = v.FName, Scores = c.Scores }
               ).OrderBy(x => x.Scores).Where(x => x.BaseId == BaseId).ToList();
 
-
                 var res = query.GroupBy(x => new { x.StudentId })
                           .Select(x => new
                           {
@@ -59,37 +78,23 @@ namespace MoalemYar.UserControls
 
                 foreach (var item in res)
                 {
-                    Arthas.Controls.Metro.MetroProgressBar metroProgressBar;
-                    TextBlock textBlock;
-                    Control _currentUser;
-                    metroProgressBar = new Arthas.Controls.Metro.MetroProgressBar()
+                    ProgressBar progressBar = new ProgressBar()
                     {
                         FlowDirection = FlowDirection.LeftToRight,
-                        Background = AppVariable.GetBrush("#15a4fa"),
-                        CornerRadius = new CornerRadius(0),
                         Value = item.Sum
                     };
-                    textBlock = new TextBlock()
+                    TextBlock textBlock = new TextBlock()
                     {
                         Opacity = .4,
                         Margin = new Thickness(0, 5, 0, 0),
                         FontSize = 15,
                         Text = item.Name + " " + item.LName
                     };
-
-
-                    _currentUser = metroProgressBar;
+                    Console.WriteLine(item.Sum);
                     stkDash.Children.Add(textBlock);
-
-                    stkDash.Children.Add(_currentUser);
+                    stkDash.Children.Add(progressBar);
                 }
-
             }
-        }
-
-        private void cmbEditBase_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            getTopStudent(Convert.ToInt64(cmbEditBase.SelectedValue));
         }
 
         private void getSchool()
@@ -112,12 +117,10 @@ namespace MoalemYar.UserControls
 
         private void UserControl_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            if (!runFirst)
-            {
-                getSchool();
-                cmbEditBase.SelectedIndex = Convert.ToInt32(FindElement.Settings.DefaultSchool);
-                runFirst = true;
-            }
+            getSchool();
+            cmbEditBase.SelectedIndex = Convert.ToInt32(FindElement.Settings.DefaultSchool);
+            getTopStudent(Convert.ToInt64(cmbEditBase.SelectedValue));
+
             using (var db = new DataClass.myDbContext())
             {
                 long baseId = Convert.ToInt64(cmbEditBase.SelectedValue);
@@ -127,26 +130,28 @@ namespace MoalemYar.UserControls
                    v => v.Id,
                    (c, v) => new DataClass.DataTransferObjects.StudentsScoresDto { Id = c.Id, BaseId = v.BaseId, StudentId = v.Id, Name = v.Name, LName = v.LName, FName = v.FName, Scores = c.Scores }
                ).Where(y => y.BaseId == baseId).ToList();
-                var x = query.Where(y => y.Scores == "نیاز به تلاش بیشتر").ToList();
-                var xx = query.Where(y => y.Scores == "قابل قبول").ToList();
-                var xxx = query.Where(y => y.Scores == "خوب").ToList();
-                var xxxx = query.Where(y => y.Scores == "خیلی خوب").ToList();
-                AchievementChart.Series.Add(new LineSeries
-                {
-                    Values = new ChartValues<double>(new double[] { xxxx.Count, xxx.Count, xx.Count, x.Count }),
-                    StrokeDashArray = new System.Windows.Media.DoubleCollection(20)
-                });
-                AchievementChart.AxisX.Add(new Axis
-                {
-                    Labels = new string[] { "خیلی خوب", "خوب", "قابل قبول", "نیاز به تلاش بیشتر" },
-                    Separator = new LiveCharts.Wpf.Separator { }
-                });
-            }
-        }
 
-        private void btnCheckUpdate_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            MainWindow.main.tab.SelectedIndex = 4;
+                var niazBeTalash = query.Where(y => y.Scores == "نیاز به تلاش بیشتر").ToList();
+                var ghabelGhabol = query.Where(y => y.Scores == "قابل قبول").ToList();
+                var khob = query.Where(y => y.Scores == "خوب").ToList();
+                var kheyliKhob = query.Where(y => y.Scores == "خیلی خوب").ToList();
+
+                list.Add(new DataClass.DataTransferObjects.myChartTemplate { Caption = "نیاز به تلاش", Scores = niazBeTalash.Count });
+                list.Add(new DataClass.DataTransferObjects.myChartTemplate { Caption = "قابل قبول", Scores = ghabelGhabol.Count });
+                list.Add(new DataClass.DataTransferObjects.myChartTemplate { Caption = "خوب", Scores = khob.Count });
+                list.Add(new DataClass.DataTransferObjects.myChartTemplate { Caption = "خیلی خوب", Scores = kheyliKhob.Count });
+
+                Mapper = Mappers.Xy<DataClass.DataTransferObjects.myChartTemplate>()
+                    .X((myData, index) => index)
+                    .Y(myData => myData.Scores);
+
+                //lets take the first 15 records by default;
+                var records = list.OrderBy(x => x.Scores).ToArray();
+
+                Results = records.AsChartValues();
+                Labels = new ObservableCollection<string>(records.Select(x => x.Caption));
+                DataContext = this;
+            }
         }
     }
 }

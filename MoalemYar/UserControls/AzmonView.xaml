@@ -1,38 +1,51 @@
-﻿<UserControl x:Class="MoalemYar.UserControls.AzmonView"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:MoalemYar.UserControls"
-             xmlns:Metro="clr-namespace:Arthas.Controls.Metro;assembly=Arthas"
-             mc:Ignorable="d" Style="{StaticResource myUserControl}"
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid FlowDirection="RightToLeft">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition MinWidth="160" Width="Auto" />
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
-        <Metro:MetroScrollViewer>
-            <Border BorderBrush="#19000000" BorderThickness="0,0,1,0">
+﻿<UserControl
+    x:Class="MoalemYar.UserControls.AzmonView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:HandyControl.Controls;assembly=HandyControl"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:MoalemYar.UserControls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Style="{StaticResource myUserControl}"
+    mc:Ignorable="d">
+    <controls:TransitioningContentControl>
+        <controls:ScrollViewer HorizontalScrollBarVisibility="Auto">
+            <Grid FlowDirection="RightToLeft">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" MinWidth="160" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
                 <StackPanel x:Name="lists">
-                    <Metro:MetroExpander FontWeight="Medium" Name="exBase" Icon="/Resources/Verify.png" Header="عملیات پایه" Hint="ثبت اطلاعات" HintBackground="#e15b4f" IsExpanded="True">
-                        <StackPanel>
-                            <Metro:MetroExpander FontWeight="Normal" Name="exAddorUpdateGroup" Click="exAddorUpdateGroup_Click" Icon="/Resources/Active.png" Header="گروه بندی" Hint="0" HintBackground="Green" />
-                            <Metro:MetroExpander FontWeight="Normal" Name="exAddorUpdateQuestion" Click="exAddorUpdateQuestion_Click" Icon="/Resources/Question.png" Header="سوالات" Hint="0" HintBackground="Orange" />
-                        </StackPanel>
-                    </Metro:MetroExpander>
-
-                    <Metro:MetroExpander FontWeight="Medium" Header="آزمون" Icon="/Resources/ExamMove.png" IsExpanded="True">
-                        <StackPanel>
-                            <Metro:MetroExpander Name="exAzmon" Click="exAzmon_Click" FontWeight="Normal" Header="برگزاری آزمون"  Icon="/Resources/ExamMove.png" />
-                            <Metro:MetroExpander Name="exHistory" Click="exHistory_Click" FontWeight="Normal" Header="تاریخچه آزمون" Icon="/Resources/fork.png" />
-                        </StackPanel>
-                    </Metro:MetroExpander>
+                    <Expander Header="عملیات پایه" IsExpanded="True">
+                        <TreeView BorderThickness="0">
+                            <TreeViewItem
+                                Header="داشبورد"
+                                Selected="TreeViewItem_Selected"
+                                Tag="exAddorUpdateGroup" />
+                            <TreeViewItem
+                                Header="سوالات"
+                                Selected="TreeViewItem_Selected"
+                                Tag="exAddorUpdateQuestion" />
+                        </TreeView>
+                    </Expander>
+                    <Expander Header="آزمون" IsExpanded="True">
+                        <TreeView BorderThickness="0">
+                            <TreeViewItem
+                                Header="برگزاری آزمون"
+                                Selected="TreeViewItem_Selected"
+                                Tag="exAzmon" />
+                            <TreeViewItem
+                                Header="تاریخچه آزمون"
+                                Selected="TreeViewItem_Selected"
+                                Tag="exHistory" />
+                        </TreeView>
+                    </Expander>
                 </StackPanel>
-            </Border>
-        </Metro:MetroScrollViewer>
-        <Metro:MetroScrollViewer Grid.Column="1">
-            <ContentControl Name="exContent" />
-        </Metro:MetroScrollViewer>
-    </Grid>
+                <ContentControl
+                    Name="exContent"
+                    Grid.Column="1"
+                    Width="800" />
+            </Grid>
+        </controls:ScrollViewer>
+    </controls:TransitioningContentControl>
 </UserControl>

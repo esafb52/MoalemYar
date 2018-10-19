@@ -14,7 +14,6 @@ using System.Globalization;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 
 namespace MoalemYar.UserControls
 {
@@ -23,9 +22,7 @@ namespace MoalemYar.UserControls
     /// </summary>
     public partial class AddSchoolView : UserControl
     {
-        public Brush BorderColor { get; set; }
         internal static AddSchoolView main;
-        private int runOnce = 0;
         private PersianCalendar pc = new PersianCalendar();
         private string strDate;
         private List<DataClass.Tables.School> _initialCollection;
@@ -35,8 +32,9 @@ namespace MoalemYar.UserControls
             InitializeComponent();
             this.DataContext = this;
             main = this;
-            BorderColor = AppVariable.GetBrush(MainWindow.main.BorderBrush.ToString());
+
             GenerateEducateYear();
+            getSchool();
         }
 
         #region Query"
@@ -47,16 +45,16 @@ namespace MoalemYar.UserControls
             {
                 using (var db = new DataClass.myDbContext())
                 {
-                    var query = db.Schools.Select(x => x);
-                    _initialCollection = query.ToList();
+                    var query = db.Schools.ToList();
+                    _initialCollection = query;
                     if (query.Any())
                     {
-                        dataGrid.ItemsSource = query.ToList();
+                        dataGrid.ItemsSource = query.OrderBy(x => x.Year);
                     }
                     else
                     {
                         dataGrid.ItemsSource = null;
-                        MainWindow.main.ShowNoDataNotification("School");
+                        MainWindow.main.showNotification(NotificationKEY: AppVariable.No_Data_KEY, param: "School");
                     }
                 }
             }
@@ -72,15 +70,14 @@ namespace MoalemYar.UserControls
                 var checkQuery = db.Students.Where(x => x.BaseId == id).Any();
                 if (checkQuery)
                 {
-                    MainWindow.main.ShowDeleteExistNotification("مدرسه", "دانش آموزان");
+                    MainWindow.main.showNotification(NotificationKEY: AppVariable.Delete_Exist_KEY, param: new[] { "مدرسه", "دانش آموزان" });
                 }
                 else
                 {
                     var DeleteSchool = db.Schools.Find(id);
                     db.Schools.Remove(DeleteSchool);
                     db.SaveChanges();
-                    MainWindow.main.getexHint();
-                    MainWindow.main.ShowDeletedNotification(true, txtSchool.Text, "مدرسه");
+                    MainWindow.main.showNotification(AppVariable.Deleted_KEY, true, txtSchool.Text, "مدرسه");
                 }
             }
         }
@@ -110,8 +107,6 @@ namespace MoalemYar.UserControls
                 db.Schools.Add(School);
 
                 db.SaveChanges();
-
-                MainWindow.main.getexHint();
             }
         }
 
@@ -119,19 +114,7 @@ namespace MoalemYar.UserControls
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.main.region.Content = null;
-        }
-
-        private void tabc_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (tabc.SelectedIndex == 1)
-            {
-                if (runOnce == 0)
-                {
-                    getSchool();
-                    runOnce = 1;
-                }
-            }
+            MainWindow.main.ClearScreen();
         }
 
         private void btnEditSave_Click(object sender, RoutedEventArgs e)
@@ -140,14 +123,13 @@ namespace MoalemYar.UserControls
             {
                 dynamic selectedItem = dataGrid.SelectedItems[0];
                 long id = selectedItem.Id;
-                updateSchool(id, txtSchool.Text, getComboValue(), txtAdmin.Text, txtYear.Text);
-                MainWindow.main.ShowUpdateDataNotification(true, txtSchool.Text, "مدرسه");
-                editGrid.IsEnabled = false;
+                updateSchool(id, txtSchool.Text, cmbEditBase.Text, txtAdmin.Text, txtYear.Text);
+                MainWindow.main.showNotification(AppVariable.Update_Data_KEY, true, txtSchool.Text, "مدرسه");
                 getSchool();
             }
             catch (Exception)
             {
-                MainWindow.main.ShowUpdateDataNotification(false, txtSchool.Text, "مدرسه");
+                MainWindow.main.showNotification(AppVariable.Update_Data_KEY, false, txtSchool.Text, "مدرسه");
             }
         }
 
@@ -157,46 +139,39 @@ namespace MoalemYar.UserControls
             txtSchool.Text = string.Empty;
             txtYear.Text = string.Empty;
             setComboValue(null);
-            editGrid.IsEnabled = false;
-        }
-
-        private string getComboValue()
-        {
-            var element = FindElement.FindElementByName<ComboBox>(cmbContent, "cmbBase");
-            return element.Text;
+            dataGrid.UnselectAll();
         }
 
         private void setComboValue(string index)
         {
-            var element = FindElement.FindElementByName<ComboBox>(cmbContent, "cmbBase");
             switch (index)
             {
                 case "اول":
-                    element.SelectedIndex = 0;
+                    cmbEditBase.SelectedIndex = 0;
                     break;
 
                 case "دوم":
-                    element.SelectedIndex = 1;
+                    cmbEditBase.SelectedIndex = 1;
                     break;
 
                 case "سوم":
-                    element.SelectedIndex = 2;
+                    cmbEditBase.SelectedIndex = 2;
                     break;
 
                 case "چهارم":
-                    element.SelectedIndex = 3;
+                    cmbEditBase.SelectedIndex = 3;
                     break;
 
                 case "پنجم":
-                    element.SelectedIndex = 4;
+                    cmbEditBase.SelectedIndex = 4;
                     break;
 
                 case "ششم":
-                    element.SelectedIndex = 5;
+                    cmbEditBase.SelectedIndex = 5;
                     break;
 
                 case null:
-                    element.SelectedIndex = -1;
+                    cmbEditBase.SelectedIndex = -1;
                     break;
             }
         }
@@ -222,36 +197,31 @@ namespace MoalemYar.UserControls
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            var element = FindElement.FindElementByName<ComboBox>(cmbAddContent, "cmbBase");
-            if (txtAddSchool.Text == string.Empty || txtAddAdmin.Text == string.Empty || txtAddYear.Text == string.Empty || element.SelectedIndex == -1)
+            if (txtAddSchool.Text == string.Empty || txtAddAdmin.Text == string.Empty || txtAddYear.Text == string.Empty || cmbBase.SelectedIndex == -1)
             {
-                MainWindow.main.ShowFillAllDataNotification();
+                MainWindow.main.showNotification(NotificationKEY: AppVariable.Fill_All_Data_KEY);
             }
             else
             {
                 try
                 {
-                    addSchool(txtAddSchool.Text, element.Text, txtAddAdmin.Text, txtAddYear.Text);
-                    MainWindow.main.ShowAddDataNotification(true, txtAddSchool.Text, "مدرسه");
+                    addSchool(txtAddSchool.Text, cmbBase.Text, txtAddAdmin.Text, txtAddYear.Text);
+                    MainWindow.main.showNotification(AppVariable.Add_Data_KEY, true, txtAddSchool.Text, "مدرسه");
                     txtAddAdmin.Text = string.Empty;
                     txtAddSchool.Text = string.Empty;
                     txtAddSchool.Focus();
+                    getSchool();
                 }
                 catch (Exception)
                 {
-                    MainWindow.main.ShowAddDataNotification(false, txtAddSchool.Text, "مدرسه");
+                    MainWindow.main.showNotification(AppVariable.Add_Data_KEY, false, txtAddSchool.Text, "مدرسه");
                 }
             }
         }
 
-        private void txtEditSearch_ButtonClick(object sender, EventArgs e)
-        {
-            getSchool();
-        }
-
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.main.ShowDeleteConfirmNotification(txtSchool.Text, "مدرسه");
+            MainWindow.main.showNotification(NotificationKEY: AppVariable.Delete_Confirm_KEY, param: new[] { txtSchool.Text, "مدرسه" });
         }
 
         public void deleteSchool()
@@ -261,12 +231,11 @@ namespace MoalemYar.UserControls
                 dynamic selectedItem = dataGrid.SelectedItems[0];
                 long id = selectedItem.Id;
                 deleteSchool(id);
-                editGrid.IsEnabled = false;
                 getSchool();
             }
             catch (Exception)
             {
-                MainWindow.main.ShowDeletedNotification(false, txtSchool.Text, "مدرسه");
+                MainWindow.main.showNotification(AppVariable.Deleted_KEY, false, txtSchool.Text, "مدرسه");
             }
         }
 
@@ -279,7 +248,6 @@ namespace MoalemYar.UserControls
                 txtSchool.Text = selectedItem.SchoolName;
                 txtYear.Text = selectedItem.Year;
                 setComboValue(selectedItem.Base);
-                editGrid.IsEnabled = true;
             }
             catch (Exception)
             {

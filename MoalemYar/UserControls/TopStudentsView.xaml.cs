@@ -41,10 +41,10 @@ namespace MoalemYar.UserControls
             {
                 using (var db = new DataClass.myDbContext())
                 {
-                    var query = db.Schools.Select(x => x);
+                    var query = db.Schools.ToList();
                     if (query.Any())
                     {
-                        cmbBaseEdit.ItemsSource = query.ToList();
+                        cmbBaseEdit.ItemsSource = query;
                     }
                 }
             }
@@ -79,7 +79,7 @@ namespace MoalemYar.UserControls
                 else
                 {
                     dataGrid.ItemsSource = null;
-                    MainWindow.main.ShowNoDataNotification("TopStudent");
+                    MainWindow.main.showNotification(NotificationKEY: AppVariable.No_Data_KEY, param: "TopStudent");
                 }
             }
             catch (Exception)

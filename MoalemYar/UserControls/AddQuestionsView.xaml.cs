@@ -16,7 +16,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
 
 namespace MoalemYar.UserControls
 {
@@ -25,9 +24,7 @@ namespace MoalemYar.UserControls
     /// </summary>
     public partial class AddQuestionsView : UserControl
     {
-        public Brush BorderColor { get; set; }
         internal static AddQuestionsView main;
-        private int runOnce = 0;
         private List<DataClass.Tables.AQuestion> _initialCollection;
         private PersianCalendar pc = new PersianCalendar();
         private string strDate;
@@ -37,8 +34,8 @@ namespace MoalemYar.UserControls
             InitializeComponent();
             this.DataContext = this;
             main = this;
-            BorderColor = AppVariable.GetBrush(MainWindow.main.BorderBrush.ToString());
             strDate = pc.GetYear(DateTime.Now).ToString("0000") + "/" + pc.GetMonth(DateTime.Now).ToString("00") + "/" + pc.GetDayOfMonth(DateTime.Now).ToString("00");
+            getGroup();
         }
 
         #region "Async Query"
@@ -47,8 +44,8 @@ namespace MoalemYar.UserControls
         {
             using (var db = new DataClass.myDbContext())
             {
-                var query = db.AQuestions.Where(x => x.GroupId == GroupId).Select(x => x);
-                return await query.ToListAsync();
+                var query = db.AQuestions.Where(x => x.GroupId == GroupId).ToListAsync();
+                return await query;
             }
         }
 
@@ -83,7 +80,7 @@ namespace MoalemYar.UserControls
                 else
                 {
                     dataGrid.ItemsSource = null;
-                    MainWindow.main.ShowNoDataNotification("AQuestions");
+                    MainWindow.main.showNotification(NotificationKEY: AppVariable.No_Data_KEY, param: "AQuestions");
                 }
             }
             catch (Exception)
@@ -97,17 +94,17 @@ namespace MoalemYar.UserControls
             {
                 using (var db = new DataClass.myDbContext())
                 {
-                    var query = db.Groups.Select(x => x);
+                    var query = db.Groups.ToList();
                     if (query.Any())
                     {
-                        cmbGroup.ItemsSource = query.ToList();
-                        cmbBaseEdit.ItemsSource = query.ToList();
-                        cmbGroupEdit.ItemsSource = query.ToList();
+                        cmbGroup.ItemsSource = query;
+                        cmbBaseEdit.ItemsSource = query;
+                        cmbGroupEdit.ItemsSource = query;
                     }
                     else
                     {
                         dataGrid.ItemsSource = null;
-                        MainWindow.main.ShowNoDataNotification("Group");
+                        MainWindow.main.showNotification(NotificationKEY: AppVariable.No_Data_KEY, param: "Group");
                     }
                 }
             }
@@ -120,7 +117,6 @@ namespace MoalemYar.UserControls
         {
             var query = DeleteAQuestionsAsync(id);
             query.Wait();
-            MainWindow.main.getexHint();
         }
 
         private void updateAQuestions(long id, long GroupId, string Class, string QuestionText, string Case1, string Case2, string Case3, string Case4, int Answer, string Date)
@@ -158,8 +154,6 @@ namespace MoalemYar.UserControls
                 db.AQuestions.Add(aQuestion);
 
                 db.SaveChanges();
-
-                MainWindow.main.getexHint();
             }
         }
 
@@ -167,32 +161,21 @@ namespace MoalemYar.UserControls
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
-            AzmonView.main.exContent.Content = null;
-        }
-
-        private void tabc_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (runOnce == 0)
-            {
-                getGroup();
-                runOnce = 1;
-            }
+            MainWindow.main.ClearScreen();
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            var elementG = FindElement.FindElementByName<ComboBox>(cmbAddContent, "cmbBase");
-            var element = FindElement.FindElementByName<ComboBox>(cmbContentAnswer, "cmbBase");
             int answ = 0;
-            if (txtQuestionText.Text == string.Empty || txtCase1.Text == string.Empty || txtCase2.Text == string.Empty || txtCase3.Text == string.Empty || txtCase4.Text == string.Empty || elementG.SelectedIndex == -1 || cmbGroup.SelectedIndex == -1 || element.SelectedIndex == -1)
+            if (txtQuestionText.Text == string.Empty || txtCase1.Text == string.Empty || txtCase2.Text == string.Empty || txtCase3.Text == string.Empty || txtCase4.Text == string.Empty || cmbBase.SelectedIndex == -1 || cmbGroup.SelectedIndex == -1 || cmbEditBase.SelectedIndex == -1)
             {
-                MainWindow.main.ShowFillAllDataNotification();
+                MainWindow.main.showNotification(NotificationKEY: AppVariable.Fill_All_Data_KEY);
             }
             else
             {
                 try
                 {
-                    switch (element.SelectedIndex)
+                    switch (cmbEditBase.SelectedIndex)
                     {
                         case 0:
                             answ = 1;
@@ -210,26 +193,22 @@ namespace MoalemYar.UserControls
                             answ = 4;
                             break;
                     }
-                    addAQuestions(Convert.ToInt64(cmbGroup.SelectedValue), elementG.Text, txtQuestionText.Text, txtCase1.Text, txtCase2.Text, txtCase3.Text, txtCase4.Text, answ, strDate);
-                    MainWindow.main.ShowAddDataNotification(true, "", "سوال");
+                    addAQuestions(Convert.ToInt64(cmbGroup.SelectedValue), cmbBase.Text, txtQuestionText.Text, txtCase1.Text, txtCase2.Text, txtCase3.Text, txtCase4.Text, answ, strDate);
+                    MainWindow.main.showNotification(AppVariable.Add_Data_KEY, true, "", "سوال");
                     txtCase1.Text = string.Empty;
                     txtCase2.Text = string.Empty;
                     txtCase3.Text = string.Empty;
                     txtCase4.Text = string.Empty;
                     txtQuestionText.Text = string.Empty;
                     txtQuestionText.Focus();
-                    AzmonView.main.getHint();
+                    if (cmbBaseEdit.SelectedIndex > -1)
+                        cmbBaseEdit_SelectionChanged(null, null);
                 }
                 catch (Exception)
                 {
-                    MainWindow.main.ShowAddDataNotification(false, "", "سوال");
+                    MainWindow.main.showNotification(AppVariable.Add_Data_KEY, false, "", "سوال");
                 }
             }
-        }
-
-        private void txtEditSearch_ButtonClick(object sender, EventArgs e)
-        {
-            getAQuestions(Convert.ToInt64(cmbBaseEdit.SelectedValue));
         }
 
         private void txtEditSearch_TextChanged(object sender, TextChangedEventArgs e)
@@ -245,7 +224,7 @@ namespace MoalemYar.UserControls
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.main.ShowDeleteConfirmNotification("", "سوال");
+            MainWindow.main.showNotification(NotificationKEY: AppVariable.Delete_Confirm_KEY, param: new[] { string.Empty, "سوال" });
         }
 
         public void deleteGroup()
@@ -255,87 +234,71 @@ namespace MoalemYar.UserControls
                 dynamic selectedItem = dataGrid.SelectedItems[0];
                 long id = selectedItem.Id;
                 deleteAQuestions(id);
-                MainWindow.main.ShowDeletedNotification(true, "", "سوال");
-                editStack.IsEnabled = false;
+                MainWindow.main.showNotification(AppVariable.Deleted_KEY, true, "", "سوال");
                 getAQuestions(Convert.ToInt64(cmbBaseEdit.SelectedValue));
-                AzmonView.main.getHint();
             }
             catch (Exception)
             {
-                MainWindow.main.ShowDeletedNotification(false, "", "سوال");
+                MainWindow.main.showNotification(AppVariable.Deleted_KEY, false, "", "سوال");
             }
-        }
-
-        private string getComboValue()
-        {
-            var element = FindElement.FindElementByName<ComboBox>(cmbAddEditContent, "cmbBase");
-            return element.Text;
-        }
-
-        private string getComboValue2()
-        {
-            var element = FindElement.FindElementByName<ComboBox>(cmbEditAnswer, "cmbEditAnswers");
-            return element.Text;
         }
 
         private void setComboValue(string index)
         {
-            var element = FindElement.FindElementByName<ComboBox>(cmbAddEditContent, "cmbBase");
             switch (index)
             {
                 case "اول":
-                    element.SelectedIndex = 0;
+                    cmbBaseEditData.SelectedIndex = 0;
                     break;
 
                 case "دوم":
-                    element.SelectedIndex = 1;
+                    cmbBaseEditData.SelectedIndex = 1;
                     break;
 
                 case "سوم":
-                    element.SelectedIndex = 2;
+                    cmbBaseEditData.SelectedIndex = 2;
                     break;
 
                 case "چهارم":
-                    element.SelectedIndex = 3;
+                    cmbBaseEditData.SelectedIndex = 3;
                     break;
 
                 case "پنجم":
-                    element.SelectedIndex = 4;
+                    cmbBaseEditData.SelectedIndex = 4;
                     break;
 
                 case "ششم":
-                    element.SelectedIndex = 5;
+                    cmbBaseEditData.SelectedIndex = 5;
                     break;
 
                 case null:
-                    element.SelectedIndex = -1;
+                    cmbBaseEditData.SelectedIndex = -1;
                     break;
             }
         }
 
         private void setComboValue2(string index)
         {
-            var element = FindElement.FindElementByName<ComboBox>(cmbEditAnswer, "cmbEditAnswers");
             switch (index)
             {
                 case "1":
-                    element.SelectedIndex = 0;
+                    cmbEditAnswersData.SelectedIndex = 0;
                     break;
 
                 case "2":
-                    element.SelectedIndex = 1;
+                    cmbEditAnswersData.SelectedIndex = 1;
                     break;
 
                 case "3":
-                    element.SelectedIndex = 2;
+                    cmbEditAnswersData.SelectedIndex = 2;
                     break;
 
                 case "4":
-                    element.SelectedIndex = 3;
+                    cmbEditAnswersData.SelectedIndex = 3;
                     break;
 
                 case null:
-                    element.SelectedIndex = -1;
+                    cmbEditAnswersData.SelectedIndex = -1;
                     break;
             }
         }
@@ -349,7 +312,6 @@ namespace MoalemYar.UserControls
         {
             try
             {
-                editStack.IsEnabled = true;
                 dynamic selectedItem = dataGrid.SelectedItems[0];
                 txtEditCase1.Text = selectedItem.Case1;
                 txtEditCase2.Text = selectedItem.Case2;
@@ -372,13 +334,13 @@ namespace MoalemYar.UserControls
             {
                 dynamic selectedItem = dataGrid.SelectedItems[0];
                 long id = selectedItem.Id;
-                updateAQuestions(id, Convert.ToInt64(cmbGroupEdit.SelectedValue), getComboValue(), txtEditQuestionText.Text, txtEditCase1.Text, txtEditCase2.Text, txtEditCase3.Text, txtEditCase4.Text, Convert.ToInt32(getComboValue2()), txtDateEdit.SelectedDate.ToString());
-                MainWindow.main.ShowUpdateDataNotification(true, "", "سوال");
-                editStack.IsEnabled = false;
+                updateAQuestions(id, Convert.ToInt64(cmbGroupEdit.SelectedValue), cmbBaseEditData.Text, txtEditQuestionText.Text, txtEditCase1.Text, txtEditCase2.Text, txtEditCase3.Text, txtEditCase4.Text, Convert.ToInt32(cmbEditAnswersData.Text), txtDateEdit.SelectedDate.ToString());
+                MainWindow.main.showNotification(AppVariable.Update_Data_KEY, true, string.Empty, "سوال");
                 getAQuestions(Convert.ToInt64(cmbBaseEdit.SelectedValue));
             }
             catch (Exception)
             {
+                MainWindow.main.showNotification(AppVariable.Update_Data_KEY, false, string.Empty, "سوال");
             }
         }
 
@@ -392,7 +354,7 @@ namespace MoalemYar.UserControls
             setComboValue(null);
             setComboValue2(null);
             cmbGroupEdit.SelectedIndex = -1;
-            editStack.IsEnabled = false;
+            dataGrid.UnselectAll();
         }
     }
 }

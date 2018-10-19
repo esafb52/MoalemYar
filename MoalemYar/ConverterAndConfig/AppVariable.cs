@@ -10,15 +10,14 @@
 
 using Microsoft.Win32;
 using System;
+using System.Data.SQLite;
 using System.Diagnostics;
 using System.Reflection;
-using System.Windows.Media;
 
 namespace MoalemYar
 {
     public class AppVariable
     {
-
         #region Update Configuration
 
         public static string UpdateServer = "https://raw.githubusercontent.com/ghost1372/MoalemYar/master/Updater.xml";
@@ -35,45 +34,46 @@ namespace MoalemYar
         public static string getAppName = Assembly.GetExecutingAssembly().GetName().Name;
         public static string getAppVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
         public static string getAppNameAndVersion = getAppName + " " + getAppVersion;
-        public static string getAppTitle = "معلم یار نسخه ";
+        public static string getAppTitle = "معلم یار ";
 
         public static string fileName = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\" + Assembly.GetExecutingAssembly().GetName().Name;
         public static string fileNameBakhsh = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\" + Assembly.GetExecutingAssembly().GetName().Name + @"\Circular\";
-        public static string DefaultServer2 = "http://5743.zanjan.medu.ir/regulation/archive?ocode=100038170";
+        public static string DefaultServer2 = "http://5743.zanjan.medu.ir";
 
         #endregion App Details
 
-        #region Chart
+        #region Notification KEY
 
-        public const string CHART_PURPLE = "#CE2156";
-        public const string CHART_ORANGE = "#EB5A13";
-        public const string CHART_GREEN = "#7DBD8D";
+        public static string Delete_Confirm_KEY = "DeleteConfirm";
+        public static string Reset_Data_Confirm_KEY = "ResetDataConfirm";
+        public static string Data_Reset_Deleted_KEY = "DataResetDeleted";
+        public static string Same_Password_KEY = "SamePassword";
+        public static string Delete_Exist_KEY = "DeleteExist";
+        public static string Azmon_KEY = "Azmon";
+        public static string Fill_All_Data_KEY = "FillAllData";
+        public static string No_Data_KEY = "NoData";
+        public static string Backup_KEY = "Backup";
+        public static string Recived_Circular_KEY = "RecivedCircular";
+        public static string Update_Data_KEY = "UpdateData";
+        public static string Deleted_KEY = "Deleted";
+        public static string Add_Data_KEY = "AddData";
+        public static string Update_KEY = "Update";
 
-        #endregion Chart
+        #endregion Notification KEY
 
         #region Colors
 
-        public const string CYAN = "#00BCD4";
         public const string GREEN = "#4CAF50";
         public const string BGBLACK = "#333";
         public const string ORANGE = "#E0A030";
         public const string RED = "#F44336";
         public const string BLUE = "#1751C3";
-        public const string DEFAULT_BORDER_BRUSH = "#6D819A";
 
         #endregion Colors
-
 
         public static double NotificationAnimInDur = 0.75;
         public static double NotificationAnimOutDur = 0.5;
         public static int NotificationDelay = 2;
-
-        public static System.Windows.Media.Brush GetBrush(string ColorString)
-        {
-            var color = (System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString(ColorString);
-            var brush = new SolidColorBrush(color);
-            return brush;
-        }
 
         public static void RegisterInStartup(bool isChecked)
         {
@@ -111,5 +111,57 @@ namespace MoalemYar
                     throw new ArgumentOutOfRangeException(nameof(value), value, "Value not recognized");
             }
         }
+
+        #region Backup Database
+
+        public static void takeBackup()
+        {
+            try
+            {
+                var saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+                saveFileDialog1.Filter = "DataBase Backup|*.db";
+                saveFileDialog1.Title = "Save an Backup File";
+                saveFileDialog1.FileName = "data" + DateTime.Now.ToShortDateString().Replace("/", "-");
+                if (saveFileDialog1.ShowDialog() != System.Windows.Forms.DialogResult.Cancel && saveFileDialog1.FileName != "")
+                {
+                    using (var source = new SQLiteConnection(@"Data Source=|DataDirectory|\data.db; Version=3;"))
+                    using (var destination = new SQLiteConnection("Data Source=" + saveFileDialog1.FileName + "; Version=3;"))
+                    {
+                        source.Open();
+                        destination.Open();
+                        source.BackupDatabase(destination, "main", "main", -1, null, 0);
+                    }
+                    MainWindow.main.showNotification(Backup_KEY, true, "پشتیبان گیری از اطلاعات ");
+                }
+            }
+            catch (Exception)
+            {
+                MainWindow.main.showNotification(Backup_KEY, false, "پشتیبان گیری از اطلاعات ");
+            }
+        }
+
+        public static void dbRestore()
+        {
+            try
+            {
+                var openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+
+                openFileDialog1.Filter = "Backup files (*.db)|*.db";
+                openFileDialog1.FilterIndex = 1;
+                openFileDialog1.RestoreDirectory = true;
+
+                if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    System.IO.File.Copy(openFileDialog1.FileName, AppVariable.fileName + @"\data.db", true);
+                    MainWindow.main.showNotification(Backup_KEY, true, "بازگردانی اطلاعات ");
+                }
+            }
+            catch (Exception)
+            {
+                MainWindow.main.showNotification(Backup_KEY, false, "بازگردانی اطلاعات ");
+            }
+        }
+
+        #endregion Backup Database
     }
 }

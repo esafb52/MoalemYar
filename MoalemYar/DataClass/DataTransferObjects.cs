@@ -33,18 +33,6 @@ namespace MoalemYar.DataClass
             public long BaseId { get; set; }
         }
 
-        public class AttendanceStudentsDto
-        {
-            public long Id { get; set; }
-            public long BaseId { get; set; }
-            public long StudentId { get; set; }
-            public string Name { get; set; }
-            public string LName { get; set; }
-            public string FName { get; set; }
-            public bool Exist { get; set; }
-            public string Date { get; set; }
-        }
-
         public class StudentsScoresDto
         {
             public long Id { get; set; }
@@ -54,6 +42,29 @@ namespace MoalemYar.DataClass
             public string LName { get; set; }
             public string FName { get; set; }
             public string Scores { get; set; }
+        }
+
+        public class myChartTemplate
+        {
+            public long StudentId { get; set; }
+
+            public string Book { get; set; }
+
+            public string Caption { get; set; }
+
+            public int Scores { get; set; }
+        }
+
+        public class StudentAttendanceListDto
+        {
+            public long Id { get; set; }
+            public long BaseId { get; set; }
+            public long AttendanceId { get; set; }
+            public string Name { get; set; }
+            public string LName { get; set; }
+            public string FName { get; set; }
+            public bool Exist { get; set; }
+            public string Date { get; set; }
         }
     }
 }

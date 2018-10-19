@@ -15,7 +15,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
 using System.Windows.Threading;
 
 namespace MoalemYar.UserControls
@@ -91,7 +90,7 @@ namespace MoalemYar.UserControls
                 else
                 {
                     cmbEditStudent.ItemsSource = null;
-                    MainWindow.main.ShowNoDataNotification("Student");
+                    MainWindow.main.showNotification(NotificationKEY: AppVariable.No_Data_KEY, param: "Student");
                 }
             }
             catch (Exception)
@@ -113,7 +112,7 @@ namespace MoalemYar.UserControls
                     else
                     {
                         cmbGroup.ItemsSource = null;
-                        MainWindow.main.ShowNoDataNotification("Group");
+                        MainWindow.main.showNotification(NotificationKEY: AppVariable.No_Data_KEY, param: "Group");
                     }
                 }
             }
@@ -124,19 +123,11 @@ namespace MoalemYar.UserControls
 
         #endregion Async Query
 
-        private void txtTedad_PreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            if ((e.Text) == null || !(e.Text).All(char.IsDigit))
-            {
-                e.Handled = true;
-            }
-        }
-
         private void btnStart_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtTedad.Text) || txtTedad.Text == "0" || txtTedad.Text == "تعداد سوالات" || cmbGroup.SelectedIndex == -1 || cmbEditStudent.SelectedIndex == -1)
+            if (txtTedad.Value == 0 || cmbGroup.SelectedIndex == -1 || cmbEditStudent.SelectedIndex == -1)
             {
-                MainWindow.main.ShowFillAllDataNotification();
+                MainWindow.main.showNotification(NotificationKEY: AppVariable.Fill_All_Data_KEY);
                 return;
             }
             else
@@ -147,23 +138,23 @@ namespace MoalemYar.UserControls
                     var classText = uClass;
 
                     if (isGuid)
-                        result = db.AQuestions.Where(x => x.GroupId == id && x.Class == classText).OrderBy(x => Guid.NewGuid()).Take(Convert.ToInt32(txtTedad.Text)).ToList();
+                        result = db.AQuestions.Where(x => x.GroupId == id && x.Class == classText).OrderBy(x => Guid.NewGuid()).Take(Convert.ToInt32(txtTedad.Value)).ToList();
                     else
-                        result = db.AQuestions.Where(x => x.GroupId == id && x.Class == classText).Take(Convert.ToInt32(txtTedad.Text)).ToList();
+                        result = db.AQuestions.Where(x => x.GroupId == id && x.Class == classText).Take(Convert.ToInt32(txtTedad.Value)).ToList();
 
-                    if (result.Count < Convert.ToInt32(txtTedad.Text))
-                        MainWindow.main.ShowAzmonNotification();
+                    if (result.Count < Convert.ToInt32(txtTedad.Value))
+                        MainWindow.main.showNotification(NotificationKEY: AppVariable.Azmon_KEY);
                     else
                     {
                         QN = 0;
 
-                        lblQNumber.Text = Convert.ToString(QN + 1);
+                        lblQNumber.Content = Convert.ToString(QN + 1);
 
-                        lblQtext.Text = result[QN].QuestionText;
-                        swCase1.Content = result[QN].Case1;
-                        swCase2.Content = result[QN].Case2;
-                        swCase3.Content = result[QN].Case3;
-                        swCase4.Content = result[QN].Case4;
+                        lblQtext.Content = result[QN].QuestionText;
+                        txtFirst.Text = result[QN].Case1;
+                        txtSec.Text = result[QN].Case2;
+                        txtThird.Text = result[QN].Case3;
+                        txtForth.Text = result[QN].Case4;
                         btnNext.IsEnabled = true;
                         btnPrev.IsEnabled = false;
                         btnStart.IsEnabled = false;
@@ -185,12 +176,12 @@ namespace MoalemYar.UserControls
 
                         if (swLimit.IsChecked == true)
                         {
-                            lblTime.Text = Convert.ToString(Convert.ToInt32(txtTime.Text) * (Convert.ToInt32(txtTedad.Text)));
+                            lblTime.Content = Convert.ToString(Convert.ToInt32(txtTime.Value) * (Convert.ToInt32(txtTedad.Value)));
                             dispatcherTimer.Start();
                         }
                         else
                         {
-                            lblTime.Text = "نامحدود";
+                            lblTime.Content = "نامحدود";
                         }
                     }
                 }
@@ -199,9 +190,9 @@ namespace MoalemYar.UserControls
 
         private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
-            if (Convert.ToInt32(lblTime.Text) > 1)
+            if (Convert.ToInt32(lblTime.Content) > 1)
             {
-                lblTime.Text = Convert.ToString(Convert.ToInt32(lblTime.Text) - 1);
+                lblTime.Content = Convert.ToString(Convert.ToInt32(lblTime.Content) - 1);
             }
             else
             {
@@ -311,12 +302,12 @@ namespace MoalemYar.UserControls
             if (QN < result.Count - 1)
             {
                 QN++;
-                lblQtext.Text = result[QN].QuestionText;
-                swCase1.Content = result[QN].Case1;
-                swCase2.Content = result[QN].Case2;
-                swCase3.Content = result[QN].Case3;
-                swCase4.Content = result[QN].Case4;
-                lblQNumber.Text = Convert.ToString(Convert.ToInt32(lblQNumber.Text) + 1);
+                lblQtext.Content = result[QN].QuestionText;
+                txtFirst.Text = result[QN].Case1;
+                txtSec.Text = result[QN].Case2;
+                txtThird.Text = result[QN].Case3;
+                txtForth.Text = result[QN].Case4;
+                lblQNumber.Content = Convert.ToString(Convert.ToInt32(lblQNumber.Content) + 1);
             }
 
             if (QN == result.Count - 1)
@@ -378,12 +369,12 @@ namespace MoalemYar.UserControls
             if (QN > 0)
             {
                 QN--;
-                lblQtext.Text = result[QN].QuestionText.ToString();
-                swCase1.Content = result[QN].Case1.ToString();
-                swCase2.Content = result[QN].Case2.ToString();
-                swCase3.Content = result[QN].Case3.ToString();
-                swCase4.Content = result[QN].Case4.ToString();
-                lblQNumber.Text = Convert.ToString(Convert.ToInt32(lblQNumber.Text) - 1);
+                lblQtext.Content = result[QN].QuestionText.ToString();
+                txtFirst.Text = result[QN].Case1.ToString();
+                txtSec.Text = result[QN].Case2.ToString();
+                txtThird.Text = result[QN].Case3.ToString();
+                txtForth.Text = result[QN].Case4.ToString();
+                lblQNumber.Content = Convert.ToString(Convert.ToInt32(lblQNumber.Content) - 1);
             }
 
             if (QN == 0)
@@ -421,6 +412,34 @@ namespace MoalemYar.UserControls
                 isGuid = false;
         }
 
+        private void swCase1_Checked(object sender, RoutedEventArgs e)
+        {
+            swCase2.IsChecked = false;
+            swCase3.IsChecked = false;
+            swCase4.IsChecked = false;
+        }
+
+        private void swCase2_Checked(object sender, RoutedEventArgs e)
+        {
+            swCase1.IsChecked = false;
+            swCase3.IsChecked = false;
+            swCase4.IsChecked = false;
+        }
+
+        private void swCase3_Checked(object sender, RoutedEventArgs e)
+        {
+            swCase1.IsChecked = false;
+            swCase2.IsChecked = false;
+            swCase4.IsChecked = false;
+        }
+
+        private void swCase4_Checked(object sender, RoutedEventArgs e)
+        {
+            swCase1.IsChecked = false;
+            swCase2.IsChecked = false;
+            swCase3.IsChecked = false;
+        }
+
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             cmbEditBase.SelectedIndex = Convert.ToInt32(FindElement.Settings.DefaultSchool);
@@ -432,22 +451,6 @@ namespace MoalemYar.UserControls
             swCase2.IsChecked = false;
             swCase3.IsChecked = false;
             swCase4.IsChecked = false;
-        }
-
-        private void StackPanel_Checked(object sender, RoutedEventArgs e)
-        {
-            Arthas.Controls.Metro.MetroSwitch cb = e.OriginalSource as Arthas.Controls.Metro.MetroSwitch;
-            if (cb.IsChecked == false)
-            {
-                return;
-            }
-            foreach (var item in ((StackPanel)sender).Children)
-            {
-                if (item != cb)
-                {
-                    ((Arthas.Controls.Metro.MetroSwitch)item).IsChecked = false;
-                }
-            }
         }
     }
 }
