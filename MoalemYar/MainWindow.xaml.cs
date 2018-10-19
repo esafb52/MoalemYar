@@ -197,7 +197,7 @@ namespace MoalemYar
             builder.Message = this.Manager.Factory.GetMessage();
             builder.Background(AppVariable.BGBLACK);
 
-            builder.Animates(false);
+            builder.Animates(true);
             builder.Dismiss().WithDelay(TimeSpan.FromSeconds(AppVariable.NotificationDelay));
             builder.AnimationInDuration(AppVariable.NotificationAnimInDur);
             builder.AnimationOutDuration(AppVariable.NotificationAnimOutDur);
