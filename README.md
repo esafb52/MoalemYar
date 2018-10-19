@@ -1,8 +1,6 @@
 [![Total downloads](https://img.shields.io/github/downloads/ghost1372/MoalemYar/total.svg)](https://github.com/ghost1372/MoalemYar/releases)
 [![GitHub version](https://badge.fury.io/gh/ghost1372%2FMoalemYar.svg)](https://badge.fury.io/gh/ghost1372%2FMoalemYar)
 
-### this branch is under development for changing ui
-
 # MoalemYar
 A personal project for class management, using various technologies like WPF, Entityframwork, CodeFirst, Sqlite, Migration and more.
 
@@ -32,8 +30,3 @@ Migration<br>
 
 ## Compile
 for Compile this Project you need Visual Studio 2017
-
-## Images
-Soon...
-## Previous Version
-https://github.com/ghost1372/ClassSRM
