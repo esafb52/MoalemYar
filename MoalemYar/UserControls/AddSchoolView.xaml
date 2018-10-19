@@ -120,7 +120,7 @@
                                     controls:InfoElement.ContentHeight="35"
                                     controls:InfoElement.Placeholder="انتخاب پایه"
                                     FlowDirection="RightToLeft"
-                                    Style="{StaticResource ComboBoxExtend}">
+                                    Style="{StaticResource ComboBoxExtend}" Width="240">
                                     <ComboBoxItem Content="اول" />
                                     <ComboBoxItem Content="دوم" />
                                     <ComboBoxItem Content="سوم" />
@@ -355,7 +355,7 @@
                                         controls:InfoElement.ContentHeight="35"
                                         controls:InfoElement.Placeholder="انتخاب پایه"
                                         FlowDirection="RightToLeft"
-                                        Style="{StaticResource ComboBoxExtend}">
+                                        Style="{StaticResource ComboBoxExtend}" Width="240">
                                         <ComboBoxItem Content="اول" />
                                         <ComboBoxItem Content="دوم" />
                                         <ComboBoxItem Content="سوم" />

@@ -98,7 +98,7 @@
                                         ItemsSource="{Binding}"
                                         SelectedValue="{Binding GroupName}"
                                         SelectedValuePath="Id"
-                                        Style="{StaticResource ComboBoxExtend}"
+                                        Style="{StaticResource ComboBoxExtend}" Width="240"
                                         TabIndex="4">
                                         <ComboBox.ItemTemplate>
                                             <DataTemplate>
@@ -115,7 +115,7 @@
                                         controls:InfoElement.ContentHeight="35"
                                         controls:InfoElement.Placeholder="انتخاب پایه"
                                         FlowDirection="RightToLeft"
-                                        Style="{StaticResource ComboBoxExtend}">
+                                        Style="{StaticResource ComboBoxExtend}" Width="240">
                                         <ComboBoxItem Content="اول" />
                                         <ComboBoxItem Content="دوم" />
                                         <ComboBoxItem Content="سوم" />
@@ -180,7 +180,7 @@
                                         controls:InfoElement.ContentHeight="35"
                                         controls:InfoElement.Placeholder="گزینه صحیح"
                                         FlowDirection="RightToLeft"
-                                        Style="{StaticResource ComboBoxExtend}">
+                                        Style="{StaticResource ComboBoxExtend}" Width="240">
                                         <ComboBoxItem Content="1" />
                                         <ComboBoxItem Content="2" />
                                         <ComboBoxItem Content="3" />
@@ -323,7 +323,7 @@
                                             SelectedValue="{Binding GroupName}"
                                             SelectedValuePath="Id"
                                             SelectionChanged="cmbBaseEdit_SelectionChanged"
-                                            Style="{StaticResource ComboBoxExtend}"
+                                            Style="{StaticResource ComboBoxExtend}" Width="240"
                                             TabIndex="0">
                                             <ComboBox.ItemTemplate>
                                                 <DataTemplate>
@@ -478,7 +478,7 @@
                                                     ItemsSource="{Binding}"
                                                     SelectedValue="{Binding GroupName}"
                                                     SelectedValuePath="Id"
-                                                    Style="{StaticResource ComboBoxExtend}"
+                                                    Style="{StaticResource ComboBoxExtend}" Width="240"
                                                     TabIndex="4">
                                                     <ComboBox.ItemTemplate>
                                                         <DataTemplate>
@@ -495,7 +495,7 @@
                                                     controls:InfoElement.ContentHeight="35"
                                                     controls:InfoElement.Placeholder="پایه"
                                                     FlowDirection="RightToLeft"
-                                                    Style="{StaticResource ComboBoxExtend}">
+                                                    Style="{StaticResource ComboBoxExtend}" Width="240">
                                                     <ComboBoxItem Content="اول" />
                                                     <ComboBoxItem Content="دوم" />
                                                     <ComboBoxItem Content="سوم" />
@@ -510,7 +510,7 @@
                                                     controls:InfoElement.ContentHeight="35"
                                                     controls:InfoElement.Placeholder="گزینه صحیح"
                                                     FlowDirection="RightToLeft"
-                                                    Style="{StaticResource ComboBoxExtend}">
+                                                    Style="{StaticResource ComboBoxExtend}" Width="240">
                                                     <ComboBoxItem Content="1" />
                                                     <ComboBoxItem Content="2" />
                                                     <ComboBoxItem Content="3" />

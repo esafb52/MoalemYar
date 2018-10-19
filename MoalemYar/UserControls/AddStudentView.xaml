@@ -137,7 +137,7 @@
                                         controls:InfoElement.Placeholder="جنسیت"
                                         FlowDirection="RightToLeft"
                                         SelectionChanged="cmbGender_SelectionChanged"
-                                        Style="{StaticResource ComboBoxExtend}">
+                                        Style="{StaticResource ComboBoxExtend}" Width="240">
                                         <ComboBoxItem Content="پسر" />
                                         <ComboBoxItem Content="دختر" />
                                     </ComboBox>
@@ -150,7 +150,7 @@
                                         ItemsSource="{Binding}"
                                         SelectedValue="{Binding SchoolName}"
                                         SelectedValuePath="Id"
-                                        Style="{StaticResource ComboBoxExtend}"
+                                        Style="{StaticResource ComboBoxExtend}" Width="240"
                                         TabIndex="4">
                                         <ComboBox.ItemTemplate>
                                             <DataTemplate>
@@ -338,7 +338,7 @@
                                         SelectedValue="{Binding SchoolName}"
                                         SelectedValuePath="Id"
                                         SelectionChanged="cmbBaseEdit_SelectionChanged"
-                                        Style="{StaticResource ComboBoxExtend}"
+                                        Style="{StaticResource ComboBoxExtend}" Width="240"
                                         TabIndex="0">
                                         <ComboBox.ItemTemplate>
                                             <DataTemplate>
@@ -469,7 +469,7 @@
                                                 controls:InfoElement.ContentHeight="35"
                                                 controls:InfoElement.Placeholder="جنسیت"
                                                 FlowDirection="RightToLeft"
-                                                Style="{StaticResource ComboBoxExtend}">
+                                                Style="{StaticResource ComboBoxExtend}" Width="240">
                                                 <ComboBoxItem Content="پسر" />
                                                 <ComboBoxItem Content="دختر" />
                                             </ComboBox>

@@ -29,7 +29,7 @@
                                 SelectedValue="{Binding SchoolName}"
                                 SelectedValuePath="Id"
                                 SelectionChanged="cmbEditBase_SelectionChanged"
-                                Style="{StaticResource ComboBoxExtend}"
+                                Style="{StaticResource ComboBoxExtend}" Width="240"
                                 TabIndex="0">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>
@@ -53,7 +53,7 @@
                                 SelectedValue="{Binding LName}"
                                 SelectedValuePath="Id"
                                 SelectionChanged="cmbEditStudent_SelectionChanged"
-                                Style="{StaticResource ComboBoxExtend}"
+                                Style="{StaticResource ComboBoxExtend}" Width="240"
                                 TabIndex="1">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>
@@ -81,7 +81,7 @@
                                 ItemsSource="{Binding}"
                                 SelectedValue="{Binding GroupName}"
                                 SelectedValuePath="Id"
-                                Style="{StaticResource ComboBoxExtend}">
+                                Style="{StaticResource ComboBoxExtend}" Width="240">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal">

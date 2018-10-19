@@ -60,7 +60,7 @@
                                 SelectedValue="{Binding SchoolName}"
                                 SelectedValuePath="Id"
                                 SelectionChanged="cmbBase_SelectionChanged"
-                                Style="{StaticResource ComboBoxExtend}"
+                                Style="{StaticResource ComboBoxExtend}" Width="240"
                                 TabIndex="0">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>
@@ -83,7 +83,7 @@
                                 controls:InfoElement.Placeholder="انتخاب درس"
                                 FlowDirection="RightToLeft"
                                 SelectionChanged="cmbBook_SelectionChanged"
-                                Style="{StaticResource ComboBoxExtend}" />
+                                Style="{StaticResource ComboBoxExtend}" Width="240" />
                             <PersianCalendarWPF:PersianDatePicker
                                 Name="txtDate"
                                 Height="30"
@@ -91,12 +91,13 @@
                                 VerticalAlignment="Top" />
                             <TextBox
                                 Name="txtDesc"
+                                Width="240"
                                 HorizontalAlignment="Center"
                                 controls:InfoElement.ContentHeight="35"
                                 controls:InfoElement.Placeholder="توضیحات"
                                 Style="{StaticResource TextBoxExtend}"
                                 TabIndex="2"
-                                TextWrapping="Wrap" Width="340" />
+                                TextWrapping="Wrap" />
                         </StackPanel>
                         <DataGrid
                             x:Name="dataGrid"
@@ -314,7 +315,7 @@
                                             SelectedValue="{Binding SchoolName}"
                                             SelectedValuePath="Id"
                                             SelectionChanged="cmbEditBase_SelectionChanged"
-                                            Style="{StaticResource ComboBoxExtend}"
+                                            Style="{StaticResource ComboBoxExtend}" Width="240"
                                             TabIndex="0">
                                             <ComboBox.ItemTemplate>
                                                 <DataTemplate>
@@ -338,7 +339,7 @@
                                             SelectedValue="{Binding LName}"
                                             SelectedValuePath="Id"
                                             SelectionChanged="cmbEditStudent_SelectionChanged"
-                                            Style="{StaticResource ComboBoxExtend}"
+                                            Style="{StaticResource ComboBoxExtend}" Width="240"
                                             TabIndex="1">
                                             <ComboBox.ItemTemplate>
                                                 <DataTemplate>
@@ -444,7 +445,7 @@
                                         controls:InfoElement.ContentHeight="35"
                                         controls:InfoElement.Placeholder="نمره"
                                         FlowDirection="RightToLeft"
-                                        Style="{StaticResource ComboBoxExtend}">
+                                        Style="{StaticResource ComboBoxExtend}" Width="240">
                                         <ComboBoxItem Content="خیلی خوب" />
                                         <ComboBoxItem Content="خوب" />
                                         <ComboBoxItem Content="قابل قبول" />
@@ -457,7 +458,7 @@
                                         controls:InfoElement.ContentHeight="35"
                                         controls:InfoElement.Placeholder="درس"
                                         FlowDirection="RightToLeft"
-                                        Style="{StaticResource ComboBoxExtend}" />
+                                        Style="{StaticResource ComboBoxExtend}" Width="240" />
                                 </StackPanel>
                             </Grid>
                         </Grid>

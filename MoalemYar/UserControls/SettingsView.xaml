@@ -62,7 +62,7 @@
                                     controls:InfoElement.Placeholder="انتخاب سرور بخشنامه"
                                     ItemsSource="{Binding}"
                                     SelectionChanged="cmbServer_SelectionChanged"
-                                    Style="{StaticResource ComboBoxExtend}" />
+                                    Style="{StaticResource ComboBoxExtend}" Width="240" />
                                 <ComboBox
                                     x:Name="cmbBase"
                                     Margin="10,10"
@@ -74,7 +74,7 @@
                                     SelectedValue="{Binding SchoolName}"
                                     SelectedValuePath="Id"
                                     SelectionChanged="cmbBase_SelectionChanged"
-                                    Style="{StaticResource ComboBoxExtend}"
+                                    Style="{StaticResource ComboBoxExtend}" Width="240"
                                     TabIndex="4">
                                     <ComboBox.ItemTemplate>
                                         <DataTemplate>
