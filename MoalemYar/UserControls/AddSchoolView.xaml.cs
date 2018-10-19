@@ -212,6 +212,7 @@ namespace MoalemYar.UserControls
                     txtAddAdmin.Text = string.Empty;
                     txtAddSchool.Text = string.Empty;
                     txtAddSchool.Focus();
+                    getSchool();
                 }
                 catch (Exception)
                 {

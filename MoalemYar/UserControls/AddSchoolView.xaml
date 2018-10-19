@@ -121,7 +121,8 @@
                                     controls:InfoElement.ContentHeight="35"
                                     controls:InfoElement.Placeholder="انتخاب پایه"
                                     FlowDirection="RightToLeft"
-                                    Style="{StaticResource ComboBoxExtend}">
+                                    Style="{StaticResource ComboBoxExtend}"
+                                    TabIndex="3">
                                     <ComboBoxItem Content="اول" />
                                     <ComboBoxItem Content="دوم" />
                                     <ComboBoxItem Content="سوم" />
@@ -211,7 +212,6 @@
                                         </Style>
                                     </Button.Style>
                                 </Button>
-
                                 <Button
                                     x:Name="btnEditCancel"
                                     Grid.Row="0"

@@ -24,8 +24,6 @@
                                 <StackPanel Orientation="Horizontal">
                                     <Button
                                         x:Name="btnSave"
-                                        Grid.Row="0"
-                                        Grid.Column="0"
                                         Width="140"
                                         Height="35"
                                         Margin="10,5"
@@ -52,8 +50,6 @@
                                     </Button>
                                     <Button
                                         x:Name="btnCancel"
-                                        Grid.Row="0"
-                                        Grid.Column="1"
                                         Width="140"
                                         Height="35"
                                         Margin="10,5"

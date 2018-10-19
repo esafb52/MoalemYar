@@ -180,6 +180,7 @@ namespace MoalemYar.UserControls
                     txtAddPassword.Password = string.Empty;
                     txtAddPasswordAg.Password = string.Empty;
                     txtAddPassword.Focus();
+                    getUser();
                 }
                 catch (Exception)
                 {

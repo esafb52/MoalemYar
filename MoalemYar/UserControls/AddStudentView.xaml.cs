@@ -273,6 +273,9 @@ namespace MoalemYar.UserControls
                     txtAddLName.Text = string.Empty;
                     txtAddFName.Text = string.Empty;
                     txtAddName.Focus();
+
+                    if (cmbBaseEdit.SelectedIndex > -1)
+                        cmbBaseEdit_SelectionChanged(null, null);
                 }
                 catch (Exception)
                 {

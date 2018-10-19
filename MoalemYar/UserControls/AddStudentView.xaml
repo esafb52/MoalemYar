@@ -138,7 +138,8 @@
                                         controls:InfoElement.Placeholder="جنسیت"
                                         FlowDirection="RightToLeft"
                                         SelectionChanged="cmbGender_SelectionChanged"
-                                        Style="{StaticResource ComboBoxExtend}">
+                                        Style="{StaticResource ComboBoxExtend}"
+                                        TabIndex="3">
                                         <ComboBoxItem Content="پسر" />
                                         <ComboBoxItem Content="دختر" />
                                     </ComboBox>
