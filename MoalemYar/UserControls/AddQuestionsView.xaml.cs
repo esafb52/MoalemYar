@@ -235,7 +235,6 @@ namespace MoalemYar.UserControls
                 long id = selectedItem.Id;
                 deleteAQuestions(id);
                 MainWindow.main.showNotification(AppVariable.Deleted_KEY, true, "", "سوال");
-                editStack.IsEnabled = false;
                 getAQuestions(Convert.ToInt64(cmbBaseEdit.SelectedValue));
             }
             catch (Exception)
@@ -313,7 +312,6 @@ namespace MoalemYar.UserControls
         {
             try
             {
-                editStack.IsEnabled = true;
                 dynamic selectedItem = dataGrid.SelectedItems[0];
                 txtEditCase1.Text = selectedItem.Case1;
                 txtEditCase2.Text = selectedItem.Case2;
@@ -338,7 +336,6 @@ namespace MoalemYar.UserControls
                 long id = selectedItem.Id;
                 updateAQuestions(id, Convert.ToInt64(cmbGroupEdit.SelectedValue), cmbBaseEditData.Text, txtEditQuestionText.Text, txtEditCase1.Text, txtEditCase2.Text, txtEditCase3.Text, txtEditCase4.Text, Convert.ToInt32(cmbEditAnswersData.Text), txtDateEdit.SelectedDate.ToString());
                 MainWindow.main.showNotification(AppVariable.Update_Data_KEY, true, string.Empty, "سوال");
-                editStack.IsEnabled = false;
                 getAQuestions(Convert.ToInt64(cmbBaseEdit.SelectedValue));
             }
             catch (Exception)
@@ -357,7 +354,6 @@ namespace MoalemYar.UserControls
             setComboValue(null);
             setComboValue2(null);
             cmbGroupEdit.SelectedIndex = -1;
-            editStack.IsEnabled = false;
             dataGrid.UnselectAll();
         }
     }

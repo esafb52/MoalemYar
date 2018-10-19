@@ -471,11 +471,8 @@
                                         </DataGrid>
                                     </StackPanel>
                                     <Grid Grid.Column="1" Margin="10,0,-0.2,0">
-                                        <StackPanel
-                                            Name="stEdit"
-                                            Margin="10"
-                                            Orientation="Vertical">
-                                            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                                        <StackPanel Margin="10" Orientation="Vertical">
+                                            <StackPanel Margin="0,0,0,10" Orientation="Horizontal">
                                                 <ToggleButton
                                                     Name="tglExistEdit"
                                                     Checked="MetroSwitch_Checked"

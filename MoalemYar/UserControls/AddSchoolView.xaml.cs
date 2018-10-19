@@ -125,7 +125,6 @@ namespace MoalemYar.UserControls
                 long id = selectedItem.Id;
                 updateSchool(id, txtSchool.Text, cmbEditBase.Text, txtAdmin.Text, txtYear.Text);
                 MainWindow.main.showNotification(AppVariable.Update_Data_KEY, true, txtSchool.Text, "مدرسه");
-                editGrid.IsEnabled = false;
                 getSchool();
             }
             catch (Exception)
@@ -140,7 +139,6 @@ namespace MoalemYar.UserControls
             txtSchool.Text = string.Empty;
             txtYear.Text = string.Empty;
             setComboValue(null);
-            editGrid.IsEnabled = false;
             dataGrid.UnselectAll();
         }
 
@@ -233,7 +231,6 @@ namespace MoalemYar.UserControls
                 dynamic selectedItem = dataGrid.SelectedItems[0];
                 long id = selectedItem.Id;
                 deleteSchool(id);
-                editGrid.IsEnabled = false;
                 getSchool();
             }
             catch (Exception)
@@ -251,7 +248,6 @@ namespace MoalemYar.UserControls
                 txtSchool.Text = selectedItem.SchoolName;
                 txtYear.Text = selectedItem.Year;
                 setComboValue(selectedItem.Base);
-                editGrid.IsEnabled = true;
             }
             catch (Exception)
             {

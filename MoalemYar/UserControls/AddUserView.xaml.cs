@@ -109,7 +109,6 @@ namespace MoalemYar.UserControls
                 txtUsername.Text = selectedItem.Username;
                 txtPassword.Text = selectedItem.Password;
                 txtPasswordAg.Text = selectedItem.Password;
-                editGrid.IsEnabled = true;
             }
             catch (Exception)
             {
@@ -130,7 +129,6 @@ namespace MoalemYar.UserControls
                     long id = selectedItem.Id;
                     updateUser(id, txtUsername.Text.ToLower(), txtPassword.Text.ToLower());
                     MainWindow.main.showNotification(AppVariable.Update_Data_KEY, true, txtUsername.Text, "نام کاربری");
-                    editGrid.IsEnabled = false;
                     getUser();
                 }
             }
@@ -146,7 +144,6 @@ namespace MoalemYar.UserControls
             txtUsername.Text = string.Empty;
             txtPassword.Text = string.Empty;
             txtPasswordAg.Text = string.Empty;
-            editGrid.IsEnabled = false;
         }
 
         private void txtEditSearch_TextChanged(object sender, TextChangedEventArgs e)
@@ -202,7 +199,6 @@ namespace MoalemYar.UserControls
                 long id = selectedItem.Id;
                 deleteUser(id);
                 MainWindow.main.showNotification(AppVariable.Deleted_KEY, true, txtUsername.Text, "نام کاربری");
-                editGrid.IsEnabled = false;
                 getUser();
             }
             catch (Exception)

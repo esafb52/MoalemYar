@@ -173,7 +173,6 @@ namespace MoalemYar.UserControls
         {
             try
             {
-                editStack.IsEnabled = true;
                 dynamic selectedItem = dataGrid.SelectedItems[0];
                 txtName.Text = selectedItem.Name;
                 txtLName.Text = selectedItem.LName;
@@ -205,7 +204,6 @@ namespace MoalemYar.UserControls
                 isCreateThumbnail = false;
 
                 MainWindow.main.showNotification(AppVariable.Update_Data_KEY, true, txtName.Text, "دانش آموز");
-                editStack.IsEnabled = false;
                 getStudent(Convert.ToInt64(cmbBaseEdit.SelectedValue));
             }
             catch (Exception)
@@ -225,7 +223,6 @@ namespace MoalemYar.UserControls
             imgEditStudent.Source = null;
             setComboValue(null);
             cmbEditBase.SelectedIndex = -1;
-            editStack.IsEnabled = false;
         }
 
         private void setComboValue(string index)
@@ -324,7 +321,6 @@ namespace MoalemYar.UserControls
                 dynamic selectedItem = dataGrid.SelectedItems[0];
                 long id = selectedItem.Id;
                 deleteStudent(id);
-                editStack.IsEnabled = false;
                 getStudent(Convert.ToInt64(cmbBaseEdit.SelectedValue));
             }
             catch (Exception)

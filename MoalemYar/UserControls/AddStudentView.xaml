@@ -415,10 +415,7 @@
                                         </StackPanel>
                                     </Grid>
                                     <Grid Grid.Column="1" Margin="5,0,10,20">
-                                        <StackPanel
-                                            Name="editStack"
-                                            IsEnabled="False"
-                                            Orientation="Vertical">
+                                        <StackPanel Orientation="Vertical">
                                             <TextBox
                                                 x:Name="txtName"
                                                 Width="240"
@@ -528,6 +525,15 @@
                                                     </StackPanel>
                                                 </Button>
                                             </StackPanel>
+                                            <StackPanel.Style>
+                                                <Style TargetType="StackPanel">
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding SelectedItems.Count, ElementName=dataGrid}" Value="0">
+                                                            <Setter Property="IsEnabled" Value="False" />
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </StackPanel.Style>
                                         </StackPanel>
                                     </Grid>
                                 </Grid>

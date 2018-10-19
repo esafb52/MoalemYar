@@ -407,10 +407,7 @@
                                             </StackPanel>
                                         </Grid>
                                         <Grid Grid.Column="1" Margin="5,0,0,0">
-                                            <StackPanel
-                                                Name="editStack"
-                                                IsEnabled="False"
-                                                Orientation="Vertical">
+                                            <StackPanel Orientation="Vertical">
                                                 <TextBox
                                                     Name="txtEditQuestionText"
                                                     Width="240"
@@ -516,6 +513,15 @@
                                                     x:Name="txtDateEdit"
                                                     Margin="5,5,0,20"
                                                     HorizontalAlignment="Left" />
+                                                <StackPanel.Style>
+                                                    <Style TargetType="StackPanel">
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding SelectedItems.Count, ElementName=dataGrid}" Value="0">
+                                                                <Setter Property="IsEnabled" Value="False" />
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </StackPanel.Style>
                                             </StackPanel>
                                         </Grid>
                                     </Grid>

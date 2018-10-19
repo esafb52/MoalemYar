@@ -391,10 +391,7 @@
                                 </StackPanel>
                             </Grid>
                             <Grid Grid.Column="1" Margin="10,120,10,20">
-                                <StackPanel
-                                    Name="stEdit"
-                                    IsEnabled="False"
-                                    Orientation="Vertical">
+                                <StackPanel Orientation="Vertical">
                                     <PersianCalendarWPF:PersianDatePicker
                                         x:Name="txtDateEdit"
                                         HorizontalAlignment="Left"
@@ -433,6 +430,15 @@
                                         controls:InfoElement.Placeholder="درس"
                                         FlowDirection="RightToLeft"
                                         Style="{StaticResource ComboBoxExtend}" />
+                                    <StackPanel.Style>
+                                        <Style TargetType="StackPanel">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding SelectedItems.Count, ElementName=dataGridEdit}" Value="0">
+                                                    <Setter Property="IsEnabled" Value="False" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </StackPanel.Style>
                                 </StackPanel>
                             </Grid>
                         </Grid>

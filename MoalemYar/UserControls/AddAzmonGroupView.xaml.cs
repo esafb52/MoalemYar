@@ -120,7 +120,6 @@ namespace MoalemYar.UserControls
             {
                 dynamic selectedItem = dataGrid.SelectedItems[0];
                 txtGroup.Text = selectedItem.GroupName;
-                editGrid.IsEnabled = true;
             }
             catch (Exception)
             {
@@ -135,7 +134,6 @@ namespace MoalemYar.UserControls
                 long id = selectedItem.Id;
                 updateGroup(id, txtGroup.Text);
                 MainWindow.main.showNotification(AppVariable.Update_Data_KEY, true, txtGroup.Text, "گروه");
-                editGrid.IsEnabled = false;
                 getGroup();
             }
             catch (Exception)
@@ -147,7 +145,6 @@ namespace MoalemYar.UserControls
         private void btnEditCancel_Click(object sender, RoutedEventArgs e)
         {
             txtGroup.Text = string.Empty;
-            editGrid.IsEnabled = false;
             dataGrid.UnselectAll();
         }
 
@@ -198,7 +195,6 @@ namespace MoalemYar.UserControls
                 long id = selectedItem.Id;
                 deleteGroup(id);
                 MainWindow.main.showNotification(AppVariable.Deleted_KEY, true, txtGroup.Text, "گروه");
-                editGrid.IsEnabled = false;
                 getGroup();
             }
             catch (Exception)

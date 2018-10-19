@@ -280,10 +280,8 @@
                                         </StackPanel>
                                     </Grid>
                                     <StackPanel
-                                        Name="editGrid"
                                         Grid.Column="1"
                                         Margin="5,0,10,20"
-                                        IsEnabled="False"
                                         Orientation="Vertical">
                                         <TextBox
                                             Name="txtUsername"
@@ -318,6 +316,15 @@
                                             FlowDirection="RightToLeft"
                                             MaxLength="20"
                                             Style="{StaticResource TextBoxExtend}" />
+                                        <StackPanel.Style>
+                                            <Style TargetType="StackPanel">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding SelectedItems.Count, ElementName=dataGrid}" Value="0">
+                                                        <Setter Property="IsEnabled" Value="False" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </StackPanel.Style>
                                     </StackPanel>
                                 </Grid>
                             </StackPanel>
