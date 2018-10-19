@@ -427,6 +427,5 @@ namespace MoalemYar.UserControls
         {
             getStudentAttendanceList(Convert.ToInt64(cmbBaseList.SelectedValue), txtDateList.SelectedDate.ToString());
         }
-
     }
 }

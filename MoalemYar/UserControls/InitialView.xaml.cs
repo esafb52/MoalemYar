@@ -74,7 +74,7 @@ namespace MoalemYar.UserControls
                               LName = x.FirstOrDefault().LName,
                               FName = x.FirstOrDefault().FName,
                               Sum = x.Sum(y => AppVariable.EnumToNumber(y.Scores))
-                          }).OrderByDescending(x=>x.Sum).Take(6).ToArray();
+                          }).OrderByDescending(x => x.Sum).Take(6).ToArray();
 
                 foreach (var item in res)
                 {

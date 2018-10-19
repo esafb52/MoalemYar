@@ -253,7 +253,6 @@
                                         </DataGridTemplateColumn>
                                     </DataGrid.Columns>
                                 </DataGrid>
-
                             </StackPanel>
                         </Grid>
                     </Grid>
@@ -466,7 +465,6 @@
                                                     MinWidth="200"
                                                     Binding="{Binding Path=Date}"
                                                     Header="تاریخ" />
-
                                             </DataGrid.Columns>
                                         </DataGrid>
                                     </StackPanel>
@@ -491,7 +489,6 @@
                                                         </Style>
                                                     </TextBlock.Style>
                                                 </TextBlock>
-
                                             </StackPanel>
                                             <PersianCalendarWPF:PersianDatePicker
                                                 Name="txtDateEdit"
@@ -510,7 +507,6 @@
                                         </StackPanel>
                                     </Grid>
                                 </Grid>
-
                             </StackPanel>
                         </StackPanel>
                     </Grid>

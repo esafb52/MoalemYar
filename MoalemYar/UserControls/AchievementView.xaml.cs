@@ -56,7 +56,7 @@ namespace MoalemYar.UserControls
                     var query = db.Students.OrderBy(x => x.LName).Where(x => x.BaseId == BaseId).Select(x => new DataClass.DataTransferObjects.StudentsDto { Name = x.Name, LName = x.LName, FName = x.FName, BaseId = x.BaseId, Id = x.Id });
                     if (query.Any())
                     {
-                        dataGrid.ItemsSource = query.OrderBy(x=>x.LName).ToList();
+                        dataGrid.ItemsSource = query.OrderBy(x => x.LName).ToList();
                     }
                     else
                     {
@@ -127,7 +127,7 @@ namespace MoalemYar.UserControls
                     Mapper = Mappers.Xy<DataClass.DataTransferObjects.myChartTemplate>()
                         .X((myData, index) => index)
                         .Y(myData => myData.Scores);
-              
+
                     var records = getDataList(item.Book).OrderBy(x => x.Scores).ToArray();
 
                     Results = records.AsChartValues();
@@ -146,8 +146,13 @@ namespace MoalemYar.UserControls
                     };
                     chart.Series = series;
                     chart.LegendLocation = LegendLocation.Top;
-                    chart.AxisX.Add(new Axis { FontFamily = TryFindResource("TeacherYar.Fonts.IRANSans") as FontFamily,
-                        Labels = Labels, LabelsRotation = -20, Separator = new LiveCharts.Wpf.Separator { Step = 1 } });
+                    chart.AxisX.Add(new Axis
+                    {
+                        FontFamily = TryFindResource("TeacherYar.Fonts.IRANSans") as FontFamily,
+                        Labels = Labels,
+                        LabelsRotation = -20,
+                        Separator = new LiveCharts.Wpf.Separator { Step = 1 }
+                    });
                     chart.AxisY.Add(new Axis { FontFamily = TryFindResource("TeacherYar.Fonts.IRANSans") as FontFamily });
 
                     var mainBorder = new Border();
@@ -157,7 +162,7 @@ namespace MoalemYar.UserControls
                     mainBorder.CornerRadius = new System.Windows.CornerRadius(5);
                     mainBorder.Margin = new System.Windows.Thickness(10);
                     mainBorder.Background = System.Windows.Media.Brushes.White;
-                    mainBorder.Child=chart;
+                    mainBorder.Child = chart;
 
                     waterfallFlow.Children.Add(mainBorder);
                 }
@@ -169,6 +174,7 @@ namespace MoalemYar.UserControls
         }
 
         public object Mapper { get; set; }
+
         //get Score Average to string
         private string getAverage(string Book)
         {

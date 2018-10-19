@@ -409,9 +409,7 @@
                                                         Binding="{Binding Base}"
                                                         Header="پایه" />
                                                 </DataGrid.Columns>
-
                                             </DataGrid>
-
                                         </StackPanel>
                                     </Grid>
                                     <Grid Grid.Column="1" Margin="5,0,10,20">

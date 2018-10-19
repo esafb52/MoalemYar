@@ -249,7 +249,6 @@
                                                         Header="نام گروه" />
                                                 </DataGrid.Columns>
                                             </DataGrid>
-
                                         </StackPanel>
                                     </Grid>
                                     <StackPanel

@@ -195,7 +195,6 @@
                                 </DataGridTemplateColumn>
                             </DataGrid.Columns>
                         </DataGrid>
-
                     </Grid>
                 </controls:TabItem>
                 <controls:TabItem Header="ویرایش اطلاعات" IsSelected="True">
@@ -387,7 +386,6 @@
                                                 Header="توضیحات" />
                                         </DataGrid.Columns>
                                     </DataGrid>
-
                                 </StackPanel>
                             </Grid>
                             <Grid Grid.Column="1" Margin="10,120,10,20">

@@ -8,5 +8,4 @@
         <ResourceDictionary Source="Label.xaml" />
         <ResourceDictionary Source="Button.xaml" />
     </ResourceDictionary.MergedDictionaries>
-
 </ResourceDictionary>

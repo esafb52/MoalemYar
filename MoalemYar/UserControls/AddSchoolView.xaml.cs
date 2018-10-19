@@ -49,7 +49,7 @@ namespace MoalemYar.UserControls
                     _initialCollection = query;
                     if (query.Any())
                     {
-                        dataGrid.ItemsSource = query.OrderBy(x=>x.Year);
+                        dataGrid.ItemsSource = query.OrderBy(x => x.Year);
                     }
                     else
                     {
@@ -221,7 +221,7 @@ namespace MoalemYar.UserControls
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.main.showNotification(NotificationKEY: AppVariable.Delete_Confirm_KEY, param:new[] { txtSchool.Text, "مدرسه" });
+            MainWindow.main.showNotification(NotificationKEY: AppVariable.Delete_Confirm_KEY, param: new[] { txtSchool.Text, "مدرسه" });
         }
 
         public void deleteSchool()

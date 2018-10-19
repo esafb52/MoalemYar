@@ -14,7 +14,6 @@ using MoalemYar.UserControls;
 using MVVMC;
 using System;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -98,6 +97,7 @@ namespace MoalemYar
                     break;
             }
         }
+
         private void loadSettings()
         {
             if (FindElement.Settings.IsMaximize)
@@ -105,6 +105,7 @@ namespace MoalemYar
             else
                 this.WindowState = WindowState.Normal;
         }
+
         private void ShowCredentialDialog()
         {
             var isLogin = FindElement.Settings.CredentialLogin;
@@ -190,6 +191,7 @@ namespace MoalemYar
         }
 
         #region "Notification"
+
         public void showNotification(string NotificationKEY, bool isAvailableOrSuccess = false, params string[] param)
         {
             var builder = NotificationMessageBuilder.CreateMessage();
@@ -208,7 +210,8 @@ namespace MoalemYar
                 builder.HasBadge("هشدار");
                 builder.Accent(AppVariable.RED);
                 builder.HasHeader($"آیا برای حذف {param[1]} {param[0]} اطمینان دارید؟");
-                builder.Dismiss().WithButton("بله", button => {
+                builder.Dismiss().WithButton("بله", button =>
+                {
                     switch (param[1])
                     {
                         case "مدرسه":
@@ -403,7 +406,6 @@ namespace MoalemYar
             {
                 if (isAvailableOrSuccess)
                 {
-
                     builder.Accent(AppVariable.ORANGE);
                     builder.HasBadge("اطلاعیه");
                     builder.HasMessage($"{param[1]} {param[0]} با موفقیت ویرایش شد");
@@ -479,9 +481,10 @@ namespace MoalemYar
                     builder.Dismiss().WithButton("تایید", button => { });
                 }
             }
-           
+
             builder.Queue();
         }
+
         #endregion "Notification"
     }
 }

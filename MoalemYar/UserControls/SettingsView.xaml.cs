@@ -59,11 +59,11 @@ namespace MoalemYar.UserControls
         private void LoadSettings()
         {
             loadServers();
-            
+
             swLogin.IsChecked = FindElement.Settings.CredentialLogin;
-            
+
             swAutoStart.IsChecked = FindElement.Settings.Autorun;
-            
+
             swMax.IsChecked = FindElement.Settings.IsMaximize;
         }
 

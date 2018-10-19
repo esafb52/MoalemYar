@@ -73,7 +73,6 @@
                             Header="امتیاز" />
                     </DataGrid.Columns>
                 </DataGrid>
-
             </Grid>
         </controls:ScrollViewer>
     </controls:TransitioningContentControl>

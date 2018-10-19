@@ -300,7 +300,6 @@
                                                     Header="سال تحصیلی" />
                                             </DataGrid.Columns>
                                         </DataGrid>
-
                                     </StackPanel>
                                 </Grid>
                                 <StackPanel

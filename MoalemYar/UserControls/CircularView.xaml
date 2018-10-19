@@ -134,7 +134,6 @@
                         </DataGrid.ContextMenu>
                     </DataGrid>
                 </StackPanel>
-
             </Grid>
         </controls:ScrollViewer>
     </controls:TransitioningContentControl>

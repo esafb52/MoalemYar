@@ -103,7 +103,6 @@
                                 Style="{StaticResource NumericUpDownExtend}" />
                         </StackPanel>
 
-
                         <StackPanel Orientation="Vertical">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock

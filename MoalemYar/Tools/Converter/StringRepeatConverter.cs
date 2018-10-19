@@ -20,7 +20,7 @@ namespace MoalemYar.Tools.Converter
                         return strValue;
                     }
                 }
-                else if(parameter is int intValue)
+                else if (parameter is int intValue)
                 {
                     num = intValue;
                 }

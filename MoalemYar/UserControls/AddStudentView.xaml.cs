@@ -208,10 +208,8 @@ namespace MoalemYar.UserControls
             }
             catch (Exception)
             {
-
                 MainWindow.main.showNotification(AppVariable.Update_Data_KEY, false, txtName.Text, "دانش آموز");
             }
-
         }
 
         private void btnEditCancel_Click(object sender, RoutedEventArgs e)

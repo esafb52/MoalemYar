@@ -35,6 +35,7 @@ namespace MoalemYar.UserControls
         private List<DataClass.DataTransferObjects.SchoolsStudentsJointDto> _initialCollectionStudent;
         private List<DataClass.DataTransferObjects.StudentsDto> _initialCollection;
         private List<DataClass.Tables.Score> _initialCollectionScore;
+
         public QuestionsListView()
         {
             InitializeComponent();

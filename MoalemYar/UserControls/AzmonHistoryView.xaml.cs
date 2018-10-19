@@ -29,6 +29,7 @@ namespace MoalemYar.UserControls
         public ChartValues<DataClass.DataTransferObjects.myChartTemplate> Results { get; set; }
         public ObservableCollection<string> Labels { get; set; }
         public object Mapper { get; set; }
+
         public AzmonHistoryView()
         {
             InitializeComponent();

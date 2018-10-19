@@ -41,7 +41,7 @@ namespace MoalemYar.UserControls
             using (var db = new DataClass.myDbContext())
             {
                 var DeleteQuestion = await db.AQuestions.FindAsync(id);
-                if(!db.AQuestions.Any())
+                if (!db.AQuestions.Any())
                     db.AQuestions.Remove(DeleteQuestion);
 
                 var DeleteGroup = await db.Groups.FindAsync(id);
