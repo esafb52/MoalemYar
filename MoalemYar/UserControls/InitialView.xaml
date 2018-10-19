@@ -165,10 +165,10 @@
                             Width="300"
                             Height="350"
                             Margin="10"
-                            Background="{Binding ElementName=chart, Path=Background}"
+                            Background="White"
                             CornerRadius="5"
                             Effect="{StaticResource EffectShadow3}">
-                            <lvc:CartesianChart LegendLocation="Top">
+                            <lvc:CartesianChart LegendLocation="Top" Margin="5">
                                 <lvc:CartesianChart.Series>
                                     <lvc:ColumnSeries
                                         Title="مجموع نمرات کل کلاس در دروس مختلف"

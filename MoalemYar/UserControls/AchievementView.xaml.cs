@@ -20,7 +20,6 @@ namespace MoalemYar.UserControls
         private List<DataClass.Tables.Score> _initialCollection;
         public ChartValues<DataClass.DataTransferObjects.myChartTemplate> Results { get; set; }
         public ObservableCollection<string> Labels { get; set; }
-
         public AchievementView()
         {
             InitializeComponent();
@@ -144,6 +143,7 @@ namespace MoalemYar.UserControls
                            Fill = TryFindResource("PrimaryBrush") as Brush
                        }
                     };
+                    chart.Margin = new System.Windows.Thickness(5);
                     chart.Series = series;
                     chart.LegendLocation = LegendLocation.Top;
                     chart.AxisX.Add(new Axis
@@ -153,7 +153,7 @@ namespace MoalemYar.UserControls
                         LabelsRotation = -20,
                         Separator = new LiveCharts.Wpf.Separator { Step = 1 }
                     });
-                    chart.AxisY.Add(new Axis { FontFamily = TryFindResource("TeacherYar.Fonts.IRANSans") as FontFamily });
+                    chart.AxisY.Add(new Axis { LabelFormatter = x => x.ToString("N0"), Separator = new LiveCharts.Wpf.Separator { Step = 1 }, FontFamily = TryFindResource("TeacherYar.Fonts.IRANSans") as FontFamily });
 
                     var mainBorder = new Border();
                     mainBorder.Width = 300;
