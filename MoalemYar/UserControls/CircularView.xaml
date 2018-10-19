@@ -4,6 +4,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls="clr-namespace:HandyControl.Controls;assembly=HandyControl"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:MoalemYar.UserControls"
+    xmlns:local1="clr-namespace:MoalemYar"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Loaded="UserControl_Loaded"
     Style="{StaticResource myUserControl}"
@@ -56,18 +58,10 @@
                         Style="{StaticResource ToggleButtonSwitch}"
                         Unchecked="swLimit_Checked" />
                 </StackPanel>
-                <TextBox
-                    Name="txtSearch"
-                    Margin="430,10,40,0"
-                    VerticalAlignment="Top"
-                    controls:InfoElement.ContentHeight="35"
-                    controls:InfoElement.Placeholder="جستجو..."
-                    IsEnabled="False"
-                    Style="{StaticResource TextBoxExtend}"
-                    TextChanged="txtSearch_TextChanged" />
+
                 <ProgressBar
                     Name="prgUpdate"
-                    Margin="20,56,40,0"
+                    Margin="400,17,19.8,0"
                     VerticalAlignment="Top"
                     FlowDirection="LeftToRight"
                     Style="{StaticResource ProgressBarDanger}"
@@ -75,69 +69,72 @@
                     Visibility="Hidden" />
                 <controls:LoadingLine
                     Name="prgLoading"
-                    Margin="20,56,40,0"
+                    Margin="400,17,19.8,0"
                     VerticalAlignment="Top"
                     FlowDirection="LeftToRight" />
-                <ListBox
-                    Name="lst"
-                    Margin="20,85,20,10"
-                    MouseDoubleClick="lst_MouseDoubleClick"
-                    Style="{StaticResource ListBoxBaseStyle}">
-                    <ListBox.Template>
-                        <ControlTemplate>
-                            <DockPanel LastChildFill="True">
-                                <Grid Height="30" DockPanel.Dock="Top">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="50" />
-                                        <ColumnDefinition Width="550" />
-                                        <ColumnDefinition Width="100" />
-                                        <ColumnDefinition Width="260" />
-                                        <ColumnDefinition Width="100" />
-                                    </Grid.ColumnDefinitions>
-                                    <Label Grid.Column="0">ردیف</Label>
-                                    <Label Grid.Column="1">عنوان</Label>
-                                    <Label Grid.Column="2">دسته بندی</Label>
-                                    <Label Grid.Column="3">نوع</Label>
-                                    <Label Grid.Column="4">تاریخ</Label>
-                                </Grid>
-                                <ItemsPresenter />
-                            </DockPanel>
-                        </ControlTemplate>
-                    </ListBox.Template>
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <Grid Margin="0,2">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="50" />
-                                    <ColumnDefinition Width="550" />
-                                    <ColumnDefinition Width="100" />
-                                    <ColumnDefinition Width="260" />
-                                    <ColumnDefinition Width="100" />
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Grid.Column="0" Text="{Binding Row}" />
-                                <TextBlock Grid.Column="1" Text="{Binding Title}" />
-                                <TextBlock Grid.Column="2" Text="{Binding Category}" />
-                                <StackPanel Grid.Column="3" Orientation="Horizontal">
-                                    <TextBlock Text="{Binding Type}" />
-                                    <TextBlock Text=" - " />
-                                    <TextBlock Text="{Binding SubType}" />
-                                </StackPanel>
-                                <TextBlock Grid.Column="4" Text="{Binding Date}" />
-                                <TextBlock Text="{Binding link}" Visibility="Hidden" />
-                            </Grid>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                    <ListBox.ItemContainerStyle>
-                        <Style BasedOn="{StaticResource ListBoxItemBaseStyle}" TargetType="ListBoxItem">
-                            <Setter Property="Height" Value="40" />
-                        </Style>
-                    </ListBox.ItemContainerStyle>
-                    <ListBox.ContextMenu>
-                        <ContextMenu>
-                            <MenuItem Click="btnSave_Click" Header="دریافت/مطالعه" />
-                        </ContextMenu>
-                    </ListBox.ContextMenu>
-                </ListBox>
+                <StackPanel Margin="20,50,20,10">
+                    <TextBox
+                        Name="txtSearch"
+                        Width="{Binding Path=ActualWidth, ElementName=dataGrid, Converter={local1:MultiplyConverter Multiplier=.99}}"
+                        Margin="0,5"
+                        controls:InfoElement.ContentHeight="35"
+                        controls:InfoElement.Placeholder="جستجو..."
+                        IsEnabled="False"
+                        Style="{StaticResource TextBoxExtend}"
+                        TextChanged="txtSearch_TextChanged" />
+                    <DataGrid
+                        x:Name="lst"
+                        local:DataGridBehavior.DisplayRowNumber="True"
+                        AutoGenerateColumns="False"
+                        HeadersVisibility="All"
+                        IsReadOnly="True"
+                        MouseDoubleClick="lst_MouseDoubleClick"
+                        RowHeaderWidth="60"
+                        SelectionMode="Single">
+                        <DataGrid.Columns>
+
+                            <DataGridTextColumn
+                                Width="1*"
+                                Binding="{Binding Path=link}"
+                                Header="لینک"
+                                Visibility="Hidden" />
+                            <DataGridTextColumn
+                                MinWidth="50"
+                                Binding="{Binding Path=Row}"
+                                Header="ردیف" />
+                            <DataGridTextColumn
+                                MinWidth="550"
+                                Binding="{Binding Path=Title}"
+                                Header="عنوان" />
+                            <DataGridTextColumn
+                                MinWidth="100"
+                                Binding="{Binding Path=Category}"
+                                Header="دسته بندی" />
+                            <DataGridTemplateColumn MinWidth="260" Header="نوع">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding Type}" />
+                                            <TextBlock Text=" - " />
+                                            <TextBlock Text="{Binding SubType}" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTextColumn
+                                Width="1*"
+                                MinWidth="100"
+                                Binding="{Binding Path=Date}"
+                                Header="تاریخ" />
+                        </DataGrid.Columns>
+                        <DataGrid.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Click="btnSave_Click" Header="دریافت/مطالعه" />
+                            </ContextMenu>
+                        </DataGrid.ContextMenu>
+                    </DataGrid>
+                </StackPanel>
+
             </Grid>
         </controls:ScrollViewer>
     </controls:TransitioningContentControl>
