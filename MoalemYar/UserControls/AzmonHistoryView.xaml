@@ -144,6 +144,7 @@
                                     Title="تاریخچه آزمون"
                                     Configuration="{Binding Mapper}"
                                     DataLabels="True"
+                                    Fill="{StaticResource PrimaryBrush}"
                                     FontFamily="{StaticResource TeacherYar.Fonts.IRANSans}"
                                     Values="{Binding Results}" />
                             </lvc:CartesianChart.Series>

@@ -140,10 +140,10 @@ namespace MoalemYar.UserControls
                     {
                        new ColumnSeries{
                            Title = item.Book + Environment.NewLine + getAverageStatus(item.Book) + Environment.NewLine + "میانگین: " + getAverage(item.Book),
-                           Configuration = Mapper, Values = Results, DataLabels = true, FontFamily = TryFindResource("TeacherYar.Fonts.IRANSans") as FontFamily
+                           Configuration = Mapper, Values = Results, DataLabels = true, FontFamily = TryFindResource("TeacherYar.Fonts.IRANSans") as FontFamily,
+                           Fill = TryFindResource("PrimaryBrush") as Brush
                        }
                     };
-
                     chart.Series = series;
                     chart.LegendLocation = LegendLocation.Top;
                     chart.AxisX.Add(new Axis { FontFamily = TryFindResource("TeacherYar.Fonts.IRANSans") as FontFamily,
