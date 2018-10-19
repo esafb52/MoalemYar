@@ -24,6 +24,7 @@
                         <Grid Name="grdedit">
                             <ComboBox
                                 x:Name="cmbBase"
+                                Width="240"
                                 Margin="10"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top"
@@ -33,7 +34,7 @@
                                 SelectedValue="{Binding SchoolName}"
                                 SelectedValuePath="Id"
                                 SelectionChanged="cmbBase_SelectionChanged"
-                                Style="{StaticResource ComboBoxExtend}" Width="240">
+                                Style="{StaticResource ComboBoxExtend}">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal">
@@ -73,43 +74,32 @@
                                 </StackPanel>
                                 <DataGrid
                                     x:Name="dataGrid"
-                                    MaxWidth="{Binding Path=ActualWidth, ElementName=grdedit, Converter={local1:MultiplyConverter Multiplier=.9}}"
-                                    Margin="0,10"
-                                    HorizontalAlignment="Stretch"
-                                    AlternatingRowBackground="#fbfcfe"
+                                    Margin="10,0"
+                                    local:DataGridBehavior.DisplayRowNumber="True"
                                     AutoGenerateColumns="False"
-                                    Background="#eceff5"
-                                    CanUserReorderColumns="False"
-                                    CanUserResizeColumns="False"
-                                    CanUserResizeRows="False"
-                                    CanUserSortColumns="True"
-                                    CellStyle="{DynamicResource DataGridCellStyle}"
-                                    ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}"
-                                    GridLinesVisibility="Horizontal"
-                                    HorizontalGridLinesBrush="#dde8ef"
+                                    HeadersVisibility="All"
                                     IsReadOnly="True"
-                                    RowHeaderWidth="0"
-                                    SelectionMode="Single"
-                                    SelectionUnit="FullRow">
+                                    RowHeaderWidth="60"
+                                    SelectionMode="Single">
                                     <DataGrid.Columns>
                                         <DataGridTextColumn Binding="{Binding Path=Id}" Visibility="Hidden" />
                                         <DataGridTextColumn
-                                            Width="*"
+                                            Width="1*"
                                             MinWidth="120"
                                             Binding="{Binding Path=Name}"
                                             Header="نام" />
                                         <DataGridTextColumn
-                                            Width="*"
+                                            Width="1*"
                                             MinWidth="130"
                                             Binding="{Binding Path=LName}"
                                             Header="نام خانوادگی" />
                                         <DataGridTextColumn
-                                            Width="*"
+                                            Width="1*"
                                             MinWidth="130"
                                             Binding="{Binding Path=FName}"
                                             Header="نام پدر" />
                                         <DataGridTemplateColumn
-                                            Width="*"
+                                            Width="1*"
                                             MinWidth="150"
                                             Header="وضعیت">
                                             <DataGridTemplateColumn.CellTemplate>
@@ -166,6 +156,7 @@
                             <StackPanel Margin="10" Orientation="Horizontal">
                                 <ComboBox
                                     x:Name="cmbBaseList"
+                                    Width="240"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Top"
                                     controls:InfoElement.ContentHeight="35"
@@ -173,7 +164,7 @@
                                     ItemsSource="{Binding}"
                                     SelectedValue="{Binding SchoolName}"
                                     SelectedValuePath="Id"
-                                    Style="{StaticResource ComboBoxExtend}" Width="240">
+                                    Style="{StaticResource ComboBoxExtend}">
                                     <ComboBox.ItemTemplate>
                                         <DataTemplate>
                                             <StackPanel Orientation="Horizontal">
@@ -208,43 +199,32 @@
                             <StackPanel Margin="0,45,10.4,0.4" Orientation="Vertical">
                                 <DataGrid
                                     x:Name="dataGridList"
-                                    MaxWidth="{Binding Path=ActualWidth, ElementName=grdList, Converter={local1:MultiplyConverter Multiplier=.9}}"
-                                    Margin="0,10"
-                                    HorizontalAlignment="Stretch"
-                                    AlternatingRowBackground="#fbfcfe"
+                                    Margin="10,10"
+                                    local:DataGridBehavior.DisplayRowNumber="True"
                                     AutoGenerateColumns="False"
-                                    Background="#eceff5"
-                                    CanUserReorderColumns="False"
-                                    CanUserResizeColumns="False"
-                                    CanUserResizeRows="False"
-                                    CanUserSortColumns="True"
-                                    CellStyle="{DynamicResource DataGridCellStyle}"
-                                    ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}"
-                                    GridLinesVisibility="Horizontal"
-                                    HorizontalGridLinesBrush="#dde8ef"
+                                    HeadersVisibility="All"
                                     IsReadOnly="True"
-                                    RowHeaderWidth="0"
-                                    SelectionMode="Single"
-                                    SelectionUnit="FullRow">
+                                    RowHeaderWidth="60"
+                                    SelectionMode="Single">
                                     <DataGrid.Columns>
                                         <DataGridTextColumn Binding="{Binding Path=Id}" Visibility="Hidden" />
                                         <DataGridTextColumn
-                                            Width="*"
+                                            Width="1*"
                                             MinWidth="120"
                                             Binding="{Binding Path=Name}"
                                             Header="نام" />
                                         <DataGridTextColumn
-                                            Width="*"
+                                            Width="1*"
                                             MinWidth="130"
                                             Binding="{Binding Path=LName}"
                                             Header="نام خانوادگی" />
                                         <DataGridTextColumn
-                                            Width="*"
+                                            Width="1*"
                                             MinWidth="130"
                                             Binding="{Binding Path=FName}"
                                             Header="نام پدر" />
                                         <DataGridTemplateColumn
-                                            Width="*"
+                                            Width="1*"
                                             MinWidth="150"
                                             Header="وضعیت">
                                             <DataGridTemplateColumn.CellTemplate>
@@ -273,6 +253,7 @@
                                         </DataGridTemplateColumn>
                                     </DataGrid.Columns>
                                 </DataGrid>
+
                             </StackPanel>
                         </Grid>
                     </Grid>
@@ -367,6 +348,7 @@
                                 <StackPanel Orientation="Horizontal">
                                     <ComboBox
                                         x:Name="cmbEditBase"
+                                        Width="240"
                                         HorizontalAlignment="Left"
                                         VerticalAlignment="Top"
                                         controls:InfoElement.ContentHeight="35"
@@ -375,7 +357,7 @@
                                         SelectedValue="{Binding SchoolName}"
                                         SelectedValuePath="Id"
                                         SelectionChanged="cmbEditBase_SelectionChanged"
-                                        Style="{StaticResource ComboBoxExtend}" Width="240"
+                                        Style="{StaticResource ComboBoxExtend}"
                                         TabIndex="0">
                                         <ComboBox.ItemTemplate>
                                             <DataTemplate>
@@ -391,6 +373,7 @@
                                     </ComboBox>
                                     <ComboBox
                                         x:Name="cmbEditStudent"
+                                        Width="240"
                                         Margin="10,0,0,0"
                                         HorizontalAlignment="Left"
                                         VerticalAlignment="Top"
@@ -399,7 +382,7 @@
                                         SelectedValue="{Binding LName}"
                                         SelectedValuePath="Id"
                                         SelectionChanged="cmbEditStudent_SelectionChanged"
-                                        Style="{StaticResource ComboBoxExtend}" Width="240"
+                                        Style="{StaticResource ComboBoxExtend}"
                                         TabIndex="1">
                                         <ComboBox.ItemTemplate>
                                             <DataTemplate>
@@ -418,11 +401,8 @@
                                 </StackPanel>
                                 <TextBox
                                     x:Name="txtEditSearch"
-                                    Width="240"
-                                    MaxWidth="{Binding Path=ActualWidth, ElementName=grdedit, Converter={local1:MultiplyConverter Multiplier=.9}}"
-                                    Margin="0,5,0,0"
-                                    HorizontalAlignment="Left"
-                                    VerticalAlignment="Top"
+                                    Width="{Binding Path=ActualWidth, ElementName=dataGrid, Converter={local1:MultiplyConverter Multiplier=.99}}"
+                                    Margin="0,5"
                                     controls:InfoElement.ContentHeight="35"
                                     controls:InfoElement.Placeholder="جستجو..."
                                     FlowDirection="RightToLeft"

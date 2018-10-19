@@ -23,6 +23,7 @@
                     Orientation="Horizontal">
                     <ComboBox
                         x:Name="cmbEditBase"
+                        Width="240"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Top"
                         controls:InfoElement.ContentHeight="35"
@@ -31,7 +32,7 @@
                         SelectedValue="{Binding SchoolName}"
                         SelectedValuePath="Id"
                         SelectionChanged="cmbEditBase_SelectionChanged"
-                        Style="{StaticResource ComboBoxExtend}" Width="240"
+                        Style="{StaticResource ComboBoxExtend}"
                         TabIndex="0">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
@@ -49,40 +50,27 @@
                 <DataGrid
                     x:Name="dataGrid"
                     Grid.Column="0"
-                    Width="311"
-                    Margin="10,55,0,5"
-                    HorizontalAlignment="Left"
-                    AlternatingRowBackground="#fbfcfe"
+                    local:DataGridBehavior.DisplayRowNumber="True"
                     AutoGenerateColumns="False"
-                    Background="#eceff5"
-                    CanUserReorderColumns="False"
-                    CanUserResizeColumns="False"
-                    CanUserResizeRows="False"
-                    CanUserSortColumns="True"
-                    CellStyle="{DynamicResource DataGridCellStyle}"
-                    ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}"
-                    GridLinesVisibility="Horizontal"
-                    HorizontalGridLinesBrush="#dde8ef"
+                    HeadersVisibility="All"
                     IsReadOnly="True"
-                    RowHeaderWidth="0"
+                    RowHeaderWidth="60"
                     SelectionChanged="dataGrid_SelectionChanged"
-                    SelectionMode="Single"
-                    SelectionUnit="FullRow"
-                    TabIndex="2">
+                    SelectionMode="Single">
                     <DataGrid.Columns>
                         <DataGridTextColumn Binding="{Binding Id}" Visibility="Hidden" />
                         <DataGridTextColumn
-                            Width="*"
+                            Width="1*"
                             MinWidth="100"
                             Binding="{Binding Name}"
                             Header="نام" />
                         <DataGridTextColumn
-                            Width="*"
+                            Width="1*"
                             MinWidth="100"
                             Binding="{Binding LName}"
                             Header="نام خانوادگی" />
                         <DataGridTextColumn
-                            Width="*"
+                            Width="1*"
                             MinWidth="90"
                             Binding="{Binding FName}"
                             Header="نام پدر" />

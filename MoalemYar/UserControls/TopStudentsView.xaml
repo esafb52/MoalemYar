@@ -15,6 +15,7 @@
             <Grid Name="grdedit" MinWidth="800">
                 <ComboBox
                     x:Name="cmbBaseEdit"
+                    Width="240"
                     Margin="10"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
@@ -24,7 +25,7 @@
                     SelectedValue="{Binding SchoolName}"
                     SelectedValuePath="Id"
                     SelectionChanged="cmbBaseEdit_SelectionChanged"
-                    Style="{StaticResource ComboBoxExtend}" Width="240"
+                    Style="{StaticResource ComboBoxExtend}"
                     TabIndex="0">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
@@ -40,50 +41,39 @@
                 </ComboBox>
                 <DataGrid
                     x:Name="dataGrid"
-                    MaxWidth="{Binding Path=ActualWidth, ElementName=grdedit, Converter={local1:MultiplyConverter Multiplier=.9}}"
-                    Margin="0,55,0,5"
-                    HorizontalAlignment="Stretch"
-                    AlternatingRowBackground="#fbfcfe"
+                    local:DataGridBehavior.DisplayRowNumber="True"
                     AutoGenerateColumns="False"
-                    Background="#eceff5"
-                    CanUserReorderColumns="False"
-                    CanUserResizeColumns="False"
-                    CanUserResizeRows="False"
-                    CanUserSortColumns="True"
-                    CellStyle="{DynamicResource DataGridCellStyle}"
-                    ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}"
-                    GridLinesVisibility="Horizontal"
-                    HorizontalGridLinesBrush="#dde8ef"
+                    HeadersVisibility="All"
                     IsReadOnly="True"
-                    RowHeaderWidth="0"
-                    SelectionMode="Single"
-                    SelectionUnit="FullRow"
-                    TabIndex="2">
+                    RowHeaderWidth="60"
+                    SelectionMode="Single">
                     <DataGrid.Columns>
                         <DataGridTextColumn Binding="{Binding Id}" Visibility="Hidden" />
                         <DataGridTextColumn Binding="{Binding BaseId}" Visibility="Hidden" />
                         <DataGridTextColumn Binding="{Binding StudentId}" Visibility="Hidden" />
                         <DataGridTextColumn
-                            Width="*"
+                            Width="1*"
                             MinWidth="100"
                             Binding="{Binding Name}"
                             Header="نام" />
                         <DataGridTextColumn
-                            Width="*"
+                            Width="1*"
                             MinWidth="100"
                             Binding="{Binding LName}"
                             Header="نام خانوادگی" />
                         <DataGridTextColumn
-                            Width="*"
+                            Width="1*"
                             MinWidth="100"
                             Binding="{Binding FName}"
                             Header="نام پدر" />
                         <DataGridTextColumn
-                            Width="*"
+                            Width="1*"
+                            MinWidth="100"
                             Binding="{Binding Sum}"
                             Header="امتیاز" />
                     </DataGrid.Columns>
                 </DataGrid>
+
             </Grid>
         </controls:ScrollViewer>
     </controls:TransitioningContentControl>

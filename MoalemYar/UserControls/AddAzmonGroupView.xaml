@@ -222,9 +222,8 @@
                                         <StackPanel Orientation="Vertical">
                                             <TextBox
                                                 Name="txtEditSearch"
-                                                Width="506"
-                                                Margin="10,0,0,0"
-                                                HorizontalAlignment="Left"
+                                                Width="{Binding Path=ActualWidth, ElementName=dataGrid, Converter={local1:MultiplyConverter Multiplier=.99}}"
+                                                Margin="0,5"
                                                 controls:InfoElement.ContentHeight="35"
                                                 controls:InfoElement.Placeholder="جستجو..."
                                                 FlowDirection="RightToLeft"
@@ -233,34 +232,24 @@
                                                 TextChanged="txtEditSearch_TextChanged" />
                                             <DataGrid
                                                 x:Name="dataGrid"
-                                                MaxWidth="{Binding Path=ActualWidth, ElementName=grdedit, Converter={local1:MultiplyConverter Multiplier=.9}}"
-                                                Margin="0,5"
-                                                HorizontalAlignment="Stretch"
-                                                AlternatingRowBackground="#fbfcfe"
+                                                Margin="10,0"
+                                                local:DataGridBehavior.DisplayRowNumber="True"
                                                 AutoGenerateColumns="False"
-                                                Background="#eceff5"
-                                                CanUserReorderColumns="False"
-                                                CanUserResizeColumns="False"
-                                                CanUserResizeRows="False"
-                                                CanUserSortColumns="True"
-                                                CellStyle="{DynamicResource DataGridCellStyle}"
-                                                ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}"
-                                                GridLinesVisibility="Horizontal"
-                                                HorizontalGridLinesBrush="#dde8ef"
+                                                HeadersVisibility="All"
                                                 IsReadOnly="True"
-                                                RowHeaderWidth="0"
+                                                RowHeaderWidth="60"
                                                 SelectionChanged="dataGrid_SelectionChanged"
-                                                SelectionMode="Single"
-                                                SelectionUnit="FullRow">
+                                                SelectionMode="Single">
                                                 <DataGrid.Columns>
                                                     <DataGridTextColumn Binding="{Binding Id}" Visibility="Hidden" />
                                                     <DataGridTextColumn
-                                                        Width="*"
+                                                        Width="1*"
                                                         MinWidth="100"
                                                         Binding="{Binding GroupName}"
                                                         Header="نام گروه" />
                                                 </DataGrid.Columns>
                                             </DataGrid>
+
                                         </StackPanel>
                                     </Grid>
                                     <StackPanel

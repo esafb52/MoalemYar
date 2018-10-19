@@ -131,18 +131,20 @@
                                         TabIndex="2" />
                                     <ComboBox
                                         Name="cmbAddGender"
+                                        Width="240"
                                         Margin="2"
                                         HorizontalAlignment="Left"
                                         controls:InfoElement.ContentHeight="35"
                                         controls:InfoElement.Placeholder="جنسیت"
                                         FlowDirection="RightToLeft"
                                         SelectionChanged="cmbGender_SelectionChanged"
-                                        Style="{StaticResource ComboBoxExtend}" Width="240">
+                                        Style="{StaticResource ComboBoxExtend}">
                                         <ComboBoxItem Content="پسر" />
                                         <ComboBoxItem Content="دختر" />
                                     </ComboBox>
                                     <ComboBox
                                         x:Name="cmbBase"
+                                        Width="240"
                                         Margin="2"
                                         HorizontalAlignment="Left"
                                         controls:InfoElement.ContentHeight="35"
@@ -150,7 +152,7 @@
                                         ItemsSource="{Binding}"
                                         SelectedValue="{Binding SchoolName}"
                                         SelectedValuePath="Id"
-                                        Style="{StaticResource ComboBoxExtend}" Width="240"
+                                        Style="{StaticResource ComboBoxExtend}"
                                         TabIndex="4">
                                         <ComboBox.ItemTemplate>
                                             <DataTemplate>
@@ -329,6 +331,7 @@
                                     <ComboBox
                                         x:Name="cmbBaseEdit"
                                         Grid.Column="0"
+                                        Width="240"
                                         Margin="10,0"
                                         HorizontalAlignment="Left"
                                         VerticalAlignment="Top"
@@ -338,7 +341,7 @@
                                         SelectedValue="{Binding SchoolName}"
                                         SelectedValuePath="Id"
                                         SelectionChanged="cmbBaseEdit_SelectionChanged"
-                                        Style="{StaticResource ComboBoxExtend}" Width="240"
+                                        Style="{StaticResource ComboBoxExtend}"
                                         TabIndex="0">
                                         <ComboBox.ItemTemplate>
                                             <DataTemplate>
@@ -359,10 +362,8 @@
                                         <StackPanel Orientation="Vertical">
                                             <TextBox
                                                 x:Name="txtEditSearch"
-                                                MaxWidth="{Binding Path=ActualWidth, ElementName=grdedit, Converter={local1:MultiplyConverter Multiplier=.9}}"
-                                                Margin="0,10,0,0"
-                                                HorizontalAlignment="Stretch"
-                                                VerticalAlignment="Top"
+                                                Width="{Binding Path=ActualWidth, ElementName=dataGrid, Converter={local1:MultiplyConverter Multiplier=.99}}"
+                                                Margin="0,5"
                                                 controls:InfoElement.ContentHeight="35"
                                                 controls:InfoElement.Placeholder="جستجو..."
                                                 FlowDirection="RightToLeft"
@@ -371,57 +372,48 @@
                                                 TextChanged="txtEditSearch_TextChanged" />
                                             <DataGrid
                                                 x:Name="dataGrid"
-                                                MaxWidth="{Binding Path=ActualWidth, ElementName=grdedit, Converter={local1:MultiplyConverter Multiplier=.9}}"
-                                                Margin="0,5"
-                                                HorizontalAlignment="Stretch"
-                                                AlternatingRowBackground="#fbfcfe"
+                                                Margin="10,0"
+                                                local:DataGridBehavior.DisplayRowNumber="True"
                                                 AutoGenerateColumns="False"
-                                                Background="#eceff5"
-                                                CanUserReorderColumns="False"
-                                                CanUserResizeColumns="False"
-                                                CanUserResizeRows="False"
-                                                CanUserSortColumns="True"
-                                                CellStyle="{DynamicResource DataGridCellStyle}"
-                                                ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle}"
-                                                GridLinesVisibility="Horizontal"
-                                                HorizontalGridLinesBrush="#dde8ef"
+                                                HeadersVisibility="All"
                                                 IsReadOnly="True"
-                                                RowHeaderWidth="0"
+                                                RowHeaderWidth="60"
                                                 SelectionChanged="dataGrid_SelectionChanged"
-                                                SelectionMode="Single"
-                                                SelectionUnit="FullRow"
-                                                TabIndex="2">
+                                                SelectionMode="Single">
                                                 <DataGrid.Columns>
                                                     <DataGridTextColumn Binding="{Binding Id}" Visibility="Hidden" />
                                                     <DataGridTextColumn
-                                                        Width="*"
+                                                        Width="1*"
                                                         MinWidth="100"
                                                         Binding="{Binding Name}"
                                                         Header="نام" />
                                                     <DataGridTextColumn
-                                                        Width="*"
+                                                        Width="1*"
                                                         MinWidth="100"
                                                         Binding="{Binding LName}"
                                                         Header="نام خانوادگی" />
                                                     <DataGridTextColumn
-                                                        Width="*"
+                                                        Width="1*"
                                                         MinWidth="100"
                                                         Binding="{Binding FName}"
                                                         Header="نام پدر" />
                                                     <DataGridTextColumn
-                                                        Width="*"
+                                                        Width="1*"
                                                         MinWidth="100"
                                                         Binding="{Binding Gender}"
                                                         Header="جنسیت" />
                                                     <DataGridTextColumn
-                                                        Width="*"
+                                                        Width="1*"
+                                                        MinWidth="100"
                                                         Binding="{Binding Base}"
                                                         Header="پایه" />
                                                 </DataGrid.Columns>
+
                                             </DataGrid>
+
                                         </StackPanel>
                                     </Grid>
-                                    <Grid Grid.Column="1" Margin="5,0,0,0">
+                                    <Grid Grid.Column="1" Margin="5,0,10,20">
                                         <StackPanel
                                             Name="editStack"
                                             IsEnabled="False"
@@ -464,17 +456,19 @@
                                                 TabIndex="2" />
                                             <ComboBox
                                                 Name="cmbGender"
+                                                Width="240"
                                                 Margin="2"
                                                 HorizontalAlignment="Left"
                                                 controls:InfoElement.ContentHeight="35"
                                                 controls:InfoElement.Placeholder="جنسیت"
                                                 FlowDirection="RightToLeft"
-                                                Style="{StaticResource ComboBoxExtend}" Width="240">
+                                                Style="{StaticResource ComboBoxExtend}">
                                                 <ComboBoxItem Content="پسر" />
                                                 <ComboBoxItem Content="دختر" />
                                             </ComboBox>
                                             <ComboBox
                                                 x:Name="cmbEditBase"
+                                                Width="240"
                                                 Height="35"
                                                 Margin="2"
                                                 HorizontalAlignment="Left"
@@ -483,6 +477,7 @@
                                                 FlowDirection="RightToLeft"
                                                 SelectedValue="{Binding SchoolName}"
                                                 SelectedValuePath="Id"
+                                                Style="{StaticResource ComboBoxExtend}"
                                                 TabIndex="4">
                                                 <ComboBox.ItemTemplate>
                                                     <DataTemplate>
@@ -501,6 +496,7 @@
                                                     x:Name="imgEditStudent"
                                                     Width="200"
                                                     Height="200"
+                                                    Margin="0,10,0,0"
                                                     HorizontalAlignment="Center"
                                                     VerticalAlignment="Top"
                                                     Source="/Resources/Choose.png" />
