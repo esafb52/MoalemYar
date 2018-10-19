@@ -10,7 +10,6 @@
     xmlns:mvvmc="clr-namespace:MVVMC;assembly=MVVMC"
     Title="معلم یار"
     MinWidth="1300"
-    WindowState="Maximized"
     MinHeight="700"
     BorderThickness="1"
     FontFamily="{StaticResource TeacherYar.Fonts.IRANSans}"
@@ -22,6 +21,7 @@
     TextOptions.TextRenderingMode="Auto"
     UseLayoutRounding="True"
     WindowStartupLocation="CenterScreen"
+    WindowState="Maximized"
     mc:Ignorable="d">
     <Window.Resources>
         <RoutedUICommand x:Key="backupCommand" Text="backupCommand" />

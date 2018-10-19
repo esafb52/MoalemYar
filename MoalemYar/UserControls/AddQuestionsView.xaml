@@ -125,6 +125,7 @@
                                     </ComboBox>
                                     <TextBox
                                         Name="txtQuestionText"
+                                        Width="240"
                                         Margin="2"
                                         HorizontalAlignment="Left"
                                         controls:InfoElement.ContentHeight="35"
@@ -134,6 +135,7 @@
                                         TabIndex="0" />
                                     <TextBox
                                         Name="txtCase1"
+                                        Width="240"
                                         Margin="2"
                                         HorizontalAlignment="Left"
                                         controls:InfoElement.ContentHeight="35"
@@ -143,6 +145,7 @@
                                         TabIndex="0" />
                                     <TextBox
                                         Name="txtCase2"
+                                        Width="240"
                                         Margin="2"
                                         HorizontalAlignment="Left"
                                         controls:InfoElement.ContentHeight="35"
@@ -152,6 +155,7 @@
                                         TabIndex="0" />
                                     <TextBox
                                         Name="txtCase3"
+                                        Width="240"
                                         Margin="2"
                                         HorizontalAlignment="Left"
                                         controls:InfoElement.ContentHeight="35"
@@ -161,6 +165,7 @@
                                         TabIndex="0" />
                                     <TextBox
                                         Name="txtCase4"
+                                        Width="240"
                                         Margin="2"
                                         HorizontalAlignment="Left"
                                         controls:InfoElement.ContentHeight="35"
@@ -344,7 +349,7 @@
                                                     MaxLength="40"
                                                     Style="{StaticResource TextBoxExtend}"
                                                     TabIndex="1"
-                                                    TextChanged="txtEditSearch_TextChanged" />
+                                                    TextChanged="txtEditSearch_TextChanged" Width="495" />
                                                 <DataGrid
                                                     x:Name="dataGrid"
                                                     MaxWidth="{Binding Path=ActualWidth, ElementName=grdedit, Converter={local1:MultiplyConverter Multiplier=.9}}"
@@ -415,6 +420,7 @@
                                                 Orientation="Vertical">
                                                 <TextBox
                                                     Name="txtEditQuestionText"
+                                                    Width="240"
                                                     Margin="2"
                                                     HorizontalAlignment="Left"
                                                     controls:InfoElement.ContentHeight="35"
@@ -424,6 +430,7 @@
                                                     TabIndex="0" />
                                                 <TextBox
                                                     Name="txtEditCase1"
+                                                    Width="240"
                                                     Margin="2"
                                                     HorizontalAlignment="Left"
                                                     controls:InfoElement.ContentHeight="35"
@@ -433,6 +440,7 @@
                                                     TabIndex="0" />
                                                 <TextBox
                                                     Name="txtEditCase2"
+                                                    Width="240"
                                                     Margin="2"
                                                     HorizontalAlignment="Left"
                                                     controls:InfoElement.ContentHeight="35"
@@ -442,6 +450,7 @@
                                                     TabIndex="0" />
                                                 <TextBox
                                                     Name="txtEditCase3"
+                                                    Width="240"
                                                     Margin="2"
                                                     HorizontalAlignment="Left"
                                                     controls:InfoElement.ContentHeight="35"
@@ -451,6 +460,7 @@
                                                     TabIndex="0" />
                                                 <TextBox
                                                     Name="txtEditCase4"
+                                                    Width="240"
                                                     Margin="2"
                                                     HorizontalAlignment="Left"
                                                     controls:InfoElement.ContentHeight="35"

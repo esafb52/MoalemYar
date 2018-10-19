@@ -87,6 +87,7 @@
                             <StackPanel Margin="0,5,0,0" Orientation="Vertical">
                                 <TextBox
                                     Name="txtAddYear"
+                                    Width="240"
                                     Margin="2"
                                     controls:InfoElement.ContentHeight="35"
                                     controls:InfoElement.Placeholder="سال تحصیلی"
@@ -96,6 +97,7 @@
                                     TabIndex="0" />
                                 <TextBox
                                     Name="txtAddSchool"
+                                    Width="240"
                                     Margin="2"
                                     controls:InfoElement.ContentHeight="35"
                                     controls:InfoElement.Placeholder="نام مدرسه"
@@ -105,6 +107,7 @@
                                     TabIndex="1" />
                                 <TextBox
                                     Name="txtAddAdmin"
+                                    Width="240"
                                     Margin="2"
                                     controls:InfoElement.ContentHeight="35"
                                     controls:InfoElement.Placeholder="نام مدیر"
@@ -315,6 +318,7 @@
                                     Orientation="Vertical">
                                     <TextBox
                                         Name="txtYear"
+                                        Width="240"
                                         Margin="2"
                                         HorizontalAlignment="Left"
                                         VerticalAlignment="Top"
@@ -325,6 +329,7 @@
                                         Style="{StaticResource TextBoxExtend}" />
                                     <TextBox
                                         Name="txtSchool"
+                                        Width="240"
                                         Margin="2"
                                         HorizontalAlignment="Left"
                                         VerticalAlignment="Top"
@@ -335,6 +340,7 @@
                                         Style="{StaticResource TextBoxExtend}" />
                                     <TextBox
                                         Name="txtAdmin"
+                                        Width="240"
                                         Margin="2"
                                         HorizontalAlignment="Left"
                                         VerticalAlignment="Top"

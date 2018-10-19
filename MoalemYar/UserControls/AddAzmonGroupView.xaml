@@ -86,6 +86,7 @@
                             </Grid>
                             <TextBox
                                 Name="txtAddGroup"
+                                Width="240"
                                 Margin="10"
                                 HorizontalAlignment="Left"
                                 controls:InfoElement.ContentHeight="35"
@@ -221,7 +222,8 @@
                                         <StackPanel Orientation="Vertical">
                                             <TextBox
                                                 Name="txtEditSearch"
-                                                Margin="10,0"
+                                                Width="506"
+                                                Margin="10,0,0,0"
                                                 HorizontalAlignment="Left"
                                                 controls:InfoElement.ContentHeight="35"
                                                 controls:InfoElement.Placeholder="جستجو..."
@@ -269,6 +271,7 @@
                                         Orientation="Vertical">
                                         <TextBox
                                             Name="txtGroup"
+                                            Width="240"
                                             Margin="2"
                                             HorizontalAlignment="Left"
                                             VerticalAlignment="Top"

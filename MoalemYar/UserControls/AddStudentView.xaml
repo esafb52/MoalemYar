@@ -95,6 +95,7 @@
                                     Orientation="Vertical">
                                     <TextBox
                                         x:Name="txtAddName"
+                                        Width="240"
                                         Margin="2"
                                         HorizontalAlignment="Left"
                                         VerticalAlignment="Top"
@@ -106,6 +107,7 @@
                                         TabIndex="0" />
                                     <TextBox
                                         x:Name="txtAddLName"
+                                        Width="240"
                                         Margin="2"
                                         HorizontalAlignment="Left"
                                         VerticalAlignment="Top"
@@ -117,6 +119,7 @@
                                         TabIndex="1" />
                                     <TextBox
                                         x:Name="txtAddFName"
+                                        Width="240"
                                         Margin="2"
                                         HorizontalAlignment="Left"
                                         VerticalAlignment="Top"
@@ -425,6 +428,7 @@
                                             Orientation="Vertical">
                                             <TextBox
                                                 x:Name="txtName"
+                                                Width="240"
                                                 Margin="2"
                                                 HorizontalAlignment="Left"
                                                 VerticalAlignment="Top"
@@ -436,6 +440,7 @@
                                                 TabIndex="0" />
                                             <TextBox
                                                 x:Name="txtLName"
+                                                Width="240"
                                                 Margin="2"
                                                 HorizontalAlignment="Left"
                                                 VerticalAlignment="Top"
@@ -447,6 +452,7 @@
                                                 TabIndex="1" />
                                             <TextBox
                                                 x:Name="txtFName"
+                                                Width="240"
                                                 Margin="2"
                                                 HorizontalAlignment="Left"
                                                 VerticalAlignment="Top"

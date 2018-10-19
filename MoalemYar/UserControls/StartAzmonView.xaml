@@ -92,6 +92,7 @@
                             </ComboBox>
                             <TextBox
                                 Name="txtTedad"
+                                Width="80"
                                 Margin="0,10"
                                 VerticalAlignment="Top"
                                 controls:InfoElement.ContentHeight="35"

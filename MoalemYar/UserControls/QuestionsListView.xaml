@@ -50,7 +50,7 @@
                                 Style="{StaticResource ToggleButtonSwitch}"
                                 Unchecked="isQuestion_Checked" />
                         </StackPanel>
-                        <StackPanel Margin="10,50" Orientation="Horizontal">
+                        <StackPanel Margin="10,50,10,71" Orientation="Horizontal">
                             <ComboBox
                                 x:Name="cmbBase"
                                 HorizontalAlignment="Left"
@@ -91,14 +91,12 @@
                                 VerticalAlignment="Top" />
                             <TextBox
                                 Name="txtDesc"
-                                MaxHeight="158"
-                                HorizontalAlignment="Left"
-                                VerticalAlignment="Top"
+                                HorizontalAlignment="Center"
                                 controls:InfoElement.ContentHeight="35"
                                 controls:InfoElement.Placeholder="توضیحات"
                                 Style="{StaticResource TextBoxExtend}"
                                 TabIndex="2"
-                                TextWrapping="Wrap" />
+                                TextWrapping="Wrap" Width="340" />
                         </StackPanel>
                         <DataGrid
                             x:Name="dataGrid"
@@ -359,7 +357,8 @@
                                     </StackPanel>
                                     <TextBox
                                         x:Name="txtEditSearch"
-                                        Margin="0,5,0,0"
+                                        Width="502"
+                                        Margin="10,5,0,0"
                                         HorizontalAlignment="Left"
                                         VerticalAlignment="Top"
                                         controls:InfoElement.ContentHeight="35"
@@ -429,6 +428,7 @@
                                         TabIndex="4" />
                                     <TextBox
                                         x:Name="txtDescEdit"
+                                        Width="240"
                                         MaxWidth="270"
                                         MaxHeight="200"
                                         Margin="2,5,0,5"

@@ -87,6 +87,7 @@
                             <StackPanel Margin="0,5,0,0" Orientation="Vertical">
                                 <TextBox
                                     Name="txtAddUsername"
+                                    Width="240"
                                     Margin="2"
                                     HorizontalAlignment="Left"
                                     controls:InfoElement.ContentHeight="35"
@@ -97,6 +98,7 @@
                                     TabIndex="0" />
                                 <PasswordBox
                                     Name="txtAddPassword"
+                                    Width="240"
                                     Margin="2"
                                     HorizontalAlignment="Left"
                                     controls:InfoElement.ContentHeight="35"
@@ -107,6 +109,7 @@
                                     Tag="رمز عبور" />
                                 <PasswordBox
                                     Name="txtAddPasswordAg"
+                                    Width="240"
                                     Margin="2"
                                     HorizontalAlignment="Left"
                                     controls:InfoElement.ContentHeight="35"
@@ -298,6 +301,7 @@
                                         Orientation="Vertical">
                                         <TextBox
                                             Name="txtUsername"
+                                            Width="240"
                                             Margin="2"
                                             HorizontalAlignment="Left"
                                             VerticalAlignment="Top"
@@ -308,6 +312,7 @@
                                             Style="{StaticResource TextBoxExtend}" />
                                         <TextBox
                                             Name="txtPassword"
+                                            Width="240"
                                             Margin="2"
                                             HorizontalAlignment="Left"
                                             VerticalAlignment="Top"
@@ -318,6 +323,7 @@
                                             Style="{StaticResource TextBoxExtend}" />
                                         <TextBox
                                             Name="txtPasswordAg"
+                                            Width="240"
                                             Margin="2"
                                             HorizontalAlignment="Left"
                                             VerticalAlignment="Top"

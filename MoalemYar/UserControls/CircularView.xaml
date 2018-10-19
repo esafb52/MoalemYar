@@ -58,7 +58,7 @@
                 </StackPanel>
                 <TextBox
                     Name="txtSearch"
-                    Margin="10"
+                    Margin="430,10,40,0"
                     VerticalAlignment="Top"
                     controls:InfoElement.ContentHeight="35"
                     controls:InfoElement.Placeholder="جستجو..."
