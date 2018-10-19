@@ -74,37 +74,27 @@ namespace MoalemYar.UserControls
                               LName = x.FirstOrDefault().LName,
                               FName = x.FirstOrDefault().FName,
                               Sum = x.Sum(y => AppVariable.EnumToNumber(y.Scores))
-                          }).OrderByDescending(x => x.Sum).Take(6).ToArray();
+                          }).OrderByDescending(x=>x.Sum).Take(6).ToArray();
 
                 foreach (var item in res)
                 {
-                    ProgressBar progressBar;
-                    TextBlock textBlock;
-                    Control _currentUser;
-                    progressBar = new ProgressBar()
+                    ProgressBar progressBar = new ProgressBar()
                     {
                         FlowDirection = FlowDirection.LeftToRight,
                         Value = item.Sum
                     };
-                    textBlock = new TextBlock()
+                    TextBlock textBlock = new TextBlock()
                     {
                         Opacity = .4,
                         Margin = new Thickness(0, 5, 0, 0),
                         FontSize = 15,
                         Text = item.Name + " " + item.LName
                     };
-
-                    _currentUser = progressBar;
+                    Console.WriteLine(item.Sum);
                     stkDash.Children.Add(textBlock);
-
-                    stkDash.Children.Add(_currentUser);
+                    stkDash.Children.Add(progressBar);
                 }
             }
-        }
-
-        private void cmbEditBase_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            getTopStudent(Convert.ToInt64(cmbEditBase.SelectedValue));
         }
 
         private void getSchool()
@@ -129,6 +119,8 @@ namespace MoalemYar.UserControls
         {
             getSchool();
             cmbEditBase.SelectedIndex = Convert.ToInt32(FindElement.Settings.DefaultSchool);
+            getTopStudent(Convert.ToInt64(cmbEditBase.SelectedValue));
+
             using (var db = new DataClass.myDbContext())
             {
                 long baseId = Convert.ToInt64(cmbEditBase.SelectedValue);
