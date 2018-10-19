@@ -56,7 +56,7 @@ namespace MoalemYar.UserControls
                     var query = db.Students.OrderBy(x => x.LName).Where(x => x.BaseId == BaseId).Select(x => new DataClass.DataTransferObjects.StudentsDto { Name = x.Name, LName = x.LName, FName = x.FName, BaseId = x.BaseId, Id = x.Id });
                     if (query.Any())
                     {
-                        dataGrid.ItemsSource = query.ToList();
+                        dataGrid.ItemsSource = query.OrderBy(x=>x.LName).ToList();
                     }
                     else
                     {

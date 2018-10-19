@@ -104,7 +104,7 @@ namespace MoalemYar.UserControls
 
                     if (query.Any())
                     {
-                        dataGrid.ItemsSource = query.ToList();
+                        dataGrid.ItemsSource = query.OrderBy(x => x.LName).ToList();
                     }
                     else
                     {

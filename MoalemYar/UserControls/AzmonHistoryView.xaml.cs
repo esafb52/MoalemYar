@@ -68,7 +68,7 @@ namespace MoalemYar.UserControls
             {
                 long id = Convert.ToInt64(cmbEditBase.SelectedValue);
                 var qUser = db.Students.Where(x => x.BaseId == id).ToList();
-                dataGrid.ItemsSource = qUser.Any() ? qUser : null;
+                dataGrid.ItemsSource = qUser.OrderBy(x => x.LName).Any() ? qUser : null;
             }
         }
 

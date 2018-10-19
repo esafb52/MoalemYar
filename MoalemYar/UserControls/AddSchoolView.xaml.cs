@@ -49,7 +49,7 @@ namespace MoalemYar.UserControls
                     _initialCollection = query;
                     if (query.Any())
                     {
-                        dataGrid.ItemsSource = query;
+                        dataGrid.ItemsSource = query.OrderBy(x=>x.Year);
                     }
                     else
                     {

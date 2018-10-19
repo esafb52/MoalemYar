@@ -189,7 +189,7 @@ namespace MoalemYar.UserControls
             _initialCollection = data;
             if (data.Any())
             {
-                dataGrid.ItemsSource = data;
+                dataGrid.ItemsSource = data.OrderBy(x => x.LName);
             }
             else
             {

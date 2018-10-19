@@ -123,7 +123,7 @@ namespace MoalemYar.UserControls
 
                 if (data.Any())
                 {
-                    this.dataGrid.ItemsSource = data;
+                    this.dataGrid.ItemsSource = data.OrderBy(x => x.LName);
                     swAllPresent.IsEnabled = true;
                 }
                 else
@@ -187,7 +187,7 @@ namespace MoalemYar.UserControls
                 _initialCollectionAtendance = data;
                 if (data.Any())
                 {
-                    dgv.ItemsSource = data;
+                    dgv.ItemsSource = data.OrderByDescending(x => x.Date);
                 }
                 else
                 {
@@ -211,7 +211,7 @@ namespace MoalemYar.UserControls
 
                 if (data.Any())
                 {
-                    this.dataGridList.ItemsSource = data;
+                    this.dataGridList.ItemsSource = data.OrderBy(x => x.LName);
                 }
                 else
                 {
