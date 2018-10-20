@@ -84,12 +84,10 @@
                         TextChanged="txtSearch_TextChanged" />
                     <DataGrid
                         x:Name="lst"
-                        local:DataGridBehavior.DisplayRowNumber="True"
                         AutoGenerateColumns="False"
-                        HeadersVisibility="All"
+                        HeadersVisibility="Column"
                         IsReadOnly="True"
                         MouseDoubleClick="lst_MouseDoubleClick"
-                        RowHeaderWidth="60"
                         SelectionMode="Single">
                         <DataGrid.Columns>
 
@@ -99,12 +97,11 @@
                                 Header="لینک"
                                 Visibility="Hidden" />
                             <DataGridTextColumn
-                                Visibility="Hidden"
                                 MinWidth="50"
                                 Binding="{Binding Path=Row}"
                                 Header="ردیف" />
                             <DataGridTextColumn
-                                MinWidth="550"
+                                MinWidth="400"
                                 Binding="{Binding Path=Title}"
                                 Header="عنوان" />
                             <DataGridTextColumn
