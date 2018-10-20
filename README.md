@@ -1,9 +1,7 @@
 [![Total downloads](https://img.shields.io/github/downloads/ghost1372/MoalemYar/total.svg)](https://github.com/ghost1372/MoalemYar/releases)
 [![GitHub version](https://badge.fury.io/gh/ghost1372%2FMoalemYar.svg)](https://badge.fury.io/gh/ghost1372%2FMoalemYar)
 
-# <div dir="rtl">
-<a href="#en-US">English Readme!</a>
-</div>
+# <div><a href="#en-US">English Readme!</a></div>
 # <div dir="rtl"> معلم یار</div>
  <div dir="rtl">
  معلم یار یک پروژه شخصی جهت ساده کردن امور مربوط به مدیریت کلاس و کنترل پیشرفت دانش آموزان می باشد. این نرم افزار کاملا رایگان بوده و برای تهیه آن از کتابخانه های متن باز دیگر استفاده شده است. همچنین این مخزن یک مثال عالی از نحوه استفاده از تکنولوژی بنیاد نمایش ویندوز و طراحی رابط کاربری منعطف می باشد.
@@ -11,12 +9,12 @@
 
 # <div dir="rtl"> Images | تصاویر</div>
 
-![Optional Text](Screen1.png)
-![Optional Text](Screen2.png)
-![Optional Text](Screen3.png)
-![Optional Text](Screen4.png)
-![Optional Text](Screen5.png)
-![Optional Text](Screen6.png)
+![Optional Text](ScreenShot/Screen1.png)
+![Optional Text](ScreenShot/Screen2.png)
+![Optional Text](ScreenShot/Screen3.png)
+![Optional Text](ScreenShot/Screen4.png)
+![Optional Text](ScreenShot/Screen5.png)
+![Optional Text](ScreenShot/Screen6.png)
 
 ## <div dir="rtl">ویژگی ها</div>
 <div dir="rtl">
