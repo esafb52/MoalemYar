@@ -1,10 +1,56 @@
 [![Total downloads](https://img.shields.io/github/downloads/ghost1372/MoalemYar/total.svg)](https://github.com/ghost1372/MoalemYar/releases)
 [![GitHub version](https://badge.fury.io/gh/ghost1372%2FMoalemYar.svg)](https://badge.fury.io/gh/ghost1372%2FMoalemYar)
 
-### this branch is under development for changing ui
+# <div dir="rtl">
+<a href="#en-US">English Readme!</a>
+</div>
+# <div dir="rtl"> معلم یار</div>
+ <div dir="rtl">
+ معلم یار یک پروژه شخصی جهت ساده کردن امور مربوط به مدیریت کلاس و کنترل پیشرفت دانش آموزان می باشد. این نرم افزار کاملا رایگان بوده و برای تهیه آن از کتابخانه های متن باز دیگر استفاده شده است. همچنین این مخزن یک مثال عالی از نحوه استفاده از تکنولوژی بنیاد نمایش ویندوز و طراحی رابط کاربری منعطف می باشد.
+</div>
 
-# MoalemYar
-A personal project for class management, using various technologies like WPF, Entityframwork, CodeFirst, Sqlite, Migration and more.
+# <div dir="rtl"> Images | تصاویر</div>
+
+![Optional Text](Screen1.png)
+![Optional Text](Screen2.png)
+![Optional Text](Screen3.png)
+![Optional Text](Screen4.png)
+![Optional Text](Screen5.png)
+![Optional Text](Screen6.png)
+
+## <div dir="rtl">ویژگی ها</div>
+<div dir="rtl">
+<br>قابلیت ایجاد سال تحصیلی و مدرسه های متعدد
+<br>قابلیت ایجاد دانش آموزان برای هرکلاس با مشخصات + عکس
+<br>دارای امنیت ورود به نرم افزار
+<br>قابلیت حضور غیاب روزانه کلاس
+<br>ارزشیابی دروس بصورت توصیفی
+<br>سیستم هوشمند تشخیص افرادی که پرسش نشده اند
+<br>سیستم پیشرفت تحصیلی هوشمند و پیشرفته با قابلیت مقایسه دانش آموزان در دروس مختلف، امتیازات کلی، و… بصورت نمودار های مختلف
+<br>سیستم پیشرفته مقایسه دانش آموز با خود
+<br>قابلیت تعیین شاگرد های کلاس
+<br>قابلیت ویرایش و حذف اطلاعات
+<br>بسیار سریع و قدرتمند
+<br>دارای سیستم بروزرسانی نرم افزار
+<br>تقویم شمسی زیبا و کامل همراه با روزهای تعطیل رسمی
+<br>و…
+</div>
+
+## <div dir="rtl">دانلود</div>
+
+<div dir="rtl">
+آخرین نسخه ها را از اینجا دریافت کنید
+</div>
+ [via the releases tab](https://github.com/ghost1372/MoalemYar/releases).<br>
+
+## <div dir="rtl">مشارکت</div>
+
+<div dir="rtl">
+هرگونه همیاری و کمک در توسعه این برنامه با کمال میل پذیرفته می شود</div>
+
+
+# <div id="en-US">MoalemYar</div>
+A personal project for class management, using various technologies like WPF, Entityframwork, CodeFirst, Sqlite, Migration and more. also this project is An excellent example of working with controls in WPF and GUI.
 
 ## Technology used
 VisualStudio 2017<br>
@@ -33,7 +79,9 @@ Migration<br>
 ## Compile
 for Compile this Project you need Visual Studio 2017
 
-## Images
-Soon...
-## Previous Version
+## Version 1
+for using version 1 you must change master branch to version-1 branch.
+
+## Old Version
+you can access Old Version from this repo. this version written by C# and Winform.
 https://github.com/ghost1372/ClassSRM
