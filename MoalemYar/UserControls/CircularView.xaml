@@ -99,6 +99,7 @@
                                 Header="لینک"
                                 Visibility="Hidden" />
                             <DataGridTextColumn
+                                Visibility="Hidden"
                                 MinWidth="50"
                                 Binding="{Binding Path=Row}"
                                 Header="ردیف" />
