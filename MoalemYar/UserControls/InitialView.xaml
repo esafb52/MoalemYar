@@ -168,10 +168,10 @@
                             Background="White"
                             CornerRadius="5"
                             Effect="{StaticResource EffectShadow3}">
-                            <lvc:CartesianChart LegendLocation="Top" Margin="5">
+                            <lvc:CartesianChart Margin="5" LegendLocation="Top">
                                 <lvc:CartesianChart.Series>
                                     <lvc:ColumnSeries
-                                        Title="مجموع نمرات کل کلاس در دروس مختلف"
+                                        Title="میزان نمرات کل کلاس در دروس مختلف"
                                         Configuration="{Binding Mapper}"
                                         DataLabels="True"
                                         Fill="{StaticResource PrimaryBrush}"
@@ -189,7 +189,7 @@
                                     </lvc:Axis>
                                 </lvc:CartesianChart.AxisX>
                                 <lvc:CartesianChart.AxisY>
-                                    <lvc:Axis FontFamily="{StaticResource TeacherYar.Fonts.IRANSans}" />
+                                    <lvc:Axis FontFamily="{StaticResource TeacherYar.Fonts.IRANSans}" LabelFormatter="{Binding Formatter}" />
                                 </lvc:CartesianChart.AxisY>
                             </lvc:CartesianChart>
                         </Border>

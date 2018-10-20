@@ -11,6 +11,7 @@
 using LiveCharts;
 using LiveCharts.Configurations;
 using LiveCharts.Helpers;
+using LiveCharts.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -29,6 +30,7 @@ namespace MoalemYar.UserControls
         public ChartValues<DataClass.DataTransferObjects.myChartTemplate> Results { get; set; }
         public ObservableCollection<string> Labels { get; set; }
         public object Mapper { get; set; }
+        public Func<double, string> Formatter { get; set; }
 
         public InitialView()
         {
@@ -90,7 +92,6 @@ namespace MoalemYar.UserControls
                         FontSize = 15,
                         Text = item.Name + " " + item.LName
                     };
-                    Console.WriteLine(item.Sum);
                     stkDash.Children.Add(textBlock);
                     stkDash.Children.Add(progressBar);
                 }
@@ -136,22 +137,23 @@ namespace MoalemYar.UserControls
                 var khob = query.Where(y => y.Scores == "خوب").ToList();
                 var kheyliKhob = query.Where(y => y.Scores == "خیلی خوب").ToList();
 
-                list.Add(new DataClass.DataTransferObjects.myChartTemplate { Caption = "نیاز به تلاش", Scores = niazBeTalash.Count });
-                list.Add(new DataClass.DataTransferObjects.myChartTemplate { Caption = "قابل قبول", Scores = ghabelGhabol.Count });
-                list.Add(new DataClass.DataTransferObjects.myChartTemplate { Caption = "خوب", Scores = khob.Count });
-                list.Add(new DataClass.DataTransferObjects.myChartTemplate { Caption = "خیلی خوب", Scores = kheyliKhob.Count });
+                list.Add(new DataClass.DataTransferObjects.myChartTemplate { Caption = "نیاز به تلاش", Scores = niazBeTalash.Count * 100 / query.Count });
+                list.Add(new DataClass.DataTransferObjects.myChartTemplate { Caption = "قابل قبول", Scores = ghabelGhabol.Count * 100 / query.Count });
+                list.Add(new DataClass.DataTransferObjects.myChartTemplate { Caption = "خوب", Scores = khob.Count * 100 / query.Count });
+                list.Add(new DataClass.DataTransferObjects.myChartTemplate { Caption = "خیلی خوب", Scores = kheyliKhob.Count * 100 / query.Count });
 
                 Mapper = Mappers.Xy<DataClass.DataTransferObjects.myChartTemplate>()
                     .X((myData, index) => index)
                     .Y(myData => myData.Scores);
 
-                //lets take the first 15 records by default;
                 var records = list.OrderBy(x => x.Scores).ToArray();
 
                 Results = records.AsChartValues();
                 Labels = new ObservableCollection<string>(records.Select(x => x.Caption));
+                Formatter = val => string.Format("{0}%",val);
                 DataContext = this;
             }
+
         }
     }
 }
