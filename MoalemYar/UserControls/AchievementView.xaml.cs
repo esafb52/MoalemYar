@@ -127,7 +127,7 @@ namespace MoalemYar.UserControls
                         .X((myData, index) => index)
                         .Y(myData => myData.Scores);
 
-                    var records = getDataList(item.Book).OrderBy(x => x.Scores).ToArray();
+                    var records = getDataList(item.Book).OrderByDescending(x => x.Caption).ToArray();
 
                     Results = records.AsChartValues();
 
@@ -137,7 +137,7 @@ namespace MoalemYar.UserControls
 
                     var series = new SeriesCollection
                     {
-                       new ColumnSeries{
+                       new LineSeries{
                            Title = item.Book + Environment.NewLine + getAverageStatus(item.Book) + Environment.NewLine + "میانگین: " + getAverage(item.Book),
                            Configuration = Mapper, Values = Results, DataLabels = true, FontFamily = TryFindResource("TeacherYar.Fonts.IRANSans") as FontFamily,
                            Fill = TryFindResource("PrimaryBrush") as Brush
