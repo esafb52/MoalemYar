@@ -242,5 +242,19 @@
             Focusable="False"
             Manager="{Binding Manager}"
             TabIndex="-1" />
+        <controls:ScrollViewer
+            Grid.Column="0"
+            HorizontalAlignment="Left"
+            IsEnableInertia="True"
+            IsPenetrating="True"
+            VerticalScrollBarVisibility="Hidden">
+            <StackPanel
+                Name="PanelMessage"
+                Margin="0,10,10,10"
+                VerticalAlignment="Top"
+                Background="Transparent"
+                IsHitTestVisible="True" />
+        </controls:ScrollViewer>
     </Grid>
+
 </controls:WindowBorderless>

@@ -71,11 +71,11 @@ namespace MoalemYar.UserControls
                 txtNewVersion.Foreground = new SolidColorBrush(Colors.Green);
                 txtChangeLog.Visibility = Visibility.Visible;
                 txtChangeLog.Text = ChangeLog;
-                MainWindow.main.showNotification(AppVariable.Update_KEY, true, newVersion, url);
+                MainWindow.main.showGrowlNotification(AppVariable.Update_KEY, true, newVersion, url);
             }
             else
             {
-                MainWindow.main.showNotification(AppVariable.Update_KEY, false);
+                MainWindow.main.showGrowlNotification(AppVariable.Update_KEY, false);
                 txtNewVersion.Foreground = new SolidColorBrush(Colors.Red);
                 txtNewVersion.Content = newVersion;
             }

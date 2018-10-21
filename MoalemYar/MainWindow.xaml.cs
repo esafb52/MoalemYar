@@ -37,6 +37,10 @@ namespace MoalemYar
 
             loadSettings();
             ShowCredentialDialog();
+            Growl.SetFlowDirection(PanelMessage, FlowDirection.RightToLeft);
+            Growl.SetGrowlPanel(PanelMessage);
+            
+
         }
 
         public void ClearScreen()
@@ -191,6 +195,241 @@ namespace MoalemYar
         }
 
         #region "Notification"
+
+        public void showGrowlNotification(string NotificationKEY, bool isAvailableOrSuccess = false, params string[] param)
+        {
+            //Delete Confirm
+            if (NotificationKEY.Equals(AppVariable.Delete_Confirm_KEY))
+            {
+                Growl.Ask($"آیا برای حذف {param[1]} {param[0]} اطمینان دارید؟", (closeAction, b) => {
+                    if (b)
+                    {
+                        switch (param[1])
+                        {
+                            case "مدرسه":
+                                AddSchoolView.main.deleteSchool();
+                                break;
+
+                            case "دانش آموز":
+                                AddStudentView.main.deleteStudent();
+                                break;
+
+                            case "کاربر":
+                                AddUserView.main.deleteUser();
+                                break;
+
+                            case "حضورغیاب":
+                                AttendancelistView.main.deleteAttendance();
+                                break;
+
+                            case "نمره":
+                                QuestionsListView.main.deleteScore();
+                                break;
+
+                            case "گروه":
+                                AddAzmonGroupView.main.deleteGroup();
+                                break;
+
+                            case "سوال":
+                                AddQuestionsView.main.deleteGroup();
+                                break;
+                        }
+                        closeAction?.Invoke();
+                    }
+                });
+            }
+            //Reset Data Confirm
+            else if (NotificationKEY.Equals(AppVariable.Reset_Data_Confirm_KEY))
+            {
+                Growl.Ask($"آیا برای بازیابی {param[0]} اطمینان دارید؟", (closeAction, b) => {
+                    if (b)
+                    {
+                        if (param[0] == "تنظیمات برنامه")
+                            SettingsView.main.resetConfig();
+                        else
+                            SettingsView.main.resetDatabase();
+
+                        closeAction?.Invoke();
+                    }
+                });
+            }
+
+            //Reset Data Deleted
+            else if (NotificationKEY.Equals(AppVariable.Data_Reset_Deleted_KEY))
+            {
+                //Todo: change button text to راه اندازی
+                Growl.Ask($"{param[0]} به حالت پیشفرض تغییر یافت، برنامه را دوباره راه اندازی کنید", (closeAction, b) => {
+                    if (b)
+                    {
+                        Application.Current.Shutdown();
+                        System.Windows.Forms.Application.Restart();
+
+                        closeAction?.Invoke();
+                    }
+                });
+            }
+
+            //Password Same
+            else if (NotificationKEY.Equals(AppVariable.Same_Password_KEY))
+            {
+                Growl.Warning("رمز های عبور باید یکسان باشند");
+            }
+
+            //Delete Exist
+            else if (NotificationKEY.Equals(AppVariable.Delete_Exist_KEY))
+            {
+                Growl.Warning($"نمی توان این {param[0]} را حذف کرد، ابتدا {param[1]} این {param[0]} را حذف کنید");
+            }
+
+            //Azmon
+            else if (NotificationKEY.Equals(AppVariable.Azmon_KEY))
+            {
+                Growl.Warning("تعداد سوالات وارد شده بیشتر از سوالات موجود است");
+            }
+
+            //Fill All Data
+            else if (NotificationKEY.Equals(AppVariable.Fill_All_Data_KEY))
+            {
+                Growl.Warning("لطفا تمام فیلدها را پر کنید");
+            }
+
+            //No Data
+            else if (NotificationKEY.Equals(AppVariable.No_Data_KEY))
+            {
+                var navigationService = NavigationServiceProvider.GetNavigationServiceInstance();
+
+                //Todo: change button text to ثبت اطلاعات جدید
+                Growl.Ask("اطلاعاتی در پایگاه داده یافت نشد", (closeAction, b) => {
+                    if (b)
+                    {
+                        switch (param[0])
+                        {
+                            case "School":
+                                AddSchoolView.main.tabc.SelectedIndex = 0;
+                                break;
+
+                            case "User":
+                                AddUserView.main.tabc.SelectedIndex = 0;
+                                break;
+
+                            case "Student":
+                                AddStudentView.main.tabc.SelectedIndex = 0;
+                                break;
+
+                            case "Attendance":
+                                AttendancelistView.main.tabc.SelectedIndex = 0;
+                                break;
+
+                            case "Question":
+                                navigationService.GetController<UserControls.UserControlsController>().AddStudent();
+                                break;
+
+                            case "Score":
+                                QuestionsListView.main.tabc.SelectedIndex = 0;
+                                break;
+
+                            case "TopStudent":
+                                navigationService.GetController<UserControls.UserControlsController>().Questionslist();
+                                break;
+
+                            case "Group":
+                                AddAzmonGroupView.main.tabc.SelectedIndex = 0;
+                                break;
+
+                            case "AQuestions":
+                                AddQuestionsView.main.tabc.SelectedIndex = 0;
+                                break;
+                        }
+
+                        closeAction?.Invoke();
+                    }
+                });
+            }
+
+            //Backup
+            else if (NotificationKEY.Equals(AppVariable.Backup_KEY))
+            {
+                if (isAvailableOrSuccess)
+                {
+                    Growl.Success($"{param[0]} با موفقیت انجام شد");
+                }
+                else
+                {
+                    Growl.Error($"{param[0]} با مشکل مواجه شد");
+                }
+            }
+
+            //Circular
+            else if (NotificationKEY.Equals(AppVariable.Recived_Circular_KEY))
+            {
+                if (isAvailableOrSuccess)
+                {
+                    Growl.Success("تمامی بخشنامه ها با موفقیت دریافت شد");
+                }
+                else
+                {
+                    Growl.Error("درحال حاظر سرور در دسترس نیست! لطفا در صورت فعال بودن، VPN خود را غیرفعال کنید");
+                }
+            }
+
+            //Update Data
+            else if (NotificationKEY.Equals(AppVariable.Update_Data_KEY))
+            {
+                if (isAvailableOrSuccess)
+                {
+                    Growl.Success($"{param[1]} {param[0]} با موفقیت ویرایش شد");
+                }
+                else
+                {
+                    Growl.Error($"ویرایش {param[1]} {param[0]} با خطا مواجه شد");
+                }
+            }
+
+            //Deleted
+            else if (NotificationKEY.Equals(AppVariable.Deleted_KEY))
+            {
+                if (isAvailableOrSuccess)
+                {
+                    Growl.Success($"{param[1]} {param[0]} با موفقیت حذف شد");
+                }
+                else
+                {
+                    Growl.Error($"حذف {param[1]} {param[0]} با خطا مواجه شد");
+                }
+            }
+
+            //Add Data
+            else if (NotificationKEY.Equals(AppVariable.Add_Data_KEY))
+            {
+                if (isAvailableOrSuccess)
+                {
+                    Growl.Success($"{param[1]} {param[0]} با موفقیت ثبت شد");
+                }
+                else
+                {
+                    Growl.Error($"ثبت {param[1]} {param[0]} با خطا مواجه شد");
+                }
+            }
+
+            //Update
+            else if (NotificationKEY.Equals(AppVariable.Update_KEY))
+            {
+                if (isAvailableOrSuccess)
+                {
+                    Growl.Ask($"نسخه جدید {param[0]} پیدا شد،همین حالا به آخرین نسخه بروزرسانی کنید", (closeAction, b) => {
+                        if (b)
+                        {
+                            System.Diagnostics.Process.Start(param[1]);
+                            closeAction?.Invoke();
+                        }
+                    });
+                }
+                else
+                {
+                    Growl.Info($"شما از آخرین نسخه {AppVariable.getAppVersion} استفاده می کنید");
+                }
+            }
+        }
 
         public void showNotification(string NotificationKEY, bool isAvailableOrSuccess = false, params string[] param)
         {

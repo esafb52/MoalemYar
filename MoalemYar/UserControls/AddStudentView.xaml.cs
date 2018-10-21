@@ -109,7 +109,7 @@ namespace MoalemYar.UserControls
                     else
                     {
                         dataGrid.ItemsSource = null;
-                        MainWindow.main.showNotification(NotificationKEY: AppVariable.No_Data_KEY, param: "Student");
+                        MainWindow.main.showGrowlNotification(NotificationKEY: AppVariable.No_Data_KEY, param: "Student");
                     }
                 }
             }
@@ -124,7 +124,7 @@ namespace MoalemYar.UserControls
             {
                 var query = DeleteStudentAsync(id);
                 query.Wait();
-                MainWindow.main.showNotification(AppVariable.Deleted_KEY, true, txtName.Text, "دانش آموز");
+                MainWindow.main.showGrowlNotification(AppVariable.Deleted_KEY, true, txtName.Text, "دانش آموز");
             }
         }
 
@@ -203,12 +203,12 @@ namespace MoalemYar.UserControls
                 updateStudent(id, Convert.ToInt64(cmbEditBase.SelectedValue), txtName.Text, txtLName.Text, txtFName.Text, cmbGender.Text, (isCreateThumbnail ? CreateThumbnail(imgEditStudent.Source as BitmapImage) : getImageByte(imgEditStudent.Source as BitmapImage)));
                 isCreateThumbnail = false;
 
-                MainWindow.main.showNotification(AppVariable.Update_Data_KEY, true, txtName.Text, "دانش آموز");
+                MainWindow.main.showGrowlNotification(AppVariable.Update_Data_KEY, true, txtName.Text, "دانش آموز");
                 getStudent(Convert.ToInt64(cmbBaseEdit.SelectedValue));
             }
             catch (Exception)
             {
-                MainWindow.main.showNotification(AppVariable.Update_Data_KEY, false, txtName.Text, "دانش آموز");
+                MainWindow.main.showGrowlNotification(AppVariable.Update_Data_KEY, false, txtName.Text, "دانش آموز");
             }
         }
 
@@ -256,14 +256,14 @@ namespace MoalemYar.UserControls
         {
             if (txtAddName.Text == string.Empty || txtAddLName.Text == string.Empty || txtAddFName.Text == string.Empty || cmbAddGender.SelectedIndex == -1 || cmbBase.SelectedIndex == -1)
             {
-                MainWindow.main.showNotification(NotificationKEY: AppVariable.Fill_All_Data_KEY);
+                MainWindow.main.showGrowlNotification(NotificationKEY: AppVariable.Fill_All_Data_KEY);
             }
             else
             {
                 try
                 {
                     addStudent(Convert.ToInt64(cmbBase.SelectedValue), txtAddName.Text, txtAddLName.Text, txtAddFName.Text, cmbAddGender.Text, CreateThumbnail(imgStudent.Source as BitmapImage));
-                    MainWindow.main.showNotification(AppVariable.Add_Data_KEY, true, txtAddName.Text, "دانش آموز");
+                    MainWindow.main.showGrowlNotification(AppVariable.Add_Data_KEY, true, txtAddName.Text, "دانش آموز");
                     txtAddName.Text = string.Empty;
                     txtAddLName.Text = string.Empty;
                     txtAddFName.Text = string.Empty;
@@ -274,7 +274,7 @@ namespace MoalemYar.UserControls
                 }
                 catch (Exception)
                 {
-                    MainWindow.main.showNotification(AppVariable.Add_Data_KEY, false, txtAddName.Text, "دانش آموز");
+                    MainWindow.main.showGrowlNotification(AppVariable.Add_Data_KEY, false, txtAddName.Text, "دانش آموز");
                 }
             }
         }
@@ -309,7 +309,7 @@ namespace MoalemYar.UserControls
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.main.showNotification(NotificationKEY: AppVariable.Delete_Confirm_KEY, param: new[] { txtName.Text, "دانش آموز" });
+            MainWindow.main.showGrowlNotification(NotificationKEY: AppVariable.Delete_Confirm_KEY, param: new[] { txtName.Text, "دانش آموز" });
         }
 
         public void deleteStudent()
@@ -323,7 +323,7 @@ namespace MoalemYar.UserControls
             }
             catch (Exception)
             {
-                MainWindow.main.showNotification(AppVariable.Deleted_KEY, false, txtName.Text, "دانش آموز");
+                MainWindow.main.showGrowlNotification(AppVariable.Deleted_KEY, false, txtName.Text, "دانش آموز");
             }
         }
 

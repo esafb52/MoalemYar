@@ -131,12 +131,12 @@ namespace MoalemYar
                         destination.Open();
                         source.BackupDatabase(destination, "main", "main", -1, null, 0);
                     }
-                    MainWindow.main.showNotification(Backup_KEY, true, "پشتیبان گیری از اطلاعات ");
+                    MainWindow.main.showGrowlNotification(Backup_KEY, true, "پشتیبان گیری از اطلاعات ");
                 }
             }
             catch (Exception)
             {
-                MainWindow.main.showNotification(Backup_KEY, false, "پشتیبان گیری از اطلاعات ");
+                MainWindow.main.showGrowlNotification(Backup_KEY, false, "پشتیبان گیری از اطلاعات ");
             }
         }
 
@@ -153,12 +153,12 @@ namespace MoalemYar
                 if (openFileDialog1.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
                     System.IO.File.Copy(openFileDialog1.FileName, AppVariable.fileName + @"\data.db", true);
-                    MainWindow.main.showNotification(Backup_KEY, true, "بازگردانی اطلاعات ");
+                    MainWindow.main.showGrowlNotification(Backup_KEY, true, "بازگردانی اطلاعات ");
                 }
             }
             catch (Exception)
             {
-                MainWindow.main.showNotification(Backup_KEY, false, "بازگردانی اطلاعات ");
+                MainWindow.main.showGrowlNotification(Backup_KEY, false, "بازگردانی اطلاعات ");
             }
         }
 

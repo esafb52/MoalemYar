@@ -49,7 +49,7 @@ namespace MoalemYar.UserControls
                     else
                     {
                         dataGrid.ItemsSource = null;
-                        MainWindow.main.showNotification(NotificationKEY: AppVariable.No_Data_KEY, param: "User");
+                        MainWindow.main.showGrowlNotification(NotificationKEY: AppVariable.No_Data_KEY, param: "User");
                     }
                 }
             }
@@ -121,20 +121,20 @@ namespace MoalemYar.UserControls
             {
                 if (txtPassword.Text != txtPasswordAg.Text)
                 {
-                    MainWindow.main.showNotification(NotificationKEY: AppVariable.Same_Password_KEY);
+                    MainWindow.main.showGrowlNotification(NotificationKEY: AppVariable.Same_Password_KEY);
                 }
                 else
                 {
                     dynamic selectedItem = dataGrid.SelectedItems[0];
                     long id = selectedItem.Id;
                     updateUser(id, txtUsername.Text.ToLower(), txtPassword.Text.ToLower());
-                    MainWindow.main.showNotification(AppVariable.Update_Data_KEY, true, txtUsername.Text, "نام کاربری");
+                    MainWindow.main.showGrowlNotification(AppVariable.Update_Data_KEY, true, txtUsername.Text, "نام کاربری");
                     getUser();
                 }
             }
             catch (Exception)
             {
-                MainWindow.main.showNotification(AppVariable.Update_Data_KEY, false, txtUsername.Text, "نام کاربری");
+                MainWindow.main.showGrowlNotification(AppVariable.Update_Data_KEY, false, txtUsername.Text, "نام کاربری");
             }
         }
 
@@ -161,18 +161,18 @@ namespace MoalemYar.UserControls
         {
             if (txtAddUsername.Text == string.Empty || txtAddPassword.Password == string.Empty || txtAddPasswordAg.Password == string.Empty)
             {
-                MainWindow.main.showNotification(NotificationKEY: AppVariable.Fill_All_Data_KEY);
+                MainWindow.main.showGrowlNotification(NotificationKEY: AppVariable.Fill_All_Data_KEY);
             }
             else if (txtAddPassword.Password != txtAddPasswordAg.Password)
             {
-                MainWindow.main.showNotification(NotificationKEY: AppVariable.Same_Password_KEY);
+                MainWindow.main.showGrowlNotification(NotificationKEY: AppVariable.Same_Password_KEY);
             }
             else
             {
                 try
                 {
                     addUser(txtAddUsername.Text.ToLower(), txtAddPassword.Password.ToLower());
-                    MainWindow.main.showNotification(AppVariable.Add_Data_KEY, true, txtAddUsername.Text, "نام کاربری");
+                    MainWindow.main.showGrowlNotification(AppVariable.Add_Data_KEY, true, txtAddUsername.Text, "نام کاربری");
                     txtAddUsername.Text = string.Empty;
                     txtAddPassword.Password = string.Empty;
                     txtAddPasswordAg.Password = string.Empty;
@@ -181,14 +181,14 @@ namespace MoalemYar.UserControls
                 }
                 catch (Exception)
                 {
-                    MainWindow.main.showNotification(AppVariable.Add_Data_KEY, false, txtAddUsername.Text, "نام کاربری");
+                    MainWindow.main.showGrowlNotification(AppVariable.Add_Data_KEY, false, txtAddUsername.Text, "نام کاربری");
                 }
             }
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.main.showNotification(NotificationKEY: AppVariable.Delete_Confirm_KEY, param: new[] { txtUsername.Text, "کاربر" });
+            MainWindow.main.showGrowlNotification(NotificationKEY: AppVariable.Delete_Confirm_KEY, param: new[] { txtUsername.Text, "کاربر" });
         }
 
         public void deleteUser()
@@ -198,12 +198,12 @@ namespace MoalemYar.UserControls
                 dynamic selectedItem = dataGrid.SelectedItems[0];
                 long id = selectedItem.Id;
                 deleteUser(id);
-                MainWindow.main.showNotification(AppVariable.Deleted_KEY, true, txtUsername.Text, "نام کاربری");
+                MainWindow.main.showGrowlNotification(AppVariable.Deleted_KEY, true, txtUsername.Text, "نام کاربری");
                 getUser();
             }
             catch (Exception)
             {
-                MainWindow.main.showNotification(AppVariable.Deleted_KEY, false, txtUsername.Text, "نام کاربری");
+                MainWindow.main.showGrowlNotification(AppVariable.Deleted_KEY, false, txtUsername.Text, "نام کاربری");
             }
         }
     }

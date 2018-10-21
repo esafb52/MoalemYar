@@ -80,7 +80,7 @@ namespace MoalemYar.UserControls
 
         private void btnFactoryReset_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.main.showNotification(NotificationKEY: AppVariable.Reset_Data_Confirm_KEY, param: "تنظیمات برنامه");
+            MainWindow.main.showGrowlNotification(NotificationKEY: AppVariable.Reset_Data_Confirm_KEY, param: "تنظیمات برنامه");
         }
 
         public void resetConfig()
@@ -89,7 +89,7 @@ namespace MoalemYar.UserControls
             if (System.IO.File.Exists(folder))
             {
                 File.Delete(folder);
-                MainWindow.main.showNotification(NotificationKEY: AppVariable.Data_Reset_Deleted_KEY, param: "تنظیمات برنامه");
+                MainWindow.main.showGrowlNotification(NotificationKEY: AppVariable.Data_Reset_Deleted_KEY, param: "تنظیمات برنامه");
             }
         }
 
@@ -103,7 +103,7 @@ namespace MoalemYar.UserControls
                     cmbBase.ItemsSource = null;
                     File.Delete(folder);
 
-                    MainWindow.main.showNotification(NotificationKEY: AppVariable.Data_Reset_Deleted_KEY, param: "دیتابیس برنامه");
+                    MainWindow.main.showGrowlNotification(NotificationKEY: AppVariable.Data_Reset_Deleted_KEY, param: "دیتابیس برنامه");
                     using (var context = new DataClass.myDbContext())
                     {
                         CreateAndSeedDatabase(context);
@@ -139,7 +139,7 @@ namespace MoalemYar.UserControls
 
         private void btnDatabaseReset_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow.main.showNotification(NotificationKEY: AppVariable.Reset_Data_Confirm_KEY, param: "دیتابیس برنامه");
+            MainWindow.main.showGrowlNotification(NotificationKEY: AppVariable.Reset_Data_Confirm_KEY, param: "دیتابیس برنامه");
         }
 
         private void cmbBase_SelectionChanged(object sender, SelectionChangedEventArgs e)

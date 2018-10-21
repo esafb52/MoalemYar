@@ -42,7 +42,7 @@ namespace MoalemYar.UserControls
             if (prgUpdate.Value == prgUpdate.Maximum)
             {
                 btnStart.IsEnabled = true;
-                MainWindow.main.showNotification(AppVariable.Recived_Circular_KEY, true);
+                MainWindow.main.showGrowlNotification(AppVariable.Recived_Circular_KEY, true);
                 txtSearch.IsEnabled = true;
             }
         }
@@ -97,7 +97,7 @@ namespace MoalemYar.UserControls
             }
             catch (WebException)
             {
-                MainWindow.main.showNotification(AppVariable.Recived_Circular_KEY, true);
+                MainWindow.main.showGrowlNotification(AppVariable.Recived_Circular_KEY, true);
             }
         }
 

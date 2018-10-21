@@ -59,7 +59,7 @@ namespace MoalemYar.UserControls
                     }
                     else
                     {
-                        MainWindow.main.showNotification(NotificationKEY: AppVariable.No_Data_KEY, param: string.Empty);
+                        MainWindow.main.showGrowlNotification(NotificationKEY: AppVariable.No_Data_KEY, param: string.Empty);
                     }
                 }
             }
