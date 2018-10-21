@@ -236,6 +236,10 @@ namespace MoalemYar
                         }
                         closeAction?.Invoke();
                     }
+                    else
+                    {
+                        closeAction?.Invoke();
+                    }
                 });
             }
             //Reset Data Confirm
@@ -251,6 +255,10 @@ namespace MoalemYar
 
                         closeAction?.Invoke();
                     }
+                    else
+                    {
+                        closeAction?.Invoke();
+                    }
                 });
             }
 
@@ -264,6 +272,10 @@ namespace MoalemYar
                         Application.Current.Shutdown();
                         System.Windows.Forms.Application.Restart();
 
+                        closeAction?.Invoke();
+                    }
+                    else
+                    {
                         closeAction?.Invoke();
                     }
                 });
@@ -343,6 +355,10 @@ namespace MoalemYar
 
                         closeAction?.Invoke();
                     }
+                    else
+                    {
+                        closeAction?.Invoke();
+                    }
                 });
             }
 
@@ -352,6 +368,7 @@ namespace MoalemYar
                 if (isAvailableOrSuccess)
                 {
                     Growl.Success($"{param[0]} با موفقیت انجام شد");
+
                 }
                 else
                 {
@@ -420,6 +437,10 @@ namespace MoalemYar
                         if (b)
                         {
                             System.Diagnostics.Process.Start(param[1]);
+                            closeAction?.Invoke();
+                        }
+                        else
+                        {
                             closeAction?.Invoke();
                         }
                     });
