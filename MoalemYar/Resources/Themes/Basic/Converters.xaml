@@ -4,4 +4,5 @@
     xmlns:converter="clr-namespace:MoalemYar.Tools.Converter">
 
     <converter:StringRepeatConverter x:Key="StringRepeatConverter" />
+
 </ResourceDictionary>

@@ -12,7 +12,7 @@
     MinHeight="700"
     BorderThickness="1"
     FontFamily="{StaticResource TeacherYar.Fonts.IRANSans}"
-    NoUserAreaBackground="#262e2f"
+    NonClientAreaBackground="#262e2f"
     OtherButtonHoverBrush="#888580"
     Style="{StaticResource CustomWindowStyle}"
     TextOptions.TextFormattingMode="Ideal"
@@ -62,7 +62,7 @@
                                             Action='Circular'}"
             Modifiers="Ctrl" />
     </Window.InputBindings>
-    <controls:WindowBorderless.NoUserContent>
+    <controls:WindowBorderless.NonClientAreaContent>
         <StackPanel FlowDirection="RightToLeft" Orientation="Horizontal">
             <Menu
                 Margin="10,0,0,0"
@@ -113,7 +113,7 @@
                     InputGestureText="Ctrl+A" />
             </Menu>
         </StackPanel>
-    </controls:WindowBorderless.NoUserContent>
+    </controls:WindowBorderless.NonClientAreaContent>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition MinWidth="800" />

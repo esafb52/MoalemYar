@@ -184,7 +184,7 @@ namespace MoalemYar
                 mainStack.Children.Add(txtPassword);
                 mainStack.Children.Add(btnStack);
 
-                popupLogin.Child = mainStack;
+                //popupLogin.Child = mainStack;
 
                 popupLogin.ShowDialog();
             }
