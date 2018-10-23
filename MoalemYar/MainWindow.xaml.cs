@@ -119,7 +119,8 @@ namespace MoalemYar
                     WindowStartupLocation = WindowStartupLocation.CenterScreen,
                     HorizontalContentAlignment = HorizontalAlignment.Center,
                     ShowInTaskbar = true,
-                    AllowsTransparency = true
+                    AllowsTransparency = true,
+                    WindowStyle = WindowStyle.None
                 };
                 popupLogin.Closing += (s, e) =>
                 {
