@@ -9,6 +9,7 @@
 ***********************************************************************************/
 
 using HandyControl.Controls;
+using HandyControl.Data;
 using MoalemYar.UserControls;
 using MVVMC;
 using System;
@@ -26,6 +27,7 @@ namespace MoalemYar
     public partial class MainWindow : WindowBorderless
     {
         internal static MainWindow main;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -196,57 +198,72 @@ namespace MoalemYar
             //Delete Confirm
             if (NotificationKEY.Equals(AppVariable.Delete_Confirm_KEY))
             {
-                Growl.Ask($"آیا برای حذف {param[1]} {param[0]} اطمینان دارید؟", isConfirm =>
+                Growl.Warning(new GrowlInfo
                 {
-                    if (isConfirm)
+                    Message = $"آیا برای حذف {param[1]} {param[0]} اطمینان دارید؟",
+                    CancelStr = "انصراف",
+                    ConfirmStr = "بله",
+                    ShowDateTime = false,
+                    ActionBeforeClose = isConfirm =>
                     {
-                        switch (param[1])
+                        if (isConfirm)
                         {
-                            case "مدرسه":
-                                AddSchoolView.main.deleteSchool();
-                                break;
+                            switch (param[1])
+                            {
+                                case "مدرسه":
+                                    AddSchoolView.main.deleteSchool();
+                                    break;
 
-                            case "دانش آموز":
-                                AddStudentView.main.deleteStudent();
-                                break;
+                                case "دانش آموز":
+                                    AddStudentView.main.deleteStudent();
+                                    break;
 
-                            case "کاربر":
-                                AddUserView.main.deleteUser();
-                                break;
+                                case "کاربر":
+                                    AddUserView.main.deleteUser();
+                                    break;
 
-                            case "حضورغیاب":
-                                AttendancelistView.main.deleteAttendance();
-                                break;
+                                case "حضورغیاب":
+                                    AttendancelistView.main.deleteAttendance();
+                                    break;
 
-                            case "نمره":
-                                QuestionsListView.main.deleteScore();
-                                break;
+                                case "نمره":
+                                    QuestionsListView.main.deleteScore();
+                                    break;
 
-                            case "گروه":
-                                AddAzmonGroupView.main.deleteGroup();
-                                break;
+                                case "گروه":
+                                    AddAzmonGroupView.main.deleteGroup();
+                                    break;
 
-                            case "سوال":
-                                AddQuestionsView.main.deleteGroup();
-                                break;
+                                case "سوال":
+                                    AddQuestionsView.main.deleteGroup();
+                                    break;
+                            }
                         }
+                        return true;
                     }
-                    return true;
                 });
             }
             //Reset Data Confirm
             else if (NotificationKEY.Equals(AppVariable.Reset_Data_Confirm_KEY))
             {
-                Growl.Ask($"آیا برای بازیابی {param[0]} اطمینان دارید؟", isConfirm =>
+                Growl.Warning(new GrowlInfo
                 {
-                    if (isConfirm)
+                    Message = $"آیا برای بازیابی {param[0]} اطمینان دارید؟",
+                    CancelStr = "انصراف",
+                    ConfirmStr = "بله",
+                    ShowDateTime = false,
+
+                    ActionBeforeClose = isConfirm =>
                     {
-                        if (param[0] == "تنظیمات برنامه")
-                            SettingsView.main.resetConfig();
-                        else
-                            SettingsView.main.resetDatabase();
+                        if (isConfirm)
+                        {
+                            if (param[0] == "تنظیمات برنامه")
+                                SettingsView.main.resetConfig();
+                            else
+                                SettingsView.main.resetDatabase();
+                        }
+                        return true;
                     }
-                    return true;
                 });
             }
 
@@ -254,39 +271,46 @@ namespace MoalemYar
             else if (NotificationKEY.Equals(AppVariable.Data_Reset_Deleted_KEY))
             {
                 //Todo: change button text to راه اندازی
-                Growl.Ask($"{param[0]} به حالت پیشفرض تغییر یافت، برنامه را دوباره راه اندازی کنید", isConfirm =>
+                Growl.Ask(new GrowlInfo
                 {
-                    if (isConfirm)
+                    Message = $"{param[0]} به حالت پیشفرض تغییر یافت، برنامه را دوباره راه اندازی کنید",
+                    CancelStr = "انصراف",
+                    ConfirmStr = "راه اندازی",
+                    ShowDateTime = false,
+                    ActionBeforeClose = isConfirm =>
                     {
-                        Application.Current.Shutdown();
-                        System.Windows.Forms.Application.Restart();
+                        if (isConfirm)
+                        {
+                            Application.Current.Shutdown();
+                            System.Windows.Forms.Application.Restart();
+                        }
+                        return true;
                     }
-                    return true;
                 });
             }
 
             //Password Same
             else if (NotificationKEY.Equals(AppVariable.Same_Password_KEY))
             {
-                Growl.Warning("رمز های عبور باید یکسان باشند");
+                Growl.Warning(new GrowlInfo { Message = "رمز های عبور باید یکسان باشند", ShowDateTime = false });
             }
 
             //Delete Exist
             else if (NotificationKEY.Equals(AppVariable.Delete_Exist_KEY))
             {
-                Growl.Warning($"نمی توان این {param[0]} را حذف کرد، ابتدا {param[1]} این {param[0]} را حذف کنید");
+                Growl.Warning(new GrowlInfo { Message = $"نمی توان این {param[0]} را حذف کرد، ابتدا {param[1]} این {param[0]} را حذف کنید", ShowDateTime = false });
             }
 
             //Azmon
             else if (NotificationKEY.Equals(AppVariable.Azmon_KEY))
             {
-                Growl.Warning("تعداد سوالات وارد شده بیشتر از سوالات موجود است");
+                Growl.Warning(new GrowlInfo { Message = "تعداد سوالات وارد شده بیشتر از سوالات موجود است", ShowDateTime = false });
             }
 
             //Fill All Data
             else if (NotificationKEY.Equals(AppVariable.Fill_All_Data_KEY))
             {
-                Growl.Warning("لطفا تمام فیلدها را پر کنید");
+                Growl.Warning(new GrowlInfo { Message = "لطفا تمام فیلدها را پر کنید", ShowDateTime = false });
             }
 
             //No Data
@@ -294,51 +318,57 @@ namespace MoalemYar
             {
                 var navigationService = NavigationServiceProvider.GetNavigationServiceInstance();
 
-                //Todo: change button text to ثبت اطلاعات جدید
-                Growl.Ask("اطلاعاتی در پایگاه داده یافت نشد", isConfirm =>
+                Growl.Error(new GrowlInfo
                 {
-                    if (isConfirm)
+                    Message = "اطلاعاتی در پایگاه داده یافت نشد",
+                    CancelStr = "انصراف",
+                    ConfirmStr = "ثبت اطلاعات جدید",
+                    ShowDateTime = false,
+                    ActionBeforeClose = isConfirm =>
                     {
-                        switch (param[0])
+                        if (isConfirm)
                         {
-                            case "School":
-                                AddSchoolView.main.tabc.SelectedIndex = 0;
-                                break;
+                            switch (param[0])
+                            {
+                                case "School":
+                                    AddSchoolView.main.tabc.SelectedIndex = 0;
+                                    break;
 
-                            case "User":
-                                AddUserView.main.tabc.SelectedIndex = 0;
-                                break;
+                                case "User":
+                                    AddUserView.main.tabc.SelectedIndex = 0;
+                                    break;
 
-                            case "Student":
-                                AddStudentView.main.tabc.SelectedIndex = 0;
-                                break;
+                                case "Student":
+                                    AddStudentView.main.tabc.SelectedIndex = 0;
+                                    break;
 
-                            case "Attendance":
-                                AttendancelistView.main.tabc.SelectedIndex = 0;
-                                break;
+                                case "Attendance":
+                                    AttendancelistView.main.tabc.SelectedIndex = 0;
+                                    break;
 
-                            case "Question":
-                                navigationService.GetController<UserControls.UserControlsController>().AddStudent();
-                                break;
+                                case "Question":
+                                    navigationService.GetController<UserControls.UserControlsController>().AddStudent();
+                                    break;
 
-                            case "Score":
-                                QuestionsListView.main.tabc.SelectedIndex = 0;
-                                break;
+                                case "Score":
+                                    QuestionsListView.main.tabc.SelectedIndex = 0;
+                                    break;
 
-                            case "TopStudent":
-                                navigationService.GetController<UserControls.UserControlsController>().Questionslist();
-                                break;
+                                case "TopStudent":
+                                    navigationService.GetController<UserControls.UserControlsController>().Questionslist();
+                                    break;
 
-                            case "Group":
-                                AddAzmonGroupView.main.tabc.SelectedIndex = 0;
-                                break;
+                                case "Group":
+                                    AddAzmonGroupView.main.tabc.SelectedIndex = 0;
+                                    break;
 
-                            case "AQuestions":
-                                AddQuestionsView.main.tabc.SelectedIndex = 0;
-                                break;
+                                case "AQuestions":
+                                    AddQuestionsView.main.tabc.SelectedIndex = 0;
+                                    break;
+                            }
                         }
+                        return true;
                     }
-                    return true;
                 });
             }
 
@@ -347,12 +377,11 @@ namespace MoalemYar
             {
                 if (isAvailableOrSuccess)
                 {
-                    Growl.Success($"{param[0]} با موفقیت انجام شد");
-
+                    Growl.Success(new GrowlInfo { Message = $"{param[0]} با موفقیت انجام شد", ShowDateTime = false });
                 }
                 else
                 {
-                    Growl.Error($"{param[0]} با مشکل مواجه شد");
+                    Growl.Error(new GrowlInfo { Message = $"{param[0]} با مشکل مواجه شد", ShowDateTime = false });
                 }
             }
 
@@ -361,11 +390,11 @@ namespace MoalemYar
             {
                 if (isAvailableOrSuccess)
                 {
-                    Growl.Success("تمامی بخشنامه ها با موفقیت دریافت شد");
+                    Growl.Success(new GrowlInfo { Message = "تمامی بخشنامه ها با موفقیت دریافت شد", ShowDateTime = false });
                 }
                 else
                 {
-                    Growl.Error("درحال حاظر سرور در دسترس نیست! لطفا در صورت فعال بودن، VPN خود را غیرفعال کنید");
+                    Growl.Error(new GrowlInfo { Message = "درحال حاظر سرور در دسترس نیست! لطفا در صورت فعال بودن، VPN خود را غیرفعال کنید", ShowDateTime = false });
                 }
             }
 
@@ -374,11 +403,11 @@ namespace MoalemYar
             {
                 if (isAvailableOrSuccess)
                 {
-                    Growl.Success($"{param[1]} {param[0]} با موفقیت ویرایش شد");
+                    Growl.Success(new GrowlInfo { Message = $"{param[1]} {param[0]} با موفقیت ویرایش شد", ShowDateTime = false });
                 }
                 else
                 {
-                    Growl.Error($"ویرایش {param[1]} {param[0]} با خطا مواجه شد");
+                    Growl.Error(new GrowlInfo { Message = $"ویرایش {param[1]} {param[0]} با خطا مواجه شد", ShowDateTime = false });
                 }
             }
 
@@ -387,11 +416,11 @@ namespace MoalemYar
             {
                 if (isAvailableOrSuccess)
                 {
-                    Growl.Success($"{param[1]} {param[0]} با موفقیت حذف شد");
+                    Growl.Success(new GrowlInfo { Message = $"{param[1]} {param[0]} با موفقیت حذف شد", ShowDateTime = false });
                 }
                 else
                 {
-                    Growl.Error($"حذف {param[1]} {param[0]} با خطا مواجه شد");
+                    Growl.Error(new GrowlInfo { Message = $"حذف {param[1]} {param[0]} با خطا مواجه شد", ShowDateTime = false });
                 }
             }
 
@@ -400,11 +429,11 @@ namespace MoalemYar
             {
                 if (isAvailableOrSuccess)
                 {
-                    Growl.Success($"{param[1]} {param[0]} با موفقیت ثبت شد");
+                    Growl.Success(new GrowlInfo { Message = $"{param[1]} {param[0]} با موفقیت ثبت شد", ShowDateTime = false });
                 }
                 else
                 {
-                    Growl.Error($"ثبت {param[1]} {param[0]} با خطا مواجه شد");
+                    Growl.Error(new GrowlInfo { Message = $"ثبت {param[1]} {param[0]} با خطا مواجه شد", ShowDateTime = false });
                 }
             }
 
@@ -413,17 +442,24 @@ namespace MoalemYar
             {
                 if (isAvailableOrSuccess)
                 {
-                    Growl.Ask($"نسخه جدید {param[0]} پیدا شد،همین حالا به آخرین نسخه بروزرسانی کنید", isClosed =>
+                    Growl.Info(new GrowlInfo
                     {
-                        if (isClosed)
-                            System.Diagnostics.Process.Start(param[1]);
+                        Message = $"نسخه جدید {param[0]} پیدا شد،همین حالا به آخرین نسخه بروزرسانی کنید",
+                        CancelStr = "انصراف",
+                        ConfirmStr = "دانلود",
+                        ShowDateTime = false,
+                        ActionBeforeClose = isConfirm =>
+                        {
+                            if (isConfirm)
+                                System.Diagnostics.Process.Start(param[1]);
 
-                        return true;
+                            return true;
+                        }
                     });
                 }
                 else
                 {
-                    Growl.Info($"شما از آخرین نسخه {AppVariable.getAppVersion} استفاده می کنید");
+                    Growl.Error(new GrowlInfo { Message = $"شما از آخرین نسخه {AppVariable.getAppVersion} استفاده می کنید", ShowDateTime = false });
                 }
             }
         }
