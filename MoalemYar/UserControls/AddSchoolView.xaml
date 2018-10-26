@@ -13,7 +13,7 @@
         <controls:TabControl
             Name="tabc"
             MinWidth="800"
-            IsDraggable="True"
+            IsDraggable="False"
             IsEnableAnimation="True"
             IsEnableTabFill="True">
             <controls:TabItem Header="ثبت اطلاعات" IsSelected="True">
