@@ -11,13 +11,10 @@
     Style="{StaticResource myUserControl}"
     mc:Ignorable="d">
     <controls:TransitioningContentControl>
-        <Grid Name="grdedit" MinWidth="800">
+        <Grid>
             <ComboBox
                 x:Name="cmbBaseEdit"
                 Width="240"
-                Margin="10"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top"
                 controls:InfoElement.ContentHeight="35"
                 controls:InfoElement.Placeholder="انتخاب کلاس"
                 FlowDirection="RightToLeft"
@@ -25,7 +22,8 @@
                 SelectedValuePath="Id"
                 SelectionChanged="cmbBaseEdit_SelectionChanged"
                 Style="{StaticResource ComboBoxExtend}"
-                TabIndex="0">
+                TabIndex="0"
+                Visibility="Collapsed">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">

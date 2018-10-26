@@ -10,222 +10,175 @@
     Style="{StaticResource myUserControl}"
     mc:Ignorable="d">
     <controls:TransitioningContentControl>
-        <controls:ScrollViewer HorizontalScrollBarVisibility="Auto">
-            <controls:TabControl
-                Name="tabc"
-                MinWidth="800"
-                IsDraggable="True"
-                IsEnableAnimation="True"
-                IsEnableTabFill="True">
-                <controls:TabItem Header="ثبت اطلاعات" IsSelected="True">
-                    <Grid KeyboardNavigation.TabNavigation="Cycle">
-                        <StackPanel Margin="5,5,5,0" Orientation="Vertical">
-                            <Grid Margin="5,5,5,0" HorizontalAlignment="Stretch">
-                                <StackPanel Orientation="Horizontal">
-                                    <Button
-                                        x:Name="btnSave"
-                                        Grid.Row="0"
-                                        Grid.Column="0"
-                                        Width="140"
-                                        Height="35"
-                                        Margin="10,5"
-                                        HorizontalAlignment="Left"
-                                        VerticalAlignment="Top"
-                                        Click="btnSave_Click"
-                                        IsDefault="True"
-                                        Style="{StaticResource ButtonSuccess}">
-                                        <StackPanel
-                                            HorizontalAlignment="Left"
-                                            VerticalAlignment="Center"
-                                            Orientation="Horizontal">
-                                            <Image
-                                                Width="16"
-                                                Height="16"
-                                                Margin="-30,0,30,0"
-                                                Source="/Resources/add.png" />
-                                            <TextBlock
-                                                FontSize="13"
-                                                Foreground="#ffffff"
-                                                Text="ذخیره"
-                                                TextWrapping="NoWrap" />
-                                        </StackPanel>
-                                    </Button>
-                                    <Button
-                                        x:Name="btnCancel"
-                                        Grid.Row="0"
-                                        Grid.Column="1"
-                                        Width="140"
-                                        Height="35"
-                                        Margin="10,5"
-                                        HorizontalAlignment="Left"
-                                        VerticalAlignment="Top"
-                                        Click="btnCancel_Click"
-                                        IsCancel="True"
-                                        Style="{StaticResource ButtonInfo}">
-                                        <StackPanel
-                                            HorizontalAlignment="Left"
-                                            VerticalAlignment="Center"
-                                            Orientation="Horizontal">
-                                            <Image
-                                                Width="16"
-                                                Height="16"
-                                                Margin="-30,0,30,0"
-                                                Source="/Resources/cancel.png" />
-                                            <TextBlock
-                                                FontSize="13"
-                                                Foreground="#ffffff"
-                                                Text="انصراف"
-                                                TextWrapping="NoWrap" />
-                                        </StackPanel>
-                                    </Button>
-                                </StackPanel>
-                                <GridSplitter
-                                    Height="2"
-                                    Margin="60,45,96,-7"
-                                    HorizontalAlignment="Stretch" />
-                            </Grid>
-                            <Grid Margin="0,5,0,0">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition />
-                                    <ColumnDefinition />
-                                </Grid.ColumnDefinitions>
-                                <StackPanel
+        <controls:TabControl
+            Name="tabc"
+            MinWidth="800"
+            IsDraggable="True"
+            IsEnableAnimation="True"
+            IsEnableTabFill="True">
+            <controls:TabItem Header="ثبت اطلاعات" IsSelected="True">
+                <Grid KeyboardNavigation.TabNavigation="Cycle">
+                    <StackPanel Margin="5,5,5,0" Orientation="Vertical">
+                        <Grid Margin="5,5,5,0" HorizontalAlignment="Stretch">
+                            <StackPanel Orientation="Horizontal">
+                                <Button
+                                    x:Name="btnSave"
+                                    Grid.Row="0"
                                     Grid.Column="0"
-                                    Margin="0,5,0,0"
-                                    Orientation="Vertical">
-                                    <TextBox
-                                        x:Name="txtAddName"
-                                        Width="240"
-                                        Margin="2"
-                                        HorizontalAlignment="Left"
-                                        VerticalAlignment="Top"
-                                        controls:InfoElement.ContentHeight="35"
-                                        controls:InfoElement.Placeholder="نام"
-                                        FlowDirection="RightToLeft"
-                                        MaxLength="40"
-                                        Style="{StaticResource TextBoxExtend}"
-                                        TabIndex="0" />
-                                    <TextBox
-                                        x:Name="txtAddLName"
-                                        Width="240"
-                                        Margin="2"
-                                        HorizontalAlignment="Left"
-                                        VerticalAlignment="Top"
-                                        controls:InfoElement.ContentHeight="35"
-                                        controls:InfoElement.Placeholder="نام خانوادگی"
-                                        FlowDirection="RightToLeft"
-                                        MaxLength="40"
-                                        Style="{StaticResource TextBoxExtend}"
-                                        TabIndex="1" />
-                                    <TextBox
-                                        x:Name="txtAddFName"
-                                        Width="240"
-                                        Margin="2"
-                                        HorizontalAlignment="Left"
-                                        VerticalAlignment="Top"
-                                        controls:InfoElement.ContentHeight="35"
-                                        controls:InfoElement.Placeholder="نام پدر"
-                                        FlowDirection="RightToLeft"
-                                        MaxLength="40"
-                                        Style="{StaticResource TextBoxExtend}"
-                                        TabIndex="2" />
-                                    <ComboBox
-                                        Name="cmbAddGender"
-                                        Width="240"
-                                        Margin="2"
-                                        HorizontalAlignment="Left"
-                                        controls:InfoElement.ContentHeight="35"
-                                        controls:InfoElement.Placeholder="جنسیت"
-                                        FlowDirection="RightToLeft"
-                                        SelectionChanged="cmbGender_SelectionChanged"
-                                        Style="{StaticResource ComboBoxExtend}"
-                                        TabIndex="3">
-                                        <ComboBoxItem Content="پسر" />
-                                        <ComboBoxItem Content="دختر" />
-                                    </ComboBox>
-                                    <ComboBox
-                                        x:Name="cmbBase"
-                                        Width="240"
-                                        Margin="2"
-                                        HorizontalAlignment="Left"
-                                        controls:InfoElement.ContentHeight="35"
-                                        controls:InfoElement.Placeholder="انتخاب کلاس"
-                                        ItemsSource="{Binding}"
-                                        SelectedValue="{Binding SchoolName}"
-                                        SelectedValuePath="Id"
-                                        Style="{StaticResource ComboBoxExtend}"
-                                        TabIndex="4">
-                                        <ComboBox.ItemTemplate>
-                                            <DataTemplate>
-                                                <StackPanel Orientation="Horizontal">
-                                                    <TextBlock Text="{Binding SchoolName}" />
-                                                    <TextBlock Text=" - " />
-                                                    <TextBlock Text="{Binding Base}" />
-                                                    <TextBlock Text=" - " />
-                                                    <TextBlock Text="{Binding Year}" />
-                                                </StackPanel>
-                                            </DataTemplate>
-                                        </ComboBox.ItemTemplate>
-                                    </ComboBox>
-                                </StackPanel>
-                                <Grid Grid.Column="1">
-                                    <StackPanel HorizontalAlignment="Left" Orientation="Vertical">
-                                        <Button
-                                            x:Name="btnChoose"
-                                            Width="200"
-                                            Height="35"
-                                            Margin="10,5"
-                                            HorizontalAlignment="Left"
-                                            VerticalAlignment="Top"
-                                            Click="btnChoose_Click"
-                                            Style="{StaticResource ButtonPrimary}"
-                                            TabIndex="5">
-                                            <StackPanel
-                                                HorizontalAlignment="Left"
-                                                VerticalAlignment="Center"
-                                                Orientation="Horizontal">
-                                                <Image
-                                                    Width="16"
-                                                    Height="16"
-                                                    Margin="-30,0,30,0"
-                                                    Source="/Resources/open.png" />
-                                                <TextBlock
-                                                    FontSize="13"
-                                                    Foreground="#ffffff"
-                                                    Text="انتخاب عکس"
-                                                    TextWrapping="NoWrap" />
-                                            </StackPanel>
-                                        </Button>
-                                        <Image
-                                            x:Name="imgStudent"
-                                            Width="200"
-                                            Height="200"
-                                            VerticalAlignment="Top" />
-                                    </StackPanel>
-                                </Grid>
-                            </Grid>
-                        </StackPanel>
-                    </Grid>
-                </controls:TabItem>
-                <controls:TabItem Header="ویرایش اطلاعات" IsSelected="True">
-                    <Grid KeyboardNavigation.TabNavigation="Cycle">
-                        <StackPanel Margin="5,5,5,0" Orientation="Vertical">
-                            <Grid>
-                                <StackPanel
-                                    Height="50"
+                                    Width="140"
+                                    Height="35"
+                                    Margin="10,5"
+                                    HorizontalAlignment="Left"
                                     VerticalAlignment="Top"
-                                    Orientation="Horizontal">
+                                    Click="btnSave_Click"
+                                    IsDefault="True"
+                                    Style="{StaticResource ButtonSuccess}">
+                                    <StackPanel
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Center"
+                                        Orientation="Horizontal">
+                                        <Image
+                                            Width="16"
+                                            Height="16"
+                                            Margin="-30,0,30,0"
+                                            Source="/Resources/add.png" />
+                                        <TextBlock
+                                            FontSize="13"
+                                            Foreground="#ffffff"
+                                            Text="ذخیره"
+                                            TextWrapping="NoWrap" />
+                                    </StackPanel>
+                                </Button>
+                                <Button
+                                    x:Name="btnCancel"
+                                    Grid.Row="0"
+                                    Grid.Column="1"
+                                    Width="140"
+                                    Height="35"
+                                    Margin="10,5"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"
+                                    Click="btnCancel_Click"
+                                    IsCancel="True"
+                                    Style="{StaticResource ButtonInfo}">
+                                    <StackPanel
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Center"
+                                        Orientation="Horizontal">
+                                        <Image
+                                            Width="16"
+                                            Height="16"
+                                            Margin="-30,0,30,0"
+                                            Source="/Resources/cancel.png" />
+                                        <TextBlock
+                                            FontSize="13"
+                                            Foreground="#ffffff"
+                                            Text="انصراف"
+                                            TextWrapping="NoWrap" />
+                                    </StackPanel>
+                                </Button>
+                            </StackPanel>
+                            <GridSplitter
+                                Height="2"
+                                Margin="60,45,96,-7"
+                                HorizontalAlignment="Stretch" />
+                        </Grid>
+                        <Grid Margin="0,5,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <StackPanel
+                                Grid.Column="0"
+                                Margin="0,5,0,0"
+                                Orientation="Vertical">
+                                <TextBox
+                                    x:Name="txtAddName"
+                                    Width="240"
+                                    Margin="2"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"
+                                    controls:InfoElement.ContentHeight="35"
+                                    controls:InfoElement.Placeholder="نام"
+                                    FlowDirection="RightToLeft"
+                                    MaxLength="40"
+                                    Style="{StaticResource TextBoxExtend}"
+                                    TabIndex="0" />
+                                <TextBox
+                                    x:Name="txtAddLName"
+                                    Width="240"
+                                    Margin="2"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"
+                                    controls:InfoElement.ContentHeight="35"
+                                    controls:InfoElement.Placeholder="نام خانوادگی"
+                                    FlowDirection="RightToLeft"
+                                    MaxLength="40"
+                                    Style="{StaticResource TextBoxExtend}"
+                                    TabIndex="1" />
+                                <TextBox
+                                    x:Name="txtAddFName"
+                                    Width="240"
+                                    Margin="2"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"
+                                    controls:InfoElement.ContentHeight="35"
+                                    controls:InfoElement.Placeholder="نام پدر"
+                                    FlowDirection="RightToLeft"
+                                    MaxLength="40"
+                                    Style="{StaticResource TextBoxExtend}"
+                                    TabIndex="2" />
+                                <ComboBox
+                                    Name="cmbAddGender"
+                                    Width="240"
+                                    Margin="2"
+                                    HorizontalAlignment="Left"
+                                    controls:InfoElement.ContentHeight="35"
+                                    controls:InfoElement.Placeholder="جنسیت"
+                                    FlowDirection="RightToLeft"
+                                    SelectionChanged="cmbGender_SelectionChanged"
+                                    Style="{StaticResource ComboBoxExtend}"
+                                    TabIndex="3">
+                                    <ComboBoxItem Content="پسر" />
+                                    <ComboBoxItem Content="دختر" />
+                                </ComboBox>
+                                <ComboBox
+                                    x:Name="cmbBase"
+                                    Width="240"
+                                    Margin="2"
+                                    HorizontalAlignment="Left"
+                                    controls:InfoElement.ContentHeight="35"
+                                    controls:InfoElement.Placeholder="انتخاب کلاس"
+                                    ItemsSource="{Binding}"
+                                    SelectedValue="{Binding SchoolName}"
+                                    SelectedValuePath="Id"
+                                    Style="{StaticResource ComboBoxExtend}"
+                                    TabIndex="4">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="{Binding SchoolName}" />
+                                                <TextBlock Text=" - " />
+                                                <TextBlock Text="{Binding Base}" />
+                                                <TextBlock Text=" - " />
+                                                <TextBlock Text="{Binding Year}" />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
+                            </StackPanel>
+                            <Grid Grid.Column="1">
+                                <StackPanel HorizontalAlignment="Left" Orientation="Vertical">
                                     <Button
-                                        x:Name="btnEditSave"
-                                        Grid.Row="0"
-                                        Grid.Column="0"
-                                        Width="140"
+                                        x:Name="btnChoose"
+                                        Width="200"
                                         Height="35"
                                         Margin="10,5"
                                         HorizontalAlignment="Left"
                                         VerticalAlignment="Top"
-                                        Click="btnEditSave_Click"
-                                        IsDefault="True">
+                                        Click="btnChoose_Click"
+                                        Style="{StaticResource ButtonPrimary}"
+                                        TabIndex="5">
                                         <StackPanel
                                             HorizontalAlignment="Left"
                                             VerticalAlignment="Center"
@@ -234,72 +187,325 @@
                                                 Width="16"
                                                 Height="16"
                                                 Margin="-30,0,30,0"
-                                                Source="/Resources/update.png" />
+                                                Source="/Resources/open.png" />
                                             <TextBlock
                                                 FontSize="13"
                                                 Foreground="#ffffff"
-                                                Text="ذخیره"
+                                                Text="انتخاب عکس"
                                                 TextWrapping="NoWrap" />
                                         </StackPanel>
-                                        <Button.Style>
-                                            <Style BasedOn="{StaticResource ButtonSuccess}" TargetType="Button">
-                                                <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding SelectedItems.Count, ElementName=dataGrid}" Value="0">
-                                                        <Setter Property="IsEnabled" Value="False" />
-                                                    </DataTrigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </Button.Style>
                                     </Button>
-                                    <Button
-                                        x:Name="btnDelete"
-                                        Grid.Row="1"
-                                        Grid.Column="1"
-                                        Grid.ColumnSpan="2"
-                                        Width="140"
-                                        Height="35"
-                                        Margin="5,5"
+                                    <Image
+                                        x:Name="imgStudent"
+                                        Width="200"
+                                        Height="200"
+                                        VerticalAlignment="Top" />
+                                </StackPanel>
+                            </Grid>
+                        </Grid>
+                    </StackPanel>
+                </Grid>
+            </controls:TabItem>
+            <controls:TabItem Header="ویرایش اطلاعات" IsSelected="True">
+                <Grid KeyboardNavigation.TabNavigation="Cycle">
+                    <StackPanel Margin="5,5,5,0" Orientation="Vertical">
+                        <Grid>
+                            <StackPanel
+                                Height="50"
+                                VerticalAlignment="Top"
+                                Orientation="Horizontal">
+                                <Button
+                                    x:Name="btnEditSave"
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    Width="140"
+                                    Height="35"
+                                    Margin="10,5"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"
+                                    Click="btnEditSave_Click"
+                                    IsDefault="True">
+                                    <StackPanel
                                         HorizontalAlignment="Left"
-                                        VerticalAlignment="Top"
-                                        Click="btnDelete_Click">
-                                        <StackPanel
-                                            HorizontalAlignment="Left"
-                                            VerticalAlignment="Center"
-                                            Orientation="Horizontal">
-                                            <Image
-                                                Width="16"
-                                                Height="16"
-                                                Margin="-30,0,30,0"
-                                                Source="/Resources/Delete.png" />
-                                            <TextBlock
-                                                FontSize="13"
-                                                Foreground="#ffffff"
-                                                Text="حذف"
-                                                TextWrapping="NoWrap" />
-                                        </StackPanel>
-                                        <Button.Style>
-                                            <Style BasedOn="{StaticResource ButtonDanger}" TargetType="Button">
-                                                <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding SelectedItems.Count, ElementName=dataGrid}" Value="0">
-                                                        <Setter Property="IsEnabled" Value="False" />
-                                                    </DataTrigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </Button.Style>
-                                    </Button>
+                                        VerticalAlignment="Center"
+                                        Orientation="Horizontal">
+                                        <Image
+                                            Width="16"
+                                            Height="16"
+                                            Margin="-30,0,30,0"
+                                            Source="/Resources/update.png" />
+                                        <TextBlock
+                                            FontSize="13"
+                                            Foreground="#ffffff"
+                                            Text="ذخیره"
+                                            TextWrapping="NoWrap" />
+                                    </StackPanel>
+                                    <Button.Style>
+                                        <Style BasedOn="{StaticResource ButtonSuccess}" TargetType="Button">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding SelectedItems.Count, ElementName=dataGrid}" Value="0">
+                                                    <Setter Property="IsEnabled" Value="False" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+                                </Button>
+                                <Button
+                                    x:Name="btnDelete"
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    Grid.ColumnSpan="2"
+                                    Width="140"
+                                    Height="35"
+                                    Margin="5,5"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"
+                                    Click="btnDelete_Click">
+                                    <StackPanel
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Center"
+                                        Orientation="Horizontal">
+                                        <Image
+                                            Width="16"
+                                            Height="16"
+                                            Margin="-30,0,30,0"
+                                            Source="/Resources/Delete.png" />
+                                        <TextBlock
+                                            FontSize="13"
+                                            Foreground="#ffffff"
+                                            Text="حذف"
+                                            TextWrapping="NoWrap" />
+                                    </StackPanel>
+                                    <Button.Style>
+                                        <Style BasedOn="{StaticResource ButtonDanger}" TargetType="Button">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding SelectedItems.Count, ElementName=dataGrid}" Value="0">
+                                                    <Setter Property="IsEnabled" Value="False" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+                                </Button>
 
+                                <Button
+                                    x:Name="btnEditCancel"
+                                    Grid.Row="0"
+                                    Grid.Column="1"
+                                    Width="140"
+                                    Height="35"
+                                    Margin="10,5"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"
+                                    Click="btnEditCancel_Click"
+                                    IsCancel="True"
+                                    Style="{StaticResource ButtonInfo}">
+                                    <StackPanel
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Center"
+                                        Orientation="Horizontal">
+                                        <Image
+                                            Width="16"
+                                            Height="16"
+                                            Margin="-30,0,30,0"
+                                            RenderTransformOrigin="-1.688,0.625"
+                                            Source="/Resources/cancel.png" />
+                                        <TextBlock
+                                            FontSize="13"
+                                            Foreground="#ffffff"
+                                            Text="انصراف"
+                                            TextWrapping="NoWrap" />
+                                    </StackPanel>
+                                </Button>
+                            </StackPanel>
+                            <GridSplitter
+                                Height="2"
+                                Margin="60,45,96,-7"
+                                HorizontalAlignment="Stretch" />
+                        </Grid>
+                    </StackPanel>
+
+                    <Grid Margin="10,70,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="2*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <ComboBox
+                            x:Name="cmbBaseEdit"
+                            Grid.Column="0"
+                            Width="240"
+                            Margin="10,0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            controls:InfoElement.ContentHeight="35"
+                            controls:InfoElement.Placeholder="انتخاب کلاس"
+                            FlowDirection="RightToLeft"
+                            SelectedValue="{Binding SchoolName}"
+                            SelectedValuePath="Id"
+                            SelectionChanged="cmbBaseEdit_SelectionChanged"
+                            Style="{StaticResource ComboBoxExtend}"
+                            TabIndex="0">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding SchoolName}" />
+                                        <TextBlock Text=" - " />
+                                        <TextBlock Text="{Binding Base}" />
+                                        <TextBlock Text=" - " />
+                                        <TextBlock Text="{Binding Year}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <Grid Grid.Column="0" Margin="0,35,10,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*" />
+                                <RowDefinition Height="7*" />
+                            </Grid.RowDefinitions>
+                            <TextBox
+                                x:Name="txtEditSearch"
+                                Width="{Binding Path=ActualWidth, ElementName=dataGrid, Converter={local1:MultiplyConverter Multiplier=.99}}"
+                                Margin="0,5"
+                                controls:InfoElement.ContentHeight="35"
+                                controls:InfoElement.Placeholder="جستجو..."
+                                FlowDirection="RightToLeft"
+                                Style="{StaticResource TextBoxExtend}"
+                                TabIndex="1"
+                                TextChanged="txtEditSearch_TextChanged" />
+                            <DataGrid
+                                x:Name="dataGrid"
+                                Grid.Row="1"
+                                local:DataGridBehavior.DisplayRowNumber="True"
+                                AutoGenerateColumns="False"
+                                HeadersVisibility="All"
+                                IsReadOnly="True"
+                                RowHeaderWidth="60"
+                                SelectionChanged="dataGrid_SelectionChanged"
+                                SelectionMode="Single">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Binding="{Binding Id}" Visibility="Hidden" />
+                                    <DataGridTextColumn
+                                        Width="1*"
+                                        MinWidth="100"
+                                        Binding="{Binding Name}"
+                                        Header="نام" />
+                                    <DataGridTextColumn
+                                        Width="1*"
+                                        MinWidth="100"
+                                        Binding="{Binding LName}"
+                                        Header="نام خانوادگی" />
+                                    <DataGridTextColumn
+                                        Width="1*"
+                                        MinWidth="100"
+                                        Binding="{Binding FName}"
+                                        Header="نام پدر" />
+                                    <DataGridTextColumn
+                                        Width="1*"
+                                        MinWidth="100"
+                                        Binding="{Binding Gender}"
+                                        Header="جنسیت" />
+                                    <DataGridTextColumn
+                                        Width="1*"
+                                        MinWidth="100"
+                                        Binding="{Binding Base}"
+                                        Header="پایه" />
+                                </DataGrid.Columns>
+                            </DataGrid>
+
+                        </Grid>
+                        <Grid Grid.Column="1" Margin="5,0,10,20">
+                            <StackPanel Orientation="Vertical">
+                                <TextBox
+                                    x:Name="txtName"
+                                    Width="240"
+                                    Margin="2"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"
+                                    controls:InfoElement.ContentHeight="35"
+                                    controls:InfoElement.Placeholder="نام"
+                                    FlowDirection="RightToLeft"
+                                    MaxLength="40"
+                                    Style="{StaticResource TextBoxExtend}"
+                                    TabIndex="0" />
+                                <TextBox
+                                    x:Name="txtLName"
+                                    Width="240"
+                                    Margin="2"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"
+                                    controls:InfoElement.ContentHeight="35"
+                                    controls:InfoElement.Placeholder="نام خانوادگی"
+                                    FlowDirection="RightToLeft"
+                                    MaxLength="40"
+                                    Style="{StaticResource TextBoxExtend}"
+                                    TabIndex="1" />
+                                <TextBox
+                                    x:Name="txtFName"
+                                    Width="240"
+                                    Margin="2"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"
+                                    controls:InfoElement.ContentHeight="35"
+                                    controls:InfoElement.Placeholder="نام پدر"
+                                    FlowDirection="RightToLeft"
+                                    MaxLength="40"
+                                    Style="{StaticResource TextBoxExtend}"
+                                    TabIndex="2" />
+                                <ComboBox
+                                    Name="cmbGender"
+                                    Width="240"
+                                    Margin="2"
+                                    HorizontalAlignment="Left"
+                                    controls:InfoElement.ContentHeight="35"
+                                    controls:InfoElement.Placeholder="جنسیت"
+                                    FlowDirection="RightToLeft"
+                                    Style="{StaticResource ComboBoxExtend}">
+                                    <ComboBoxItem Content="پسر" />
+                                    <ComboBoxItem Content="دختر" />
+                                </ComboBox>
+                                <ComboBox
+                                    x:Name="cmbEditBase"
+                                    Width="240"
+                                    Height="35"
+                                    Margin="2"
+                                    HorizontalAlignment="Left"
+                                    controls:InfoElement.ContentHeight="35"
+                                    controls:InfoElement.Placeholder="کلاس"
+                                    FlowDirection="RightToLeft"
+                                    SelectedValue="{Binding SchoolName}"
+                                    SelectedValuePath="Id"
+                                    Style="{StaticResource ComboBoxExtend}"
+                                    TabIndex="4">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="{Binding SchoolName}" />
+                                                <TextBlock Text=" - " />
+                                                <TextBlock Text="{Binding Base}" />
+                                                <TextBlock Text=" - " />
+                                                <TextBlock Text="{Binding Year}" />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
+                                <StackPanel HorizontalAlignment="Left" Orientation="Vertical">
+                                    <Image
+                                        x:Name="imgEditStudent"
+                                        Width="200"
+                                        Height="200"
+                                        Margin="0,10,0,0"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Top"
+                                        Source="/Resources/Choose.png" />
                                     <Button
-                                        x:Name="btnEditCancel"
-                                        Grid.Row="0"
-                                        Grid.Column="1"
-                                        Width="140"
+                                        x:Name="btnEditChoose"
+                                        Width="200"
                                         Height="35"
                                         Margin="10,5"
                                         HorizontalAlignment="Left"
                                         VerticalAlignment="Top"
-                                        Click="btnEditCancel_Click"
-                                        IsCancel="True"
-                                        Style="{StaticResource ButtonInfo}">
+                                        Click="btnEditChoose_Click"
+                                        Style="{StaticResource ButtonPrimary}"
+                                        TabIndex="5">
                                         <StackPanel
                                             HorizontalAlignment="Left"
                                             VerticalAlignment="Center"
@@ -308,238 +514,29 @@
                                                 Width="16"
                                                 Height="16"
                                                 Margin="-30,0,30,0"
-                                                RenderTransformOrigin="-1.688,0.625"
-                                                Source="/Resources/cancel.png" />
+                                                Source="/Resources/open.png" />
                                             <TextBlock
                                                 FontSize="13"
                                                 Foreground="#ffffff"
-                                                Text="انصراف"
+                                                Text="انتخاب عکس"
                                                 TextWrapping="NoWrap" />
                                         </StackPanel>
                                     </Button>
                                 </StackPanel>
-                                <GridSplitter
-                                    Height="2"
-                                    Margin="60,45,96,-7"
-                                    HorizontalAlignment="Stretch" />
-                            </Grid>
-                            <StackPanel Margin="0,10,0,0" Orientation="Vertical">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="2*" />
-                                        <ColumnDefinition Width="*" />
-                                    </Grid.ColumnDefinitions>
-                                    <ComboBox
-                                        x:Name="cmbBaseEdit"
-                                        Grid.Column="0"
-                                        Width="240"
-                                        Margin="10,0"
-                                        HorizontalAlignment="Left"
-                                        VerticalAlignment="Top"
-                                        controls:InfoElement.ContentHeight="35"
-                                        controls:InfoElement.Placeholder="انتخاب کلاس"
-                                        FlowDirection="RightToLeft"
-                                        SelectedValue="{Binding SchoolName}"
-                                        SelectedValuePath="Id"
-                                        SelectionChanged="cmbBaseEdit_SelectionChanged"
-                                        Style="{StaticResource ComboBoxExtend}"
-                                        TabIndex="0">
-                                        <ComboBox.ItemTemplate>
-                                            <DataTemplate>
-                                                <StackPanel Orientation="Horizontal">
-                                                    <TextBlock Text="{Binding SchoolName}" />
-                                                    <TextBlock Text=" - " />
-                                                    <TextBlock Text="{Binding Base}" />
-                                                    <TextBlock Text=" - " />
-                                                    <TextBlock Text="{Binding Year}" />
-                                                </StackPanel>
-                                            </DataTemplate>
-                                        </ComboBox.ItemTemplate>
-                                    </ComboBox>
-                                    <Grid
-                                        Name="grdedit"
-                                        Grid.Column="0"
-                                        Margin="0,35,10,5">
-                                        <StackPanel Orientation="Vertical">
-                                            <TextBox
-                                                x:Name="txtEditSearch"
-                                                Width="{Binding Path=ActualWidth, ElementName=dataGrid, Converter={local1:MultiplyConverter Multiplier=.99}}"
-                                                Margin="0,5"
-                                                controls:InfoElement.ContentHeight="35"
-                                                controls:InfoElement.Placeholder="جستجو..."
-                                                FlowDirection="RightToLeft"
-                                                Style="{StaticResource TextBoxExtend}"
-                                                TabIndex="1"
-                                                TextChanged="txtEditSearch_TextChanged" />
-                                            <DataGrid
-                                                x:Name="dataGrid"
-                                                Margin="10,0"
-                                                local:DataGridBehavior.DisplayRowNumber="True"
-                                                AutoGenerateColumns="False"
-                                                HeadersVisibility="All"
-                                                IsReadOnly="True"
-                                                RowHeaderWidth="60"
-                                                SelectionChanged="dataGrid_SelectionChanged"
-                                                SelectionMode="Single">
-                                                <DataGrid.Columns>
-                                                    <DataGridTextColumn Binding="{Binding Id}" Visibility="Hidden" />
-                                                    <DataGridTextColumn
-                                                        Width="1*"
-                                                        MinWidth="100"
-                                                        Binding="{Binding Name}"
-                                                        Header="نام" />
-                                                    <DataGridTextColumn
-                                                        Width="1*"
-                                                        MinWidth="100"
-                                                        Binding="{Binding LName}"
-                                                        Header="نام خانوادگی" />
-                                                    <DataGridTextColumn
-                                                        Width="1*"
-                                                        MinWidth="100"
-                                                        Binding="{Binding FName}"
-                                                        Header="نام پدر" />
-                                                    <DataGridTextColumn
-                                                        Width="1*"
-                                                        MinWidth="100"
-                                                        Binding="{Binding Gender}"
-                                                        Header="جنسیت" />
-                                                    <DataGridTextColumn
-                                                        Width="1*"
-                                                        MinWidth="100"
-                                                        Binding="{Binding Base}"
-                                                        Header="پایه" />
-                                                </DataGrid.Columns>
-                                            </DataGrid>
-                                        </StackPanel>
-                                    </Grid>
-                                    <Grid Grid.Column="1" Margin="5,0,10,20">
-                                        <StackPanel Orientation="Vertical">
-                                            <TextBox
-                                                x:Name="txtName"
-                                                Width="240"
-                                                Margin="2"
-                                                HorizontalAlignment="Left"
-                                                VerticalAlignment="Top"
-                                                controls:InfoElement.ContentHeight="35"
-                                                controls:InfoElement.Placeholder="نام"
-                                                FlowDirection="RightToLeft"
-                                                MaxLength="40"
-                                                Style="{StaticResource TextBoxExtend}"
-                                                TabIndex="0" />
-                                            <TextBox
-                                                x:Name="txtLName"
-                                                Width="240"
-                                                Margin="2"
-                                                HorizontalAlignment="Left"
-                                                VerticalAlignment="Top"
-                                                controls:InfoElement.ContentHeight="35"
-                                                controls:InfoElement.Placeholder="نام خانوادگی"
-                                                FlowDirection="RightToLeft"
-                                                MaxLength="40"
-                                                Style="{StaticResource TextBoxExtend}"
-                                                TabIndex="1" />
-                                            <TextBox
-                                                x:Name="txtFName"
-                                                Width="240"
-                                                Margin="2"
-                                                HorizontalAlignment="Left"
-                                                VerticalAlignment="Top"
-                                                controls:InfoElement.ContentHeight="35"
-                                                controls:InfoElement.Placeholder="نام پدر"
-                                                FlowDirection="RightToLeft"
-                                                MaxLength="40"
-                                                Style="{StaticResource TextBoxExtend}"
-                                                TabIndex="2" />
-                                            <ComboBox
-                                                Name="cmbGender"
-                                                Width="240"
-                                                Margin="2"
-                                                HorizontalAlignment="Left"
-                                                controls:InfoElement.ContentHeight="35"
-                                                controls:InfoElement.Placeholder="جنسیت"
-                                                FlowDirection="RightToLeft"
-                                                Style="{StaticResource ComboBoxExtend}">
-                                                <ComboBoxItem Content="پسر" />
-                                                <ComboBoxItem Content="دختر" />
-                                            </ComboBox>
-                                            <ComboBox
-                                                x:Name="cmbEditBase"
-                                                Width="240"
-                                                Height="35"
-                                                Margin="2"
-                                                HorizontalAlignment="Left"
-                                                controls:InfoElement.ContentHeight="35"
-                                                controls:InfoElement.Placeholder="کلاس"
-                                                FlowDirection="RightToLeft"
-                                                SelectedValue="{Binding SchoolName}"
-                                                SelectedValuePath="Id"
-                                                Style="{StaticResource ComboBoxExtend}"
-                                                TabIndex="4">
-                                                <ComboBox.ItemTemplate>
-                                                    <DataTemplate>
-                                                        <StackPanel Orientation="Horizontal">
-                                                            <TextBlock Text="{Binding SchoolName}" />
-                                                            <TextBlock Text=" - " />
-                                                            <TextBlock Text="{Binding Base}" />
-                                                            <TextBlock Text=" - " />
-                                                            <TextBlock Text="{Binding Year}" />
-                                                        </StackPanel>
-                                                    </DataTemplate>
-                                                </ComboBox.ItemTemplate>
-                                            </ComboBox>
-                                            <StackPanel HorizontalAlignment="Left" Orientation="Vertical">
-                                                <Image
-                                                    x:Name="imgEditStudent"
-                                                    Width="200"
-                                                    Height="200"
-                                                    Margin="0,10,0,0"
-                                                    HorizontalAlignment="Center"
-                                                    VerticalAlignment="Top"
-                                                    Source="/Resources/Choose.png" />
-                                                <Button
-                                                    x:Name="btnEditChoose"
-                                                    Width="200"
-                                                    Height="35"
-                                                    Margin="10,5"
-                                                    HorizontalAlignment="Left"
-                                                    VerticalAlignment="Top"
-                                                    Click="btnEditChoose_Click"
-                                                    Style="{StaticResource ButtonPrimary}"
-                                                    TabIndex="5">
-                                                    <StackPanel
-                                                        HorizontalAlignment="Left"
-                                                        VerticalAlignment="Center"
-                                                        Orientation="Horizontal">
-                                                        <Image
-                                                            Width="16"
-                                                            Height="16"
-                                                            Margin="-30,0,30,0"
-                                                            Source="/Resources/open.png" />
-                                                        <TextBlock
-                                                            FontSize="13"
-                                                            Foreground="#ffffff"
-                                                            Text="انتخاب عکس"
-                                                            TextWrapping="NoWrap" />
-                                                    </StackPanel>
-                                                </Button>
-                                            </StackPanel>
-                                            <StackPanel.Style>
-                                                <Style TargetType="StackPanel">
-                                                    <Style.Triggers>
-                                                        <DataTrigger Binding="{Binding SelectedItems.Count, ElementName=dataGrid}" Value="0">
-                                                            <Setter Property="IsEnabled" Value="False" />
-                                                        </DataTrigger>
-                                                    </Style.Triggers>
-                                                </Style>
-                                            </StackPanel.Style>
-                                        </StackPanel>
-                                    </Grid>
-                                </Grid>
+                                <StackPanel.Style>
+                                    <Style TargetType="StackPanel">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding SelectedItems.Count, ElementName=dataGrid}" Value="0">
+                                                <Setter Property="IsEnabled" Value="False" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </StackPanel.Style>
                             </StackPanel>
-                        </StackPanel>
+                        </Grid>
                     </Grid>
-                </controls:TabItem>
-            </controls:TabControl>
-        </controls:ScrollViewer>
+                </Grid>
+            </controls:TabItem>
+        </controls:TabControl>
     </controls:TransitioningContentControl>
 </UserControl>
