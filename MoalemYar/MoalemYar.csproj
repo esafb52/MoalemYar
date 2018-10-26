@@ -15,7 +15,11 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <AssemblyVersion>2.1.5419.0</AssemblyVersion>
+=======
+    <AssemblyVersion>2.1.5362.0</AssemblyVersion>
+>>>>>>> parent of a7a03e4... fix some issue
 =======
     <AssemblyVersion>2.1.5362.0</AssemblyVersion>
 >>>>>>> parent of a7a03e4... fix some issue

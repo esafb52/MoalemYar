@@ -12,6 +12,7 @@
     mc:Ignorable="d">
     <controls:TransitioningContentControl>
 <<<<<<< HEAD
+<<<<<<< HEAD
         <Grid>
             <ComboBox
                 x:Name="cmbBaseEdit"
@@ -70,6 +71,8 @@
             </DataGrid>
         </Grid>
 =======
+=======
+>>>>>>> parent of a7a03e4... fix some issue
         <controls:ScrollViewer HorizontalScrollBarVisibility="Auto">
             <Grid Name="grdedit" MinWidth="800">
                 <ComboBox
@@ -134,6 +137,9 @@
                 </DataGrid>
             </Grid>
         </controls:ScrollViewer>
+<<<<<<< HEAD
+>>>>>>> parent of a7a03e4... fix some issue
+=======
 >>>>>>> parent of a7a03e4... fix some issue
     </controls:TransitioningContentControl>
 </UserControl>
