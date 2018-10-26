@@ -11,447 +11,85 @@
     Style="{StaticResource myUserControl}"
     mc:Ignorable="d">
     <controls:TransitioningContentControl>
-        <WrapPanel>
-            <controls:TabControl
-                Name="tabc"
-                MinWidth="800"
-                IsDraggable="True"
-                IsEnableAnimation="True"
-                IsEnableTabFill="True">
-                <controls:TabItem Header="ثبت اطلاعات" IsSelected="True">
-                    <Grid KeyboardNavigation.TabNavigation="Cycle">
-                        <StackPanel Margin="5,5,5,0" Orientation="Vertical">
-                            <Grid Margin="5,5,5,0" HorizontalAlignment="Stretch">
-                                <StackPanel Orientation="Horizontal">
-                                    <Button
-                                        x:Name="btnSave"
-                                        Grid.Row="0"
-                                        Grid.Column="0"
-                                        Width="140"
-                                        Height="35"
-                                        Margin="10,5"
-                                        HorizontalAlignment="Left"
-                                        VerticalAlignment="Top"
-                                        Click="btnSave_Click"
-                                        IsDefault="True"
-                                        Style="{StaticResource ButtonSuccess}">
-                                        <StackPanel
+        <controls:ScrollViewer HorizontalScrollBarVisibility="Auto">
+            <WrapPanel>
+                <controls:TabControl
+                    Name="tabc"
+                    MinWidth="800"
+                    IsDraggable="True"
+                    IsEnableAnimation="True"
+                    IsEnableTabFill="True">
+                    <controls:TabItem Header="ثبت اطلاعات" IsSelected="True">
+                        <Grid KeyboardNavigation.TabNavigation="Cycle">
+                            <StackPanel Margin="5,5,5,0" Orientation="Vertical">
+                                <Grid Margin="5,5,5,0" HorizontalAlignment="Stretch">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button
+                                            x:Name="btnSave"
+                                            Grid.Row="0"
+                                            Grid.Column="0"
+                                            Width="140"
+                                            Height="35"
+                                            Margin="10,5"
                                             HorizontalAlignment="Left"
-                                            VerticalAlignment="Center"
-                                            Orientation="Horizontal">
-                                            <Image
-                                                Width="16"
-                                                Height="16"
-                                                Margin="-30,0,30,0"
-                                                Source="/Resources/add.png" />
-                                            <TextBlock
-                                                FontSize="13"
-                                                Foreground="#ffffff"
-                                                Text="ذخیره"
-                                                TextWrapping="NoWrap" />
-                                        </StackPanel>
-                                    </Button>
-                                    <Button
-                                        x:Name="btnCancel"
-                                        Grid.Row="0"
-                                        Grid.Column="1"
-                                        Width="140"
-                                        Height="35"
-                                        Margin="10,5"
-                                        HorizontalAlignment="Left"
-                                        VerticalAlignment="Top"
-                                        Click="btnCancel_Click"
-                                        IsCancel="True"
-                                        Style="{StaticResource ButtonInfo}">
-                                        <StackPanel
-                                            HorizontalAlignment="Left"
-                                            VerticalAlignment="Center"
-                                            Orientation="Horizontal">
-                                            <Image
-                                                Width="16"
-                                                Height="16"
-                                                Margin="-30,0,30,0"
-                                                Source="/Resources/cancel.png" />
-                                            <TextBlock
-                                                FontSize="13"
-                                                Foreground="#ffffff"
-                                                Text="انصراف"
-                                                TextWrapping="NoWrap" />
-                                        </StackPanel>
-                                    </Button>
-                                </StackPanel>
-                                <GridSplitter
-                                    Height="2"
-                                    Margin="60,45,96,-7"
-                                    HorizontalAlignment="Stretch" />
-                            </Grid>
-                            <StackPanel Margin="10" Orientation="Vertical">
-
-                                <ComboBox
-                                    x:Name="cmbGroup"
-                                    Width="240"
-                                    Margin="2"
-                                    HorizontalAlignment="Left"
-                                    VerticalAlignment="Top"
-                                    controls:InfoElement.ContentHeight="35"
-                                    controls:InfoElement.Placeholder="انتخاب گروه"
-                                    ItemsSource="{Binding}"
-                                    SelectedValue="{Binding GroupName}"
-                                    SelectedValuePath="Id"
-                                    Style="{StaticResource ComboBoxExtend}"
-                                    TabIndex="4">
-                                    <ComboBox.ItemTemplate>
-                                        <DataTemplate>
-                                            <StackPanel Orientation="Horizontal">
-                                                <TextBlock Text="{Binding GroupName}" />
+                                            VerticalAlignment="Top"
+                                            Click="btnSave_Click"
+                                            IsDefault="True"
+                                            Style="{StaticResource ButtonSuccess}">
+                                            <StackPanel
+                                                HorizontalAlignment="Left"
+                                                VerticalAlignment="Center"
+                                                Orientation="Horizontal">
+                                                <Image
+                                                    Width="16"
+                                                    Height="16"
+                                                    Margin="-30,0,30,0"
+                                                    Source="/Resources/add.png" />
+                                                <TextBlock
+                                                    FontSize="13"
+                                                    Foreground="#ffffff"
+                                                    Text="ذخیره"
+                                                    TextWrapping="NoWrap" />
                                             </StackPanel>
-                                        </DataTemplate>
-                                    </ComboBox.ItemTemplate>
-                                </ComboBox>
-                                <ComboBox
-                                    Name="cmbBase"
-                                    Width="240"
-                                    Margin="2"
-                                    HorizontalAlignment="Left"
-                                    controls:InfoElement.ContentHeight="35"
-                                    controls:InfoElement.Placeholder="انتخاب پایه"
-                                    FlowDirection="RightToLeft"
-                                    Style="{StaticResource ComboBoxExtend}">
-                                    <ComboBoxItem Content="اول" />
-                                    <ComboBoxItem Content="دوم" />
-                                    <ComboBoxItem Content="سوم" />
-                                    <ComboBoxItem Content="چهارم" />
-                                    <ComboBoxItem Content="پنجم" />
-                                    <ComboBoxItem Content="ششم" />
-                                </ComboBox>
-                                <TextBox
-                                    Name="txtQuestionText"
-                                    Width="240"
-                                    Margin="2"
-                                    HorizontalAlignment="Left"
-                                    controls:InfoElement.ContentHeight="35"
-                                    controls:InfoElement.Placeholder="متن سوال"
-                                    FlowDirection="RightToLeft"
-                                    Style="{StaticResource TextBoxExtend}"
-                                    TabIndex="0" />
-                                <TextBox
-                                    Name="txtCase1"
-                                    Width="240"
-                                    Margin="2"
-                                    HorizontalAlignment="Left"
-                                    controls:InfoElement.ContentHeight="35"
-                                    controls:InfoElement.Placeholder="گزینه 1"
-                                    FlowDirection="RightToLeft"
-                                    Style="{StaticResource TextBoxExtend}"
-                                    TabIndex="0" />
-                                <TextBox
-                                    Name="txtCase2"
-                                    Width="240"
-                                    Margin="2"
-                                    HorizontalAlignment="Left"
-                                    controls:InfoElement.ContentHeight="35"
-                                    controls:InfoElement.Placeholder="گزینه 2"
-                                    FlowDirection="RightToLeft"
-                                    Style="{StaticResource TextBoxExtend}"
-                                    TabIndex="0" />
-                                <TextBox
-                                    Name="txtCase3"
-                                    Width="240"
-                                    Margin="2"
-                                    HorizontalAlignment="Left"
-                                    controls:InfoElement.ContentHeight="35"
-                                    controls:InfoElement.Placeholder="گزینه 3"
-                                    FlowDirection="RightToLeft"
-                                    Style="{StaticResource TextBoxExtend}"
-                                    TabIndex="0" />
-                                <TextBox
-                                    Name="txtCase4"
-                                    Width="240"
-                                    Margin="2"
-                                    HorizontalAlignment="Left"
-                                    controls:InfoElement.ContentHeight="35"
-                                    controls:InfoElement.Placeholder="گزینه 4"
-                                    FlowDirection="RightToLeft"
-                                    Style="{StaticResource TextBoxExtend}"
-                                    TabIndex="0" />
-                                <ComboBox
-                                    Name="cmbEditBase"
-                                    Width="240"
-                                    Margin="2"
-                                    HorizontalAlignment="Left"
-                                    controls:InfoElement.ContentHeight="35"
-                                    controls:InfoElement.Placeholder="گزینه صحیح"
-                                    FlowDirection="RightToLeft"
-                                    Style="{StaticResource ComboBoxExtend}">
-                                    <ComboBoxItem Content="1" />
-                                    <ComboBoxItem Content="2" />
-                                    <ComboBoxItem Content="3" />
-                                    <ComboBoxItem Content="4" />
-                                </ComboBox>
-                            </StackPanel>
-                        </StackPanel>
-                    </Grid>
-                </controls:TabItem>
-                <controls:TabItem Header="ویرایش اطلاعات" IsSelected="True">
-                    <Grid KeyboardNavigation.TabNavigation="Cycle">
-                        <StackPanel Margin="5,5,5,0" Orientation="Vertical">
-                            <Grid>
-                                <StackPanel
-                                    Height="50"
-                                    VerticalAlignment="Top"
-                                    Orientation="Horizontal">
-                                    <Button
-                                        x:Name="btnEditSave"
-                                        Grid.Row="0"
-                                        Grid.Column="0"
-                                        Width="140"
-                                        Height="35"
-                                        Margin="10,5"
-                                        HorizontalAlignment="Left"
-                                        VerticalAlignment="Top"
-                                        Click="btnEditSave_Click"
-                                        IsDefault="True">
-                                        <StackPanel
+                                        </Button>
+                                        <Button
+                                            x:Name="btnCancel"
+                                            Grid.Row="0"
+                                            Grid.Column="1"
+                                            Width="140"
+                                            Height="35"
+                                            Margin="10,5"
                                             HorizontalAlignment="Left"
-                                            VerticalAlignment="Center"
-                                            Orientation="Horizontal">
-                                            <Image
-                                                Width="16"
-                                                Height="16"
-                                                Margin="-30,0,30,0"
-                                                Source="/Resources/update.png" />
-                                            <TextBlock
-                                                FontSize="13"
-                                                Foreground="#ffffff"
-                                                Text="ذخیره"
-                                                TextWrapping="NoWrap" />
-                                        </StackPanel>
-                                        <Button.Style>
-                                            <Style BasedOn="{StaticResource ButtonSuccess}" TargetType="Button">
-                                                <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding SelectedItems.Count, ElementName=dataGrid}" Value="0">
-                                                        <Setter Property="IsEnabled" Value="False" />
-                                                    </DataTrigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </Button.Style>
-                                    </Button>
-                                    <Button
-                                        x:Name="btnDelete"
-                                        Grid.Row="1"
-                                        Grid.Column="1"
-                                        Grid.ColumnSpan="2"
-                                        Width="140"
-                                        Height="35"
-                                        Margin="5,5"
-                                        HorizontalAlignment="Left"
-                                        VerticalAlignment="Top"
-                                        Click="btnDelete_Click">
-                                        <StackPanel
-                                            HorizontalAlignment="Left"
-                                            VerticalAlignment="Center"
-                                            Orientation="Horizontal">
-                                            <Image
-                                                Width="16"
-                                                Height="16"
-                                                Margin="-30,0,30,0"
-                                                Source="/Resources/Delete.png" />
-                                            <TextBlock
-                                                FontSize="13"
-                                                Foreground="#ffffff"
-                                                Text="حذف"
-                                                TextWrapping="NoWrap" />
-                                        </StackPanel>
-                                        <Button.Style>
-                                            <Style BasedOn="{StaticResource ButtonDanger}" TargetType="Button">
-                                                <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding SelectedItems.Count, ElementName=dataGrid}" Value="0">
-                                                        <Setter Property="IsEnabled" Value="False" />
-                                                    </DataTrigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </Button.Style>
-                                    </Button>
-                                    <Button
-                                        x:Name="btnEditCancel"
-                                        Grid.Row="0"
-                                        Grid.Column="1"
-                                        Width="140"
-                                        Height="35"
-                                        Margin="10,5"
-                                        HorizontalAlignment="Left"
-                                        VerticalAlignment="Top"
-                                        Click="btnEditCancel_Click"
-                                        IsCancel="True"
-                                        Style="{StaticResource ButtonInfo}">
-                                        <StackPanel
-                                            HorizontalAlignment="Left"
-                                            VerticalAlignment="Center"
-                                            Orientation="Horizontal">
-                                            <Image
-                                                Width="16"
-                                                Height="16"
-                                                Margin="-30,0,30,0"
-                                                RenderTransformOrigin="-1.688,0.625"
-                                                Source="/Resources/cancel.png" />
-                                            <TextBlock
-                                                FontSize="13"
-                                                Foreground="#ffffff"
-                                                Text="انصراف"
-                                                TextWrapping="NoWrap" />
-                                        </StackPanel>
-                                    </Button>
-                                </StackPanel>
-                                <GridSplitter
-                                    Height="2"
-                                    Margin="60,45,96,-7"
-                                    HorizontalAlignment="Stretch" />
-                            </Grid>
-                        </StackPanel>
-                        <Grid Margin="10,70,0,0">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="2*" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <ComboBox
-                                x:Name="cmbBaseEdit"
-                                Grid.Column="0"
-                                Width="240"
-                                Margin="10,0"
-                                HorizontalAlignment="Left"
-                                VerticalAlignment="Top"
-                                controls:InfoElement.ContentHeight="35"
-                                controls:InfoElement.Placeholder="انتخاب گروه"
-                                FlowDirection="RightToLeft"
-                                SelectedValue="{Binding GroupName}"
-                                SelectedValuePath="Id"
-                                SelectionChanged="cmbBaseEdit_SelectionChanged"
-                                Style="{StaticResource ComboBoxExtend}"
-                                TabIndex="0">
-                                <ComboBox.ItemTemplate>
-                                    <DataTemplate>
-                                        <StackPanel Orientation="Horizontal">
-                                            <TextBlock Text="{Binding GroupName}" />
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </ComboBox.ItemTemplate>
-                            </ComboBox>
-                            <Grid Grid.Column="0" Margin="0,35,10,5">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="1*" />
-                                    <RowDefinition Height="4*" />
-                                </Grid.RowDefinitions>
-                                <TextBox
-                                    x:Name="txtEditSearch"
-                                    Width="{Binding Path=ActualWidth, ElementName=dataGrid, Converter={local1:MultiplyConverter Multiplier=.99}}"
-                                    Margin="0,5"
-                                    controls:InfoElement.ContentHeight="35"
-                                    controls:InfoElement.Placeholder="جستجو..."
-                                    FlowDirection="RightToLeft"
-                                    MaxLength="40"
-                                    Style="{StaticResource TextBoxExtend}"
-                                    TabIndex="1"
-                                    TextChanged="txtEditSearch_TextChanged" />
-                                <DataGrid
-                                    x:Name="dataGrid"
-                                    Grid.Row="1"
-                                    Margin="10,0,10,10"
-                                    local:DataGridBehavior.DisplayRowNumber="True"
-                                    AutoGenerateColumns="False"
-                                    HeadersVisibility="All"
-                                    IsReadOnly="True"
-                                    RowHeaderWidth="60"
-                                    SelectionChanged="dataGrid_SelectionChanged"
-                                    SelectionMode="Single">
-                                    <DataGrid.Columns>
-                                        <DataGridTextColumn Binding="{Binding Id}" Visibility="Hidden" />
-                                        <DataGridTextColumn Binding="{Binding GroupId}" Visibility="Hidden" />
-                                        <DataGridTextColumn Binding="{Binding Answer}" Visibility="Hidden" />
-                                        <DataGridTextColumn
-                                            Width="1*"
-                                            Binding="{Binding Class}"
-                                            Header="پایه" />
-                                        <DataGridTextColumn
-                                            Width="1*"
-                                            Binding="{Binding QuestionText}"
-                                            Header="سوال" />
-                                        <DataGridTextColumn
-                                            Width="1*"
-                                            Binding="{Binding Case1}"
-                                            Header="گزینه 1" />
-                                        <DataGridTextColumn
-                                            Width="1*"
-                                            Binding="{Binding Case2}"
-                                            Header="گزینه 2" />
-                                        <DataGridTextColumn
-                                            Width="1*"
-                                            Binding="{Binding Case3}"
-                                            Header="گزینه 3" />
-                                        <DataGridTextColumn
-                                            Width="1*"
-                                            Binding="{Binding Case4}"
-                                            Header="گزینه 4" />
-                                        <DataGridTextColumn
-                                            Width="1*"
-                                            Binding="{Binding Date}"
-                                            Header="تاریخ" />
-                                    </DataGrid.Columns>
-                                </DataGrid>
-                            </Grid>
-                            <Grid Grid.Column="1" Margin="5,0,0,0">
-                                <StackPanel Orientation="Vertical">
-                                    <TextBox
-                                        Name="txtEditQuestionText"
-                                        Width="240"
-                                        Margin="2"
-                                        HorizontalAlignment="Left"
-                                        controls:InfoElement.ContentHeight="35"
-                                        controls:InfoElement.Placeholder="متن سوال"
-                                        FlowDirection="RightToLeft"
-                                        Style="{StaticResource TextBoxExtend}"
-                                        TabIndex="0" />
-                                    <TextBox
-                                        Name="txtEditCase1"
-                                        Width="240"
-                                        Margin="2"
-                                        HorizontalAlignment="Left"
-                                        controls:InfoElement.ContentHeight="35"
-                                        controls:InfoElement.Placeholder="گزینه 1"
-                                        FlowDirection="RightToLeft"
-                                        Style="{StaticResource TextBoxExtend}"
-                                        TabIndex="0" />
-                                    <TextBox
-                                        Name="txtEditCase2"
-                                        Width="240"
-                                        Margin="2"
-                                        HorizontalAlignment="Left"
-                                        controls:InfoElement.ContentHeight="35"
-                                        controls:InfoElement.Placeholder="گزینه 2"
-                                        FlowDirection="RightToLeft"
-                                        Style="{StaticResource TextBoxExtend}"
-                                        TabIndex="0" />
-                                    <TextBox
-                                        Name="txtEditCase3"
-                                        Width="240"
-                                        Margin="2"
-                                        HorizontalAlignment="Left"
-                                        controls:InfoElement.ContentHeight="35"
-                                        controls:InfoElement.Placeholder="گزینه 3"
-                                        FlowDirection="RightToLeft"
-                                        Style="{StaticResource TextBoxExtend}"
-                                        TabIndex="0" />
-                                    <TextBox
-                                        Name="txtEditCase4"
-                                        Width="240"
-                                        Margin="2"
-                                        HorizontalAlignment="Left"
-                                        controls:InfoElement.ContentHeight="35"
-                                        controls:InfoElement.Placeholder="گزینه 4"
-                                        FlowDirection="RightToLeft"
-                                        Style="{StaticResource TextBoxExtend}"
-                                        TabIndex="0" />
+                                            VerticalAlignment="Top"
+                                            Click="btnCancel_Click"
+                                            IsCancel="True"
+                                            Style="{StaticResource ButtonInfo}">
+                                            <StackPanel
+                                                HorizontalAlignment="Left"
+                                                VerticalAlignment="Center"
+                                                Orientation="Horizontal">
+                                                <Image
+                                                    Width="16"
+                                                    Height="16"
+                                                    Margin="-30,0,30,0"
+                                                    Source="/Resources/cancel.png" />
+                                                <TextBlock
+                                                    FontSize="13"
+                                                    Foreground="#ffffff"
+                                                    Text="انصراف"
+                                                    TextWrapping="NoWrap" />
+                                            </StackPanel>
+                                        </Button>
+                                    </StackPanel>
+                                    <GridSplitter
+                                        Height="2"
+                                        Margin="60,45,96,-7"
+                                        HorizontalAlignment="Stretch" />
+                                </Grid>
+                                <StackPanel Margin="10" Orientation="Vertical">
+
                                     <ComboBox
-                                        x:Name="cmbGroupEdit"
+                                        x:Name="cmbGroup"
                                         Width="240"
                                         Margin="2"
                                         HorizontalAlignment="Left"
@@ -472,12 +110,12 @@
                                         </ComboBox.ItemTemplate>
                                     </ComboBox>
                                     <ComboBox
-                                        Name="cmbBaseEditData"
+                                        Name="cmbBase"
                                         Width="240"
                                         Margin="2"
                                         HorizontalAlignment="Left"
                                         controls:InfoElement.ContentHeight="35"
-                                        controls:InfoElement.Placeholder="پایه"
+                                        controls:InfoElement.Placeholder="انتخاب پایه"
                                         FlowDirection="RightToLeft"
                                         Style="{StaticResource ComboBoxExtend}">
                                         <ComboBoxItem Content="اول" />
@@ -487,8 +125,58 @@
                                         <ComboBoxItem Content="پنجم" />
                                         <ComboBoxItem Content="ششم" />
                                     </ComboBox>
+                                    <TextBox
+                                        Name="txtQuestionText"
+                                        Width="240"
+                                        Margin="2"
+                                        HorizontalAlignment="Left"
+                                        controls:InfoElement.ContentHeight="35"
+                                        controls:InfoElement.Placeholder="متن سوال"
+                                        FlowDirection="RightToLeft"
+                                        Style="{StaticResource TextBoxExtend}"
+                                        TabIndex="0" />
+                                    <TextBox
+                                        Name="txtCase1"
+                                        Width="240"
+                                        Margin="2"
+                                        HorizontalAlignment="Left"
+                                        controls:InfoElement.ContentHeight="35"
+                                        controls:InfoElement.Placeholder="گزینه 1"
+                                        FlowDirection="RightToLeft"
+                                        Style="{StaticResource TextBoxExtend}"
+                                        TabIndex="0" />
+                                    <TextBox
+                                        Name="txtCase2"
+                                        Width="240"
+                                        Margin="2"
+                                        HorizontalAlignment="Left"
+                                        controls:InfoElement.ContentHeight="35"
+                                        controls:InfoElement.Placeholder="گزینه 2"
+                                        FlowDirection="RightToLeft"
+                                        Style="{StaticResource TextBoxExtend}"
+                                        TabIndex="0" />
+                                    <TextBox
+                                        Name="txtCase3"
+                                        Width="240"
+                                        Margin="2"
+                                        HorizontalAlignment="Left"
+                                        controls:InfoElement.ContentHeight="35"
+                                        controls:InfoElement.Placeholder="گزینه 3"
+                                        FlowDirection="RightToLeft"
+                                        Style="{StaticResource TextBoxExtend}"
+                                        TabIndex="0" />
+                                    <TextBox
+                                        Name="txtCase4"
+                                        Width="240"
+                                        Margin="2"
+                                        HorizontalAlignment="Left"
+                                        controls:InfoElement.ContentHeight="35"
+                                        controls:InfoElement.Placeholder="گزینه 4"
+                                        FlowDirection="RightToLeft"
+                                        Style="{StaticResource TextBoxExtend}"
+                                        TabIndex="0" />
                                     <ComboBox
-                                        Name="cmbEditAnswersData"
+                                        Name="cmbEditBase"
                                         Width="240"
                                         Margin="2"
                                         HorizontalAlignment="Left"
@@ -501,25 +189,348 @@
                                         <ComboBoxItem Content="3" />
                                         <ComboBoxItem Content="4" />
                                     </ComboBox>
-                                    <PersianCalendarWPF:PersianDatePicker
-                                        x:Name="txtDateEdit"
-                                        Margin="5,5,0,20"
-                                        HorizontalAlignment="Left" />
-                                    <StackPanel.Style>
-                                        <Style TargetType="StackPanel">
-                                            <Style.Triggers>
-                                                <DataTrigger Binding="{Binding SelectedItems.Count, ElementName=dataGrid}" Value="0">
-                                                    <Setter Property="IsEnabled" Value="False" />
-                                                </DataTrigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </StackPanel.Style>
                                 </StackPanel>
-                            </Grid>
+                            </StackPanel>
                         </Grid>
-                    </Grid>
-                </controls:TabItem>
-            </controls:TabControl>
-        </WrapPanel>
+                    </controls:TabItem>
+                    <controls:TabItem Header="ویرایش اطلاعات" IsSelected="True">
+                        <Grid KeyboardNavigation.TabNavigation="Cycle">
+                            <StackPanel Margin="5,5,5,0" Orientation="Vertical">
+                                <Grid>
+                                    <StackPanel
+                                        Height="50"
+                                        VerticalAlignment="Top"
+                                        Orientation="Horizontal">
+                                        <Button
+                                            x:Name="btnEditSave"
+                                            Grid.Row="0"
+                                            Grid.Column="0"
+                                            Width="140"
+                                            Height="35"
+                                            Margin="10,5"
+                                            HorizontalAlignment="Left"
+                                            VerticalAlignment="Top"
+                                            Click="btnEditSave_Click"
+                                            IsDefault="True">
+                                            <StackPanel
+                                                HorizontalAlignment="Left"
+                                                VerticalAlignment="Center"
+                                                Orientation="Horizontal">
+                                                <Image
+                                                    Width="16"
+                                                    Height="16"
+                                                    Margin="-30,0,30,0"
+                                                    Source="/Resources/update.png" />
+                                                <TextBlock
+                                                    FontSize="13"
+                                                    Foreground="#ffffff"
+                                                    Text="ذخیره"
+                                                    TextWrapping="NoWrap" />
+                                            </StackPanel>
+                                            <Button.Style>
+                                                <Style BasedOn="{StaticResource ButtonSuccess}" TargetType="Button">
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding SelectedItems.Count, ElementName=dataGrid}" Value="0">
+                                                            <Setter Property="IsEnabled" Value="False" />
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Button.Style>
+                                        </Button>
+                                        <Button
+                                            x:Name="btnDelete"
+                                            Grid.Row="1"
+                                            Grid.Column="1"
+                                            Grid.ColumnSpan="2"
+                                            Width="140"
+                                            Height="35"
+                                            Margin="5,5"
+                                            HorizontalAlignment="Left"
+                                            VerticalAlignment="Top"
+                                            Click="btnDelete_Click">
+                                            <StackPanel
+                                                HorizontalAlignment="Left"
+                                                VerticalAlignment="Center"
+                                                Orientation="Horizontal">
+                                                <Image
+                                                    Width="16"
+                                                    Height="16"
+                                                    Margin="-30,0,30,0"
+                                                    Source="/Resources/Delete.png" />
+                                                <TextBlock
+                                                    FontSize="13"
+                                                    Foreground="#ffffff"
+                                                    Text="حذف"
+                                                    TextWrapping="NoWrap" />
+                                            </StackPanel>
+                                            <Button.Style>
+                                                <Style BasedOn="{StaticResource ButtonDanger}" TargetType="Button">
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding SelectedItems.Count, ElementName=dataGrid}" Value="0">
+                                                            <Setter Property="IsEnabled" Value="False" />
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Button.Style>
+                                        </Button>
+                                        <Button
+                                            x:Name="btnEditCancel"
+                                            Grid.Row="0"
+                                            Grid.Column="1"
+                                            Width="140"
+                                            Height="35"
+                                            Margin="10,5"
+                                            HorizontalAlignment="Left"
+                                            VerticalAlignment="Top"
+                                            Click="btnEditCancel_Click"
+                                            IsCancel="True"
+                                            Style="{StaticResource ButtonInfo}">
+                                            <StackPanel
+                                                HorizontalAlignment="Left"
+                                                VerticalAlignment="Center"
+                                                Orientation="Horizontal">
+                                                <Image
+                                                    Width="16"
+                                                    Height="16"
+                                                    Margin="-30,0,30,0"
+                                                    RenderTransformOrigin="-1.688,0.625"
+                                                    Source="/Resources/cancel.png" />
+                                                <TextBlock
+                                                    FontSize="13"
+                                                    Foreground="#ffffff"
+                                                    Text="انصراف"
+                                                    TextWrapping="NoWrap" />
+                                            </StackPanel>
+                                        </Button>
+                                    </StackPanel>
+                                    <GridSplitter
+                                        Height="2"
+                                        Margin="60,45,96,-7"
+                                        HorizontalAlignment="Stretch" />
+                                </Grid>
+                                <StackPanel Margin="0,10,0,0" Orientation="Vertical">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="2*" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <ComboBox
+                                            x:Name="cmbBaseEdit"
+                                            Grid.Column="0"
+                                            Width="240"
+                                            Margin="10,0"
+                                            HorizontalAlignment="Left"
+                                            VerticalAlignment="Top"
+                                            controls:InfoElement.ContentHeight="35"
+                                            controls:InfoElement.Placeholder="انتخاب گروه"
+                                            FlowDirection="RightToLeft"
+                                            SelectedValue="{Binding GroupName}"
+                                            SelectedValuePath="Id"
+                                            SelectionChanged="cmbBaseEdit_SelectionChanged"
+                                            Style="{StaticResource ComboBoxExtend}"
+                                            TabIndex="0">
+                                            <ComboBox.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBlock Text="{Binding GroupName}" />
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </ComboBox.ItemTemplate>
+                                        </ComboBox>
+                                        <Grid
+                                            Name="grdedit"
+                                            Grid.Column="0"
+                                            Margin="0,35,10,5">
+                                            <StackPanel Orientation="Vertical">
+                                                <TextBox
+                                                    x:Name="txtEditSearch"
+                                                    Width="{Binding Path=ActualWidth, ElementName=dataGrid, Converter={local1:MultiplyConverter Multiplier=.99}}"
+                                                    Margin="0,5"
+                                                    controls:InfoElement.ContentHeight="35"
+                                                    controls:InfoElement.Placeholder="جستجو..."
+                                                    FlowDirection="RightToLeft"
+                                                    MaxLength="40"
+                                                    Style="{StaticResource TextBoxExtend}"
+                                                    TabIndex="1"
+                                                    TextChanged="txtEditSearch_TextChanged" />
+                                                <DataGrid
+                                                    x:Name="dataGrid"
+                                                    Margin="10,0"
+                                                    local:DataGridBehavior.DisplayRowNumber="True"
+                                                    AutoGenerateColumns="False"
+                                                    HeadersVisibility="All"
+                                                    IsReadOnly="True"
+                                                    RowHeaderWidth="60"
+                                                    SelectionChanged="dataGrid_SelectionChanged"
+                                                    SelectionMode="Single">
+                                                    <DataGrid.Columns>
+                                                        <DataGridTextColumn Binding="{Binding Id}" Visibility="Hidden" />
+                                                        <DataGridTextColumn Binding="{Binding GroupId}" Visibility="Hidden" />
+                                                        <DataGridTextColumn Binding="{Binding Answer}" Visibility="Hidden" />
+                                                        <DataGridTextColumn
+                                                            Width="1*"
+                                                            MinWidth="100"
+                                                            Binding="{Binding Class}"
+                                                            Header="پایه" />
+                                                        <DataGridTextColumn
+                                                            Width="1*"
+                                                            MinWidth="100"
+                                                            Binding="{Binding QuestionText}"
+                                                            Header="سوال" />
+                                                        <DataGridTextColumn
+                                                            Width="1*"
+                                                            MinWidth="100"
+                                                            Binding="{Binding Case1}"
+                                                            Header="گزینه 1" />
+                                                        <DataGridTextColumn
+                                                            Width="1*"
+                                                            MinWidth="100"
+                                                            Binding="{Binding Case2}"
+                                                            Header="گزینه 2" />
+                                                        <DataGridTextColumn
+                                                            Width="1*"
+                                                            MinWidth="100"
+                                                            Binding="{Binding Case3}"
+                                                            Header="گزینه 3" />
+                                                        <DataGridTextColumn
+                                                            Width="1*"
+                                                            MinWidth="100"
+                                                            Binding="{Binding Case4}"
+                                                            Header="گزینه 4" />
+                                                        <DataGridTextColumn
+                                                            Width="1*"
+                                                            MinWidth="100"
+                                                            Binding="{Binding Date}"
+                                                            Header="تاریخ" />
+                                                    </DataGrid.Columns>
+                                                </DataGrid>
+                                            </StackPanel>
+                                        </Grid>
+                                        <Grid Grid.Column="1" Margin="5,0,0,0">
+                                            <StackPanel Orientation="Vertical">
+                                                <TextBox
+                                                    Name="txtEditQuestionText"
+                                                    Width="240"
+                                                    Margin="2"
+                                                    HorizontalAlignment="Left"
+                                                    controls:InfoElement.ContentHeight="35"
+                                                    controls:InfoElement.Placeholder="متن سوال"
+                                                    FlowDirection="RightToLeft"
+                                                    Style="{StaticResource TextBoxExtend}"
+                                                    TabIndex="0" />
+                                                <TextBox
+                                                    Name="txtEditCase1"
+                                                    Width="240"
+                                                    Margin="2"
+                                                    HorizontalAlignment="Left"
+                                                    controls:InfoElement.ContentHeight="35"
+                                                    controls:InfoElement.Placeholder="گزینه 1"
+                                                    FlowDirection="RightToLeft"
+                                                    Style="{StaticResource TextBoxExtend}"
+                                                    TabIndex="0" />
+                                                <TextBox
+                                                    Name="txtEditCase2"
+                                                    Width="240"
+                                                    Margin="2"
+                                                    HorizontalAlignment="Left"
+                                                    controls:InfoElement.ContentHeight="35"
+                                                    controls:InfoElement.Placeholder="گزینه 2"
+                                                    FlowDirection="RightToLeft"
+                                                    Style="{StaticResource TextBoxExtend}"
+                                                    TabIndex="0" />
+                                                <TextBox
+                                                    Name="txtEditCase3"
+                                                    Width="240"
+                                                    Margin="2"
+                                                    HorizontalAlignment="Left"
+                                                    controls:InfoElement.ContentHeight="35"
+                                                    controls:InfoElement.Placeholder="گزینه 3"
+                                                    FlowDirection="RightToLeft"
+                                                    Style="{StaticResource TextBoxExtend}"
+                                                    TabIndex="0" />
+                                                <TextBox
+                                                    Name="txtEditCase4"
+                                                    Width="240"
+                                                    Margin="2"
+                                                    HorizontalAlignment="Left"
+                                                    controls:InfoElement.ContentHeight="35"
+                                                    controls:InfoElement.Placeholder="گزینه 4"
+                                                    FlowDirection="RightToLeft"
+                                                    Style="{StaticResource TextBoxExtend}"
+                                                    TabIndex="0" />
+                                                <ComboBox
+                                                    x:Name="cmbGroupEdit"
+                                                    Width="240"
+                                                    Margin="2"
+                                                    HorizontalAlignment="Left"
+                                                    VerticalAlignment="Top"
+                                                    controls:InfoElement.ContentHeight="35"
+                                                    controls:InfoElement.Placeholder="انتخاب گروه"
+                                                    ItemsSource="{Binding}"
+                                                    SelectedValue="{Binding GroupName}"
+                                                    SelectedValuePath="Id"
+                                                    Style="{StaticResource ComboBoxExtend}"
+                                                    TabIndex="4">
+                                                    <ComboBox.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <StackPanel Orientation="Horizontal">
+                                                                <TextBlock Text="{Binding GroupName}" />
+                                                            </StackPanel>
+                                                        </DataTemplate>
+                                                    </ComboBox.ItemTemplate>
+                                                </ComboBox>
+                                                <ComboBox
+                                                    Name="cmbBaseEditData"
+                                                    Width="240"
+                                                    Margin="2"
+                                                    HorizontalAlignment="Left"
+                                                    controls:InfoElement.ContentHeight="35"
+                                                    controls:InfoElement.Placeholder="پایه"
+                                                    FlowDirection="RightToLeft"
+                                                    Style="{StaticResource ComboBoxExtend}">
+                                                    <ComboBoxItem Content="اول" />
+                                                    <ComboBoxItem Content="دوم" />
+                                                    <ComboBoxItem Content="سوم" />
+                                                    <ComboBoxItem Content="چهارم" />
+                                                    <ComboBoxItem Content="پنجم" />
+                                                    <ComboBoxItem Content="ششم" />
+                                                </ComboBox>
+                                                <ComboBox
+                                                    Name="cmbEditAnswersData"
+                                                    Width="240"
+                                                    Margin="2"
+                                                    HorizontalAlignment="Left"
+                                                    controls:InfoElement.ContentHeight="35"
+                                                    controls:InfoElement.Placeholder="گزینه صحیح"
+                                                    FlowDirection="RightToLeft"
+                                                    Style="{StaticResource ComboBoxExtend}">
+                                                    <ComboBoxItem Content="1" />
+                                                    <ComboBoxItem Content="2" />
+                                                    <ComboBoxItem Content="3" />
+                                                    <ComboBoxItem Content="4" />
+                                                </ComboBox>
+                                                <PersianCalendarWPF:PersianDatePicker
+                                                    x:Name="txtDateEdit"
+                                                    Margin="5,5,0,20"
+                                                    HorizontalAlignment="Left" />
+                                                <StackPanel.Style>
+                                                    <Style TargetType="StackPanel">
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding SelectedItems.Count, ElementName=dataGrid}" Value="0">
+                                                                <Setter Property="IsEnabled" Value="False" />
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </StackPanel.Style>
+                                            </StackPanel>
+                                        </Grid>
+                                    </Grid>
+                                </StackPanel>
+                            </StackPanel>
+                        </Grid>
+                    </controls:TabItem>
+                </controls:TabControl>
+            </WrapPanel>
+        </controls:ScrollViewer>
     </controls:TransitioningContentControl>
 </UserControl>
