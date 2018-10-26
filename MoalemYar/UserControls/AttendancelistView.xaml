@@ -250,6 +250,7 @@
                     <StackPanel Margin="5,5,5,0" Orientation="Vertical">
                         <Grid>
                             <StackPanel
+<<<<<<< HEAD
                                 Height="50"
                                 VerticalAlignment="Top"
                                 Orientation="Horizontal">
@@ -260,6 +261,118 @@
                                     Width="140"
                                     Height="35"
                                     Margin="10,5"
+=======
+                                Grid.ColumnSpan="2"
+                                Margin="0,40,10,0"
+                                Orientation="Vertical">
+                                <StackPanel Margin="10,10" Orientation="Horizontal">
+                                    <Label
+                                        Name="txtDate"
+                                        Margin="5"
+                                        HorizontalAlignment="Center"
+                                        Content="تاریخ امروز"
+                                        Style="{StaticResource LabelInfo}" />
+                                    <TextBlock
+                                        Margin="5"
+                                        HorizontalAlignment="Center"
+                                        Style="{StaticResource TextBlockSubTitle}"
+                                        Text="همه حاضر" />
+                                    <ToggleButton
+                                        Name="swAllPresent"
+                                        VerticalAlignment="Center"
+                                        Checked="swAllPresent_Checked"
+                                        IsChecked="False"
+                                        IsEnabled="False"
+                                        Style="{StaticResource ToggleButtonSwitch}" />
+                                </StackPanel>
+                                <DataGrid
+                                    x:Name="dataGrid"
+                                    Margin="10,0"
+                                    local:DataGridBehavior.DisplayRowNumber="True"
+                                    AutoGenerateColumns="False"
+                                    HeadersVisibility="All"
+                                    IsReadOnly="True"
+                                    RowHeaderWidth="60"
+                                    SelectionMode="Single">
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn Binding="{Binding Path=Id}" Visibility="Hidden" />
+                                        <DataGridTextColumn
+                                            Width="1*"
+                                            MinWidth="120"
+                                            Binding="{Binding Path=Name}"
+                                            Header="نام" />
+                                        <DataGridTextColumn
+                                            Width="1*"
+                                            MinWidth="130"
+                                            Binding="{Binding Path=LName}"
+                                            Header="نام خانوادگی" />
+                                        <DataGridTextColumn
+                                            Width="1*"
+                                            MinWidth="130"
+                                            Binding="{Binding Path=FName}"
+                                            Header="نام پدر" />
+                                        <DataGridTemplateColumn
+                                            Width="1*"
+                                            MinWidth="150"
+                                            Header="وضعیت">
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel
+                                                        Margin="5"
+                                                        HorizontalAlignment="Right"
+                                                        Orientation="Vertical">
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <TextBlock
+                                                                Margin="5"
+                                                                HorizontalAlignment="Center"
+                                                                Style="{StaticResource TextBlockSubTitle}"
+                                                                Text="حاضر" />
+                                                            <ToggleButton
+                                                                Name="chkIsPresent"
+                                                                Grid.Row="0"
+                                                                Grid.Column="1"
+                                                                Margin="5"
+                                                                HorizontalAlignment="Right"
+                                                                VerticalAlignment="Center"
+                                                                Checked="chkIsPresent_Checked"
+                                                                IsChecked="False"
+                                                                Style="{StaticResource ToggleButtonSwitch}" />
+                                                        </StackPanel>
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <TextBlock
+                                                                Margin="5"
+                                                                HorizontalAlignment="Center"
+                                                                Style="{StaticResource TextBlockSubTitle}"
+                                                                Text="غایب" />
+                                                            <ToggleButton
+                                                                Name="chkIsAbsent"
+                                                                Grid.Row="1"
+                                                                Grid.Column="1"
+                                                                Margin="5"
+                                                                HorizontalAlignment="Right"
+                                                                VerticalAlignment="Center"
+                                                                Checked="chkIsAbsent_Checked"
+                                                                IsChecked="False"
+                                                                Style="{StaticResource ToggleButtonSwitch}" />
+                                                        </StackPanel>
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                </controls:TabItem>
+                <controls:TabItem Header="لیست اطلاعات" IsSelected="True">
+                    <Grid KeyboardNavigation.TabNavigation="Cycle">
+                        <Grid Name="grdList">
+                            <StackPanel Margin="10" Orientation="Horizontal">
+                                <ComboBox
+                                    x:Name="cmbBaseList"
+                                    Width="240"
+>>>>>>> parent of a7a03e4... fix some issue
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Top"
                                     Click="btnEditSave_Click"
@@ -484,6 +597,7 @@
                                         </TextBlock.Style>
                                     </TextBlock>
                                 </StackPanel>
+<<<<<<< HEAD
                                 <PersianCalendarWPF:PersianDatePicker
                                     Name="txtDateEdit"
                                     HorizontalAlignment="Left"
@@ -498,6 +612,178 @@
                                         </Style.Triggers>
                                     </Style>
                                 </StackPanel.Style>
+=======
+                                <GridSplitter
+                                    Height="2"
+                                    Margin="60,45,96,-7"
+                                    HorizontalAlignment="Stretch" />
+                            </Grid>
+                            <StackPanel Margin="0,10,0,0" Orientation="Vertical">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="500" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel Grid.Column="0">
+                                        <StackPanel Orientation="Horizontal">
+                                            <ComboBox
+                                                x:Name="cmbEditBase"
+                                                Width="240"
+                                                HorizontalAlignment="Left"
+                                                VerticalAlignment="Top"
+                                                controls:InfoElement.ContentHeight="35"
+                                                controls:InfoElement.Placeholder="انتخاب کلاس"
+                                                ItemsSource="{Binding}"
+                                                SelectedValue="{Binding SchoolName}"
+                                                SelectedValuePath="Id"
+                                                SelectionChanged="cmbEditBase_SelectionChanged"
+                                                Style="{StaticResource ComboBoxExtend}"
+                                                TabIndex="0">
+                                                <ComboBox.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <TextBlock Text="{Binding SchoolName}" />
+                                                            <TextBlock Text=" - " />
+                                                            <TextBlock Text="{Binding Base}" />
+                                                            <TextBlock Text=" - " />
+                                                            <TextBlock Text="{Binding Year}" />
+                                                        </StackPanel>
+                                                    </DataTemplate>
+                                                </ComboBox.ItemTemplate>
+                                            </ComboBox>
+                                            <ComboBox
+                                                x:Name="cmbEditStudent"
+                                                Width="240"
+                                                Margin="10,0,0,0"
+                                                HorizontalAlignment="Left"
+                                                VerticalAlignment="Top"
+                                                controls:InfoElement.ContentHeight="35"
+                                                controls:InfoElement.Placeholder="انتخاب دانش آموز"
+                                                SelectedValue="{Binding LName}"
+                                                SelectedValuePath="Id"
+                                                SelectionChanged="cmbEditStudent_SelectionChanged"
+                                                Style="{StaticResource ComboBoxExtend}"
+                                                TabIndex="1">
+                                                <ComboBox.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <TextBlock Text="{Binding Name}" />
+                                                            <TextBlock Text=" " />
+                                                            <TextBlock Text="{Binding LName}" />
+                                                            <TextBlock Text=" - " />
+                                                            <TextBlock Text="نام پدر(" />
+                                                            <TextBlock Text="{Binding FName}" />
+                                                            <TextBlock Text=")" />
+                                                        </StackPanel>
+                                                    </DataTemplate>
+                                                </ComboBox.ItemTemplate>
+                                            </ComboBox>
+                                        </StackPanel>
+                                        <TextBox
+                                            x:Name="txtEditSearch"
+                                            Width="{Binding Path=ActualWidth, ElementName=dgv, Converter={local1:MultiplyConverter Multiplier=.99}}"
+                                            Margin="0,5"
+                                            controls:InfoElement.ContentHeight="35"
+                                            controls:InfoElement.Placeholder="جستجو..."
+                                            FlowDirection="RightToLeft"
+                                            Style="{StaticResource TextBoxExtend}"
+                                            TabIndex="2"
+                                            TextChanged="txtEditSearch_TextChanged" />
+                                        <DataGrid
+                                            x:Name="dgv"
+                                            local:DataGridBehavior.DisplayRowNumber="True"
+                                            AutoGenerateColumns="False"
+                                            HeadersVisibility="All"
+                                            IsReadOnly="True"
+                                            RowHeaderWidth="60"
+                                            SelectionChanged="dgv_SelectionChanged"
+                                            SelectionMode="Single">
+                                            <DataGrid.Columns>
+
+                                                <DataGridTextColumn
+                                                    Width="1*"
+                                                    Binding="{Binding Path=StudentId}"
+                                                    Visibility="Hidden" />
+                                                <DataGridTextColumn
+                                                    Width="1*"
+                                                    Binding="{Binding Path=Id}"
+                                                    Visibility="Hidden" />
+
+                                                <DataGridTemplateColumn MinWidth="200" Header="وضعیت حضور">
+                                                    <DataGridTemplateColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <StackPanel Orientation="Horizontal">
+                                                                <TextBlock Margin="0,0,5,0" Grid.Column="1">
+                                                                    <TextBlock.Style>
+                                                                        <Style TargetType="{x:Type TextBlock}">
+                                                                            <Setter Property="Text" Value="حاضر" />
+                                                                            <Style.Triggers>
+                                                                                <DataTrigger Binding="{Binding Exist}" Value="False">
+                                                                                    <Setter Property="Text" Value="غایب" />
+                                                                                </DataTrigger>
+                                                                            </Style.Triggers>
+                                                                        </Style>
+                                                                    </TextBlock.Style>
+                                                                </TextBlock>
+                                                                <ToggleButton
+                                                                    Grid.Column="1"
+                                                                    VerticalAlignment="Center"
+                                                                    Checked="MetroSwitch_Checked"
+                                                                    IsChecked="{Binding Exist}"
+                                                                    Style="{StaticResource ToggleButtonSwitch}"
+                                                                    Unchecked="MetroSwitch_Unchecked" />
+                                                            </StackPanel>
+                                                        </DataTemplate>
+                                                    </DataGridTemplateColumn.CellTemplate>
+                                                </DataGridTemplateColumn>
+
+                                                <DataGridTextColumn
+                                                    MinWidth="200"
+                                                    Binding="{Binding Path=Date}"
+                                                    Header="تاریخ" />
+                                            </DataGrid.Columns>
+                                        </DataGrid>
+                                    </StackPanel>
+                                    <Grid Grid.Column="1" Margin="10,0,-0.2,0">
+                                        <StackPanel Margin="10" Orientation="Vertical">
+                                            <StackPanel Margin="0,0,0,10" Orientation="Horizontal">
+                                                <ToggleButton
+                                                    Name="tglExistEdit"
+                                                    Checked="MetroSwitch_Checked"
+                                                    IsChecked="{Binding Exist}"
+                                                    Style="{StaticResource ToggleButtonSwitch}"
+                                                    Unchecked="MetroSwitch_Unchecked" />
+                                                <TextBlock Grid.Column="1" Margin="10,0,0.2,0">
+                                                    <TextBlock.Style>
+                                                        <Style TargetType="{x:Type TextBlock}">
+                                                            <Setter Property="Text" Value="حاضر" />
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding ElementName=tglExistEdit, Path=IsChecked}" Value="False">
+                                                                    <Setter Property="Text" Value="غایب" />
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </TextBlock.Style>
+                                                </TextBlock>
+                                            </StackPanel>
+                                            <PersianCalendarWPF:PersianDatePicker
+                                                Name="txtDateEdit"
+                                                HorizontalAlignment="Left"
+                                                SelectedDate="{Binding Date}"
+                                                Text="{Binding Date}" />
+                                            <StackPanel.Style>
+                                                <Style TargetType="StackPanel">
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding SelectedItems.Count, ElementName=dgv}" Value="0">
+                                                            <Setter Property="IsEnabled" Value="False" />
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </StackPanel.Style>
+                                        </StackPanel>
+                                    </Grid>
+                                </Grid>
+>>>>>>> parent of a7a03e4... fix some issue
                             </StackPanel>
                         </Grid>
                     </Grid>

@@ -113,7 +113,6 @@
                                 <ToggleButton
                                     x:Name="swLimit"
                                     Margin="5,0"
-                                    VerticalAlignment="Center"
                                     Content=""
                                     Style="{StaticResource ToggleButtonSwitch}" />
                             </StackPanel>
@@ -126,7 +125,6 @@
                                 <ToggleButton
                                     x:Name="swRandom"
                                     Margin="5,5"
-                                    VerticalAlignment="Center"
                                     Checked="swRandom_Checked"
                                     IsChecked="True"
                                     Style="{StaticResource ToggleButtonSwitch}"
@@ -210,7 +208,7 @@
                                         <ToggleButton
                                             x:Name="swCase1"
                                             Margin="5,0"
-                                            VerticalAlignment="Center"
+                                            HorizontalAlignment="Left"
                                             Checked="swCase1_Checked"
                                             FlowDirection="LeftToRight"
                                             Style="{StaticResource ToggleButtonSwitch}" />
@@ -220,7 +218,7 @@
                                         <ToggleButton
                                             x:Name="swCase2"
                                             Margin="5,5"
-                                            VerticalAlignment="Center"
+                                            HorizontalAlignment="Left"
                                             Checked="swCase2_Checked"
                                             FlowDirection="LeftToRight"
                                             Style="{StaticResource ToggleButtonSwitch}" />
@@ -230,7 +228,7 @@
                                         <ToggleButton
                                             x:Name="swCase3"
                                             Margin="5,0"
-                                            VerticalAlignment="Center"
+                                            HorizontalAlignment="Left"
                                             Checked="swCase3_Checked"
                                             FlowDirection="LeftToRight"
                                             Style="{StaticResource ToggleButtonSwitch}" />
@@ -240,7 +238,7 @@
                                         <ToggleButton
                                             x:Name="swCase4"
                                             Margin="5,5"
-                                            VerticalAlignment="Center"
+                                            HorizontalAlignment="Left"
                                             Checked="swCase4_Checked"
                                             FlowDirection="LeftToRight"
                                             Style="{StaticResource ToggleButtonSwitch}" />

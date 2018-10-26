@@ -19,7 +19,6 @@
                                     <ToggleButton
                                         x:Name="swAutoStart"
                                         Margin="10"
-                                        VerticalAlignment="Center"
                                         Checked="swAutoStart_Checked"
                                         Style="{StaticResource ToggleButtonSwitch}"
                                         Unchecked="swAutoStart_Checked" />
@@ -32,7 +31,6 @@
                                     <ToggleButton
                                         x:Name="swLogin"
                                         Margin="10"
-                                        VerticalAlignment="Center"
                                         Checked="swLogin_Checked"
                                         Style="{StaticResource ToggleButtonSwitch}"
                                         Unchecked="swLogin_Checked" />
@@ -45,7 +43,6 @@
                                     <ToggleButton
                                         x:Name="swMax"
                                         Margin="10"
-                                        VerticalAlignment="Center"
                                         Checked="swMax_Checked"
                                         Style="{StaticResource ToggleButtonSwitch}"
                                         Unchecked="swMax_Checked" />
