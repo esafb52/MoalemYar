@@ -10,7 +10,7 @@
     Style="{StaticResource myUserControl}"
     mc:Ignorable="d">
     <controls:TransitioningContentControl>
-        <Grid>
+        <Grid Margin="10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition />
@@ -44,7 +44,7 @@
             <DataGrid
                 x:Name="dataGrid"
                 Grid.Column="0"
-                Margin="0,40,0,0"
+                Margin="0,40,0,10"
                 local:DataGridBehavior.DisplayRowNumber="True"
                 AutoGenerateColumns="False"
                 HeadersVisibility="All"
@@ -56,17 +56,14 @@
                     <DataGridTextColumn Binding="{Binding Id}" Visibility="Hidden" />
                     <DataGridTextColumn
                         Width="1*"
-                        MinWidth="100"
                         Binding="{Binding Name}"
                         Header="نام" />
                     <DataGridTextColumn
                         Width="1*"
-                        MinWidth="100"
                         Binding="{Binding LName}"
                         Header="نام خانوادگی" />
                     <DataGridTextColumn
                         Width="1*"
-                        MinWidth="90"
                         Binding="{Binding FName}"
                         Header="نام پدر" />
                 </DataGrid.Columns>

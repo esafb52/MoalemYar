@@ -355,7 +355,7 @@
                                 <DataGrid
                                     x:Name="dataGrid"
                                     Grid.Row="1"
-                                    Margin="10,0"
+                                    Margin="10,0,10,10"
                                     local:DataGridBehavior.DisplayRowNumber="True"
                                     AutoGenerateColumns="False"
                                     HeadersVisibility="All"
@@ -369,37 +369,30 @@
                                         <DataGridTextColumn Binding="{Binding Answer}" Visibility="Hidden" />
                                         <DataGridTextColumn
                                             Width="1*"
-                                            MinWidth="100"
                                             Binding="{Binding Class}"
                                             Header="پایه" />
                                         <DataGridTextColumn
                                             Width="1*"
-                                            MinWidth="100"
                                             Binding="{Binding QuestionText}"
                                             Header="سوال" />
                                         <DataGridTextColumn
                                             Width="1*"
-                                            MinWidth="100"
                                             Binding="{Binding Case1}"
                                             Header="گزینه 1" />
                                         <DataGridTextColumn
                                             Width="1*"
-                                            MinWidth="100"
                                             Binding="{Binding Case2}"
                                             Header="گزینه 2" />
                                         <DataGridTextColumn
                                             Width="1*"
-                                            MinWidth="100"
                                             Binding="{Binding Case3}"
                                             Header="گزینه 3" />
                                         <DataGridTextColumn
                                             Width="1*"
-                                            MinWidth="100"
                                             Binding="{Binding Case4}"
                                             Header="گزینه 4" />
                                         <DataGridTextColumn
                                             Width="1*"
-                                            MinWidth="100"
                                             Binding="{Binding Date}"
                                             Header="تاریخ" />
                                     </DataGrid.Columns>

@@ -22,7 +22,7 @@
                 <Grid KeyboardNavigation.TabNavigation="Cycle">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="1*" />
-                        <RowDefinition Height="3*" />
+                        <RowDefinition Height="2*" />
                     </Grid.RowDefinitions>
                     <StackPanel
                         Grid.ColumnSpan="2"
@@ -78,7 +78,7 @@
                     <DataGrid
                         x:Name="dataGrid"
                         Grid.Row="1"
-                        Margin="10,0"
+                        Margin="10,0,10,10"
                         local:DataGridBehavior.DisplayRowNumber="True"
                         AutoGenerateColumns="False"
                         HeadersVisibility="All"
@@ -89,23 +89,17 @@
                             <DataGridTextColumn Binding="{Binding Path=Id}" Visibility="Hidden" />
                             <DataGridTextColumn
                                 Width="1*"
-                                MinWidth="120"
                                 Binding="{Binding Path=Name}"
                                 Header="نام" />
                             <DataGridTextColumn
                                 Width="1*"
-                                MinWidth="130"
                                 Binding="{Binding Path=LName}"
                                 Header="نام خانوادگی" />
                             <DataGridTextColumn
                                 Width="1*"
-                                MinWidth="130"
                                 Binding="{Binding Path=FName}"
                                 Header="نام پدر" />
-                            <DataGridTemplateColumn
-                                Width="1*"
-                                MinWidth="150"
-                                Header="وضعیت">
+                            <DataGridTemplateColumn Width="1*" Header="وضعیت">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <StackPanel
@@ -212,23 +206,17 @@
                             <DataGridTextColumn Binding="{Binding Path=Id}" Visibility="Hidden" />
                             <DataGridTextColumn
                                 Width="1*"
-                                MinWidth="120"
                                 Binding="{Binding Path=Name}"
                                 Header="نام" />
                             <DataGridTextColumn
                                 Width="1*"
-                                MinWidth="130"
                                 Binding="{Binding Path=LName}"
                                 Header="نام خانوادگی" />
                             <DataGridTextColumn
                                 Width="1*"
-                                MinWidth="130"
                                 Binding="{Binding Path=FName}"
                                 Header="نام پدر" />
-                            <DataGridTemplateColumn
-                                Width="1*"
-                                MinWidth="150"
-                                Header="وضعیت">
+                            <DataGridTemplateColumn Width="1*" Header="وضعیت">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <StackPanel Orientation="Horizontal">
@@ -352,7 +340,7 @@
                         <Grid Grid.Column="0" Margin="10,70,0,0">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="1*" />
-                                <RowDefinition Height="4*" />
+                                <RowDefinition Height="2*" />
                             </Grid.RowDefinitions>
                             <StackPanel>
                                 <StackPanel Orientation="Horizontal">
@@ -423,6 +411,7 @@
                             <DataGrid
                                 x:Name="dgv"
                                 Grid.Row="1"
+                                Margin="0,0,10,10"
                                 local:DataGridBehavior.DisplayRowNumber="True"
                                 AutoGenerateColumns="False"
                                 HeadersVisibility="All"
@@ -441,7 +430,7 @@
                                         Binding="{Binding Path=Id}"
                                         Visibility="Hidden" />
 
-                                    <DataGridTemplateColumn MinWidth="200" Header="وضعیت حضور">
+                                    <DataGridTemplateColumn Header="وضعیت حضور">
                                         <DataGridTemplateColumn.CellTemplate>
                                             <DataTemplate>
                                                 <StackPanel Orientation="Horizontal">
@@ -469,10 +458,7 @@
                                         </DataGridTemplateColumn.CellTemplate>
                                     </DataGridTemplateColumn>
 
-                                    <DataGridTextColumn
-                                        MinWidth="200"
-                                        Binding="{Binding Path=Date}"
-                                        Header="تاریخ" />
+                                    <DataGridTextColumn Binding="{Binding Path=Date}" Header="تاریخ" />
                                 </DataGrid.Columns>
                             </DataGrid>
                         </Grid>

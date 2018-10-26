@@ -38,6 +38,7 @@
             </ComboBox>
             <DataGrid
                 x:Name="dataGrid"
+                Margin="10"
                 local:DataGridBehavior.DisplayRowNumber="True"
                 AutoGenerateColumns="False"
                 HeadersVisibility="All"

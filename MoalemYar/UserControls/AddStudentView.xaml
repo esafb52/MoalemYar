@@ -374,6 +374,7 @@
                             <DataGrid
                                 x:Name="dataGrid"
                                 Grid.Row="1"
+                                Margin="10,0,10,10"
                                 local:DataGridBehavior.DisplayRowNumber="True"
                                 AutoGenerateColumns="False"
                                 HeadersVisibility="All"
@@ -385,27 +386,22 @@
                                     <DataGridTextColumn Binding="{Binding Id}" Visibility="Hidden" />
                                     <DataGridTextColumn
                                         Width="1*"
-                                        MinWidth="100"
                                         Binding="{Binding Name}"
                                         Header="نام" />
                                     <DataGridTextColumn
                                         Width="1*"
-                                        MinWidth="100"
                                         Binding="{Binding LName}"
                                         Header="نام خانوادگی" />
                                     <DataGridTextColumn
                                         Width="1*"
-                                        MinWidth="100"
                                         Binding="{Binding FName}"
                                         Header="نام پدر" />
                                     <DataGridTextColumn
                                         Width="1*"
-                                        MinWidth="100"
                                         Binding="{Binding Gender}"
                                         Header="جنسیت" />
                                     <DataGridTextColumn
                                         Width="1*"
-                                        MinWidth="100"
                                         Binding="{Binding Base}"
                                         Header="پایه" />
                                 </DataGrid.Columns>

@@ -235,7 +235,7 @@
                             <DataGrid
                                 x:Name="dataGrid"
                                 Grid.Row="1"
-                                Margin="10,0"
+                                Margin="10,0,10,10"
                                 local:DataGridBehavior.DisplayRowNumber="True"
                                 AutoGenerateColumns="False"
                                 HeadersVisibility="All"
@@ -247,7 +247,6 @@
                                     <DataGridTextColumn Binding="{Binding Id}" Visibility="Hidden" />
                                     <DataGridTextColumn
                                         Width="1*"
-                                        MinWidth="100"
                                         Binding="{Binding GroupName}"
                                         Header="نام گروه" />
                                 </DataGrid.Columns>
