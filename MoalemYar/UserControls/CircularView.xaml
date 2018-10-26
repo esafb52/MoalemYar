@@ -52,6 +52,7 @@
                     <ToggleButton
                         Name="swLimit"
                         Margin="10"
+                        VerticalAlignment="Center"
                         Checked="swLimit_Checked"
                         FlowDirection="LeftToRight"
                         IsChecked="True"

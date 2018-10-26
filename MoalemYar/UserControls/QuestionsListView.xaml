@@ -35,6 +35,7 @@
                             <ToggleButton
                                 Name="isExam"
                                 Margin="10,5"
+                                VerticalAlignment="Center"
                                 Checked="isExam_Checked"
                                 Style="{StaticResource ToggleButtonSwitch}"
                                 Unchecked="isExam_Checked" />
@@ -46,6 +47,7 @@
                             <ToggleButton
                                 Name="isQuestion"
                                 Margin="10,5"
+                                VerticalAlignment="Center"
                                 Checked="isQuestion_Checked"
                                 Style="{StaticResource ToggleButtonSwitch}"
                                 Unchecked="isQuestion_Checked" />
@@ -145,7 +147,7 @@
                                                         Checked="chkChecked_Checked"
                                                         Style="{StaticResource ToggleButtonSwitch}"
                                                         Tag="exc" />
-                                                    <TextBlock Text="خیلی خوب" />
+                                                    <TextBlock Margin="5,0,5,0" Text="خیلی خوب" />
                                                 </StackPanel>
                                                 <StackPanel Orientation="Horizontal">
                                                     <ToggleButton
@@ -153,7 +155,7 @@
                                                         Checked="chkChecked_Checked"
                                                         Style="{StaticResource ToggleButtonSwitch}"
                                                         Tag="good" />
-                                                    <TextBlock Text="خوب" />
+                                                    <TextBlock Margin="5,0,5,0" Text="خوب" />
                                                 </StackPanel>
                                                 <StackPanel Orientation="Horizontal">
                                                     <ToggleButton
@@ -161,7 +163,7 @@
                                                         Checked="chkChecked_Checked"
                                                         Style="{StaticResource ToggleButtonSwitch}"
                                                         Tag="nbad" />
-                                                    <TextBlock Text="قابل قبول" />
+                                                    <TextBlock Margin="5,0,5,0" Text="قابل قبول" />
                                                 </StackPanel>
                                                 <StackPanel Orientation="Horizontal">
                                                     <ToggleButton
@@ -169,7 +171,7 @@
                                                         Checked="chkChecked_Checked"
                                                         Style="{StaticResource ToggleButtonSwitch}"
                                                         Tag="bad" />
-                                                    <TextBlock Text="نیاز به تلاش بیشتر" />
+                                                    <TextBlock Margin="5,0,5,0" Text="نیاز به تلاش بیشتر" />
                                                 </StackPanel>
                                             </StackPanel>
                                         </DataTemplate>

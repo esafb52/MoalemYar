@@ -67,6 +67,7 @@
                                         Name="swAllPresent"
                                         Margin="5,0,50,0"
                                         HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
                                         Checked="swAllPresent_Checked"
                                         IsChecked="False"
                                         IsEnabled="False"
@@ -120,6 +121,7 @@
                                                                 Grid.Column="1"
                                                                 Margin="5"
                                                                 HorizontalAlignment="Right"
+                                                                VerticalAlignment="Center"
                                                                 Checked="chkIsPresent_Checked"
                                                                 IsChecked="False"
                                                                 Style="{StaticResource ToggleButtonSwitch}" />
@@ -136,6 +138,7 @@
                                                                 Grid.Column="1"
                                                                 Margin="5"
                                                                 HorizontalAlignment="Right"
+                                                                VerticalAlignment="Center"
                                                                 Checked="chkIsAbsent_Checked"
                                                                 IsChecked="False"
                                                                 Style="{StaticResource ToggleButtonSwitch}" />
@@ -438,7 +441,7 @@
                                                     <DataGridTemplateColumn.CellTemplate>
                                                         <DataTemplate>
                                                             <StackPanel Orientation="Horizontal">
-                                                                <TextBlock Grid.Column="1">
+                                                                <TextBlock Margin="0,0,5,0" Grid.Column="1">
                                                                     <TextBlock.Style>
                                                                         <Style TargetType="{x:Type TextBlock}">
                                                                             <Setter Property="Text" Value="حاضر" />
@@ -452,6 +455,7 @@
                                                                 </TextBlock>
                                                                 <ToggleButton
                                                                     Grid.Column="1"
+                                                                    VerticalAlignment="Center"
                                                                     Checked="MetroSwitch_Checked"
                                                                     IsChecked="{Binding Exist}"
                                                                     Style="{StaticResource ToggleButtonSwitch}"
