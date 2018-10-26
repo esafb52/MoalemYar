@@ -153,7 +153,7 @@ namespace MoalemYar.UserControls
                         LabelsRotation = -20,
                         Separator = new LiveCharts.Wpf.Separator { Step = 1 }
                     });
-                    chart.AxisY.Add(new Axis { LabelFormatter = x => x.ToString("N0"), Separator = new LiveCharts.Wpf.Separator { Step = 1 }, FontFamily = TryFindResource("TeacherYar.Fonts.IRANSans") as FontFamily });
+                    chart.AxisY.Add(new Axis {FontFamily = TryFindResource("TeacherYar.Fonts.IRANSans") as FontFamily });
 
                     var mainBorder = new Border();
                     mainBorder.Width = 300;
