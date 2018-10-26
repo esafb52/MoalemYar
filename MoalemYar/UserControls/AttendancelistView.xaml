@@ -51,7 +51,7 @@
                                 Grid.ColumnSpan="2"
                                 Margin="0,40,10,0"
                                 Orientation="Vertical">
-                                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                <StackPanel Margin="10,10" Orientation="Horizontal">
                                     <Label
                                         Name="txtDate"
                                         Margin="5"
@@ -65,8 +65,6 @@
                                         Text="همه حاضر" />
                                     <ToggleButton
                                         Name="swAllPresent"
-                                        Margin="5,0,50,0"
-                                        HorizontalAlignment="Center"
                                         VerticalAlignment="Center"
                                         Checked="swAllPresent_Checked"
                                         IsChecked="False"
