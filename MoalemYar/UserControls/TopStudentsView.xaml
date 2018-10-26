@@ -11,69 +11,63 @@
     Style="{StaticResource myUserControl}"
     mc:Ignorable="d">
     <controls:TransitioningContentControl>
-        <controls:ScrollViewer HorizontalScrollBarVisibility="Auto">
-            <Grid Name="grdedit" MinWidth="800">
-                <ComboBox
-                    x:Name="cmbBaseEdit"
-                    Width="240"
-                    Margin="10"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
-                    controls:InfoElement.ContentHeight="35"
-                    controls:InfoElement.Placeholder="انتخاب کلاس"
-                    FlowDirection="RightToLeft"
-                    SelectedValue="{Binding SchoolName}"
-                    SelectedValuePath="Id"
-                    SelectionChanged="cmbBaseEdit_SelectionChanged"
-                    Style="{StaticResource ComboBoxExtend}"
-                    TabIndex="0">
-                    <ComboBox.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="{Binding SchoolName}" />
-                                <TextBlock Text=" - " />
-                                <TextBlock Text="{Binding Base}" />
-                                <TextBlock Text=" - " />
-                                <TextBlock Text="{Binding Year}" />
-                            </StackPanel>
-                        </DataTemplate>
-                    </ComboBox.ItemTemplate>
-                </ComboBox>
-                <DataGrid
-                    x:Name="dataGrid"
-                    local:DataGridBehavior.DisplayRowNumber="True"
-                    AutoGenerateColumns="False"
-                    HeadersVisibility="All"
-                    IsReadOnly="True"
-                    RowHeaderWidth="60"
-                    SelectionMode="Single">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{Binding Id}" Visibility="Hidden" />
-                        <DataGridTextColumn Binding="{Binding BaseId}" Visibility="Hidden" />
-                        <DataGridTextColumn Binding="{Binding StudentId}" Visibility="Hidden" />
-                        <DataGridTextColumn
-                            Width="1*"
-                            MinWidth="100"
-                            Binding="{Binding Name}"
-                            Header="نام" />
-                        <DataGridTextColumn
-                            Width="1*"
-                            MinWidth="100"
-                            Binding="{Binding LName}"
-                            Header="نام خانوادگی" />
-                        <DataGridTextColumn
-                            Width="1*"
-                            MinWidth="100"
-                            Binding="{Binding FName}"
-                            Header="نام پدر" />
-                        <DataGridTextColumn
-                            Width="1*"
-                            MinWidth="100"
-                            Binding="{Binding Sum}"
-                            Header="امتیاز" />
-                    </DataGrid.Columns>
-                </DataGrid>
-            </Grid>
-        </controls:ScrollViewer>
+        <Grid Name="grdedit" MinWidth="800">
+            <ComboBox
+                x:Name="cmbBaseEdit"
+                Width="240"
+                Margin="10"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                controls:InfoElement.ContentHeight="35"
+                controls:InfoElement.Placeholder="انتخاب کلاس"
+                FlowDirection="RightToLeft"
+                SelectedValue="{Binding SchoolName}"
+                SelectedValuePath="Id"
+                SelectionChanged="cmbBaseEdit_SelectionChanged"
+                Style="{StaticResource ComboBoxExtend}"
+                TabIndex="0">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding SchoolName}" />
+                            <TextBlock Text=" - " />
+                            <TextBlock Text="{Binding Base}" />
+                            <TextBlock Text=" - " />
+                            <TextBlock Text="{Binding Year}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <DataGrid
+                x:Name="dataGrid"
+                local:DataGridBehavior.DisplayRowNumber="True"
+                AutoGenerateColumns="False"
+                HeadersVisibility="All"
+                IsReadOnly="True"
+                RowHeaderWidth="60"
+                SelectionMode="Single">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Id}" Visibility="Hidden" />
+                    <DataGridTextColumn Binding="{Binding BaseId}" Visibility="Hidden" />
+                    <DataGridTextColumn Binding="{Binding StudentId}" Visibility="Hidden" />
+                    <DataGridTextColumn
+                        Width="1*"
+                        Binding="{Binding Name}"
+                        Header="نام" />
+                    <DataGridTextColumn
+                        Width="1*"
+                        Binding="{Binding LName}"
+                        Header="نام خانوادگی" />
+                    <DataGridTextColumn
+                        Width="1*"
+                        Binding="{Binding FName}"
+                        Header="نام پدر" />
+                    <DataGridTextColumn
+                        Width="1*"
+                        Binding="{Binding Sum}"
+                        Header="امتیاز" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
     </controls:TransitioningContentControl>
 </UserControl>
