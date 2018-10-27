@@ -7,7 +7,7 @@
     xmlns:local="clr-namespace:MoalemYar.UserControls"
     xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
     xmlns:mvvmc="clr-namespace:MVVMC;assembly=MVVMC"
-    Background="{DynamicResource RegionBrush}"
+    Background="{DynamicResource SecondaryRegionBrush}"
     Loaded="UserControl_Loaded"
     Style="{StaticResource myUserControl}">
     <controls:TransitioningContentControl>
@@ -35,13 +35,13 @@
                                     <TextBlock
                                         x:Name="txtStCount"
                                         FontSize="18"
-                                        Foreground="#303030"
+                                        Foreground="{DynamicResource SecondaryTextBrush}"
                                         Text="تعداد" />
                                     <TextBlock
                                         Margin="8,6"
                                         VerticalAlignment="Bottom"
                                         FontSize="16"
-                                        Foreground="#303030"><Run Text="نفر" /></TextBlock>
+                                        Foreground="{DynamicResource SecondaryTextBrush}"><Run Text="نفر" /></TextBlock>
                                 </StackPanel>
                             </StackPanel>
                             <Border.Style>
@@ -75,13 +75,13 @@
                                     <TextBlock
                                         x:Name="txtScCount"
                                         FontSize="18"
-                                        Foreground="#303030"
+                                        Foreground="{DynamicResource SecondaryTextBrush}"
                                         Text="تعداد" />
                                     <TextBlock
                                         Margin="8,6"
                                         VerticalAlignment="Bottom"
                                         FontSize="16"
-                                        Foreground="#303030"><Run Text="کلاس" /></TextBlock>
+                                        Foreground="{DynamicResource SecondaryTextBrush}"><Run Text="کلاس" /></TextBlock>
                                 </StackPanel>
                             </StackPanel>
                             <Border.Style>
@@ -115,13 +115,13 @@
                                     <TextBlock
                                         x:Name="txtUCount"
                                         FontSize="18"
-                                        Foreground="#303030"
+                                        Foreground="{DynamicResource SecondaryTextBrush}"
                                         Text="تعداد" />
                                     <TextBlock
                                         Margin="8,6"
                                         VerticalAlignment="Bottom"
                                         FontSize="16"
-                                        Foreground="#303030"><Run Text="نفر" /></TextBlock>
+                                        Foreground="{DynamicResource SecondaryTextBrush}"><Run Text="نفر" /></TextBlock>
                                 </StackPanel>
                             </StackPanel>
                             <Border.Style>
@@ -177,11 +177,13 @@
                                         DataLabels="True"
                                         Fill="{StaticResource PrimaryBrush}"
                                         FontFamily="{StaticResource TeacherYar.Fonts.IRANSans}"
+                                        Foreground="{DynamicResource SecondaryTextBrush}"
                                         Values="{Binding Results}" />
                                 </lvc:CartesianChart.Series>
                                 <lvc:CartesianChart.AxisX>
                                     <lvc:Axis
                                         FontFamily="{StaticResource TeacherYar.Fonts.IRANSans}"
+                                        Foreground="{DynamicResource SecondaryTextBrush}"
                                         Labels="{Binding Labels}"
                                         LabelsRotation="-20">
                                         <lvc:Axis.Separator>
@@ -190,7 +192,10 @@
                                     </lvc:Axis>
                                 </lvc:CartesianChart.AxisX>
                                 <lvc:CartesianChart.AxisY>
-                                    <lvc:Axis FontFamily="{StaticResource TeacherYar.Fonts.IRANSans}" LabelFormatter="{Binding Formatter}" />
+                                    <lvc:Axis
+                                        FontFamily="{StaticResource TeacherYar.Fonts.IRANSans}"
+                                        Foreground="{DynamicResource SecondaryTextBrush}"
+                                        LabelFormatter="{Binding Formatter}" />
                                 </lvc:CartesianChart.AxisY>
                             </lvc:CartesianChart>
                         </Border>

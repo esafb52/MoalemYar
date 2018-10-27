@@ -84,9 +84,10 @@
                                     </StackPanel>
                                     <GridSplitter
                                         Height="2"
-            BorderBrush="{DynamicResource BorderBrush}"
                                         Margin="60,45,96,-7"
-                                        HorizontalAlignment="Stretch" />
+                                        HorizontalAlignment="Stretch"
+                                        Background="{DynamicResource ThirdlyTextBrush}"
+                                        BorderBrush="{DynamicResource BorderBrush}" />
                                 </Grid>
                                 <StackPanel Margin="10" Orientation="Vertical">
 
@@ -307,9 +308,10 @@
                                     </StackPanel>
                                     <GridSplitter
                                         Height="2"
-            BorderBrush="{DynamicResource BorderBrush}"
                                         Margin="60,45,96,-7"
-                                        HorizontalAlignment="Stretch" />
+                                        HorizontalAlignment="Stretch"
+                                        Background="{DynamicResource ThirdlyTextBrush}"
+                                        BorderBrush="{DynamicResource BorderBrush}" />
                                 </Grid>
                                 <StackPanel Margin="0,10,0,0" Orientation="Vertical">
                                     <Grid>

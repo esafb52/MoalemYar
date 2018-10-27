@@ -7,8 +7,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:MoalemYar.UserControls"
     xmlns:local1="clr-namespace:MoalemYar"
-    Background="{DynamicResource RegionBrush}"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Background="{DynamicResource RegionBrush}"
     Loaded="UserControl_Loaded"
     Style="{StaticResource myUserControl}"
     mc:Ignorable="d">
@@ -337,10 +337,11 @@
                                     </Button>
                                 </StackPanel>
                                 <GridSplitter
-            BorderBrush="{DynamicResource BorderBrush}"
                                     Height="2"
                                     Margin="60,45,96,-7"
-                                    HorizontalAlignment="Stretch" />
+                                    HorizontalAlignment="Stretch"
+                                    Background="{DynamicResource ThirdlyTextBrush}"
+                                    BorderBrush="{DynamicResource BorderBrush}" />
                             </Grid>
                             <StackPanel Margin="0,10,0,0" Orientation="Vertical">
                                 <Grid>

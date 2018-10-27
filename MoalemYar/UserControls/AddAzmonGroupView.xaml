@@ -7,8 +7,8 @@
     xmlns:local="clr-namespace:MoalemYar.UserControls"
     xmlns:local1="clr-namespace:MoalemYar"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Style="{StaticResource myUserControl}"
     Background="{DynamicResource RegionBrush}"
+    Style="{StaticResource myUserControl}"
     mc:Ignorable="d">
     <controls:TransitioningContentControl>
         <controls:ScrollViewer HorizontalScrollBarVisibility="Auto">
@@ -82,9 +82,10 @@
                                 </StackPanel>
                                 <GridSplitter
                                     Height="2"
-            BorderBrush="{DynamicResource BorderBrush}"
                                     Margin="60,45,96,-7"
-                                    HorizontalAlignment="Stretch" />
+                                    HorizontalAlignment="Stretch"
+                                    Background="{DynamicResource ThirdlyTextBrush}"
+                                    BorderBrush="{DynamicResource BorderBrush}" />
                             </Grid>
                             <TextBox
                                 Name="txtAddGroup"
@@ -210,10 +211,11 @@
                                     </Button>
                                 </StackPanel>
                                 <GridSplitter
-            BorderBrush="{DynamicResource BorderBrush}"
                                     Height="2"
                                     Margin="60,45,96,-7"
-                                    HorizontalAlignment="Stretch" />
+                                    HorizontalAlignment="Stretch"
+                                    Background="{DynamicResource ThirdlyTextBrush}"
+                                    BorderBrush="{DynamicResource BorderBrush}" />
                             </Grid>
                             <StackPanel Margin="0,10,0,0" Orientation="Vertical">
                                 <Grid>

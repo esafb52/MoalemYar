@@ -288,6 +288,7 @@
                                     Height="2"
                                     Margin="60,45,96,-7"
                                     HorizontalAlignment="Stretch"
+                                    Background="{DynamicResource ThirdlyTextBrush}"
                                     BorderBrush="{DynamicResource BorderBrush}" />
                             </Grid>
                         </StackPanel>

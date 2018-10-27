@@ -99,6 +99,7 @@
                         <GridSplitter
                             Margin="62,132,93.6,0.4"
                             HorizontalAlignment="Stretch"
+                            Background="{DynamicResource ThirdlyTextBrush}"
                             BorderBrush="{DynamicResource BorderBrush}"
                             BorderThickness="1,0,0,0" />
                     </Grid>
