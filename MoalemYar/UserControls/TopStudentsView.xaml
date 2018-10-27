@@ -7,6 +7,7 @@
     xmlns:local="clr-namespace:MoalemYar.UserControls"
     xmlns:local1="clr-namespace:MoalemYar"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Background="{DynamicResource RegionBrush}"
     Loaded="UserControl_Loaded"
     Style="{StaticResource myUserControl}"
     mc:Ignorable="d">

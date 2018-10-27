@@ -8,6 +8,7 @@
     xmlns:local="clr-namespace:MoalemYar.UserControls"
     xmlns:local1="clr-namespace:MoalemYar"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Background="{DynamicResource RegionBrush}"
     Loaded="UserControl_Loaded"
     Style="{StaticResource myUserControl}"
     mc:Ignorable="d">
@@ -19,7 +20,10 @@
             IsEnableAnimation="True"
             IsEnableTabFill="True">
             <controls:TabItem Header="ثبت اطلاعات" IsSelected="True">
-                <Grid Name="grd" KeyboardNavigation.TabNavigation="Cycle">
+                <Grid
+                    Name="grd"
+                    Background="{DynamicResource RegionBrush}"
+                    KeyboardNavigation.TabNavigation="Cycle">
                     <StackPanel
                         Width="800"
                         Height="40"
@@ -200,7 +204,7 @@
             </controls:TabItem>
             <controls:TabItem Header="ویرایش اطلاعات" IsSelected="True">
                 <controls:ScrollViewer HorizontalScrollBarVisibility="Auto">
-                    <Grid KeyboardNavigation.TabNavigation="Cycle">
+                    <Grid Background="{DynamicResource RegionBrush}">
                         <StackPanel Margin="5,5,5,0" Orientation="Vertical">
                             <Grid>
                                 <StackPanel
@@ -283,7 +287,8 @@
                                 <GridSplitter
                                     Height="2"
                                     Margin="60,45,96,-7"
-                                    HorizontalAlignment="Stretch" />
+                                    HorizontalAlignment="Stretch"
+                                    BorderBrush="{DynamicResource BorderBrush}" />
                             </Grid>
                         </StackPanel>
                         <Grid>

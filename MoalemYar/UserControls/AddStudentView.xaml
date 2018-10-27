@@ -8,6 +8,7 @@
     xmlns:local1="clr-namespace:MoalemYar"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Style="{StaticResource myUserControl}"
+    Background="{DynamicResource RegionBrush}"
     mc:Ignorable="d">
     <controls:TransitioningContentControl>
         <controls:ScrollViewer HorizontalScrollBarVisibility="Auto">
@@ -18,7 +19,7 @@
                 IsEnableAnimation="True"
                 IsEnableTabFill="True">
                 <controls:TabItem Header="ثبت اطلاعات" IsSelected="True">
-                    <Grid KeyboardNavigation.TabNavigation="Cycle">
+                    <Grid Background="{DynamicResource RegionBrush}">
                         <StackPanel Margin="5,5,5,0" Orientation="Vertical">
                             <Grid Margin="5,5,5,0" HorizontalAlignment="Stretch">
                                 <StackPanel Orientation="Horizontal">
@@ -81,6 +82,7 @@
                                 </StackPanel>
                                 <GridSplitter
                                     Height="2"
+            BorderBrush="{DynamicResource BorderBrush}"
                                     Margin="60,45,96,-7"
                                     HorizontalAlignment="Stretch" />
                             </Grid>
@@ -208,7 +210,7 @@
                     </Grid>
                 </controls:TabItem>
                 <controls:TabItem Header="ویرایش اطلاعات" IsSelected="True">
-                    <Grid KeyboardNavigation.TabNavigation="Cycle">
+                    <Grid Background="{DynamicResource RegionBrush}">
                         <StackPanel Margin="5,5,5,0" Orientation="Vertical">
                             <Grid>
                                 <StackPanel
@@ -320,6 +322,7 @@
                                 </StackPanel>
                                 <GridSplitter
                                     Height="2"
+            BorderBrush="{DynamicResource BorderBrush}"
                                     Margin="60,45,96,-7"
                                     HorizontalAlignment="Stretch" />
                             </Grid>

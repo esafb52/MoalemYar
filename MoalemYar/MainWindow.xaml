@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls="clr-namespace:HandyControl.Controls;assembly=HandyControl"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:enum="clr-namespace:HandyControl.Data.Enum;assembly=HandyControl"
     xmlns:local="clr-namespace:MoalemYar"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:mvvmc="clr-namespace:MVVMC;assembly=MVVMC"
@@ -63,56 +64,113 @@
             Modifiers="Ctrl" />
     </Window.InputBindings>
     <controls:WindowBorderless.NonClientAreaContent>
-        <StackPanel FlowDirection="RightToLeft" Orientation="Horizontal">
-            <Menu
-                Margin="10,0,0,0"
-                Background="Transparent"
-                FontFamily="{StaticResource TeacherYar.Fonts.IRANSans}"
-                WindowChrome.IsHitTestVisibleInChrome="True">
-                <MenuItem Foreground="White" Header="منو">
-                    <MenuItem Header="پشتیبان گیری">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel
+                VerticalAlignment="Stretch"
+                FlowDirection="RightToLeft"
+                Orientation="Horizontal">
+                <Menu
+                    Margin="10,0,0,0"
+                    Background="Transparent"
+                    FontFamily="{StaticResource TeacherYar.Fonts.IRANSans}"
+                    WindowChrome.IsHitTestVisibleInChrome="True">
+                    <MenuItem Foreground="White" Header="منو">
+                        <MenuItem Header="پشتیبان گیری">
+                            <MenuItem
+                                Command="{StaticResource backupCommand}"
+                                Header="پشتیبان گیری اطلاعات"
+                                InputGestureText="Ctrl+B"
+                                Tag="backup" />
+                            <MenuItem
+                                Command="{StaticResource restoreCommand}"
+                                Header="بازیابی اطلاعات"
+                                InputGestureText="Ctrl+R"
+                                Tag="restore" />
+                        </MenuItem>
                         <MenuItem
-                            Command="{StaticResource backupCommand}"
-                            Header="پشتیبان گیری اطلاعات"
-                            InputGestureText="Ctrl+B"
-                            Tag="backup" />
-                        <MenuItem
-                            Command="{StaticResource restoreCommand}"
-                            Header="بازیابی اطلاعات"
-                            InputGestureText="Ctrl+R"
-                            Tag="restore" />
+                            Command="SystemCommands.CloseWindowCommand"
+                            Header="خروج"
+                            InputGestureText="Alt+F4" />
+                    </MenuItem>
+                    <MenuItem Foreground="White" Header="ویرایش">
+                        <MenuItem Command="ApplicationCommands.Copy" Header="کپی" />
+                        <MenuItem Command="ApplicationCommands.Paste" Header="چسباندن" />
+                        <MenuItem Command="ApplicationCommands.Cut" Header="برش" />
+                    </MenuItem>
+                    <MenuItem Foreground="White" Header="آزمون">
+                        <MenuItem Command="{mvvmc:NavigateCommand ControllerID='UserControls', Action='StartAzmon'}" Header="آزمون آنلاین" />
+                        <Separator />
+                        <MenuItem Command="{mvvmc:NavigateCommand ControllerID='UserControls', Action='AddAzmonGroup'}" Header="گروه بندی سوالات" />
+                        <MenuItem Command="{mvvmc:NavigateCommand ControllerID='UserControls', Action='AddQuestions'}" Header="ساخت سوال" />
+                        <MenuItem Command="{mvvmc:NavigateCommand ControllerID='UserControls', Action='AzmonHistory'}" Header="نتایج گذشته" />
                     </MenuItem>
                     <MenuItem
-                        Command="SystemCommands.CloseWindowCommand"
-                        Header="خروج"
-                        InputGestureText="Alt+F4" />
-                </MenuItem>
-                <MenuItem Foreground="White" Header="ویرایش">
-                    <MenuItem Command="ApplicationCommands.Copy" Header="کپی" />
-                    <MenuItem Command="ApplicationCommands.Paste" Header="چسباندن" />
-                    <MenuItem Command="ApplicationCommands.Cut" Header="برش" />
-                </MenuItem>
-                <MenuItem Foreground="White" Header="آزمون">
-                    <MenuItem Command="{mvvmc:NavigateCommand ControllerID='UserControls', Action='StartAzmon'}" Header="آزمون آنلاین" />
-                    <Separator />
-                    <MenuItem Command="{mvvmc:NavigateCommand ControllerID='UserControls', Action='AddAzmonGroup'}" Header="گروه بندی سوالات" />
-                    <MenuItem Command="{mvvmc:NavigateCommand ControllerID='UserControls', Action='AddQuestions'}" Header="ساخت سوال" />
-                    <MenuItem Command="{mvvmc:NavigateCommand ControllerID='UserControls', Action='AzmonHistory'}" Header="نتایج گذشته" />
-                </MenuItem>
-                <MenuItem
-                    Command="{mvvmc:NavigateCommand ControllerID='UserControls',
-                                                    Action='Settings'}"
-                    Foreground="White"
-                    Header="تنظیمات"
-                    InputGestureText="Ctrl+S" />
-                <MenuItem
-                    Command="{mvvmc:NavigateCommand ControllerID='UserControls',
-                                                    Action='About'}"
-                    Foreground="White"
-                    Header="درباره"
-                    InputGestureText="Ctrl+A" />
-            </Menu>
-        </StackPanel>
+                        Command="{mvvmc:NavigateCommand ControllerID='UserControls',
+                                                        Action='Settings'}"
+                        Foreground="White"
+                        Header="تنظیمات"
+                        InputGestureText="Ctrl+S" />
+                    <MenuItem
+                        Command="{mvvmc:NavigateCommand ControllerID='UserControls',
+                                                        Action='About'}"
+                        Foreground="White"
+                        Header="درباره"
+                        InputGestureText="Ctrl+A" />
+                </Menu>
+            </StackPanel>
+            <Button
+                Name="ButtonConfig"
+                Grid.Column="1"
+                controls:IconElement.Geometry="{StaticResource ConfigGeometry}"
+                Click="ButtonConfig_OnClick"
+                Style="{StaticResource ButtonIcon}" />
+            <Popup
+                Name="PopupConfig"
+                Grid.Column="1"
+                AllowsTransparency="True"
+                HorizontalOffset="-25"
+                PlacementTarget="{Binding ElementName=ButtonConfig}"
+                StaysOpen="False"
+                VerticalOffset="6">
+                <Border
+                    Margin="16"
+                    Background="{DynamicResource SecondaryRegionBrush}"
+                    CornerRadius="4"
+                    Effect="{StaticResource EffectShadow2}">
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel Margin="10,10,10,10" Button.Click="ButtonSkins_OnClick">
+                            <Button Style="{StaticResource ButtonCustom}" Tag="{x:Static enum:SkinType.Default}">
+                                <Border
+                                    Width="32"
+                                    Height="21"
+                                    Background="White"
+                                    BorderBrush="{DynamicResource BorderBrush}"
+                                    BorderThickness="1"
+                                    CornerRadius="2" />
+                            </Button>
+                            <Button
+                                Margin="0,10,0,0"
+                                Style="{StaticResource ButtonCustom}"
+                                Tag="{x:Static enum:SkinType.Dark}">
+                                <Border
+                                    Width="32"
+                                    Height="21"
+                                    Background="Black"
+                                    BorderBrush="{DynamicResource BorderBrush}"
+                                    BorderThickness="1"
+                                    CornerRadius="2" />
+                            </Button>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+            </Popup>
+        </Grid>
+
     </controls:WindowBorderless.NonClientAreaContent>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -178,8 +236,8 @@
             </Border>
         </Grid>
         <Grid>
-            <Border Background="#f0f0f0">
-                <Border Background="{StaticResource MainContentBackground}">
+            <Border Background="{DynamicResource MainContentBackgroundBrush}">
+                <Border Background="{DynamicResource MainContentForegroundDrawingBrush}">
                     <Grid
                         Name="GridMain"
                         MinHeight="450"
@@ -194,14 +252,14 @@
                         <Border
                             Name="BorderEffect"
                             Grid.RowSpan="2"
-                            Background="White"
+                            Background="{DynamicResource RegionBrush}"
                             CornerRadius="10"
                             Effect="{StaticResource EffectShadow4}" />
                         <Border
                             Name="BorderTitle"
                             Grid.Row="0"
                             Height="32"
-                            Background="{StaticResource PrimaryBrush}"
+                            Background="{DynamicResource TitleBrush}"
                             CornerRadius="10,10,0,0">
                             <TextBlock
                                 Foreground="White"
@@ -234,7 +292,7 @@
             Width="4"
             HorizontalAlignment="Left"
             Background="Transparent"
-            BorderBrush="{StaticResource BorderBrush}"
+            BorderBrush="{DynamicResource BorderBrush}"
             BorderThickness="1,0,0,0" />
         <controls:ScrollViewer
             Grid.Column="0"

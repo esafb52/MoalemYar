@@ -7,6 +7,7 @@
     xmlns:local="clr-namespace:MoalemYar.UserControls"
     xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
     xmlns:mvvmc="clr-namespace:MVVMC;assembly=MVVMC"
+    Background="{DynamicResource RegionBrush}"
     Loaded="UserControl_Loaded"
     Style="{StaticResource myUserControl}">
     <controls:TransitioningContentControl>
@@ -21,7 +22,7 @@
                             Width="270"
                             Height="125"
                             Margin="10"
-                            Background="White"
+                            Background="{DynamicResource RegionBrush}"
                             CornerRadius="5"
                             Cursor="Hand">
                             <StackPanel
@@ -61,7 +62,7 @@
                             Width="300"
                             Height="125"
                             Margin="10"
-                            Background="White"
+                            Background="{DynamicResource RegionBrush}"
                             CornerRadius="5"
                             Cursor="Hand">
                             <StackPanel
@@ -101,7 +102,7 @@
                             Width="270"
                             Height="125"
                             Margin="10"
-                            Background="White"
+                            Background="{DynamicResource RegionBrush}"
                             CornerRadius="5"
                             Cursor="Hand">
                             <StackPanel
@@ -146,7 +147,7 @@
                             Width="270"
                             Height="350"
                             Margin="10"
-                            Background="White"
+                            Background="{DynamicResource RegionBrush}"
                             CornerRadius="5"
                             Effect="{StaticResource EffectShadow3}">
                             <StackPanel
@@ -165,7 +166,7 @@
                             Width="300"
                             Height="350"
                             Margin="10"
-                            Background="White"
+                            Background="{DynamicResource RegionBrush}"
                             CornerRadius="5"
                             Effect="{StaticResource EffectShadow3}">
                             <lvc:CartesianChart Margin="5" LegendLocation="Top">

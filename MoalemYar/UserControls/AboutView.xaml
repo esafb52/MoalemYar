@@ -7,6 +7,7 @@
     xmlns:local="clr-namespace:MoalemYar.UserControls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Style="{StaticResource myUserControl}"
+    Background="{DynamicResource RegionBrush}"
     mc:Ignorable="d">
     <controls:TransitioningContentControl>
         <controls:ScrollViewer HorizontalScrollBarVisibility="Auto">

@@ -8,6 +8,8 @@
 *
 ***********************************************************************************/
 
+using HandyControl.Data.Enum;
+using HandyControl.Tools;
 using System;
 using System.IO;
 using System.Reflection;
@@ -22,6 +24,8 @@ namespace MoalemYar
     {
         protected override void OnStartup(StartupEventArgs e)
         {
+            base.OnStartup(e);
+
             AppDomain.CurrentDomain.SetData("DataDirectory", AppVariable.fileName + @"\");
 
             #region Load Embedded Assembly
@@ -50,6 +54,8 @@ namespace MoalemYar
                 Directory.CreateDirectory(AppVariable.fileNameBakhsh);
 
             #endregion Check AppData Folder Existen and Create Config.json
+
+            
         }
 
         private static Assembly OnResolveAssembly(object sender, ResolveEventArgs args)
@@ -62,6 +68,25 @@ namespace MoalemYar
                 return null;
 
             return EmbeddedAssembly.Get(args.Name);
+        }
+
+        internal void UpdateSkin(SkinType skin)
+        {
+            var skins0 = Resources.MergedDictionaries[0];
+            skins0.MergedDictionaries.Clear();
+            skins0.MergedDictionaries.Add(ResourceHelper.GetSkin(skin));
+            skins0.MergedDictionaries.Add(ResourceHelper.GetSkin(typeof(App).Assembly, "Resources/Themes", skin));
+
+            var skins1 = Resources.MergedDictionaries[1];
+            skins1.MergedDictionaries.Clear();
+            skins1.MergedDictionaries.Add(new ResourceDictionary
+            {
+                Source = new Uri("pack://application:,,,/HandyControl;component/Themes/Theme.xaml")
+            });
+            skins1.MergedDictionaries.Add(new ResourceDictionary
+            {
+                Source = new Uri("pack://application:,,,/MoalemYar;component/Resources/Themes/Theme.xaml")
+            });
         }
     }
 }

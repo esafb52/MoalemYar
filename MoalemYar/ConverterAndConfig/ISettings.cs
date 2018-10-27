@@ -8,6 +8,7 @@
 *
 ***********************************************************************************/
 
+using HandyControl.Data.Enum;
 using nucs.JsonSettings;
 
 public class ISettings : JsonSettings
@@ -21,6 +22,7 @@ public class ISettings : JsonSettings
     public virtual bool IsMaximize { get; set; } = false;
     public virtual int? DefaultSchool { get; set; } = 0;
     public virtual string DefaultServer { get; set; } = "http://5743.zanjan.medu.ir";
+    public virtual SkinType Skin { get; set; } = 0;
 
     #endregion Property
 

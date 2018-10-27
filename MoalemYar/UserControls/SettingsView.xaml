@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:MoalemYar.UserControls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Background="{DynamicResource RegionBrush}"
     Style="{StaticResource myUserControl}"
     mc:Ignorable="d">
     <controls:TransitioningContentControl>
@@ -96,9 +97,10 @@
                             </StackPanel>
                         </StackPanel>
                         <GridSplitter
-                            Height="2"
                             Margin="62,132,93.6,0.4"
-                            HorizontalAlignment="Stretch" />
+                            HorizontalAlignment="Stretch"
+                            BorderBrush="{DynamicResource BorderBrush}"
+                            BorderThickness="1,0,0,0" />
                     </Grid>
                     <StackPanel Margin="0,20" HorizontalAlignment="Center">
                         <StackPanel Margin="10,0" Orientation="Horizontal">

@@ -10,6 +10,7 @@
 
 using HandyControl.Controls;
 using HandyControl.Data;
+using HandyControl.Data.Enum;
 using MoalemYar.UserControls;
 using MVVMC;
 using System;
@@ -101,6 +102,9 @@ namespace MoalemYar
 
         private void loadSettings()
         {
+            if (FindElement.Settings.Skin != SkinType.Default)
+                ((App)Application.Current).UpdateSkin(FindElement.Settings.Skin);
+
             if (FindElement.Settings.IsMaximize)
                 this.WindowState = WindowState.Maximized;
             else
@@ -465,5 +469,19 @@ namespace MoalemYar
         }
 
         #endregion "Notification"
+
+        private void ButtonConfig_OnClick(object sender, RoutedEventArgs e) => PopupConfig.IsOpen = true;
+      
+
+        private void ButtonSkins_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (e.OriginalSource is Button button && button.Tag is SkinType tag)
+            {
+                PopupConfig.IsOpen = false;
+                if (tag.Equals(FindElement.Settings.Skin)) return;
+                FindElement.Settings.Skin = tag;
+                ((App)Application.Current).UpdateSkin(tag);
+            }
+        }
     }
 }

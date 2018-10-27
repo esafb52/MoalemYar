@@ -8,6 +8,7 @@
 *
 ***********************************************************************************/
 
+using HandyControl.Data.Enum;
 using LiveCharts;
 using LiveCharts.Configurations;
 using LiveCharts.Helpers;
@@ -35,6 +36,7 @@ namespace MoalemYar.UserControls
         public InitialView()
         {
             InitializeComponent();
+            
             getInitialData();
         }
 

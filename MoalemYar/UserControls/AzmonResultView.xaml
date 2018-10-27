@@ -5,6 +5,7 @@
     xmlns:controls="clr-namespace:HandyControl.Controls;assembly=HandyControl"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:MoalemYar.UserControls"
+    Background="{DynamicResource RegionBrush}"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Loaded="UserControl_Loaded"
     Style="{StaticResource myUserControl}"
