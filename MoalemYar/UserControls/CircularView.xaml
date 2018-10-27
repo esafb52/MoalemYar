@@ -6,8 +6,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:MoalemYar.UserControls"
     xmlns:local1="clr-namespace:MoalemYar"
-    Background="{DynamicResource RegionBrush}"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Background="{DynamicResource RegionBrush}"
     Loaded="UserControl_Loaded"
     Style="{StaticResource myUserControl}"
     mc:Ignorable="d">
@@ -74,41 +74,41 @@
                 VerticalAlignment="Top"
                 FlowDirection="LeftToRight" />
             <TextBox
+                Name="txtSearch"
+                Width="{Binding Path=ActualWidth, ElementName=dataGrid, Converter={local1:MultiplyConverter Multiplier=.99}}"
                 Margin="20,50,20,10"
-                    Name="txtSearch"
-                    Width="{Binding Path=ActualWidth, ElementName=dataGrid, Converter={local1:MultiplyConverter Multiplier=.99}}"
-                    controls:InfoElement.ContentHeight="35"
-                    controls:InfoElement.Placeholder="جستجو..."
-                    IsEnabled="False"
-                    Style="{StaticResource TextBoxExtend}"
-                    TextChanged="txtSearch_TextChanged" />
+                controls:InfoElement.ContentHeight="35"
+                controls:InfoElement.Placeholder="جستجو..."
+                IsEnabled="False"
+                Style="{StaticResource TextBoxExtend}"
+                TextChanged="txtSearch_TextChanged" />
             <DataGrid
+                x:Name="lst"
                 Margin="20,90,20,10"
-                    x:Name="lst"
-                    AutoGenerateColumns="False"
-                    HeadersVisibility="Column"
-                    IsReadOnly="True"
-                    MouseDoubleClick="lst_MouseDoubleClick"
-                    SelectionMode="Single">
+                AutoGenerateColumns="False"
+                HeadersVisibility="Column"
+                IsReadOnly="True"
+                MouseDoubleClick="lst_MouseDoubleClick"
+                SelectionMode="Single">
                 <DataGrid.Columns>
 
                     <DataGridTextColumn
-                            Width="1*"
-                            Binding="{Binding Path=link}"
-                            Header="لینک"
-                            Visibility="Hidden" />
+                        Width="1*"
+                        Binding="{Binding Path=link}"
+                        Header="لینک"
+                        Visibility="Hidden" />
                     <DataGridTextColumn
-                            MinWidth="50"
-                            Binding="{Binding Path=Row}"
-                            Header="ردیف" />
+                        MinWidth="50"
+                        Binding="{Binding Path=Row}"
+                        Header="ردیف" />
                     <DataGridTextColumn
-                            MinWidth="400"
-                            Binding="{Binding Path=Title}"
-                            Header="عنوان" />
+                        MinWidth="400"
+                        Binding="{Binding Path=Title}"
+                        Header="عنوان" />
                     <DataGridTextColumn
-                            MinWidth="100"
-                            Binding="{Binding Path=Category}"
-                            Header="دسته بندی" />
+                        MinWidth="100"
+                        Binding="{Binding Path=Category}"
+                        Header="دسته بندی" />
                     <DataGridTemplateColumn MinWidth="260" Header="نوع">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
@@ -121,10 +121,10 @@
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
                     <DataGridTextColumn
-                            Width="1*"
-                            MinWidth="100"
-                            Binding="{Binding Path=Date}"
-                            Header="تاریخ" />
+                        Width="1*"
+                        MinWidth="100"
+                        Binding="{Binding Path=Date}"
+                        Header="تاریخ" />
                 </DataGrid.Columns>
                 <DataGrid.ContextMenu>
                     <ContextMenu>

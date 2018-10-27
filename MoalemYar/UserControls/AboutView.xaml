@@ -6,8 +6,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:MoalemYar.UserControls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Style="{StaticResource myUserControl}"
     Background="{DynamicResource RegionBrush}"
+    Style="{StaticResource myUserControl}"
     mc:Ignorable="d">
     <controls:TransitioningContentControl>
         <controls:ScrollViewer HorizontalScrollBarVisibility="Auto">

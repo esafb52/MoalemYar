@@ -7,8 +7,8 @@
     xmlns:local="clr-namespace:MoalemYar.UserControls"
     xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Loaded="UserControl_Loaded"
     Background="{DynamicResource RegionBrush}"
+    Loaded="UserControl_Loaded"
     Style="{StaticResource myUserControl}"
     mc:Ignorable="d">
     <controls:TransitioningContentControl>

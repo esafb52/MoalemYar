@@ -274,7 +274,6 @@ namespace MoalemYar
             //Reset Data Deleted
             else if (NotificationKEY.Equals(AppVariable.Data_Reset_Deleted_KEY))
             {
-                //Todo: change button text to راه اندازی
                 Growl.Ask(new GrowlInfo
                 {
                     Message = $"{param[0]} به حالت پیشفرض تغییر یافت، برنامه را دوباره راه اندازی کنید",

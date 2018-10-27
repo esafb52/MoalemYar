@@ -20,187 +20,192 @@
             IsEnableAnimation="True"
             IsEnableTabFill="True">
             <controls:TabItem Header="ثبت اطلاعات" IsSelected="True">
-                <Grid
-                    Name="grd"
-                    Background="{DynamicResource RegionBrush}"
-                    KeyboardNavigation.TabNavigation="Cycle">
-                    <StackPanel
-                        Width="800"
-                        Height="40"
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Top"
-                        Orientation="Horizontal">
-                        <TextBlock
-                            Margin="5"
-                            HorizontalAlignment="Center"
-                            Style="{StaticResource TextBlockSubTitle}"
-                            Text="امتحان / فعالیت" />
-                        <ToggleButton
-                            Name="isExam"
-                            Margin="10,5"
-                            VerticalAlignment="Center"
-                            Checked="isExam_Checked"
-                            Style="{StaticResource ToggleButtonSwitch}"
-                            Unchecked="isExam_Checked" />
-                        <TextBlock
-                            Margin="5"
-                            HorizontalAlignment="Center"
-                            Style="{StaticResource TextBlockSubTitle}"
-                            Text="پرسش" />
-                        <ToggleButton
-                            Name="isQuestion"
-                            Margin="10,5"
-                            VerticalAlignment="Center"
-                            Checked="isQuestion_Checked"
-                            Style="{StaticResource ToggleButtonSwitch}"
-                            Unchecked="isQuestion_Checked" />
-                    </StackPanel>
-                    <StackPanel Margin="10,50,10,71" Orientation="Horizontal">
-                        <ComboBox
-                            x:Name="cmbBase"
-                            Width="240"
+                <controls:ScrollViewer HorizontalScrollBarVisibility="Auto">
+
+                    <Grid
+                        Name="grd"
+                        Background="{DynamicResource RegionBrush}"
+                        KeyboardNavigation.TabNavigation="Cycle">
+                        <StackPanel
+                            Width="800"
+                            Height="40"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Top"
-                            controls:InfoElement.ContentHeight="35"
-                            controls:InfoElement.Placeholder="انتخاب کلاس"
-                            SelectedValue="{Binding SchoolName}"
-                            SelectedValuePath="Id"
-                            SelectionChanged="cmbBase_SelectionChanged"
-                            Style="{StaticResource ComboBoxExtend}"
-                            TabIndex="0">
-                            <ComboBox.ItemTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="{Binding SchoolName}" />
-                                        <TextBlock Text=" - " />
-                                        <TextBlock Text="{Binding Base}" />
-                                        <TextBlock Text=" - " />
-                                        <TextBlock Text="{Binding Year}" />
-                                    </StackPanel>
-                                </DataTemplate>
-                            </ComboBox.ItemTemplate>
-                        </ComboBox>
-                        <ComboBox
-                            Name="cmbBook"
-                            Width="240"
-                            Margin="10,0"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Top"
-                            controls:InfoElement.ContentHeight="35"
-                            controls:InfoElement.Placeholder="انتخاب درس"
-                            FlowDirection="RightToLeft"
-                            SelectionChanged="cmbBook_SelectionChanged"
-                            Style="{StaticResource ComboBoxExtend}" />
-                        <PersianCalendarWPF:PersianDatePicker
-                            Name="txtDate"
-                            Height="30"
-                            Margin="0,0,10,0"
-                            VerticalAlignment="Top" />
-                        <TextBox
-                            Name="txtDesc"
-                            Width="240"
-                            HorizontalAlignment="Center"
-                            controls:InfoElement.ContentHeight="35"
-                            controls:InfoElement.Placeholder="توضیحات"
-                            Style="{StaticResource TextBoxExtend}"
-                            TabIndex="2"
-                            TextWrapping="Wrap" />
-                    </StackPanel>
-                    <DataGrid
-                        x:Name="dataGrid"
-                        Margin="10,90,9.8,0"
-                        local:DataGridBehavior.DisplayRowNumber="True"
-                        AutoGenerateColumns="False"
-                        HeadersVisibility="All"
-                        IsReadOnly="True"
-                        RowHeaderWidth="60"
-                        SelectionMode="Single">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Binding="{Binding Path=Id}" Visibility="Hidden" />
-                            <DataGridTextColumn Binding="{Binding Path=BaseId}" Visibility="Hidden" />
-                            <DataGridTextColumn
-                                Width="1*"
-                                MinWidth="120"
-                                Binding="{Binding Path=Name}"
-                                Header="نام" />
-                            <DataGridTextColumn
-                                Width="1*"
-                                MinWidth="130"
-                                Binding="{Binding Path=LName}"
-                                Header="نام خانوادگی" />
-                            <DataGridTextColumn
-                                Width="1*"
-                                MinWidth="130"
-                                Binding="{Binding Path=FName}"
-                                Header="نام پدر" />
-                            <DataGridTemplateColumn
-                                Width="1*"
-                                MinWidth="180"
-                                Header="نمره">
-                                <DataGridTemplateColumn.CellTemplate>
+                            Orientation="Horizontal">
+                            <TextBlock
+                                Margin="5"
+                                HorizontalAlignment="Center"
+                                Style="{StaticResource TextBlockSubTitle}"
+                                Text="امتحان / فعالیت" />
+                            <ToggleButton
+                                Name="isExam"
+                                Margin="10,5"
+                                VerticalAlignment="Center"
+                                Checked="isExam_Checked"
+                                Style="{StaticResource ToggleButtonSwitch}"
+                                Unchecked="isExam_Checked" />
+                            <TextBlock
+                                Margin="5"
+                                HorizontalAlignment="Center"
+                                Style="{StaticResource TextBlockSubTitle}"
+                                Text="پرسش" />
+                            <ToggleButton
+                                Name="isQuestion"
+                                Margin="10,5"
+                                VerticalAlignment="Center"
+                                Checked="isQuestion_Checked"
+                                Style="{StaticResource ToggleButtonSwitch}"
+                                Unchecked="isQuestion_Checked" />
+                        </StackPanel>
+                        <StackPanel Margin="10,50,10,71" Orientation="Horizontal">
+                            <ComboBox
+                                x:Name="cmbBase"
+                                Width="240"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                controls:InfoElement.ContentHeight="35"
+                                controls:InfoElement.Placeholder="انتخاب کلاس"
+                                SelectedValue="{Binding SchoolName}"
+                                SelectedValuePath="Id"
+                                SelectionChanged="cmbBase_SelectionChanged"
+                                Style="{StaticResource ComboBoxExtend}"
+                                TabIndex="0">
+                                <ComboBox.ItemTemplate>
                                     <DataTemplate>
-                                        <StackPanel
-                                            Name="stackToggle"
-                                            Margin="5"
-                                            HorizontalAlignment="Right"
-                                            Orientation="Vertical">
-                                            <StackPanel Orientation="Horizontal">
-                                                <ToggleButton
-                                                    Margin="0,2"
-                                                    Checked="chkChecked_Checked"
-                                                    Style="{StaticResource ToggleButtonSwitch}"
-                                                    Tag="exc" />
-                                                <TextBlock Margin="5,0,5,0" Text="خیلی خوب" />
-                                            </StackPanel>
-                                            <StackPanel Orientation="Horizontal">
-                                                <ToggleButton
-                                                    Margin="0,2"
-                                                    Checked="chkChecked_Checked"
-                                                    Style="{StaticResource ToggleButtonSwitch}"
-                                                    Tag="good" />
-                                                <TextBlock Margin="5,0,5,0" Text="خوب" />
-                                            </StackPanel>
-                                            <StackPanel Orientation="Horizontal">
-                                                <ToggleButton
-                                                    Margin="0,2"
-                                                    Checked="chkChecked_Checked"
-                                                    Style="{StaticResource ToggleButtonSwitch}"
-                                                    Tag="nbad" />
-                                                <TextBlock Margin="5,0,5,0" Text="قابل قبول" />
-                                            </StackPanel>
-                                            <StackPanel Orientation="Horizontal">
-                                                <ToggleButton
-                                                    Margin="0,2"
-                                                    Checked="chkChecked_Checked"
-                                                    Style="{StaticResource ToggleButtonSwitch}"
-                                                    Tag="bad" />
-                                                <TextBlock Margin="5,0,5,0" Text="نیاز به تلاش بیشتر" />
-                                            </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding SchoolName}" />
+                                            <TextBlock Text=" - " />
+                                            <TextBlock Text="{Binding Base}" />
+                                            <TextBlock Text=" - " />
+                                            <TextBlock Text="{Binding Year}" />
                                         </StackPanel>
                                     </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
-                            <DataGridTemplateColumn
-                                Width="1*"
-                                MinWidth="100"
-                                Header="وضعیت">
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate x:Name="myDataTemplate">
-                                        <StackPanel
-                                            Margin="5"
-                                            HorizontalAlignment="Center"
-                                            Orientation="Vertical">
-                                            <TextBlock
-                                                Name="txtStatus"
-                                                Style="{StaticResource TextBlockDefaultWarning}"
-                                                Text="ثبت نشده" />
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
-                        </DataGrid.Columns>
-                    </DataGrid>
-                </Grid>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                            <ComboBox
+                                Name="cmbBook"
+                                Width="240"
+                                Margin="10,0"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                controls:InfoElement.ContentHeight="35"
+                                controls:InfoElement.Placeholder="انتخاب درس"
+                                FlowDirection="RightToLeft"
+                                SelectionChanged="cmbBook_SelectionChanged"
+                                Style="{StaticResource ComboBoxExtend}" />
+                            <PersianCalendarWPF:PersianDatePicker
+                                Name="txtDate"
+                                Height="30"
+                                Margin="0,0,10,0"
+                                VerticalAlignment="Top" />
+                            <TextBox
+                                Name="txtDesc"
+                                Width="240"
+                                HorizontalAlignment="Center"
+                                controls:InfoElement.ContentHeight="35"
+                                controls:InfoElement.Placeholder="توضیحات"
+                                Style="{StaticResource TextBoxExtend}"
+                                TabIndex="2"
+                                TextWrapping="Wrap" />
+                        </StackPanel>
+                        <DataGrid
+                            x:Name="dataGrid"
+                            Margin="10,90,9.8,0"
+                            local:DataGridBehavior.DisplayRowNumber="True"
+                            AutoGenerateColumns="False"
+                            HeadersVisibility="All"
+                            RowHeaderWidth="60"
+                            SelectionMode="Single">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding Path=Id}" Visibility="Hidden" />
+                                <DataGridTextColumn Binding="{Binding Path=BaseId}" Visibility="Hidden" />
+                                <DataGridTextColumn
+                                    Width="1*"
+                                    MinWidth="120"
+                                    Binding="{Binding Path=Name}"
+                                    Header="نام" />
+                                <DataGridTextColumn
+                                    Width="1*"
+                                    MinWidth="130"
+                                    Binding="{Binding Path=LName}"
+                                    Header="نام خانوادگی" />
+                                <DataGridTextColumn
+                                    Width="1*"
+                                    MinWidth="130"
+                                    Binding="{Binding Path=FName}"
+                                    Header="نام پدر" />
+                                <DataGridTemplateColumn
+                                    Width="1*"
+                                    MinWidth="180"
+                                    Header="نمره">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <StackPanel
+                                                Name="stackToggle"
+                                                Margin="5"
+                                                HorizontalAlignment="Right"
+                                                Orientation="Vertical">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <ToggleButton
+                                                        Margin="0,2"
+                                                        Checked="chkChecked_Checked"
+                                                        Style="{StaticResource ToggleButtonSwitch}"
+                                                        Tag="exc" />
+                                                    <TextBlock Margin="5,0,5,0" Text="خیلی خوب" />
+                                                </StackPanel>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <ToggleButton
+                                                        Margin="0,2"
+                                                        Checked="chkChecked_Checked"
+                                                        Style="{StaticResource ToggleButtonSwitch}"
+                                                        Tag="good" />
+                                                    <TextBlock Margin="5,0,5,0" Text="خوب" />
+                                                </StackPanel>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <ToggleButton
+                                                        Margin="0,2"
+                                                        Checked="chkChecked_Checked"
+                                                        Style="{StaticResource ToggleButtonSwitch}"
+                                                        Tag="nbad" />
+                                                    <TextBlock Margin="5,0,5,0" Text="قابل قبول" />
+                                                </StackPanel>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <ToggleButton
+                                                        Margin="0,2"
+                                                        Checked="chkChecked_Checked"
+                                                        Style="{StaticResource ToggleButtonSwitch}"
+                                                        Tag="bad" />
+                                                    <TextBlock Margin="5,0,5,0" Text="نیاز به تلاش بیشتر" />
+                                                </StackPanel>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+
+                                <DataGridTemplateColumn
+                                    Width="1*"
+                                    MinWidth="100"
+                                    Header="وضعیت">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate x:Name="myDataTemplate">
+                                            <StackPanel
+                                                Margin="5"
+                                                HorizontalAlignment="Center"
+                                                Orientation="Vertical">
+                                                <TextBlock
+                                                    Name="txtStatus"
+                                                    Style="{StaticResource TextBlockDefaultWarning}"
+                                                    Text="ثبت نشده" />
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+                    </Grid>
+                </controls:ScrollViewer>
+
             </controls:TabItem>
             <controls:TabItem Header="ویرایش اطلاعات" IsSelected="True">
                 <controls:ScrollViewer HorizontalScrollBarVisibility="Auto">

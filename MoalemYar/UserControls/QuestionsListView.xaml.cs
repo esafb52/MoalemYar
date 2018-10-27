@@ -90,7 +90,7 @@ namespace MoalemYar.UserControls
             }
         }
 
-        public async static Task<string> InsertScoreAsync(long StudentId, string Book, string Date, string Scorez, string Desc)
+        public async static Task<long> InsertScoreAsync(long StudentId, string Book, string Date, string Scorez, string Desc)
         {
             using (var db = new DataClass.myDbContext())
             {
@@ -102,10 +102,8 @@ namespace MoalemYar.UserControls
                 Score.Desc = Desc;
 
                 db.Scores.Add(Score);
-
                 await db.SaveChangesAsync();
-
-                return "Score Added Successfully";
+                return Score.Id;
             }
         }
 
@@ -210,16 +208,17 @@ namespace MoalemYar.UserControls
             }
         }
 
-        private void addScore(long StudentId, string Book, string Date, string Scorez, string Desc)
+        private long addScore(long StudentId, string Book, string Date, string Scorez, string Desc)
         {
+            var query = InsertScoreAsync(StudentId, Book, Date, Scorez, Desc);
             try
             {
-                var query = InsertScoreAsync(StudentId, Book, Date, Scorez, Desc);
                 query.Wait();
             }
             catch (Exception)
             {
             }
+            return query.Result;
         }
 
         private void updateScore(long ScoreId, long StudentId, string Score, string Date, string Book, string Desc)
@@ -327,7 +326,7 @@ namespace MoalemYar.UserControls
             catch (NullReferenceException) { }
             catch (RuntimeBinderException) { }
         }
-
+        //Todo: get long as id and update list
         private void chkChecked_Checked(object sender, RoutedEventArgs e)
         {
             var row = dataGrid.ContainerFromElement(sender as DependencyObject);

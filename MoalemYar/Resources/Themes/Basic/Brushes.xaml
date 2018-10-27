@@ -1,7 +1,12 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <DrawingBrush x:Key="MainContentForegroundDrawingBrush" RenderOptions.CachingHint="Cache" Viewport="0,0,16,16" ViewportUnits="Absolute" Stretch="None" TileMode="Tile">
+    <DrawingBrush
+        x:Key="MainContentForegroundDrawingBrush"
+        RenderOptions.CachingHint="Cache"
+        Stretch="None"
+        TileMode="Tile"
+        Viewport="0,0,16,16"
+        ViewportUnits="Absolute">
         <DrawingBrush.Drawing>
             <DrawingGroup>
                 <GeometryDrawing Brush="{DynamicResource MainContentForegroundBrush}">
@@ -16,18 +21,18 @@
         </DrawingBrush.Drawing>
     </DrawingBrush>
 
-    <LinearGradientBrush x:Key="MenuButtonBorderBrush" EndPoint="0.5,1" StartPoint="0.5,0">
-        <GradientStop Color="White" Offset="0"/>
-        <GradientStop Color="#F2F2F2" Offset="1"/>
+    <LinearGradientBrush x:Key="MenuButtonBorderBrush" StartPoint="0.5,0" EndPoint="0.5,1">
+        <GradientStop Offset="0" Color="White" />
+        <GradientStop Offset="1" Color="#F2F2F2" />
     </LinearGradientBrush>
 
-    <LinearGradientBrush x:Key="ToolBarBackground" EndPoint="0.5,1" StartPoint="0.5,0">
-        <GradientStop Color="#F5F4F5" Offset="0"/>
-        <GradientStop Color="#D1CFD1" Offset="1"/>
+    <LinearGradientBrush x:Key="ToolBarBackground" StartPoint="0.5,0" EndPoint="0.5,1">
+        <GradientStop Offset="0" Color="#F5F4F5" />
+        <GradientStop Offset="1" Color="#D1CFD1" />
     </LinearGradientBrush>
 
-    <SolidColorBrush x:Key="MainBackgroundBrush" Color="{DynamicResource MainBackgroundColor}"/>
-    <SolidColorBrush x:Key="MainContentForegroundBrush" Color="{DynamicResource MainContentForegroundColor}"/>
-    <SolidColorBrush x:Key="MainContentBackgroundBrush" Color="{DynamicResource MainContentBackgroundColor}"/>
+    <SolidColorBrush x:Key="MainBackgroundBrush" Color="{DynamicResource MainBackgroundColor}" />
+    <SolidColorBrush x:Key="MainContentForegroundBrush" Color="{DynamicResource MainContentForegroundColor}" />
+    <SolidColorBrush x:Key="MainContentBackgroundBrush" Color="{DynamicResource MainContentBackgroundColor}" />
 
 </ResourceDictionary>

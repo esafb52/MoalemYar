@@ -6,8 +6,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:MoalemYar.UserControls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Loaded="UserControl_Loaded"
     Background="{DynamicResource RegionBrush}"
+    Loaded="UserControl_Loaded"
     Style="{StaticResource myUserControl}"
     mc:Ignorable="d">
     <controls:TransitioningContentControl>
@@ -76,7 +76,10 @@
                         Header="نام پدر" />
                 </DataGrid.Columns>
             </DataGrid>
-            <controls:ScrollViewer HorizontalScrollBarVisibility="Auto" Grid.Column="1" Margin="0.2,55,-0.2,-0.4">
+            <controls:ScrollViewer
+                Grid.Column="1"
+                Margin="0.2,55,-0.2,-0.4"
+                HorizontalScrollBarVisibility="Auto">
                 <WrapPanel Name="waterfallFlow" Width="1000" />
             </controls:ScrollViewer>
         </Grid>
