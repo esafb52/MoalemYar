@@ -6,11 +6,10 @@
     StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
-
             <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MoalemYar;component/Resources/Fonts/FontsDictionary.xaml" />
                 <ResourceDictionary>
                     <ResourceDictionary.MergedDictionaries>
-                        <ResourceDictionary Source="pack://application:,,,/MoalemYar;component/Resources/Fonts/FontsDictionary.xaml" />
                         <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/SkinDefault.xaml" />
                         <ResourceDictionary Source="Resources/Themes/SkinDefault.xaml" />
                     </ResourceDictionary.MergedDictionaries>

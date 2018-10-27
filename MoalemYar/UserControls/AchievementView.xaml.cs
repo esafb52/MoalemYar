@@ -161,7 +161,7 @@ namespace MoalemYar.UserControls
                     mainBorder.Effect = TryFindResource("EffectShadow3") as Effect;
                     mainBorder.CornerRadius = new System.Windows.CornerRadius(5);
                     mainBorder.Margin = new System.Windows.Thickness(10);
-                    mainBorder.Background = System.Windows.Media.Brushes.White;
+                    mainBorder.Background = TryFindResource("RegionBrush") as Brush;
                     mainBorder.Child = chart;
 
                     waterfallFlow.Children.Add(mainBorder);
