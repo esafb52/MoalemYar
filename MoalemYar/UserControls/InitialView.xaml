@@ -7,7 +7,7 @@
     xmlns:local="clr-namespace:MoalemYar.UserControls"
     xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
     xmlns:mvvmc="clr-namespace:MVVMC;assembly=MVVMC"
-    Background="{DynamicResource SecondaryRegionBrush}"
+    Background="{DynamicResource RegionBrush}"
     Loaded="UserControl_Loaded"
     Style="{StaticResource myUserControl}">
     <controls:TransitioningContentControl>
@@ -180,6 +180,9 @@
                                         Foreground="{DynamicResource SecondaryTextBrush}"
                                         Values="{Binding Results}" />
                                 </lvc:CartesianChart.Series>
+                                <lvc:CartesianChart.DataTooltip>
+                                    <lvc:DefaultTooltip Background="{DynamicResource SecondaryRegionBrush}" />
+                                </lvc:CartesianChart.DataTooltip>
                                 <lvc:CartesianChart.AxisX>
                                     <lvc:Axis
                                         FontFamily="{StaticResource TeacherYar.Fonts.IRANSans}"

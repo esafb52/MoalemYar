@@ -20,6 +20,7 @@ namespace MoalemYar.UserControls
         private List<DataClass.Tables.Score> _initialCollection;
         public ChartValues<DataClass.DataTransferObjects.myChartTemplate> Results { get; set; }
         public ObservableCollection<string> Labels { get; set; }
+
         public AchievementView()
         {
             InitializeComponent();
@@ -137,7 +138,7 @@ namespace MoalemYar.UserControls
 
                     var series = new SeriesCollection
                     {
-                       new LineSeries{
+                       new ColumnSeries{
                            Title = item.Book + Environment.NewLine + getAverageStatus(item.Book) + Environment.NewLine + "میانگین: " + getAverage(item.Book),
                            Configuration = Mapper, Values = Results, DataLabels = true, FontFamily = TryFindResource("TeacherYar.Fonts.IRANSans") as FontFamily,
                            Fill = TryFindResource("PrimaryBrush") as Brush
@@ -153,8 +154,8 @@ namespace MoalemYar.UserControls
                         LabelsRotation = -20,
                         Separator = new LiveCharts.Wpf.Separator { Step = 1 }
                     });
-                    chart.AxisY.Add(new Axis {FontFamily = TryFindResource("TeacherYar.Fonts.IRANSans") as FontFamily });
-
+                    chart.AxisY.Add(new Axis { FontFamily = TryFindResource("TeacherYar.Fonts.IRANSans") as FontFamily });
+                    chart.DataTooltip.Background = TryFindResource("SecondaryRegionBrush") as Brush;
                     var mainBorder = new Border();
                     mainBorder.Width = 300;
                     mainBorder.Height = 320;

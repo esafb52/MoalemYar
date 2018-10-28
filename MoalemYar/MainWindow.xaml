@@ -13,7 +13,7 @@
     MinHeight="700"
     BorderThickness="1"
     FontFamily="{StaticResource TeacherYar.Fonts.IRANSans}"
-    NonClientAreaBackground="#262e2f"
+    NonClientAreaBackground="#333333"
     OtherButtonHoverBrush="#888580"
     Style="{StaticResource CustomWindowStyle}"
     TextOptions.TextFormattingMode="Ideal"
