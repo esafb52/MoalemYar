@@ -155,15 +155,7 @@
                             Height="22"
                             Background="{DynamicResource BorderBrush}"
                             CornerRadius="11" />
-                        <Border
-                            x:Name="lightBorder"
-                            Grid.Column="0"
-                            Width="36"
-                            Height="22"
-                            Background="{DynamicResource PrimaryBrush}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}"
-                            CornerRadius="11" />
+                        <Border Grid.Column="0" Height="22" Width="36" Opacity="0" x:Name="lightBorder" Background="{DynamicResource PrimaryBrush}" CornerRadius="11" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"/>
                         <Border
                             Name="innerBorder"
                             Grid.Column="0"

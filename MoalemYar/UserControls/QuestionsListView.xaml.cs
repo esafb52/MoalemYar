@@ -329,6 +329,7 @@ namespace MoalemYar.UserControls
         //Todo: get long as id and update list
         private void chkChecked_Checked(object sender, RoutedEventArgs e)
         {
+
             var row = dataGrid.ContainerFromElement(sender as DependencyObject);
             var MyTextBlock = FindElement.FindVisualChildByName<TextBlock>(row, "txtStatus");
             var stackToggle = FindElement.FindVisualChildByName<StackPanel>(row, "stackToggle");
