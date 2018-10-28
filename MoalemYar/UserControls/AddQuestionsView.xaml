@@ -517,7 +517,14 @@
                                                 <PersianCalendarWPF:PersianDatePicker
                                                     x:Name="txtDateEdit"
                                                     Margin="5,5,0,20"
-                                                    HorizontalAlignment="Left" />
+                                                    HorizontalAlignment="Left"
+                                                    PersianCalendarWPF:InfoElement.DefaultTextColor="{DynamicResource PrimaryTextBrush}"
+                                                    PersianCalendarWPF:InfoElement.HeaderColor="{DynamicResource TitleBrush}"
+                                                    PersianCalendarWPF:InfoElement.MouseHoverBackgroundColor="{DynamicResource TitleBrush}"
+                                                    PersianCalendarWPF:InfoElement.MouseHoverForegroundColor="WhiteSmoke"
+                                                    Background="{DynamicResource RegionBrush}"
+                                                    BorderBrush="{DynamicResource RegionBrush}"
+                                                    Foreground="{DynamicResource PrimaryTextBrush}" />
                                                 <StackPanel.Style>
                                                     <Style TargetType="StackPanel">
                                                         <Style.Triggers>

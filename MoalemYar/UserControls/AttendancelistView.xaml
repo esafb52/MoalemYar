@@ -180,6 +180,13 @@
                                 Name="txtDateList"
                                 Height="30"
                                 Margin="10,0"
+                                PersianCalendarWPF:InfoElement.MouseHoverForegroundColor="WhiteSmoke"
+                                PersianCalendarWPF:InfoElement.MouseHoverBackgroundColor="{DynamicResource TitleBrush}"
+                                PersianCalendarWPF:InfoElement.HeaderColor="{DynamicResource TitleBrush}"
+                                PersianCalendarWPF:InfoElement.DefaultTextColor="{DynamicResource PrimaryTextBrush}"
+                                Background="{DynamicResource RegionBrush}"
+                                BorderBrush="{DynamicResource RegionBrush}"
+                                Foreground="{DynamicResource PrimaryTextBrush}" 
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Top"
                                 SelectedDateChanged="txtDateList_SelectedDateChanged">
@@ -493,6 +500,13 @@
                                             </StackPanel>
                                             <PersianCalendarWPF:PersianDatePicker
                                                 Name="txtDateEdit"
+                                PersianCalendarWPF:InfoElement.MouseHoverForegroundColor="WhiteSmoke"
+                                PersianCalendarWPF:InfoElement.MouseHoverBackgroundColor="{DynamicResource TitleBrush}"
+                                PersianCalendarWPF:InfoElement.HeaderColor="{DynamicResource TitleBrush}"
+                                PersianCalendarWPF:InfoElement.DefaultTextColor="{DynamicResource PrimaryTextBrush}"
+                                Background="{DynamicResource RegionBrush}"
+                                BorderBrush="{DynamicResource RegionBrush}"
+                                Foreground="{DynamicResource PrimaryTextBrush}" 
                                                 HorizontalAlignment="Left"
                                                 SelectedDate="{Binding Date}"
                                                 Text="{Binding Date}" />

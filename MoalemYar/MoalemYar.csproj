@@ -14,7 +14,7 @@
     <WarningLevel>4</WarningLevel>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <AssemblyVersion>2.1.5568.0</AssemblyVersion>
+    <AssemblyVersion>2.1.5597.0</AssemblyVersion>
     <TargetFrameworkProfile />
     <ShouldCreateLogs>False</ShouldCreateLogs>
     <AdvancedSettingsExpanded>True</AdvancedSettingsExpanded>
@@ -84,8 +84,8 @@
     <Reference Include="nucs.JsonSettings.Autosave, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\nucs.JsonSettings.Autosave.1.0.0\lib\net45\nucs.JsonSettings.Autosave.dll</HintPath>
     </Reference>
-    <Reference Include="PersianCalendarWPF, Version=1.0.21.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\PersianCalendarWPF.1.0.25\lib\net40\PersianCalendarWPF.dll</HintPath>
+    <Reference Include="PersianCalendarWPF, Version=1.1.30.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\PersianCalendarWPF.1.1.6\lib\net40\PersianCalendarWPF.dll</HintPath>
     </Reference>
     <Reference Include="PresentationFramework.Aero2" />
     <Reference Include="SharpCompress, Version=0.22.0.0, Culture=neutral, PublicKeyToken=afb0a02973931d96, processorArchitecture=MSIL">
@@ -389,6 +389,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="Resources\events.json" />
     <None Include="Resources\History.md" />
     <Resource Include="Resources\Fonts\IranSans\IRANSans.ttf" />
   </ItemGroup>

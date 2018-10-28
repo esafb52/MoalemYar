@@ -205,10 +205,22 @@
                         <Border
                             Width="270"
                             Margin="10"
-                            Background="White"
+                            Background="{DynamicResource RegionBrush}"
                             CornerRadius="5"
                             Effect="{StaticResource EffectShadow3}">
-                            <PersianCalendarWPF:PersianCalendar Margin="10" FontSize="14" />
+                            <PersianCalendarWPF:PersianCalendar
+                                Margin="10"
+                                PersianCalendarWPF:InfoElement.DefaultTextColor="{DynamicResource PrimaryTextBrush}"
+                                PersianCalendarWPF:InfoElement.HeaderColor="{DynamicResource TitleBrush}"
+                                PersianCalendarWPF:InfoElement.MouseHoverBackgroundColor="{DynamicResource TitleBrush}"
+                                PersianCalendarWPF:InfoElement.MouseHoverForegroundColor="WhiteSmoke"
+                                Background="{DynamicResource RegionBrush}"
+                                BorderBrush="{DynamicResource RegionBrush}"
+                                FontSize="14"
+                                Foreground="{DynamicResource PrimaryTextBrush}"
+                                SelectedDateBackground="{DynamicResource TitleBrush}"
+                                TodayBackground="{DynamicResource TitleBrush}" />
+
                         </Border>
                     </StackPanel>
                 </StackPanel>

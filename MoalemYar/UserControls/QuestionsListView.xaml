@@ -94,6 +94,13 @@
                         <PersianCalendarWPF:PersianDatePicker
                             Name="txtDate"
                             Height="30"
+                                PersianCalendarWPF:InfoElement.MouseHoverForegroundColor="WhiteSmoke"
+                                PersianCalendarWPF:InfoElement.MouseHoverBackgroundColor="{DynamicResource TitleBrush}"
+                                PersianCalendarWPF:InfoElement.HeaderColor="{DynamicResource TitleBrush}"
+                                PersianCalendarWPF:InfoElement.DefaultTextColor="{DynamicResource PrimaryTextBrush}"
+                                Background="{DynamicResource RegionBrush}"
+                                BorderBrush="{DynamicResource RegionBrush}"
+                                Foreground="{DynamicResource PrimaryTextBrush}" 
                             Margin="0,0,10,0"
                             VerticalAlignment="Top" />
                         <TextBox
@@ -402,6 +409,13 @@
                                 <StackPanel Orientation="Vertical">
                                     <PersianCalendarWPF:PersianDatePicker
                                         x:Name="txtDateEdit"
+                                PersianCalendarWPF:InfoElement.MouseHoverForegroundColor="WhiteSmoke"
+                                PersianCalendarWPF:InfoElement.MouseHoverBackgroundColor="{DynamicResource TitleBrush}"
+                                PersianCalendarWPF:InfoElement.HeaderColor="{DynamicResource TitleBrush}"
+                                PersianCalendarWPF:InfoElement.DefaultTextColor="{DynamicResource PrimaryTextBrush}"
+                                Background="{DynamicResource RegionBrush}"
+                                BorderBrush="{DynamicResource RegionBrush}"
+                                Foreground="{DynamicResource PrimaryTextBrush}" 
                                         HorizontalAlignment="Left"
                                         TabIndex="4" />
                                     <TextBox
