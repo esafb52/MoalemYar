@@ -210,10 +210,12 @@
                             Effect="{StaticResource EffectShadow3}">
                             <PersianCalendarWPF:PersianCalendar
                                 Margin="10"
+                                PersianCalendarWPF:InfoElement.WeekNameColor="{DynamicResource PrimaryTextBrush}"
+                                PersianCalendarWPF:InfoElement.DateInRangeTextColor="{DynamicResource ThirdlyTextBrush}"
                                 PersianCalendarWPF:InfoElement.DefaultTextColor="{DynamicResource PrimaryTextBrush}"
                                 PersianCalendarWPF:InfoElement.HeaderColor="{DynamicResource TitleBrush}"
                                 PersianCalendarWPF:InfoElement.MouseHoverBackgroundColor="{DynamicResource TitleBrush}"
-                                PersianCalendarWPF:InfoElement.MouseHoverForegroundColor="WhiteSmoke"
+                                PersianCalendarWPF:InfoElement.MouseHoverForegroundColor="{DynamicResource WarningBrush}"
                                 Background="{DynamicResource RegionBrush}"
                                 BorderBrush="{DynamicResource RegionBrush}"
                                 FontSize="14"

@@ -94,15 +94,19 @@
                         <PersianCalendarWPF:PersianDatePicker
                             Name="txtDate"
                             Height="30"
-                                PersianCalendarWPF:InfoElement.MouseHoverForegroundColor="WhiteSmoke"
-                                PersianCalendarWPF:InfoElement.MouseHoverBackgroundColor="{DynamicResource TitleBrush}"
-                                PersianCalendarWPF:InfoElement.HeaderColor="{DynamicResource TitleBrush}"
-                                PersianCalendarWPF:InfoElement.DefaultTextColor="{DynamicResource PrimaryTextBrush}"
-                                Background="{DynamicResource RegionBrush}"
-                                BorderBrush="{DynamicResource RegionBrush}"
-                                Foreground="{DynamicResource PrimaryTextBrush}" 
                             Margin="0,0,10,0"
-                            VerticalAlignment="Top" />
+                            VerticalAlignment="Top"
+                            PersianCalendarWPF:InfoElement.DateInRangeTextColor="{DynamicResource ThirdlyTextBrush}"
+                            PersianCalendarWPF:InfoElement.DefaultTextColor="{DynamicResource PrimaryTextBrush}"
+                            PersianCalendarWPF:InfoElement.HeaderColor="{DynamicResource TitleBrush}"
+                            PersianCalendarWPF:InfoElement.MouseHoverBackgroundColor="{DynamicResource TitleBrush}"
+                            PersianCalendarWPF:InfoElement.MouseHoverForegroundColor="{DynamicResource WarningBrush}"
+                            PersianCalendarWPF:InfoElement.PressedBorderColor="{DynamicResource PrimaryBrush}"
+                            PersianCalendarWPF:InfoElement.SelectedBackgroundColor="{DynamicResource RegionBrush}"
+                            PersianCalendarWPF:InfoElement.WeekNameColor="{DynamicResource PrimaryTextBrush}"
+                            Background="{DynamicResource RegionBrush}"
+                            BorderBrush="{DynamicResource PrimaryBrush}"
+                            Foreground="{DynamicResource PrimaryTextBrush}" />
                         <TextBox
                             Name="txtDesc"
                             Width="240"
@@ -409,14 +413,18 @@
                                 <StackPanel Orientation="Vertical">
                                     <PersianCalendarWPF:PersianDatePicker
                                         x:Name="txtDateEdit"
-                                PersianCalendarWPF:InfoElement.MouseHoverForegroundColor="WhiteSmoke"
-                                PersianCalendarWPF:InfoElement.MouseHoverBackgroundColor="{DynamicResource TitleBrush}"
-                                PersianCalendarWPF:InfoElement.HeaderColor="{DynamicResource TitleBrush}"
-                                PersianCalendarWPF:InfoElement.DefaultTextColor="{DynamicResource PrimaryTextBrush}"
-                                Background="{DynamicResource RegionBrush}"
-                                BorderBrush="{DynamicResource RegionBrush}"
-                                Foreground="{DynamicResource PrimaryTextBrush}" 
                                         HorizontalAlignment="Left"
+                                        PersianCalendarWPF:InfoElement.DateInRangeTextColor="{DynamicResource ThirdlyTextBrush}"
+                                        PersianCalendarWPF:InfoElement.DefaultTextColor="{DynamicResource PrimaryTextBrush}"
+                                        PersianCalendarWPF:InfoElement.HeaderColor="{DynamicResource TitleBrush}"
+                                        PersianCalendarWPF:InfoElement.MouseHoverBackgroundColor="{DynamicResource TitleBrush}"
+                                        PersianCalendarWPF:InfoElement.MouseHoverForegroundColor="{DynamicResource WarningBrush}"
+                                        PersianCalendarWPF:InfoElement.PressedBorderColor="{DynamicResource PrimaryBrush}"
+                                        PersianCalendarWPF:InfoElement.SelectedBackgroundColor="{DynamicResource RegionBrush}"
+                                        PersianCalendarWPF:InfoElement.WeekNameColor="{DynamicResource PrimaryTextBrush}"
+                                        Background="{DynamicResource RegionBrush}"
+                                        BorderBrush="{DynamicResource PrimaryBrush}"
+                                        Foreground="{DynamicResource PrimaryTextBrush}"
                                         TabIndex="4" />
                                     <TextBox
                                         x:Name="txtDescEdit"
