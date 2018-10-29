@@ -346,7 +346,6 @@
                                             VerticalAlignment="Top"
                                             controls:InfoElement.ContentHeight="35"
                                             controls:InfoElement.Placeholder="انتخاب دانش آموز"
-                                            IsEditable="True"
                                             SelectedValue="{Binding LName}"
                                             SelectedValuePath="Id"
                                             SelectionChanged="cmbEditStudent_SelectionChanged"
