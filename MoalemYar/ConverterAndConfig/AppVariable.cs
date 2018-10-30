@@ -61,20 +61,6 @@ namespace MoalemYar
 
         #endregion Notification KEY
 
-        #region Colors
-
-        public const string GREEN = "#4CAF50";
-        public const string BGBLACK = "#333";
-        public const string ORANGE = "#E0A030";
-        public const string RED = "#F44336";
-        public const string BLUE = "#1751C3";
-
-        #endregion Colors
-
-        public static double NotificationAnimInDur = 0.75;
-        public static double NotificationAnimOutDur = 0.5;
-        public static int NotificationDelay = 2;
-
         public static void RegisterInStartup(bool isChecked)
         {
             var productName = FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).ProductName;
