@@ -31,6 +31,7 @@
                 <Setter Property="FontFamily" Value="{StaticResource TeacherYar.Fonts.IRANSans}" />
                 <Setter Property="FlowDirection" Value="RightToLeft" />
             </Style>
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>
