@@ -35,6 +35,7 @@ namespace MoalemYar.UserControls
         private List<DataClass.DataTransferObjects.SchoolsStudentsJointDto> _initialCollectionStudent;
         private List<DataClass.DataTransferObjects.StudentsDto> _initialCollection;
         private List<DataClass.Tables.Score> _initialCollectionScore;
+        long insertedScoreId = 0;
 
         public QuestionsListView()
         {
@@ -326,24 +327,20 @@ namespace MoalemYar.UserControls
             catch (NullReferenceException) { }
             catch (RuntimeBinderException) { }
         }
-        //Todo: get long as id and update list
         private void chkChecked_Checked(object sender, RoutedEventArgs e)
         {
-
-            var row = dataGrid.ContainerFromElement(sender as DependencyObject);
-            var MyTextBlock = FindElement.FindVisualChildByName<TextBlock>(row, "txtStatus");
-            var stackToggle = FindElement.FindVisualChildByName<StackPanel>(row, "stackToggle");
-            stackToggle.IsEnabled = false;
-
-            dynamic selectedItem = dataGrid.SelectedItems[0];
-            var selectedChk = sender as ToggleButton;
-            string newStatus = string.Empty;
-
-            if (MyTextBlock.Text == "ثبت نشده")
+            if(cmbBook.SelectedIndex == -1 || cmbBase.SelectedIndex == -1)
             {
-                if (isQuestion.IsChecked == true)
-                    addQuestion((long)selectedItem.BaseId, (long)selectedItem.Id, cmbBook.SelectedItem.ToString());
+                MainWindow.main.showGrowlNotification(AppVariable.Fill_All_Data_KEY);
+            }
+            else
+            {
+                var row = dataGrid.ContainerFromElement(sender as DependencyObject);
+                var MyTextBlock = FindElement.FindVisualChildByName<TextBlock>(row, "txtStatus");
 
+                dynamic selectedItem = dataGrid.SelectedItems[0];
+                var selectedChk = sender as ToggleButton;
+                string newStatus = string.Empty;
                 switch ((selectedChk).Tag.ToString())
                 {
                     case "exc":
@@ -363,17 +360,27 @@ namespace MoalemYar.UserControls
                         newStatus = "نیاز به تلاش بیشتر";
                         break;
                 }
-                addScore((long)selectedItem.Id, cmbBook.SelectedItem.ToString(), txtDate.SelectedDate.ToString(), newStatus, (txtDesc.Text == string.Empty ? "بدون توضیحات" : txtDesc.Text));
-                MyTextBlock.Foreground = new SolidColorBrush(Colors.Green);
-                MyTextBlock.Text = newStatus + " ثبت شده ";
-            }
+                if (MyTextBlock.Text == "ثبت نشده")
+                {
+                    if (isQuestion.IsChecked == true)
+                        addQuestion((long)selectedItem.BaseId, (long)selectedItem.Id, cmbBook.SelectedItem.ToString());
 
-            var DeleteQuestion = _initialCollection.Where(x => x.Id == (long)selectedItem.Id).FirstOrDefault();
-            _initialCollection.Remove(DeleteQuestion);
+                    insertedScoreId = addScore((long)selectedItem.Id, cmbBook.SelectedItem.ToString(), txtDate.SelectedDate.ToString(), newStatus, (txtDesc.Text == string.Empty ? "بدون توضیحات" : txtDesc.Text));
+                    MyTextBlock.Foreground = new SolidColorBrush(Colors.Green);
+                    MyTextBlock.Text = newStatus + " ثبت شده ";
+                }
+                else
+                {
+                    updateScore(insertedScoreId, (long)selectedItem.Id, newStatus, txtDate.SelectedDate.ToString(), cmbBook.SelectedItem.ToString(), (txtDesc.Text == string.Empty ? "بدون توضیحات" : txtDesc.Text));
+                }
 
-            if (!_initialCollection.Any())
-            {
-                deleteQuestion((long)cmbBase.SelectedValue, cmbBook.SelectedItem.ToString());
+                var DeleteQuestion = _initialCollection.Where(x => x.Id == (long)selectedItem.Id).FirstOrDefault();
+                _initialCollection.Remove(DeleteQuestion);
+
+                if (!_initialCollection.Any())
+                {
+                    deleteQuestion((long)cmbBase.SelectedValue, cmbBook.SelectedItem.ToString());
+                }
             }
         }
 

@@ -150,43 +150,31 @@
                                 Header="نمره">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <StackPanel
-                                            Name="stackToggle"
-                                            Margin="5"
-                                            HorizontalAlignment="Right"
-                                            Orientation="Vertical">
-                                            <StackPanel Orientation="Horizontal">
-                                                <ToggleButton
-                                                    Margin="0,2"
-                                                    Checked="chkChecked_Checked"
-                                                    Style="{StaticResource ToggleButtonSwitch}"
-                                                    Tag="exc" />
-                                                <TextBlock Margin="5,0,5,0" Text="خیلی خوب" />
-                                            </StackPanel>
-                                            <StackPanel Orientation="Horizontal">
-                                                <ToggleButton
-                                                    Margin="0,2"
-                                                    Checked="chkChecked_Checked"
-                                                    Style="{StaticResource ToggleButtonSwitch}"
-                                                    Tag="good" />
-                                                <TextBlock Margin="5,0,5,0" Text="خوب" />
-                                            </StackPanel>
-                                            <StackPanel Orientation="Horizontal">
-                                                <ToggleButton
-                                                    Margin="0,2"
-                                                    Checked="chkChecked_Checked"
-                                                    Style="{StaticResource ToggleButtonSwitch}"
-                                                    Tag="nbad" />
-                                                <TextBlock Margin="5,0,5,0" Text="قابل قبول" />
-                                            </StackPanel>
-                                            <StackPanel Orientation="Horizontal">
-                                                <ToggleButton
-                                                    Margin="0,2"
-                                                    Checked="chkChecked_Checked"
-                                                    Style="{StaticResource ToggleButtonSwitch}"
-                                                    Tag="bad" />
-                                                <TextBlock Margin="5,0,5,0" Text="نیاز به تلاش بیشتر" />
-                                            </StackPanel>
+                                        <StackPanel Margin="5" HorizontalAlignment="Right">
+                                            <RadioButton
+                                                Margin="0,2"
+                                                Checked="chkChecked_Checked"
+                                                Content="خیلی خوب"
+                                                Style="{StaticResource ToggleButtonSwitch}"
+                                                Tag="exc" />
+                                            <RadioButton
+                                                Margin="0,2"
+                                                Checked="chkChecked_Checked"
+                                                Content="خوب"
+                                                Style="{StaticResource ToggleButtonSwitch}"
+                                                Tag="good" />
+                                            <RadioButton
+                                                Margin="0,2"
+                                                Checked="chkChecked_Checked"
+                                                Content="قابل قبول"
+                                                Style="{StaticResource ToggleButtonSwitch}"
+                                                Tag="nbad" />
+                                            <RadioButton
+                                                Margin="0,2"
+                                                Checked="chkChecked_Checked"
+                                                Content="نیاز به تلاش بیشتر"
+                                                Style="{StaticResource ToggleButtonSwitch}"
+                                                Tag="bad" />
                                         </StackPanel>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
