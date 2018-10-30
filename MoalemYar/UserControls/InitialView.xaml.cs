@@ -124,36 +124,43 @@ namespace MoalemYar.UserControls
             cmbEditBase.SelectedIndex = Convert.ToInt32(FindElement.Settings.DefaultSchool);
             getTopStudent(Convert.ToInt64(cmbEditBase.SelectedValue));
 
-            using (var db = new DataClass.myDbContext())
+            try
             {
-                long baseId = Convert.ToInt64(cmbEditBase.SelectedValue);
-                var query = db.Scores.Join(
-                   db.Students,
-                   c => c.StudentId,
-                   v => v.Id,
-                   (c, v) => new DataClass.DataTransferObjects.StudentsScoresDto { Id = c.Id, BaseId = v.BaseId, StudentId = v.Id, Name = v.Name, LName = v.LName, FName = v.FName, Scores = c.Scores }
-               ).Where(y => y.BaseId == baseId).ToList();
+                using (var db = new DataClass.myDbContext())
+                {
+                    long baseId = Convert.ToInt64(cmbEditBase.SelectedValue);
+                    var query = db.Scores.Join(
+                       db.Students,
+                       c => c.StudentId,
+                       v => v.Id,
+                       (c, v) => new DataClass.DataTransferObjects.StudentsScoresDto { Id = c.Id, BaseId = v.BaseId, StudentId = v.Id, Name = v.Name, LName = v.LName, FName = v.FName, Scores = c.Scores }
+                   ).Where(y => y.BaseId == baseId).ToList();
 
-                var niazBeTalash = query.Where(y => y.Scores == "نیاز به تلاش بیشتر").ToList();
-                var ghabelGhabol = query.Where(y => y.Scores == "قابل قبول").ToList();
-                var khob = query.Where(y => y.Scores == "خوب").ToList();
-                var kheyliKhob = query.Where(y => y.Scores == "خیلی خوب").ToList();
+                    var niazBeTalash = query.Where(y => y.Scores == "نیاز به تلاش بیشتر").ToList();
+                    var ghabelGhabol = query.Where(y => y.Scores == "قابل قبول").ToList();
+                    var khob = query.Where(y => y.Scores == "خوب").ToList();
+                    var kheyliKhob = query.Where(y => y.Scores == "خیلی خوب").ToList();
 
-                list.Add(new DataClass.DataTransferObjects.myChartTemplate { Caption = "نیاز به تلاش", Scores = niazBeTalash.Count * 100 / query.Count });
-                list.Add(new DataClass.DataTransferObjects.myChartTemplate { Caption = "قابل قبول", Scores = ghabelGhabol.Count * 100 / query.Count });
-                list.Add(new DataClass.DataTransferObjects.myChartTemplate { Caption = "خوب", Scores = khob.Count * 100 / query.Count });
-                list.Add(new DataClass.DataTransferObjects.myChartTemplate { Caption = "خیلی خوب", Scores = kheyliKhob.Count * 100 / query.Count });
+                    list.Add(new DataClass.DataTransferObjects.myChartTemplate { Caption = "نیاز به تلاش", Scores = niazBeTalash.Count * 100 / query.Count });
+                    list.Add(new DataClass.DataTransferObjects.myChartTemplate { Caption = "قابل قبول", Scores = ghabelGhabol.Count * 100 / query.Count });
+                    list.Add(new DataClass.DataTransferObjects.myChartTemplate { Caption = "خوب", Scores = khob.Count * 100 / query.Count });
+                    list.Add(new DataClass.DataTransferObjects.myChartTemplate { Caption = "خیلی خوب", Scores = kheyliKhob.Count * 100 / query.Count });
 
-                Mapper = Mappers.Xy<DataClass.DataTransferObjects.myChartTemplate>()
-                    .X((myData, index) => index)
-                    .Y(myData => myData.Scores);
+                    Mapper = Mappers.Xy<DataClass.DataTransferObjects.myChartTemplate>()
+                        .X((myData, index) => index)
+                        .Y(myData => myData.Scores);
 
-                var records = list.OrderBy(x => x.Scores).ToArray();
+                    var records = list.OrderBy(x => x.Scores).ToArray();
 
-                Results = records.AsChartValues();
-                Labels = new ObservableCollection<string>(records.Select(x => x.Caption));
-                Formatter = val => string.Format("{0}%",val);
-                DataContext = this;
+                    Results = records.AsChartValues();
+                    Labels = new ObservableCollection<string>(records.Select(x => x.Caption));
+                    Formatter = val => string.Format("{0}%", val);
+                    DataContext = this;
+                }
+            }
+            catch (DivideByZeroException) { }
+            catch (Exception)
+            {
             }
 
         }

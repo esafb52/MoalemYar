@@ -61,6 +61,8 @@
                                     x:Name="cmbServer"
                                     Width="240"
                                     Margin="10"
+                                    IsEditable="True"
+                                    IsTextSearchEnabled="True"
                                     HorizontalAlignment="Left"
                                     VerticalAlignment="Top"
                                     controls:InfoElement.ContentHeight="35"

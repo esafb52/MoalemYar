@@ -775,7 +775,14 @@ namespace MoalemYar.UserControls
         "http://laj.hamedan.medu.ir",
         "http://yazd.medu.ir"
 };
-            FindElement.Settings.DefaultServer = url[cmbServer.SelectedIndex].ToString();
+            try
+            {
+                FindElement.Settings.DefaultServer = url[cmbServer.SelectedIndex].ToString();
+            }
+            catch (IndexOutOfRangeException) { }
+            catch (Exception)
+            {
+            }
         }
 
         private void loadServers()
