@@ -156,25 +156,41 @@
                                                 Checked="chkChecked_Checked"
                                                 Content="خیلی خوب"
                                                 Style="{StaticResource ToggleButtonSwitch}"
-                                                Tag="exc" />
+                                                Tag="exc">
+                                                <RadioButton.Resources>
+                                                    <SolidColorBrush x:Key="PrimaryBrush" Color="{DynamicResource DarkSuccessColor}" />
+                                                </RadioButton.Resources>
+                                            </RadioButton>
                                             <RadioButton
                                                 Margin="0,2"
                                                 Checked="chkChecked_Checked"
                                                 Content="خوب"
                                                 Style="{StaticResource ToggleButtonSwitch}"
-                                                Tag="good" />
+                                                Tag="good">
+                                                <RadioButton.Resources>
+                                                    <SolidColorBrush x:Key="PrimaryBrush" Color="{DynamicResource DarkSuccessColor}" />
+                                                </RadioButton.Resources>
+                                            </RadioButton>
                                             <RadioButton
                                                 Margin="0,2"
                                                 Checked="chkChecked_Checked"
                                                 Content="قابل قبول"
                                                 Style="{StaticResource ToggleButtonSwitch}"
-                                                Tag="nbad" />
+                                                Tag="nbad">
+                                                <RadioButton.Resources>
+                                                    <SolidColorBrush x:Key="PrimaryBrush" Color="{DynamicResource DarkSuccessColor}" />
+                                                </RadioButton.Resources>
+                                            </RadioButton>
                                             <RadioButton
                                                 Margin="0,2"
                                                 Checked="chkChecked_Checked"
                                                 Content="نیاز به تلاش بیشتر"
                                                 Style="{StaticResource ToggleButtonSwitch}"
-                                                Tag="bad" />
+                                                Tag="bad">
+                                                <RadioButton.Resources>
+                                                    <SolidColorBrush x:Key="PrimaryBrush" Color="{DynamicResource DarkSuccessColor}" />
+                                                </RadioButton.Resources>
+                                            </RadioButton>
                                         </StackPanel>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
