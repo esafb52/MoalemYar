@@ -37,8 +37,6 @@ namespace MoalemYar
 
             loadSettings();
             ShowCredentialDialog();
-            Growl.SetFlowDirection(PanelMessage, FlowDirection.RightToLeft);
-            Growl.SetGrowlPanel(PanelMessage);
         }
 
         public void ClearScreen()

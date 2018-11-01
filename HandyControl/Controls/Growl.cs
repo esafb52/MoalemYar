@@ -121,6 +121,19 @@ namespace HandyControl.Controls
         public static readonly DependencyProperty TypeProperty = DependencyProperty.Register(
             "Type", typeof(InfoType), typeof(Growl), new PropertyMetadata(default(InfoType)));
 
+        public static readonly DependencyProperty GrowlParentProperty = DependencyProperty.RegisterAttached(
+            "GrowlParent", typeof(bool), typeof(Growl), new PropertyMetadata(default(bool), (o, args) =>
+            {
+                if (o is Panel panel)
+                {
+                    SetGrowlPanel(panel);
+                }
+            }));
+
+        public static void SetGrowlParent(DependencyObject element, bool value) => element.SetValue(GrowlParentProperty, value);
+
+        public static bool GetGrowlParent(DependencyObject element) => (bool) element.GetValue(GrowlParentProperty);
+
         public InfoType Type
         {
             get => (InfoType) GetValue(TypeProperty);
@@ -196,7 +209,7 @@ namespace HandyControl.Controls
         ///     消息容器
         /// </summary>
         /// <param name="panel"></param>
-        public static void SetGrowlPanel(Panel panel)
+        private static void SetGrowlPanel(Panel panel)
         {
             GrowlPanel = panel;
             var menuItem = new MenuItem
@@ -284,7 +297,7 @@ namespace HandyControl.Controls
         /// <param name="growlInfo"></param>
         public static void Success(GrowlInfo growlInfo)
         {
-            if (growlInfo == null) throw new NullReferenceException("growlInfo is null");
+            if (growlInfo == null) throw new ArgumentNullException(nameof(growlInfo));
             growlInfo.IconKey = ResourceToken.SuccessGeometry;
             growlInfo.IconBrushKey = ResourceToken.SuccessBrush;
             growlInfo.Type = InfoType.Success;
@@ -306,7 +319,7 @@ namespace HandyControl.Controls
         /// <param name="growlInfo"></param>
         public static void Info(GrowlInfo growlInfo)
         {
-            if (growlInfo == null) throw new NullReferenceException("growlInfo is null");
+            if (growlInfo == null) throw new ArgumentNullException(nameof(growlInfo));
             growlInfo.IconKey = ResourceToken.InfoGeometry;
             growlInfo.IconBrushKey = ResourceToken.InfoBrush;
             growlInfo.Type = InfoType.Info;
@@ -328,7 +341,7 @@ namespace HandyControl.Controls
         /// <param name="growlInfo"></param>
         public static void Warning(GrowlInfo growlInfo)
         {
-            if (growlInfo == null) throw new NullReferenceException("growlInfo is null");
+            if (growlInfo == null) throw new ArgumentNullException(nameof(growlInfo));
             growlInfo.IconKey = ResourceToken.WarningGeometry;
             growlInfo.IconBrushKey = ResourceToken.WarningBrush;
             growlInfo.Type = InfoType.Warning;
@@ -350,7 +363,7 @@ namespace HandyControl.Controls
         /// <param name="growlInfo"></param>
         public static void Error(GrowlInfo growlInfo)
         {
-            if (growlInfo == null) throw new NullReferenceException("growlInfo is null");
+            if (growlInfo == null) throw new ArgumentNullException(nameof(growlInfo));
             growlInfo.IconKey = ResourceToken.ErrorGeometry;
             growlInfo.IconBrushKey = ResourceToken.DangerBrush;
             growlInfo.StaysOpen = true;
@@ -373,7 +386,7 @@ namespace HandyControl.Controls
         /// <param name="growlInfo"></param>
         public static void Fatal(GrowlInfo growlInfo)
         {
-            if (growlInfo == null) throw new NullReferenceException("growlInfo is null");
+            if (growlInfo == null) throw new ArgumentNullException(nameof(growlInfo));
             growlInfo.IconKey = ResourceToken.FatalGeometry;
             growlInfo.IconBrushKey = ResourceToken.PrimaryTextBrush;
             growlInfo.StaysOpen = true;
@@ -401,7 +414,7 @@ namespace HandyControl.Controls
         /// <param name="growlInfo"></param>
         public static void Ask(GrowlInfo growlInfo)
         {
-            if (growlInfo == null) throw new NullReferenceException("growlInfo is null");
+            if (growlInfo == null) throw new ArgumentNullException(nameof(growlInfo));
             growlInfo.IconKey = ResourceToken.AskGeometry;
             growlInfo.IconBrushKey = ResourceToken.AccentBrush;
             growlInfo.StaysOpen = true;
