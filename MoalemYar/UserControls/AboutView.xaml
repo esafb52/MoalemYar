@@ -30,7 +30,7 @@
                             Margin="5"
                             HorizontalAlignment="Left"
                             FontSize="15"
-                            Style="{StaticResource TextBlockDefaultInfo}"
+                            Style="{StaticResource TextBlockDefaultPrimary}"
                             Text="mahdidvb72@gmail.com" />
                     </StackPanel>
                     <TextBlock
@@ -40,27 +40,18 @@
                         FontSize="18"
                         Style="{StaticResource TextBlockTitle}"
                         Text="مشخصات نرم افزار" />
-                    <TextBlock
-                        Margin="5"
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Center"
-                        Style="{StaticResource TextBlockSubTitle}"
-                        Text="نسخه نرم افزار" />
-                    <Label
-                        Name="AppVersion"
-                        Margin="5"
-                        Style="{StaticResource LabelInfo}" />
-                    <TextBlock
-                        Margin="5"
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Center"
-                        Style="{StaticResource TextBlockSubTitle}"
-                        Text="نام برنامه" />
-                    <Label
-                        Name="AppName"
-                        Margin="5"
-                        Style="{StaticResource LabelInfo}" />
-
+                    <StackPanel Margin="5" Orientation="Horizontal">
+                        <TextBlock
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Style="{StaticResource TextBlockSubTitle}"
+                            Text="نسخه نرم افزار" />
+                        <Label
+                            Name="AppVersion"
+                            Margin="5,0"
+                            HorizontalAlignment="Left"
+                            Style="{StaticResource LabelPrimary}" />
+                    </StackPanel>
                     <TextBlock
                         Width="800"
                         Margin="5,5,-5,5"
@@ -72,58 +63,58 @@
                     <TextBlock
                         Margin="10,0,0,0"
                         HorizontalAlignment="Left"
-                        VerticalAlignment="Center"
                         Style="{StaticResource TextBlockTitle}"
                         Text="تاریخچه نسخه" />
 
-                    <TextBlock
-                        Margin="5"
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Center"
-                        Style="{StaticResource TextBlockSubTitle}"
-                        Text="نسخه فعلی نرم افزار" />
-
-                    <Label
-                        Margin="5"
-                        Content="{Binding ElementName=AppVersion, Path=Content}"
-                        FontSize="15"
-                        Style="{StaticResource LabelInfo}" />
+                    <StackPanel Margin="5" Orientation="Horizontal">
+                        <TextBlock
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Style="{StaticResource TextBlockSubTitle}"
+                            Text="نسخه فعلی نرم افزار" />
+                        <Label
+                            Margin="5,0"
+                            HorizontalAlignment="Left"
+                            Content="{Binding ElementName=AppVersion, Path=Content}"
+                            FontSize="15"
+                            Style="{StaticResource LabelPrimary}" />
+                    </StackPanel>
                     <Button
                         x:Name="btnCheckUpdate"
-                        Width="235"
+                        Width="200"
                         Height="35"
                         Margin="5"
                         HorizontalAlignment="Left"
                         VerticalAlignment="Top"
+                        controls:IconElement.Geometry="{DynamicResource GithubGeometry}"
                         Click="btnCheckUpdate_Click"
-                        Style="{StaticResource ButtonInfo}">
-                        <StackPanel
+                        Content="بررسی برای نسخه جدید"
+                        Style="{StaticResource ButtonPrimary}" />
+                    
+                    <StackPanel Margin="5" Orientation="Horizontal">
+                        <TextBlock
+                            Visibility="{Binding ElementName=txtNewVersion, Path=Visibility}"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Center"
-                            Orientation="Horizontal">
-                            <Image
-                                Width="16"
-                                Height="16"
-                                Margin="0,0,30,0"
-                                Source="/Resources/update.png" />
-                            <TextBlock
-                                FontSize="13"
-                                Foreground="#ffffff"
-                                Text="بررسی برای نسخه جدید"
-                                TextWrapping="NoWrap" />
-                        </StackPanel>
-                    </Button>
-                    <Label
+                            Style="{StaticResource TextBlockSubTitle}"
+                            Text="نسخه جدید" />
+                        <Label
                         Name="txtNewVersion"
-                        Margin="5"
+                        Margin="5,0"
+                        HorizontalAlignment="Left"
                         FontSize="15"
-                        Style="{StaticResource LabelInfo}" />
+                            Visibility="Collapsed"
+                        Style="{StaticResource LabelPrimary}" />
+                    </StackPanel>
                     <TextBox
                         Name="txtChangeLog"
                         Width="800"
+                        controls:InfoElement.ContentHeight="100"
                         IsReadOnly="True"
+                        Style="{StaticResource TextBoxExtend}"
                         TextWrapping="WrapWithOverflow"
-                        Visibility="Hidden" />
+                        VerticalScrollBarVisibility="Auto"
+                        Visibility="Collapsed" />
                     <TextBox
                         Name="txtHistory"
                         Width="800"
@@ -131,7 +122,8 @@
                         controls:InfoElement.ContentHeight="300"
                         IsReadOnly="True"
                         Style="{StaticResource TextBoxExtend}"
-                        TextWrapping="WrapWithOverflow" />
+                        TextWrapping="WrapWithOverflow"
+                        VerticalScrollBarVisibility="Auto" />
                 </StackPanel>
             </WrapPanel>
         </controls:ScrollViewer>

@@ -33,7 +33,6 @@ namespace MoalemYar.UserControls
             InitializeComponent();
             DataContext = this;
             txtHistory.Text = Properties.Resources.History;
-            AppName.Content = AppVariable.getAppTitle;
             AppVersion.Content = AppVariable.getAppVersion;
         }
 
@@ -69,6 +68,7 @@ namespace MoalemYar.UserControls
             {
                 txtNewVersion.Content = newVersion;
                 txtNewVersion.Foreground = new SolidColorBrush(Colors.Green);
+                txtNewVersion.Visibility = Visibility.Visible;
                 txtChangeLog.Visibility = Visibility.Visible;
                 txtChangeLog.Text = ChangeLog;
                 MainWindow.main.showGrowlNotification(AppVariable.Update_KEY, true, newVersion, url);
@@ -76,8 +76,8 @@ namespace MoalemYar.UserControls
             else
             {
                 MainWindow.main.showGrowlNotification(AppVariable.Update_KEY, false);
-                txtNewVersion.Foreground = new SolidColorBrush(Colors.Red);
-                txtNewVersion.Content = newVersion;
+                txtNewVersion.Content = "شما از آخرین نسخه استفاده می کنید";
+                txtNewVersion.Visibility = Visibility.Visible;
             }
         }
 
