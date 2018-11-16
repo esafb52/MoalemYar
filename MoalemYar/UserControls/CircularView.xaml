@@ -80,7 +80,7 @@
                 controls:InfoElement.ContentHeight="35"
                 controls:InfoElement.Placeholder="جستجو..."
                 IsEnabled="False"
-                Style="{StaticResource TextBoxExtend}"
+                
                 TextChanged="txtSearch_TextChanged" />
             <DataGrid
                 x:Name="lst"

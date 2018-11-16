@@ -422,7 +422,7 @@
                                             controls:InfoElement.ContentHeight="35"
                                             controls:InfoElement.Placeholder="جستجو..."
                                             FlowDirection="RightToLeft"
-                                            Style="{StaticResource TextBoxExtend}"
+                                            
                                             TabIndex="2"
                                             TextChanged="txtEditSearch_TextChanged" />
                                         <DataGrid

@@ -90,38 +90,36 @@
                         Click="btnCheckUpdate_Click"
                         Content="بررسی برای نسخه جدید"
                         Style="{StaticResource ButtonPrimary}" />
-                    
+
                     <StackPanel Margin="5" Orientation="Horizontal">
                         <TextBlock
-                            Visibility="{Binding ElementName=txtNewVersion, Path=Visibility}"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Center"
                             Style="{StaticResource TextBlockSubTitle}"
-                            Text="نسخه جدید" />
+                            Text="نسخه جدید"
+                            Visibility="{Binding ElementName=txtNewVersion, Path=Visibility}" />
                         <Label
-                        Name="txtNewVersion"
-                        Margin="5,0"
-                        HorizontalAlignment="Left"
-                        FontSize="15"
-                            Visibility="Collapsed"
-                        Style="{StaticResource LabelPrimary}" />
+                            Name="txtNewVersion"
+                            Margin="5,0"
+                            HorizontalAlignment="Left"
+                            FontSize="15"
+                            Style="{StaticResource LabelPrimary}"
+                            Visibility="Collapsed" />
                     </StackPanel>
-                    <controls:TextBox ShowClearButton="True"
+                    <controls:TextBox
                         Name="txtChangeLog"
                         Width="800"
                         controls:InfoElement.ContentHeight="100"
                         IsReadOnly="True"
-                        Style="{StaticResource TextBoxExtend}"
                         TextWrapping="WrapWithOverflow"
                         VerticalScrollBarVisibility="Auto"
                         Visibility="Collapsed" />
-                    <controls:TextBox ShowClearButton="True"
+                    <controls:TextBox
                         Name="txtHistory"
                         Width="800"
                         Margin="10,10"
                         controls:InfoElement.ContentHeight="300"
                         IsReadOnly="True"
-                        Style="{StaticResource TextBoxExtend}"
                         TextWrapping="WrapWithOverflow"
                         VerticalScrollBarVisibility="Auto" />
                 </StackPanel>

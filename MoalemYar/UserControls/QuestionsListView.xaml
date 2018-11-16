@@ -113,7 +113,7 @@
                             HorizontalAlignment="Center"
                             controls:InfoElement.ContentHeight="35"
                             controls:InfoElement.Placeholder="توضیحات"
-                            Style="{StaticResource TextBoxExtend}"
+                            
                             TabIndex="2"
                             TextWrapping="Wrap" />
                     </StackPanel>
@@ -377,7 +377,7 @@
                                         controls:InfoElement.ContentHeight="35"
                                         controls:InfoElement.Placeholder="جستجو..."
                                         FlowDirection="RightToLeft"
-                                        Style="{StaticResource TextBoxExtend}"
+                                        
                                         TabIndex="2"
                                         TextChanged="txtEditSearch_TextChanged" />
                                     <DataGrid
@@ -439,7 +439,7 @@
                                         HorizontalAlignment="Left"
                                         controls:InfoElement.ContentHeight="35"
                                         controls:InfoElement.Placeholder="توضیحات"
-                                        Style="{StaticResource TextBoxExtend}"
+                                        
                                         TabIndex="5"
                                         TextWrapping="Wrap" />
                                     <ComboBox

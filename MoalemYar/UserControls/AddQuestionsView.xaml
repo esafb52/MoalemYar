@@ -136,7 +136,7 @@
                                         controls:InfoElement.ContentHeight="35"
                                         controls:InfoElement.Placeholder="متن سوال"
                                         FlowDirection="RightToLeft"
-                                        Style="{StaticResource TextBoxExtend}"
+                                        
                                         TabIndex="0" />
                                     <controls:TextBox ShowClearButton="True"
                                         Name="txtCase1"
@@ -146,7 +146,7 @@
                                         controls:InfoElement.ContentHeight="35"
                                         controls:InfoElement.Placeholder="گزینه 1"
                                         FlowDirection="RightToLeft"
-                                        Style="{StaticResource TextBoxExtend}"
+                                        
                                         TabIndex="0" />
                                     <controls:TextBox ShowClearButton="True"
                                         Name="txtCase2"
@@ -156,7 +156,7 @@
                                         controls:InfoElement.ContentHeight="35"
                                         controls:InfoElement.Placeholder="گزینه 2"
                                         FlowDirection="RightToLeft"
-                                        Style="{StaticResource TextBoxExtend}"
+                                        
                                         TabIndex="0" />
                                     <controls:TextBox ShowClearButton="True"
                                         Name="txtCase3"
@@ -166,7 +166,7 @@
                                         controls:InfoElement.ContentHeight="35"
                                         controls:InfoElement.Placeholder="گزینه 3"
                                         FlowDirection="RightToLeft"
-                                        Style="{StaticResource TextBoxExtend}"
+                                        
                                         TabIndex="0" />
                                     <controls:TextBox ShowClearButton="True"
                                         Name="txtCase4"
@@ -176,7 +176,7 @@
                                         controls:InfoElement.ContentHeight="35"
                                         controls:InfoElement.Placeholder="گزینه 4"
                                         FlowDirection="RightToLeft"
-                                        Style="{StaticResource TextBoxExtend}"
+                                        
                                         TabIndex="0" />
                                     <ComboBox
                                         Name="cmbEditBase"
@@ -355,7 +355,7 @@
                                                     controls:InfoElement.Placeholder="جستجو..."
                                                     FlowDirection="RightToLeft"
                                                     MaxLength="40"
-                                                    Style="{StaticResource TextBoxExtend}"
+                                                    
                                                     TabIndex="1"
                                                     TextChanged="txtEditSearch_TextChanged" />
                                                 <DataGrid
@@ -421,7 +421,7 @@
                                                     controls:InfoElement.ContentHeight="35"
                                                     controls:InfoElement.Placeholder="متن سوال"
                                                     FlowDirection="RightToLeft"
-                                                    Style="{StaticResource TextBoxExtend}"
+                                                    
                                                     TabIndex="0" />
                                                 <controls:TextBox ShowClearButton="True"
                                                     Name="txtEditCase1"
@@ -431,7 +431,7 @@
                                                     controls:InfoElement.ContentHeight="35"
                                                     controls:InfoElement.Placeholder="گزینه 1"
                                                     FlowDirection="RightToLeft"
-                                                    Style="{StaticResource TextBoxExtend}"
+                                                    
                                                     TabIndex="0" />
                                                 <controls:TextBox ShowClearButton="True"
                                                     Name="txtEditCase2"
@@ -441,7 +441,7 @@
                                                     controls:InfoElement.ContentHeight="35"
                                                     controls:InfoElement.Placeholder="گزینه 2"
                                                     FlowDirection="RightToLeft"
-                                                    Style="{StaticResource TextBoxExtend}"
+                                                    
                                                     TabIndex="0" />
                                                 <controls:TextBox ShowClearButton="True"
                                                     Name="txtEditCase3"
@@ -451,7 +451,7 @@
                                                     controls:InfoElement.ContentHeight="35"
                                                     controls:InfoElement.Placeholder="گزینه 3"
                                                     FlowDirection="RightToLeft"
-                                                    Style="{StaticResource TextBoxExtend}"
+                                                    
                                                     TabIndex="0" />
                                                 <controls:TextBox ShowClearButton="True"
                                                     Name="txtEditCase4"
@@ -461,7 +461,7 @@
                                                     controls:InfoElement.ContentHeight="35"
                                                     controls:InfoElement.Placeholder="گزینه 4"
                                                     FlowDirection="RightToLeft"
-                                                    Style="{StaticResource TextBoxExtend}"
+                                                    
                                                     TabIndex="0" />
                                                 <ComboBox
                                                     x:Name="cmbGroupEdit"

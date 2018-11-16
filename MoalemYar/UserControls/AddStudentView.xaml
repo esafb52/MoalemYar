@@ -106,7 +106,7 @@
                                         controls:InfoElement.Placeholder="نام"
                                         FlowDirection="RightToLeft"
                                         MaxLength="40"
-                                        Style="{StaticResource TextBoxExtend}"
+                                        
                                         TabIndex="0" />
                                     <controls:TextBox ShowClearButton="True"
                                         x:Name="txtAddLName"
@@ -118,7 +118,7 @@
                                         controls:InfoElement.Placeholder="نام خانوادگی"
                                         FlowDirection="RightToLeft"
                                         MaxLength="40"
-                                        Style="{StaticResource TextBoxExtend}"
+                                        
                                         TabIndex="1" />
                                     <controls:TextBox ShowClearButton="True"
                                         x:Name="txtAddFName"
@@ -130,7 +130,7 @@
                                         controls:InfoElement.Placeholder="نام پدر"
                                         FlowDirection="RightToLeft"
                                         MaxLength="40"
-                                        Style="{StaticResource TextBoxExtend}"
+                                        
                                         TabIndex="2" />
                                     <ComboBox
                                         Name="cmbAddGender"
@@ -373,7 +373,7 @@
                                                 controls:InfoElement.ContentHeight="35"
                                                 controls:InfoElement.Placeholder="جستجو..."
                                                 FlowDirection="RightToLeft"
-                                                Style="{StaticResource TextBoxExtend}"
+                                                
                                                 TabIndex="1"
                                                 TextChanged="txtEditSearch_TextChanged" />
                                             <DataGrid
@@ -429,7 +429,7 @@
                                                 controls:InfoElement.Placeholder="نام"
                                                 FlowDirection="RightToLeft"
                                                 MaxLength="40"
-                                                Style="{StaticResource TextBoxExtend}"
+                                                
                                                 TabIndex="0" />
                                             <controls:TextBox ShowClearButton="True"
                                                 x:Name="txtLName"
@@ -441,7 +441,7 @@
                                                 controls:InfoElement.Placeholder="نام خانوادگی"
                                                 FlowDirection="RightToLeft"
                                                 MaxLength="40"
-                                                Style="{StaticResource TextBoxExtend}"
+                                                
                                                 TabIndex="1" />
                                             <controls:TextBox ShowClearButton="True"
                                                 x:Name="txtFName"
@@ -453,7 +453,7 @@
                                                 controls:InfoElement.Placeholder="نام پدر"
                                                 FlowDirection="RightToLeft"
                                                 MaxLength="40"
-                                                Style="{StaticResource TextBoxExtend}"
+                                                
                                                 TabIndex="2" />
                                             <ComboBox
                                                 Name="cmbGender"

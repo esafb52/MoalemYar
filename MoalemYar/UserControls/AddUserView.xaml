@@ -93,7 +93,7 @@
                                     controls:InfoElement.Placeholder="نام کاربری"
                                     FlowDirection="RightToLeft"
                                     MaxLength="20"
-                                    Style="{StaticResource TextBoxExtend}"
+                                    
                                     TabIndex="0" />
                                 <PasswordBox
                                     Name="txtAddPassword"
@@ -256,7 +256,7 @@
                                                 controls:InfoElement.ContentHeight="35"
                                                 controls:InfoElement.Placeholder="جستجو..."
                                                 FlowDirection="RightToLeft"
-                                                Style="{StaticResource TextBoxExtend}"
+                                                
                                                 TextChanged="txtEditSearch_TextChanged" />
                                             <DataGrid
                                                 x:Name="dataGrid"
@@ -298,7 +298,7 @@
                                             controls:InfoElement.Placeholder="نام کاربری"
                                             FlowDirection="RightToLeft"
                                             MaxLength="20"
-                                            Style="{StaticResource TextBoxExtend}" />
+                                             />
                                         <controls:TextBox ShowClearButton="True"
                                             Name="txtPassword"
                                             Width="240"
@@ -309,7 +309,7 @@
                                             controls:InfoElement.Placeholder="رمز عبور"
                                             FlowDirection="RightToLeft"
                                             MaxLength="20"
-                                            Style="{StaticResource TextBoxExtend}" />
+                                             />
                                         <controls:TextBox ShowClearButton="True"
                                             Name="txtPasswordAg"
                                             Width="240"
@@ -320,7 +320,7 @@
                                             controls:InfoElement.Placeholder="تکرار رمز عبور"
                                             FlowDirection="RightToLeft"
                                             MaxLength="20"
-                                            Style="{StaticResource TextBoxExtend}" />
+                                             />
                                         <StackPanel.Style>
                                             <Style TargetType="StackPanel">
                                                 <Style.Triggers>
