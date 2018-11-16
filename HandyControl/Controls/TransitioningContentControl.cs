@@ -1,9 +1,11 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Animation;
+using HandyControl.Data;
 using HandyControl.Tools;
 
 namespace HandyControl.Controls
@@ -18,7 +20,10 @@ namespace HandyControl.Controls
 
         public TransitioningContentControl()
         {
-            DefaultStyleKey = typeof(TransitioningContentControl);
+            if (!DesignerProperties.GetIsInDesignMode(this))
+            {
+                DefaultStyleKey = typeof(TransitioningContentControl);
+            }
         }
 
         private Storyboard CurrentTransition
@@ -43,6 +48,8 @@ namespace HandyControl.Controls
 
         public override void OnApplyTemplate()
         {
+            if (DesignerProperties.GetIsInDesignMode(this)) return;
+
             if (IsTransitioning)
                 AbortTransition();
 
@@ -241,7 +248,7 @@ namespace HandyControl.Controls
                 "RestartTransitionOnContentChange",
                 typeof(bool),
                 typeof(TransitioningContentControl),
-                new PropertyMetadata(false, OnRestartTransitionOnContentChangePropertyChanged));
+                new PropertyMetadata(ValueBoxes.FalseBox, OnRestartTransitionOnContentChangePropertyChanged));
 
         private static void OnRestartTransitionOnContentChangePropertyChanged(DependencyObject d,
             DependencyPropertyChangedEventArgs e)

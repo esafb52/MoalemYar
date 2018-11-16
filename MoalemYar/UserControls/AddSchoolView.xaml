@@ -88,7 +88,8 @@
                         </Grid>
                         <WrapPanel Margin="10">
                             <StackPanel Margin="0,5,0,0" Orientation="Vertical">
-                                <TextBox
+                                <controls:TextBox
+                                    ShowClearButton="True"
                                     Name="txtAddYear"
                                     Width="240"
                                     Margin="2"
@@ -98,7 +99,7 @@
                                     MaxLength="5"
                                     Style="{StaticResource TextBoxExtend}"
                                     TabIndex="0" />
-                                <TextBox
+                                <controls:TextBox ShowClearButton="True"
                                     Name="txtAddSchool"
                                     Width="240"
                                     Margin="2"
@@ -108,7 +109,7 @@
                                     MaxLength="40"
                                     Style="{StaticResource TextBoxExtend}"
                                     TabIndex="1" />
-                                <TextBox
+                                <controls:TextBox ShowClearButton="True"
                                     Name="txtAddAdmin"
                                     Width="240"
                                     Margin="2"
@@ -260,7 +261,7 @@
                                 </Grid.ColumnDefinitions>
                                 <Grid Name="grdedit" Grid.Column="0">
                                     <StackPanel Orientation="Vertical">
-                                        <TextBox
+                                        <controls:TextBox ShowClearButton="True"
                                             Name="txtEditSearch"
                                             Width="{Binding Path=ActualWidth, ElementName=dataGrid, Converter={local1:MultiplyConverter Multiplier=.99}}"
                                             Margin="0,5"
@@ -311,7 +312,7 @@
                                     Grid.Column="1"
                                     Margin="5,0,10,20"
                                     Orientation="Vertical">
-                                    <TextBox
+                                    <controls:TextBox ShowClearButton="True"
                                         Name="txtYear"
                                         Width="240"
                                         Margin="2"
@@ -322,7 +323,7 @@
                                         FlowDirection="RightToLeft"
                                         MaxLength="5"
                                         Style="{StaticResource TextBoxExtend}" />
-                                    <TextBox
+                                    <controls:TextBox ShowClearButton="True"
                                         Name="txtSchool"
                                         Width="240"
                                         Margin="2"
@@ -333,7 +334,7 @@
                                         FlowDirection="RightToLeft"
                                         MaxLength="40"
                                         Style="{StaticResource TextBoxExtend}" />
-                                    <TextBox
+                                    <controls:TextBox ShowClearButton="True"
                                         Name="txtAdmin"
                                         Width="240"
                                         Margin="2"

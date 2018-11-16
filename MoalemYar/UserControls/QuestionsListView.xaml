@@ -107,7 +107,7 @@
                             Background="{DynamicResource RegionBrush}"
                             BorderBrush="{DynamicResource PrimaryBrush}"
                             Foreground="{DynamicResource PrimaryTextBrush}" />
-                        <TextBox
+                        <controls:TextBox ShowClearButton="True"
                             Name="txtDesc"
                             Width="240"
                             HorizontalAlignment="Center"
@@ -370,7 +370,7 @@
                                             </ComboBox.ItemTemplate>
                                         </ComboBox>
                                     </StackPanel>
-                                    <TextBox
+                                    <controls:TextBox ShowClearButton="True"
                                         x:Name="txtEditSearch"
                                         Width="{Binding Path=ActualWidth, ElementName=dataGridEdit, Converter={local1:MultiplyConverter Multiplier=.99}}"
                                         Margin="0,5"
@@ -430,7 +430,7 @@
                                         BorderBrush="{DynamicResource PrimaryBrush}"
                                         Foreground="{DynamicResource PrimaryTextBrush}"
                                         TabIndex="4" />
-                                    <TextBox
+                                    <controls:TextBox ShowClearButton="True"
                                         x:Name="txtDescEdit"
                                         Width="240"
                                         MaxWidth="270"

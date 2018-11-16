@@ -106,7 +106,7 @@
                             Visibility="Collapsed"
                         Style="{StaticResource LabelPrimary}" />
                     </StackPanel>
-                    <TextBox
+                    <controls:TextBox ShowClearButton="True"
                         Name="txtChangeLog"
                         Width="800"
                         controls:InfoElement.ContentHeight="100"
@@ -115,7 +115,7 @@
                         TextWrapping="WrapWithOverflow"
                         VerticalScrollBarVisibility="Auto"
                         Visibility="Collapsed" />
-                    <TextBox
+                    <controls:TextBox ShowClearButton="True"
                         Name="txtHistory"
                         Width="800"
                         Margin="10,10"

@@ -98,7 +98,7 @@ namespace HandyControl.Controls
         #region Public Properties
 
         public static readonly DependencyProperty SelectedTimeProperty = DependencyProperty.Register(
-            "SelectedTime", typeof(DateTime?), typeof(Clock), new PropertyMetadata(default(DateTime), OnSelectedTimeChanged));
+            "SelectedTime", typeof(DateTime?), typeof(Clock), new PropertyMetadata(default(DateTime?), OnSelectedTimeChanged));
 
         private static void OnSelectedTimeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
@@ -152,7 +152,7 @@ namespace HandyControl.Controls
         }
 
         internal static readonly DependencyProperty ShowConfirmButtonProperty = DependencyProperty.Register(
-            "ShowConfirmButton", typeof(bool), typeof(Clock), new PropertyMetadata(default(bool)));
+            "ShowConfirmButton", typeof(bool), typeof(Clock), new PropertyMetadata(ValueBoxes.FalseBox));
 
         internal bool ShowConfirmButton
         {
@@ -239,6 +239,10 @@ namespace HandyControl.Controls
             }
 
             _appliedTemplate = true;
+            if (_isLoaded)
+            {
+                Update(SelectedTime ?? DisplayTime);
+            }
         }
 
         #endregion Public Methods

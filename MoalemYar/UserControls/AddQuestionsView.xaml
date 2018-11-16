@@ -128,7 +128,7 @@
                                         <ComboBoxItem Content="پنجم" />
                                         <ComboBoxItem Content="ششم" />
                                     </ComboBox>
-                                    <TextBox
+                                    <controls:TextBox ShowClearButton="True"
                                         Name="txtQuestionText"
                                         Width="240"
                                         Margin="2"
@@ -138,7 +138,7 @@
                                         FlowDirection="RightToLeft"
                                         Style="{StaticResource TextBoxExtend}"
                                         TabIndex="0" />
-                                    <TextBox
+                                    <controls:TextBox ShowClearButton="True"
                                         Name="txtCase1"
                                         Width="240"
                                         Margin="2"
@@ -148,7 +148,7 @@
                                         FlowDirection="RightToLeft"
                                         Style="{StaticResource TextBoxExtend}"
                                         TabIndex="0" />
-                                    <TextBox
+                                    <controls:TextBox ShowClearButton="True"
                                         Name="txtCase2"
                                         Width="240"
                                         Margin="2"
@@ -158,7 +158,7 @@
                                         FlowDirection="RightToLeft"
                                         Style="{StaticResource TextBoxExtend}"
                                         TabIndex="0" />
-                                    <TextBox
+                                    <controls:TextBox ShowClearButton="True"
                                         Name="txtCase3"
                                         Width="240"
                                         Margin="2"
@@ -168,7 +168,7 @@
                                         FlowDirection="RightToLeft"
                                         Style="{StaticResource TextBoxExtend}"
                                         TabIndex="0" />
-                                    <TextBox
+                                    <controls:TextBox ShowClearButton="True"
                                         Name="txtCase4"
                                         Width="240"
                                         Margin="2"
@@ -347,7 +347,7 @@
                                             Grid.Column="0"
                                             Margin="0,35,10,5">
                                             <StackPanel Orientation="Vertical">
-                                                <TextBox
+                                                <controls:TextBox ShowClearButton="True"
                                                     x:Name="txtEditSearch"
                                                     Width="{Binding Path=ActualWidth, ElementName=dataGrid, Converter={local1:MultiplyConverter Multiplier=.99}}"
                                                     Margin="0,5"
@@ -413,7 +413,7 @@
                                         </Grid>
                                         <Grid Grid.Column="1" Margin="5,0,0,0">
                                             <StackPanel Orientation="Vertical">
-                                                <TextBox
+                                                <controls:TextBox ShowClearButton="True"
                                                     Name="txtEditQuestionText"
                                                     Width="240"
                                                     Margin="2"
@@ -423,7 +423,7 @@
                                                     FlowDirection="RightToLeft"
                                                     Style="{StaticResource TextBoxExtend}"
                                                     TabIndex="0" />
-                                                <TextBox
+                                                <controls:TextBox ShowClearButton="True"
                                                     Name="txtEditCase1"
                                                     Width="240"
                                                     Margin="2"
@@ -433,7 +433,7 @@
                                                     FlowDirection="RightToLeft"
                                                     Style="{StaticResource TextBoxExtend}"
                                                     TabIndex="0" />
-                                                <TextBox
+                                                <controls:TextBox ShowClearButton="True"
                                                     Name="txtEditCase2"
                                                     Width="240"
                                                     Margin="2"
@@ -443,7 +443,7 @@
                                                     FlowDirection="RightToLeft"
                                                     Style="{StaticResource TextBoxExtend}"
                                                     TabIndex="0" />
-                                                <TextBox
+                                                <controls:TextBox ShowClearButton="True"
                                                     Name="txtEditCase3"
                                                     Width="240"
                                                     Margin="2"
@@ -453,7 +453,7 @@
                                                     FlowDirection="RightToLeft"
                                                     Style="{StaticResource TextBoxExtend}"
                                                     TabIndex="0" />
-                                                <TextBox
+                                                <controls:TextBox ShowClearButton="True"
                                                     Name="txtEditCase4"
                                                     Width="240"
                                                     Margin="2"

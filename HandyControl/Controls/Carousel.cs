@@ -40,6 +40,14 @@ namespace HandyControl.Controls
 
         private ItemsPresenter _itemsControl;
 
+        private int _pageIndex = -1;
+
+        private Button _selectedButton;
+
+        private DispatcherTimer _updateTimer;
+
+        private readonly List<double> _widthList = new List<double>();
+
         #endregion Data
 
         public override void OnApplyTemplate()
@@ -63,7 +71,7 @@ namespace HandyControl.Controls
         private void Update()
         {
             TimerSwitch(AutoRun);
-            UpdatePageButtons();
+            UpdatePageButtons(_pageIndex);
         }
 
         private void CheckNull()
@@ -72,7 +80,7 @@ namespace HandyControl.Controls
         }
 
         public static readonly DependencyProperty AutoRunProperty = DependencyProperty.Register(
-            "AutoRun", typeof(bool), typeof(Carousel), new PropertyMetadata(default(bool), (o, args) =>
+            "AutoRun", typeof(bool), typeof(Carousel), new PropertyMetadata(ValueBoxes.FalseBox, (o, args) =>
             {
                 var ctl = (Carousel)o;
                 ctl.TimerSwitch((bool)args.NewValue);
@@ -82,7 +90,7 @@ namespace HandyControl.Controls
             "Interval", typeof(TimeSpan), typeof(Carousel), new PropertyMetadata(TimeSpan.FromSeconds(2)));
 
         public static readonly DependencyProperty ExtendWidthProperty = DependencyProperty.Register(
-            "ExtendWidth", typeof(double), typeof(Carousel), new PropertyMetadata(default(double)));
+            "ExtendWidth", typeof(double), typeof(Carousel), new PropertyMetadata(ValueBoxes.Double0Box));
 
         public double ExtendWidth
         {
@@ -91,21 +99,13 @@ namespace HandyControl.Controls
         }
 
         public static readonly DependencyProperty IsCenterProperty = DependencyProperty.Register(
-            "IsCenter", typeof(bool), typeof(Carousel), new PropertyMetadata(default(bool)));
+            "IsCenter", typeof(bool), typeof(Carousel), new PropertyMetadata(ValueBoxes.FalseBox));
 
         public bool IsCenter
         {
             get => (bool)GetValue(IsCenterProperty);
             set => SetValue(IsCenterProperty, value);
         }
-
-        private int _pageIndex;
-
-        private Button _selectedButton;
-
-        private DispatcherTimer _updateTimer;
-
-        private readonly List<double> _widthList = new List<double>();
 
         public Carousel()
         {
@@ -167,24 +167,21 @@ namespace HandyControl.Controls
         private void TimerSwitch(bool run)
         {
             if (!_appliedTemplate) return;
-            if (run)
+
+            if (_updateTimer != null)
             {
-                _updateTimer = new DispatcherTimer
-                {
-                    Interval = Interval
-                };
-                _updateTimer.Tick += UpdateTimer_Tick;
-                _updateTimer.Start();
+                _updateTimer.Tick -= UpdateTimer_Tick;
+                _updateTimer.Stop();
+                _updateTimer = null;
             }
-            else
+
+            if (!run) return;
+            _updateTimer = new DispatcherTimer
             {
-                if (_updateTimer != null)
-                {
-                    _updateTimer.Tick -= UpdateTimer_Tick;
-                    _updateTimer.Stop();
-                    _updateTimer = null;
-                }
-            }
+                Interval = Interval
+            };
+            _updateTimer.Tick += UpdateTimer_Tick;
+            _updateTimer.Start();
         }
 
         private void UpdateTimer_Tick(object sender, EventArgs e)
@@ -196,40 +193,41 @@ namespace HandyControl.Controls
         /// <summary>
         ///     更新页按钮
         /// </summary>
-        public void UpdatePageButtons(int? index = null)
+        public void UpdatePageButtons(int index = -1)
         {
             if (!_appliedTemplate) return;
-            if (index == null)
-            {
-                var count = Items.Count;
-                _widthList.Clear();
-                _widthList.Add(0);
-                var width = .0;
-                foreach (FrameworkElement item in Items)
-                {
-                    item.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
-                    width += item.DesiredSize.Width;
-                    _widthList.Add(width);
-                }
 
-                _itemsControl.Width = _widthList.Last() + ExtendWidth;
-                _panelPage.Children.Clear();
-                for (var i = 0; i < count; i++)
-                    _panelPage.Children.Add(CreatePateButton());
+            var count = Items.Count;
+            _widthList.Clear();
+            _widthList.Add(0);
+            var width = .0;
+            foreach (FrameworkElement item in Items)
+            {
+                item.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
+                width += item.DesiredSize.Width;
+                _widthList.Add(width);
+            }
+
+            _itemsControl.Width = _widthList.Last() + ExtendWidth;
+            _panelPage.Children.Clear();
+            for (var i = 0; i < count; i++)
+            {
+                _panelPage.Children.Add(CreatePateButton());
+            }
+
+            if (index == -1)
+            {
                 if (count > 0)
                 {
                     var button = _panelPage.Children[0];
                     button.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent, button));
                 }
             }
-            else
+            else if (index >= 0 && index < count)
             {
-                if (index >= 0 && index < _panelPage.Children.Count)
-                {
-                    var button = _panelPage.Children[(int)index];
-                    button.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent, button));
-                    UpdateItemsPosition();
-                }
+                var button = _panelPage.Children[index];
+                button.RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent, button));
+                UpdateItemsPosition();
             }
         }
 

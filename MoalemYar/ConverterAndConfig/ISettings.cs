@@ -8,7 +8,7 @@
 *
 ***********************************************************************************/
 
-using HandyControl.Data.Enum;
+using HandyControl.Data;
 using nucs.JsonSettings;
 
 public class ISettings : JsonSettings

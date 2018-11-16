@@ -10,7 +10,6 @@
 
 using HandyControl.Controls;
 using HandyControl.Data;
-using HandyControl.Data.Enum;
 using MoalemYar.UserControls;
 using MVVMC;
 using System;
@@ -19,6 +18,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using TextBox = HandyControl.Controls.TextBox;
 
 namespace MoalemYar
 {
@@ -144,7 +144,7 @@ namespace MoalemYar
                 InfoElement.SetContentHeight(txtPassword, 35);
 
                 InfoElement.SetTitle(txtUsername, "نام کاربری و رمز عبور خود را وارد کنید");
-                InfoElement.SetTitleAlignment(txtUsername, HandyControl.Data.Enum.TitleAlignment.Top);
+                InfoElement.SetTitleAlignment(txtUsername, TitleAlignment.Top);
 
                 InfoElement.SetPlaceholder(txtUsername, "نام کاربری");
                 InfoElement.SetPlaceholder(txtPassword, "رمز عبور ");

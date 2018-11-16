@@ -79,6 +79,24 @@ namespace HandyControl.Properties.Langs {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 无法自注册复合命令.
+        /// </summary>
+        public static string CannotRegisterCompositeCommandInItself {
+            get {
+                return ResourceManager.GetString("CannotRegisterCompositeCommandInItself", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 不能注册同一命令两次.
+        /// </summary>
+        public static string CannotRegisterSameCommandTwice {
+            get {
+                return ResourceManager.GetString("CannotRegisterSameCommandTwice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 清空.
         /// </summary>
         public static string Clear {
@@ -138,6 +156,15 @@ namespace HandyControl.Properties.Langs {
         public static string ErrorImgSize {
             get {
                 return ResourceManager.GetString("ErrorImgSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 格式错误.
+        /// </summary>
+        public static string FormatError {
+            get {
+                return ResourceManager.GetString("FormatError", resourceCulture);
             }
         }
         
@@ -205,6 +232,24 @@ namespace HandyControl.Properties.Langs {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 不能为空.
+        /// </summary>
+        public static string IsNecessary {
+            get {
+                return ResourceManager.GetString("IsNecessary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 不在范围内.
+        /// </summary>
+        public static string OutOfRange {
+            get {
+                return ResourceManager.GetString("OutOfRange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 下午.
         /// </summary>
         public static string Pm {
@@ -219,15 +264,6 @@ namespace HandyControl.Properties.Langs {
         public static string PngImg {
             get {
                 return ResourceManager.GetString("PngImg", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 步骤.
-        /// </summary>
-        public static string Step {
-            get {
-                return ResourceManager.GetString("Step", resourceCulture);
             }
         }
         

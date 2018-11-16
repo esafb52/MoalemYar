@@ -87,7 +87,7 @@
                                     Background="{DynamicResource ThirdlyTextBrush}"
                                     BorderBrush="{DynamicResource BorderBrush}" />
                             </Grid>
-                            <TextBox
+                            <controls:TextBox ShowClearButton="True"
                                 Name="txtAddGroup"
                                 Width="240"
                                 Margin="10"
@@ -225,7 +225,7 @@
                                     </Grid.ColumnDefinitions>
                                     <Grid Name="grdedit" Grid.Column="0">
                                         <StackPanel Orientation="Vertical">
-                                            <TextBox
+                                            <controls:TextBox ShowClearButton="True"
                                                 Name="txtEditSearch"
                                                 Width="{Binding Path=ActualWidth, ElementName=dataGrid, Converter={local1:MultiplyConverter Multiplier=.99}}"
                                                 Margin="0,5"
@@ -260,7 +260,7 @@
                                         Grid.Column="1"
                                         Margin="5,0,0,0"
                                         Orientation="Vertical">
-                                        <TextBox
+                                        <controls:TextBox ShowClearButton="True"
                                             Name="txtGroup"
                                             Width="240"
                                             Margin="2"

@@ -8,12 +8,12 @@
 *
 ***********************************************************************************/
 
-using HandyControl.Data.Enum;
 using HandyControl.Tools;
 using System;
 using System.IO;
 using System.Reflection;
 using System.Windows;
+using HandyControl.Data;
 
 namespace MoalemYar
 {

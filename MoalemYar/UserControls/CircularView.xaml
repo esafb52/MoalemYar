@@ -73,7 +73,7 @@
                 Margin="400,17,19.8,0"
                 VerticalAlignment="Top"
                 FlowDirection="LeftToRight" />
-            <TextBox
+            <controls:TextBox ShowClearButton="True"
                 Name="txtSearch"
                 Width="{Binding Path=ActualWidth, ElementName=dataGrid, Converter={local1:MultiplyConverter Multiplier=.99}}"
                 Margin="20,50,20,10"

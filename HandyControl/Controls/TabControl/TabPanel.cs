@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using HandyControl.Data;
 using HandyControl.Tools;
 
 // ReSharper disable once CheckNamespace
@@ -41,7 +42,7 @@ namespace HandyControl.Controls
         ///     是否将标签填充
         /// </summary>
         public static readonly DependencyProperty IsEnableTabFillProperty = DependencyProperty.Register(
-            "IsEnableTabFill", typeof(bool), typeof(TabPanel), new PropertyMetadata(default(bool)));
+            "IsEnableTabFill", typeof(bool), typeof(TabPanel), new PropertyMetadata(ValueBoxes.FalseBox));
 
         /// <summary>
         ///     是否将标签填充
@@ -164,6 +165,10 @@ namespace HandyControl.Controls
                 ForceUpdate = true;
                 Measure(new Size(DesiredSize.Width, ActualHeight));
                 ForceUpdate = false;
+                foreach (var item in ItemDic.Values)
+                {
+                    item.TabPanel = this;
+                }
                 _isLoaded = true;
             };
         }

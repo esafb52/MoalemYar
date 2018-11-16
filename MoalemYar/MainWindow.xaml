@@ -4,7 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls="clr-namespace:HandyControl.Controls;assembly=HandyControl"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:enum="clr-namespace:HandyControl.Data.Enum;assembly=HandyControl"
+    xmlns:enum="clr-namespace:HandyControl.Data;assembly=HandyControl"
     xmlns:local="clr-namespace:MoalemYar"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:mvvmc="clr-namespace:MVVMC;assembly=MVVMC"

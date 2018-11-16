@@ -8,11 +8,9 @@
 *
 ***********************************************************************************/
 
-using HandyControl.Data.Enum;
 using LiveCharts;
 using LiveCharts.Configurations;
 using LiveCharts.Helpers;
-using LiveCharts.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

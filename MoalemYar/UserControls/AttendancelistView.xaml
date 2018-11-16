@@ -415,7 +415,7 @@
                                                 </ComboBox.ItemTemplate>
                                             </ComboBox>
                                         </StackPanel>
-                                        <TextBox
+                                        <controls:TextBox ShowClearButton="True"
                                             x:Name="txtEditSearch"
                                             Width="{Binding Path=ActualWidth, ElementName=dgv, Converter={local1:MultiplyConverter Multiplier=.99}}"
                                             Margin="0,5"
