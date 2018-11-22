@@ -63,7 +63,6 @@ Migration<br>
 [SQLiteCodeFirst](https://github.com/msallin/SQLiteCodeFirst) written by msallin for Creates a SQLite Database from Code, using Entity Framework CodeFirst.<br>
 [Migrations](https://github.com/digocesar/SQLiteCodeFirst) written by digocesar for migration.<br>
 [JsonSettings](https://github.com/Nucs/JsonSettings) written by nucs for Easiest way you'll ever write settings for your app.<br>
-[VSCode Notifications](https://github.com/Enterwell/Wpf.Notifications) written by Enterwell for WPF notifications UI controls.<br>
 [ThumbnailSharp](https://github.com/mirzaevolution/ThumbnailSharp) written by mirzaevolution for create an image thumbnail from various sources with better result and supports different image formats.<br>
 [Live-Charts](https://github.com/Live-Charts/Live-Charts) written by Live-Charts for Simple, flexible, interactive & powerful charts.<br>
 [sharpcompress](https://github.com/adamhathcock/sharpcompress) written by adamhathcock for deal with many compression types and formats.<br>
