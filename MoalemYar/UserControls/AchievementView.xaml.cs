@@ -189,12 +189,7 @@ namespace MoalemYar.UserControls
                            }).Where(x => x.Book == Book).ToArray();
             var dCount = score.Select(x => x.Date).Count();
             var sum = score.Sum(x => x.Sum);
-
-            var one = decimal.Divide(sum, 1);
-            var sec = decimal.Divide(sum, 2);
-            var thi = decimal.Divide(sum, 3);
-            var forth = decimal.Divide(sum, 4);
-
+            
             return decimal.Divide(sum, dCount).ToString("0.00");
         }
 
@@ -213,22 +208,20 @@ namespace MoalemYar.UserControls
 
             var dCount = score.Select(x => x.Date).Count();
 
-            var Avg = decimal.Divide(sum, dCount).ToString("0.00");
-
-            var one = decimal.Divide(dCount * 4, 1).ToString("0.00");
-            var sec = decimal.Divide(dCount * 4, 2).ToString("0.00");
-            var thi = decimal.Divide(dCount * 4, 3).ToString("0.00");
-            var forth = decimal.Divide(dCount * 4, 4).ToString("0.00");
+            var TotalScore = Convert.ToDecimal(dCount * 4);
+            var HalfScore = Convert.ToDecimal(decimal.Divide(dCount * 4, 2).ToString("0.00"));
+            var ThirdScore = Convert.ToDecimal(decimal.Divide(dCount * 4, 3).ToString("0.00"));
+            var ForthScore = Convert.ToDecimal(decimal.Divide(dCount * 4, 4).ToString("0.00"));
 
             string status = string.Empty;
 
-            if (Convert.ToDecimal(Avg) >= Convert.ToDecimal(sec))
+            if (sum == TotalScore || (TotalScore - sum) <= 1)
                 status = "خیلی خوب";
-            else if (Convert.ToDecimal(Avg) < Convert.ToDecimal(one) && Convert.ToDecimal(Avg) >= Convert.ToDecimal(thi))
+            else if (sum >= HalfScore && sum < TotalScore) 
                 status = "خوب";
-            else if (Convert.ToDecimal(Avg) < Convert.ToDecimal(sec) && Convert.ToDecimal(Avg) >= Convert.ToDecimal(forth))
+            else if (sum >= ThirdScore && sum < HalfScore)
                 status = "قابل قبول";
-            else if (Convert.ToDecimal(Avg) < Convert.ToDecimal(forth))
+            else if (sum >= ForthScore && sum < ThirdScore || sum <= ForthScore)
                 status = "نیاز به تلاش بیشتر";
 
             return status;

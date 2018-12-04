@@ -9,8 +9,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:mvvmc="clr-namespace:MVVMC;assembly=MVVMC"
     Title="معلم یار"
-    MinWidth="1300"
-    MinHeight="700"
+    ShowTitle="True"
     BorderThickness="1"
     FontFamily="{StaticResource TeacherYar.Fonts.IRANSans}"
     NonClientAreaBackground="#333333"
@@ -22,6 +21,10 @@
     UseLayoutRounding="True"
     WindowStartupLocation="CenterScreen"
     WindowState="Maximized"
+    Width="1300"
+    Height="700"
+    MinHeight="600"
+    MinWidth="900"
     mc:Ignorable="d">
     <Window.Resources>
         <RoutedUICommand x:Key="backupCommand" Text="backupCommand" />
@@ -183,144 +186,145 @@
                 </Border>
             </Popup>
         </Grid>
-
     </controls:WindowBorderless.NonClientAreaContent>
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition MinWidth="800" />
-            <ColumnDefinition
+    <controls:ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition MinWidth="800" />
+                <ColumnDefinition
                 Width="200"
                 MinWidth="200"
                 MaxWidth="400" />
-        </Grid.ColumnDefinitions>
-        <Grid Grid.Column="1" FlowDirection="RightToLeft">
-            <Border controls:ScrollViewer.IsEnableInertia="True">
-                <TreeView
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="1" FlowDirection="RightToLeft">
+                <Border controls:ScrollViewer.IsEnableInertia="True">
+                    <TreeView
                     Name="treeview"
                     controls:ScrollViewer.IsEnableInertia="True"
                     BorderThickness="0">
-                    <TreeViewItem
+                        <TreeViewItem
                         Header="داشبورد"
                         Selected="TreeViewItem_Selected"
                         Tag="initial" />
-                    <TreeViewItem Header="منوی اصلی" IsExpanded="True">
-                        <TreeViewItem Header="عملیات پایه">
-                            <TreeViewItem
+                        <TreeViewItem Header="منوی اصلی" IsExpanded="True">
+                            <TreeViewItem Header="عملیات پایه">
+                                <TreeViewItem
                                 Header="مدرسه و کلاس"
                                 Selected="TreeViewItem_Selected"
                                 Tag="addOrUpdateSchool" />
-                            <TreeViewItem
+                                <TreeViewItem
                                 Header="دانش آموز"
                                 Selected="TreeViewItem_Selected"
                                 Tag="exAddOrUpdateStudent" />
-                            <TreeViewItem
+                                <TreeViewItem
                                 Header="حساب کاربری"
                                 Selected="TreeViewItem_Selected"
                                 Tag="exAddOrUpdateUser" />
-                        </TreeViewItem>
-                        <TreeViewItem Header="فعالیت ها">
-                            <TreeViewItem
+                            </TreeViewItem>
+                            <TreeViewItem Header="فعالیت ها">
+                                <TreeViewItem
                                 Header="حضور و غیاب"
                                 Selected="TreeViewItem_Selected"
                                 Tag="exAttendancelist" />
-                            <TreeViewItem
+                                <TreeViewItem
                                 Header="ارزشیابی"
                                 Selected="TreeViewItem_Selected"
                                 Tag="exQuestionsList" />
-                        </TreeViewItem>
-                        <TreeViewItem Header="گزارش وضعیت">
-                            <TreeViewItem
+                            </TreeViewItem>
+                            <TreeViewItem Header="گزارش وضعیت">
+                                <TreeViewItem
                                 Header="نفرات برتر"
                                 Selected="TreeViewItem_Selected"
                                 Tag="exTopStudents" />
-                            <TreeViewItem
+                                <TreeViewItem
                                 Header="پیشرفت تحصیلی"
                                 Selected="TreeViewItem_Selected"
                                 Tag="exAchievement" />
+                            </TreeViewItem>
                         </TreeViewItem>
-                    </TreeViewItem>
-                    <TreeViewItem Header="بیشتر" IsExpanded="True">
-                        <TreeViewItem
+                        <TreeViewItem Header="بیشتر" IsExpanded="True">
+                            <TreeViewItem
                             Header="بخشنامه ها"
                             Selected="TreeViewItem_Selected"
                             Tag="exCircular" />
-                    </TreeViewItem>
-                </TreeView>
-            </Border>
-        </Grid>
-        <Grid>
-            <Border Background="{DynamicResource MainContentBackgroundBrush}">
-                <Border Background="{DynamicResource MainContentForegroundDrawingBrush}">
-                    <Grid
+                        </TreeViewItem>
+                    </TreeView>
+                </Border>
+            </Grid>
+            <Grid>
+                <Border Background="{DynamicResource MainContentBackgroundBrush}">
+                    <Border Background="{DynamicResource MainContentForegroundDrawingBrush}">
+                        <Grid
                         Name="GridMain"
                         MinHeight="450"
                         Margin="16"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
                         Visibility="{Binding ElementName=region, Path=Visibility}">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition />
-                        </Grid.RowDefinitions>
-                        <Border
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Border
                             Name="BorderEffect"
                             Grid.RowSpan="2"
                             Background="{DynamicResource RegionBrush}"
                             CornerRadius="10"
                             Effect="{StaticResource EffectShadow4}" />
-                        <Border
+                            <Border
                             Name="BorderTitle"
                             Grid.Row="0"
                             Height="32"
                             Background="{DynamicResource TitleBrush}"
                             CornerRadius="10,10,0,0">
-                            <TextBlock
+                                <TextBlock
                                 Foreground="White"
                                 Style="{StaticResource TextBlockDefault}"
                                 Text="{Binding ElementName=treeview, Path=SelectedItem.Header}" />
-                        </Border>
-                        <Border Grid.Row="1" ClipToBounds="True">
-                            <mvvmc:Region
+                            </Border>
+                            <Border Grid.Row="1" ClipToBounds="True">
+                                <mvvmc:Region
                                 Name="region"
                                 Margin="0,0,0,10"
                                 ControllerID="UserControls">
-                                <mvvmc:Region.Style>
-                                    <Style TargetType="mvvmc:Region">
-                                        <Setter Property="Visibility" Value="Visible" />
-                                        <Style.Triggers>
-                                            <Trigger Property="HasContent" Value="False">
-                                                <Setter Property="Visibility" Value="Hidden" />
-                                            </Trigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </mvvmc:Region.Style>
-                            </mvvmc:Region>
-                        </Border>
-                    </Grid>
+                                    <mvvmc:Region.Style>
+                                        <Style TargetType="mvvmc:Region">
+                                            <Setter Property="Visibility" Value="Visible" />
+                                            <Style.Triggers>
+                                                <Trigger Property="HasContent" Value="False">
+                                                    <Setter Property="Visibility" Value="Hidden" />
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </mvvmc:Region.Style>
+                                </mvvmc:Region>
+                            </Border>
+                        </Grid>
+                    </Border>
                 </Border>
-            </Border>
-        </Grid>
-        <GridSplitter
+            </Grid>
+            <GridSplitter
             Grid.Column="1"
             Width="4"
             HorizontalAlignment="Left"
             Background="Transparent"
             BorderBrush="{DynamicResource BorderBrush}"
             BorderThickness="1,0,0,0" />
-        <controls:ScrollViewer
+            <controls:ScrollViewer
             Grid.Column="0"
             HorizontalAlignment="Left"
             IsEnableInertia="True"
             IsPenetrating="True"
             VerticalScrollBarVisibility="Hidden">
-            <StackPanel
+                <StackPanel
                 Margin="0,10,10,10"
                 VerticalAlignment="Top"
                 controls:Growl.GrowlParent="True"
                 Background="Transparent"
                 FlowDirection="RightToLeft"
                 IsHitTestVisible="True" />
-        </controls:ScrollViewer>
-    </Grid>
+            </controls:ScrollViewer>
+        </Grid>
+    </controls:ScrollViewer>
 
 </controls:WindowBorderless>

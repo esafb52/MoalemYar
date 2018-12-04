@@ -175,7 +175,7 @@
                                         Title="میزان نمرات کل کلاس در دروس مختلف"
                                         Configuration="{Binding Mapper}"
                                         DataLabels="True"
-                                        Fill="{StaticResource PrimaryBrush}"
+                                        Fill="{DynamicResource PrimaryBrush}"
                                         FontFamily="{StaticResource TeacherYar.Fonts.IRANSans}"
                                         Foreground="{DynamicResource SecondaryTextBrush}"
                                         Values="{Binding Results}" />

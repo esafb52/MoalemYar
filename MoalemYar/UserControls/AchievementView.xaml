@@ -78,9 +78,8 @@
             </DataGrid>
             <controls:ScrollViewer
                 Grid.Column="1"
-                Margin="0.2,55,-0.2,-0.4"
                 HorizontalScrollBarVisibility="Auto">
-                <WrapPanel Name="waterfallFlow" Width="1000" />
+                <WrapPanel Width="700" Name="waterfallFlow" />
             </controls:ScrollViewer>
         </Grid>
     </controls:TransitioningContentControl>
