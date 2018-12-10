@@ -6,9 +6,9 @@ using HandyControl.Data;
 using HandyControl.Interactivity;
 using HandyControl.Tools;
 
-// ReSharper disable once CheckNamespace
 namespace HandyControl.Controls
 {
+    /// <inheritdoc cref="IDataInput" />
     public class TextBox : System.Windows.Controls.TextBox, IDataInput
     {
         public TextBox()
@@ -16,7 +16,6 @@ namespace HandyControl.Controls
             CommandBindings.Add(new CommandBinding(ControlCommands.Clear, (s, e) =>
             {
                 ClearValue(TextProperty);
-                Text = string.Empty;
             }));
         }
 

@@ -38,6 +38,15 @@
         <ResourceDictionary Source="Image.xaml"/>
         <ResourceDictionary Source="Label.xaml"/>
         <ResourceDictionary Source="ImageViewer.xaml"/>
+        <ResourceDictionary Source="CalendarWithClock.xaml"/>
+        <ResourceDictionary Source="DateTimePicker.xaml"/>
+        <ResourceDictionary Source="GroupBox.xaml"/>
+        <ResourceDictionary Source="ListView.xaml"/>
+        <ResourceDictionary Source="RichTextBox.xaml"/>
+        <ResourceDictionary Source="ToolBar.xaml"/>
+        <ResourceDictionary Source="SearchBar.xaml"/>
+        <ResourceDictionary Source="Tag.xaml"/>
+        <ResourceDictionary Source="RadioGroup.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
 </ResourceDictionary>

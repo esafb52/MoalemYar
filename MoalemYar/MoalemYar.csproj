@@ -14,7 +14,7 @@
     <WarningLevel>4</WarningLevel>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <AssemblyVersion>2.2.5772.0</AssemblyVersion>
+    <AssemblyVersion>2.2.5801.0</AssemblyVersion>
     <TargetFrameworkProfile />
     <ShouldCreateLogs>False</ShouldCreateLogs>
     <AdvancedSettingsExpanded>True</AdvancedSettingsExpanded>
@@ -399,12 +399,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\HandyControl\HandyControl.csproj">
-      <Project>{dc966e3d-bcff-4652-98cf-070e5494749a}</Project>
-      <Name>HandyControl</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\Checkmark.png" />
   </ItemGroup>
   <ItemGroup>
@@ -455,6 +449,12 @@
   <ItemGroup>
     <Resource Include="Resources\backup.png" />
     <Resource Include="Resources\restore.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HandyControl\HandyControl.csproj">
+      <Project>{dc966e3d-bcff-4652-98cf-070e5494749a}</Project>
+      <Name>HandyControl</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EmbedReferencedAssemblies" AfterTargets="ResolveAssemblyReferences">
