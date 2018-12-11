@@ -150,12 +150,14 @@
                             Background="{DynamicResource RegionBrush}"
                             CornerRadius="5"
                             Effect="{StaticResource EffectShadow3}">
-                           
+
                             <Grid>
-                            <StackPanel
-                                Name="stkDash"
-                                Margin="10,10,10,10"
+                                <controls:LoadingCircle Visibility="{Binding ElementName=Loading, Path=Visibility}" HorizontalContentAlignment="Stretch" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{DynamicResource PrimaryBrush}"/>
+                                <StackPanel
+                                    Margin="10,10,10,10"
                                 VerticalAlignment="Bottom"
+                                Visibility="{Binding ElementName=Chart, Path=Visibility}"
+                                Name="stkDash"
                                 Orientation="Vertical">
                                 <TextBlock
                                     Margin="0,5"
@@ -163,7 +165,6 @@
                                     FontWeight="Bold"
                                     Opacity=".4"><Run Text="دانش آموزان برتر" /></TextBlock>
                             </StackPanel>
-                                <controls:LoadingCircle Visibility="{Binding ElementName=Loading, Path=Visibility}" HorizontalContentAlignment="Stretch" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{DynamicResource PrimaryBrush}"/>
                             </Grid>
                         </Border>
                         <Border
