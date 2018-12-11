@@ -14,6 +14,7 @@ using LiveCharts.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data.Entity;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
@@ -79,14 +80,14 @@ namespace MoalemYar.UserControls
                 }
             }
         }
-
-        private async void UserControl_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        private async void InitialDataAsync()
         {
-            await Task.Run(() => {
-                Dispatcher.InvokeAsync(new Action(() => {
-                    using (var db = new DataClass.myDbContext())
-                    {
-                        var SchoolQuery = db.Schools.ToList();
+            var b = await Task.Run(async () => {
+                using (var db = new DataClass.myDbContext())
+                {
+                    var SchoolQuery = db.Schools.ToList();
+
+                    await Dispatcher.InvokeAsync(() => {
                         if (SchoolQuery.Any())
                             cmbEditBase.ItemsSource = SchoolQuery;
 
@@ -127,14 +128,22 @@ namespace MoalemYar.UserControls
                             Labels = new ObservableCollection<string>(records.Select(x => x.Caption));
                             Formatter = val => string.Format("{0}%", val);
                             DataContext = this;
+
+                            Loading.Visibility = Visibility.Collapsed;
+                            Chart.Visibility = Visibility.Visible;
                         }
                         catch (DivideByZeroException) { }
                         catch (Exception)
                         {
                         }
-                    }
-                }), DispatcherPriority.Background);
+                    });
+                    return await db.Users.FirstOrDefaultAsync();
+                }
             });
+        }
+        private void UserControl_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            InitialDataAsync();
         }
     }
 }

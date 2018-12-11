@@ -150,6 +150,8 @@
                             Background="{DynamicResource RegionBrush}"
                             CornerRadius="5"
                             Effect="{StaticResource EffectShadow3}">
+                           
+                            <Grid>
                             <StackPanel
                                 Name="stkDash"
                                 Margin="10,10,10,10"
@@ -161,6 +163,8 @@
                                     FontWeight="Bold"
                                     Opacity=".4"><Run Text="دانش آموزان برتر" /></TextBlock>
                             </StackPanel>
+                                <controls:LoadingCircle Visibility="{Binding ElementName=Loading, Path=Visibility}" HorizontalContentAlignment="Stretch" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{DynamicResource PrimaryBrush}"/>
+                            </Grid>
                         </Border>
                         <Border
                             Width="300"
@@ -169,9 +173,10 @@
                             Background="{DynamicResource RegionBrush}"
                             CornerRadius="5"
                             Effect="{StaticResource EffectShadow3}">
-                            <lvc:CartesianChart Margin="5" LegendLocation="Top">
-                                <lvc:CartesianChart.Series>
-                                    <lvc:ColumnSeries
+                            <Grid>
+                                <lvc:CartesianChart Visibility="Collapsed" Name="Chart" Margin="5" LegendLocation="Top">
+                                    <lvc:CartesianChart.Series>
+                                        <lvc:ColumnSeries
                                         Title="میزان نمرات کل کلاس در دروس مختلف"
                                         Configuration="{Binding Mapper}"
                                         DataLabels="True"
@@ -179,29 +184,32 @@
                                         FontFamily="{StaticResource TeacherYar.Fonts.IRANSans}"
                                         Foreground="{DynamicResource SecondaryTextBrush}"
                                         Values="{Binding Results}">
-                                    </lvc:ColumnSeries>
-                                </lvc:CartesianChart.Series>
-                                <lvc:CartesianChart.DataTooltip>
-                                    <lvc:DefaultTooltip Background="{DynamicResource SecondaryRegionBrush}" />
-                                </lvc:CartesianChart.DataTooltip>
-                                <lvc:CartesianChart.AxisX>
-                                    <lvc:Axis
+                                        </lvc:ColumnSeries>
+                                        
+                                    </lvc:CartesianChart.Series>
+                                    <lvc:CartesianChart.DataTooltip>
+                                        <lvc:DefaultTooltip Background="{DynamicResource SecondaryRegionBrush}" />
+                                    </lvc:CartesianChart.DataTooltip>
+                                    <lvc:CartesianChart.AxisX>
+                                        <lvc:Axis
                                         FontFamily="{StaticResource TeacherYar.Fonts.IRANSans}"
                                         Foreground="{DynamicResource SecondaryTextBrush}"
                                         Labels="{Binding Labels}"
                                         LabelsRotation="-20">
-                                        <lvc:Axis.Separator>
-                                            <lvc:Separator Step="1" />
-                                        </lvc:Axis.Separator>
-                                    </lvc:Axis>
-                                </lvc:CartesianChart.AxisX>
-                                <lvc:CartesianChart.AxisY>
-                                    <lvc:Axis
+                                            <lvc:Axis.Separator>
+                                                <lvc:Separator Step="1" />
+                                            </lvc:Axis.Separator>
+                                        </lvc:Axis>
+                                    </lvc:CartesianChart.AxisX>
+                                    <lvc:CartesianChart.AxisY>
+                                        <lvc:Axis
                                         FontFamily="{StaticResource TeacherYar.Fonts.IRANSans}"
                                         Foreground="{DynamicResource SecondaryTextBrush}"
                                         LabelFormatter="{Binding Formatter}" />
-                                </lvc:CartesianChart.AxisY>
-                            </lvc:CartesianChart>
+                                    </lvc:CartesianChart.AxisY>
+                                </lvc:CartesianChart>
+                                <controls:LoadingCircle Visibility="Visible" HorizontalContentAlignment="Stretch" HorizontalAlignment="Center" VerticalAlignment="Center" Name="Loading" Foreground="{DynamicResource PrimaryBrush}"/>
+                            </Grid>
                         </Border>
                         <Border
                             Width="270"
