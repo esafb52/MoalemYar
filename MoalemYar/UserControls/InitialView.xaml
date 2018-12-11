@@ -178,7 +178,8 @@
                                         Fill="{DynamicResource PrimaryBrush}"
                                         FontFamily="{StaticResource TeacherYar.Fonts.IRANSans}"
                                         Foreground="{DynamicResource SecondaryTextBrush}"
-                                        Values="{Binding Results}" />
+                                        Values="{Binding Results}">
+                                    </lvc:ColumnSeries>
                                 </lvc:CartesianChart.Series>
                                 <lvc:CartesianChart.DataTooltip>
                                     <lvc:DefaultTooltip Background="{DynamicResource SecondaryRegionBrush}" />

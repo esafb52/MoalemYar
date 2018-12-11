@@ -14,9 +14,12 @@ using LiveCharts.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Threading;
 
 namespace MoalemYar.UserControls
 {
@@ -33,28 +36,7 @@ namespace MoalemYar.UserControls
 
         public InitialView()
         {
-            InitializeComponent();
-            
-            getInitialData();
-        }
-
-        public void getInitialData()
-        {
-            try
-            {
-                using (var db = new DataClass.myDbContext())
-                {
-                    var query = db.Schools.ToList();
-                    txtScCount.Text = query.Count().ToString();
-                    var query2 = db.Users.ToList();
-                    txtUCount.Text = query2.Count().ToString();
-                    var query3 = db.Students.ToList();
-                    txtStCount.Text = query3.Count().ToString();
-                }
-            }
-            catch (Exception)
-            {
-            }
+            InitializeComponent();   
         }
 
         public void getTopStudent(long BaseId)
@@ -98,69 +80,61 @@ namespace MoalemYar.UserControls
             }
         }
 
-        private void getSchool()
+        private async void UserControl_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
-            try
-            {
-                using (var db = new DataClass.myDbContext())
-                {
-                    var query = db.Schools.Select(x => x);
-                    if (query.Any())
+            await Task.Run(() => {
+                Dispatcher.InvokeAsync(new Action(() => {
+                    using (var db = new DataClass.myDbContext())
                     {
-                        cmbEditBase.ItemsSource = query.ToList();
+                        var SchoolQuery = db.Schools.ToList();
+                        if (SchoolQuery.Any())
+                            cmbEditBase.ItemsSource = SchoolQuery;
+
+                        txtScCount.Text = db.Schools.Count().ToString();
+                        txtUCount.Text = db.Users.Count().ToString();
+                        txtStCount.Text = db.Students.Count().ToString();
+
+                        cmbEditBase.SelectedIndex = Convert.ToInt32(FindElement.Settings.DefaultSchool);
+                        getTopStudent(Convert.ToInt64(cmbEditBase.SelectedValue));
+
+                        try
+                        {
+                            long baseId = Convert.ToInt64(cmbEditBase.SelectedValue);
+                            var query = db.Scores.Join(
+                               db.Students,
+                               c => c.StudentId,
+                               v => v.Id,
+                               (c, v) => new DataClass.DataTransferObjects.StudentsScoresDto { Id = c.Id, BaseId = v.BaseId, StudentId = v.Id, Name = v.Name, LName = v.LName, FName = v.FName, Scores = c.Scores }
+                           ).Where(y => y.BaseId == baseId).ToList();
+
+                            var niazBeTalash = query.Where(y => y.Scores == "نیاز به تلاش بیشتر").Count();
+                            var ghabelGhabol = query.Where(y => y.Scores == "قابل قبول").Count();
+                            var khob = query.Where(y => y.Scores == "خوب").Count();
+                            var kheyliKhob = query.Where(y => y.Scores == "خیلی خوب").Count();
+
+                            list.Add(new DataClass.DataTransferObjects.myChartTemplate { Caption = "نیاز به تلاش", Scores = niazBeTalash * 100 / query.Count });
+                            list.Add(new DataClass.DataTransferObjects.myChartTemplate { Caption = "قابل قبول", Scores = ghabelGhabol * 100 / query.Count });
+                            list.Add(new DataClass.DataTransferObjects.myChartTemplate { Caption = "خوب", Scores = khob * 100 / query.Count });
+                            list.Add(new DataClass.DataTransferObjects.myChartTemplate { Caption = "خیلی خوب", Scores = kheyliKhob * 100 / query.Count });
+
+                            Mapper = Mappers.Xy<DataClass.DataTransferObjects.myChartTemplate>()
+                                .X((myData, index) => index)
+                                .Y(myData => myData.Scores);
+
+                            var records = list.OrderBy(x => x.Scores).ToArray();
+
+                            Results = records.AsChartValues();
+                            Labels = new ObservableCollection<string>(records.Select(x => x.Caption));
+                            Formatter = val => string.Format("{0}%", val);
+                            DataContext = this;
+                        }
+                        catch (DivideByZeroException) { }
+                        catch (Exception)
+                        {
+                        }
                     }
-                }
-            }
-            catch (Exception)
-            {
-            }
-        }
-
-        private void UserControl_Loaded(object sender, System.Windows.RoutedEventArgs e)
-        {
-            getSchool();
-            cmbEditBase.SelectedIndex = Convert.ToInt32(FindElement.Settings.DefaultSchool);
-            getTopStudent(Convert.ToInt64(cmbEditBase.SelectedValue));
-
-            try
-            {
-                using (var db = new DataClass.myDbContext())
-                {
-                    long baseId = Convert.ToInt64(cmbEditBase.SelectedValue);
-                    var query = db.Scores.Join(
-                       db.Students,
-                       c => c.StudentId,
-                       v => v.Id,
-                       (c, v) => new DataClass.DataTransferObjects.StudentsScoresDto { Id = c.Id, BaseId = v.BaseId, StudentId = v.Id, Name = v.Name, LName = v.LName, FName = v.FName, Scores = c.Scores }
-                   ).Where(y => y.BaseId == baseId).ToList();
-
-                    var niazBeTalash = query.Where(y => y.Scores == "نیاز به تلاش بیشتر").ToList();
-                    var ghabelGhabol = query.Where(y => y.Scores == "قابل قبول").ToList();
-                    var khob = query.Where(y => y.Scores == "خوب").ToList();
-                    var kheyliKhob = query.Where(y => y.Scores == "خیلی خوب").ToList();
-
-                    list.Add(new DataClass.DataTransferObjects.myChartTemplate { Caption = "نیاز به تلاش", Scores = niazBeTalash.Count * 100 / query.Count });
-                    list.Add(new DataClass.DataTransferObjects.myChartTemplate { Caption = "قابل قبول", Scores = ghabelGhabol.Count * 100 / query.Count });
-                    list.Add(new DataClass.DataTransferObjects.myChartTemplate { Caption = "خوب", Scores = khob.Count * 100 / query.Count });
-                    list.Add(new DataClass.DataTransferObjects.myChartTemplate { Caption = "خیلی خوب", Scores = kheyliKhob.Count * 100 / query.Count });
-
-                    Mapper = Mappers.Xy<DataClass.DataTransferObjects.myChartTemplate>()
-                        .X((myData, index) => index)
-                        .Y(myData => myData.Scores);
-
-                    var records = list.OrderBy(x => x.Scores).ToArray();
-
-                    Results = records.AsChartValues();
-                    Labels = new ObservableCollection<string>(records.Select(x => x.Caption));
-                    Formatter = val => string.Format("{0}%", val);
-                    DataContext = this;
-                }
-            }
-            catch (DivideByZeroException) { }
-            catch (Exception)
-            {
-            }
-
+                }), DispatcherPriority.Background);
+            });
         }
     }
 }
