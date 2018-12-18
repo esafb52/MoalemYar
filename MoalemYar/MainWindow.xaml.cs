@@ -139,7 +139,7 @@ namespace MoalemYar
                     FlowDirection = FlowDirection.RightToLeft
                 };
                 TextBox txtUsername = new TextBox() { TabIndex = 0, Style = TryFindResource("TextBoxExtend") as Style, Margin = new System.Windows.Thickness(10) };
-                PasswordBox txtPassword = new PasswordBox() { TabIndex = 1, Style = TryFindResource("PasswordBoxExtend") as Style, Margin = new System.Windows.Thickness(10) };
+                System.Windows.Controls.PasswordBox txtPassword = new System.Windows.Controls.PasswordBox() { TabIndex = 1, Style = TryFindResource("PasswordBoxExtend") as Style, Margin = new System.Windows.Thickness(10) };
 
                 InfoElement.SetContentHeight(txtUsername, 35);
                 InfoElement.SetContentHeight(txtPassword, 35);
