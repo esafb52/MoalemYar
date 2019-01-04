@@ -422,13 +422,8 @@ namespace HandyControl.Controls
         /// <returns></returns>
         private Button CreateColorButton(string colorStr)
         {
-            var colorObj = ColorConverter.ConvertFromString(colorStr);
-            var color = default(Color);
-            if (colorObj != null)
-            {
-                color = (Color)colorObj;
-            }
-            var brush = new SolidColorBrush(color);
+            var color = ColorConverter.ConvertFromString(colorStr) ?? default(Color);
+            var brush = new SolidColorBrush((Color)color);
 
             var button = new Button
             {
@@ -680,7 +675,7 @@ namespace HandyControl.Controls
 
         private void ButtonCancel_OnClick(object sender, RoutedEventArgs e) => RaiseEvent(new RoutedEventArgs(CanceledEvent));
 
-        public void Dispose() => Window.GetWindow(this)?.Close();
+        public void Dispose() => System.Windows.Window.GetWindow(this)?.Close();
 
         public bool CanDispose { get; } = true;
     }

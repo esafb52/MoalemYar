@@ -98,7 +98,7 @@ namespace MoalemYar.UserControls
             catch (ArgumentNullException) { }
             catch (WebException)
             {
-                MainWindow.main.showGrowlNotification(AppVariable.Recived_Circular_KEY, true);
+                Dispatcher.BeginInvoke(new Action(() =>{ MainWindow.main.showGrowlNotification(AppVariable.Recived_Circular_KEY, false);}),DispatcherPriority.Background);
             }
         }
 

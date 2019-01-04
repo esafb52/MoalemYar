@@ -153,7 +153,14 @@ namespace HandyControl.Controls
                 return;
             }
 
-#if net46
+#if netle45
+            _formattedText = new FormattedText(
+                Text,
+                CultureInfo.CurrentUICulture,
+                FlowDirection,
+                new Typeface(FontFamily, FontStyle, FontWeight, FontStretch),
+                FontSize, Fill);
+#else
             var source = PresentationSource.FromVisual(this);
             var dpi = 1.0;
             if (source?.CompositionTarget != null)
@@ -166,14 +173,6 @@ namespace HandyControl.Controls
                 FlowDirection,
                 new Typeface(FontFamily, FontStyle, FontWeight, FontStretch), 
                 FontSize, Fill, dpi);
-            
-#else
-            _formattedText = new FormattedText(
-                Text,
-                CultureInfo.CurrentUICulture,
-                FlowDirection,
-                new Typeface(FontFamily, FontStyle, FontWeight, FontStretch),
-                FontSize, Fill);
 #endif
 
             UpdateFormattedText();

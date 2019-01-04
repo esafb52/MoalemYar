@@ -20,13 +20,14 @@ var brushList = new List<string>
 	"WarningBrush",
 	"AccentBrush",
 	"PrimaryTextBrush",
-	"ThirdlyTextBrush"
+	"ThirdlyTextBrush",
+	"BlurGradientValue"
 };
 var styleList = new List<string>
 {
 	"ButtonCustom",
 	"PaginationButtonStyle",
-	"CustomWindowStyle",
+	"WindowWin10",
 	"AddTagButtonStyle",
 	"RadioGroupItemDefault",
 	"RadioGroupItemSingle",
