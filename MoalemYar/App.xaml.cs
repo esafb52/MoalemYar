@@ -14,6 +14,8 @@ using System.IO;
 using System.Reflection;
 using System.Windows;
 using HandyControl.Data;
+using HandyControl.Controls;
+using MoalemYar.Tools;
 
 namespace MoalemYar
 {
@@ -25,6 +27,8 @@ namespace MoalemYar
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
+
+            BlurWindow.SystemVersionInfo = CommonHelper.GetSystemVersionInfo();
 
             AppDomain.CurrentDomain.SetData("DataDirectory", AppVariable.fileName + @"\");
 
