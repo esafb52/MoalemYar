@@ -195,26 +195,61 @@
                 MinWidth="200"
                 MaxWidth="400" />
         </Grid.ColumnDefinitions>
-        <ListBox Name="listbox" Grid.Column="1" FlowDirection="RightToLeft" BorderThickness="0" Style="{StaticResource ListBoxTransparent}" SelectionMode="Single">
-            <ListBoxItem Tag="initial" Content="داشبورد" Selected="ListBoxItem_Selected"/>
-            <ListBoxItem Tag="addOrUpdateSchool" Content="مدرسه و کلاس" Selected="ListBoxItem_Selected"/>
-
-            <ListBoxItem Tag="exAddOrUpdateStudent" Content="دانش آموزان" Selected="ListBoxItem_Selected"/>
-
-            <ListBoxItem Tag="exAddOrUpdateUser" Content="حساب کاربری" Selected="ListBoxItem_Selected"/>
-         
-            <ListBoxItem Tag="exAttendancelist" Content="حضور و غیاب" Selected="ListBoxItem_Selected"/>
-          
-            <ListBoxItem Tag="exQuestionsList" Content="ارزشیابی" Selected="ListBoxItem_Selected"/>
-            
-            <ListBoxItem Tag="exTopStudents" Content="نفرات برتر" Selected="ListBoxItem_Selected"/>
-           
-            <ListBoxItem Tag="exAchievement" Content="پیشرفت تحصیلی" Selected="ListBoxItem_Selected"/>
-          
-            <ListBoxItem Tag="exCircular" Content="بخشنامه ها" Selected="ListBoxItem_Selected"/>
-          
-        </ListBox>
-        
+        <Grid Grid.Column="1" FlowDirection="RightToLeft">
+            <Border controls:ScrollViewer.IsEnableInertia="True">
+                <TreeView
+                    Name="treeview"
+                    controls:ScrollViewer.IsEnableInertia="True"
+                    BorderThickness="0">
+                    <TreeViewItem
+                        Header="داشبورد"
+                        Selected="TreeViewItem_Selected"
+                        Tag="initial" />
+                    <TreeViewItem Header="منوی اصلی" IsExpanded="True">
+                        <TreeViewItem Header="عملیات پایه">
+                            <TreeViewItem
+                                Header="مدرسه و کلاس"
+                                Selected="TreeViewItem_Selected"
+                                Tag="addOrUpdateSchool" />
+                            <TreeViewItem
+                                Header="دانش آموز"
+                                Selected="TreeViewItem_Selected"
+                                Tag="exAddOrUpdateStudent" />
+                            <TreeViewItem
+                                Header="حساب کاربری"
+                                Selected="TreeViewItem_Selected"
+                                Tag="exAddOrUpdateUser" />
+                        </TreeViewItem>
+                        <TreeViewItem Header="فعالیت ها">
+                            <TreeViewItem
+                                Header="حضور و غیاب"
+                                Selected="TreeViewItem_Selected"
+                                Tag="exAttendancelist" />
+                            <TreeViewItem
+                                Header="ارزشیابی"
+                                Selected="TreeViewItem_Selected"
+                                Tag="exQuestionsList" />
+                        </TreeViewItem>
+                        <TreeViewItem Header="گزارش وضعیت">
+                            <TreeViewItem
+                                Header="نفرات برتر"
+                                Selected="TreeViewItem_Selected"
+                                Tag="exTopStudents" />
+                            <TreeViewItem
+                                Header="پیشرفت تحصیلی"
+                                Selected="TreeViewItem_Selected"
+                                Tag="exAchievement" />
+                        </TreeViewItem>
+                    </TreeViewItem>
+                    <TreeViewItem Header="بیشتر" IsExpanded="True">
+                        <TreeViewItem
+                            Header="بخشنامه ها"
+                            Selected="TreeViewItem_Selected"
+                            Tag="exCircular" />
+                    </TreeViewItem>
+                </TreeView>
+            </Border>
+        </Grid>
         <Grid>
             <Border Background="{DynamicResource MainContentBackgroundBrush}">
                 <Border Background="{DynamicResource MainContentForegroundDrawingBrush}">
@@ -244,7 +279,7 @@
                             <TextBlock
                                 Foreground="White"
                                 Style="{StaticResource TextBlockDefault}"
-                                Text="{Binding ElementName=listbox, Path=SelectedItem.Content}" />
+                                Text="{Binding ElementName=treeview, Path=SelectedItem.Header}" />
                         </Border>
                         <Border Grid.Row="1" ClipToBounds="True">
                             <mvvmc:Region
