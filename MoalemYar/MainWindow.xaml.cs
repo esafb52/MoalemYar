@@ -55,50 +55,6 @@ namespace MoalemYar
             AppVariable.dbRestore();
         }
 
-        private void TreeViewItem_Selected(object sender, RoutedEventArgs e)
-        {
-            var navigationService = NavigationServiceProvider.GetNavigationServiceInstance();
-            var selectedItem = sender as TreeViewItem;
-            switch (selectedItem.Tag)
-            {
-                case "initial":
-                    navigationService.GetController<UserControls.UserControlsController>().Initial();
-                    break;
-
-                case "addOrUpdateSchool":
-                    navigationService.GetController<UserControls.UserControlsController>().AddSchool();
-                    break;
-
-                case "exAddOrUpdateStudent":
-                    navigationService.GetController<UserControls.UserControlsController>().AddStudent();
-                    break;
-
-                case "exAddOrUpdateUser":
-                    navigationService.GetController<UserControls.UserControlsController>().AddUser();
-                    break;
-
-                case "exAttendancelist":
-                    navigationService.GetController<UserControls.UserControlsController>().Attendancelist();
-                    break;
-
-                case "exQuestionsList":
-                    navigationService.GetController<UserControls.UserControlsController>().Questionslist();
-                    break;
-
-                case "exTopStudents":
-                    navigationService.GetController<UserControls.UserControlsController>().TopStudents();
-                    break;
-
-                case "exAchievement":
-                    navigationService.GetController<UserControls.UserControlsController>().Achievement();
-                    break;
-
-                case "exCircular":
-                    navigationService.GetController<UserControls.UserControlsController>().Circular();
-                    break;
-            }
-        }
-
         private void loadSettings()
         {
             if (FindElement.Settings.Skin != SkinType.Default)
@@ -479,6 +435,50 @@ namespace MoalemYar
                 if (tag.Equals(FindElement.Settings.Skin)) return;
                 FindElement.Settings.Skin = tag;
                 ((App)Application.Current).UpdateSkin(tag);
+            }
+        }
+
+        private void ListBoxItem_Selected(object sender, RoutedEventArgs e)
+        {
+            var navigationService = NavigationServiceProvider.GetNavigationServiceInstance();
+            var selectedItem = sender as ListBoxItem;
+            switch (selectedItem.Tag)
+            {
+                case "initial":
+                    navigationService.GetController<UserControls.UserControlsController>().Initial();
+                    break;
+
+                case "addOrUpdateSchool":
+                    navigationService.GetController<UserControls.UserControlsController>().AddSchool();
+                    break;
+
+                case "exAddOrUpdateStudent":
+                    navigationService.GetController<UserControls.UserControlsController>().AddStudent();
+                    break;
+
+                case "exAddOrUpdateUser":
+                    navigationService.GetController<UserControls.UserControlsController>().AddUser();
+                    break;
+
+                case "exAttendancelist":
+                    navigationService.GetController<UserControls.UserControlsController>().Attendancelist();
+                    break;
+
+                case "exQuestionsList":
+                    navigationService.GetController<UserControls.UserControlsController>().Questionslist();
+                    break;
+
+                case "exTopStudents":
+                    navigationService.GetController<UserControls.UserControlsController>().TopStudents();
+                    break;
+
+                case "exAchievement":
+                    navigationService.GetController<UserControls.UserControlsController>().Achievement();
+                    break;
+
+                case "exCircular":
+                    navigationService.GetController<UserControls.UserControlsController>().Circular();
+                    break;
             }
         }
     }

@@ -14,7 +14,7 @@
     <WarningLevel>4</WarningLevel>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <AssemblyVersion>2.2.5902.0</AssemblyVersion>
+    <AssemblyVersion>2.2.5913.0</AssemblyVersion>
     <TargetFrameworkProfile />
     <ShouldCreateLogs>False</ShouldCreateLogs>
     <AdvancedSettingsExpanded>True</AdvancedSettingsExpanded>
@@ -108,6 +108,7 @@
       <HintPath>..\packages\System.Data.SQLite.Linq.1.0.109.0\lib\net451\System.Data.SQLite.Linq.dll</HintPath>
     </Reference>
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -130,6 +131,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ConverterAndConfig\CommonHelper.cs" />
     <Compile Include="DataClass\DataTransferObjects.cs" />
     <Compile Include="DataClass\MigrationBuilder.cs" />
     <Compile Include="DataClass\MigrationFormatter.cs" />
